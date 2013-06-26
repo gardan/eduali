@@ -60,6 +60,7 @@
     <Content Include="index.html" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\app\controller\Home.js" />
+    <Content Include="Scripts\app\form\CourseForm.js" />
     <Content Include="Scripts\app\grid\EvalQuestions.js" />
     <Content Include="Scripts\app\model\EvalQuestion.js" />
     <Content Include="Scripts\app\routing\Router.js" />
