@@ -21,6 +21,12 @@
         },
         {
             xtype: 'evalremarksform'
+        },
+        {
+            xtype: 'button',
+            text: 'Save',
+            scale: 'large',
+            witdh: 500
         }
     ]
 })
