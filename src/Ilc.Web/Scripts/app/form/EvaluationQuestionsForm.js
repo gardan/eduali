@@ -35,7 +35,8 @@
                 {
                     boxLabel: 'Yes',
                     name: 'nl',
-                    inputValue: true
+                    inputValue: true,
+                    checked: true
                 },
                 {
                     boxLabel: 'No',
