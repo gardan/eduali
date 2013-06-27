@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PnA2.Models.Contracts
+namespace Ilc.Data.Models.Contracts
 {
     public interface IAccessControlEntity
     {

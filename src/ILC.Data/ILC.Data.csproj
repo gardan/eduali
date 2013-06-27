@@ -52,7 +52,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppContext.cs" />
+    <Compile Include="Configuration\ClaimsConfiguration.cs" />
+    <Compile Include="Configuration\CompanyConfiguration.cs" />
+    <Compile Include="Configuration\EmployeeConfiguration.cs" />
     <Compile Include="Configuration\SimpleMembership\MembershipConfiguration.cs" />
+    <Compile Include="Configuration\SimpleMembership\RolesConfiguration.cs" />
+    <Compile Include="Configuration\UserProfileConfiguration.cs" />
+    <Compile Include="Configuration\UserProfileWorkspaceViewConfiguration.cs" />
+    <Compile Include="Configuration\WorkspaceViewConfiguration.cs" />
     <Compile Include="Helpers\IRepositoryProvider.cs" />
     <Compile Include="Helpers\RepositoriesFactories.cs" />
     <Compile Include="Helpers\RepositoryProvider.cs" />
