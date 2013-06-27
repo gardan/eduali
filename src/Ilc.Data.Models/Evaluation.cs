@@ -9,22 +9,29 @@ namespace Ilc.Data.Models
     public class Evaluation
     {
         public int Id { get; set; }
-        public EvaluationQuestion[] EvaluationQuestions { get; set; }
+        public string StudentName { get; set; }
+        public string CompanyName { get; set; }
+        public string Email { get; set; }
+        public string EndDate { get; set; }
+        public string Language { get; set; }
+        public string Trainer { get; set; }
+
+        public string UsefulnessAnswer { get; set; }
+        public string NextTrainingAnswer { get; set; }
+
+        public bool Newsletter { get; set; }
+
+        public string RemarksAnswer { get; set; }
+
+
+        public virtual ICollection<EvaluationAnswer> EvaluationAnswers { get; set; }
 
     }
 
-    public class EvaluationQuestion
+    public class EvaluationAnswer
     {
         public int Id { get; set; }
-        public string Text { get; set; }
-        public Answer[] Answers { get; set; }
-        public Answer ChosenAnswer { get; set; }
+        public int QuestionId { get; set; }
+        public int AnswerId { get; set; }
     }
-
-    public class Answer
-    {
-        public int Id { get; set; }
-        public string  Text { get; set; }
-    }
-
 }
