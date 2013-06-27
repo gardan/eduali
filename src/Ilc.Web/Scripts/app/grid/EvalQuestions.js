@@ -6,7 +6,6 @@
     store: 'Questions',
     constructor: function () {
         var renderRadio = function(value, metaData, record) {
-            debugger;
             var name = record.data.id;
             var radioValue = value.name;
 

@@ -8,12 +8,12 @@
     items: [
         {
             xtype: 'textfield',
-            fieldLabel: 'Student name'
+            fieldLabel: 'Student name',
+            name: 'studentName'
         },
         {
             xtype: 'textfield',
-            fieldLabel: 'Company name',
-            vtype: 'email'
+            fieldLabel: 'Company name'
         },
         {
             xtype: 'textfield',
