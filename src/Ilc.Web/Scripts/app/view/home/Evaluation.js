@@ -5,7 +5,8 @@
         'Ilc.grid.EvalQuestions',
         'Ilc.form.CourseForm',
         'Ilc.form.EvaluationQuestionsForm',
-        'Ilc.form.EvaluationRemarksForm'
+        'Ilc.form.EvaluationRemarksForm',
+        'Ilc.form.QuestionWithPredefinedAnswers'
     ],
 
     items: [
@@ -16,8 +17,7 @@
             xtype: 'freeQuestions'
         },
         {
-            xtype: 'gridEvalQuestions',
-            store: 'Questions'
+            xtype: 'predefquestions',
         },
         {
             xtype: 'evalremarksform'

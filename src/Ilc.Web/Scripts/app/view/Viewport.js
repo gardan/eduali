@@ -9,6 +9,7 @@
 
     id: 'viewport',
     layout: 'border',
+    autoScroll: true,
     items: [
         {
             xtype: 'toolbar',

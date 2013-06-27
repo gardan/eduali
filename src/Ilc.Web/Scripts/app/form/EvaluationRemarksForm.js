@@ -9,7 +9,7 @@
          {
              xtype: 'textareafield',
              grow: true,
-             name: 'message',
+             name: 'remarksAnswer',
              fieldLabel: 'Do you have suggestions, remarks, explanations',
              anchor: '100%',
              labelAlign: 'top',

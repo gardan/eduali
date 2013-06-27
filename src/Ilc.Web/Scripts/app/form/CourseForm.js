@@ -13,24 +13,29 @@
         },
         {
             xtype: 'textfield',
-            fieldLabel: 'Company name'
+            fieldLabel: 'Company name',
+            name: 'companyName'
         },
         {
             xtype: 'textfield',
             fieldLabel: 'Email',
-            vtype: 'email'
+            vtype: 'email',
+            name: 'email'
         },
         {
             xtype: 'textfield',
-            fieldLabel: 'End date'
+            fieldLabel: 'End date',
+            name: 'endDate'
         },
         {
             xtype: 'textfield',
-            fieldLabel: 'Language'
+            fieldLabel: 'Language',
+            name: 'language'
         },
         {
             xtype: 'textfield',
-            fieldLabel: 'Trainer'
+            fieldLabel: 'Trainer',
+            name: 'trainer'
         }
     ]
 });

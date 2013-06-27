@@ -9,6 +9,7 @@
         this.control({
             'button': {
                 'click': function (button, e) {
+                    var evalModel = {};
                     // need to get every input thingy
                     var view = button.up('container');
                     
@@ -21,17 +22,26 @@
                         var textbox = textboxes[i];
                         var name = textbox.name;
                         var value = textbox.getRawValue();
+                        evalModel[name] = value;
                     }
-
+                    
                     // newsletter subcription
                     var radiogroup = view.query('radiogroup')[0];
                     var checked = radiogroup.getChecked()[0];
                     var sendNewsletter = checked.inputValue;
-                    
-                    // grid questions
-                    var grid = view.query('gridEvalQuestions')[0];
-                    
+                    evalModel.newsletter = sendNewsletter;
 
+                    // radiobutton questions
+                    var radioGroups = view.query('radiogroup');
+                    evalModel.answers = [];
+                    for (var j = 1; j < radioGroups.length ; j++) {
+                        var group = radioGroups[j];
+                        var checked2 = group.getChecked()[0];
+                        var grade = checked2.inputValue;
+
+                        evalModel.answers.push(grade);
+                    }
+                    debugger;
                 }
             }
         });

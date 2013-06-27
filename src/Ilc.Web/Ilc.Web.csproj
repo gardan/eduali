@@ -3519,6 +3519,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\CreateEvaluationModel.cs" />
+    <Compile Include="Models\QuestionAnswers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

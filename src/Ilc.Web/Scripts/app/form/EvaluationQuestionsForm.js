@@ -10,7 +10,7 @@
         {
             xtype: 'textareafield',
             grow: true,
-            name: 'message',
+            name: 'usefulnessAnswer',
             fieldLabel: 'What did you find the most usefull during the trianing?',
             anchor: '100%',
             labelAlign: 'top',
@@ -19,7 +19,7 @@
         {
             xtype: 'textareafield',
             grow: true,
-            name: 'message',
+            name: 'nextTrainingAnswer',
             fieldLabel: 'Which subject would you like to see in an eventual next training?',
             anchor: '100%',
             labelAlign: 'top',
