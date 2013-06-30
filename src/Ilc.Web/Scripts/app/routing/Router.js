@@ -21,7 +21,7 @@
                     return;
                 }
                 var controllerName = prevMatch.controller.charAt(0).toUpperCase() + prevMatch.controller.substr(1),
-                    controller = window.Pna.app.getController(controllerName);
+                    controller = window.Ilc.app.getController(controllerName);
 
                 if (controller.beforedispatch) {
                     controller.beforedispatch();

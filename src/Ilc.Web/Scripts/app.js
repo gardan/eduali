@@ -11,11 +11,13 @@
     ],
     
     views: [
-        'home.Evaluation'
+        'home.Evaluation',
+        'home.Transfer'
     ],
         
     routes: {
         '/': 'home#evaluation',
+        'transfer': 'home#transfer'
     },
 
     enableRouter: true,

@@ -26,6 +26,10 @@
                     text: 'Evaluations',
                     itemId: 'evaluation',
                     pressed: true
+                },
+                {
+                    text: 'Transfer',
+                    itemId: 'transfer',
                 }
             ]
         },

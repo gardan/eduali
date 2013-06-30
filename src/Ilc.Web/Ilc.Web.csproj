@@ -88,11 +88,13 @@
     <Content Include="Scripts\app\form\EvaluationQuestionsForm.js" />
     <Content Include="Scripts\app\form\EvaluationRemarksForm.js" />
     <Content Include="Scripts\app\form\QuestionWithPredefinedAnswers.js" />
+    <Content Include="Scripts\app\form\TransferBlockForm.js" />
     <Content Include="Scripts\app\grid\EvalQuestions.js" />
     <Content Include="Scripts\app\model\EvalQuestion.js" />
     <Content Include="Scripts\app\routing\Router.js" />
     <Content Include="Scripts\app\store\Questions.js" />
     <Content Include="Scripts\app\view\home\Evaluation.js" />
+    <Content Include="Scripts\app\view\home\Transfer.js" />
     <Content Include="Scripts\app\view\Viewport.js" />
     <Content Include="Scripts\extjs\ext-debug.js" />
     <Content Include="Scripts\extjs\resources\css\ext-all-access-debug.css" />

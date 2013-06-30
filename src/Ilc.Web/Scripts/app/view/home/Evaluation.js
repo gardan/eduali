@@ -24,6 +24,7 @@
         },
         {
             xtype: 'button',
+            itemId: 'evalSave',
             text: 'Save',
             scale: 'large',
             witdh: 500

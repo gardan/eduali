@@ -7,7 +7,10 @@
 
     init: function () {
         this.control({
-            'button': {
+            '#main-nav-toolbar button': {
+                click: this.onMainNavClick
+            },
+            '#evalSave': {
                 'click': function (button, e) {
                     var evalModel = {};
                     // need to get every input thingy
@@ -49,5 +52,13 @@
     
     evaluation: function () {
         
+    },
+    
+    transfer: function () {
+        
+    },
+
+    onMainNavClick: function (btn) {
+        Ext.Router.redirect(btn.itemId === 'evaluation' ? '' : btn.itemId);
     }
 });
