@@ -34,6 +34,10 @@
                 {
                     text: 'Offer',
                     itemId: 'offer',
+                },
+                {
+                    text: 'Intake',
+                    itemId: 'intake',
                 }
             ]
         },

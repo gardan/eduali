@@ -62,6 +62,10 @@
         
     },
 
+    intake: function() {
+        
+    },
+
     onMainNavClick: function (btn) {
         Ext.Router.redirect(btn.itemId === 'evaluation' ? '' : btn.itemId);
     }

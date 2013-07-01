@@ -96,6 +96,7 @@
     <Content Include="Scripts\app\routing\Router.js" />
     <Content Include="Scripts\app\store\Questions.js" />
     <Content Include="Scripts\app\view\home\Evaluation.js" />
+    <Content Include="Scripts\app\view\home\Intake.js" />
     <Content Include="Scripts\app\view\home\Transfer.js" />
     <Content Include="Scripts\app\view\home\Offer.js" />
     <Content Include="Scripts\app\view\Viewport.js" />
