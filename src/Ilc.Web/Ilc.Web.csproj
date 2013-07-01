@@ -84,9 +84,11 @@
     <Content Include="index.html" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\app\controller\Home.js" />
+    <Content Include="Scripts\app\form\ClientOfferResponseForm.js" />
     <Content Include="Scripts\app\form\CourseForm.js" />
     <Content Include="Scripts\app\form\EvaluationQuestionsForm.js" />
     <Content Include="Scripts\app\form\EvaluationRemarksForm.js" />
+    <Content Include="Scripts\app\form\OfferForm.js" />
     <Content Include="Scripts\app\form\QuestionWithPredefinedAnswers.js" />
     <Content Include="Scripts\app\form\TransferBlockForm.js" />
     <Content Include="Scripts\app\grid\EvalQuestions.js" />
@@ -95,6 +97,7 @@
     <Content Include="Scripts\app\store\Questions.js" />
     <Content Include="Scripts\app\view\home\Evaluation.js" />
     <Content Include="Scripts\app\view\home\Transfer.js" />
+    <Content Include="Scripts\app\view\home\Offer.js" />
     <Content Include="Scripts\app\view\Viewport.js" />
     <Content Include="Scripts\extjs\ext-debug.js" />
     <Content Include="Scripts\extjs\resources\css\ext-all-access-debug.css" />

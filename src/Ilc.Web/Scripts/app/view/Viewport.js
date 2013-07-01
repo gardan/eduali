@@ -30,6 +30,10 @@
                 {
                     text: 'Transfer',
                     itemId: 'transfer',
+                },
+                {
+                    text: 'Offer',
+                    itemId: 'offer',
                 }
             ]
         },

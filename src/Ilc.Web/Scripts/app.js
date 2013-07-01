@@ -12,12 +12,14 @@
     
     views: [
         'home.Evaluation',
-        'home.Transfer'
+        'home.Transfer',
+        'home.Offer'
     ],
         
     routes: {
         '/': 'home#evaluation',
-        'transfer': 'home#transfer'
+        'transfer': 'home#transfer',
+        'offer': 'home#offer'
     },
 
     enableRouter: true,
