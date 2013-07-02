@@ -109,6 +109,78 @@
                 { boxLabel: 'Option 3', name: 'listeningCapabilities', inputValue: 3 },
                 { boxLabel: 'Option 4', name: 'listeningCapabilities', inputValue: 4 }
             ]
+        },
+        {
+            xtype: 'checkboxgroup',
+            fieldLabel: 'Read capabilities',
+            vertical: true,
+            columns: 1,
+            items: [
+                { boxLabel: 'Option 1', name: 'readCapabilities', inputValue: 1 },
+                { boxLabel: 'Option 2', name: 'readCapabilities', inputValue: 2 },
+                { boxLabel: 'Option 3', name: 'readCapabilities', inputValue: 3 },
+                { boxLabel: 'Option 4', name: 'readCapabilities', inputValue: 4 }
+            ]
+        },
+        {
+            xtype: 'checkboxgroup',
+            fieldLabel: 'Speaking capabilities',
+            vertical: true,
+            columns: 1,
+            items: [
+                { boxLabel: 'Option 1', name: 'speakingCapabilities', inputValue: 1 },
+                { boxLabel: 'Option 2', name: 'speakingCapabilities', inputValue: 2 },
+                { boxLabel: 'Option 3', name: 'speakingCapabilities', inputValue: 3 },
+                { boxLabel: 'Option 4', name: 'speakingCapabilities', inputValue: 4 }
+            ]
+        },
+        {
+            xtype: 'checkboxgroup',
+            fieldLabel: 'Writing capabilities',
+            vertical: true,
+            columns: 1,
+            items: [
+                { boxLabel: 'Option 1', name: 'writingCapabilities', inputValue: 1 },
+                { boxLabel: 'Option 2', name: 'writingCapabilities', inputValue: 2 },
+                { boxLabel: 'Option 3', name: 'writingCapabilities', inputValue: 3 },
+                { boxLabel: 'Option 4', name: 'writingCapabilities', inputValue: 4 }
+            ]
+        },
+        {
+            xtype: 'checkboxgroup',
+            fieldLabel: 'Grammar capabilities',
+            vertical: true,
+            columns: 1,
+            items: [
+                { boxLabel: 'Option 1', name: 'grammarCapabilities', inputValue: 1 },
+                { boxLabel: 'Option 2', name: 'grammarCapabilities', inputValue: 2 },
+                { boxLabel: 'Option 3', name: 'grammarCapabilities', inputValue: 3 },
+                { boxLabel: 'Option 4', name: 'grammarCapabilities', inputValue: 4 }
+            ]
+        },
+        {
+            xtype: 'checkboxgroup',
+            fieldLabel: 'General subjects',
+            vertical: true,
+            columns: 1,
+            items: [
+                { boxLabel: 'Option 1', name: 'generalSubjects', inputValue: 1 },
+                { boxLabel: 'Option 2', name: 'generalSubjects', inputValue: 2 },
+                { boxLabel: 'Option 3', name: 'generalSubjects', inputValue: 3 },
+                { boxLabel: 'Option 4', name: 'generalSubjects', inputValue: 4 }
+            ]
+        },
+        {
+            xtype: 'checkboxgroup',
+            fieldLabel: 'Communication training',
+            vertical: true,
+            columns: 1,
+            items: [
+                { boxLabel: 'Option 1', name: 'communicationTraining', inputValue: 1 },
+                { boxLabel: 'Option 2', name: 'communicationTraining', inputValue: 2 },
+                { boxLabel: 'Option 3', name: 'communicationTraining', inputValue: 3 },
+                { boxLabel: 'Option 4', name: 'communicationTraining', inputValue: 4 }
+            ]
         }
     ]
 });
