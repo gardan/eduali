@@ -1,6 +1,11 @@
 ﻿Ext.define('Ilc.view.home.Intake', {
     extend: 'Ext.container.Container',
     
+    requires: [
+        'Ilc.grid.Competences',
+        'Ilc.form.IntakeQuestions'
+    ],
+
     layout: 'form',
     frame: 'true',
 
@@ -110,16 +115,72 @@
             columns: 1,
             items: [
                 { boxLabel: 'Frank Peeters', name: 'accountManager', inputValue: 1 },
-                { boxLabel: 'Mandy Brinkman', name: 'transferType', inputValue: 2 }
+                { boxLabel: 'Mandy Brinkman', name: 'accountManager', inputValue: 2 }
             ]
         },
+        // Table starts
         {
-            xtype: 'textfield',
-            fieldLabel: ''
+            xtype: 'label',
+            text: 'Offer details and/or advice coordinator'
         },
         {
             xtype: 'textfield',
-            fieldLabel: ''
-        }
+            fieldLabel: 'Language'
+        },
+        {
+            xtype: 'textfield',
+            fieldLabel: 'Coordinator'
+        },
+        {
+            xtype: 'textfield',
+            fieldLabel: 'Student, incl. In and out level'
+        },
+        {
+            xtype: 'textfield',
+            fieldLabel: 'Lesson form',
+            value: 'Hours yes/no filled in with ILC-I-Learning, Not sure what this means...!!!'
+        },
+        {
+            xtype: 'textfield',
+            fieldLabel: 'Duration'
+        },
+        {
+            xtype: 'textfield',
+            fieldLabel: 'Training location'
+        },
+        {
+            xtype: 'textfield',
+            fieldLabel: 'All in Rate (exclusive VAT)'
+        },
+        {
+            xtype: 'competencestable'
+        },
+        {
+            xtype: 'checkboxfield',
+            boxLabel: 'There is already a signed offer received',
+            labelAlign: 'right'
+        },
+        {
+            xtype: 'textfield',
+            fieldLabel: 'Eventual different address'
+        },
+        {
+            xtype: 'checkboxfield',
+            boxLabel: 'Sales department to make the offer',
+            labelAlign: 'right'
+        },
+        {
+            xtype: 'checkboxfield',
+            boxLabel: 'With VAT',
+            labelAlign: 'right'
+        },
+        {
+            xtype: 'checkboxfield',
+            boxLabel: 'without VAT',
+            labelAlign: 'right'
+        },
+        {
+            xtype: 'intakequestions'
+        }        
     ]
 });
