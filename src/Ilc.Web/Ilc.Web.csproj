@@ -39,6 +39,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Omu.ValueInjecter">
+      <HintPath>..\..\packages\ValueInjecter.2.3.3\lib\net35\Omu.ValueInjecter.dll</HintPath>
+    </Reference>
     <Reference Include="ServiceStack">
       <HintPath>..\..\packages\ServiceStack.3.9.54\lib\net35\ServiceStack.dll</HintPath>
     </Reference>
@@ -81,6 +84,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\app\controller\Home.js" />
@@ -3553,9 +3557,18 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppStart\AppHost.cs" />
+    <Compile Include="AppStart\RouteConfig.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Models\CreateEvaluationModel.cs" />
+    <Compile Include="Models\CreateTransferModel.cs" />
+    <Compile Include="Models\TransferModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DefaultService.cs" />
+    <Compile Include="Services\TransfersService.cs" />
+    <Compile Include="TransfersRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\extjs\resources\ext-theme-access\Readme.md" />

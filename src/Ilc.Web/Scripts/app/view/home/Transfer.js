@@ -27,9 +27,9 @@
             fieldLabel: 'Lesson transffered in the following',
             labelAlign: 'top',
             items: [
-                { boxLabel: 'Telephone/Email', name: 'transferType', inputValue: 1 },
-                { boxLabel: 'Personal/Verbal', name: 'transferType', inputValue: 2 },
-                { boxLabel: 'File', name: 'transferType', inputValue: 3 }
+                { boxLabel: 'Telephone/Email', name: 'transferTypes', inputValue: 1 },
+                { boxLabel: 'Personal/Verbal', name: 'transferTypes', inputValue: 2 },
+                { boxLabel: 'File', name: 'transferTypes', inputValue: 3 }
             ]
         },
         {
