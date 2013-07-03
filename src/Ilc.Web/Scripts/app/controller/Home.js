@@ -2,10 +2,13 @@
     extend: 'Ext.app.Controller',
     
     stores: [
-       'Questions'
+        'Questions',
+        'Transfers'
     ],
 
     init: function () {
+        var self = this;
+        
         this.control({
             '#main-nav-toolbar button': {
                 click: this.onMainNavClick
@@ -77,7 +80,11 @@
                     Ext.Ajax.request({
                         url: 'api/transfers',
                         method: 'POST',
-                        jsonData: transferModel
+                        jsonData: transferModel,
+                        success: function (response) {
+                            var store = self.getStore('Transfers');
+                            store.load();
+                        }
                     });
                 }
             } 

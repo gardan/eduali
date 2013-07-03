@@ -10,7 +10,13 @@ namespace Ilc.Web.Services
     {
         public FilteredDataModel<TransferModel> Get(FilterParametersBase request)
         {
-            var ret = new FilteredDataModel<TransferModel> {Data = TransfersRepo.GetAll().ToList()};
+            var data = TransfersRepo.GetAll().ToList();
+            var ret = new FilteredDataModel<TransferModel>
+                          {
+                              TotalDisplayRecords = data.Count,
+                              TotalRecords = data.Count,
+                              Data = data
+                          };
             return ret;
         }
 
