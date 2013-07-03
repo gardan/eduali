@@ -17,7 +17,7 @@ namespace Ilc.Web
         {
             new AppHost().Init();
 
-            AreaRegistration.RegisterAllAreas();
+            // AreaRegistration.RegisterAllAreas();
             RouteMvcConfig.RegisterRoutes(RouteTable.Routes);
         }
 

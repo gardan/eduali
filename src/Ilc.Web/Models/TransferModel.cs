@@ -11,7 +11,7 @@
         public string StudentName { get; set; }
         public string Trainer { get; set; }
         public int[] TransferTypes { get; set; }
-        public string TransfferedFrom { get; set; }
+        public string TransferredFrom { get; set; }
         public string TransfferedTo { get; set; }
     }
 }

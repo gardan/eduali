@@ -1,0 +1,133 @@
+﻿@model Ilc.Web.Models.TransferModel
+
+@{
+    Layout = null;
+}
+
+<itext>
+    <image url="@Context.Server.MapPath("~/Images/logo.png")" />
+    <paragraph>
+        <chunk>
+            Student name: @Model.StudentName
+        </chunk>
+    </paragraph> 
+
+    <table cellpadding="5.0" width="100.0%" widths="33.333332;33.333332;33.333332;33.333332" borderwidth="1.0" left="true" right="true" top="true" bottom="true" red="0" green="0" blue="255">
+        <row>
+            <cell borderwidth="0.5" left="true" right="true" top="true" bottom="true">
+                <paragraph>
+                    Lesson number:
+                    <newline />
+                    @Model.LessonNumber
+                </paragraph>
+            </cell>
+            <cell borderwidth="0.5" left="true" right="true" top="true" bottom="true">
+                <paragraph>
+                    Lesson date:
+                    <newline />
+                    @Model.LessonDate
+                </paragraph>
+            </cell>
+            <cell borderwidth="0.5" left="true" right="true" top="true" bottom="true">
+                <paragraph>
+                    Lesson time:
+                    <newline />
+                    @Model.LessonTime
+                </paragraph>
+            </cell>
+            <cell borderwidth="0.5" left="true" right="true" top="true" bottom="true">
+                <paragraph>
+                    Trainer:
+                    <newline />
+                    @Model.Trainer
+                </paragraph>
+            </cell>
+        </row>
+    </table>
+    
+    <paragraph>
+        <chunk>Lesson transferred from: @Model.TransferredFrom</chunk>
+    </paragraph>
+
+    <paragraph>
+        <chunk>Lesson transferred in the following:</chunk>
+    </paragraph>
+    <table width="100.0%" widths="3;30;3;30;3;30">
+        <row>
+            <cell>
+                @if (Model.TransferTypes.Contains(1))
+                {
+                    <image url="@Context.Server.MapPath("~/Images/checked.png")" />
+                }
+                else
+                {
+                    <image url="@Context.Server.MapPath("~/Images/unchecked.png")" />
+                }
+            </cell>
+            <cell>
+                Telephone/Email  
+            </cell>
+
+            <cell>
+                @if (Model.TransferTypes.Contains(2))
+                {
+                    <image url="@Context.Server.MapPath("~/Images/checked.png")" />
+                }
+                else
+                {
+                    <image url="@Context.Server.MapPath("~/Images/unchecked.png")" />
+                }
+            </cell>
+            <cell>
+                Personal/Verbal
+            </cell>
+
+            <cell>
+                @if (Model.TransferTypes.Contains(3))
+                {
+                    <image url="@Context.Server.MapPath("~/Images/checked.png")" />
+                }
+                else
+                {
+                    <image url="@Context.Server.MapPath("~/Images/unchecked.png")" />
+                }
+            </cell>
+            <cell>
+                File
+            </cell>
+        </row>
+    </table>
+    
+    <paragraph size="18.0">
+        Progress / Comments
+    </paragraph>
+    <paragraph>
+        @{
+            var progressfragments = Model.ProgressAndComments.Split(new string[] { "\n" }, StringSplitOptions.None);
+            foreach (var progress in progressfragments)
+            {
+                <chunk>@progress</chunk>
+                <newline />
+            }
+        }
+    </paragraph>
+    
+    <paragraph size="18.0">
+        Homework
+    </paragraph>
+    
+    <paragraph>
+        @{
+            var homeworkFragments = Model.Homework.Split(new string[] {"\n"}, StringSplitOptions.None);
+            foreach (var homeworkFragment in homeworkFragments)
+            {
+                <chunk>@homeworkFragment</chunk>
+                <newline />
+            }
+        }
+    </paragraph>
+
+    <paragraph>
+        Lesson transferred to: @Model.TransfferedTo
+    </paragraph>
+</itext>s

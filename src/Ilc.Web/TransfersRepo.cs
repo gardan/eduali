@@ -23,5 +23,10 @@ namespace Ilc.Web
 
             _transfers.Add(item);
         }
+
+        public static TransferModel Get(int id)
+        {
+            return _transfers.Find(t => t.Id == id);
+        }
     }
 }
