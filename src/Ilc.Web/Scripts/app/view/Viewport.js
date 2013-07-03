@@ -38,6 +38,10 @@
                 {
                     text: 'Intake',
                     itemId: 'intake',
+                },
+                {
+                    text: 'Frame',
+                    itemId: 'frame',
                 }
             ]
         },

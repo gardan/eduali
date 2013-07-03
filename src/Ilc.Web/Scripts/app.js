@@ -14,14 +14,16 @@
         'home.Evaluation',
         'home.Transfer',
         'home.Offer',
-        'home.Intake'
+        'home.Intake',
+        'home.Frame'
     ],
         
     routes: {
         '/': 'home#evaluation',
         'transfer': 'home#transfer',
         'offer': 'home#offer',
-        'intake': 'home#intake'
+        'intake': 'home#intake',
+        'frame': 'home#frame'
     },
 
     enableRouter: true,
