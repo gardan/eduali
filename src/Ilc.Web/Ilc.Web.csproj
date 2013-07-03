@@ -3614,6 +3614,8 @@
     </Compile>
     <Compile Include="Models\CreateEvaluationModel.cs" />
     <Compile Include="Models\CreateTransferModel.cs" />
+    <Compile Include="Models\FilteredDataModel.cs" />
+    <Compile Include="Models\FilterParametersBase.cs" />
     <Compile Include="Models\TransferModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DefaultService.cs" />

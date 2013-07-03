@@ -7,6 +7,7 @@ namespace Ilc.Web.AppStart
     {
         public static void Init(IServiceRoutes routes)
         {
+            routes.Add<FilterParametersBase>("/api/transfers", "GET");
             routes.Add<CreateTransferModel>("/api/transfers", "POST");
         }
     }

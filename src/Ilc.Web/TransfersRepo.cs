@@ -8,7 +8,7 @@ namespace Ilc.Web
 {
     public static class TransfersRepo
     {
-        private static List<TransferModel> _transfers;
+        private static readonly List<TransferModel> _transfers;
         private static int _lastId = 0;
 
         static TransfersRepo()
@@ -27,6 +27,11 @@ namespace Ilc.Web
         public static TransferModel Get(int id)
         {
             return _transfers.Find(t => t.Id == id);
+        }
+
+        public static TransferModel[] GetAll()
+        {
+            return _transfers.ToArray();
         }
     }
 }
