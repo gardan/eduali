@@ -46,7 +46,41 @@
                     }
                     debugger;
                 }
-            }
+            },
+            '#transferSave': {
+                'click': function (button, e) {
+                    var transferModel = {};
+
+                    var view = button.up('container');
+                    
+                    var textboxes = view.query('textfield');
+                    for (var i = 0; i < textboxes.length; i++) {
+                        var textbox = textboxes[i];
+                        var name = textbox.name;
+                        var value = textbox.getRawValue();
+                        transferModel[name] = value;
+                    }
+
+                    var checkboxgroups = view.query('checkboxgroup');
+                    for (var z = 0; z < checkboxgroups.length; z++) {
+                        var checked = checkboxgroups[z].getChecked();
+                        for (var x = 0; x < checked.length; x++) {
+                            var checkedItem = checked[x];
+                            if (transferModel[checkedItem.name] == undefined) {
+                                transferModel[checkedItem.name] = [];
+                            }
+                            transferModel[checkedItem.name].push(checkedItem.inputValue);
+                        }
+                        
+                    }
+
+                    Ext.Ajax.request({
+                        url: 'api/transfers',
+                        method: 'POST',
+                        jsonData: transferModel
+                    });
+                }
+            } 
         });
     },
     

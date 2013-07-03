@@ -8,19 +8,23 @@
     items: [
         {
             xtype: 'textfield',
-            fieldLabel: 'Lesson number'
+            fieldLabel: 'Lesson number',
+            name: 'lessonNumber'
         },
         {
             xtype: 'textfield',
-            fieldLabel: 'Lesson date'
+            fieldLabel: 'Lesson date',
+            name: 'lessonDate'
         },
         {
             xtype: 'textfield',
-            fieldLabel: 'Lesson time'
+            fieldLabel: 'Lesson time',
+            name: 'lessonTime'
         },
         {
             xtype: 'textfield',
-            fieldLabel: 'Trainer'
+            fieldLabel: 'Trainer',
+            name: 'trainer'
         }
     ]
 })
