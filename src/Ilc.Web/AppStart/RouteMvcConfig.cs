@@ -16,7 +16,7 @@ namespace Ilc.Web.AppStart
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}",
-                defaults: new { controller = "Transfers", action = "Sample" }
+                defaults: new { controller = "Home", action = "Index" }
             );
         }
     }
