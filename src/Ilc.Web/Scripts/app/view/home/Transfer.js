@@ -36,6 +36,8 @@
             xtype: 'window',
             itemId: 'newTransferWindow',
             closeAction: 'hide',
+            layout: 'form',
+            width: 400,
             items: [
                 {
                     xtype: 'textfield',
