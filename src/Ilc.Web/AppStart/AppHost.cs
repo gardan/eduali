@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using Funq;
+using ServiceStack.Mvc;
 using ServiceStack.Text;
 using ServiceStack.WebHost.Endpoints;
 
@@ -19,8 +20,9 @@ namespace Ilc.Web.AppStart
             JsConfig.EmitCamelCaseNames = true;
             JsConfig.ExcludeTypeInfo = true;
 
-            // ControllerBuilder.Current.SetControllerFactory(new FunqControllerFactory(container));
+            ControllerBuilder.Current.SetControllerFactory(new FunqControllerFactory(container));
 
+            IocConfig.Init(container);
             RouteConfig.Init(Routes);
         }
     }

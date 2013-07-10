@@ -33,6 +33,7 @@ namespace Ilc.Web.Authentication
         private void EstablishSession(ClaimsPrincipal principal)
         {
             var sessionToken = new SessionSecurityToken(principal);
+
             FederatedAuthentication.SessionAuthenticationModule.WriteSessionTokenToCookie(sessionToken);
         }
     }
