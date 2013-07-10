@@ -383,7 +383,7 @@
                             <Add.Item>
                                 <Button Text="Add" Foreground="#FF282828" FontSize="13" FontStyle="Normal" Id="bed217e8-3561-4703-81cd-9c646debfb6b" Panel.Bounds="133,230,99{5,2147483647},35{5,2147483647}">
                                     <Button.Click>
-                                        <CommandNext SceneId="7e12bda9-3808-4f1a-ba22-8a8662aa52a3" Created="07/10/2013 10:50:47" />
+                                        <CommandNext SceneId="c89c5366-2948-42b6-8b13-91414615359b" Created="07/10/2013 16:13:06" />
                                     </Button.Click>
                                 </Button>
                             </Add.Item>
@@ -392,31 +392,57 @@
                 </KeyFrame>
             </Scene.KeyFrames>
         </Scene>
-        <Scene Title="Tapped/Clicked Add" StateGroup="b189899f-924e-42b4-9234-4da46ffb69ab" ParentScene="b189899f-924e-42b4-9234-4da46ffb69ab" Created="07/10/2013 10:50:47" Id="7e12bda9-3808-4f1a-ba22-8a8662aa52a3">
+        <Scene Title="Tapped/Clicked Add" StateGroup="b189899f-924e-42b4-9234-4da46ffb69ab" ParentScene="b189899f-924e-42b4-9234-4da46ffb69ab" Created="07/10/2013 16:13:06" Id="c89c5366-2948-42b6-8b13-91414615359b">
             <Scene.KeyFrames>
-                <KeyFrame Id="57f6bd91-fd08-4165-9957-ca3166d5b2b5">
+                <KeyFrame Id="f70f917d-9617-4d2e-b20f-6a95b505368a">
                     <KeyFrame.Operations>
-                        <Set Property="GridCellData.Value" Value="Accepted" Target="92a3a946-f0a0-45e7-a488-997e4ef5f3f9" />
-                        <Remove Target="6add31cc-1f8f-4ccb-b220-ba5d393859c1" />
+                        <Add Property="Panel.Children" Target="c095594d-f903-4755-b000-be0275c85ac8">
+                            <Add.Item>
+                                <Button Text="Accepted" Foreground="#FF282828" FontSize="13" FontStyle="Normal" Id="1f00c032-aa04-4956-a453-2739e12ed5a4" Panel.Bounds="87,171,80{5,2147483647},35{5,2147483647}">
+                                    <Button.Click>
+                                        <CommandNext SceneId="fd50f407-67d9-4abd-a0ea-ee9bcc67ca21" Created="07/10/2013 16:26:00" />
+                                    </Button.Click>
+                                </Button>
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="c095594d-f903-4755-b000-be0275c85ac8">
+                            <Add.Item>
+                                <Button Text="Rejected" Foreground="#FF282828" FontSize="13" FontStyle="Normal" Id="70f3654e-12c6-45dd-884a-7d3ea4dcc6b0" Panel.Bounds="182,171,80{5,2147483647},35{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="c095594d-f903-4755-b000-be0275c85ac8">
+                            <Add.Item>
+                                <Note Text="These 2 buttons should only appear if all the interviews are complete." Foreground="#FF282828" FontSize="13" FontStyle="Normal" Id="3474852d-5633-4368-a2f2-69ccbc5930c0" Panel.Bounds="83,200,190{5,2147483647},68{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Set Property="GridCellData.Value" Value="View" Target="c303615f-f8ca-4fcd-a9be-65e775e688d8" />
                         <Remove Target="bed217e8-3561-4703-81cd-9c646debfb6b" />
-                        <Remove Target="0fbc919e-190f-43e4-bd4c-1dba3642f005" />
+                        <Remove Target="6add31cc-1f8f-4ccb-b220-ba5d393859c1" />
                         <Remove Target="59eb8a84-23b8-4eaa-a0c2-9a0c058cfe92" />
+                        <Remove Target="0fbc919e-190f-43e4-bd4c-1dba3642f005" />
                         <Remove Target="95b2a3d9-dfb5-4279-bbd6-1319de0a127e" />
                         <Remove Target="372a4119-fa4f-44d5-826d-dfd3e2f61871" />
-                        <Remove Target="365c8808-341d-48c3-83f3-8c33b685c0c8" />
-                        <Remove Target="1812bf3f-d6ba-4607-a28c-022c7ef64e77" />
-                        <Remove Target="0887f57a-2941-43d6-b25b-79449bcca1a6" />
-                        <Remove Target="f480ffe0-4c2c-47f7-95af-46706745067c" />
+                        <Remove Property="Control.Click" Target="c303615f-f8ca-4fcd-a9be-65e775e688d8">
+                            <Remove.Item>
+                                <CommandNext SceneId="b189899f-924e-42b4-9234-4da46ffb69ab" Created="07/10/2013 10:42:12" />
+                            </Remove.Item>
+                        </Remove>
                     </KeyFrame.Operations>
                 </KeyFrame>
             </Scene.KeyFrames>
         </Scene>
-        <Scene Title="Disconnected State" StateGroup="7e12bda9-3808-4f1a-ba22-8a8662aa52a3" ParentScene="7e12bda9-3808-4f1a-ba22-8a8662aa52a3" Created="07/10/2013 11:30:05" Id="fa9f6d81-f827-479f-b868-f88f8935e324">
+        <Scene Title="Tapped/Clicked Accepted" StateGroup="c89c5366-2948-42b6-8b13-91414615359b" ParentScene="c89c5366-2948-42b6-8b13-91414615359b" Created="07/10/2013 16:26:00" Id="fd50f407-67d9-4abd-a0ea-ee9bcc67ca21">
             <Scene.KeyFrames>
-                <KeyFrame Id="4be58217-d4ba-47b2-a935-4a0b238075fa">
+                <KeyFrame Id="d28c59a6-767b-4a76-94d3-b67863ff54ac">
                     <KeyFrame.Operations>
-                        <Set Property="GridCellData.Value" Value="Closed" Target="92a3a946-f0a0-45e7-a488-997e4ef5f3f9" />
-                        <Set Property="GridCellData.Value" Value="No action" Target="f5714075-8fa6-47b1-a1e1-c036ed66b1be" />
+                        <Set Property="GridCellData.Value" Value="Accepted" Target="92a3a946-f0a0-45e7-a488-997e4ef5f3f9" />
+                        <Remove Target="1812bf3f-d6ba-4607-a28c-022c7ef64e77" />
+                        <Remove Target="0887f57a-2941-43d6-b25b-79449bcca1a6" />
+                        <Remove Target="3474852d-5633-4368-a2f2-69ccbc5930c0" />
+                        <Remove Target="70f3654e-12c6-45dd-884a-7d3ea4dcc6b0" />
+                        <Remove Target="1f00c032-aa04-4956-a453-2739e12ed5a4" />
+                        <Remove Target="365c8808-341d-48c3-83f3-8c33b685c0c8" />
+                        <Remove Target="f480ffe0-4c2c-47f7-95af-46706745067c" />
                     </KeyFrame.Operations>
                 </KeyFrame>
             </Scene.KeyFrames>
