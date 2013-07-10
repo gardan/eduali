@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilc.Data.Models", "src\Ilc.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilc.Web", "src\Ilc.Web\Ilc.Web.csproj", "{5BF1B193-C297-44AE-BDFC-9D561EB1919A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILC.Data", "src\ILC.Data\ILC.Data.csproj", "{23DC2E5A-51C6-4CC9-AC7A-469082F37A22}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilc.Data", "src\ILC.Data\Ilc.Data.csproj", "{23DC2E5A-51C6-4CC9-AC7A-469082F37A22}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilc.Data.Contracts", "src\Ilc.Data.Contracts\Ilc.Data.Contracts.csproj", "{3FA100BF-8CD4-4CA0-BE9D-9EF503CA7214}"
 EndProject
