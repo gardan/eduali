@@ -11,9 +11,11 @@ namespace Ilc.Web.Authentication
 {
     public class IdentityAuthenticationManager : IIdentityAuthenticationManager
     {
+        public IIdentityStoreManager IdentityStoreManager { get; set; }
+
         public bool CheckPasswordAndSignIn(HttpContextBase context, string username, string password, bool isPersistent)
         {
-            if (username == "admin" && password == "admin")
+            if (IdentityStoreManager.ValidateLocalLogin(username, password))
             {
 
                 var principal = CreateApplicationPrincipal(username);

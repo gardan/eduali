@@ -9,6 +9,7 @@ namespace Ilc.Web.AppStart
         public static void Init(Container container)
         {
             container.RegisterAutoWiredAs<IdentityAuthenticationManager, IIdentityAuthenticationManager>();
+            container.RegisterAutoWiredAs<IdentityStoreManager, IIdentityStoreManager>();
         }
     }
 }
