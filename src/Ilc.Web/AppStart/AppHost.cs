@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using System.Web.Mvc;
 using Funq;
 using ServiceStack.Text;
 using ServiceStack.WebHost.Endpoints;
@@ -17,6 +18,8 @@ namespace Ilc.Web.AppStart
         {
             JsConfig.EmitCamelCaseNames = true;
             JsConfig.ExcludeTypeInfo = true;
+
+            // ControllerBuilder.Current.SetControllerFactory(new FunqControllerFactory(container));
 
             RouteConfig.Init(Routes);
         }

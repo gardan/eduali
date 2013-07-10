@@ -1,0 +1,10 @@
+﻿@model Ilc.Web.Models.LoginViewModel
+
+@using (Html.BeginForm(new {ReturnUrl = ViewBag.ReturnUrl}))
+{
+    @Html.TextBoxFor(m => m.Username)
+
+    @Html.PasswordFor(m => m.Password)
+
+    <input type="submit" value="Log in" />
+}

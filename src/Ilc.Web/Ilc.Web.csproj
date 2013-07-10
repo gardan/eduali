@@ -81,6 +81,8 @@
     <Reference Include="ServiceStack.Text">
       <HintPath>..\..\packages\ServiceStack.Text.3.9.54\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.identitymodel.services" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -3610,6 +3612,9 @@
     <Compile Include="AppStart\AppHost.cs" />
     <Compile Include="AppStart\RouteConfig.cs" />
     <Compile Include="AppStart\RouteMvcConfig.cs" />
+    <Compile Include="Authentication\Contracts\IIdentityAuthenticationManager.cs" />
+    <Compile Include="Authentication\IdentityAuthenticationManager.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TransfersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -3619,6 +3624,7 @@
     <Compile Include="Models\CreateTransferModel.cs" />
     <Compile Include="Models\FilteredDataModel.cs" />
     <Compile Include="Models\FilterParametersBase.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\TransferModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DefaultService.cs" />
@@ -3640,6 +3646,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Transfers\Pdf.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
