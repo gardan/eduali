@@ -3667,6 +3667,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Ilc.Core\Ilc.Core.csproj">
+      <Project>{1272C26B-402F-4AE1-B324-9174A36CACAD}</Project>
+      <Name>Ilc.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Ilc.Infrastructure\Ilc.Infrastructure.csproj">
+      <Project>{47F21E74-3170-45F0-AA69-35EC3372E562}</Project>
+      <Name>Ilc.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ilc.Data.Contracts\Ilc.Data.Contracts.csproj">
       <Project>{3FA100BF-8CD4-4CA0-BE9D-9EF503CA7214}</Project>
       <Name>Ilc.Data.Contracts</Name>

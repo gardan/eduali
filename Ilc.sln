@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilc.Data.Contracts", "src\I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilc.Infrastructure", "Ilc.Infrastructure\Ilc.Infrastructure.csproj", "{47F21E74-3170-45F0-AA69-35EC3372E562}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilc.Core", "Ilc.Core\Ilc.Core.csproj", "{1272C26B-402F-4AE1-B324-9174A36CACAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{47F21E74-3170-45F0-AA69-35EC3372E562}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47F21E74-3170-45F0-AA69-35EC3372E562}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47F21E74-3170-45F0-AA69-35EC3372E562}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1272C26B-402F-4AE1-B324-9174A36CACAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1272C26B-402F-4AE1-B324-9174A36CACAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1272C26B-402F-4AE1-B324-9174A36CACAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1272C26B-402F-4AE1-B324-9174A36CACAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

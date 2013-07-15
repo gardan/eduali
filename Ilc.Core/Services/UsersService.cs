@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models;
-using Ilc.Infrastructure.Contracts;
 
-namespace Ilc.Infrastructure
+namespace Ilc.Core.Services
 {
     public class UsersService : IUsersService
     {

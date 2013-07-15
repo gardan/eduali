@@ -1,6 +1,6 @@
 ﻿using Funq;
-using Ilc.Infrastructure;
-using Ilc.Infrastructure.Contracts;
+using Ilc.Core.Contracts;
+using Ilc.Core.Services;
 using Ilc.Web.Authentication;
 using Ilc.Web.Authentication.Contracts;
 
