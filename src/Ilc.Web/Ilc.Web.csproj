@@ -132,6 +132,7 @@
     <Reference Include="WebGrease">
       <HintPath>..\..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
     </Reference>
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -3678,6 +3679,10 @@
     <ProjectReference Include="..\Ilc.Data.Contracts\Ilc.Data.Contracts.csproj">
       <Project>{3FA100BF-8CD4-4CA0-BE9D-9EF503CA7214}</Project>
       <Name>Ilc.Data.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ilc.Data.Models\Ilc.Data.Models.csproj">
+      <Project>{0D1BF8AA-DB0E-454B-8D1C-8629F1B5DD0A}</Project>
+      <Name>Ilc.Data.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
