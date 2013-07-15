@@ -3,7 +3,8 @@
     appFolder: 'Scripts/app',
 
     controllers: [
-         'Home'
+         'Home',
+         'Tasks'
     ],
 
     requires: [
@@ -15,7 +16,8 @@
         'home.Transfer',
         'home.Offer',
         'home.Intake',
-        'home.Frame'
+        'home.Frame',
+        'tasks.List'
     ],
         
     routes: {
@@ -23,7 +25,8 @@
         'transfer': 'home#transfer',
         'offer': 'home#offer',
         'intake': 'home#intake',
-        'frame': 'home#frame'
+        'frame': 'home#frame',
+        'tasks': 'tasks#list'
     },
 
     enableRouter: true,
