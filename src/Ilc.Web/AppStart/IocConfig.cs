@@ -1,4 +1,6 @@
 ﻿using Funq;
+using Ilc.Infrastructure;
+using Ilc.Infrastructure.Contracts;
 using Ilc.Web.Authentication;
 using Ilc.Web.Authentication.Contracts;
 
@@ -10,6 +12,7 @@ namespace Ilc.Web.AppStart
         {
             container.RegisterAutoWiredAs<IdentityAuthenticationManager, IIdentityAuthenticationManager>();
             container.RegisterAutoWiredAs<IdentityStoreManager, IIdentityStoreManager>();
+            container.RegisterAutoWiredAs<UsersService, IUsersService>();
         }
     }
 }
