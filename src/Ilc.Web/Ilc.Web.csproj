@@ -161,6 +161,7 @@
     <Content Include="Scripts\app\tasks\training\Accepted.js" />
     <Content Include="Scripts\app\tasks\training\Interview.js" />
     <Content Include="Scripts\app\tasks\training\PlanInterview.js" />
+    <Content Include="Scripts\app\tasks\training\Rfi.js" />
     <Content Include="Scripts\app\tasks\training\Rfp.js" />
     <Content Include="Scripts\app\view\home\Evaluation.js" />
     <Content Include="Scripts\app\view\home\Frame.js" />
