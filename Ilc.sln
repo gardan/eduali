@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilc.Data", "src\ILC.Data\Il
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilc.Data.Contracts", "src\Ilc.Data.Contracts\Ilc.Data.Contracts.csproj", "{3FA100BF-8CD4-4CA0-BE9D-9EF503CA7214}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilc.Infrastructure", "Ilc.Infrastructure\Ilc.Infrastructure.csproj", "{47F21E74-3170-45F0-AA69-35EC3372E562}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilc.Infrastructure", "src\Ilc.Infrastructure\Ilc.Infrastructure.csproj", "{47F21E74-3170-45F0-AA69-35EC3372E562}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilc.Core", "Ilc.Core\Ilc.Core.csproj", "{1272C26B-402F-4AE1-B324-9174A36CACAD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilc.Core", "src\Ilc.Core\Ilc.Core.csproj", "{1272C26B-402F-4AE1-B324-9174A36CACAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
