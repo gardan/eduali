@@ -10,7 +10,7 @@
             fields: ['id', 'name', 'action'],
             data: {
                 data: [
-                    { id: 1, name: 'RFP', action: 'rfp' },
+                    { id: 1, name: 'RFI', action: 'rfi' },
                     { id: 2, name: 'Plan Interview', action: 'planInterview' },
                     { id: 3, name: 'Interview', action: 'interview' },
                     { id: 4, name: 'Accepted', action: 'accepted' }

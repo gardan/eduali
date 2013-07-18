@@ -3617,6 +3617,8 @@
     <Content Include="Scripts\extjs\src\XTemplateCompiler.js" />
     <Content Include="Scripts\extjs\src\XTemplateParser.js" />
     <Content Include="Scripts\extjs\src\ZIndexManager.js" />
+    <Content Include="Scripts\lib\q.js" />
+    <Content Include="Scripts\lib\q.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -3630,6 +3632,7 @@
     <Compile Include="Authentication\IdentityAuthenticationManager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LightOfferController.cs" />
     <Compile Include="Controllers\TransfersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -3638,6 +3641,7 @@
     <Compile Include="Models\CreateTransferModel.cs" />
     <Compile Include="Models\FilteredDataModel.cs" />
     <Compile Include="Models\FilterParametersBase.cs" />
+    <Compile Include="Models\LightOfferModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\TransferModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -3661,6 +3665,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Transfers\Pdf.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\LightOffer\Pdf.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3669,11 +3674,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Ilc.Core\Ilc.Core.csproj">
+    <ProjectReference Include="..\Ilc.Core\Ilc.Core.csproj">
       <Project>{1272C26B-402F-4AE1-B324-9174A36CACAD}</Project>
       <Name>Ilc.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Ilc.Infrastructure\Ilc.Infrastructure.csproj">
+    <ProjectReference Include="..\Ilc.Infrastructure\Ilc.Infrastructure.csproj">
       <Project>{47F21E74-3170-45F0-AA69-35EC3372E562}</Project>
       <Name>Ilc.Infrastructure</Name>
     </ProjectReference>

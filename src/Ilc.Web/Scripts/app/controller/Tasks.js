@@ -20,10 +20,26 @@
         console.log('addrfp executed.');
         window.close();
     },
-    addrfi: function (window, data) {
+    addrfi: function (sender, data) {
         console.log('addrfi executed.');
+
+        var taskService = {
+            updateTask: function (obj) {
+                return Q.fcall(function () {
+                    return {
+                        id: 1   
+                    };
+                });
+            }
+        };
+
+        taskService.updateTask(data)
+        .then(function (response) {
+            window.open('lightOffer/pdf/' + response.id);
+            sender.close();
+        });
+
         
-        window.close();
     },
 
         // routes functions
