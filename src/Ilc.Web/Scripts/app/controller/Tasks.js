@@ -10,21 +10,24 @@
             },
             'rfiwindow': {
                 addrfi: me.addrfi
+            },
+            'planinterviewwindow': {
+                addinterviewplan: me.addinterviewplan
             }
         });
 
     },
     
     // training workflow state handlers
-    addrfp: function (window, data) {
+    addrfp: function (sender, data) {
         console.log('addrfp executed.');
-        window.close();
+        sender.close();
     },
     addrfi: function (sender, data) {
         console.log('addrfi executed.');
 
-        var taskService = {
-            updateTask: function (obj) {
+        var initalOffers = {
+            add: function (obj) {
                 return Q.fcall(function () {
                     return {
                         id: 1   
@@ -33,7 +36,7 @@
             }
         };
 
-        taskService.updateTask(data)
+        initalOffers.add(data)
         .then(function (response) {
             window.open('lightOffer/pdf/' + response.id);
             sender.close();
@@ -42,7 +45,30 @@
         
     },
 
-        // routes functions
+    addinterviewplan: function(sender, data) {
+        console.log('addinterviewplan executed.');
+
+        var interviewPlans = {
+            add: function (dataObj) {
+                return Q.fcall(function () {
+                    return {
+                        id: 1    
+                    };
+                });
+            }
+        };
+
+
+        interviewPlans.add(data)
+        .then(function (response) {
+            // just reload the tasks
+            // | just the one task returned.
+        }).done(function () {
+            sender.close();
+        });
+    },
+
+    // routes functions
     list: function () {
         
     }
