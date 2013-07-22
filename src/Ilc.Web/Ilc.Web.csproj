@@ -140,6 +140,7 @@
     <Content Include="Images\logo.png" />
     <Content Include="Images\unchecked.png" />
     <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\app\controller\Customers.js" />
     <Content Include="Scripts\app\controller\Home.js" />
     <Content Include="Scripts\app\controller\Tasks.js" />
     <Content Include="Scripts\app\controller\Trainings.js" />
@@ -165,6 +166,7 @@
     <Content Include="Scripts\app\tasks\training\PlanInterview.js" />
     <Content Include="Scripts\app\tasks\training\Rfi.js" />
     <Content Include="Scripts\app\tasks\training\Rfp.js" />
+    <Content Include="Scripts\app\view\customers\List.js" />
     <Content Include="Scripts\app\view\home\Evaluation.js" />
     <Content Include="Scripts\app\view\home\Frame.js" />
     <Content Include="Scripts\app\view\home\Intake.js" />

@@ -5,7 +5,8 @@
     controllers: [
          'Home',
          'Tasks',
-         'Trainings'
+         'Trainings',
+         'Customers'
     ],
 
     requires: [
@@ -14,13 +15,14 @@
     
     views: [
         'home.Evaluation',
-        'trainings.List'
-    ],
+        'trainings.List',
+        'customers.List'
+    ],  
         
     routes: {
         '/': 'home#evaluation',
-        'trainings': 'trainings#list'
-
+        'trainings': 'trainings#list',
+        'customers': 'customers#list'
     },
 
     enableRouter: true,
