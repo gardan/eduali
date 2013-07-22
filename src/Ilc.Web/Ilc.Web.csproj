@@ -161,6 +161,7 @@
     <Content Include="Scripts\app\model\EvalQuestion.js" />
     <Content Include="Scripts\app\model\Transfer.js" />
     <Content Include="Scripts\app\routing\Router.js" />
+    <Content Include="Scripts\app\store\Customers.js" />
     <Content Include="Scripts\app\store\Questions.js" />
     <Content Include="Scripts\app\store\Transfers.js" />
     <Content Include="Scripts\app\tasks\training\Accepted.js" />
@@ -179,6 +180,7 @@
     <Content Include="Scripts\app\view\students\List.js" />
     <Content Include="Scripts\app\view\tasks\List.js" />
     <Content Include="Scripts\app\view\trainers\List.js" />
+    <Content Include="Scripts\app\view\trainings\Create.js" />
     <Content Include="Scripts\app\view\trainings\List.js" />
     <Content Include="Scripts\app\view\trainings\View.js" />
     <Content Include="Scripts\app\view\Viewport.js" />

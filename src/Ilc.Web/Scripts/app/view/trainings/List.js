@@ -69,7 +69,14 @@
         me.items = [,
             {
                 xtype: 'button',
-                text: 'New training'
+                text: 'New training',
+                handler: function (btn, e) {
+                     var window = Ext.create('Ilc.view.trainings.Create', {
+                         modal: true,
+                         closeAction: 'destroy'
+                     });
+                     window.show();
+                }
             },
             trainingsGrid
         ];
