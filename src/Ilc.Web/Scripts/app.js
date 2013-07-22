@@ -7,7 +7,8 @@
         'Tasks',
         'Trainings',
         'Customers',
-        'Students'
+        'Students',
+        'Statistics'
     ],
 
     requires: [
@@ -18,14 +19,16 @@
         'home.Evaluation',
         'trainings.List',
         'customers.List',
-        'students.List'
+        'students.List',
+        'statistics.View'
     ],  
         
     routes: {
         '/': 'home#evaluation',
         'trainings': 'trainings#list',
         'customers': 'customers#list',
-        'students': 'students#list'
+        'students': 'students#list',
+        'statistics': 'statistics#view'
     },
 
     enableRouter: true,
