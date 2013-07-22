@@ -8,7 +8,8 @@
         'Trainings',
         'Customers',
         'Students',
-        'Statistics'
+        'Statistics',
+        'Trainers'
     ],
 
     requires: [
@@ -20,7 +21,8 @@
         'trainings.List',
         'customers.List',
         'students.List',
-        'statistics.View'
+        'statistics.View',
+        'trainers.List'
     ],  
         
     routes: {
@@ -28,7 +30,8 @@
         'trainings': 'trainings#list',
         'customers': 'customers#list',
         'students': 'students#list',
-        'statistics': 'statistics#view'
+        'statistics': 'statistics#view',
+        'trainers': 'trainers#list'
     },
 
     enableRouter: true,

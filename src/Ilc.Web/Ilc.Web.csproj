@@ -145,6 +145,7 @@
     <Content Include="Scripts\app\controller\Statistics.js" />
     <Content Include="Scripts\app\controller\Students.js" />
     <Content Include="Scripts\app\controller\Tasks.js" />
+    <Content Include="Scripts\app\controller\Trainers.js" />
     <Content Include="Scripts\app\controller\Trainings.js" />
     <Content Include="Scripts\app\form\ClientOfferResponseForm.js" />
     <Content Include="Scripts\app\form\CourseForm.js" />
@@ -177,6 +178,7 @@
     <Content Include="Scripts\app\view\statistics\View.js" />
     <Content Include="Scripts\app\view\students\List.js" />
     <Content Include="Scripts\app\view\tasks\List.js" />
+    <Content Include="Scripts\app\view\trainers\List.js" />
     <Content Include="Scripts\app\view\trainings\List.js" />
     <Content Include="Scripts\app\view\Viewport.js" />
     <Content Include="Scripts\extjs\ext-debug.js" />
