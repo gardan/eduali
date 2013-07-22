@@ -3,10 +3,11 @@
     appFolder: 'Scripts/app',
 
     controllers: [
-         'Home',
-         'Tasks',
-         'Trainings',
-         'Customers'
+        'Home',
+        'Tasks',
+        'Trainings',
+        'Customers',
+        'Students'
     ],
 
     requires: [
@@ -16,13 +17,15 @@
     views: [
         'home.Evaluation',
         'trainings.List',
-        'customers.List'
+        'customers.List',
+        'students.List'
     ],  
         
     routes: {
         '/': 'home#evaluation',
         'trainings': 'trainings#list',
-        'customers': 'customers#list'
+        'customers': 'customers#list',
+        'students': 'students#list'
     },
 
     enableRouter: true,
