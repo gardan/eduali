@@ -26,7 +26,7 @@
     ],  
         
     routes: {
-        '/': 'home#evaluation',
+        '/': 'trainings#list',
         'trainings': 'trainings#list',
         'customers': 'customers#list',
         'students': 'students#list',
