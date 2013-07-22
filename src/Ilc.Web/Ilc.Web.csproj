@@ -180,6 +180,7 @@
     <Content Include="Scripts\app\view\tasks\List.js" />
     <Content Include="Scripts\app\view\trainers\List.js" />
     <Content Include="Scripts\app\view\trainings\List.js" />
+    <Content Include="Scripts\app\view\trainings\View.js" />
     <Content Include="Scripts\app\view\Viewport.js" />
     <Content Include="Scripts\extjs\ext-debug.js" />
     <Content Include="Scripts\extjs\resources\css\ext-all-access-debug.css" />

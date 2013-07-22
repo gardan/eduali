@@ -6,9 +6,13 @@
         var me = this;
 
         var trainingsStore = Ext.create('Ext.data.Store', {
-            fields: ['status', 'companyName', 'trainerName', 'subject', 'owners'],
+            fields: ['status', 'companyName', 'trainerName', 'subject', 'owners', 'startDate', 'endDate', 'students'],
             data: [
-                { status: 'Review', companyName: 'Google', trainerName: 'Gheo Ion', subject: 'English', owners: [ { id: 1, name: 'Ion'}, {id: 2, name: 'Gheo'} ] }
+                {
+                    status: 'Review', companyName: 'Google', trainerName: 'Gheo Ion', subject: 'English', owners: [{ id: 1, name: 'Ion' }, { id: 2, name: 'Gheo' }],
+                    startDate: '2013-07-24', endDate: '2013-08-24',
+                    students: [{ id: 1, name: 'Gheorghe Lazar', phone: '0723775755' }]
+                }
             ]
         });
 
@@ -53,11 +57,14 @@
             ]
         });
 
-        trainingsGrid.on('cellclick', function () {
-            
-            console.log('clicked cell');
+        trainingsGrid.on('itemdblclick', function (grid, record) {
+            var window = Ext.create('Ilc.view.trainings.View', {
+                closeAction: 'destroy',
+                modal: true,
+                model: record.data
+            });
+            window.show();
         });
-
 
         me.items = [,
             {
