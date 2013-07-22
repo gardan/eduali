@@ -81,6 +81,10 @@
             trainingsGrid
         ];
 
+        me.addEvents(
+            'addTraining'
+        );
+
         me.callParent(arguments);
     }
 });

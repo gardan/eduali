@@ -5,12 +5,7 @@
     constructor: function () {
         var me = this;
 
-        var studentsStore = Ext.create('Ext.data.Store', {
-            fields: ['id', 'name', 'phone'],
-            data: [
-                { id: 1, name: 'Gheorghe Lazar', phone: '0723775755'}
-            ]
-        });
+        var studentsStore = Ext.create('Ilc.store.Students');
 
         var studentsGrid = Ext.create('Ext.grid.Panel', {
             store: studentsStore,
