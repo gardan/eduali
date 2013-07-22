@@ -23,25 +23,25 @@
             },
             items: [
                 {
-                    text: 'Evaluations',
-                    itemId: 'evaluation',
+                    text: 'Trainings',
+                    itemId: 'trainings',
                     pressed: true
                 },
                 {
-                    text: 'Transfer',
-                    itemId: 'transfer',
+                    text: 'Customers',
+                    itemId: 'customers',
                 },
                 {
-                    text: 'Offer',
-                    itemId: 'offer',
+                    text: 'Students',
+                    itemId: 'students',
                 },
                 {
-                    text: 'Intake',
-                    itemId: 'intake',
+                    text: 'Statistics',
+                    itemId: 'statistics',
                 },
                 {
-                    text: 'Frame',
-                    itemId: 'frame',
+                    text: 'Trainers',
+                    itemId: 'trainers',
                 }
             ]
         },

@@ -4,7 +4,8 @@
 
     controllers: [
          'Home',
-         'Tasks'
+         'Tasks',
+         'Trainings'
     ],
 
     requires: [
@@ -13,20 +14,13 @@
     
     views: [
         'home.Evaluation',
-        'home.Transfer',
-        'home.Offer',
-        'home.Intake',
-        'home.Frame',
-        'tasks.List'
+        'trainings.List'
     ],
         
     routes: {
         '/': 'home#evaluation',
-        'transfer': 'home#transfer',
-        'offer': 'home#offer',
-        'intake': 'home#intake',
-        'frame': 'home#frame',
-        'tasks': 'tasks#list'
+        'trainings': 'trainings#list'
+
     },
 
     enableRouter: true,
