@@ -3652,7 +3652,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ContactPerson.cs" />
+    <Compile Include="Models\ContactPersonModel.cs" />
     <Compile Include="Models\CreateEvaluationModel.cs" />
     <Compile Include="Models\CreateTransferModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
