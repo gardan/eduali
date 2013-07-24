@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using Ilc.Data;
 using Ilc.Web.AppStart;
 
 namespace Ilc.Web
@@ -16,9 +18,10 @@ namespace Ilc.Web
         protected void Application_Start(object sender, EventArgs e)
         {
             new AppHost().Init();
-
-            // AreaRegistration.RegisterAllAreas();
             RouteMvcConfig.RegisterRoutes(RouteTable.Routes);
+
+            // set ef initializer
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<AppContext, Data.Migrations.Configuration>());
         }
 
         protected void Session_Start(object sender, EventArgs e)

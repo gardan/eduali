@@ -25,7 +25,6 @@ namespace Ilc.Data
 
             // Fluent configurations
             modelBuilder.Configurations.Add(new CompanyConfiguration());
-            // modelBuilder.Configurations.Add(new DepartmentConfiguration());
             modelBuilder.Configurations.Add(new EmployeeConfiguration());
             modelBuilder.Configurations.Add(new UserProfileConfiguration());
             modelBuilder.Configurations.Add(new ClaimsConfiguration());
@@ -48,11 +47,7 @@ namespace Ilc.Data
         // public DbSet<EmailAccount> EmailAccounts { get; set; }
         public DbSet<WorkspaceView> WorkspaceViews { get; set; }
         public DbSet<UserProfileWorkspaceView> UserProfileWorkspaceViews { get; set; }
-        // public DbSet<WorkingDay> WorkingDays { get; set; }
-        // public DbSet<Shift> Shifts { get; set; }
-        // public DbSet<ShiftPattern> ShiftPattern { get; set; }
-        // public DbSet<DayPattern> DayPatterns { get; set; }
-        // public DbSet<TimeRecord> TimeRecords { get; set; }
+        public DbSet<Training> Trainings { get; set; }
 
         public DbSet<Role> Roles { get; set; }
         public DbSet<Membership> Membership { get; set; }

@@ -41,6 +41,9 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\ILC.Data\bin\Debug\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="itextsharp, Version=4.1.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\iTextSharp.4.1.2\lib\itextsharp.dll</HintPath>
@@ -3698,6 +3701,10 @@
     <ProjectReference Include="..\Ilc.Core\Ilc.Core.csproj">
       <Project>{1272C26B-402F-4AE1-B324-9174A36CACAD}</Project>
       <Name>Ilc.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ILC.Data\Ilc.Data.csproj">
+      <Project>{23dc2e5a-51c6-4cc9-ac7a-469082f37a22}</Project>
+      <Name>Ilc.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ilc.Infrastructure\Ilc.Infrastructure.csproj">
       <Project>{47F21E74-3170-45F0-AA69-35EC3372E562}</Project>

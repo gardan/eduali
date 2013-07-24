@@ -10,7 +10,7 @@ namespace Ilc.Web.Services
     {
         public FilteredDataModel<TrainingModel> Get(FilterParametersBase request)
         {
-            
+            return null;
         }
     }
 }
