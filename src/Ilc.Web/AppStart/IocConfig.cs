@@ -15,9 +15,9 @@ namespace Ilc.Web.AppStart
     {
         public static void Init(Container container)
         {
+            // i'm doing this manually, because the Funq resolver tries to resolve all public properties, 
+            // including a Dictionary, and it can't do that so it throws an exception.
             container.Register<IUow>(c => new Uow(new RepositoryProvider(new RepositoriesFactories())));
-            // container.RegisterAutoWired<RepositoriesFactories>();
-            // container.RegisterAutoWiredAs<RepositoryProvider, IRepositoryProvider>();
 
             container.RegisterAutoWiredAs<IdentityAuthenticationManager, IIdentityAuthenticationManager>();
             container.RegisterAutoWiredAs<IdentityStoreManager, IIdentityStoreManager>();
