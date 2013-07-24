@@ -21,7 +21,7 @@ namespace Ilc.Data.Models
             get { return _roles ?? (_roles = new List<Role>()); }
             protected set { _roles = value; }
         }
-        public virtual List<UserProfileWorkspaceView> UserProfileWorkspaceViews { get; set; }
+        // public virtual List<UserProfileWorkspaceView> UserProfileWorkspaceViews { get; set; }
 
         //public virtual ICollection<Company> OwnedCompanies { get; set; }
 

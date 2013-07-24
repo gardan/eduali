@@ -63,6 +63,10 @@
     <Compile Include="Helpers\IRepositoryProvider.cs" />
     <Compile Include="Helpers\RepositoriesFactories.cs" />
     <Compile Include="Helpers\RepositoryProvider.cs" />
+    <Compile Include="Migrations\201307241123479_Initial.cs" />
+    <Compile Include="Migrations\201307241123479_Initial.Designer.cs">
+      <DependentUpon>201307241123479_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -86,6 +90,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Initializers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201307241123479_Initial.resx">
+      <DependentUpon>201307241123479_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

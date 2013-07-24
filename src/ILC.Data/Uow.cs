@@ -20,16 +20,11 @@ namespace Ilc.Data
         // Repositories 
         public IRepository<Company> Companies { get { return GetStandardRepo<Company>(); } }
         public IUserProfileRepository UserProfiles { get { return GetRepo<IUserProfileRepository>(); } }
-        //public IRepository<LeaveRequest> LeaveRequests { get { return GetStandardRepo<LeaveRequest>(); } }
         public IRepository<Employee> Employees { get { return GetStandardRepo<Employee>(); } }
         public IRepository<RoleClaim> Claims { get { return GetStandardRepo<RoleClaim>(); } }
         public IRolesRepository Roles { get { return GetRepo<IRolesRepository>(); } }
         public IRepository<UserProfileWorkspaceView> UserProfileWorkspaceViews { get { return GetStandardRepo<UserProfileWorkspaceView>(); } }
-        //public IRepository<LeaveType> LeaveTypes { get { return GetStandardRepo<LeaveType>(); } }
-        //public IRepository<Department> Departments { get { return GetStandardRepo<Department>(); } }
-        //public IRepository<Shift> Shifts { get { return GetStandardRepo<Shift>(); } }
-        //public IRepository<ShiftPattern> ShiftPatterns { get { return GetStandardRepo<ShiftPattern>(); } }
-        //public IRepository<DayPattern> DayPatterns { get { return GetStandardRepo<DayPattern>(); } }
+        public IRepository<Training> Trainings { get { return GetStandardRepo<Training>(); } }
 
         public Uow(IRepositoryProvider repositoryProvider)
         {

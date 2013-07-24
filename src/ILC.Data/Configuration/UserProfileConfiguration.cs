@@ -21,9 +21,9 @@ namespace Ilc.Data.Configuration
                     m.MapRightKey("RoleId");
                 });
 
-            HasMany(up => up.UserProfileWorkspaceViews)
-                .WithOptional()
-                .HasForeignKey(upwv => upwv.UserProfileId);
+            // HasMany(up => up.UserProfileWorkspaceViews)
+            //     .WithOptional()
+            //     .HasForeignKey(upwv => upwv.UserProfileId);
         }
     }
 }

@@ -22,6 +22,8 @@ namespace Ilc.Web
 
             // set ef initializer
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<AppContext, Data.Migrations.Configuration>());
+            var context = new AppContext();
+            context.Database.Initialize(true);
         }
 
         protected void Session_Start(object sender, EventArgs e)
