@@ -24,7 +24,6 @@ namespace Ilc.Data
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
             // Fluent configurations
-            modelBuilder.Configurations.Add(new EmployeeConfiguration());
             modelBuilder.Configurations.Add(new UserProfileConfiguration());
             modelBuilder.Configurations.Add(new ClaimsConfiguration());
 
@@ -35,12 +34,8 @@ namespace Ilc.Data
 
         }
 
-        // public DbSet<Department> Departments { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
-        public DbSet<Employee> Employees { get; set; }
-        // public DbSet<LeaveRequest> LeaveRequests { get; set; }
         public DbSet<RoleClaim> Claims { get; set; }
-        // public DbSet<EmailAccount> EmailAccounts { get; set; }
         public DbSet<Training> Trainings { get; set; }
 
         public DbSet<Role> Roles { get; set; }

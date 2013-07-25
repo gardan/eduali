@@ -13,8 +13,6 @@ namespace Ilc.Data.Models.SimpleMembership
         public int RoleId { get; set; }
         public string RoleName { get; set; }
         public int? CompanyId { get; set; }
-        [ForeignKey("CompanyId")]
-        public virtual Company Company { get; set; }
         public virtual ICollection<UserProfile> UserProfiles { get; set; }
         public virtual ICollection<RoleClaim> Claims { get; set; }
 

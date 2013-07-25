@@ -43,11 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\EntityBase.cs" />
-    <Compile Include="Company.cs" />
     <Compile Include="ContactPerson.cs" />
     <Compile Include="Contracts\IAccessControlEntity.cs" />
     <Compile Include="Contracts\IWorkflowEntity.cs" />
-    <Compile Include="Employee.cs" />
     <Compile Include="Evaluation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleClaim.cs" />
@@ -56,8 +54,6 @@
     <Compile Include="Student.cs" />
     <Compile Include="Training.cs" />
     <Compile Include="UserProfile.cs" />
-    <Compile Include="UserProfileWorkspaceView.cs" />
-    <Compile Include="WorkspaceView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
