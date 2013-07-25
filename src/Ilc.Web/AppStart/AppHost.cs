@@ -19,6 +19,7 @@ namespace Ilc.Web.AppStart
         {
             JsConfig.EmitCamelCaseNames = true;
             JsConfig.ExcludeTypeInfo = true;
+            JsConfig.DateHandler = JsonDateHandler.ISO8601;
 
             ControllerBuilder.Current.SetControllerFactory(new FunqControllerFactory(container));
 
