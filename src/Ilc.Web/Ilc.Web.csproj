@@ -167,6 +167,7 @@
     <Content Include="Scripts\app\store\Customers.js" />
     <Content Include="Scripts\app\store\Questions.js" />
     <Content Include="Scripts\app\store\Students.js" />
+    <Content Include="Scripts\app\store\TrainingSystems.js" />
     <Content Include="Scripts\app\store\Transfers.js" />
     <Content Include="Scripts\app\tasks\training\Accepted.js" />
     <Content Include="Scripts\app\tasks\training\grid\Students.js" />
