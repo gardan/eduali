@@ -15,7 +15,6 @@ namespace Ilc.Data.Contracts
 
         // Repositories
         IUserProfileRepository UserProfiles { get; }
-        IRepository<Employee> Employees { get; }
         IRepository<RoleClaim> Claims { get; }
         IRolesRepository Roles { get; }
         IRepository<Training> Trainings { get; } 

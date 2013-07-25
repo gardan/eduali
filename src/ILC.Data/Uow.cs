@@ -18,12 +18,9 @@ namespace Ilc.Data
         protected IRepositoryProvider RepositoryProvider { get; set; }
 
         // Repositories 
-        public IRepository<Company> Companies { get { return GetStandardRepo<Company>(); } }
         public IUserProfileRepository UserProfiles { get { return GetRepo<IUserProfileRepository>(); } }
-        public IRepository<Employee> Employees { get { return GetStandardRepo<Employee>(); } }
         public IRepository<RoleClaim> Claims { get { return GetStandardRepo<RoleClaim>(); } }
         public IRolesRepository Roles { get { return GetRepo<IRolesRepository>(); } }
-        public IRepository<UserProfileWorkspaceView> UserProfileWorkspaceViews { get { return GetStandardRepo<UserProfileWorkspaceView>(); } }
         public IRepository<Training> Trainings { get { return GetStandardRepo<Training>(); } }
 
         public Uow(IRepositoryProvider repositoryProvider)
