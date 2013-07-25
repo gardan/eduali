@@ -32,5 +32,11 @@ namespace Ilc.Core.Services
                     TotalRecords = totalDisplayRecords
                 };
         }
+
+        public void Create(Training newTraining)
+        {
+            Uow.Trainings.Add(newTraining);
+            Uow.Commit();
+        }
     }
 }

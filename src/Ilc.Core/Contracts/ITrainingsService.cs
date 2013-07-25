@@ -9,5 +9,6 @@ namespace Ilc.Core.Contracts
     public interface ITrainingsService
     {
         FilteredResults<Training> GetFilteredTrainings(FilterArguments parameters);
+        void Create(Training newTraining);
     }
 }

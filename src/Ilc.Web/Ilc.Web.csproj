@@ -3657,6 +3657,7 @@
     </Compile>
     <Compile Include="Models\ContactPersonModel.cs" />
     <Compile Include="Models\CreateEvaluationModel.cs" />
+    <Compile Include="Models\CreateTrainingModel.cs" />
     <Compile Include="Models\CreateTransferModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\FilteredDataModel.cs" />
