@@ -11,7 +11,7 @@ namespace Ilc.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201307241123479_Initial"; }
+            get { return "201307250828273_Initial"; }
         }
         
         string IMigrationMetadata.Source

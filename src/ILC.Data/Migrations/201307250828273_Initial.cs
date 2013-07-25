@@ -13,23 +13,8 @@ namespace Ilc.Data.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Username = c.String(),
-                        Company_Id = c.Int(),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Company", t => t.Company_Id)
-                .Index(t => t.Company_Id);
-            
-            CreateTable(
-                "dbo.Employee",
-                c => new
-                    {
-                        Id = c.Int(nullable: false),
-                        FirstName = c.String(),
-                        LastName = c.String(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.UserProfile", t => t.Id)
-                .Index(t => t.Id);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.webpages_Roles",
@@ -39,20 +24,7 @@ namespace Ilc.Data.Migrations
                         RoleName = c.String(nullable: false, maxLength: 256),
                         CompanyId = c.Int(),
                     })
-                .PrimaryKey(t => t.RoleId)
-                .ForeignKey("dbo.Company", t => t.CompanyId)
-                .Index(t => t.CompanyId);
-            
-            CreateTable(
-                "dbo.Company",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Address = c.String(),
-                        TimeZoneId = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.RoleId);
             
             CreateTable(
                 "dbo.RoleClaim",
@@ -112,19 +84,6 @@ namespace Ilc.Data.Migrations
                 .PrimaryKey(t => t.UserId);
             
             CreateTable(
-                "dbo.ChildParentEmployees",
-                c => new
-                    {
-                        ChildEmployeeId = c.Int(nullable: false),
-                        ParentEmployeeId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.ChildEmployeeId, t.ParentEmployeeId })
-                .ForeignKey("dbo.Employee", t => t.ChildEmployeeId)
-                .ForeignKey("dbo.Employee", t => t.ParentEmployeeId)
-                .Index(t => t.ChildEmployeeId)
-                .Index(t => t.ParentEmployeeId);
-            
-            CreateTable(
                 "dbo.RoleUserProfile",
                 c => new
                     {
@@ -158,34 +117,21 @@ namespace Ilc.Data.Migrations
             DropIndex("dbo.webpages_UsersInRoles", new[] { "UserId" });
             DropIndex("dbo.RoleUserProfile", new[] { "UserProfile_Id" });
             DropIndex("dbo.RoleUserProfile", new[] { "Role_RoleId" });
-            DropIndex("dbo.ChildParentEmployees", new[] { "ParentEmployeeId" });
-            DropIndex("dbo.ChildParentEmployees", new[] { "ChildEmployeeId" });
             DropIndex("dbo.Student", new[] { "Training_Id" });
             DropIndex("dbo.RoleClaim", new[] { "RoleId" });
-            DropIndex("dbo.webpages_Roles", new[] { "CompanyId" });
-            DropIndex("dbo.Employee", new[] { "Id" });
-            DropIndex("dbo.UserProfile", new[] { "Company_Id" });
             DropForeignKey("dbo.webpages_UsersInRoles", "RoleId", "dbo.webpages_Roles");
             DropForeignKey("dbo.webpages_UsersInRoles", "UserId", "dbo.UserProfile");
             DropForeignKey("dbo.RoleUserProfile", "UserProfile_Id", "dbo.UserProfile");
             DropForeignKey("dbo.RoleUserProfile", "Role_RoleId", "dbo.webpages_Roles");
-            DropForeignKey("dbo.ChildParentEmployees", "ParentEmployeeId", "dbo.Employee");
-            DropForeignKey("dbo.ChildParentEmployees", "ChildEmployeeId", "dbo.Employee");
             DropForeignKey("dbo.Student", "Training_Id", "dbo.Training");
             DropForeignKey("dbo.RoleClaim", "RoleId", "dbo.webpages_Roles");
-            DropForeignKey("dbo.webpages_Roles", "CompanyId", "dbo.Company");
-            DropForeignKey("dbo.Employee", "Id", "dbo.UserProfile");
-            DropForeignKey("dbo.UserProfile", "Company_Id", "dbo.Company");
             DropTable("dbo.webpages_UsersInRoles");
             DropTable("dbo.RoleUserProfile");
-            DropTable("dbo.ChildParentEmployees");
             DropTable("dbo.webpages_Membership");
             DropTable("dbo.Student");
             DropTable("dbo.Training");
             DropTable("dbo.RoleClaim");
-            DropTable("dbo.Company");
             DropTable("dbo.webpages_Roles");
-            DropTable("dbo.Employee");
             DropTable("dbo.UserProfile");
         }
     }
