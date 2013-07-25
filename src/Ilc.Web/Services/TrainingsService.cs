@@ -34,7 +34,7 @@ namespace Ilc.Web.Services
                 {
                     Subject = request.Subject,
                     DesiredStartDate = request.DesiredStartDate,
-                    DesireEndDate = request.DesiredEndDate,
+                    DesiredEndDate = request.DesiredEndDate,
                     Status = "Rfi"
                     // Owners = new UserProfile[] { AuthManager.GetCurrentUser() }
                 };

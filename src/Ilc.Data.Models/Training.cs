@@ -13,7 +13,7 @@ namespace Ilc.Data.Models
         public DateTimeOffset PlannedEndDate { get; set; }
 
         public DateTimeOffset DesiredStartDate { get; set; }
-        public DateTimeOffset DesireEndDate { get; set; }
+        public DateTimeOffset DesiredEndDate { get; set; }
 
         public string Status { get; set; }
         public string Subject { get; set; }
