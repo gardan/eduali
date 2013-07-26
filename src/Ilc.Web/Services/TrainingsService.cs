@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
 using Ilc.Core.Contracts;
 using Ilc.Data.Models;
+using Ilc.Web.InjectorConventions;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
 using ServiceStack.Common;
@@ -23,7 +25,7 @@ namespace Ilc.Web.Services
             var results = Trainings.GetFilteredTrainings(request);
             ret.TotalDisplayRecords = results.TotalDisplayRecords;
             ret.TotalRecords = results.TotalRecords;
-            ret.Data = results.Data.Select(r => new TrainingModel().InjectFrom(r) as TrainingModel).ToList();
+            ret.Data = results.Data.Select(r => new TrainingModel().InjectFrom <TrainingToWebModel>(r) as TrainingModel).ToList();
 
             return ret;
         }
@@ -32,7 +34,7 @@ namespace Ilc.Web.Services
         {
             var newTraining = new Training
                 {
-                    Subject = request.Subject,
+                    Subject = request.SubjectId.ToString(CultureInfo.InvariantCulture),
                     DesiredStartDate = request.DesiredStartDate,
                     DesiredEndDate = request.DesiredEndDate,
                     Status = "Rfi"

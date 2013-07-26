@@ -5,16 +5,7 @@
     constructor: function () {
         var me = this;
 
-        var trainingsStore = Ext.create('Ext.data.Store', {
-            fields: ['status', 'companyName', 'trainerName', 'subject', 'owners', 'startDate', 'endDate', 'students'],
-            data: [
-                {
-                    status: 'Review', companyName: 'Google', trainerName: 'Gheo Ion', subject: 'English', owners: [{ id: 1, name: 'Ion' }, { id: 2, name: 'Gheo' }],
-                    startDate: '2013-07-24', endDate: '2013-08-24',
-                    students: [{ id: 1, name: 'Gheorghe Lazar', phone: '0723775755' }]
-                }
-            ]
-        });
+        var trainingsStore = Ext.create('Ilc.store.Trainings');
 
         var trainingsGrid = Ext.create('Ext.grid.Panel', {
             store: trainingsStore,
@@ -25,19 +16,28 @@
                     text: 'Status'
                 },
                 {
-                    dataIndex: 'companyName',
+                    dataIndex: 'customer',
                     flex: 1,
-                    text: 'Company'
+                    text: 'Customer',
+                    renderer: function (value) {
+                        return value.name;
+                    }
                 },
                 {
-                    dataIndex: 'trainerName',
+                    dataIndex: 'trainer',
                     flex: 1,
-                    text: 'Trainer'
+                    text: 'Trainer',
+                    renderer: function(value) {
+                        return value.name;
+                    }
                 },
                 {
                     dataIndex: 'subject',
                     text: 'Subject',
                     flex: 1,
+                    renderer: function(value) {
+                        return value.name;
+                    }
                 },
                 {
                     dataIndex: 'owners',
@@ -45,13 +45,12 @@
                     flex: 1,
                     sortable: false,
                     renderer: function (value, metaData) {
-                        metaData.tdAttr = 'data-entity="plm"';
                         var ret = '';
                         for (var i = 0; i < value.length; i++) {
-                            var anchor = '<a>' + value[i].name + '</a>';
+                            var anchor = '<a>' + value[i].username + '</a>,';
                             ret += anchor;
                         }
-                        return ret;
+                        return ret.slice(0, ret.length - 1);
                     }
                 }
             ]
@@ -77,7 +76,9 @@
                     });
                     
                     window.on('addTraining', function (sender, data) {
-                        me.fireEvent('addTraining', sender, data);
+                        me.fireEvent('addTraining', sender, data, {
+                            store: trainingsStore
+                        });
                     });
                     window.show();
                 }

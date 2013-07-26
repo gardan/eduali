@@ -21,6 +21,6 @@ namespace Ilc.Data.Models
         public ICollection<Student> Students { get; set; }
 
 
-        public UserProfile[] Owners { get; set; }
+        public ICollection<UserProfile> Owners { get; set; }
     }
 }

@@ -6,7 +6,7 @@
 
         me.control({
             'listtrainings': {
-                'addTraining': function (sender, data) {
+                'addTraining': function (sender, data, options) {
                     var trainingDataContext = {
                         add: function (entity) {
                             var deferred = Q.defer();
@@ -31,6 +31,9 @@
                     trainingDataContext.add(data)
                         .then(function (response) {
                             console.log(response);
+
+                            options.store.load();
+
                             sender.close();
                         });
                     

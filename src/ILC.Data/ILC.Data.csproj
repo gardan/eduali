@@ -67,6 +67,10 @@
     <Compile Include="Migrations\201307250946593_DesireRenamedToDesired.Designer.cs">
       <DependentUpon>201307250946593_DesireRenamedToDesired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201307260955075_TrainingOwners.cs" />
+    <Compile Include="Migrations\201307260955075_TrainingOwners.Designer.cs">
+      <DependentUpon>201307260955075_TrainingOwners.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -97,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201307250946593_DesireRenamedToDesired.resx">
       <DependentUpon>201307250946593_DesireRenamedToDesired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307260955075_TrainingOwners.resx">
+      <DependentUpon>201307260955075_TrainingOwners.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
