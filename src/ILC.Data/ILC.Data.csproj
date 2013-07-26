@@ -7,8 +7,8 @@
     <ProjectGuid>{23DC2E5A-51C6-4CC9-AC7A-469082F37A22}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ILC.Data</RootNamespace>
-    <AssemblyName>ILC.Data</AssemblyName>
+    <RootNamespace>Ilc.Data</RootNamespace>
+    <AssemblyName>Ilc.Data</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

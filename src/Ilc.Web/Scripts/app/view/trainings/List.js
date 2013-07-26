@@ -1,6 +1,6 @@
 ﻿Ext.define('Ilc.view.trainings.List', {
     extend: 'Ext.container.Container',
-    
+    xtype: 'listtrainings',
 
     constructor: function () {
         var me = this;
@@ -71,11 +71,15 @@
                 xtype: 'button',
                 text: 'New training',
                 handler: function (btn, e) {
-                     var window = Ext.create('Ilc.view.trainings.Create', {
-                         modal: true,
-                         closeAction: 'destroy'
-                     });
-                     window.show();
+                    var window = Ext.create('Ilc.view.trainings.Create', {
+                        modal: true,
+                        closeAction: 'destroy'
+                    });
+                    
+                    window.on('addTraining', function (sender, data) {
+                        me.fireEvent('addTraining', sender, data);
+                    });
+                    window.show();
                 }
             },
             trainingsGrid

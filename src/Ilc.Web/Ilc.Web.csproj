@@ -167,6 +167,7 @@
     <Content Include="Scripts\app\store\Customers.js" />
     <Content Include="Scripts\app\store\Questions.js" />
     <Content Include="Scripts\app\store\Students.js" />
+    <Content Include="Scripts\app\store\Subjects.js" />
     <Content Include="Scripts\app\store\TrainingSystems.js" />
     <Content Include="Scripts\app\store\Transfers.js" />
     <Content Include="Scripts\app\tasks\training\Accepted.js" />
@@ -3636,6 +3637,8 @@
     <Content Include="Scripts\extjs\src\XTemplateCompiler.js" />
     <Content Include="Scripts\extjs\src\XTemplateParser.js" />
     <Content Include="Scripts\extjs\src\ZIndexManager.js" />
+    <Content Include="Scripts\lib\moment.js" />
+    <Content Include="Scripts\lib\moment.min.js" />
     <Content Include="Scripts\lib\q.js" />
     <Content Include="Scripts\lib\q.min.js" />
     <Content Include="Web.config" />
