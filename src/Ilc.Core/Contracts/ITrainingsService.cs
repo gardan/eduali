@@ -10,5 +10,7 @@ namespace Ilc.Core.Contracts
     {
         FilteredResults<Training> GetFilteredTrainings(FilterArguments parameters);
         void Create(Training newTraining);
+        void Update(Training updateTraining);
+        void Delete(int id);
     }
 }
