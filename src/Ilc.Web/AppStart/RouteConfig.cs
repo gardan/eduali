@@ -12,6 +12,8 @@ namespace Ilc.Web.AppStart
 
             routes.Add<FilterParametersTrainings>("/api/trainings", "GET");
             routes.Add<CreateTrainingModel>("/api/trainings", "POST");
+
+            routes.Add<FilterParametersCustomers>("/api/customers", "GET");
         }
     }
 }
