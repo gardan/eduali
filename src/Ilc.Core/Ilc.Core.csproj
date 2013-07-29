@@ -39,10 +39,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\ICustomersService.cs" />
+    <Compile Include="Contracts\IStudentsService.cs" />
     <Compile Include="Contracts\ITrainingsService.cs" />
     <Compile Include="Contracts\IUsersService.cs" />
     <Compile Include="FilterArguments.cs" />
     <Compile Include="FilteredResults.cs" />
+    <Compile Include="Services\CustomersService.cs" />
+    <Compile Include="Services\StudentsService.cs" />
     <Compile Include="Services\TrainingsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\UsersService.cs" />
