@@ -46,6 +46,7 @@
     <Compile Include="ContactPerson.cs" />
     <Compile Include="Contracts\IAccessControlEntity.cs" />
     <Compile Include="Contracts\IWorkflowEntity.cs" />
+    <Compile Include="Customer.cs" />
     <Compile Include="Evaluation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleClaim.cs" />

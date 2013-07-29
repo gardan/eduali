@@ -79,6 +79,10 @@
     <Compile Include="Migrations\201307290932333_ManyToManyStudentsTrainings.Designer.cs">
       <DependentUpon>201307290932333_ManyToManyStudentsTrainings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201307291122245_AddCustomer.cs" />
+    <Compile Include="Migrations\201307291122245_AddCustomer.Designer.cs">
+      <DependentUpon>201307291122245_AddCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -118,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201307290932333_ManyToManyStudentsTrainings.resx">
       <DependentUpon>201307290932333_ManyToManyStudentsTrainings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307291122245_AddCustomer.resx">
+      <DependentUpon>201307291122245_AddCustomer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

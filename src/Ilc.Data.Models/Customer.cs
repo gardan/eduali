@@ -7,12 +7,12 @@ using Ilc.Data.Models.Base;
 
 namespace Ilc.Data.Models
 {
-    public class ContactPerson : EntityBase    
+    public class Customer : EntityBase  
     {
         public string Name { get; set; }
-        public string Email { get; set; }
-        public bool IsMain { get; set; }
+        public string BillingAddress { get; set; }
+        public string BankAccount { get; set; }
 
-        public virtual Customer Customer { get; set; }
+        public virtual ICollection<ContactPerson> ContactPersons { get; set; } 
     }
 }
