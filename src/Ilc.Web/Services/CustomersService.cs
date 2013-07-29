@@ -17,8 +17,8 @@ namespace Ilc.Web.Services
                 {
                     Data = new List<CustomerModel>()
                         {
-                            new CustomerModel() {Name = "Google Inc."},
-                            new CustomerModel() {Name = "Yahoo Inc."}
+                            new CustomerModel() {Id = 1, Name = "Google Inc."},
+                            new CustomerModel() {Id = 2, Name = "Yahoo Inc."}
                         },
                         TotalDisplayRecords = 2,
                         TotalRecords = 2
