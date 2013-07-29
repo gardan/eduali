@@ -38,5 +38,17 @@ namespace Ilc.Core.Services
             Uow.Trainings.Add(newTraining);
             Uow.Commit();
         }
+
+        public void Update(Training updateTraining)
+        {
+            Uow.Trainings.Update(updateTraining);
+            Uow.Commit();
+        }
+
+        public void Delete(int id)
+        {
+            Uow.Trainings.Delete(id);
+            Uow.Commit();
+        }
     }
 }
