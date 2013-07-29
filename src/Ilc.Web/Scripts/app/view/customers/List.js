@@ -38,7 +38,9 @@
                     });
 
                     window.on('addCustomer', function (sender, model) {
-                        me.fireEvent('addCustomer', sender, model);
+                        me.fireEvent('addCustomer', sender, model, {
+                            store: customersStore
+                        });
                     });
 
                     window.show();
