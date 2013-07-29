@@ -3665,6 +3665,7 @@
     </Compile>
     <Compile Include="InjectorConventions\TrainingToWebModel.cs" />
     <Compile Include="Models\ContactPersonModel.cs" />
+    <Compile Include="Models\CreateCustomerModel.cs" />
     <Compile Include="Models\CreateEvaluationModel.cs" />
     <Compile Include="Models\CreateTrainingModel.cs" />
     <Compile Include="Models\CreateTransferModel.cs" />
