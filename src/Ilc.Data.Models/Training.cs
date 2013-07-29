@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,11 +17,13 @@ namespace Ilc.Data.Models
         public DateTimeOffset DesiredEndDate { get; set; }
 
         public string Status { get; set; }
-        public string Subject { get; set; }
+        public int SubjectId { get; set; }
+        [ForeignKey("SubjectId")]
+        public virtual Subject Subject { get; set; }
 
-        public ICollection<Student> Students { get; set; }
+        public virtual ICollection<Student> Students { get; set; }
 
 
-        public ICollection<UserProfile> Owners { get; set; }
+        public virtual ICollection<UserProfile> Owners { get; set; }
     }
 }

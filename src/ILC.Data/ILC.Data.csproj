@@ -71,6 +71,14 @@
     <Compile Include="Migrations\201307260955075_TrainingOwners.Designer.cs">
       <DependentUpon>201307260955075_TrainingOwners.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201307290917519_Subjects.cs" />
+    <Compile Include="Migrations\201307290917519_Subjects.Designer.cs">
+      <DependentUpon>201307290917519_Subjects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307290932333_ManyToManyStudentsTrainings.cs" />
+    <Compile Include="Migrations\201307290932333_ManyToManyStudentsTrainings.Designer.cs">
+      <DependentUpon>201307290932333_ManyToManyStudentsTrainings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -104,6 +112,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201307260955075_TrainingOwners.resx">
       <DependentUpon>201307260955075_TrainingOwners.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307290917519_Subjects.resx">
+      <DependentUpon>201307290917519_Subjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307290932333_ManyToManyStudentsTrainings.resx">
+      <DependentUpon>201307290932333_ManyToManyStudentsTrainings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

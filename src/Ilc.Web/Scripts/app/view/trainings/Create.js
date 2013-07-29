@@ -43,7 +43,7 @@
             queryMode: 'local',
             displayField: 'name',
             valueField: 'id',
-            name: 'subject',
+            name: 'subjectId',
             fieldLabel: 'Choose subject'
         });
 

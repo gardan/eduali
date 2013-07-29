@@ -34,7 +34,7 @@ namespace Ilc.Web.Services
         {
             var newTraining = new Training
                 {
-                    Subject = request.SubjectId.ToString(CultureInfo.InvariantCulture),
+                    SubjectId = request.SubjectId,
                     DesiredStartDate = request.DesiredStartDate,
                     DesiredEndDate = request.DesiredEndDate,
                     Status = "Rfi"

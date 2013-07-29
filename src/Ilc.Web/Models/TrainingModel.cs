@@ -5,10 +5,13 @@
         public int Id { get; set; }
 
         public UserModel[] Owners { get; set; }
+        public TrainerModel Trainer { get; set; }
+        public CustomerModel Customer { get; set; }
+        public SubjectModel Subject { get; set; }
 
         public string TrainerName { get; set; }
         public string CustomerName { get; set; }
         public string Status { get; set; }
-        public string Subject { get; set; }
+        public string SubjectName { get; set; }
     }
 }
