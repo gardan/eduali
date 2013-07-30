@@ -24,6 +24,7 @@ namespace Ilc.Web.AppStart
             container.RegisterAutoWiredAs<UsersService, IUsersService>();
             container.RegisterAutoWiredAs<TrainingsService, ITrainingsService>();
             container.RegisterAutoWiredAs<CustomersService, ICustomersService>();
+            container.RegisterAutoWiredAs<StudentsService, IStudentsService>();
         }
     }
 }

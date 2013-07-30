@@ -8,6 +8,7 @@ namespace Ilc.Core.Contracts
 {
     public interface IStudentsService
     {
+        FilteredResults<Student> GetFiltered(FilterArguments parameters);
         Student GetByStudentId(int id);
         void Create(Student newStudent);
         void Update(Student updateStudent);

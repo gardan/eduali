@@ -3673,6 +3673,7 @@
     <Compile Include="Models\FilteredDataModel.cs" />
     <Compile Include="Models\FilterParametersBase.cs" />
     <Compile Include="Models\FilterParametersCustomers.cs" />
+    <Compile Include="Models\FilterParametersStudents.cs" />
     <Compile Include="Models\FilterParametersTrainings.cs" />
     <Compile Include="Models\LightOfferModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
@@ -3686,6 +3687,7 @@
     <Compile Include="InjectorConventions\CustomerToCustomerModel.cs" />
     <Compile Include="Services\DefaultService.cs" />
     <Compile Include="Models\TrainingModel.cs" />
+    <Compile Include="Services\StudentsService.cs" />
     <Compile Include="Services\TrainingsService.cs" />
     <Compile Include="Services\TransfersService.cs" />
     <Compile Include="TransfersRepo.cs" />
