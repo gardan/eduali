@@ -7,6 +7,6 @@ namespace Ilc.Web.Models
         public string Address { get; set; }
         public string Phone { get; set; }
 
-        public CustomerModel Customer { get; set; }
+        public CustomerStudentModel Customer { get; set; }
     }
 }

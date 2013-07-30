@@ -16,9 +16,12 @@
                     flex: 1
                 },
                 {
-                    dataIndex: 'phone',
-                    text: 'Phone',
-                    flex: 1
+                    dataIndex: 'customer',
+                    text: 'Customer',
+                    flex: 1,
+                    renderer: function (value) {
+                        return value.name;
+                    }
                 }
             ]
         });
