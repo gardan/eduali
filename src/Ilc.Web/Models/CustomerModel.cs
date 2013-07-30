@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Ilc.Web.Models
 {
     public class CustomerModel
@@ -6,6 +9,9 @@ namespace Ilc.Web.Models
         public string Name { get; set; }
         public string BillingAddress { get; set; }
         public string BankAccount { get; set; }
-        public ContactPersonModel[] ContactPersonsModel { get; set; }
+        public List<ContactPersonModel> ContactPersons { get; set; }
+        public ContactPersonModel ContactPerson {
+            get { return ContactPersons == null ? null : ContactPersons.First(cp => cp.IsMain); }
+        }
     }
 }

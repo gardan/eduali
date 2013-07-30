@@ -23,6 +23,7 @@ namespace Ilc.Web.AppStart
             container.RegisterAutoWiredAs<IdentityStoreManager, IIdentityStoreManager>();
             container.RegisterAutoWiredAs<UsersService, IUsersService>();
             container.RegisterAutoWiredAs<TrainingsService, ITrainingsService>();
+            container.RegisterAutoWiredAs<CustomersService, ICustomersService>();
         }
     }
 }

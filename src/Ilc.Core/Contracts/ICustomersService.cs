@@ -8,6 +8,7 @@ namespace Ilc.Core.Contracts
 {
     public interface ICustomersService
     {
+        FilteredResults<Customer> GetFiltered(FilterArguments parameters);
         Customer GetByCustomerId(int id);
         void Create(Customer newCustomer);
         void Update(Customer updateCustomer);
