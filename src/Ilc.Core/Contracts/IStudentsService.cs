@@ -8,7 +8,7 @@ namespace Ilc.Core.Contracts
 {
     public interface IStudentsService
     {
-        Student GetByStudentID(int id);
+        Student GetByStudentId(int id);
         void Create(Student newStudent);
         void Update(Student updateStudent);
         void Delete(int id);

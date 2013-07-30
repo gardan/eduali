@@ -8,7 +8,7 @@ namespace Ilc.Core.Contracts
 {
     public interface ICustomersService
     {
-        Customer GetByCustomerID(int id);
+        Customer GetByCustomerId(int id);
         void Create(Customer newCustomer);
         void Update(Customer updateCustomer);
         void Delete(int id);

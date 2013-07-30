@@ -10,7 +10,7 @@ namespace Ilc.Core.Services
     {
         public IUow Uow { get; set; }
 
-        public Customer GetByCustomerID(int id)
+        public Customer GetByCustomerId(int id)
         {
             return Uow.Customer.GetById(id);
         }

@@ -10,7 +10,7 @@ namespace Ilc.Core.Services
     {
         public IUow Uow { get; set; }
 
-        public Student GetByStudentID(int id)
+        public Student GetByStudentId(int id)
         {
             return Uow.Student.GetById(id);
         }
