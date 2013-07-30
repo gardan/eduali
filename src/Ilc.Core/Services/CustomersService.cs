@@ -6,7 +6,7 @@ using Ilc.Data.Models;
 
 namespace Ilc.Core.Services
 {
-    public class CustomersService:ICustomersService
+    public class CustomersService : ICustomersService
     {
         public IUow Uow { get; set; }
 
