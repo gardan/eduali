@@ -12,24 +12,24 @@ namespace Ilc.Core.Services
 
         public Customer GetByCustomerId(int id)
         {
-            return Uow.Customer.GetById(id);
+            return Uow.Customers.GetById(id);
         }
 
         public void Create(Customer newCustomer)
         {
-            Uow.Customer.Add(newCustomer);
+            Uow.Customers.Add(newCustomer);
             Uow.Commit();
         }
 
         public void Update(Customer updateCustomer)
         {
-            Uow.Customer.Update(updateCustomer);
+            Uow.Customers.Update(updateCustomer);
             Uow.Commit();
         }
 
         public void Delete(int id)
         {
-            Uow.Customer.Delete(id);
+            Uow.Customers.Delete(id);
             Uow.Commit();
         }
     }

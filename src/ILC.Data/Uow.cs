@@ -22,8 +22,8 @@ namespace Ilc.Data
         public IRepository<RoleClaim> Claims { get { return GetStandardRepo<RoleClaim>(); } }
         public IRolesRepository Roles { get { return GetRepo<IRolesRepository>(); } }
         public IRepository<Training> Trainings { get { return GetStandardRepo<Training>(); } }
-        public IRepository<Customer> Customer { get { return GetStandardRepo<Customer>(); } }
-        public IRepository<Student> Student { get { return GetStandardRepo<Student>(); } }
+        public IRepository<Customer> Customers { get { return GetStandardRepo<Customer>(); } }
+        public IRepository<Student> Students { get { return GetStandardRepo<Student>(); } }
 
         public Uow(IRepositoryProvider repositoryProvider)
         {
