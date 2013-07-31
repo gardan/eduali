@@ -24,6 +24,7 @@ namespace Ilc.Data
         public IRepository<Training> Trainings { get { return GetStandardRepo<Training>(); } }
         public IRepository<Customer> Customers { get { return GetStandardRepo<Customer>(); } }
         public IRepository<Student> Students { get { return GetStandardRepo<Student>(); } }
+        public IRepository<Trainer> Trainers { get { return GetStandardRepo<Trainer>(); } }
 
         public Uow(IRepositoryProvider repositoryProvider)
         {

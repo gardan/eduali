@@ -54,6 +54,7 @@
     <Compile Include="SimpleMembership\Role.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="Subject.cs" />
+    <Compile Include="Trainer.cs" />
     <Compile Include="Training.cs" />
     <Compile Include="UserProfile.cs" />
   </ItemGroup>

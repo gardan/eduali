@@ -20,5 +20,6 @@ namespace Ilc.Data.Contracts
         IRepository<Training> Trainings { get; }
         IRepository<Student> Students { get; }
         IRepository<Customer> Customers { get; }
+        IRepository<Trainer> Trainers { get; }
     }
 }
