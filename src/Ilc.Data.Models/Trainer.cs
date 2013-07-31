@@ -10,7 +10,6 @@ namespace Ilc.Data.Models
 {
     public class Trainer : EntityBase
     {
-        public int Id { get; set; }
         public string Name { get; set; }
     }
 }
