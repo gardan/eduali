@@ -17,6 +17,7 @@ namespace Ilc.Web.AppStart
             routes.Add<CreateCustomerModel>("/api/customers", "POST");
 
             routes.Add<FilterParametersStudents>("/api/students", "GET");
+            routes.Add<CreateStudentModel>("/api/students", "POST");
         }
     }
 }

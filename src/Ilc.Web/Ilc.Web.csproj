@@ -187,6 +187,7 @@
     <Content Include="Scripts\app\view\home\Transfer.js" />
     <Content Include="Scripts\app\view\home\Offer.js" />
     <Content Include="Scripts\app\view\statistics\View.js" />
+    <Content Include="Scripts\app\view\students\Create.js" />
     <Content Include="Scripts\app\view\students\List.js" />
     <Content Include="Scripts\app\view\tasks\List.js" />
     <Content Include="Scripts\app\view\trainers\List.js" />
@@ -3684,6 +3685,7 @@
     <Compile Include="Models\TransferModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\CreateStudentModel.cs" />
     <Compile Include="Services\CustomersService.cs" />
     <Compile Include="InjectorConventions\CustomerToCustomerModel.cs" />
     <Compile Include="Services\DefaultService.cs" />
