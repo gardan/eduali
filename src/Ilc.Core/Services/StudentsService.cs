@@ -10,7 +10,7 @@ namespace Ilc.Core.Services
     {
         public IUow Uow { get; set; }
 
-        public FilteredResults<Student> GetFiltered(FilterArguments parameters)
+        public FilteredResults<Student> GetFiltered(FilterArgumentsStudents parameters)
         {
             // set defaults
             parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
@@ -18,6 +18,12 @@ namespace Ilc.Core.Services
             var query = Uow.Students.GetAll();
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
+
+            // filter
+            if (parameters.CustomerId > 0)
+            {
+                query = query.Where(s => s.CustomerId == parameters.CustomerId);
+            }
 
             // order
             query = query.OrderBy(e => e.Id);

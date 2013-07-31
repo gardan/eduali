@@ -1,6 +1,6 @@
 ﻿namespace Ilc.Web.Models
 {
-    public class FilterParametersStudents : FilterParametersBase
+    public class FilterParametersStudents : Core.FilterArgumentsStudents
     {
     }
 }
