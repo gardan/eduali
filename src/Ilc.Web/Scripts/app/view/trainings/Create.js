@@ -48,7 +48,6 @@
         });
 
         customerComboBox.on('select', function (comboBox, records, eOpts) {
-            debugger;
             studentsStore.load({
                 params: {
                     customerId: records[0].data.id
