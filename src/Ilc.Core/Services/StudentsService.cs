@@ -47,6 +47,7 @@ namespace Ilc.Core.Services
         public void Create(Student newStudent)
         {
             Uow.Students.Add(newStudent);
+            newStudent.Customer = Uow.Customers.GetById(newStudent.CustomerId);
             Uow.Commit();
         }
 

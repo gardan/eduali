@@ -3,6 +3,10 @@
     
     title: 'Create new customer',
 
+    requires: [
+        'Ilc.utils.Forms'
+    ],
+
     constructor: function () {
         var me = this;
 
@@ -40,10 +44,7 @@
 
                     var textboxes = me.query('textfield');
 
-                    for (var i = 0; i < textboxes.length; i++) {
-                        var textbox = textboxes[i];
-                        model[textbox.name] = textbox.getRawValue();
-                    }
+                    model = Ilc.utils.Forms.extractModel(textboxes);
 
                     // raise the event
                     me.fireEvent('addCustomer', me, model);

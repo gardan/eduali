@@ -1,6 +1,10 @@
 ﻿Ext.define('Ilc.view.trainings.Create', {
     extend: 'Ext.window.Window',
     
+    requires: [
+        'Ilc.utils.Forms'
+    ],
+
     constructor: function () {
         var me = this;
         var customersStore = Ext.create('Ilc.store.Customers');
@@ -76,41 +80,13 @@
                 xtype: 'button',
                 text: 'Create',
                 handler: function (btn, e) {
-                    var model = {
-                        customerId: '',
-                        trainingSystemId: '',
-                        subjectId: '',
-                        desiredStartDate: '',
-                        desiredEndDate: '',
-                        students: []
-                    };
+                    var model = {};
 
                     var textboxes = me.query('textfield');
 
-                    for (var i = 0; i < textboxes.length; i++) {
-                        var textfield = textboxes[i];
-                        if (textfield.lastSelection) { // combobox
+                    model = Ilc.utils.Forms.extractModel(textboxes);
 
-                            if (textfield.multiSelect) { // multiple items
-                                model[textfield.name] = [];
-                                for (var z = 0; z < textfield.lastSelection.length; z++) {
-                                    var selectedItem = textfield.lastSelection[z];
-                                    model[textfield.name].push(selectedItem.data);
-                                }
-                            } else { // single items
-                                
-                                model[textfield.name] = textfield.lastSelection[0].data[textfield.valueField];
-                            }
-
-
-                        } else { // simple textfield
-                            // we know that there should only be datefields
-                            var date = textfield.getRawValue();
-                            if (date) {
-                                model[textfield.name] = moment(date).format();
-                            }
-                        }
-                    }
+                   
                     me.fireEvent('addTraining', me, model);
                 }
             }
