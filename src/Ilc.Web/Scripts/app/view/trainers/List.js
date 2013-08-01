@@ -4,12 +4,7 @@
     constructor: function () {
         var me = this;
 
-        var trainersStore = Ext.create('Ext.data.Store', {
-            fields: ['id', 'name', 'phone'],
-            data: [
-                { id: 1, name: 'I.C. Bratianu', phone: '0727297563'}
-            ]
-        });
+        var trainersStore = Ext.create('Ilc.store.Trainers');
 
         var trainersGrid = Ext.create('Ext.grid.Panel', {
             store: trainersStore,
@@ -30,7 +25,14 @@
         me.items = [
             {
                 xtype: 'button',
-                text: 'New trainer'
+                text: 'New trainer',
+                handler: function (button, e) {
+                    var window = Ext.create('Ilc.view.trainers.Create', {
+                        closeAction: 'destroy'
+                    });
+
+                    window.show();
+                }
             },
             trainersGrid
         ];

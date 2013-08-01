@@ -170,6 +170,7 @@
     <Content Include="Scripts\app\store\Questions.js" />
     <Content Include="Scripts\app\store\Students.js" />
     <Content Include="Scripts\app\store\Subjects.js" />
+    <Content Include="Scripts\app\store\Trainers.js" />
     <Content Include="Scripts\app\store\Trainings.js" />
     <Content Include="Scripts\app\store\TrainingSystems.js" />
     <Content Include="Scripts\app\store\Transfers.js" />
@@ -179,6 +180,7 @@
     <Content Include="Scripts\app\tasks\training\PlanInterview.js" />
     <Content Include="Scripts\app\tasks\training\Rfi.js" />
     <Content Include="Scripts\app\tasks\training\Rfp.js" />
+    <Content Include="Scripts\app\utils\Forms.js" />
     <Content Include="Scripts\app\view\customers\Create.js" />
     <Content Include="Scripts\app\view\customers\List.js" />
     <Content Include="Scripts\app\view\home\Evaluation.js" />
@@ -190,6 +192,7 @@
     <Content Include="Scripts\app\view\students\Create.js" />
     <Content Include="Scripts\app\view\students\List.js" />
     <Content Include="Scripts\app\view\tasks\List.js" />
+    <Content Include="Scripts\app\view\trainers\Create.js" />
     <Content Include="Scripts\app\view\trainers\List.js" />
     <Content Include="Scripts\app\view\trainings\Create.js" />
     <Content Include="Scripts\app\view\trainings\List.js" />
@@ -3692,6 +3695,7 @@
     <Compile Include="Models\TrainingModel.cs" />
     <Compile Include="Services\StudentsService.cs" />
     <Compile Include="InjectorConventions\StudentToStudentModel.cs" />
+    <Compile Include="Services\TrainersService.cs" />
     <Compile Include="Services\TrainingsService.cs" />
     <Compile Include="Services\TransfersService.cs" />
     <Compile Include="TransfersRepo.cs" />
