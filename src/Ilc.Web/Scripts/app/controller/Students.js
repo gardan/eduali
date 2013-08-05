@@ -5,7 +5,8 @@
         this.control({
             'liststudents': {
                 'addStudent': this.addStudent,
-                'editStudent': this.editStudent
+                'editStudent': this.editStudent,
+                'deleteStudent': this.deleteStudent
             }
         });
     },
@@ -71,6 +72,35 @@
             sender.close();
         });
 
+    },
+
+    deleteStudent: function (sender, model, options) {
+        var studentsService = {
+            edit: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/students/' + entity.id,
+                    method: 'DELETE',
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+
+        studentsService.edit(model)
+        .then(function (response) {
+            options.store.load();
+        })
+        .finally(function () {
+            sender.close();
+        });
     },
 
     list: function() {

@@ -3681,6 +3681,7 @@
     <Compile Include="Models\CreateTransferModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\CustomerStudentModel.cs" />
+    <Compile Include="Models\DeleteStudentModel.cs" />
     <Compile Include="Models\DeleteTrainerModel.cs" />
     <Compile Include="Models\EditCustomerModel.cs" />
     <Compile Include="Models\EditStudentModel.cs" />

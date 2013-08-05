@@ -20,6 +20,7 @@ namespace Ilc.Web.AppStart
             routes.Add<FilterParametersStudents>("/api/students", "GET");
             routes.Add<CreateStudentModel>("/api/students", "POST");
             routes.Add<EditStudentModel>("/api/students/{id}", "PUT");
+            routes.Add<DeleteStudentModel>("/api/students/{id}", "DELETE");
 
             routes.Add<FilterParametersTrainers>("/api/trainers", "GET");
             routes.Add<CreateTrainerModel>("/api/trainers", "POST");
