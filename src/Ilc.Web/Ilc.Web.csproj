@@ -143,6 +143,7 @@
     <Content Include="Images\logo.png" />
     <Content Include="Images\unchecked.png" />
     <Content Include="Images\web\edit.png" />
+    <Content Include="Images\web\remove.png" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\app\controller\Customers.js" />
     <Content Include="Scripts\app\controller\Home.js" />
@@ -3680,6 +3681,7 @@
     <Compile Include="Models\CreateTransferModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\CustomerStudentModel.cs" />
+    <Compile Include="Models\DeleteTrainerModel.cs" />
     <Compile Include="Models\EditCustomerModel.cs" />
     <Compile Include="Models\EditStudentModel.cs" />
     <Compile Include="Models\EditTrainerModel.cs" />

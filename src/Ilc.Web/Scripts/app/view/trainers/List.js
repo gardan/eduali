@@ -43,6 +43,18 @@
 
                                 editWindow.show();
                             }
+                        },
+                        {
+                            icon: 'images/web/remove.png',
+                            scope: me,
+                            tooltip: 'Delete',
+                            handler: function (grid, rowIndex, colIndex, item, e, record) {
+                                me.fireEvent('deleteTrainer', me, {
+                                    id: record.data.id
+                                }, {
+                                    store: trainersStore
+                                });
+                            }
                         }
                     ]
                 }
@@ -72,7 +84,8 @@
 
         me.addEvents(
             'addTrainer',
-            'editTrainer'
+            'editTrainer',
+            'deleteTrainer'
         );
 
         me.callParent(arguments);
