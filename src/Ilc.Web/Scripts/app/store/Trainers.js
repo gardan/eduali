@@ -1,7 +1,7 @@
 ﻿Ext.define('Ilc.store.Trainers', {
     extend: 'Ext.data.Store',
     
-    fields: ['id', 'name', 'phone'],
+    fields: ['id', 'name', 'phone', 'address'],
     autoLoad: true,
 
     proxy: {

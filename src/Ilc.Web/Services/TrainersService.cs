@@ -44,5 +44,15 @@ namespace Ilc.Web.Services
                 };
         }
 
+        public HttpResult Put(EditTrainerModel request)
+        {
+            var updatedTrainer = new Trainer().InjectFrom(request) as Trainer;
+            Trainers.Update(updatedTrainer);
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
     }
 }

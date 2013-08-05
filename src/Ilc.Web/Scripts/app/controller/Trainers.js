@@ -4,7 +4,8 @@
     init: function() {
         this.control({
             'listtrainers': {
-                'addTrainer': this.addTrainer
+                'addTrainer': this.addTrainer,
+                'editTrainer': this.editTrainer
             }
         });
     },
@@ -40,6 +41,36 @@
 
         console.log(model);
         
+    },
+
+    editTrainer: function (sender, model, options) {
+        var trainersService = {
+            edit: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/trainers/' + entity.id,
+                    method: 'PUT',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+
+        trainersService.edit(model)
+        .then(function (response) {
+            options.store.load();
+        })
+        .finally(function () {
+            sender.close();
+        });
     },
     
     list: function () {
