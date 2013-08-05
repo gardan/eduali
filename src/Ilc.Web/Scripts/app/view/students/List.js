@@ -22,6 +22,32 @@
                     renderer: function (value) {
                         return value.name;
                     }
+                },
+                {
+                    xtype: 'actioncolumn',
+                    sortable: false,
+                    menuDisabled: true,
+                    items: [
+                        {
+                            icon: 'images/web/edit.png',
+                            scope: me,
+                            tooltip: 'Edit',
+                            handler: function (grid, rowIndex, colIndex, item, e, record) {
+                                var editWindow = Ext.create('Ilc.view.students.Edit', {
+                                    closeAction: 'destroy',
+                                    model: record.data
+                                });
+
+                                editWindow.on('editStudent', function (sender, model) {
+                                    me.fireEvent('editStudent', sender, model, {
+                                        store: studentsStore
+                                    });
+                                });
+
+                                editWindow.show();
+                            }
+                        }
+                    ]
                 }
             ]
         });
@@ -47,7 +73,10 @@
             studentsGrid
         ];
 
-        me.addEvents('addStudent');
+        me.addEvents(
+            'addStudent',
+            'editStudent'
+        );
 
         me.callParent(arguments);
     }

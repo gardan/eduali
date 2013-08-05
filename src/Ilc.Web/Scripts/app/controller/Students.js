@@ -4,7 +4,8 @@
     init: function () {
         this.control({
             'liststudents': {
-                'addStudent': this.addStudent
+                'addStudent': this.addStudent,
+                'editStudent': this.editStudent
             }
         });
     },
@@ -39,6 +40,37 @@
         });
 
         console.log(model);
+    },
+
+    editStudent: function (sender, model, options) {
+        var studentsService = {
+            edit: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/students/' + entity.id,
+                    method: 'PUT',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+
+        studentsService.edit(model)
+        .then(function (response) {
+            options.store.load();
+        })
+        .finally(function () {
+            sender.close();
+        });
+
     },
 
     list: function() {

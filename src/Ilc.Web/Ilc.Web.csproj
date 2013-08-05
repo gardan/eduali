@@ -192,6 +192,7 @@
     <Content Include="Scripts\app\view\home\Offer.js" />
     <Content Include="Scripts\app\view\statistics\View.js" />
     <Content Include="Scripts\app\view\students\Create.js" />
+    <Content Include="Scripts\app\view\students\Edit.js" />
     <Content Include="Scripts\app\view\students\List.js" />
     <Content Include="Scripts\app\view\tasks\List.js" />
     <Content Include="Scripts\app\view\trainers\Create.js" />
@@ -3679,6 +3680,7 @@
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\CustomerStudentModel.cs" />
     <Compile Include="Models\EditCustomerModel.cs" />
+    <Compile Include="Models\EditStudentModel.cs" />
     <Compile Include="Models\FilteredDataModel.cs" />
     <Compile Include="Models\FilterParametersBase.cs" />
     <Compile Include="Models\FilterParametersCustomers.cs" />

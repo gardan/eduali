@@ -42,5 +42,22 @@ namespace Ilc.Web.Services
                     Location = Request.AbsoluteUri.CombineWith(newStudent.Id)
                 };
         }
+
+        public HttpResult Put(EditStudentModel request)
+        {
+            var updatedStudent = new Student()
+                {
+                    Name = request.Name,
+                    CustomerId = request.CustomerId,
+                    Id = request.Id
+                };
+
+            Students.Update(updatedStudent);
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
     }
 }
