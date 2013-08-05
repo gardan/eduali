@@ -75,5 +75,15 @@ namespace Ilc.Web.Services
                     StatusCode = HttpStatusCode.OK
                 };
         }
+
+        public HttpResult Delete(DeleteCustomerModel request)
+        {
+            Customers.Delete(request.Id);
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
     }
 }

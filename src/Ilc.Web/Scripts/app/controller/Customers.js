@@ -5,7 +5,8 @@
         this.control({
             'listcustomers': {
                 'addCustomer': this.addCustomer,
-                'editCustomer': this.editCustomer
+                'editCustomer': this.editCustomer,
+                'deleteCustomer': this.deleteCustomer
             }
         });
     },
@@ -65,6 +66,36 @@
         };
         
         customersService.edit(model)
+        .then(function (response) {
+            options.store.load();
+        })
+        .finally(function () {
+            sender.close();
+        });
+    },
+    
+    deleteCustomer: function (sender, model, options) {
+        var customersService = {
+            remove: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/customers/' + entity.id,
+                    method: 'DELETE',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+
+        customersService.remove(model)
         .then(function (response) {
             options.store.load();
         })

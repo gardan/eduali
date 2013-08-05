@@ -52,6 +52,18 @@
 
                                 editWindow.show();
                             }
+                        },
+                        {
+                            icon: 'images/web/remove.png',
+                            scope: me,
+                            tooltip: 'Delete',
+                            handler: function (grid, rowIndex, colIndex, item, e, record) {
+                                me.fireEvent('deleteCustomer', me, {
+                                    id: record.data.id
+                                }, {
+                                    store: customersStore
+                                });
+                            }
                         }
                     ]
                 }
@@ -82,7 +94,8 @@
 
         me.addEvents(
             'addCustomer',
-            'editCustomer'
+            'editCustomer',
+            'deleteCustomer'
         );
 
         me.callParent(arguments);
