@@ -1,6 +1,7 @@
 ﻿Ext.define('Ilc.view.trainers.List', {
     extend: 'Ext.container.Container',
-    
+    xtype: 'listtrainers',
+
     constructor: function () {
         var me = this;
 
@@ -31,11 +32,21 @@
                         closeAction: 'destroy'
                     });
 
+                    window.on('addTrainer', function (sender, model) {
+                        me.fireEvent('addTrainer', sender, model, {
+                            store: trainersStore
+                        });
+                    });
+
                     window.show();
                 }
             },
             trainersGrid
         ];
+
+        me.addEvents(
+            'addTrainer'
+        );
 
         me.callParent(arguments);
     }

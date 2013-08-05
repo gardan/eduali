@@ -87,6 +87,14 @@
     <Compile Include="Migrations\201307301347152_StudentCustomerManyToOne.Designer.cs">
       <DependentUpon>201307301347152_StudentCustomerManyToOne.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201308050559119_Trainers.cs" />
+    <Compile Include="Migrations\201308050559119_Trainers.Designer.cs">
+      <DependentUpon>201308050559119_Trainers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201308050613237_TrainerPhoneAndAddress.cs" />
+    <Compile Include="Migrations\201308050613237_TrainerPhoneAndAddress.Designer.cs">
+      <DependentUpon>201308050613237_TrainerPhoneAndAddress.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -132,6 +140,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201307301347152_StudentCustomerManyToOne.resx">
       <DependentUpon>201307301347152_StudentCustomerManyToOne.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308050559119_Trainers.resx">
+      <DependentUpon>201308050559119_Trainers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308050613237_TrainerPhoneAndAddress.resx">
+      <DependentUpon>201308050613237_TrainerPhoneAndAddress.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

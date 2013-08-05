@@ -39,6 +39,7 @@ namespace Ilc.Data
         public DbSet<Training> Trainings { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Trainer> Trainers { get; set; } 
 
         public DbSet<Role> Roles { get; set; }
         public DbSet<Membership> Membership { get; set; }

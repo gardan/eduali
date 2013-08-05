@@ -24,7 +24,8 @@ namespace Ilc.Web.AppStart
             container.RegisterAutoWiredAs<UsersService, IUsersService>().ReusedWithin(ReuseScope.Request); 
             container.RegisterAutoWiredAs<TrainingsService, ITrainingsService>().ReusedWithin(ReuseScope.Request);
             container.RegisterAutoWiredAs<CustomersService, ICustomersService>().ReusedWithin(ReuseScope.Request); 
-            container.RegisterAutoWiredAs<StudentsService, IStudentsService>().ReusedWithin(ReuseScope.Request); 
+            container.RegisterAutoWiredAs<StudentsService, IStudentsService>().ReusedWithin(ReuseScope.Request);
+            container.RegisterAutoWiredAs<TrainersService, ITrainersService>().ReusedWithin(ReuseScope.Request); 
         }
     }
 }

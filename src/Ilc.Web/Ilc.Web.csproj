@@ -3671,6 +3671,7 @@
     <Compile Include="Models\ContactPersonModel.cs" />
     <Compile Include="Models\CreateCustomerModel.cs" />
     <Compile Include="Models\CreateEvaluationModel.cs" />
+    <Compile Include="Models\CreateTrainerModel.cs" />
     <Compile Include="Models\CreateTrainingModel.cs" />
     <Compile Include="Models\CreateTransferModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
