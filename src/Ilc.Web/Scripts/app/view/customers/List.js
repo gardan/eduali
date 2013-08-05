@@ -23,6 +23,37 @@
                     renderer: function (value, metaData) {
                         return value.name;
                     }
+                },
+                {
+                    dataIndex: 'bankAccount',
+                    title: 'Bank account',
+                    flex: 1
+                },
+                {
+                    xtype: 'actioncolumn',
+                    sortable: false,
+                    menuDisabled: true,
+                    items: [
+                        {
+                            icon: 'images/web/edit.png',
+                            scope: me,
+                            tooltip: 'Edit',
+                            handler: function(grid, rowIndex, colIndex, item, e, record) {
+                                var editWindow = Ext.create('Ilc.view.customers.Edit', {
+                                    closeAction: 'destroy',
+                                    model: record.data
+                                });
+
+                                editWindow.on('editCustomer', function (sender, model) {
+                                    me.fireEvent('editCustomer', sender, model, {
+                                        store: customersStore
+                                    });
+                                });
+
+                                editWindow.show();
+                            }
+                        }
+                    ]
                 }
             ]
 
@@ -50,7 +81,8 @@
         ];
 
         me.addEvents(
-            'addCustomer'
+            'addCustomer',
+            'editCustomer'
         );
 
         me.callParent(arguments);

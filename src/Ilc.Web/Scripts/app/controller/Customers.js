@@ -4,7 +4,8 @@
     init: function () {
         this.control({
             'listcustomers': {
-                'addCustomer': this.addCustomer
+                'addCustomer': this.addCustomer,
+                'editCustomer': this.editCustomer
             }
         });
     },
@@ -42,6 +43,36 @@
         console.log(model);
     },
     
+    editCustomer: function (sender, model, options) {
+        var customersService = {
+            edit: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/customers/' + entity.id,
+                    method: 'PUT',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+        
+        customersService.edit(model)
+        .then(function (response) {
+            options.store.load();
+        })
+        .finally(function () {
+            sender.close();
+        });
+    },
+
     list: function () {
         
     }

@@ -142,6 +142,7 @@
     <Content Include="Images\checked.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\unchecked.png" />
+    <Content Include="Images\web\edit.png" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\app\controller\Customers.js" />
     <Content Include="Scripts\app\controller\Home.js" />
@@ -182,6 +183,7 @@
     <Content Include="Scripts\app\tasks\training\Rfp.js" />
     <Content Include="Scripts\app\utils\Forms.js" />
     <Content Include="Scripts\app\view\customers\Create.js" />
+    <Content Include="Scripts\app\view\customers\Edit.js" />
     <Content Include="Scripts\app\view\customers\List.js" />
     <Content Include="Scripts\app\view\home\Evaluation.js" />
     <Content Include="Scripts\app\view\home\Frame.js" />
@@ -3676,6 +3678,7 @@
     <Compile Include="Models\CreateTransferModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\CustomerStudentModel.cs" />
+    <Compile Include="Models\EditCustomerModel.cs" />
     <Compile Include="Models\FilteredDataModel.cs" />
     <Compile Include="Models\FilterParametersBase.cs" />
     <Compile Include="Models\FilterParametersCustomers.cs" />

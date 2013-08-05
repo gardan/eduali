@@ -56,5 +56,24 @@ namespace Ilc.Web.Services
                     Location = Request.AbsoluteUri.CombineWith(returnModel.Id)
                 };
         }
+
+        public HttpResult Put(EditCustomerModel request)
+        {
+            var editedCustomer = new Customer()
+                {
+                    BankAccount = request.BankAccount,
+                    BillingAddress = request.BillingAddress,
+                    Name = request.Name,
+                    Id = request.Id
+                };
+
+            Customers.Update(editedCustomer);
+
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
     }
 }
