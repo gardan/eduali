@@ -2,6 +2,10 @@
     extend: 'Ext.container.Container',
     xtype: 'listcustomers',
 
+    requires: [
+        'Ext.util.Point'
+    ],
+
     constructor: function () {
         var me = this;
 
@@ -9,7 +13,7 @@
 
         var customersGrid = Ext.create('Ext.grid.Panel', {
             store: customersStore,
-           
+            
             columns: [
                 {
                     dataIndex: 'name',
