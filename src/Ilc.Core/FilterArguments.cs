@@ -9,6 +9,11 @@ namespace Ilc.Core
     public class FilterArguments
     {
         /// <summary>
+        /// Collection of the filters
+        /// </summary>
+        public List<Filter> Filter { get; set; }
+
+        /// <summary>
         /// Starting index of the data set
         /// </summary>
         public int StartIndex { get; set; }
@@ -60,5 +65,15 @@ namespace Ilc.Core
         /// String array containing property names, to ensure independent processing from the order of the columns.
         /// </summary>
         public string[] DataProperties { get; set; }
+    }
+
+    /// <summary>
+    /// This class holds the filter information from senchas grid filtering capabilities
+    /// </summary>
+    public class Filter
+    {
+        public string Type { get; set; }
+        public string Value { get; set; }
+        public string Field { get; set; }
     }
 }

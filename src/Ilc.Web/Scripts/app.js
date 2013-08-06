@@ -1,4 +1,5 @@
-﻿Ext.application({
+﻿Ext.Loader.setPath('Ext.ux', 'Scripts/app/ux');
+Ext.application({
     name: 'Ilc',
     appFolder: 'Scripts/app',
 

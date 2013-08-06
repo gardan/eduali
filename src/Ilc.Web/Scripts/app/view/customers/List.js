@@ -3,7 +3,8 @@
     xtype: 'listcustomers',
 
     requires: [
-        'Ext.util.Point'
+        'Ext.util.Point',
+        'Ext.ux.grid.JsvFiltersFeature'
     ],
 
     constructor: function () {
@@ -11,14 +12,24 @@
 
         var customersStore = Ext.create('Ilc.store.Customers');
 
+        var filters = {
+            ftype: 'jsvfilters',
+            // encode and local configuration options defined previously for easier reuse
+            // encode: true, // json encode the filter query
+            local: false,   // defaults to false (remote filtering)
+        };
+
         var customersGrid = Ext.create('Ext.grid.Panel', {
             store: customersStore,
-            
+            features: [filters],
             columns: [
                 {
                     dataIndex: 'name',
                     text: 'Name',
-                    flex: 1
+                    flex: 1,
+                    filter: {
+                        type: 'string'
+                    }
                 },
                 {
                     dataIndex: 'contactPerson',

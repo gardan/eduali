@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
@@ -14,10 +15,27 @@ namespace Ilc.Core.Services
         {
             // set defaults
             parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
+            parameters.Filter = parameters.Filter ?? new List<Filter>(); 
 
             var query = Uow.Customers.GetAll();
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
+
+            // search
+            foreach (var filter in parameters.Filter)
+            {
+                var inFilter = filter;
+                switch (filter.Field)
+                {
+                    case "name":
+                        query = query.Where(c => c.Name.Contains(inFilter.Value));
+                        break;
+                    default:
+                        // if trying to search for unavalable column, just exit
+                        // TODO: log this shit.
+                        break;
+                }
+            }
 
             // order
             query = query.OrderBy(e => e.Id);
