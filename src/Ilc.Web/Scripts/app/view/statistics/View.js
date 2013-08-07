@@ -1,45 +1,66 @@
 ﻿Ext.define('Ilc.view.statistics.View', {
     extend: 'Ext.container.Container',
     
-    layout: 'fit',
+    layout: {
+        type: 'hbox', 
+        align: 'stretch'
+    },
 
     constructor: function () {
         var store = Ext.create('Ext.data.Store', {
-            fields: ['temperature', 'region'],
+            fields: ['region', 'sales'],
             data: [
-                { temperature: 58, region: 'TM' },
-                { temperature: 63, region: 'CS' },
-                { temperature: 73, region: 'AR' },
-                { temperature: 78, region: 'OR' },
-                { temperature: 81, region: 'CJ' }
+                { region: 'TM', sales: 10 },
+                { region: 'CS', sales: 68 },
+                { region: 'AR', sales: 27 },
+                { region: 'OR', sales: 47 },
+                { region: 'CJ', sales: 84 },
+                { region: 'CJ', sales: 84 },
+                { region: 'AR', sales: 27 },
+                { region: 'OR', sales: 47 },
+                { region: 'CJ', sales: 84 },
+                { region: 'CJ', sales: 84 },
             ]
         });
 
         var chart = Ext.create('Ext.chart.Chart', {
+            animate: true,
+            shadow: true,
+            flex: 1,
+            maxHeight: 400,
             store: store,
-            
             axes: [
                 {
-                    title: 'Temperature',
+                    title: 'Sales',
                     type: 'Numeric',
-                    position: 'left',
-                    fields: ['temperature'],
-                    minimum: 0,
-                    maximum: 100
+                    position: 'bottom',
+                    fields: ['sales'],
+                    minimum: 0
                 },
                 {
-                    title: 'Time',
+                    title: 'Regions',
                     type: 'Category',
-                    position: 'bottom',
-                    fields: ['region']
+                    position: 'left',
+                    fields: ['region'],
                 }
             ],
             
             series: [
                 {
-                    type: 'column',
+                    type: 'bar',
+                    height: 100,
+                    axis: 'bottom',
+                    highlight: true,
                     xField: 'region',
-                    yField: 'temperature'
+                    yField: 'sales',
+                    tips: {
+                        trackMouse: true,
+                        layout: 'fit',
+                        items: [{xtype: 'label'}],
+                        renderer: function (storeItem, item) {
+                            this.down('label').setText(storeItem.get('region') + ': ' + storeItem.get('sales') + ' sales');
+                        }
+                    }
                 }
             ]
         });
