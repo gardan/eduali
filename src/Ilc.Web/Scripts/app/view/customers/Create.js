@@ -6,7 +6,9 @@
     requires: [
         'Ilc.utils.Forms'
     ],
-
+    layout: 'anchor',
+    modal: true,
+    bodyPadding: 10,
     constructor: function () {
         var me = this;
 
@@ -14,27 +16,32 @@
             {
                 xtype: 'textfield',
                 fieldLabel: 'Name',
-                name: 'name'
+                name: 'name',
+                anchor: '100%'
             },
             {
                 xtype: 'textfield',
                 fieldLabel: 'Bank account',
-                name: 'bankAccount'
+                name: 'bankAccount',
+                anchor: '100%'
             },
             {
                 xtype: 'textfield',
                 fieldLabel: 'Billing address',
-                name: 'billingAddress'
+                name: 'billingAddress',
+                anchor: '100%'
             },
             {
                 xtype: 'textfield',
                 fieldLabel: 'Contact name',
-                name: 'contactName'
+                name: 'contactName',
+                anchor: '100%'
             },
             {
                 xtype: 'textfield',
                 fieldLabel: 'Contact email',
-                name: 'contactEmail'
+                name: 'contactEmail',
+                anchor: '100%'
             },
             {
                 xtype: 'button',

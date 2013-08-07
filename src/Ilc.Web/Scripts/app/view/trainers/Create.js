@@ -3,6 +3,9 @@
     requires: [
         'Ilc.utils.Forms'
     ],
+    modal: true,
+    layout: 'anchor',
+    bodyPadding: 10,
     constructor: function () {
         var me = this;
 
@@ -10,17 +13,20 @@
             {
                 xtype: 'textfield',
                 fieldLabel: 'Name',
-                name: 'name'
+                name: 'name',
+                anchor: '100%'
             },
             {
                 xtype: 'textfield',
                 fieldLabel: 'Phone nr.',
-                name: 'phone'
+                name: 'phone',
+                anchor: '100%'
             },
             {
                 xtype: 'textfield',
                 fieldLabel: 'Address',
-                name: 'address'
+                name: 'address',
+                anchor: '100%'
             },
             {
                 xtype: 'button',

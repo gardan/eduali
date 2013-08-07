@@ -4,7 +4,9 @@
     requires: [
         'Ilc.utils.Forms'
     ],
-
+    modal: true,
+    layout: 'anchor',
+    bodyPadding: 10,
     constructor: function () {
         var me = this;
 
@@ -16,14 +18,16 @@
             displayField: 'name',
             valueField: 'id',
             name: 'customerId',
-            fieldLabel: 'Choose customer'
+            fieldLabel: 'Choose customer',
+            anchor: '100%'
         });
 
         me.items = [
             {
                 xtype: 'textfield',
                 fieldLabel: 'Name',
-                name: 'name'
+                name: 'name',
+                anchor: '100%'
             },
             customerComboBox,
             {

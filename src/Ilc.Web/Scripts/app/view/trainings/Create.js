@@ -4,7 +4,9 @@
     requires: [
         'Ilc.utils.Forms'
     ],
-
+    layout: 'anchor',
+    modal: true,
+    bodyPadding: 10,
     constructor: function () {
         var me = this;
         var customersStore = Ext.create('Ilc.store.Customers');
@@ -20,7 +22,8 @@
             displayField: 'name',
             valueField: 'id',
             name: 'customerId',
-            fieldLabel: 'Choose customer'
+            fieldLabel: 'Choose customer',
+            anchor: '100%'
         });
 
         var studentsComboBox = Ext.create('Ext.form.ComboBox', {
@@ -30,7 +33,8 @@
             valueField: 'id',
             fieldLabel: 'Choose students',
             name: 'students',
-            multiSelect: true
+            multiSelect: true,
+            anchor: '100%'
         });
 
         var trainingSystemComboBox = Ext.create('Ext.form.ComboBox', {
@@ -39,7 +43,8 @@
             displayField: 'name',
             valueField: 'id',
             name: 'trainingSystem',
-            fieldLabel: 'Choose system'
+            fieldLabel: 'Choose system',
+            anchor: '100%'
         });
 
         var subjectComboBox = Ext.create('Ext.form.ComboBox', {
@@ -48,7 +53,8 @@
             displayField: 'name',
             valueField: 'id',
             name: 'subjectId',
-            fieldLabel: 'Choose subject'
+            fieldLabel: 'Choose subject',
+            anchor: '100%'
         });
 
         customerComboBox.on('select', function (comboBox, records, eOpts) {
@@ -68,13 +74,15 @@
                 xtype: 'datefield',
                 fieldLabel: 'Start date',
                 format: 'Y-m-d',
-                name: 'desiredStartDate'
+                name: 'desiredStartDate',
+                anchor: '100%'
             },
             {
                 xtype: 'datefield',
                 fieldLabel: 'End date',
                 format: 'Y-m-d',
-                name: 'desiredEndDate'
+                name: 'desiredEndDate',
+                anchor: '100%'
             },
             {
                 xtype: 'button',
