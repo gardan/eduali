@@ -25,7 +25,7 @@ namespace Ilc.Web.InjectorConventions
             if (c.SourceProp.Name == "Students" && c.TargetProp.Name == "Students")
             {
                 var students = c.SourceProp.Value as ICollection<Student>;
-                return students.Select(u => new StudentModel() { Name = u.Name }).ToArray();
+                return students.Select(u => new StudentModel() { Name = u.Name, Id = u.Id}).ToArray();
             }
             if (c.SourceProp.Name == "Subject" && c.TargetProp.Name == "Subject")
             {
@@ -35,7 +35,10 @@ namespace Ilc.Web.InjectorConventions
             {
                 return new TrainerModel().InjectFrom(c.SourceProp.Value);
             }
-            
+            if (c.SourceProp.Name == "Customer" && c.TargetProp.Name == "Customer")
+            {
+                return new CustomerModel().InjectFrom(c.SourceProp.Value);
+            }
             return base.SetValue(c);
         }
     }

@@ -15,6 +15,7 @@
         });
         var trainingSystemsStore = Ext.create('Ilc.store.TrainingSystems');
         var subjectsStore = Ext.create('Ilc.store.Subjects');
+        var trainersStore = Ext.create('Ilc.store.Trainers');
 
         var customerComboBox = Ext.create('Ext.form.ComboBox', {
             store: customersStore,
@@ -57,6 +58,16 @@
             anchor: '100%'
         });
 
+        var trainersComboBox = Ext.create('Ext.form.ComboBox', {
+            store: trainersStore,
+            queryMode: 'local',
+            displayField: 'name',
+            valueField: 'id',
+            name: 'trainerId',
+            fieldLabel: 'Choose trainer',
+            anchor: '100%'
+        });
+
         customerComboBox.on('select', function (comboBox, records, eOpts) {
             studentsStore.load({
                 params: {
@@ -69,6 +80,7 @@
             customerComboBox,
             subjectComboBox,
             trainingSystemComboBox,
+            trainersComboBox,
             studentsComboBox,
             {
                 xtype: 'datefield',

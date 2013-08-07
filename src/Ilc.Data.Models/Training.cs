@@ -32,7 +32,11 @@ namespace Ilc.Data.Models
         public int? TrainerId { get; set; }
         [ForeignKey("TrainerId")]
         public virtual Trainer Trainer { get; set; }
-        
+
+        public int CustomerId { get; set; }
+        [ForeignKey("CustomerId")]
+        public virtual Customer Customer { get; set; }
+
         public virtual ICollection<UserProfile> Owners { get; set; }
     }
 }

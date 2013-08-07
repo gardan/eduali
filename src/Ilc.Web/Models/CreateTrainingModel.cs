@@ -11,6 +11,7 @@ namespace Ilc.Web.Models
         public int SubjectId { get; set; }
         public int TrainingSystemId { get; set; }
         public int CustomerId { get; set; }
-        
+
+        public int TrainerId { get; set; }
     }
 }

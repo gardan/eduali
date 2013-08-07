@@ -37,7 +37,9 @@ namespace Ilc.Web.Services
                     SubjectId = request.SubjectId,
                     DesiredStartDate = request.DesiredStartDate,
                     DesiredEndDate = request.DesiredEndDate,
-                    Status = "Rfi"
+                    Status = "Rfi",
+                    TrainerId = request.TrainerId,
+                    CustomerId = request.CustomerId
                     // Owners = new UserProfile[] { AuthManager.GetCurrentUser() }
                 };
 

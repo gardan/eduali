@@ -12,8 +12,8 @@
         xtype: 'panel'
     },
     
-    // layout: 'fit',
-
+    layout: 'anchor',
+    bodyPadding: 10,
     constructor: function (cfg) {
         var me = this;
         var model = cfg.model;
@@ -22,19 +22,22 @@
             fields: ['id', 'name', 'phone'],
             data: model.students
         });
-        
+
         me.items = [
             {
                 title: 'Trainer',
-                html: model.trainerName
+                html: model.trainer.name,
+                anchor: '100%'
             },
             {
                 title: 'Start',
-                html: model.startDate
+                html: model.desiredStartDate,
+                anchor: '100%'
             },
             {
                 title: 'End',
-                html: model.endDate
+                html: model.desiredEndDate,
+                anchor: '100%'
             },
             {
                 xtype: 'grid',
