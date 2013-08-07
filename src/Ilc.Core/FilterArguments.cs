@@ -8,6 +8,11 @@ namespace Ilc.Core
 {
     public class FilterArguments
     {
+        public FilterArguments()
+        {
+            Filter = new List<Filter>();
+        }
+
         /// <summary>
         /// Collection of the filters
         /// </summary>

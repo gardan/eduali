@@ -7,18 +7,30 @@
 
         var trainersStore = Ext.create('Ilc.store.Trainers');
 
+        var filter = {
+            ftype: 'jsvfilters',
+            local: false
+        };
+
         var trainersGrid = Ext.create('Ext.grid.Panel', {
             store: trainersStore,
+            features: [filter],
             columns: [
                 {
                     dataIndex: 'name',
                     text: 'Name',
-                    flex: 1
+                    flex: 1,
+                    filter: {
+                        type: 'string'
+                    }
                 },
                 {
                     dataIndex: 'phone',
                     text: 'Phone',
-                    flex: 1
+                    flex: 1,
+                    filter: {
+                        type: 'string'
+                    }
                 },
                 {
                     xtype: 'actioncolumn',

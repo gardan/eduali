@@ -19,6 +19,24 @@ namespace Ilc.Core.Services
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
 
+            // filter
+            foreach (var filter in parameters.Filter)
+            {
+                var inFilter = filter;
+                switch (filter.Field)
+                {
+                    case "name":
+                        query = query.Where(t => t.Name.Contains(inFilter.Value));
+                        break;
+                    case "phone":
+                        query = query.Where(t => t.Phone.Contains(inFilter.Value));
+                        break;
+                    default:
+                        // TODO: Log this!!
+                        break;
+                }
+            }
+
             // order
             query = query.OrderBy(e => e.Id);
 

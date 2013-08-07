@@ -24,6 +24,22 @@ namespace Ilc.Core.Services
             {
                 query = query.Where(s => s.CustomerId == parameters.CustomerId);
             }
+            foreach (var filter in parameters.Filter)
+            {
+                var inFilter = filter;
+                switch (filter.Field)
+                {
+                    case "name":
+                        query = query.Where(s => s.Name.Contains(inFilter.Value));
+                        break;
+                    case "customer":
+                        query = query.Where(s => s.Customer.Name.Contains(inFilter.Value));
+                        break;  
+                    default:
+                        // TODO: log that no such field exists.
+                        break;
+                }
+            }
 
             // order
             query = query.OrderBy(e => e.Id);

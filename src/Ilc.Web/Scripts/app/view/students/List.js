@@ -7,13 +7,22 @@
 
         var studentsStore = Ext.create('Ilc.store.Students');
 
+        var filters = {
+            ftype: 'jsvfilters',
+            local: false,
+        };
+
         var studentsGrid = Ext.create('Ext.grid.Panel', {
             store: studentsStore,
+            features: [filters],
             columns: [
                 {
                     dataIndex: 'name',
                     text: 'Name',
-                    flex: 1
+                    flex: 1,
+                    filter: {
+                        type: 'string'
+                    }
                 },
                 {
                     dataIndex: 'customer',
@@ -21,6 +30,9 @@
                     flex: 1,
                     renderer: function (value) {
                         return value.name;
+                    },
+                    filter: {
+                        type: 'string'
                     }
                 },
                 {

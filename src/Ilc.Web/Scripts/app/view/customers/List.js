@@ -34,15 +34,22 @@
                 {
                     dataIndex: 'contactPerson',
                     text: 'Contact',
+                    sortable: false,
                     flex: 1,
                     renderer: function (value, metaData) {
                         return value.name;
+                    },
+                    filter: {
+                        type: 'string'
                     }
                 },
                 {
                     dataIndex: 'bankAccount',
-                    title: 'Bank account',
-                    flex: 1
+                    text: 'Bank account',
+                    flex: 1,
+                    filter: {
+                        type: 'string'
+                    }
                 },
                 {
                     xtype: 'actioncolumn',
