@@ -29,7 +29,10 @@ namespace Ilc.Data.Models
             set { _students = value; }
         }
 
-
+        public int? TrainerId { get; set; }
+        [ForeignKey("TrainerId")]
+        public virtual Trainer Trainer { get; set; }
+        
         public virtual ICollection<UserProfile> Owners { get; set; }
     }
 }
