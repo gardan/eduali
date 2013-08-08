@@ -1,4 +1,5 @@
 ﻿Ext.Loader.setPath('Ext.ux', 'Scripts/app/ux');
+
 Ext.application({
     name: 'Ilc',
     appFolder: 'Scripts/app',
@@ -14,7 +15,8 @@ Ext.application({
     ],
 
     requires: [
-        'Ext.ux.Router'
+        'Ext.ux.Router',
+        'Ilc.helpers.AppConfig'
     ],
     
     views: [
@@ -40,7 +42,15 @@ Ext.application({
     launch: function () {
         Ext.create('Ilc.view.Viewport');
         
-        Ext.create('Ilc.routing.Router').init();
+        var gridCfgStore = Ext.create('Ilc.store.GridConfig', { autoLoad: false });
+
+        gridCfgStore.on('load', function () {
+            Ilc.helpers.AppConfig.gridColumnConfiguration = gridCfgStore.data;
+            Ext.create('Ilc.routing.Router').init();
+            Ext.History.fireEvent('change', window.location.hash.substring(1));
+        });
+        gridCfgStore.load();
+        
     }
 });
 

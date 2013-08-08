@@ -217,7 +217,7 @@ Ext.define('Ext.ux.Router', {
      * for a match.
      * @private
      */
-    parse: function(token) {
+    parse: function (token) {
         var route, matches, params, names, j, param, value, rules,
             tokenArgs, tokenWithoutArgs,
             me      = this,

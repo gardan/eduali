@@ -2,6 +2,10 @@
     extend: 'Ext.container.Container',
     xtype: 'listtrainings',
 
+    requires: [
+        'Ilc.helpers.GridColumns'
+    ],
+
     constructor: function () {
         var me = this;
 
@@ -9,7 +13,7 @@
 
         var trainingsGrid = Ext.create('Ext.grid.Panel', {
             store: trainingsStore,
-            columns: [
+            columns: Ilc.helpers.GridColumns.process([
                 {
                     dataIndex: 'status',
                     flex: 1,
@@ -19,7 +23,7 @@
                     dataIndex: 'customer',
                     flex: 1,
                     text: 'Customer',
-                    renderer: function (value) {
+                    renderer: function(value) {
                         return value.name;
                     }
                 },
@@ -44,7 +48,7 @@
                     text: 'Owner',
                     flex: 1,
                     sortable: false,
-                    renderer: function (value, metaData) {
+                    renderer: function(value, metaData) {
                         var ret = '';
                         for (var i = 0; i < value.length; i++) {
                             var anchor = '<a>' + value[i].username + '</a>,';
@@ -53,7 +57,7 @@
                         return ret.slice(0, ret.length - 1);
                     }
                 }
-            ]
+            ], 'trainings')
         });
 
         trainingsGrid.on('itemdblclick', function (grid, record) {
@@ -63,6 +67,11 @@
                 model: record.data
             });
             window.show();
+        });
+
+        trainingsGrid.on('columnschanged', function (headerContainer) {
+            // debugger;
+            console.log('fire!!!');
         });
 
         me.items = [,
@@ -91,5 +100,5 @@
         );
 
         me.callParent(arguments);
-    }
+    },
 });

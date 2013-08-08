@@ -162,6 +162,9 @@
     <Content Include="Scripts\app\form\TransferBlockForm.js" />
     <Content Include="Scripts\app\grid\Competences.js" />
     <Content Include="Scripts\app\grid\EvalQuestions.js" />
+    <Content Include="Scripts\app\helpers\AppConfig.js" />
+    <Content Include="Scripts\app\helpers\GridColumns.js" />
+    <Content Include="Scripts\app\store\GridConfig.js" />
     <Content Include="Scripts\app\grid\Transfers.js" />
     <Content Include="Scripts\app\model\Customer.js" />
     <Content Include="Scripts\app\model\EvalQuestion.js" />
@@ -3784,6 +3787,7 @@
     <Compile Include="Models\FilterParametersStudents.cs" />
     <Compile Include="Models\FilterParametersTrainers.cs" />
     <Compile Include="Models\FilterParametersTrainings.cs" />
+    <Compile Include="Models\GridConfigModel.cs" />
     <Compile Include="Models\LightOfferModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\StudentModel.cs" />
@@ -3797,6 +3801,7 @@
     <Compile Include="InjectorConventions\CustomerToCustomerModel.cs" />
     <Compile Include="Services\DefaultService.cs" />
     <Compile Include="Models\TrainingModel.cs" />
+    <Compile Include="Services\GridConfigurationService.cs" />
     <Compile Include="Services\StudentsService.cs" />
     <Compile Include="InjectorConventions\StudentToStudentModel.cs" />
     <Compile Include="Services\TrainersService.cs" />

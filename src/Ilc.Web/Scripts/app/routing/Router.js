@@ -5,7 +5,7 @@
     ],
 
     init: function () {
-
+        
         Ext.ux.Router.on({
             routemissed: function (token) {
                 Ext.Msg.show({
@@ -40,6 +40,7 @@
 
                 // try to get the view by controller + action names
                 viewClass = Ext.ClassManager.get('Ilc.view.' + controller + '.' + action);
+                
                 if (viewClass) {
                     // create view
                     view = Ext.create(viewClass, {
