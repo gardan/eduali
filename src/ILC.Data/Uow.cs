@@ -8,6 +8,7 @@ using Ilc.Data.Contracts;
 using Ilc.Data.Models;
 using Ilc.Data.Helpers;
 using Ilc.Data.Models.SimpleMembership;
+using Ilc.Data.Models.WebClient;
 
 namespace Ilc.Data
 {
@@ -25,6 +26,7 @@ namespace Ilc.Data
         public IRepository<Customer> Customers { get { return GetStandardRepo<Customer>(); } }
         public IRepository<Student> Students { get { return GetStandardRepo<Student>(); } }
         public IRepository<Trainer> Trainers { get { return GetStandardRepo<Trainer>(); } }
+        public IRepository<GridConfig> GridConfigs { get { return GetStandardRepo<GridConfig>(); } }
 
         public Uow(IRepositoryProvider repositoryProvider)
         {

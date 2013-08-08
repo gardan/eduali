@@ -57,6 +57,7 @@
     <Compile Include="Trainer.cs" />
     <Compile Include="Training.cs" />
     <Compile Include="UserProfile.cs" />
+    <Compile Include="WebClient\GridConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

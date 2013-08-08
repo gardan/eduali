@@ -6,6 +6,7 @@ using Ilc.Data.Configuration.SimpleMembership;
 using Ilc.Data.Helpers;
 using Ilc.Data.Models;
 using Ilc.Data.Models.SimpleMembership;
+using Ilc.Data.Models.WebClient;
 
 namespace Ilc.Data
 {
@@ -39,7 +40,9 @@ namespace Ilc.Data
         public DbSet<Training> Trainings { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<Trainer> Trainers { get; set; } 
+        public DbSet<Trainer> Trainers { get; set; }
+
+        public DbSet<GridConfig> GridConfigs { get; set; }
 
         public DbSet<Role> Roles { get; set; }
         public DbSet<Membership> Membership { get; set; }

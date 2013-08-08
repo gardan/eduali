@@ -103,6 +103,14 @@
     <Compile Include="Migrations\201308071325104_OneToOneTrainingCustomer.Designer.cs">
       <DependentUpon>201308071325104_OneToOneTrainingCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201308081529583_GridConfig.cs" />
+    <Compile Include="Migrations\201308081529583_GridConfig.Designer.cs">
+      <DependentUpon>201308081529583_GridConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201308081539022_ManyToManyTrainingUserProfileOwnership.cs" />
+    <Compile Include="Migrations\201308081539022_ManyToManyTrainingUserProfileOwnership.Designer.cs">
+      <DependentUpon>201308081539022_ManyToManyTrainingUserProfileOwnership.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -160,6 +168,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201308071325104_OneToOneTrainingCustomer.resx">
       <DependentUpon>201308071325104_OneToOneTrainingCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308081529583_GridConfig.resx">
+      <DependentUpon>201308081529583_GridConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308081539022_ManyToManyTrainingUserProfileOwnership.resx">
+      <DependentUpon>201308081539022_ManyToManyTrainingUserProfileOwnership.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

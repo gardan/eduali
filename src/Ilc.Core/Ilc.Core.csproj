@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\GridConfigsService.cs" />
     <Compile Include="Contracts\ICustomersService.cs" />
+    <Compile Include="Contracts\IGridConfigsService.cs" />
     <Compile Include="Contracts\IStudentsService.cs" />
     <Compile Include="Contracts\ITrainersService.cs" />
     <Compile Include="Contracts\ITrainingsService.cs" />

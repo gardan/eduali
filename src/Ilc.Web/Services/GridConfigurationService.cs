@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Ilc.Core.Contracts;
 using Ilc.Web.Models;
+using Omu.ValueInjecter;
 using ServiceStack.ServiceInterface;
 using ServiceStack.Text;
 
@@ -10,6 +12,8 @@ namespace Ilc.Web.Services
 {
     public class GridConfigurationService : Service
     {
+
+        public IGridConfigsService GridConfigs { get; set; }
 
         public FilteredDataModel<GridConfigModel> Get(GridConfigRequestParameters request)
         {
@@ -44,16 +48,7 @@ namespace Ilc.Web.Services
 
             return new FilteredDataModel<GridConfigModel>()
                 {
-                    Data = new List<GridConfigModel>()
-                        {
-                            new GridConfigModel()
-                                {
-                                    ColumnConfig = JsonSerializer.SerializeToString(trainingsColumnsCfg), 
-                                    Grid = "trainings"
-                                }
-                        },
-                        TotalRecords = 1,
-                        TotalDisplayRecords = 1
+                    Data = GridConfigs.GetFiltered(request.Grid).Data.Select(cfg => new GridConfigModel().InjectFrom(cfg) as GridConfigModel).ToList()
                 };
         }
 

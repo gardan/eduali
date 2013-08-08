@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Ilc.Data.Models.Base;
 using Ilc.Data.Models.SimpleMembership;
+using Ilc.Data.Models.WebClient;
 
 namespace Ilc.Data.Models
 {
@@ -37,5 +38,11 @@ namespace Ilc.Data.Models
             get { return _ownedRoles ?? (_ownedRoles = new List<Role>()); }
             protected set { _ownedRoles = value; }
         }
+
+        private ICollection<Training> _ownedTrainings; 
+        public virtual ICollection<Training> OwnedTrainings {
+            get { return _ownedTrainings ?? (_ownedTrainings = new List<Training>()); }
+            protected set { _ownedTrainings = value; }
+        } 
     }
 }

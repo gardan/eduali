@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Ilc.Data.Models;
 using Ilc.Data.Models.SimpleMembership;
+using Ilc.Data.Models.WebClient;
 
 namespace Ilc.Data.Contracts
 {
@@ -21,5 +22,6 @@ namespace Ilc.Data.Contracts
         IRepository<Student> Students { get; }
         IRepository<Customer> Customers { get; }
         IRepository<Trainer> Trainers { get; }
+        IRepository<GridConfig> GridConfigs { get; } 
     }
 }

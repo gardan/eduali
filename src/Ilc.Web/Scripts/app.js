@@ -47,6 +47,9 @@ Ext.application({
         gridCfgStore.on('load', function () {
             Ilc.helpers.AppConfig.gridColumnConfiguration = gridCfgStore.data;
             Ext.create('Ilc.routing.Router').init();
+            
+            // router dispatch event has been fired before we had the change to init the Router component,
+            // that is why we fire it manually from here
             Ext.History.fireEvent('change', window.location.hash.substring(1));
         });
         gridCfgStore.load();
