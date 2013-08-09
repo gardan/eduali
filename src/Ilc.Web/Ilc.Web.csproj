@@ -3807,6 +3807,7 @@
     <Compile Include="Services\TrainersService.cs" />
     <Compile Include="Services\TrainingsService.cs" />
     <Compile Include="Services\TransfersService.cs" />
+    <Compile Include="Models\UpdateGridColumnConfigModel.cs" />
     <Compile Include="TransfersRepo.cs" />
   </ItemGroup>
   <ItemGroup>

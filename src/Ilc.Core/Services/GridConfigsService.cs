@@ -16,5 +16,11 @@ namespace Ilc.Core.Services
                     Data = Uow.GridConfigs.GetAll().ToList()
                 };
         }
+
+        public void Update(GridConfig entity)
+        {
+            Uow.GridConfigs.Update(entity);
+            Uow.Commit();
+        }
     }
 }

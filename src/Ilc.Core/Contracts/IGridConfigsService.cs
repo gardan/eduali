@@ -10,5 +10,6 @@ namespace Ilc.Core.Contracts
     public interface IGridConfigsService
     {
         FilteredResults<GridConfig> GetFiltered(string gridName);
+        void Update(GridConfig entity);
     }
 }

@@ -19,5 +19,20 @@
             returnColumns[colConfig[column.dataIndex].order] = column;
         }
         return returnColumns;
+    },
+    
+    updateColumns: function (containerHeader, gridName) {
+        // extract the new config
+        var newColumnConfig = {};
+        for (var i = 0; i < containerHeader.gridDataColumns.length; i++) {
+            var column = containerHeader.gridDataColumns[i];
+            newColumnConfig[column.dataIndex] = {
+                order: i,
+                hidden: column.hidden
+            };
+        }
+        console.log(newColumnConfig);
+        // update the new config
+        Ilc.helpers.AppConfig.updateGridColumnConfigByName(JSON.stringify(newColumnConfig), gridName);
     }
 });

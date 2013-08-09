@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using Ilc.Core.Contracts;
+using Ilc.Data.Models.WebClient;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
+using ServiceStack.Common.Web;
 using ServiceStack.ServiceInterface;
 using ServiceStack.Text;
 
@@ -12,7 +15,6 @@ namespace Ilc.Web.Services
 {
     public class GridConfigurationService : Service
     {
-
         public IGridConfigsService GridConfigs { get; set; }
 
         public FilteredDataModel<GridConfigModel> Get(GridConfigRequestParameters request)
@@ -49,6 +51,22 @@ namespace Ilc.Web.Services
             return new FilteredDataModel<GridConfigModel>()
                 {
                     Data = GridConfigs.GetFiltered(request.Grid).Data.Select(cfg => new GridConfigModel().InjectFrom(cfg) as GridConfigModel).ToList()
+                };
+        }
+
+        public HttpResult Put(UpdateGridColumnConfigModel request)
+        {
+            var updatedGridCfg = new GridConfig()
+                {
+                    ColumnConfig = request.ColumnConfig,
+                    Grid = request.Grid,
+                    Id = 1
+                };
+
+            GridConfigs.Update(updatedGridCfg);
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
                 };
         }
 

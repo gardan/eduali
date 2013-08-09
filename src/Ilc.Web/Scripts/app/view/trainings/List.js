@@ -68,10 +68,22 @@
             });
             window.show();
         });
-
-        trainingsGrid.on('columnschanged', function (headerContainer) {
+       
+        // update the columns if they change
+        trainingsGrid.on('columnhide', function (headerContainer) {
             // debugger;
-            console.log('fire!!!');
+            console.log('hidden!!!');
+            Ilc.helpers.GridColumns.updateColumns(headerContainer, 'trainings');
+        });
+        trainingsGrid.on('columnshow', function (headerContainer) {
+            // debugger;
+            console.log('shown!!!');
+            Ilc.helpers.GridColumns.updateColumns(headerContainer, 'trainings');
+        });
+        trainingsGrid.on('columnmove', function (headerContainer) {
+            // debugger;
+            console.log('moved!!!');
+            Ilc.helpers.GridColumns.updateColumns(headerContainer, 'trainings');
         });
 
         me.items = [,
