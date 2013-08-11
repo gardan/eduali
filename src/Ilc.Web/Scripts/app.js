@@ -54,6 +54,9 @@ Ext.application({
         });
         gridCfgStore.load();
         
+        // Defaults
+        Ext.window.Window.prototype.bodyPadding = 10;
+        Ext.window.Window.prototype.modal = true;
     }
 });
 
