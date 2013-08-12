@@ -13,6 +13,9 @@
             },
             'planinterviewwindow': {
                 addinterviewplan: me.addinterviewplan
+            },
+            'interviewwindow': {
+                addInterview: me.addInterview
             }
         });
 
@@ -23,6 +26,7 @@
         console.log('addrfp executed.');
         sender.close();
     },
+    
     addrfi: function (sender, data) {
         console.log('addrfi executed.');
 
@@ -68,7 +72,19 @@
         });
     },
 
-    // routes functions
+    addInterview: function(sender, data) {
+        console.log(data);
+        console.log('addInterview event.');
+        sender.close();
+    },
+    allInterviewsAdded: function (sender, data) {
+        console.log('allInterviewsAdded called.');
+        console.log(data);
+    },
+
+
+
+        // routes functions
     list: function () {
         
     }

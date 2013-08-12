@@ -5,7 +5,6 @@
     
     constructor: function () {
         var me = this;
-        
         var store = Ext.create('Ext.data.Store', {
             fields: ['id', 'name', 'action'],
             data: {

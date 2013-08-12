@@ -1,14 +1,18 @@
 ﻿Ext.define('Ilc.tasks.training.grid.Students', {
     extend: 'Ext.grid.Panel',
 
-
+    requires: [
+        'Ilc.utils.Forms'
+    ],
+    
     constructor: function () {
         var me = this;
 
         me.columns = [
             {
                 dataIndex: 'name',
-                text: 'Student name'
+                text: 'Student name',
+                flex: 1
             },
             {
                 xtype: 'actioncolumn',
@@ -27,12 +31,12 @@
                                 fields: ['text', 'order'],
                                 data: {
                                     data: [
-                                        { text: 'A1', order: 1 },
-                                        { text: 'A2', order: 2 },
-                                        { text: 'B1', order: 3 },
-                                        { text: 'B2', order: 4 },
-                                        { text: 'C1', order: 5 },
-                                        { text: 'C2', order: 6 }
+                                        { id: 1, text: 'A1', order: 1 },
+                                        { id: 2, text: 'A2', order: 2 },
+                                        { id: 3, text: 'B1', order: 3 },
+                                        { id: 4, text: 'B2', order: 4 },
+                                        { id: 5, text: 'C1', order: 5 },
+                                        { id: 6, text: 'C2', order: 6 }
                                     ]
                                 },
                                 proxy: {
@@ -63,6 +67,7 @@
                             });
 
                             var window = Ext.create('Ext.window.Window', {
+                                
                                 modal: true,
                                 items: [
                                     {
@@ -71,7 +76,8 @@
                                         fieldLabel: 'Level',
                                         queryMode: 'local',
                                         displayField: 'text',
-                                        valueField: 'order'
+                                        valueField: 'id',
+                                        name: 'listening.currentLevel'
                                     },
                                     {
                                         xtype: 'combobox',
@@ -79,22 +85,32 @@
                                         fieldLabel: 'Target level',
                                         queryMode: 'local',
                                         displayField: 'text',
-                                        valueField: 'order'
+                                        valueField: 'id',
+                                        name: 'listening.desiredLevel'
                                     },
-                                    {
-                                        xtype: 'combobox',
-                                        store: trainersStore,
-                                        fieldLabel: 'Trainer',
-                                        queryMode: 'local',
-                                        displayField: 'name',
-                                        valueField: 'order'
-                                    },
+                                    //{
+                                    //    xtype: 'combobox',
+                                    //    store: trainersStore,
+                                    //    fieldLabel: 'Trainer',
+                                    //    queryMode: 'local',
+                                    //    displayField: 'name',
+                                    //    valueField: 'order'
+                                    //},
                                     {
                                         xtype: 'button',
                                         text: 'Add',
                                         handler: function (btn, events) {
-                                            me.fireEvent('addInterview', me, {});
-                                            window.close();
+                                            var model = {};
+                                            // example: 
+                                            // {
+                                            //     listening: { currentLevel: 1, desiredLevel: 4 },
+                                            //     reading: { currentLevel: 1, desiredLevel: 4 },
+                                            //     productiveSpeaking: { currentLevel: 1, desiredLevel: 4 },
+                                            //     writing: { currentLevel: 1, desiredLevel: 4 }
+                                            // };
+
+                                            model = Ilc.utils.Forms.extractModel(window.query('textfield'));
+                                            me.fireEvent('addInterview', window, model);
                                         }
                                     }
                                 ]
