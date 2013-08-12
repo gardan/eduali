@@ -12,6 +12,7 @@
                     { id: 1, name: 'RFI', action: 'rfi' },
                     { id: 2, name: 'Plan Interview', action: 'planInterview' },
                     { id: 3, name: 'Interview', action: 'interview' },
+                    { id: 5, name: 'Offer', action: 'offer' },
                     { id: 4, name: 'Accepted', action: 'accepted' }
                 ]
             },
