@@ -1,7 +1,6 @@
 ﻿Ext.define('Ilc.view.tasks.List', {
     extend: 'Ext.container.Container',
     xtype: 'taskslist',
-    items: [],
     
     constructor: function () {
         var me = this;
@@ -41,7 +40,8 @@
 
                         var action = record.data.action.charAt(0).toUpperCase() + record.data.action.slice(1);
                         var window = Ext.create('Ilc.tasks.training.' + action, {
-                            modal: true
+                            modal: true,
+                            hideAction: 'destroy'
                         });
                         window.show();
                     }
@@ -51,7 +51,7 @@
 
         me.addEvents('execute');
 
-        this.items.push(grid);
+        this.items = [grid];
 
         this.callParent(arguments);
     }

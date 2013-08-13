@@ -23,6 +23,10 @@
             },
             items: [
                 {
+                    text: 'Tasks',
+                    itemId: 'tasks'
+                },
+                {
                     text: 'Trainings',
                     itemId: 'trainings',
                     pressed: true
