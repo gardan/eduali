@@ -35,6 +35,7 @@
                 {
                     xtype: 'actioncolumn',
                     tooltip: 'Execute',
+                    icon: 'images/web/view.png',
                     handler: function (self, rowIndex, colIndex, item, e, record, row) {
                         me.fireEvent('beforeActionWindow');
 

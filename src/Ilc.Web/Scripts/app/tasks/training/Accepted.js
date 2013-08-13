@@ -21,14 +21,6 @@
             {
                 Id: 'c',
                 Name: 'Lesson 3'
-            },
-            {
-                Id: 'd',
-                Name: 'Lesson 4'
-            },
-            {
-                Id: 'e',
-                Name: 'Lesson 5'
             }
         ]);
 
@@ -41,18 +33,20 @@
 
         var startDate = new Date(2010, 4, 22, 6);
         var slider;
-        var scheduler = Ext.create('Sch.panel.SchedulerGrid', {
+        var trainingScheduler = Ext.create('Sch.panel.SchedulerGrid', {
             width: 800,
             height: 400,
 
+            allowOverlap: false,
+            constrainDragToResource: true,
             snapToIncrement: true,
             eventResizeHandles: 'end',      
 
-            orientation: 'vertical',
+            // orientation: 'vertical',
 
             // Setup view configuration
             startDate: startDate,
-            endDate: Sch.util.Date.add(startDate, Sch.util.Date.DAY, 4),
+            // endDate: Sch.util.Date.add(startDate, Sch.util.Date.DAY, 10),
 
             viewPreset: 'hourAndDay',
 
@@ -66,17 +60,34 @@
             
             onEventCreated: function (newEventRecord) {
                 newEventRecord.set({
-                    Title: "Hey, let's meet",
+                    Name: "Hey, let's meet",
                     Type: 'Meeting'
                 });
             },
 
             listeners: {
+                eventcontextmenu: function (s, rec, e) {
+                e.stopEvent();
+                
+                if (!s.ctx) {
+                    s.ctx = new Ext.menu.Menu({
+                        items: [{
+                            text: 'Delete event',
+                            iconCls: 'icon-delete',
+                            handler: function () {
+                                s.eventStore.remove(rec);
+                            }
+                        }]
+                    });
+                }
+                s.ctx.rec = rec;
+                s.ctx.showAt(e.getXY());
+            },
                 afterlayout: function () {
                     slider.setMinValue(10);
                     slider.setMaxValue(14);
 
-                    slider.setValue(scheduler.getCurrentZoomLevelIndex());
+                    slider.setValue(trainingScheduler.getCurrentZoomLevelIndex());
                 },
                 
                 single: true
@@ -93,23 +104,26 @@
                     maxValue: 10,
                     listeners: {
                         change: function (p, v) {
-                            scheduler.zoomToLevel(parseInt(v), true);
+                            trainingScheduler.zoomToLevel(parseInt(v), true);
                         }
                     }
                 })
             ]
         });
 
-        scheduler.on('eventresizeend', function () {
-            console.log('eventresizeend');
-        });
-
-        scheduler.on('eventresizestart', function () {
-            console.log('eventresizestart');
+        trainingScheduler.on('beforeeventadd', function (scheduler, newEventRecord) {
+            // only one event per resource can be created,
+            // if one already exists, prevent the new from beeing created.
+            var existingEvents = scheduler.eventStore.queryBy(function (record) {
+                return record.get('ResourceId') === newEventRecord.get('ResourceId');
+            });
+            if (existingEvents.items.length > 0) {
+                return false;
+            }
         });
         
         me.items = [
-            scheduler
+            trainingScheduler
         ];
 
         me.callParent(arguments);
