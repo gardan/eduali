@@ -47,6 +47,9 @@
                         model[input.name] = moment(date).format();
                     }
                     break;
+                case 'textarea':
+                    Ilc.utils.Forms._addProperty(model, input.name, input.getRawValue());
+                    break;
                 default:
             }
         }

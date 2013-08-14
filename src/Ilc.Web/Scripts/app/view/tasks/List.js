@@ -12,7 +12,9 @@
                     { id: 2, name: 'Plan Interview', action: 'planInterview' },
                     { id: 3, name: 'Interview', action: 'interview' },
                     { id: 5, name: 'Offer', action: 'offer' },
-                    { id: 4, name: 'Accepted', action: 'accepted' }
+                    { id: 4, name: 'Accepted', action: 'accepted' },
+                    { id: 6, name: 'Planned', action: 'planned' },
+                    { id: 7, name: 'Progress evaluation', action: 'progressEvaluation' }
                 ]
             },
             proxy: {

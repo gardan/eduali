@@ -184,12 +184,14 @@
     <Content Include="Scripts\app\store\TrainingSystems.js" />
     <Content Include="Scripts\app\store\Transfers.js" />
     <Content Include="Scripts\app\tasks\training\Accepted.js" />
+    <Content Include="Scripts\app\tasks\training\ProgressEvaluation.js" />
     <Content Include="Scripts\app\tasks\training\grid\Students.js" />
     <Content Include="Scripts\app\tasks\training\Interview.js" />
     <Content Include="Scripts\app\tasks\training\Offer.js" />
     <Content Include="Scripts\app\tasks\training\PlanInterview.js" />
     <Content Include="Scripts\app\tasks\training\Rfi.js" />
     <Content Include="Scripts\app\tasks\training\Rfp.js" />
+    <Content Include="Scripts\app\tasks\training\window\CreateStudentEvaluation.js" />
     <Content Include="Scripts\app\utils\Forms.js" />
     <Content Include="Scripts\app\ux\ajax\DataSimlet.js" />
     <Content Include="Scripts\app\ux\ajax\JsonSimlet.js" />

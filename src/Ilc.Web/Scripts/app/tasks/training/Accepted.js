@@ -123,11 +123,32 @@
         });
         
         me.items = [
-            trainingScheduler
+            trainingScheduler,
+            {
+                xtype: 'button',
+                text: 'Done',
+                handler: function () {
+                    var model = {
+                        schedule: [
+                            {
+                                name: 'Lesson 1',
+                                startDate: 'startDate',
+                                endDate: 'endDate'
+                            }
+                        ]
+                    };
+                    
+
+
+                    me.fireEvent('addTrainingSchedule', me, model);
+                }
+            }
         ];
+
+        me.addEvents(
+            'addTrainingSchedule'
+        );
 
         me.callParent(arguments);
     },
-
-    html: '<h3>This is the Accepted window!!</h3>'
 });

@@ -16,47 +16,53 @@
             },
             'interviewwindow': {
                 addInterview: me.addInterview
+            },
+            'acceptedwindow': {
+                addTrainingSchedule: me.addTrainingSchedule
+            },
+            'progressEvaluationWindow': {
+                addEvaluation: me.addStudentEvaluation
             }
         });
 
     },
     
     // training workflow state handlers
-    addrfp: function (sender, data) {
+    addrfp: function(sender, data) {
         console.log('addrfp executed.');
         sender.close();
     },
-    
-    addrfi: function (sender, data) {
+
+    addrfi: function(sender, data) {
         console.log('addrfi executed.');
 
         var initalOffers = {
-            add: function (obj) {
-                return Q.fcall(function () {
+            add: function(obj) {
+                return Q.fcall(function() {
                     return {
-                        id: 1   
+                        id: 1
                     };
                 });
             }
         };
 
         initalOffers.add(data)
-        .then(function (response) {
-            window.open('lightOffer/pdf/' + response.id);
-            sender.close();
-        });
+            .then(function(response) {
+                window.open('lightOffer/pdf/' + response.id);
+                sender.close();
+            });
 
-        
+
     },
 
     addinterviewplan: function(sender, data) {
         console.log('addinterviewplan executed.');
 
         var interviewPlans = {
-            add: function (dataObj) {
-                return Q.fcall(function () {
+            add: function(dataObj) {
+                return Q.fcall(function() {
                     return {
-                        id: 1    
+                        id: 1
                     };
                 });
             }
@@ -64,12 +70,12 @@
 
 
         interviewPlans.add(data)
-        .then(function (response) {
-            // just reload the tasks
-            // | just the one task returned.
-        }).done(function () {
-            sender.close();
-        });
+            .then(function(response) {
+                // just reload the tasks
+                // | just the one task returned.
+            }).done(function() {
+                sender.close();
+            });
     },
 
     addInterview: function(sender, data) {
@@ -77,12 +83,22 @@
         console.log('addInterview event.');
         sender.close();
     },
-    allInterviewsAdded: function (sender, data) {
+    allInterviewsAdded: function(sender, data) {
         console.log('allInterviewsAdded called.');
         console.log(data);
     },
 
+    addTrainingSchedule: function(sender, data) {
+        console.log('addTrainingSchedule called.');
+        console.log(data);
+        sender.close();
+    },
 
+    addStudentEvaluation: function (sender, data, options) {
+        console.log('addStudentEvaluation called.');
+        console.log(data);
+        sender.close();
+    },
 
         // routes functions
     list: function () {
