@@ -14,8 +14,9 @@
                     { id: 5, name: 'Offer', action: 'offer' },
                     { id: 4, name: 'Accepted', action: 'accepted' },
                     { id: 6, name: 'Planned', action: 'planned' },
-                    { id: 7, name: 'Progress evaluation', action: 'progressEvaluation' }
-                ]
+                    { id: 7, name: 'Progress evaluation', action: 'progressEvaluation' },
+                    { id: 8, name: 'Exam', action: 'exam' }
+            ]
             },
             proxy: {
                 type: 'memory',
