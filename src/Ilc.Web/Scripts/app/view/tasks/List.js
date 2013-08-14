@@ -15,7 +15,8 @@
                     { id: 4, name: 'Accepted', action: 'accepted' },
                     { id: 6, name: 'Planned', action: 'planned' },
                     { id: 7, name: 'Progress evaluation', action: 'progressEvaluation' },
-                    { id: 8, name: 'Exam', action: 'exam' }
+                    { id: 8, name: 'Exam', action: 'exam' },
+                    { id: 9, name: 'Training evaluation', action: 'trainingEvaluation' }
             ]
             },
             proxy: {
@@ -48,6 +49,7 @@
                             hideAction: 'destroy'
                         });
                         window.show();
+                        window.setWidth(window.getWidth());
                     }
                 }            
             ]
