@@ -70,8 +70,23 @@
             {
                 xtype: 'label',
                 text: 'Some more questions, there are quite alot.'
+            },
+            {
+                xtype: 'textarea',
+                fieldLabel: 'Do you have suggestions, remarks, explanations?'
+            },
+            {
+                xtype: 'button',
+                text: 'Done',
+                handler: function () {
+                    
+                }
             }
         ];
+
+        me.addEvents(
+            'addEvaluation'
+        );
 
         me.callParent(arguments);
     }
