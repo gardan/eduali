@@ -126,8 +126,6 @@
             
         });
 
-        
-
         me.items = [
             {
                 xtype: 'tabpanel',
@@ -146,12 +144,12 @@
                             },
                             {
                                 title: 'Start',
-                                html: model.desiredStartDate,
+                                html: moment(model.desiredStartDate).format(Ilc.resources.Manager.getResourceString('formats.date')),
                                 anchor: '100%'
                             },
                             {
                                 title: 'End',
-                                html: model.desiredEndDate,
+                                html: moment(model.desiredEndDate).format(Ilc.resources.Manager.getResourceString('formats.date')),
                                 anchor: '100%'
                             },
                             {

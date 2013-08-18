@@ -23,28 +23,28 @@
             },
             items: [
                 {
-                    text: 'Tasks',
+                    text: Ilc.resources.Manager.getResourceString('mainMenu.tasks'),
                     itemId: 'tasks'
                 },
                 {
-                    text: 'Trainings',
+                    text: Ilc.resources.Manager.getResourceString('mainMenu.trainings'),
                     itemId: 'trainings',
                     pressed: true
                 },
                 {
-                    text: 'Customers',
+                    text: Ilc.resources.Manager.getResourceString('mainMenu.customers'),
                     itemId: 'customers',
                 },
                 {
-                    text: 'Students',
+                    text: Ilc.resources.Manager.getResourceString('mainMenu.students'),
                     itemId: 'students',
                 },
                 {
-                    text: 'Statistics',
+                    text: Ilc.resources.Manager.getResourceString('mainMenu.statistics'),
                     itemId: 'statistics',
                 },
                 {
-                    text: 'Trainers',
+                    text: Ilc.resources.Manager.getResourceString('mainMenu.trainers'),
                     itemId: 'trainers',
                 }
             ]

@@ -8,17 +8,17 @@
         me.items = [
             {
                 xtype: 'textfield',
-                fieldLabel: 'Possible costs',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.possibleCosts'),
                 name: 'possibleCost'
             },
             {
                 xtype: 'textfield',
-                fieldLabel: 'No. of lessons',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.lessonNo'),
                 name: 'lessonsNo'
             },
             {
                 xtype: 'textfield',
-                fieldLabel: 'Lesson duration',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.lessonDuration'),
                 name: 'lessonDuration'
             },
             {

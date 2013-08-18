@@ -17,12 +17,12 @@
                 {
                     dataIndex: 'status',
                     flex: 1,
-                    text: 'Status'
+                    text: Ilc.resources.Manager.getResourceString('common.status')
                 },
                 {
                     dataIndex: 'customer',
                     flex: 1,
-                    text: 'Customer',
+                    text: Ilc.resources.Manager.getResourceString('common.customer'),
                     renderer: function(value) {
                         return value.name;
                     }
@@ -30,14 +30,14 @@
                 {
                     dataIndex: 'trainer',
                     flex: 1,
-                    text: 'Trainer',
+                    text: Ilc.resources.Manager.getResourceString('common.trainer'),
                     renderer: function(value) {
                         return value.name;
                     }
                 },
                 {
                     dataIndex: 'subject',
-                    text: 'Subject',
+                    text: Ilc.resources.Manager.getResourceString('common.subject'),
                     flex: 1,
                     renderer: function(value) {
                         return value.name;
@@ -45,7 +45,7 @@
                 },
                 {
                     dataIndex: 'owners',
-                    text: 'Owner',
+                    text: Ilc.resources.Manager.getResourceString('common.owners'),
                     flex: 1,
                     sortable: false,
                     renderer: function(value, metaData) {
@@ -89,7 +89,7 @@
         me.items = [,
             {
                 xtype: 'button',
-                text: 'New training',
+                text: Ilc.resources.Manager.getResourceString('common.newTraining'),
                 handler: function (btn, e) {
                     var window = Ext.create('Ilc.view.trainings.Create', {
                         modal: true,

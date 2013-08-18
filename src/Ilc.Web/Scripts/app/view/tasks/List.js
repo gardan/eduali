@@ -32,13 +32,13 @@
             store: store,
             columns: [
                 {
-                    text: 'Name',
+                    text: Ilc.resources.Manager.getResourceString('common.name'),
                     dataIndex: 'name',
                     flex: 1
                 },
                 {
                     xtype: 'actioncolumn',
-                    tooltip: 'Execute',
+                    tooltip: Ilc.resources.Manager.getResourceString('common.execute'),
                     icon: 'images/web/view.png',
                     handler: function (self, rowIndex, colIndex, item, e, record, row) {
                         me.fireEvent('beforeActionWindow');

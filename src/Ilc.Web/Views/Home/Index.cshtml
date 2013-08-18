@@ -1,5 +1,35 @@
 ﻿@{
     Layout = null;
+    var supportedLocale = new List<string>()
+        {
+            "en",
+            "ro"
+        };
+    var acceptedLocale = Request.UserLanguages;
+  
+    var appFileSufix = "";
+    var extJsFileSufix = "";
+    
+    foreach (var acceptLocale in acceptedLocale)
+    {
+        var innerAcceptLocale = acceptLocale;
+        // strip the weight if it exists
+        if (acceptLocale.Contains(";"))
+        {
+            innerAcceptLocale = acceptLocale.Split(Convert.ToChar(";"))[0];
+        }
+
+        if (supportedLocale.Contains(innerAcceptLocale))
+        {
+            appFileSufix = innerAcceptLocale;
+            extJsFileSufix = innerAcceptLocale;
+            if (acceptLocale.Contains("-"))
+            {
+                extJsFileSufix = extJsFileSufix.Replace("-", "_");
+            }
+            break;
+        }
+    }
 }
 
 <!DOCTYPE html>
@@ -17,7 +47,16 @@
     <script type="text/javascript" src="http://cdn.sencha.com/ext/gpl/4.2.1/ext-all.js"></script>
     <script type="text/javascript" src="~/Scripts/bryntum/sch-all-debug.js"></script>
     
-
+    @* This script right here, will be added dynamically from the server based on request headers, user selected language, etc *@
+    @{
+        var appResourcePath = "scripts/app/resources/Resources." + appFileSufix + ".js";
+        var extJsLocalePath = "scripts/extjs/locale/ext-lang-" + extJsFileSufix + ".js";
+        <script type="text/javascript" src="@appResourcePath"></script>
+        <script type="text/javascript" src="@extJsLocalePath"></script>
+    }
+    @*<script type="text/javascript" src="~/Scripts/app/resources/Resources.ro-RO.js"></script>*@
+    @*<script type="text/javascript" src="~/Scripts/extjs/locale/ext-lang-ro.js"></script>*@
+    
     <script type="text/javascript" src="~/Scripts/app.js"></script>
 </head>
 <body>

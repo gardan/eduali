@@ -18,7 +18,7 @@
             columns: [
                 {
                     dataIndex: 'name',
-                    text: 'Name',
+                    text: Ilc.resources.Manager.getResourceString('common.name'),
                     flex: 1,
                     filter: {
                         type: 'string'
@@ -26,7 +26,7 @@
                 },
                 {
                     dataIndex: 'customer',
-                    text: 'Customer',
+                    text: Ilc.resources.Manager.getResourceString('common.customer'),
                     flex: 1,
                     renderer: function (value) {
                         return value.name;
@@ -43,7 +43,7 @@
                         {
                             icon: 'images/web/edit.png',
                             scope: me,
-                            tooltip: 'Edit',
+                            tooltip: Ilc.resources.Manager.getResourceString('common.edit'),
                             handler: function (grid, rowIndex, colIndex, item, e, record) {
                                 var editWindow = Ext.create('Ilc.view.students.Edit', {
                                     closeAction: 'destroy',
@@ -62,7 +62,7 @@
                         {
                             icon: 'images/web/remove.png',
                             scope: me,
-                            tooltip: 'Delete',
+                            tooltip: Ilc.resources.Manager.getResourceString('common.delete'),
                             handler: function (grid, rowIndex, colIndex, item, e, record) {
                                 me.fireEvent('deleteStudent', me, {
                                     id: record.data.id
@@ -79,7 +79,7 @@
         me.items = [
             {
                 xtype: 'button',
-                text: 'New student',
+                text: Ilc.resources.Manager.getResourceString('common.newStudent'),
                 handler: function () {
                     var window = Ext.create('Ilc.view.students.Create', {
                         closeAction: 'destroy'

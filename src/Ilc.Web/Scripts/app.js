@@ -17,7 +17,8 @@ Ext.application({
 
     requires: [
         'Ext.ux.Router',
-        'Ilc.helpers.AppConfig'
+        'Ilc.helpers.AppConfig',
+        'Ilc.resources.Manager'
     ],
     
     views: [

@@ -25,7 +25,7 @@
             columns: [
                 {
                     dataIndex: 'name',
-                    text: 'Name',
+                    text: Ilc.resources.Manager.getResourceString('common.name'),
                     flex: 1,
                     filter: {
                         type: 'string'
@@ -33,7 +33,7 @@
                 },
                 {
                     dataIndex: 'contactPerson',
-                    text: 'Contact',
+                    text: Ilc.resources.Manager.getResourceString('common.contact'),
                     sortable: false,
                     flex: 1,
                     renderer: function (value, metaData) {
@@ -45,7 +45,7 @@
                 },
                 {
                     dataIndex: 'bankAccount',
-                    text: 'Bank account',
+                    text: Ilc.resources.Manager.getResourceString('common.bankAccount'),
                     flex: 1,
                     filter: {
                         type: 'string'
@@ -59,7 +59,7 @@
                         {
                             icon: 'images/web/edit.png',
                             scope: me,
-                            tooltip: 'Edit',
+                            tooltip: Ilc.resources.Manager.getResourceString('common.edit'),
                             handler: function(grid, rowIndex, colIndex, item, e, record) {
                                 var editWindow = Ext.create('Ilc.view.customers.Edit', {
                                     closeAction: 'destroy',
@@ -78,7 +78,7 @@
                         {
                             icon: 'images/web/remove.png',
                             scope: me,
-                            tooltip: 'Delete',
+                            tooltip: Ilc.resources.Manager.getResourceString('common.delete'),
                             handler: function (grid, rowIndex, colIndex, item, e, record) {
                                 me.fireEvent('deleteCustomer', me, {
                                     id: record.data.id
@@ -96,7 +96,7 @@
         me.items = [
             {
                 xtype: 'button',
-                text: 'New customer',
+                text: Ilc.resources.Manager.getResourceString('common.newCustomer'),
                 handler: function (btn, e) {
                     var window = Ext.create('Ilc.view.customers.Create', {
                         hideAction: 'destroy'
