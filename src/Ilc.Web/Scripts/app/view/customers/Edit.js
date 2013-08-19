@@ -1,7 +1,7 @@
 ﻿Ext.define('Ilc.view.customers.Edit', {
     extend: 'Ext.window.Window',
 
-    title: 'Edit customer',
+    title: Ilc.resources.Manager.getResourceString('common.customer'),
 
     requires: [
         'Ilc.utils.Forms'
@@ -16,25 +16,25 @@
         me.items = [
             {
                 xtype: 'textfield',
-                fieldLabel: 'Name',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.name'),
                 name: 'name',
                 value: cfgModel.name
             },
             {
                 xtype: 'textfield',
-                fieldLabel: 'Bank account',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.bankAccount'),
                 name: 'bankAccount',
                 value: cfgModel.bankAccount
             },
             {
                 xtype: 'textfield',
-                fieldLabel: 'Billing address',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.billingAddress'),
                 name: 'billingAddress',
                 value: cfgModel.billingAddress
             },
             {
                 xtype: 'button',
-                text: 'Edit',
+                text: Ilc.resources.Manager.getResourceString('common.edit'),
                 handler: function (button, e) {
                     var model = {};
 

@@ -59,6 +59,7 @@
         'common.contactEmail': 'Email contact',
         'common.phoneNr': 'Telefon',
         'common.address': 'Adresa',
+        'common.student': 'Student',
 
         'formats.date': 'MM-DD-YYYY HH:mm',
         'formats.extjsdate': 'm-d-Y g:i'

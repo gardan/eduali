@@ -1,5 +1,8 @@
 ﻿Ext.define('Ilc.view.trainers.Edit', {
     extend: 'Ext.window.Window',
+    
+    title: Ilc.resources.Manager.getResourceString('common.trainer'),
+
     requires: [
         'Ilc.utils.Forms'
     ],
@@ -11,25 +14,25 @@
         me.items = [
             {
                 xtype: 'textfield',
-                fieldLabel: 'Name',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.name'),
                 name: 'name',
                 value: cfgModel.name
             },
             {
                 xtype: 'textfield',
-                fieldLabel: 'Phone nr.',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.phoneNr'),
                 name: 'phone',
                 value: cfgModel.phone
             },
             {
                 xtype: 'textfield',
-                fieldLabel: 'Address',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.address'),
                 name: 'address',
                 value: cfgModel.address
             },
             {
                 xtype: 'button',
-                text: 'Edit',
+                text: Ilc.resources.Manager.getResourceString('common.edit'),
                 handler: function (button, e) {
                     var model = {};
                     var inputs = me.query('textfield');

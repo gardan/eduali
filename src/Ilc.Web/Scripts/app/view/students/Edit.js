@@ -1,6 +1,8 @@
 ﻿Ext.define('Ilc.view.students.Edit', {
     extend: 'Ext.window.Window',
     
+    title: Ilc.resources.Manager.getResourceString('common.student'),
+
     requires: [
         'Ilc.utils.Forms'
     ],
@@ -18,7 +20,7 @@
             displayField: 'name',
             valueField: 'id',
             name: 'customerId',
-            fieldLabel: 'Choose customer'
+            fieldLabel: Ilc.resources.Manager.getResourceString('common.customer')
         });
 
         customersStore.on('load', function () {
@@ -32,14 +34,14 @@
         me.items = [
            {
                xtype: 'textfield',
-               fieldLabel: 'Name',
+               fieldLabel: Ilc.resources.Manager.getResourceString('common.name'),
                name: 'name',
                value: cfgModel.name
            },
            customerComboBox,
            {
                xtype: 'button',
-               text: 'Create',
+               text: Ilc.resources.Manager.getResourceString('common.edit'),
                handler: function () {
                    var model = {};
                    var inputs = me.query('textfield');
