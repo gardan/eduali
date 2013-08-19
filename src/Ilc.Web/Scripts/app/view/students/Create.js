@@ -1,6 +1,8 @@
 ﻿Ext.define('Ilc.view.students.Create', {
     extend: 'Ext.window.Window',
     
+    title: Ilc.resources.Manager.getResourceString('common.newStudent'),
+
     requires: [
         'Ilc.utils.Forms'
     ],
@@ -18,21 +20,21 @@
             displayField: 'name',
             valueField: 'id',
             name: 'customerId',
-            fieldLabel: 'Choose customer',
+            fieldLabel: Ilc.resources.Manager.getResourceString('common.customer'),
             anchor: '100%'
         });
 
         me.items = [
             {
                 xtype: 'textfield',
-                fieldLabel: 'Name',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.name'),
                 name: 'name',
                 anchor: '100%'
             },
             customerComboBox,
             {
                 xtype: 'button',
-                text: 'Create',
+                text: Ilc.resources.Manager.getResourceString('common.add'),
                 handler: function () {
                     var model = {};
                     var inputs = me.query('textfield');

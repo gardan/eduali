@@ -45,8 +45,8 @@
             },
             {
                 xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.add'),
                 anchor: '100%',
+                text: Ilc.resources.Manager.getResourceString('common.add'),
                 handler: function (button, e) {
                     var model = {};
 

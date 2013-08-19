@@ -1,5 +1,8 @@
 ﻿Ext.define('Ilc.view.trainers.Create', {
     extend: 'Ext.window.Window',
+    
+    title: Ilc.resources.Manager.getResourceString('common.newTrainer'),
+
     requires: [
         'Ilc.utils.Forms'
     ],
@@ -12,25 +15,25 @@
         me.items = [
             {
                 xtype: 'textfield',
-                fieldLabel: 'Name',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.name'),
                 name: 'name',
                 anchor: '100%'
             },
             {
                 xtype: 'textfield',
-                fieldLabel: 'Phone nr.',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.phoneNr'),
                 name: 'phone',
                 anchor: '100%'
             },
             {
                 xtype: 'textfield',
-                fieldLabel: 'Address',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.address'),
                 name: 'address',
                 anchor: '100%'
             },
             {
                 xtype: 'button',
-                text: 'Create',
+                text: Ilc.resources.Manager.getResourceString('common.add'),
                 handler: function (button, e) {
                     var model = {};
                     var inputs = me.query('textfield');

@@ -57,6 +57,8 @@
         'common.billingAddress': 'Adresa facturare',
         'common.contactName': 'Nume contact',
         'common.contactEmail': 'Email contact',
+        'common.phoneNr': 'Telefon',
+        'common.address': 'Adresa',
 
         'formats.date': 'MM-DD-YYYY HH:mm',
         'formats.extjsdate': 'm-d-Y g:i'

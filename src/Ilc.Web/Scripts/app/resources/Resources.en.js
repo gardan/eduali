@@ -57,6 +57,9 @@
         'common.billingAddress': 'Billing address',
         'common.contactName': 'Contact name',
         'common.contactEmail': 'Contact email',
+        'common.phoneNr': 'Phone',
+        'common.address': 'Address',
+
 
         'formats.date': 'MM-DD-YYYY HH:mm',
         'formats.extjsdate': 'm-d-Y g:i'
