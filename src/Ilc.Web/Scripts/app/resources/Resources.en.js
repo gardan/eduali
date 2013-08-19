@@ -54,6 +54,9 @@
         'common.endDate': 'End date',
         'common.system': 'System',
         'common.students': 'Students',
+        'common.billingAddress': 'Billing address',
+        'common.contactName': 'Contact name',
+        'common.contactEmail': 'Contact email',
 
         'formats.date': 'MM-DD-YYYY HH:mm',
         'formats.extjsdate': 'm-d-Y g:i'

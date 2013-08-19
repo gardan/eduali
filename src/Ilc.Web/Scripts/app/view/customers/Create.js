@@ -1,7 +1,7 @@
 ﻿Ext.define('Ilc.view.customers.Create', {
     extend: 'Ext.window.Window',
     
-    title: 'Create new customer',
+    title: Ilc.resources.Manager.getResourceString('common.newCustomer'),
 
     requires: [
         'Ilc.utils.Forms'
@@ -15,37 +15,38 @@
         me.items = [
             {
                 xtype: 'textfield',
-                fieldLabel: 'Name',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.name'),
                 name: 'name',
                 anchor: '100%'
             },
             {
                 xtype: 'textfield',
-                fieldLabel: 'Bank account',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.bankAccount'),
                 name: 'bankAccount',
                 anchor: '100%'
             },
             {
                 xtype: 'textfield',
-                fieldLabel: 'Billing address',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.billingAddress'),
                 name: 'billingAddress',
                 anchor: '100%'
             },
             {
                 xtype: 'textfield',
-                fieldLabel: 'Contact name',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.contactName'),
                 name: 'contactName',
                 anchor: '100%'
             },
             {
                 xtype: 'textfield',
-                fieldLabel: 'Contact email',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.contactEmail'),
                 name: 'contactEmail',
                 anchor: '100%'
             },
             {
                 xtype: 'button',
-                text: 'Create',
+                text: Ilc.resources.Manager.getResourceString('common.add'),
+                anchor: '100%',
                 handler: function (button, e) {
                     var model = {};
 
