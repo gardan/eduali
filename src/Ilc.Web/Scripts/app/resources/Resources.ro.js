@@ -50,7 +50,12 @@
         'common.listeningTargetLevel': 'Nivel tinta ascultare',
         'common.planLessons': 'Planuieste lectii',
         'common.progressEvaluations': 'Evaluari progres',
+        'common.startDate': 'Data inceput',
+        'common.endDate': 'Data incheiere',
+        'common.system': 'Sistem',
+        'common.students': 'Studenti',
 
-        'formats.date': 'MM-DD-YYYY HH:mm'
+        'formats.date': 'MM-DD-YYYY HH:mm',
+        'formats.extjsdate': 'm-d-Y g:i'
     }
 });

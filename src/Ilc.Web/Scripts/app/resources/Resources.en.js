@@ -50,7 +50,12 @@
         'common.listeningTargetLevel': 'Listening target level',
         'common.planLessons': 'Plan lessons',
         'common.progressEvaluations': 'Progress evaluations',
+        'common.startDate': 'Start date',
+        'common.endDate': 'End date',
+        'common.system': 'System',
+        'common.students': 'Students',
 
         'formats.date': 'MM-DD-YYYY HH:mm',
+        'formats.extjsdate': 'm-d-Y g:i'
     }
 });

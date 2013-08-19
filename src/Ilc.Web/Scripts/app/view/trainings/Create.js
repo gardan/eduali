@@ -23,7 +23,7 @@
             displayField: 'name',
             valueField: 'id',
             name: 'customerId',
-            fieldLabel: 'Choose customer',
+            fieldLabel: Ilc.resources.Manager.getResourceString('common.customer'),
             anchor: '100%'
         });
 
@@ -32,7 +32,7 @@
             queryMode: 'local',
             displayField: 'name',
             valueField: 'id',
-            fieldLabel: 'Choose students',
+            fieldLabel: Ilc.resources.Manager.getResourceString('common.students'),
             name: 'students',
             multiSelect: true,
             anchor: '100%'
@@ -44,7 +44,7 @@
             displayField: 'name',
             valueField: 'id',
             name: 'trainingSystem',
-            fieldLabel: 'Choose system',
+            fieldLabel: Ilc.resources.Manager.getResourceString('common.system'),
             anchor: '100%'
         });
 
@@ -54,7 +54,7 @@
             displayField: 'name',
             valueField: 'id',
             name: 'subjectId',
-            fieldLabel: 'Choose subject',
+            fieldLabel: Ilc.resources.Manager.getResourceString('common.subject'),
             anchor: '100%'
         });
 
@@ -64,7 +64,7 @@
             displayField: 'name',
             valueField: 'id',
             name: 'trainerId',
-            fieldLabel: 'Choose trainer',
+            fieldLabel: Ilc.resources.Manager.getResourceString('common.trainer'),
             anchor: '100%'
         });
 
@@ -84,21 +84,21 @@
             studentsComboBox,
             {
                 xtype: 'datefield',
-                fieldLabel: 'Start date',
-                format: 'Y-m-d',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.startDate'),
+                format: Ilc.resources.Manager.getResourceString('formats.extjsdate'),
                 name: 'desiredStartDate',
                 anchor: '100%'
             },
             {
                 xtype: 'datefield',
-                fieldLabel: 'End date',
-                format: 'Y-m-d',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.endDate'),
+                format: Ilc.resources.Manager.getResourceString('formats.extjsdate'),
                 name: 'desiredEndDate',
                 anchor: '100%'
             },
             {
                 xtype: 'button',
-                text: 'Create',
+                text: Ilc.resources.Manager.getResourceString('common.add'),
                 handler: function (btn, e) {
                     var model = {};
 
