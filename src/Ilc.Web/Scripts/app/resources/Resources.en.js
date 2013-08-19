@@ -43,6 +43,13 @@
         'common.progress': 'Progress',
         'common.exam': 'Exam',
         'common.trainingEval': 'Training evaluation',
+        'common.planInterview': 'Plan interview',
+        'common.interview': 'Interview',
+        'common.newInterview': 'New interview',
+        'common.listeningLevel': 'Listening level',
+        'common.listeningTargetLevel': 'Listening target level',
+        'common.planLessons': 'Plan lessons',
+        'common.progressEvaluations': 'Progress evaluations',
 
         'formats.date': 'MM-DD-YYYY HH:mm',
     }

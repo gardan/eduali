@@ -3,6 +3,8 @@
     xtype: 'interviewwindow',
     width: 600,
 
+    title: Ilc.resources.Manager.getResourceString('common.studentsInterviews'),
+
     constructor: function() {
         var me = this;
 
@@ -30,7 +32,7 @@
         });
 
         var doneButton = Ext.create('Ext.button.Button', {
-            text: 'Done',
+            text: Ilc.resources.Manager.getResourceString('common.done'),
             disabled: true,
             handler: function () {
                 me.fireEvent('allInterviewsAdded', me, {});
@@ -42,7 +44,7 @@
             doneButton,
             {
                 xtype: 'button',
-                text: 'Close',
+                text: Ilc.resources.Manager.getResourceString('common.close'),
                 handler: function () {
                     me.close();
                 }

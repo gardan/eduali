@@ -2,23 +2,25 @@
     extend: 'Ext.window.Window',
     xtype: 'planinterviewwindow',
 
+    title: Ilc.resources.Manager.getResourceString('common.planInterview'),
+
     constructor: function () {
         var me = this;
 
         me.items = [
             {
                 xtype: 'datefield',
-                fieldLabel: 'Interview day',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.interviewDay'),
                 name: 'interviewDay'
             },
             {
                 xtype: 'textfield',
-                fieldLabel: 'Location',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.location'),
                 name: 'location'
             },
             {
                 xtype: 'button',
-                text: 'Create plan',
+                text: Ilc.resources.Manager.getResourceString('common.createInterview'),
                 handler: function (btn, e) {
                     var model = {};
                     

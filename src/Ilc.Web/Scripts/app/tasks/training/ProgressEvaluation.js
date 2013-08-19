@@ -2,6 +2,8 @@
     extend: 'Ext.window.Window',
     xtype: 'progressEvaluationWindow',
 
+    title: Ilc.resources.Manager.getResourceString('common.progressEvaluations'),
+
     width: 800,
     layout: 'anchor',
     bodyPadding: 0,
@@ -21,9 +23,9 @@
         var lessonsGrid = Ext.create('Ext.grid.Panel', {
             store: lessonsStore,
             columns: [
-                { dataIndex: 'name', text: 'Name', flex: 1 }
+                { dataIndex: 'name', text: Ilc.resources.Manager.getResourceString('common.name'), flex: 1 }
             ],
-            title: 'Lessons',
+            title: Ilc.resources.Manager.getResourceString('common.lessons'),
             margin: 2,
             columnWidth: 0.40
         });
@@ -32,14 +34,14 @@
         var studentsGrid = Ext.create('Ext.grid.Panel', {
             store: studentsStore,
             columns: [
-                { dataIndex: 'name', text: 'Name', flex: 1 },
+                { dataIndex: 'name', text: Ilc.resources.Manager.getResourceString('common.name'), flex: 1 },
                 {
                     xtype: 'actioncolumn',
                     getClass: function (v, meta, record) {
                         return record.get('evaluationId') == 0 ? 'add-col' : 'view-col';
                     },
                     getTip: function (v, meta, record) {
-                        return record.get('evaluationId') == 0 ? 'Add Evaluation' : 'View Evaluation';
+                        return record.get('evaluationId') == 0 ? Ilc.resources.Manager.getResourceString('common.add') : Ilc.resources.Manager.getResourceString('common.view');
                     },
                     handler: function (grid, rowIndex, colIndex, item, e, record) {
                         var windowToCreate = record.get('evaluationId') == 0 ? 'CreateStudentEvaluation' : 'ViewStudentEvaluation';
@@ -55,7 +57,7 @@
                     }
                 }
             ],
-            title: 'Student evaluations',
+            title: Ilc.resources.Manager.getResourceString('common.evaluations'),
             margin: 2,
             columnWidth: 0.60
         });
@@ -72,7 +74,7 @@
             },
             {
                 xtype: 'button',
-                text: 'Done',
+                text: Ilc.resources.Manager.getResourceString('common.done'),
                 disabled: true,
                 handler: function() {
                     var model = {};
@@ -81,7 +83,7 @@
             },
             {
                 xtype: 'button',
-                text: 'Close',
+                text: Ilc.resources.Manager.getResourceString('common.close'),
                 handler: function () {
                     me.close();
                 }

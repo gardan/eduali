@@ -1,6 +1,6 @@
 ﻿Ext.define('Ilc.tasks.training.Exam', {
     extend: 'Ext.window.Window',
-    title: 'Course exam',
+    title: Ilc.resources.Manager.getResourceString('common.exam'),
 
     constructor: function () {
         var me = this;

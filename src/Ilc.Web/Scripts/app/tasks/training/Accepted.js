@@ -2,6 +2,8 @@
     extend: 'Ext.window.Window',
     xtype: 'acceptedwindow',
 
+    title: Ilc.resources.Manager.getResourceString('common.planLessons'),
+
     constructor: function () {
         var me = this;
 
@@ -52,7 +54,7 @@
 
             // Setup your static columns
             columns: [
-                { header: 'Staff', width: 130, dataIndex: 'Name', visible: false }
+                { header: Ilc.resources.Manager.getResourceString('common.lessons'), width: 130, dataIndex: 'Name', visible: false }
             ],
 
             resourceStore: resourceStore,
@@ -126,7 +128,7 @@
             trainingScheduler,
             {
                 xtype: 'button',
-                text: 'Done',
+                text: Ilc.resources.Manager.getResourceString('common.done'),
                 handler: function () {
                     var model = {
                         schedule: [

@@ -2,7 +2,7 @@
     extend: 'Ext.window.Window',
     
     layout: 'anchor',
-    title: 'Training evaluation',
+    title: Ilc.resources.Manager.getResourceString('common.trainingEval'),
 
     maxHeight: 400,
 
@@ -77,7 +77,7 @@
             },
             {
                 xtype: 'button',
-                text: 'Done',
+                text: Ilc.resources.Manager.getResourceString('common.done'),
                 handler: function () {
                     
                 }

@@ -43,6 +43,13 @@
         'common.progress': 'Progres',
         'common.exam': 'Examen',
         'common.trainingEval': 'Evaluare instruire',
+        'common.planInterview': 'Planuieste interviu',
+        'common.interview': 'Interviu',
+        'common.newInterview': 'Interviu nou',
+        'common.listeningLevel': 'Nivel ascultare',
+        'common.listeningTargetLevel': 'Nivel tinta ascultare',
+        'common.planLessons': 'Planuieste lectii',
+        'common.progressEvaluations': 'Evaluari progres',
 
         'formats.date': 'MM-DD-YYYY HH:mm'
     }
