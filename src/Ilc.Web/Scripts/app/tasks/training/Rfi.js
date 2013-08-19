@@ -2,6 +2,13 @@
     extend: 'Ext.window.Window',
     xtype: 'rfiwindow',
 
+    layout: 'anchor',
+
+    defaults: {
+        width: 250,
+        anchor: '100%'
+    },
+
     constructor: function () {
         var me = this;
 
@@ -23,7 +30,11 @@
             },
             {
                 xtype: 'button',
-                text: 'Execute and download offer',
+                text: Ilc.resources.Manager.getResourceString('common.createOffer')
+            },
+            {
+                xtype: 'button',
+                text: Ilc.resources.Manager.getResourceString('common.execute'),
                 handler: function (btn, event) {
                     console.log('Firing addrfi');
                     var model = {};

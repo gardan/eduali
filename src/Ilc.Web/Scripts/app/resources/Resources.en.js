@@ -60,6 +60,7 @@
         'common.phoneNr': 'Phone',
         'common.address': 'Address',
         'common.student': 'Student',
+        'common.createOffer': 'Create offer',
 
         'formats.date': 'MM-DD-YYYY HH:mm',
         'formats.extjsdate': 'm-d-Y g:i'
