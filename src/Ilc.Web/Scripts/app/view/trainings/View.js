@@ -3,9 +3,10 @@
 
     title: 'Trainings details',
     requires: [
-        'Ext.util.Point'
+        'Ext.util.Point',
+        'Ilc.view.trainings.view.Planning'
     ],
-    width: 700,
+    width: 800,
 
     defaults: {
         xtype: 'panel'
@@ -35,6 +36,11 @@
                     {
                         text: 'Intakes',
                         category: 'intakes',
+                        leaf: true
+                    },
+                    {
+                        text: 'Lessons evaluations',
+                        category: 'lessonEval',
                         leaf: true
                     },
                     {
@@ -116,7 +122,7 @@
             switch (record.get('category')) {
                 case 'offer':
                     documentsStore.add({
-                        name: 'Offer-Customer-1',
+                        name: 'Offer-1-Customer',
                         url: 'http://localhost:54877/pdf/offers/1',
                         creator: { id: 1, name: 'admin' },
                         createDate: '2013-12-12T12:34:45'
@@ -126,6 +132,14 @@
                     documentsStore.add({
                         name: 'Gheorghe Ion',
                         url: 'http://localhost:54877/pdf/intakes/1',
+                        creator: { id: 1, name: 'admin' },
+                        createDate: '2013-12-12T12:34:45'
+                    });
+                    break;
+                case 'lessonEval':
+                    documentsStore.add({
+                        name: 'Gheorghe Ion',
+                        url: 'http://localhost:54877/pdf/lessonEvaluations/1',
                         creator: { id: 1, name: 'admin' },
                         createDate: '2013-12-12T12:34:45'
                     });
@@ -197,6 +211,9 @@
                             }
                         ]
 
+                    },
+                    {
+                        xtype: 'planningTab'
                     },
                     {
                         xtype: 'panel',

@@ -172,6 +172,7 @@
     <Content Include="Scripts\app\resources\Manager.js" />
     <Content Include="Scripts\app\resources\Resources.nl.js" />
     <Content Include="Scripts\app\resources\Resources.ro.js" />
+    <Content Include="Scripts\app\scheduler\Training.js" />
     <Content Include="Scripts\app\store\GridConfig.js" />
     <Content Include="Scripts\app\grid\Transfers.js" />
     <Content Include="Scripts\app\model\Customer.js" />
@@ -181,6 +182,8 @@
     <Content Include="Scripts\app\routing\Router.js" />
     <Content Include="Scripts\app\store\Customers.js" />
     <Content Include="Scripts\app\store\Questions.js" />
+    <Content Include="Scripts\app\store\scheduler\LessonAppointments.js" />
+    <Content Include="Scripts\app\store\scheduler\Lessons.js" />
     <Content Include="Scripts\app\store\Students.js" />
     <Content Include="Scripts\app\store\Subjects.js" />
     <Content Include="Scripts\app\store\Trainers.js" />
