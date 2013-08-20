@@ -51,6 +51,8 @@
     <Compile Include="FilterArgumentsStudents.cs" />
     <Compile Include="FilteredResults.cs" />
     <Compile Include="Services\CustomersService.cs" />
+    <Compile Include="Contracts\IOffersService.cs" />
+    <Compile Include="Services\OffersService.cs" />
     <Compile Include="Services\StudentsService.cs" />
     <Compile Include="Services\TrainersService.cs" />
     <Compile Include="Services\TrainingsService.cs" />

@@ -111,6 +111,10 @@
     <Compile Include="Migrations\201308081539022_ManyToManyTrainingUserProfileOwnership.Designer.cs">
       <DependentUpon>201308081539022_ManyToManyTrainingUserProfileOwnership.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201308200904384_TrainingOffer.cs" />
+    <Compile Include="Migrations\201308200904384_TrainingOffer.Designer.cs">
+      <DependentUpon>201308200904384_TrainingOffer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -174,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201308081539022_ManyToManyTrainingUserProfileOwnership.resx">
       <DependentUpon>201308081539022_ManyToManyTrainingUserProfileOwnership.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308200904384_TrainingOffer.resx">
+      <DependentUpon>201308200904384_TrainingOffer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

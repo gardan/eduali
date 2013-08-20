@@ -22,6 +22,7 @@ namespace Ilc.Data.Contracts
         IRepository<Student> Students { get; }
         IRepository<Customer> Customers { get; }
         IRepository<Trainer> Trainers { get; }
-        IRepository<GridConfig> GridConfigs { get; } 
+        IRepository<GridConfig> GridConfigs { get; }
+        IRepository<TrainingOffer> Offers { get; } 
     }
 }

@@ -38,5 +38,7 @@ namespace Ilc.Data.Models
         public virtual Customer Customer { get; set; }
 
         public virtual ICollection<UserProfile> Owners { get; set; }
+
+        public virtual ICollection<TrainingOffer> Offers { get; set; } 
     }
 }

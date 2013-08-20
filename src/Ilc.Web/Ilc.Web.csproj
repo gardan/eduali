@@ -3839,11 +3839,13 @@
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\CreateStudentModel.cs" />
+    <Compile Include="Models\CreateOfferModel.cs" />
     <Compile Include="Services\CustomersService.cs" />
     <Compile Include="InjectorConventions\CustomerToCustomerModel.cs" />
     <Compile Include="Services\DefaultService.cs" />
     <Compile Include="Models\TrainingModel.cs" />
     <Compile Include="Services\GridConfigurationService.cs" />
+    <Compile Include="Services\OffersService.cs" />
     <Compile Include="Services\StudentsService.cs" />
     <Compile Include="InjectorConventions\StudentToStudentModel.cs" />
     <Compile Include="Services\TrainersService.cs" />
