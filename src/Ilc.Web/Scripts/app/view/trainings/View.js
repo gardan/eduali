@@ -5,7 +5,7 @@
     requires: [
         'Ext.util.Point'
     ],
-    width: 400,
+    width: 700,
 
     defaults: {
         xtype: 'panel'
@@ -52,7 +52,7 @@
         });
 
         var documentsStore = Ext.create('Ext.data.Store', {
-            fields: ['name', 'url']
+            fields: ['name', 'url', 'creator', 'createDate']
         });
 
         var documentsTree = Ext.create('Ext.tree.Panel', {
@@ -65,11 +65,12 @@
             store: documentsStore,
             border: false,
             header: false,
-            hideHeaders: true,
+            hideHeaders: false,
             columns: [
                 {
                     dataIndex: 'name',
                     flex: 1,
+                    text: Ilc.resources.Manager.getResourceString('common.file'),
                     renderer: function (value, metaData, record) {
                         return '<a href="' +
                             record.get('url') +
@@ -78,6 +79,22 @@
                             '</a>';
                     }
 
+                },
+                {
+                    dataIndex: 'creator',
+                    text: Ilc.resources.Manager.getResourceString('common.creator'),
+                    flex: 1,
+                    renderer: function (value, metaData, record) {
+                        return value.name;
+                    }
+                },
+                {
+                    dataIndex: 'createDate',
+                    flex: 1,
+                    text: Ilc.resources.Manager.getResourceString('common.createAt'),
+                    renderer: function (value) {
+                        return moment(value).format(Ilc.resources.Manager.getResourceString('formats.date'));
+                    }
                 }
             ]
         });
@@ -99,26 +116,34 @@
             switch (record.get('category')) {
                 case 'offer':
                     documentsStore.add({
-                        name: 'Offer',
-                        url: 'http://localhost:54877/pdf/offers/1'
+                        name: 'Offer-Customer-1',
+                        url: 'http://localhost:54877/pdf/offers/1',
+                        creator: { id: 1, name: 'admin' },
+                        createDate: '2013-12-12T12:34:45'
                     });
                     break;
                 case 'intakes':
                     documentsStore.add({
                         name: 'Gheorghe Ion',
-                        url: 'http://localhost:54877/pdf/intakes/1'
+                        url: 'http://localhost:54877/pdf/intakes/1',
+                        creator: { id: 1, name: 'admin' },
+                        createDate: '2013-12-12T12:34:45'
                     });
                     break;
                 case 'exams': 
                     documentsStore.add({
                         name: 'Gheorghe Ion',
-                        url: 'http://localhost:54877/pdf/exams/1'
+                        url: 'http://localhost:54877/pdf/exams/1',
+                        creator: { id: 1, name: 'admin' },
+                        createDate: '2013-12-12T12:34:45'
                     });
                     break;
                 case 'evaluations':
                     documentsStore.add({
                         name: 'Gheorghe Ion',
-                        url: 'http://localhost:54877/pdf/evaluations/1'
+                        url: 'http://localhost:54877/pdf/evaluations/1',
+                        creator: { id: 1, name: 'admin' },
+                        createDate: '2013-12-12T12:34:45'
                     });
                     break;
             default:

@@ -61,6 +61,9 @@
         'common.address': 'Address',
         'common.student': 'Student',
         'common.createOffer': 'Create offer',
+        'common.file': 'File',
+        'common.creator': 'Creator',
+        'common.createAt': 'Created at',
 
         'formats.date': 'MM-DD-YYYY HH:mm',
         'formats.extjsdate': 'm-d-Y g:i'
