@@ -12,6 +12,7 @@ namespace Ilc.Core.Services
     public class OffersService : IOffersService
     {
         public IUow Uow { get; set; }
+        public IUsersService Users { get; set; }
 
         public TrainingOffer GetById(int id)
         {
@@ -22,7 +23,7 @@ namespace Ilc.Core.Services
         {
             // timestamps
             // TODO: this should be moved to a generic method that takes a StampedEntity as a parameter, stamps it, and returns it.
-            newOffer.Creator = Uow.UserProfiles.GetById(1);
+            newOffer.Creator = Users.GetByUsername("admin");
             newOffer.CreateDate = DateTimeOffset.UtcNow;
 
             Uow.Offers.Add(newOffer);
