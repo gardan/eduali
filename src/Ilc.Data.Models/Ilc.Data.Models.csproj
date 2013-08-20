@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\EntityBase.cs" />
+    <Compile Include="Base\StampedEntity.cs" />
     <Compile Include="ContactPerson.cs" />
     <Compile Include="Contracts\IAccessControlEntity.cs" />
     <Compile Include="Contracts\IWorkflowEntity.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Subject.cs" />
     <Compile Include="Trainer.cs" />
     <Compile Include="Training.cs" />
+    <Compile Include="TrainingOffer.cs" />
     <Compile Include="UserProfile.cs" />
     <Compile Include="WebClient\GridConfig.cs" />
   </ItemGroup>

@@ -170,6 +170,7 @@
     <Content Include="Scripts\app\helpers\GridColumns.js" />
     <Content Include="Scripts\app\resources\Resources.en.js" />
     <Content Include="Scripts\app\resources\Manager.js" />
+    <Content Include="Scripts\app\resources\Resources.nl.js" />
     <Content Include="Scripts\app\resources\Resources.ro.js" />
     <Content Include="Scripts\app\store\GridConfig.js" />
     <Content Include="Scripts\app\grid\Transfers.js" />
