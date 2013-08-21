@@ -313,6 +313,7 @@
     <Content Include="Scripts\app\view\trainings\Create.js" />
     <Content Include="Scripts\app\view\trainings\List.js" />
     <Content Include="Scripts\app\view\trainings\View.js" />
+    <Content Include="Scripts\app\view\trainings\view\Planning.js" />
     <Content Include="Scripts\app\view\Viewport.js" />
     <Content Include="Scripts\bryntum\resources\css\sch-all-debug.css" />
     <Content Include="Scripts\bryntum\resources\css\sch-all-neptune-debug.css" />
