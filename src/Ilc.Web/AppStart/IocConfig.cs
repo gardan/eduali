@@ -6,6 +6,8 @@ using Ilc.Core.Services;
 using Ilc.Data;
 using Ilc.Data.Contracts;
 using Ilc.Data.Helpers;
+using Ilc.Infrastructure.Contracts;
+using Ilc.Infrastructure.Services;
 using Ilc.Web.Authentication;
 using Ilc.Web.Authentication.Contracts;
 
@@ -28,6 +30,8 @@ namespace Ilc.Web.AppStart
             container.RegisterAutoWiredAs<TrainersService, ITrainersService>().ReusedWithin(ReuseScope.Request);
             container.RegisterAutoWiredAs<GridConfigsService, IGridConfigsService>().ReusedWithin(ReuseScope.Request);
             container.RegisterAutoWiredAs<OffersService, IOffersService>().ReusedWithin(ReuseScope.Request);
+
+            container.RegisterAutoWiredAs<StatisticsService, IStatisticsService>().ReusedWithin(ReuseScope.Request);            
         }
     }
 }

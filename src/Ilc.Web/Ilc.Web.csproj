@@ -184,6 +184,7 @@
     <Content Include="Scripts\app\store\Questions.js" />
     <Content Include="Scripts\app\store\scheduler\LessonAppointments.js" />
     <Content Include="Scripts\app\store\scheduler\Lessons.js" />
+    <Content Include="Scripts\app\store\statistics\Customers.js" />
     <Content Include="Scripts\app\store\Students.js" />
     <Content Include="Scripts\app\store\Subjects.js" />
     <Content Include="Scripts\app\store\Trainers.js" />
@@ -3846,10 +3847,13 @@
     <Compile Include="Models\CreateOfferModel.cs" />
     <Compile Include="Services\CustomersService.cs" />
     <Compile Include="InjectorConventions\CustomerToCustomerModel.cs" />
+    <Compile Include="Models\CustomerStatisticsModel.cs" />
     <Compile Include="Services\DefaultService.cs" />
     <Compile Include="Models\TrainingModel.cs" />
+    <Compile Include="Models\FilterParametersCustomerStatisticsModel.cs" />
     <Compile Include="Services\GridConfigurationService.cs" />
     <Compile Include="Services\OffersService.cs" />
+    <Compile Include="Services\StatisticsService.cs" />
     <Compile Include="Services\StudentsService.cs" />
     <Compile Include="InjectorConventions\StudentToStudentModel.cs" />
     <Compile Include="Services\TrainersService.cs" />

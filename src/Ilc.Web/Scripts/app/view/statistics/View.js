@@ -7,21 +7,7 @@
     },
 
     constructor: function () {
-        var store = Ext.create('Ext.data.Store', {
-            fields: ['region', 'sales'],
-            data: [
-                { region: 'TM', sales: 10 },
-                { region: 'CS', sales: 68 },
-                { region: 'AR', sales: 27 },
-                { region: 'OR', sales: 47 },
-                { region: 'CJ', sales: 84 },
-                { region: 'CJ', sales: 84 },
-                { region: 'AR', sales: 27 },
-                { region: 'OR', sales: 47 },
-                { region: 'CJ', sales: 84 },
-                { region: 'CJ', sales: 84 },
-            ]
-        });
+        var store = Ext.create('Ilc.store.statistics.Customers');
 
         var chart = Ext.create('Ext.chart.Chart', {
             animate: true,
@@ -31,17 +17,17 @@
             store: store,
             axes: [
                 {
-                    title: 'Sales',
+                    title: 'Trainigs',
                     type: 'Numeric',
                     position: 'bottom',
-                    fields: ['sales'],
+                    fields: ['trainingsNo'],
                     minimum: 0
                 },
                 {
-                    title: 'Regions',
+                    title: 'Customers',
                     type: 'Category',
                     position: 'left',
-                    fields: ['region'],
+                    fields: ['name'],
                 }
             ],
             
@@ -51,14 +37,14 @@
                     height: 100,
                     axis: 'bottom',
                     highlight: true,
-                    xField: 'region',
-                    yField: 'sales',
+                    xField: 'name',
+                    yField: 'trainingsNo',
                     tips: {
                         trackMouse: true,
                         layout: 'fit',
                         items: [{xtype: 'label'}],
                         renderer: function (storeItem, item) {
-                            this.down('label').setText(storeItem.get('region') + ': ' + storeItem.get('sales') + ' sales');
+                            this.down('label').setText(storeItem.get('name') + ': ' + storeItem.get('trainingsNo') + ' Trainings');
                         }
                     }
                 }

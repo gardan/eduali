@@ -13,6 +13,7 @@ namespace Ilc.Data.Models
         public string BillingAddress { get; set; }
         public string BankAccount { get; set; }
 
-        public virtual ICollection<ContactPerson> ContactPersons { get; set; } 
+        public virtual ICollection<ContactPerson> ContactPersons { get; set; }
+        public virtual ICollection<Training> Trainings { get; set; } 
     }
 }

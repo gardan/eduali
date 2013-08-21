@@ -32,6 +32,8 @@ namespace Ilc.Web.AppStart
             routes.Add<UpdateGridColumnConfigModel>("/api/config/grid", "PUT");
 
             routes.Add<CreateOfferModel>("/api/offers", "POST");
+
+            routes.Add<FilterParametersCustomerStatisticsModel>("/api/statistics/customerTrainings", "GET");
         }
     }
 }

@@ -39,9 +39,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IStatisticsService.cs" />
+    <Compile Include="CustomerStatistics.cs" />
+    <Compile Include="Services\StatisticsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ilc.Core\Ilc.Core.csproj">
+      <Project>{1272C26B-402F-4AE1-B324-9174A36CACAD}</Project>
+      <Name>Ilc.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ilc.Data.Contracts\Ilc.Data.Contracts.csproj">
       <Project>{3FA100BF-8CD4-4CA0-BE9D-9EF503CA7214}</Project>
       <Name>Ilc.Data.Contracts</Name>
@@ -51,9 +58,7 @@
       <Name>Ilc.Data.Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contracts\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
