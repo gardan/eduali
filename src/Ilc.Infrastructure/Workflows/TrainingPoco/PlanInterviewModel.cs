@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ilc.Data.Models;
 
 namespace Ilc.Infrastructure.Workflows.TrainingPoco
 {
     public class PlanInterviewModel
     {
+        public InterviewPlan InterviewPlan { get; set; }
     }
 }

@@ -127,7 +127,8 @@ namespace Ilc.Infrastructure
         private void ConfigureInstanceStore()
         {
             var cs = ConfigurationManager.ConnectionStrings["AppConnection"].ToString();
-            // TODO: create a method that takes advantage of the behaviour node in serviceBehaviour and returns a SqlWorkflowInstanceStore
+            // TODO: create a method that takes advantage of the behaviour mode in serviceBehaviour and returns a SqlWorkflowInstanceStore
+            // dafaq does this mean?
             _store = new SqlWorkflowInstanceStore(cs);
 
             WorkflowApplication.CreateDefaultInstanceOwner(_store, null, WorkflowIdentityFilter.Any);

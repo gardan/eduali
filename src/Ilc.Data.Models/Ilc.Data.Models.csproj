@@ -49,6 +49,8 @@
     <Compile Include="Contracts\IWorkflowEntity.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Evaluation.cs" />
+    <Compile Include="InterviewPlan.cs" />
+    <Compile Include="ProgressEvaluation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleClaim.cs" />
     <Compile Include="SimpleMembership\Membership.cs" />

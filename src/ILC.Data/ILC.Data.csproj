@@ -119,6 +119,14 @@
     <Compile Include="Migrations\201308211249277_TrainingInterviewsAndSchedule.Designer.cs">
       <DependentUpon>201308211249277_TrainingInterviewsAndSchedule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201308211859268_InterviewPlanTraining.cs" />
+    <Compile Include="Migrations\201308211859268_InterviewPlanTraining.Designer.cs">
+      <DependentUpon>201308211859268_InterviewPlanTraining.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201308212047247_ProgressEvaluationTraining.cs" />
+    <Compile Include="Migrations\201308212047247_ProgressEvaluationTraining.Designer.cs">
+      <DependentUpon>201308212047247_ProgressEvaluationTraining.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -188,6 +196,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201308211249277_TrainingInterviewsAndSchedule.resx">
       <DependentUpon>201308211249277_TrainingInterviewsAndSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308211859268_InterviewPlanTraining.resx">
+      <DependentUpon>201308211859268_InterviewPlanTraining.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308212047247_ProgressEvaluationTraining.resx">
+      <DependentUpon>201308212047247_ProgressEvaluationTraining.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

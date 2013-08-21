@@ -28,6 +28,10 @@ namespace Ilc.Data
         public IRepository<Trainer> Trainers { get { return GetStandardRepo<Trainer>(); } }
         public IRepository<GridConfig> GridConfigs { get { return GetStandardRepo<GridConfig>(); } }
         public IRepository<TrainingOffer> Offers { get { return GetStandardRepo<TrainingOffer>(); } }
+        public IRepository<InterviewPlan> InterviewPlans { get { return GetStandardRepo<InterviewPlan>(); } }
+        public IRepository<StudentInterview> Interviews { get { return GetStandardRepo<StudentInterview>(); } }
+        public IRepository<TrainingScheduleDay> TrainingScheduleDays { get { return GetStandardRepo<TrainingScheduleDay>(); } }
+        public IRepository<ProgressEvaluation> ProgressEvaluations { get { return GetStandardRepo<ProgressEvaluation>(); } }
 
         public Uow(IRepositoryProvider repositoryProvider)
         {

@@ -53,6 +53,12 @@
     <Compile Include="Services\StatisticsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorkflowProcess.cs" />
+    <Compile Include="Workflows\Activities\NotifyHost.cs" />
+    <Compile Include="Workflows\Activities\Training\PersistInterview.cs" />
+    <Compile Include="Workflows\Activities\Training\PersistInterviewPlan.cs" />
+    <Compile Include="Workflows\Activities\Training\PersistOffer.cs" />
+    <Compile Include="Workflows\Activities\Training\PersistProgressEvaluation.cs" />
+    <Compile Include="Workflows\Activities\Training\PersistSchedule.cs" />
     <Compile Include="Workflows\Activities\WaitForResponse.cs" />
     <Compile Include="Workflows\TrainingExtensionManager.cs" />
     <Compile Include="Workflows\TrainingPoco\AcceptedModel.cs" />

@@ -44,5 +44,9 @@ namespace Ilc.Data.Models
         public virtual ICollection<StudentInterview> Interviews { get; set; }
 
         public virtual ICollection<TrainingScheduleDay> ScheduleDays { get; set; }
+
+        public virtual ICollection<InterviewPlan> InterviewPlans { get; set; }
+
+        public virtual ICollection<ProgressEvaluation> ProgressEvaluations { get; set; } 
     }
 }
