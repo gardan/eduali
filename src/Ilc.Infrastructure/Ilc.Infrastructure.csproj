@@ -55,7 +55,17 @@
     <Compile Include="WorkflowProcess.cs" />
     <Compile Include="Workflows\Activities\WaitForResponse.cs" />
     <Compile Include="Workflows\TrainingExtensionManager.cs" />
+    <Compile Include="Workflows\TrainingPoco\AcceptedModel.cs" />
+    <Compile Include="Workflows\TrainingPoco\EndedModel.cs" />
+    <Compile Include="Workflows\TrainingPoco\ExamModel.cs" />
+    <Compile Include="Workflows\TrainingPoco\InterviewModel.cs" />
+    <Compile Include="Workflows\TrainingPoco\OfferModel.cs" />
+    <Compile Include="Workflows\TrainingPoco\PlanInterviewModel.cs" />
+    <Compile Include="Workflows\TrainingPoco\PlannedModel.cs" />
+    <Compile Include="Workflows\TrainingPoco\ProgressEvaluationModel.cs" />
+    <Compile Include="Workflows\TrainingPoco\TrainingEvaluationModel.cs" />
     <Compile Include="Workflows\TrainingStatus.cs" />
+    <Compile Include="Workflows\TrainingPoco\RfiModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ilc.Core\Ilc.Core.csproj">

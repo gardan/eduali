@@ -39,6 +39,10 @@ namespace Ilc.Data.Models
 
         public virtual ICollection<UserProfile> Owners { get; set; }
 
-        public virtual ICollection<TrainingOffer> Offers { get; set; } 
+        public virtual ICollection<TrainingOffer> Offers { get; set; }
+
+        public virtual ICollection<StudentInterview> Interviews { get; set; }
+
+        public virtual ICollection<TrainingScheduleDay> ScheduleDays { get; set; }
     }
 }
