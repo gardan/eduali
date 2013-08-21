@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilc.Infrastructure", "src\I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilc.Core", "src\Ilc.Core\Ilc.Core.csproj", "{1272C26B-402F-4AE1-B324-9174A36CACAD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilc.Tests", "tests\Ilc.Tests\Ilc.Tests.csproj", "{8E6879C7-C16C-4B7E-B8CC-7E06DBA785C4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{1272C26B-402F-4AE1-B324-9174A36CACAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1272C26B-402F-4AE1-B324-9174A36CACAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1272C26B-402F-4AE1-B324-9174A36CACAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E6879C7-C16C-4B7E-B8CC-7E06DBA785C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E6879C7-C16C-4B7E-B8CC-7E06DBA785C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E6879C7-C16C-4B7E-B8CC-7E06DBA785C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E6879C7-C16C-4B7E-B8CC-7E06DBA785C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
