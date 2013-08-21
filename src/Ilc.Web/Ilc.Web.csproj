@@ -343,6 +343,7 @@
     <Content Include="Scripts\bryntum\sch-all.js" />
     <Content Include="Scripts\extjs\ext-debug.js" />
     <Content Include="Scripts\extjs\locale\ext-lang-en.js" />
+    <Content Include="Scripts\extjs\locale\ext-lang-nl.js" />
     <Content Include="Scripts\extjs\locale\ext-lang-ro.js" />
     <Content Include="Scripts\extjs\resources\css\ext-all-access-debug.css" />
     <Content Include="Scripts\extjs\resources\css\ext-all-access-rtl-debug.css" />
@@ -3856,6 +3857,7 @@
     <Compile Include="Services\StatisticsService.cs" />
     <Compile Include="Services\StudentsService.cs" />
     <Compile Include="InjectorConventions\StudentToStudentModel.cs" />
+    <Compile Include="Services\TasksService.cs" />
     <Compile Include="Services\TrainersService.cs" />
     <Compile Include="Services\TrainingsService.cs" />
     <Compile Include="Services\TransfersService.cs" />
