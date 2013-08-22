@@ -58,7 +58,19 @@
         });
 
         var documentsStore = Ext.create('Ext.data.Store', {
-            fields: ['name', 'url', 'creator', 'createDate']
+            fields: ['name', 'url', 'creator', 'createDate'],
+            
+            proxy: {
+                type: 'rest',
+                url: 'api/files',
+                extraParams: {
+                    format: 'json'
+                },
+                reader: {
+                    type: 'json',
+                    root: 'data',
+                }
+            }
         });
 
         var documentsTree = Ext.create('Ext.tree.Panel', {
@@ -121,13 +133,19 @@
             documentsStore.removeAll();
             switch (record.get('category')) {
                 case 'offer':
-                    documentsStore.add({
-                        name: 'Offer-1-Customer',
-                        // url: 'http://localhost:54877/pdf/offers/1',
-                        url: 'http://localhost:54877/lightoffer/pdf/1',
-                        creator: { id: 1, name: 'admin' },
-                        createDate: '2013-12-12T12:34:45'
+                    documentsStore.load({
+                        params: {
+                            trainingId: model.id,
+                            category: 'offer'
+                        }
                     });
+                    // documentsStore.add({
+                    //     name: 'Offer-1-Customer',
+                    //     // url: 'http://localhost:54877/pdf/offers/1',
+                    //     url: 'http://localhost:54877/lightoffer/pdf/1',
+                    //     creator: { id: 1, name: 'admin' },
+                    //     createDate: '2013-12-12T12:34:45'
+                    // });
                     break;
                 case 'intakes':
                     documentsStore.add({

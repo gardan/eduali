@@ -3853,6 +3853,7 @@
     <Compile Include="Services\DefaultService.cs" />
     <Compile Include="Models\TrainingModel.cs" />
     <Compile Include="Models\FilterParametersCustomerStatisticsModel.cs" />
+    <Compile Include="Services\FilesService.cs" />
     <Compile Include="Services\GridConfigurationService.cs" />
     <Compile Include="Services\OffersService.cs" />
     <Compile Include="Services\StatisticsService.cs" />
@@ -3882,6 +3883,9 @@
     <Content Include="Views\Transfers\Pdf.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\LightOffer\Pdf.cshtml" />
+    <Content Include="Views\Pdf\Pdf.cshtml">
+      <BrowseToURL>~/Views/Pdf/Pdf.cshtml</BrowseToURL>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
