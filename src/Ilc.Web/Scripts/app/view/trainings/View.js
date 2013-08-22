@@ -123,7 +123,8 @@
                 case 'offer':
                     documentsStore.add({
                         name: 'Offer-1-Customer',
-                        url: 'http://localhost:54877/pdf/offers/1',
+                        // url: 'http://localhost:54877/pdf/offers/1',
+                        url: 'http://localhost:54877/lightoffer/pdf/1',
                         creator: { id: 1, name: 'admin' },
                         createDate: '2013-12-12T12:34:45'
                     });
