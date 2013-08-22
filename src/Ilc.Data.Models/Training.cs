@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -47,6 +48,8 @@ namespace Ilc.Data.Models
 
         public virtual ICollection<InterviewPlan> InterviewPlans { get; set; }
 
-        public virtual ICollection<ProgressEvaluation> ProgressEvaluations { get; set; } 
+        public virtual ICollection<ProgressEvaluation> ProgressEvaluations { get; set; }
+
+        public Guid? WokrflowId { get; set; }
     }
 }

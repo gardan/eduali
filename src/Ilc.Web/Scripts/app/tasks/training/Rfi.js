@@ -9,8 +9,10 @@
         anchor: '100%'
     },
 
-    constructor: function () {
+    constructor: function (args) {
         var me = this;
+        debugger;
+        var entity = args.entity;
 
         me.items = [
             {
@@ -30,12 +32,8 @@
             },
             {
                 xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.createOffer')
-            },
-            {
-                xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.execute'),
-                handler: function (btn, event) {
+                text: Ilc.resources.Manager.getResourceString('common.createOffer'),
+                handler: function () {
                     console.log('Firing addrfi');
                     var model = {};
 
@@ -46,7 +44,21 @@
                         var value = textbox.getRawValue();
                         model[name] = value;
                     }
+                    model.trainingId = entity.get('id');
 
+                    me.fireEvent('addrfi', me, model);
+                }
+            },
+            {
+                xtype: 'button',
+                text: Ilc.resources.Manager.getResourceString('common.execute'),
+                handler: function (btn, event) {
+                    console.log('Firing addrfi');
+                    var model = {
+                        complete: true,
+                        trainingId: entity.get('id')
+                    };
+                    
                     me.fireEvent('addrfi', me, model);
                 }
             }

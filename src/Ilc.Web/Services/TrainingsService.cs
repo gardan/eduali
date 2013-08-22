@@ -1,22 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Activities;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
 using Ilc.Core.Contracts;
-using Ilc.Data.Models;
+using Ilc.Data.Contracts;
+using Ilc.Infrastructure;
+using Ilc.Infrastructure.Workflows;
 using Ilc.Web.InjectorConventions;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
 using ServiceStack.Common;
 using ServiceStack.Common.Web;
 using ServiceStack.ServiceInterface;
+using Training = Ilc.Data.Models.Training;
 
 namespace Ilc.Web.Services
 {
     public class TrainingsService : Service
     {
         public ITrainingsService Trainings { get; set; }
+        public IUow Uow { get; set; }
+        public IOffersService Offers { get; set; }
 
         public FilteredDataModel<TrainingModel> Get(FilterParametersTrainings request)
         {
@@ -43,7 +50,12 @@ namespace Ilc.Web.Services
                     // Owners = new UserProfile[] { AuthManager.GetCurrentUser() }
                 };
 
+            var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
+            var wfActivity = new Infrastructure.Workflows.Training();
+            var proc = new WorkflowProcess(extensionManager, wfActivity);
+            var results = proc.Start(PersistableIdleAction.Unload);
 
+            newTraining.WokrflowId = (Guid?)results["InstanceId"];
             Trainings.Create(newTraining);
 
             return new HttpResult(newTraining)

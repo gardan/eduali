@@ -36,21 +36,37 @@
     addrfi: function(sender, data) {
         console.log('addrfi executed.');
 
-        var initalOffers = {
-            add: function(obj) {
-                return Q.fcall(function() {
-                    return {
-                        id: 1
-                    };
+        var taskService = {
+            rfi: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/tasks/training/rfi',
+                    method: 'POST',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
                 });
+
+                return deferred.promise;
             }
         };
 
-        initalOffers.add(data)
-            .then(function(response) {
-                window.open('lightOffer/pdf/' + response.id);
-                sender.close();
-            });
+        taskService.rfi(data)
+        .then(function (response) {
+            debugger;
+            sender.close();
+        });
+
+         // initalOffers.add(data)
+         //     .then(function(response) {
+         //         window.open('lightOffer/pdf/' + response.id);
+         //         sender.close();
+         //     });
 
 
     },
