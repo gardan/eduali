@@ -28,10 +28,12 @@ namespace Ilc.Tests.Unit.Infrastructure
             var interviewPlanRepoMock = new Mock<IRepository<InterviewPlan>>();
             var interviewRepoMock = new Mock<IRepository<StudentInterview>>();
             var scheduleRepoMock = new Mock<IRepository<TrainingScheduleDay>>(); 
+            var progressEvalRepoMock = new Mock<IRepository<ProgressEvaluation>>();
             var uowMock = new Mock<IUow>();
             uowMock.Setup(uow => uow.InterviewPlans).Returns(interviewPlanRepoMock.Object);
             uowMock.Setup(uow => uow.Interviews).Returns(interviewRepoMock.Object);
             uowMock.Setup(uow => uow.TrainingScheduleDays).Returns(scheduleRepoMock.Object);
+            uowMock.Setup(uow => uow.ProgressEvaluations).Returns(progressEvalRepoMock.Object);
             var extensionManager = new TrainingExtensionManager(trainingsMock, offersMock, uowMock.Object);
             
 
@@ -79,13 +81,13 @@ namespace Ilc.Tests.Unit.Infrastructure
                 });
                                   
 
-            proc.Resume(Guid.Empty, TrainingStatus.Planned, new PlannedModel());
+            proc.Resume(Guid.Empty, TrainingStatus.Planned, new Dictionary<string, object>());
 
-            // proc.Resume(Guid.Empty, TrainingStatus.ProgressEvaluation,
-            //             new ProgressEvaluationModel()
-            //                 {
-            //                     Evaluations = new List<ProgressEvaluation>() {new ProgressEvaluation()}
-            //                 });
+            var progressEval = new ProgressEvaluation();
+            proc.Resume(Guid.Empty, TrainingStatus.ProgressEvaluation, new Dictionary<string, object>()
+                {
+                    { "ProgressEvaluation", progressEval }
+                });
 
             // results = 
             // Assert

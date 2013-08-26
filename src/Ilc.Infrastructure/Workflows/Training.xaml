@@ -3,8 +3,8 @@
  xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
  xmlns:idm="clr-namespace:Ilc.Data.Models;assembly=Ilc.Data.Models"
  xmlns:local="clr-namespace:Ilc.Infrastructure.Workflows.Activities"
- xmlns:local1="clr-namespace:Ilc.Infrastructure.Workflows.TrainingPoco"
- xmlns:local2="clr-namespace:Ilc.Infrastructure.Workflows.Activities.Training"
+ xmlns:local1="clr-namespace:Ilc.Infrastructure.Workflows.Activities.Training"
+ xmlns:local2="clr-namespace:Ilc.Infrastructure.Workflows.TrainingPoco"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
  xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
@@ -264,15 +264,15 @@
                                                 <State.Transitions>
                                                   <Transition DisplayName="BookmarkPlanned" sap2010:WorkflowViewState.IdRef="Transition_8">
                                                     <Transition.Trigger>
-                                                      <local:WaitForResponse x:TypeArguments="local1:PlannedModel" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_6">
+                                                      <local:WaitForResponse x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_15">
                                                         <local:WaitForResponse.ArgumentName>
                                                           <InArgument x:TypeArguments="x:String">
                                                             <mca:CSharpValue x:TypeArguments="x:String">TrainingStatus.Planned</mca:CSharpValue>
                                                           </InArgument>
                                                         </local:WaitForResponse.ArgumentName>
                                                         <local:WaitForResponse.Result>
-                                                          <OutArgument x:TypeArguments="local1:PlannedModel">
-                                                            <mca:CSharpReference x:TypeArguments="local1:PlannedModel">varPlannedModel</mca:CSharpReference>
+                                                          <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                                                            <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:String, x:Object)">varInPlanned</mca:CSharpReference>
                                                           </OutArgument>
                                                         </local:WaitForResponse.Result>
                                                       </local:WaitForResponse>
@@ -282,57 +282,80 @@
                                                         <State.Transitions>
                                                           <Transition DisplayName="BookmarkProgressEvaluation" sap2010:WorkflowViewState.IdRef="Transition_16">
                                                             <Transition.Trigger>
-                                                              <local:WaitForResponse x:TypeArguments="local1:ProgressEvaluationModel" x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_7">
-                                                                <local:WaitForResponse.ArgumentName>
-                                                                  <InArgument x:TypeArguments="x:String">
-                                                                    <mca:CSharpValue x:TypeArguments="x:String">TrainingStatus.ProgressEvaluation</mca:CSharpValue>
-                                                                  </InArgument>
-                                                                </local:WaitForResponse.ArgumentName>
-                                                                <local:WaitForResponse.Result>
-                                                                  <OutArgument x:TypeArguments="local1:ProgressEvaluationModel">
-                                                                    <mca:CSharpReference x:TypeArguments="local1:ProgressEvaluationModel">varProgressEvaluationModel</mca:CSharpReference>
-                                                                  </OutArgument>
-                                                                </local:WaitForResponse.Result>
-                                                              </local:WaitForResponse>
+                                                              <Sequence x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                                                                <local:WaitForResponse x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_16">
+                                                                  <local:WaitForResponse.ArgumentName>
+                                                                    <InArgument x:TypeArguments="x:String">
+                                                                      <mca:CSharpValue x:TypeArguments="x:String">TrainingStatus.ProgressEvaluation</mca:CSharpValue>
+                                                                    </InArgument>
+                                                                  </local:WaitForResponse.ArgumentName>
+                                                                  <local:WaitForResponse.Result>
+                                                                    <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                                                                      <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:String, x:Object)">varInProgressEvaluation</mca:CSharpReference>
+                                                                    </OutArgument>
+                                                                  </local:WaitForResponse.Result>
+                                                                </local:WaitForResponse>
+                                                                <If sap2010:WorkflowViewState.IdRef="If_3">
+                                                                  <If.Condition>
+                                                                    <InArgument x:TypeArguments="x:Boolean">
+                                                                      <mca:CSharpValue x:TypeArguments="x:Boolean">varInProgressEvaluation.ContainsKey("ProgressEvaluation")</mca:CSharpValue>
+                                                                    </InArgument>
+                                                                  </If.Condition>
+                                                                  <If.Then>
+                                                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_8">
+                                                                      <Assign.To>
+                                                                        <OutArgument x:TypeArguments="idm:ProgressEvaluation">
+                                                                          <mca:CSharpReference x:TypeArguments="idm:ProgressEvaluation">varProgressEvaluation</mca:CSharpReference>
+                                                                        </OutArgument>
+                                                                      </Assign.To>
+                                                                      <Assign.Value>
+                                                                        <InArgument x:TypeArguments="idm:ProgressEvaluation">
+                                                                          <mca:CSharpValue x:TypeArguments="idm:ProgressEvaluation">varInProgressEvaluation["ProgressEvaluation"] as ProgressEvaluation</mca:CSharpValue>
+                                                                        </InArgument>
+                                                                      </Assign.Value>
+                                                                    </Assign>
+                                                                  </If.Then>
+                                                                  <If.Else>
+                                                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
+                                                                      <Assign.To>
+                                                                        <OutArgument x:TypeArguments="x:Boolean">
+                                                                          <mca:CSharpReference x:TypeArguments="x:Boolean">varComplete</mca:CSharpReference>
+                                                                        </OutArgument>
+                                                                      </Assign.To>
+                                                                      <Assign.Value>
+                                                                        <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                                                      </Assign.Value>
+                                                                    </Assign>
+                                                                  </If.Else>
+                                                                </If>
+                                                              </Sequence>
                                                             </Transition.Trigger>
                                                             <Transition.To>
                                                               <x:Reference>__ReferenceID0</x:Reference>
                                                             </Transition.To>
                                                             <Transition.Action>
-                                                              <ForEach x:TypeArguments="idm:ProgressEvaluation" DisplayName="ForEach&lt;ProgressEvaluation&gt;" sap2010:WorkflowViewState.IdRef="ForEach`1_4">
-                                                                <ForEach.Values>
-                                                                  <InArgument x:TypeArguments="scg:IEnumerable(idm:ProgressEvaluation)">
-                                                                    <mca:CSharpValue x:TypeArguments="scg:IEnumerable(idm:ProgressEvaluation)">varProgressEvaluationModel.Evaluations</mca:CSharpValue>
+                                                              <local1:PersistProgressEvaluation sap2010:WorkflowViewState.IdRef="PersistProgressEvaluation_2">
+                                                                <local1:PersistProgressEvaluation.ProgressEvalution>
+                                                                  <InArgument x:TypeArguments="idm:ProgressEvaluation">
+                                                                    <mca:CSharpValue x:TypeArguments="idm:ProgressEvaluation">varProgressEvaluation</mca:CSharpValue>
                                                                   </InArgument>
-                                                                </ForEach.Values>
-                                                                <ActivityAction x:TypeArguments="idm:ProgressEvaluation">
-                                                                  <ActivityAction.Argument>
-                                                                    <DelegateInArgument x:TypeArguments="idm:ProgressEvaluation" Name="eval" />
-                                                                  </ActivityAction.Argument>
-                                                                  <local2:PersistProgressEvaluation sap2010:WorkflowViewState.IdRef="PersistProgressEvaluation_1">
-                                                                    <local2:PersistProgressEvaluation.ProgressEvalution>
-                                                                      <InArgument x:TypeArguments="idm:ProgressEvaluation">
-                                                                        <mca:CSharpValue x:TypeArguments="idm:ProgressEvaluation">eval</mca:CSharpValue>
-                                                                      </InArgument>
-                                                                    </local2:PersistProgressEvaluation.ProgressEvalution>
-                                                                  </local2:PersistProgressEvaluation>
-                                                                </ActivityAction>
-                                                              </ForEach>
+                                                                </local1:PersistProgressEvaluation.ProgressEvalution>
+                                                              </local1:PersistProgressEvaluation>
                                                             </Transition.Action>
                                                             <Transition.Condition>
-                                                              <mca:CSharpValue x:TypeArguments="x:Boolean">!varProgressEvaluationModel.Complete</mca:CSharpValue>
+                                                              <mca:CSharpValue x:TypeArguments="x:Boolean">!varComplete</mca:CSharpValue>
                                                             </Transition.Condition>
                                                           </Transition>
                                                           <Transition Trigger="{x:Reference __ReferenceID1}" DisplayName="BookmarkProgressEvaluation" sap2010:WorkflowViewState.IdRef="Transition_7">
                                                             <Transition.Condition>
-                                                              <mca:CSharpValue x:TypeArguments="x:Boolean">varProgressEvaluationModel.Complete</mca:CSharpValue>
+                                                              <mca:CSharpValue x:TypeArguments="x:Boolean">varComplete</mca:CSharpValue>
                                                             </Transition.Condition>
                                                             <Transition.To>
                                                               <State x:Name="__ReferenceID3" DisplayName="TrainingEvaluation" sap2010:WorkflowViewState.IdRef="State_10">
                                                                 <State.Transitions>
                                                                   <Transition DisplayName="BookmarkTrainingEvaluation" sap2010:WorkflowViewState.IdRef="Transition_10">
                                                                     <Transition.Trigger>
-                                                                      <local:WaitForResponse x:TypeArguments="local1:TrainingEvaluationModel" x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_8">
+                                                                      <local:WaitForResponse x:TypeArguments="local2:TrainingEvaluationModel" x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_8">
                                                                         <local:WaitForResponse.ArgumentName>
                                                                           <InArgument x:TypeArguments="x:String">
                                                                             <mca:CSharpValue x:TypeArguments="x:String">TrainingStatus.TrainingEvaluation</mca:CSharpValue>
@@ -348,7 +371,7 @@
                                                                         <State.Transitions>
                                                                           <Transition DisplayName="BookmarkEnded" sap2010:WorkflowViewState.IdRef="Transition_9">
                                                                             <Transition.Trigger>
-                                                                              <local:WaitForResponse x:TypeArguments="local1:EndedModel" ArgumentName="{x:Null}" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_9" />
+                                                                              <local:WaitForResponse x:TypeArguments="local2:EndedModel" ArgumentName="{x:Null}" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_9" />
                                                                             </Transition.Trigger>
                                                                             <Transition.To>
                                                                               <State x:Name="__ReferenceID5" DisplayName="Complete" sap2010:WorkflowViewState.IdRef="State_11" IsFinal="True" />
@@ -365,18 +388,23 @@
                                                                   </Transition>
                                                                 </State.Transitions>
                                                                 <State.Variables>
-                                                                  <Variable x:TypeArguments="local1:TrainingEvaluationModel" Name="varTrainingEvaluationModel" />
+                                                                  <Variable x:TypeArguments="local2:TrainingEvaluationModel" Name="varTrainingEvaluationModel" />
                                                                 </State.Variables>
                                                               </State>
                                                             </Transition.To>
                                                           </Transition>
                                                         </State.Transitions>
+                                                        <State.Variables>
+                                                          <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="varInProgressEvaluation" />
+                                                          <Variable x:TypeArguments="idm:ProgressEvaluation" Name="varProgressEvaluation" />
+                                                          <Variable x:TypeArguments="x:Boolean" Default="False" Name="varComplete" />
+                                                        </State.Variables>
                                                       </State>
                                                     </Transition.To>
                                                   </Transition>
                                                 </State.Transitions>
                                                 <State.Variables>
-                                                  <Variable x:TypeArguments="local1:PlannedModel" Name="varPlannedModel" />
+                                                  <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="varInPlanned" />
                                                 </State.Variables>
                                               </State>
                                             </Transition.To>
@@ -391,13 +419,13 @@
                                                   <ActivityAction.Argument>
                                                     <DelegateInArgument x:TypeArguments="idm:TrainingScheduleDay" Name="scheduleDay" />
                                                   </ActivityAction.Argument>
-                                                  <local2:PersistSchedule sap2010:WorkflowViewState.IdRef="PersistSchedule_1">
-                                                    <local2:PersistSchedule.ScheduleDay>
+                                                  <local1:PersistSchedule sap2010:WorkflowViewState.IdRef="PersistSchedule_1">
+                                                    <local1:PersistSchedule.ScheduleDay>
                                                       <InArgument x:TypeArguments="idm:TrainingScheduleDay">
                                                         <mca:CSharpValue x:TypeArguments="idm:TrainingScheduleDay">scheduleDay</mca:CSharpValue>
                                                       </InArgument>
-                                                    </local2:PersistSchedule.ScheduleDay>
-                                                  </local2:PersistSchedule>
+                                                    </local1:PersistSchedule.ScheduleDay>
+                                                  </local1:PersistSchedule>
                                                 </ActivityAction>
                                               </ForEach>
                                             </Transition.Action>
@@ -432,13 +460,13 @@
                           </Transition>
                           <Transition Trigger="{x:Reference __ReferenceID6}" DisplayName="BookmarkInterview" sap2010:WorkflowViewState.IdRef="Transition_20" To="{x:Reference __ReferenceID7}">
                             <Transition.Action>
-                              <local2:PersistInterview sap2010:WorkflowViewState.IdRef="PersistInterview_2">
-                                <local2:PersistInterview.Interview>
+                              <local1:PersistInterview sap2010:WorkflowViewState.IdRef="PersistInterview_2">
+                                <local1:PersistInterview.Interview>
                                   <InArgument x:TypeArguments="idm:StudentInterview">
                                     <mca:CSharpValue x:TypeArguments="idm:StudentInterview">varInterview</mca:CSharpValue>
                                   </InArgument>
-                                </local2:PersistInterview.Interview>
-                              </local2:PersistInterview>
+                                </local1:PersistInterview.Interview>
+                              </local1:PersistInterview>
                             </Transition.Action>
                             <Transition.Condition>
                               <mca:CSharpValue x:TypeArguments="x:Boolean">!varComplete</mca:CSharpValue>
@@ -453,13 +481,13 @@
                       </State>
                     </Transition.To>
                     <Transition.Action>
-                      <local2:PersistInterviewPlan sap2010:WorkflowViewState.IdRef="PersistInterviewPlan_1">
-                        <local2:PersistInterviewPlan.InterviewPlan>
+                      <local1:PersistInterviewPlan sap2010:WorkflowViewState.IdRef="PersistInterviewPlan_1">
+                        <local1:PersistInterviewPlan.InterviewPlan>
                           <InArgument x:TypeArguments="idm:InterviewPlan">
                             <mca:CSharpValue x:TypeArguments="idm:InterviewPlan">varInterviewPlan</mca:CSharpValue>
                           </InArgument>
-                        </local2:PersistInterviewPlan.InterviewPlan>
-                      </local2:PersistInterviewPlan>
+                        </local1:PersistInterviewPlan.InterviewPlan>
+                      </local1:PersistInterviewPlan>
                     </Transition.Action>
                   </Transition>
                 </State.Transitions>
@@ -473,18 +501,18 @@
           <Transition Trigger="{x:Reference __ReferenceID8}" DisplayName="BookmarkRfi" sap2010:WorkflowViewState.IdRef="Transition_19" To="{x:Reference __ReferenceID9}">
             <Transition.Action>
               <Sequence sap2010:WorkflowViewState.IdRef="Sequence_1">
-                <local2:PersistOffer sap2010:WorkflowViewState.IdRef="PersistOffer_1">
-                  <local2:PersistOffer.Offer>
+                <local1:PersistOffer sap2010:WorkflowViewState.IdRef="PersistOffer_1">
+                  <local1:PersistOffer.Offer>
                     <InArgument x:TypeArguments="idm:TrainingOffer">
                       <mca:CSharpValue x:TypeArguments="idm:TrainingOffer">varOffer</mca:CSharpValue>
                     </InArgument>
-                  </local2:PersistOffer.Offer>
-                  <local2:PersistOffer.OutOffer>
+                  </local1:PersistOffer.Offer>
+                  <local1:PersistOffer.OutOffer>
                     <OutArgument x:TypeArguments="idm:TrainingOffer">
                       <mca:CSharpReference x:TypeArguments="idm:TrainingOffer">varOutOffer</mca:CSharpReference>
                     </OutArgument>
-                  </local2:PersistOffer.OutOffer>
-                </local2:PersistOffer>
+                  </local1:PersistOffer.OutOffer>
+                </local1:PersistOffer>
                 <local:NotifyHost DisplayName="NotifyHostWithOffer" sap2010:WorkflowViewState.IdRef="NotifyHost_1">
                   <local:NotifyHost.Arguments>
                     <InArgument x:TypeArguments="scg:IDictionary(x:String, x:Object)">
@@ -535,9 +563,8 @@
           <mca:CSharpValue x:TypeArguments="idm:Training">new Ilc.Data.Models.Training()</mca:CSharpValue>
         </Variable.Default>
       </Variable>
-      <Variable x:TypeArguments="local1:ProgressEvaluationModel" Name="varProgressEvaluationModel" />
     </StateMachine.Variables>
-    <sads:DebugSymbol.Symbol>dz5DOlxQcm9qZWN0c1xJTENcc3JjXElsYy5JbmZyYXN0cnVjdHVyZVxXb3JrZmxvd3NcVHJhaW5pbmcueGFtbGIyA50EEgIBAZcEC5cEawMBxAI0B4EEDwMB5AFsD9YDFwMBxQGMARfFAx8DAYUBxAEfrgMnAgFi5wEnmgMvAgE8ogMnpgMvAgE5hwIv/QI3AgEumQI39gI/AgEWywI/8gJHAgEH2wJH5gJPAgEE4gJP4gLBAQIBAvsDD/sDjQEDAeYB/wM5/wNAAwHlATgPZhoDAZQCaQ9pWQMBjQLzAw/zA1oDAYYC2wMP8AMaAwHuAXAXiQEiAwHNAcgDF84DNQMBxwHDA0nDA1ADAYYBkAEfvgEqAwGbAcEBH8EBaQMBlQG8Ax+8A2oDAY8BswMfuQM5AwGIAcgBJ+EBMgIBbuQBJ+QBcQIBaZ8DJ58DcgIBZOsBL4QCOgIBS4ADL5IDOQIBPosCN5YCTwIBMJ0CP6gCVwIBJ8MCP8MCogECASSuAj/AAkkCARvIAj/IAqEBAgEYzwJH1QJfAgER2AJH2AKpAQIBDesCR+sCqgECAQnfAk/fAtoBAgEGORFEKQMBtQJFEWUWAwGVAtwDEecDJwMB9wHoAxHvAyQDAe8BcRl8MQMB2QF9GYgBIgMBzgHLAx3LA3QDAcgBkQEhnAE5AwG4AZ0BIb0BJgMBnAG2AyW2A3sDAYkByQEp1AFBAgF61QEp4AEyAgFv7AEx9wFJAgFX+AExgwI6AgFMgwM1gwOeAQIBRooDM5ADTAIBP44CPY4CkQECATWTAj2TAp0BAgExoAJFoAKkAQIBK6UCRaUCuwECASixAkWxAsgBAgEhuAJDvgJmAgEc0gJN0gKsAQIBEjwXPGcDAb0CQRdBfwMBtgJIF0hzAwGWAkwVVx4DAaYCWhVjHgMBnQLkAxfkA3EDAf8B3wMX3wNmAwH4AesDF+wDPAMB8AF0H3R5AwHfAXkfeZEBAwHaAYUBH4UBmgEDAdQBgAEfgAF+AwHPAZQBJ5QBfQMBvwGZASeZAZUBAwG5AaABJ6ABjQEDAZ0BpAElrwEuAwGrAbIBJbsBLgMBowHMAS/MAYEBAwGAAdEBL9EBmQECAXvdAS/dAYoBAgF12AEv2AGBAQIBcO8BN+8BjAECAV30ATf0AaQBAgFYgAI3gALKAQIBUvsBN/sBoQECAU2NAzmNA5EBAgFAuwJJuwKZAQIBHVQbVIQBAwGuAk8bT3IDAacCYUFhRQMBpQJdG11tAwGeAqwBK6wBpAEDAbIBpwErpwGJAQMBrAG5AVG5AVUDAaoBtQErtQF9AwGkAQ==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dz5DOlxQcm9qZWN0c1xJTENcc3JjXElsYy5JbmZyYXN0cnVjdHVyZVxXb3JrZmxvd3NcVHJhaW5pbmcueGFtbGoyA7gEEgIBAbMEC7MEawMBuAI0B50EDwMB5AFsD/IDFwMBygGMARfhAx8DAZMBxAEfygMnAgF25wEntgMvAgFWvgMnwgMvAgFThwIvmQM3AgFKmQI3kgM/AgET4gI/iQNHAgEH8gJH/QJPAgEE+QJP+QLBAQIBApcED5cEjQEDAeYBmwQ5mwRAAwHlATgPZhoDAY4CaQ9pWQMBiAKPBA+PBFoDAYIC9wMPjAQaAwHtAXAXiQEiAwHRAeQDF+oDNQMBzAHfA0nfA1ADAZQBkAEfvgEqAwGmAcEBH8EBaQMBoQHYAx/YA2oDAZwBzwMf1QM5AwGWAcgBJ+EBMgMBgAHkASfkAXECAXy7Aye7A3ICAXjrAS+EAjoCAWOcAy+uAzkCAViLAjeWAk8CAUyQA2mQA3ACARSdAj/LAkoCASbaAj/aAooBAgEh0QI/1wJiAgEb3wI/3wKJAQIBFuYCR+wCXwIBD+8CR+8CqQECAQyCA0eCA6oBAgEJ9gJP9gLaAQIBBjkRRCkDAasCRRFlFgMBjwL4AxGDBCcDAfUBhAQRiwQkAwHuAXEZfDEDAdsBfRmIASIDAdIB5wMd5wN0AwHNAZEBIZwBOQMBvwGdASG9ASYDAacB0gMl0gN7AwGXAckBKdQBQQMBigHVASngATIDAYEB7AEx9wFJAgFt+AExgwI6AgFknwM1nwOeAQIBX6YDM6wDTAIBWY4CPY4CkQECAVCTAj2TAqkBAgFNngJBqQJZAgE/qgJBygJGAgEn1AJF1AKmAQIBHOkCTekCrAECARA8FzxnAwGyAkEXQX8DAawCSBdIcwMBkAJMFVceAwGeAloVYx4DAZYCgAQXgARxAwH8AfsDF/sDZgMB9gGHBBeIBDwDAe8BdB90eQMB4AF5H3mRAQMB3AGFAR+FAZoBAwHXAYABH4ABfgMB0wGUASeUAX0DAcUBmQEnmQGVAQMBwAGgASegAY0BAwGoAaQBJa8BLgMBtAGyASW7AS4DAa0BzAEvzAGBAQMBjwHRAS/RAZkBAwGLAd0BL90BigEDAYYB2AEv2AGBAQMBggHvATfvAYwBAgFy9AE39AGkAQIBboACN4ACygECAWn7ATf7AaEBAgFlqQM5qQORAQIBWqECR6ECpgECAUWmAkemAr4BAgFArQJHrQK/AQIBKLECRbwCTgIBNL8CRcgCTgIBLVQbVIQBAwGlAk8bT3IDAZ8CYUFhRQMBnQJdG11tAwGXAqwBK6wBpAEDAboBpwErpwGJAQMBtQG5AVG5AVUDAbMBtQErtQF9AwGuAbkCS7kC2gECATq0Aku0ArQBAgE1xgJxxgJ1AgEzwgJLwgKdAQIBLg==</sads:DebugSymbol.Symbol>
   </StateMachine>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -607,11 +634,28 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WaitForResponse`1_6" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="WaitForResponse`1_7" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="PersistProgressEvaluation_1" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="ForEach`1_4" sap:VirtualizedContainerService.HintSize="287,210" />
-      <sap2010:ViewStateData Id="Transition_16" sap:VirtualizedContainerService.HintSize="430,635">
+      <sap2010:ViewStateData Id="WaitForResponse`1_15" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="WaitForResponse`1_16" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="PersistProgressEvaluation_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Transition_16" sap:VirtualizedContainerService.HintSize="430,535">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:PointCollection x:Key="ConnectorLocation">110,696.5 110,726.05 225,726.05 225,636.05 195,636.05</av:PointCollection>
@@ -688,6 +732,7 @@
             <av:PointCollection x:Key="ConnectorLocation">110,696.5 110,805.25 295,805.25</av:PointCollection>
             <x:Int32 x:Key="SrcConnectionPointIndex">39</x:Int32>
             <x:Int32 x:Key="DestConnectionPointIndex">17</x:Int32>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -923,7 +968,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Ilc.Infrastructure.Workflows.Training_1" sap:VirtualizedContainerService.HintSize="716,1130" />
+      <sap2010:ViewStateData Id="Ilc.Infrastructure.Workflows.Training_1" sap:VirtualizedContainerService.HintSize="733,1130" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
