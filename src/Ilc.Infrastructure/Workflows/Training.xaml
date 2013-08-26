@@ -27,22 +27,22 @@
   <TextExpression.ReferencesForImplementation>
     <sco:Collection x:TypeArguments="AssemblyReference">
       <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Activities.DurableInstancing</AssemblyReference>
+      <AssemblyReference>System.Configuration</AssemblyReference>
       <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Runtime.DurableInstancing</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
       <AssemblyReference>System.Xml.Linq</AssemblyReference>
       <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
       <AssemblyReference>Microsoft.CSharp</AssemblyReference>
       <AssemblyReference>System.Data</AssemblyReference>
       <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>Ilc.Core</AssemblyReference>
       <AssemblyReference>Ilc.Data.Contracts</AssemblyReference>
       <AssemblyReference>Ilc.Data.Models</AssemblyReference>
-      <AssemblyReference>Ilc.Core</AssemblyReference>
-      <AssemblyReference>System.Activities</AssemblyReference>
-      <AssemblyReference>System.ServiceModel</AssemblyReference>
-      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
-      <AssemblyReference>System.Xaml</AssemblyReference>
-      <AssemblyReference>System.Configuration</AssemblyReference>
-      <AssemblyReference>System.Activities.DurableInstancing</AssemblyReference>
-      <AssemblyReference>System.Runtime.DurableInstancing</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
       <AssemblyReference>Ilc.Infrastructure</AssemblyReference>
     </sco:Collection>
@@ -54,22 +54,55 @@
           <Transition DisplayName="BookmarkRfi" sap2010:WorkflowViewState.IdRef="Transition_5">
             <Transition.Trigger>
               <Sequence x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="Sequence_2">
-                <local:WaitForResponse x:TypeArguments="local1:RfiModel" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_1">
+                <local:WaitForResponse x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_10">
                   <local:WaitForResponse.ArgumentName>
                     <InArgument x:TypeArguments="x:String">
                       <mca:CSharpValue x:TypeArguments="x:String">TrainingStatus.Rfi</mca:CSharpValue>
                     </InArgument>
                   </local:WaitForResponse.ArgumentName>
                   <local:WaitForResponse.Result>
-                    <OutArgument x:TypeArguments="local1:RfiModel">
-                      <mca:CSharpReference x:TypeArguments="local1:RfiModel">varRfiModel</mca:CSharpReference>
+                    <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                      <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:String, x:Object)">varInRfi</mca:CSharpReference>
                     </OutArgument>
                   </local:WaitForResponse.Result>
                 </local:WaitForResponse>
+                <If DisplayName="If Offer exists" sap2010:WorkflowViewState.IdRef="If_1">
+                  <If.Condition>
+                    <InArgument x:TypeArguments="x:Boolean">
+                      <mca:CSharpValue x:TypeArguments="x:Boolean">varInRfi.ContainsKey("Offer")</mca:CSharpValue>
+                    </InArgument>
+                  </If.Condition>
+                  <If.Then>
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="idm:TrainingOffer">
+                          <mca:CSharpReference x:TypeArguments="idm:TrainingOffer">varOffer</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="idm:TrainingOffer">
+                          <mca:CSharpValue x:TypeArguments="idm:TrainingOffer">varInRfi["Offer"] as TrainingOffer</mca:CSharpValue>
+                        </InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </If.Then>
+                  <If.Else>
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Boolean">
+                          <mca:CSharpReference x:TypeArguments="x:Boolean">varComplete</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </If.Else>
+                </If>
               </Sequence>
             </Transition.Trigger>
             <Transition.Condition>
-              <mca:CSharpValue x:TypeArguments="x:Boolean">varRfiModel.Complete == true</mca:CSharpValue>
+              <mca:CSharpValue x:TypeArguments="x:Boolean">varComplete</mca:CSharpValue>
             </Transition.Condition>
             <Transition.To>
               <State x:Name="__ReferenceID8" DisplayName="PendingInterviewPlanning" sap2010:WorkflowViewState.IdRef="State_2">
@@ -356,7 +389,7 @@
                 <local2:PersistOffer sap2010:WorkflowViewState.IdRef="PersistOffer_1">
                   <local2:PersistOffer.Offer>
                     <InArgument x:TypeArguments="idm:TrainingOffer">
-                      <mca:CSharpValue x:TypeArguments="idm:TrainingOffer">varRfiModel.Offer</mca:CSharpValue>
+                      <mca:CSharpValue x:TypeArguments="idm:TrainingOffer">varOffer</mca:CSharpValue>
                     </InArgument>
                   </local2:PersistOffer.Offer>
                   <local2:PersistOffer.OutOffer>
@@ -376,12 +409,19 @@
               </Sequence>
             </Transition.Action>
             <Transition.Condition>
-              <mca:CSharpValue x:TypeArguments="x:Boolean">!varRfiModel.Complete</mca:CSharpValue>
+              <mca:CSharpValue x:TypeArguments="x:Boolean">!varComplete</mca:CSharpValue>
             </Transition.Condition>
           </Transition>
         </State.Transitions>
         <State.Variables>
           <Variable x:TypeArguments="idm:TrainingOffer" Name="varOutOffer" />
+          <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="varInRfi">
+            <Variable.Default>
+              <mca:CSharpValue x:TypeArguments="scg:Dictionary(x:String, x:Object)">new Dictionary&lt;string, object&gt;()</mca:CSharpValue>
+            </Variable.Default>
+          </Variable>
+          <Variable x:TypeArguments="idm:TrainingOffer" Name="varOffer" />
+          <Variable x:TypeArguments="x:Boolean" Default="False" Name="varComplete" />
         </State.Variables>
       </State>
     </StateMachine.InitialState>
@@ -408,21 +448,31 @@
           <mca:CSharpValue x:TypeArguments="idm:Training">new Ilc.Data.Models.Training()</mca:CSharpValue>
         </Variable.Default>
       </Variable>
-      <Variable x:TypeArguments="local1:RfiModel" Name="varRfiModel" />
       <Variable x:TypeArguments="local1:PlanInterviewModel" Name="varPlanInterview" />
       <Variable x:TypeArguments="local1:InterviewModel" Name="varInterviewModel" />
       <Variable x:TypeArguments="local1:AcceptedModel" Name="varAcceptedModel" />
       <Variable x:TypeArguments="local1:ProgressEvaluationModel" Name="varProgressEvaluationModel" />
     </StateMachine.Variables>
-    <sads:DebugSymbol.Symbol>dz5DOlxQcm9qZWN0c1xJTENcc3JjXElsYy5JbmZyYXN0cnVjdHVyZVxXb3JrZmxvd3NcVHJhaW5pbmcueGFtbEIyA6IDEgIBAZgDC5gDawMBpwI0B4IDDwMB6AFLD94CFwMBzwFdF9ECHwMBrQFvH7gCJwMBigGEASelAi8CAWitAiexAi8CAWWWAS+MAjcCAVKoATeFAj8CASLaAT+BAkcCAQfqAUf1AU8CAQTxAU/xAcEBAgECOA9FGgMBlQJID0hqAwGNAvsCD/sCYwMBhQLjAg/4AhoDAeoBTxdaLwMB2QHUAhfaAjUDAdEBYR9sNwMBwAG7Ah/NAikDAa8Bcyd+PwMBnAGBASeBAXwDAZQBqgInqgJ9AwGMAYgBL5MBRwIBe48CL6ECOQIBapoBN6UBTwIBVKwBP7cBVwIBQ9IBP9IBogECATy9AT/PAUkCASvXAT/XAaEBAgEk3gFH5AFfAgEZ5wFH5wGpAQIBEfoBR/oBqgECAQnuAU/uAdoBAgEGORFEKQMBlgLkAhHvAicDAfQB8AIR9wIkAwHrAVIdUncDAeEBVx1XhAEDAdoB1wId1wKCAQMB0gFkJWR7AwHIAWklaYkBAwHBAb4CJb4CnAEDAbkBxQIjywI9AwGwAXYtdn8DAaUBey17iQEDAZ0BiwE1iwGKAQMBgwGQATWQAZcBAgF8kgI1kgKsAQIBdJkCM58CTAIBa50BPZ0BkQECAV2iAT2iAZ0BAgFVrwFFrwGkAQIBS7QBRbQBuwECAUTAAUXAAcgBAgE1xwFDzQFmAgEs4QFN4QGsAQIBGjwXPGcDAZ8CQRdBbwMBlwLsAhfsAnEDAf0B5wIX5wJvAwH1AfMCF/QCPAMB7AHIAinIAnwDAbEBnAI5nAKRAQIBbMoBScoBmQECAS0=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dz5DOlxQcm9qZWN0c1xJTENcc3JjXElsYy5JbmZyYXN0cnVjdHVyZVxXb3JrZmxvd3NcVHJhaW5pbmcueGFtbEwyA8kDEgIBAcADC8ADawMB0gI0B6oDDwMBzgFsD/8CFwMBuAF+F/ICHwMBmgGQAR/ZAicCAXulASfGAi8CAV3OAifSAi8CAVq3AS+tAjcCAUnJATemAj8CAR/7AT+iAkcCAQeLAkeWAk8CAQSSAk+SAsEBAgECpAMPpAONAQMB0AGoAzmoA0ADAc8BOA9mGgMBkAJpD2lZAwGGApwDD5wDWgMB/AGEAw+ZAxoDAdsBcBd7LwMBwQH1Ahf7AjUDAboBggEfjQE3AwGrAdwCH+4CKQMBnAGUASefAT8DAYsBogEnogF8AwGEAcsCJ8sCfQIBfakBL7QBRwIBbrACL8ICOQIBX7sBN8YBTwIBS80BP9gBVwIBPPMBP/MBogECATbeAT/wAUkCASf4AT/4AaEBAgEh/wFHhQJfAgEXiAJHiAKpAQIBEJsCR5sCqgECAQmPAk+PAtoBAgEGORFEKQMBvQJFEWUWAwGRAoUDEZADJwMB5wGRAxGYAyQDAdwBcx1zdwMByAF4HXiEAQMBwgH4Ah34AoIBAwG7AYUBJYUBewMBsgGKASWKAYkBAwGsAd8CJd8CnAEDAaUB5gIj7AI9AwGdAZcBLZcBfwMBkwGcAS2cAYkBAwGMAawBNawBigECAXWxATWxAZcBAgFvswI1swKsAQIBaLoCM8ACTAIBYL4BPb4BkQECAVPDAT3DAZ0BAgFM0AFF0AGkAQIBQ9UBRdUBuwECAT3hAUXhAcgBAgEw6AFD7gFmAgEoggJNggKsAQIBGDwXPGcDAcgCQRdBfwMBvgJIF0hzAwGSAkwVVx4DAagCWhVjHgMBnAKNAxeNA3EDAfIBiAMXiANmAwHoAZQDF5UDPAMB3QHpAinpAnwDAZ4BvQI5vQKRAQIBYesBSesBmQECASlUG1SEAQMBswJPG09yAwGpAmFBYUUDAacCXRtdbQMBnQI=</sads:DebugSymbol.Symbol>
   </StateMachine>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="WaitForResponse`1_1" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="222,146">
+      <sap2010:ViewStateData Id="WaitForResponse`1_10" sap:VirtualizedContainerService.HintSize="509,22" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="509,212">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="531,398">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -658,13 +708,13 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Transition_5" sap:VirtualizedContainerService.HintSize="430,984">
+      <sap2010:ViewStateData Id="Transition_5" sap:VirtualizedContainerService.HintSize="573,971">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:PointCollection x:Key="ConnectorLocation">112.7,141 112.7,171 90.1,171 90.1,229</av:PointCollection>
             <x:Int32 x:Key="SrcConnectionPointIndex">43</x:Int32>
             <x:Int32 x:Key="DestConnectionPointIndex">30</x:Int32>
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>

@@ -40,13 +40,16 @@ namespace Ilc.Tests.Unit.Infrastructure
             var proc = new WorkflowProcess(extensionManager, wfActivity);
             
             // Act
-            var results = proc.Start();
+             proc.Start();
             var firstOffer = new TrainingOffer() { Id = 1 };
             // Create an offer
-            results = proc.Resume(Guid.Empty, TrainingStatus.Rfi, new RfiModel() { Offer = firstOffer });
+            var results = proc.Resume(Guid.Empty, TrainingStatus.Rfi, new Dictionary<string, object>()
+                {
+                    { "Offer", firstOffer },
+                });
             var firstOfferTest = results["Offer"];
             // Move to the next state
-            results = proc.Resume(Guid.Empty, TrainingStatus.Rfi, new RfiModel() { Complete = true });
+            results = proc.Resume(Guid.Empty, TrainingStatus.Rfi, new Dictionary<string, object>());
             
             results = proc.Resume(Guid.Empty, TrainingStatus.PlanInterview, new PlanInterviewModel() {InterviewPlan = new InterviewPlan()});
 
