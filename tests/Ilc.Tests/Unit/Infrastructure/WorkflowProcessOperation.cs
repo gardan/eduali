@@ -20,7 +20,7 @@ namespace Ilc.Tests.Unit.Infrastructure
     {
 
         [Test]
-        public void ajsdhjasd()
+        public void Start_To_Finish()
         {
             // Arrange
             var trainingsMock = new Mock<ITrainingsService>().Object;
@@ -51,18 +51,33 @@ namespace Ilc.Tests.Unit.Infrastructure
             // Move to the next state
             results = proc.Resume(Guid.Empty, TrainingStatus.Rfi, new Dictionary<string, object>());
             
-            results = proc.Resume(Guid.Empty, TrainingStatus.PlanInterview, new PlanInterviewModel() {InterviewPlan = new InterviewPlan()});
+            results = proc.Resume(Guid.Empty, TrainingStatus.PlanInterview, new Dictionary<string, object>()
+                {
+                    { "InterviewPlan", new InterviewPlan() }
+                });
 
             // Add the interviews
-            results = proc.Resume(Guid.Empty, TrainingStatus.Interview, new InterviewModel() {Interviews = new List<StudentInterview>() {new StudentInterview() {CreateDate = DateTimeOffset.UtcNow}}});
+            var interview = new StudentInterview();
 
-            results = proc.Resume(Guid.Empty, TrainingStatus.Offer, new OfferModel() {Complete = true});
+            results = proc.Resume(Guid.Empty, TrainingStatus.Interview, new Dictionary<string, object>()
+                {
+                    { "Interview", interview }
+                });
+            // Move to the next state
+            results = proc.Resume(Guid.Empty, TrainingStatus.Interview, new Dictionary<string, object>());
 
-            results = proc.Resume(Guid.Empty, TrainingStatus.Accepted,
-                                  new AcceptedModel()
-                                      {
-                                          Schedule = new List<TrainingScheduleDay>() {new TrainingScheduleDay()}
-                                      });
+            results = proc.Resume(Guid.Empty, TrainingStatus.Offer, new Dictionary<string, object>()
+                {
+                    { "Complete", true }
+                });
+
+
+            var schedule = new List<TrainingScheduleDay>() {new TrainingScheduleDay()};
+            results = proc.Resume(Guid.Empty, TrainingStatus.Accepted, new Dictionary<string, object>()
+                {
+                    { "Schedule", schedule }
+                });
+                                  
 
             proc.Resume(Guid.Empty, TrainingStatus.Planned, new PlannedModel());
 

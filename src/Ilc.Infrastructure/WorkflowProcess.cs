@@ -81,7 +81,7 @@ namespace Ilc.Infrastructure
             // check if there are any bookmarks
             if (_wfApp.GetBookmarks().Any(bookmark => bookmark.BookmarkName != bookmarkName))
             {
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("This application has no bookmarks.");
             }
 
             _wfApp.ResumeBookmark(bookmarkName, value);
