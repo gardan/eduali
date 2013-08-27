@@ -52,4 +52,9 @@ namespace Ilc.Data.Models
 
         public Guid? WokrflowId { get; set; }
     }
+
+    public class TrainingEvaluation
+    {
+
+    }
 }

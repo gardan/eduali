@@ -3843,6 +3843,7 @@
     <Compile Include="Models\StudentModel.cs" />
     <Compile Include="Models\SubjectModel.cs" />
     <Compile Include="Models\TrainerModel.cs" />
+    <Compile Include="Models\TrainingEvaluationPdfModel.cs" />
     <Compile Include="Models\TransferModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -3885,6 +3886,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\LightOffer\Pdf.cshtml" />
     <Content Include="Views\Pdf\Offer.cshtml" />
+    <Content Include="Views\Pdf\TrainingEvaluation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

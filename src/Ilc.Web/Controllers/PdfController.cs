@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using Ilc.Data.Contracts;
 using Ilc.Web.Models;
@@ -20,6 +21,36 @@ namespace Ilc.Web.Controllers
             offer.PossibleCosts = offer2.Price.ToString();
 
             return new PdfResult(offer, "Offer");
+        }
+
+        public ViewResult TrainingEvaluation(int id)
+        {
+            var eval = new TrainingEvaluationPdfModel();
+            eval.RadioQuestions = new List<RadioQuestion>()
+                {
+                    new RadioQuestion() { DisplayCategory = true, CategoryName = "Training", Text = "Veeeeeeery looooooong fucking questioooooooooooooooooooooooooooooooon??????????????????????????????????", Answers = new List<RadioQuestionAnswers>()
+                        {
+                            new RadioQuestionAnswers() { Text = "Ion" },
+                            new RadioQuestionAnswers() { Text = "Gheo" },
+                            new RadioQuestionAnswers() { Text = "Vasile", IsSelected = true},
+                            new RadioQuestionAnswers() { Text = "Gheo" },
+                            new RadioQuestionAnswers() { Text = "Gheo" },
+                            new RadioQuestionAnswers() { Text = "Gheo" }
+                        }}
+                };
+            eval.StringQuestions = new List<StringQuestion>()
+                {
+                    new StringQuestion() {Text = "Please state you opinion:", Answer = "Sucks bro."},
+                    new StringQuestion() {Text = "Please state you opinion:", Answer = "Sucks bro."}
+                };
+
+            eval.CheckBoxQuestions = new List<CheckBoxQuestion>()
+                {
+                    new CheckBoxQuestion() {Text = "Text me?", Checked = false},
+                    new CheckBoxQuestion() {Text = "Don't text me?", Checked = true}
+                };
+
+            return new PdfResult(eval, "TrainingEvaluation");
         }
     }
 }

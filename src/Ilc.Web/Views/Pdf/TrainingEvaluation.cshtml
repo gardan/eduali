@@ -1,0 +1,83 @@
+﻿@model Ilc.Web.Models.TrainingEvaluationPdfModel       
+
+@{
+    Layout = null;
+
+    var checkedImgPath = "http://localhost:54877/images/checked.png";
+    var uncheckedImgPath = "http://localhost:54877/images/unchecked.png";
+    var sixAnswersWidths = "60;5;5;5;5;5;5";
+}
+
+<itext>
+    @* Table with predifined answer, radio buttons style *@
+    <table widths="@sixAnswersWidths" width="100.0%" borderwidth="1.0" left="true" right="true" top="true" bottom="true" red="0" green="0" blue="255" cellpadding="5.0">
+        @{
+            foreach (var radioQuestion in Model.RadioQuestions)
+            {
+                <row>
+                    <cell borderwidth="0.5" left="true" right="true" top="true" bottom="true">
+                        @{
+                            if (radioQuestion.DisplayCategory)
+                            {
+                                <paragraph size="12.0" fontstyle="bold">@radioQuestion.CategoryName</paragraph>        
+                            }
+                        }
+                        <paragraph>@radioQuestion.Text</paragraph>
+                    </cell>
+                    @{
+                        foreach (var answer in radioQuestion.Answers)
+                        {
+                            <cell borderwidth="0.5" left="true" right="true" top="true" bottom="true" horizontalalign="Default" verticalalign="Middle">
+                                @{
+                                    if (answer.IsSelected)
+                                    {
+                                        <image url="@checkedImgPath" />                                        
+                                    }
+                                }
+                            </cell>
+                        }
+                    }
+                </row>
+            }
+        }
+    </table>
+    
+    @* Questions with string answer, textarea style *@
+    @{
+        foreach (var question in Model.StringQuestions)
+        {
+            <paragraph>
+                <chunk fontstyle="bold">
+                    @question.Text    
+                </chunk>
+                <newline />
+                <chunk size="11.0">
+                @question.Answer
+            </chunk>    
+            </paragraph>
+        }
+    }
+    
+    @* Questions with bool answer, checkbox *@
+    @{
+        foreach (var question in Model.CheckBoxQuestions)
+        {
+            <paragraph>
+                <chunk fontstyle="bold">
+                    @question.Text    
+                </chunk>
+                <newline />
+                    
+            </paragraph>
+                if (question.Checked)
+                {
+                    <image url="@checkedImgPath" />
+                }
+                else
+                {
+                    <image url="@uncheckedImgPath" />
+                } 
+        }
+    }
+
+</itext>
