@@ -3811,6 +3811,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LightOfferController.cs" />
+    <Compile Include="Controllers\PdfController.cs" />
     <Compile Include="Controllers\TransfersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -3883,9 +3884,7 @@
     <Content Include="Views\Transfers\Pdf.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\LightOffer\Pdf.cshtml" />
-    <Content Include="Views\Pdf\Pdf.cshtml">
-      <BrowseToURL>~/Views/Pdf/Pdf.cshtml</BrowseToURL>
-    </Content>
+    <Content Include="Views\Pdf\Offer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
