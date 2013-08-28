@@ -50,11 +50,8 @@ namespace Ilc.Data.Models
 
         public virtual ICollection<ProgressEvaluation> ProgressEvaluations { get; set; }
 
+        public virtual ICollection<TrainingEvaluation> TrainingEvaluations { get; set; } 
+
         public Guid? WokrflowId { get; set; }
-    }
-
-    public class TrainingEvaluation
-    {
-
     }
 }

@@ -27,6 +27,7 @@ namespace Ilc.Data.Contracts
         IRepository<InterviewPlan> InterviewPlans { get; }
         IRepository<StudentInterview> Interviews { get; }
         IRepository<TrainingScheduleDay> TrainingScheduleDays { get; }
-        IRepository<ProgressEvaluation> ProgressEvaluations { get; } 
+        IRepository<ProgressEvaluation> ProgressEvaluations { get; }
+        IRepository<TrainingEvaluation> TrainingEvaluations { get; } 
     }
 }

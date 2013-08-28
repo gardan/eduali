@@ -8,7 +8,6 @@ using Ilc.Data.Contracts;
 using Ilc.Data.Models;
 using Ilc.Infrastructure;
 using Ilc.Infrastructure.Workflows;
-using Ilc.Infrastructure.Workflows.TrainingPoco;
 using Moq;
 using NUnit.Framework;
 using Training = Ilc.Infrastructure.Workflows.Training;

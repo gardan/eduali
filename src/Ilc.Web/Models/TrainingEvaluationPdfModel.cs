@@ -10,7 +10,7 @@ namespace Ilc.Web.Models
     {
         public IEnumerable<RadioQuestion> RadioQuestions { get; set; }
 
-        public IEnumerable<StringQuestion> StringQuestions { get; set; }
+        public List<StringQuestion> StringQuestions { get; set; }
 
         public IEnumerable<CheckBoxQuestion> CheckBoxQuestions { get; set; }
     }

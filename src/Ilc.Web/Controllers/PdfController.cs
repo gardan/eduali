@@ -26,6 +26,20 @@ namespace Ilc.Web.Controllers
         public ViewResult TrainingEvaluation(int id)
         {
             var eval = new TrainingEvaluationPdfModel();
+
+            var trainingEval = Uow.TrainingEvaluations.GetById(id);
+            eval.StringQuestions = new List<StringQuestion>();
+
+            foreach (var stringAnswer in trainingEval.StringAnswers)
+            {
+                eval.StringQuestions.Add(new StringQuestion()
+                    {
+                        Answer = stringAnswer.Text,
+                        Text = stringAnswer.StringQuestion.Text
+                    });
+            }
+
+
             eval.RadioQuestions = new List<RadioQuestion>()
                 {
                     new RadioQuestion() { DisplayCategory = true, CategoryName = "Training", Text = "Veeeeeeery looooooong fucking questioooooooooooooooooooooooooooooooon??????????????????????????????????", Answers = new List<RadioQuestionAnswers>()
@@ -37,11 +51,6 @@ namespace Ilc.Web.Controllers
                             new RadioQuestionAnswers() { Text = "Gheo" },
                             new RadioQuestionAnswers() { Text = "Gheo" }
                         }}
-                };
-            eval.StringQuestions = new List<StringQuestion>()
-                {
-                    new StringQuestion() {Text = "Please state you opinion:", Answer = "Sucks bro."},
-                    new StringQuestion() {Text = "Please state you opinion:", Answer = "Sucks bro."}
                 };
 
             eval.CheckBoxQuestions = new List<CheckBoxQuestion>()

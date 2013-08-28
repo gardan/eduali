@@ -4,7 +4,6 @@
  xmlns:idm="clr-namespace:Ilc.Data.Models;assembly=Ilc.Data.Models"
  xmlns:local="clr-namespace:Ilc.Infrastructure.Workflows.Activities"
  xmlns:local1="clr-namespace:Ilc.Infrastructure.Workflows.Activities.Training"
- xmlns:local2="clr-namespace:Ilc.Infrastructure.Workflows.TrainingPoco"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
  xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
@@ -21,7 +20,6 @@
       <x:String>System.Linq</x:String>
       <x:String>System.Text</x:String>
       <x:String>Ilc.Data.Models</x:String>
-      <x:String>Ilc.Infrastructure.Workflows.TrainingPoco</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -356,13 +354,6 @@
                                                                   <Transition DisplayName="BookmarkTrainingEvaluation" sap2010:WorkflowViewState.IdRef="Transition_10">
                                                                     <Transition.Trigger>
                                                                       <Sequence x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="Sequence_8">
-                                                                        <local:WaitForResponse x:TypeArguments="local2:TrainingEvaluationModel" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_8">
-                                                                          <local:WaitForResponse.ArgumentName>
-                                                                            <InArgument x:TypeArguments="x:String">
-                                                                              <mca:CSharpValue x:TypeArguments="x:String">TrainingStatus.TrainingEvaluation</mca:CSharpValue>
-                                                                            </InArgument>
-                                                                          </local:WaitForResponse.ArgumentName>
-                                                                        </local:WaitForResponse>
                                                                         <If sap2010:WorkflowViewState.IdRef="If_4">
                                                                           <If.Condition>
                                                                             <InArgument x:TypeArguments="x:Boolean">
@@ -370,7 +361,7 @@
                                                                             </InArgument>
                                                                           </If.Condition>
                                                                           <If.Then>
-                                                                            <Assign>
+                                                                            <Assign sap2010:WorkflowViewState.IdRef="Assign_10">
                                                                               <Assign.To>
                                                                                 <OutArgument x:TypeArguments="x:Boolean">
                                                                                   <mca:CSharpReference x:TypeArguments="x:Boolean">varComplete</mca:CSharpReference>
@@ -379,7 +370,6 @@
                                                                               <Assign.Value>
                                                                                 <InArgument x:TypeArguments="x:Boolean">True</InArgument>
                                                                               </Assign.Value>
-                                                                              <sap2010:WorkflowViewState.IdRef>Assign_10</sap2010:WorkflowViewState.IdRef>
                                                                             </Assign>
                                                                           </If.Then>
                                                                         </If>
@@ -392,9 +382,6 @@
                                                                       <State x:Name="__ReferenceID16" DisplayName="Ended" sap2010:WorkflowViewState.IdRef="State_12">
                                                                         <State.Transitions>
                                                                           <Transition DisplayName="BookmarkEnded" sap2010:WorkflowViewState.IdRef="Transition_9">
-                                                                            <Transition.Trigger>
-                                                                              <local:WaitForResponse x:TypeArguments="local2:EndedModel" ArgumentName="{x:Null}" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_9" />
-                                                                            </Transition.Trigger>
                                                                             <Transition.To>
                                                                               <State x:Name="__ReferenceID5" DisplayName="Complete" sap2010:WorkflowViewState.IdRef="State_11" IsFinal="True" />
                                                                             </Transition.To>
@@ -588,7 +575,7 @@
         </Variable.Default>
       </Variable>
     </StateMachine.Variables>
-    <sads:DebugSymbol.Symbol>dz5DOlxQcm9qZWN0c1xJTENcc3JjXElsYy5JbmZyYXN0cnVjdHVyZVxXb3JrZmxvd3NcVHJhaW5pbmcueGFtbHAyA9AEEgIBAcsEC8sEawMBzAI0B7UEDwMB+AFsD4oEFwMB3gGMARf5Ax8DAacBxAEf4gMnAwGKAecBJ84DLwIBatYDJ9oDLwIBZ4cCL7EDNwIBXpkCN6oDPwIBJ+ICP6EDRwIBB4gDR5MDTwIBBI8DT48DwQECAQKvBA+vBI0BAwH6AbMEObMEQAMB+QE4D2YaAwGiAmkPaVkDAZwCpwQPpwRaAwGWAo8ED6QEGgMBgQJwF4kBIgMB5QH8AxeCBDUDAeAB9wNJ9wNQAwGoAZABH74BKgMBugHBAR/BAWkDAbUB8AMf8ANqAwGwAecDH+0DOQMBqgHIASfhATIDAZQB5AEn5AFxAwGQAdMDJ9MDcgMBjAHrAS+EAjoCAXe0Ay/GAzkCAWyLAjeWAk8CAWCoA2moA3ACASidAj/LAkoCATraAj/aAooBAgE10QI/1wJiAgEv3wI/3wKJAQIBKuYCR4IDUgIBE4UDR4UDkQECAQ6YA0eYA5IBAgEJjANPjAPaAQIBBjkRRCkDAb8CRRFlFgMBowKQBBGbBCcDAYkCnAQRowQkAwGCAnEZfDEDAe8BfRmIASIDAeYB/wMd/wN0AwHhAZEBIZwBOQMB0wGdASG9ASYDAbsB6gMl6gN7AwGrAckBKdQBQQMBngHVASngATIDAZUB7AEx9wFJAwGBAfgBMYMCOgIBeLcDNbcDngECAXO+AzPEA0wCAW2OAj2OApEBAgFkkwI9kwKpAQIBYZ4CQakCWQIBU6oCQcoCRgIBO9QCRdQCpgECATDnAkntAmECASHuAkmBA04CARQ8FzxnAwHGAkEXQX8DAcACSBdIcwMBpAJMFVceAwGyAloVYx4DAaoCmAQXmARxAwGQApMEF5MEZgMBigKfBBegBDwDAYMCdB90eQMB9AF5H3mRAQMB8AGFAR+FAZoBAwHrAYABH4ABfgMB5wGUASeUAX0DAdkBmQEnmQGVAQMB1AGgASegAY0BAwG8AaQBJa8BLgMByAGyASW7AS4DAcEBzAEvzAGBAQMBowHRAS/RAZkBAwGfAd0BL90BigEDAZoB2AEv2AGBAQMBlgHvATfvAYwBAwGGAfQBN/QBpAEDAYIBgAI3gALKAQIBffsBN/sBoQECAXnBAznBA5EBAgFuoQJHoQKmAQIBWaYCR6YCvgECAVStAketAr8BAgE8sQJFvAJOAgFIvwJFyAJOAgFB6gJP6gKuAQIBIvECT/ECvgECARX1Ak3/AlYCARpUG1SEAQMBuQJPG09yAwGzAmFBYUUDAbECXRtdbQMBqwKsASusAaQBAwHOAacBK6cBiQEDAckBuQFRuQFVAwHHAbUBK7UBfQMBwgG5Aku5AtoBAgFOtAJLtAK0AQIBScYCccYCdQIBR8ICS8ICnQECAUL8Ann8An0CASD4AlP4AqUBAgEb</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dz5DOlxQcm9qZWN0c1xJTENcc3JjXElsYy5JbmZyYXN0cnVjdHVyZVxXb3JrZmxvd3NcVHJhaW5pbmcueGFtbG0wA8MEEgIBAb4EC74EawMBxgIyB6gEDwMB8gFqD/0DFwMB2AGKARfsAx8DAaEBwgEf1QMnAwGEAeUBJ8EDLwIBZMkDJ80DLwIBYYUCL6QDNwIBWJcCN50DPwIBIeACP5QDRwIBB/4CR4YDTwIBBIIDT4IDwQECAQKiBA+iBI0BAwH0AaYEOaYEQAMB8wE2D2QaAwGcAmcPZ1kDAZYCmgQPmgRaAwGQAoIED5cEGgMB+wFuF4cBIgMB3wHvAxf1AzUDAdoB6gNJ6gNQAwGiAY4BH7wBKgMBtAG/AR+/AWkDAa8B4wMf4wNqAwGqAdoDH+ADOQMBpAHGASffATIDAY4B4gEn4gFxAwGKAcYDJ8YDcgMBhgHpAS+CAjoCAXGnAy+5AzkCAWaJAjeUAk8CAVqbA2mbA3ACASKbAj/JAkoCATTYAj/YAooBAgEvzwI/1QJiAgEp3QI/3QKJAQIBJOQCR/gCUgIBE/sCR/sCkQECAQ6LA0eLA5IBAgEJNxFCKQMBuQJDEWMWAwGdAoMEEY4EJwMBgwKPBBGWBCQDAfwBbxl6MQMB6QF7GYYBIgMB4AHyAx3yA3QDAdsBjwEhmgE5AwHNAZsBIbsBJgMBtQHdAyXdA3sDAaUBxwEp0gFBAwGYAdMBKd4BMgMBjwHqATH1AUkCAXv2ATGBAjoCAXKqAzWqA54BAgFtsQMztwNMAgFnjAI9jAKRAQIBXpECPZECqQECAVucAkGnAlkCAU2oAkHIAkYCATXSAkXSAqYBAgEq5QJJ9wJOAgEUOhc6ZwMBwAI/Fz9/AwG6AkYXRnMDAZ4CShVVHgMBrAJYFWEeAwGkAosEF4sEcQMBigKGBBeGBGYDAYQCkgQXkwQ8AwH9AXIfcnkDAe4Bdx93kQEDAeoBgwEfgwGaAQMB5QF+H35+AwHhAZIBJ5IBfQMB0wGXASeXAZUBAwHOAZ4BJ54BjQEDAbYBogElrQEuAwHCAbABJbkBLgMBuwHKAS/KAYEBAwGdAc8BL88BmQEDAZkB2wEv2wGKAQMBlAHWAS/WAYEBAwGQAe0BN+0BjAEDAYAB8gE38gGkAQIBfP4BN/4BygECAXf5ATf5AaEBAgFztAM5tAORAQIBaJ8CR58CpgECAVOkAkekAr4BAgFOqwJHqwK/AQIBNq8CRboCTgIBQr0CRcYCTgIBO+gCT+gCvgECARXsAk31AlYCARpSG1KEAQMBswJNG01yAwGtAl9BX0UDAasCWxtbbQMBpQKqASuqAaQBAwHIAaUBK6UBiQEDAcMBtwFRtwFVAwHBAbMBK7MBfQMBvAG3Aku3AtoBAgFIsgJLsgK0AQIBQ8QCccQCdQIBQcACS8ACnQECATzzAnnzAn0CASDvAlPvAqUBAgEb</sads:DebugSymbol.Symbol>
   </StateMachine>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -689,17 +676,15 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WaitForResponse`1_8" sap:VirtualizedContainerService.HintSize="464,22" />
       <sap2010:ViewStateData Id="Assign_10" sap:VirtualizedContainerService.HintSize="242,62" />
       <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="464,212" />
-      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="486,398">
+      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="486,336">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WaitForResponse`1_9" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="State_11" sap:VirtualizedContainerService.HintSize="114,61">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -737,7 +722,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Transition_18" sap:VirtualizedContainerService.HintSize="528,1138">
+      <sap2010:ViewStateData Id="Transition_18" sap:VirtualizedContainerService.HintSize="528,1076">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:PointCollection x:Key="ConnectorLocation">380.5,780.5 380.5,750.5 515,750.5 515,839.9 485,839.9</av:PointCollection>

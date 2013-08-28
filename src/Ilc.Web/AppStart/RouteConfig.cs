@@ -35,6 +35,7 @@ namespace Ilc.Web.AppStart
 
             routes.Add<Services.FilterParametersTasks>("/api/tasks", "GET");
             routes.Add<Services.RfiModel>("/api/tasks/training/rfi", "POST");
+            routes.Add<Services.TrainingEvaluationModel>("/api/tasks/training/trainingevaluations", "POST");
 
             routes.Add<Services.FilesFilterParameters>("/api/files", "GET");
 

@@ -55,16 +55,15 @@ namespace Ilc.Web.Services
             var proc = new WorkflowProcess(extensionManager, wfActivity);
             var training = Uow.Trainings.GetById(request.TrainingId);
 
-            var workflowData = new Infrastructure.Workflows.TrainingPoco.RfiModel();
-            if (request.Complete)
+            var workflowData = new Dictionary<string, object>();
+
+            if (!request.Complete)
             {
-                workflowData.Complete = true;
-            }
-            else
-            {
-                workflowData.Offer = new TrainingOffer().InjectFrom(request) as TrainingOffer;
-                workflowData.Offer.Price = request.PossibleCost;
-                workflowData.Offer.NoLessons = request.LessonsNo;
+                var offer = new TrainingOffer().InjectFrom(request) as TrainingOffer;
+                offer.Price = request.PossibleCost;
+                offer.NoLessons = request.LessonsNo;
+
+                workflowData["Offer"] = offer;
             }
 
             proc.Resume(training.WokrflowId.Value, TrainingStatus.Rfi, workflowData, PersistableIdleAction.Unload);
@@ -81,6 +80,50 @@ namespace Ilc.Web.Services
                     StatusCode = HttpStatusCode.OK
                 };
         }
+
+        public HttpResult Post(TrainingEvaluationModel request)
+        {
+            var trainingEval = new TrainingEvaluation();
+
+            trainingEval.CreateDate = DateTimeOffset.UtcNow;
+            trainingEval.Creator = Uow.UserProfiles.GetById(1);
+            trainingEval.TrainingId = 11;
+            trainingEval.StudentId = 4;
+            trainingEval.StringAnswers = new List<StringAnswer>();
+
+            foreach (var stringAnswerModel in request.StringAnswers)
+            {
+                trainingEval.StringAnswers.Add(new StringAnswer()
+                    {
+                        Text = stringAnswerModel.Text,
+                        StringQuestionId = stringAnswerModel.QuestionId
+                    });
+            }
+
+            Uow.TrainingEvaluations.Add(trainingEval);
+            Uow.Commit();
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
+    }
+
+    public class TrainingEvaluationModel
+    {
+        public List<StringAnswerModel> StringAnswers { get; set; }
+
+        // These properties should not really be here, 
+        // we can infer them when using the workflow
+        public int StudentId { get; set; }
+        public int TrainingId { get; set; }
+    }
+
+    public class StringAnswerModel
+    {
+        public string Text { get; set; }
+        public int QuestionId { get; set; }
     }
 
     public class RfiModel
