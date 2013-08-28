@@ -9,6 +9,7 @@ namespace Ilc.Core.Contracts
     public interface ITrainingsService
     {
         FilteredResults<Training> GetFilteredTrainings(FilterArguments parameters);
+        Training GetById(int id);
         void Create(Training newTraining);
         void Update(Training updateTraining);
         void Delete(int id);

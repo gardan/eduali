@@ -33,6 +33,11 @@ namespace Ilc.Core.Services
                 };
         }
 
+        public Training GetById(int id)
+        {
+            return Uow.Trainings.GetById(id);
+        }
+
         public void Create(Training newTraining)
         {
             Uow.Trainings.Add(newTraining);

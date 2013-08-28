@@ -22,18 +22,33 @@ namespace Ilc.Tests.Unit.Infrastructure
         public void Start_To_Finish()
         {
             // Arrange
-            var trainingsMock = new Mock<ITrainingsService>().Object;
+            var training = new Data.Models.Training();
+            training.Students = new List<Student>()
+                {
+                    new Student(),
+                    new Student(),
+                    new Student(),
+                };
+            training.TrainingEvaluations = new List<TrainingEvaluation>()
+                {
+                    new TrainingEvaluation()
+                };
+
+            var trainingsMock = new Mock<ITrainingsService>();
+            trainingsMock.Setup(m => m.GetById(It.IsAny<int>())).Returns(training);
             var offersMock = new Mock<IOffersService>().Object;
             var interviewPlanRepoMock = new Mock<IRepository<InterviewPlan>>();
             var interviewRepoMock = new Mock<IRepository<StudentInterview>>();
             var scheduleRepoMock = new Mock<IRepository<TrainingScheduleDay>>(); 
             var progressEvalRepoMock = new Mock<IRepository<ProgressEvaluation>>();
+            var trainingEvalRepoMock = new Mock<IRepository<TrainingEvaluation>>();
             var uowMock = new Mock<IUow>();
             uowMock.Setup(uow => uow.InterviewPlans).Returns(interviewPlanRepoMock.Object);
             uowMock.Setup(uow => uow.Interviews).Returns(interviewRepoMock.Object);
             uowMock.Setup(uow => uow.TrainingScheduleDays).Returns(scheduleRepoMock.Object);
             uowMock.Setup(uow => uow.ProgressEvaluations).Returns(progressEvalRepoMock.Object);
-            var extensionManager = new TrainingExtensionManager(trainingsMock, offersMock, uowMock.Object);
+            uowMock.Setup(uow => uow.TrainingEvaluations).Returns(trainingEvalRepoMock.Object);
+            var extensionManager = new TrainingExtensionManager(trainingsMock.Object, offersMock, uowMock.Object);
             
 
             var wfActivity = new Training();
@@ -88,9 +103,23 @@ namespace Ilc.Tests.Unit.Infrastructure
                     { "ProgressEvaluation", progressEval }
                 });
 
-            // results = 
-            // Assert
+            // Move to next state
+            proc.Resume(Guid.Empty, TrainingStatus.ProgressEvaluation, new Dictionary<string, object>());
 
+            var trainingEval = new TrainingEvaluation();
+            proc.Resume(Guid.Empty, TrainingStatus.TrainingEvaluation, new Dictionary<string, object>()
+                {
+                    { "TrainingEvaluation", trainingEval }
+                });
+            training.TrainingEvaluations.Add(new TrainingEvaluation());
+
+            // Move to next step
+            results = proc.Resume(Guid.Empty, TrainingStatus.TrainingEvaluation, new Dictionary<string, object>());
+
+
+            // Assert
+            var workflowComplete = (bool)results["Complete"];
+            Assert.True(workflowComplete);
         }
 
     }
