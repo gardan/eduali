@@ -97,7 +97,7 @@ namespace Ilc.Infrastructure
         {
             if (_workflowException == null) return;
 
-            throw new ApplicationException("", _workflowException); ;
+            throw new ApplicationException(_workflowException.Message, _workflowException); ;
         }
 
 
