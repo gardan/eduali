@@ -5,11 +5,12 @@
         'Ilc.utils.Forms'
     ],
     
-    constructor: function () {
+    constructor: function (args) {
         var me = this;
 
         var viewLbl = Ilc.resources.Manager.getResourceString('common.view');
         var addLbl = Ilc.resources.Manager.getResourceString('common.add');
+        var entity = args.entity;
 
         me.columns = [
             {
@@ -32,7 +33,11 @@
                             var action = (record.get('interviewId') == 0 ? 'Create' : 'View');
  
                             var windowClass = 'Ilc.tasks.training.window.' + action + 'StudentInterview';
-                            var window = Ext.create(windowClass);
+                            debugger;
+                            var window = Ext.create(windowClass, {
+                                student: record,
+                                task: entity
+                            });
 
                             if (action === 'Create') {
                                 window.on('addInterview', function (sender, data) {

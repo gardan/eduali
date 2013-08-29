@@ -5,16 +5,18 @@
 
     title: Ilc.resources.Manager.getResourceString('common.studentsInterviews'),
 
-    constructor: function() {
+    constructor: function(args) {
         var me = this;
+
+        var entity = args.entity;
 
         var studentsStore = Ext.create('Ext.data.Store', {
             fields: ['name', 'interviewId'],
             data: {
                 data: [
-                    { name: 'Ion Ionel', interviewId: 1 },
-                    { name: 'Parvan Vasile', interviewId: 2 },
-                    { name: 'The Pro', interviewId: 0 }
+                    { id: 1, name: 'Ion Ionel', interviewId: 1 },
+                    { id: 2, name: 'Parvan Vasile', interviewId: 2 },
+                    { id: 3, name: 'The Pro', interviewId: 0 }
                 ]
             },
             proxy: {
@@ -29,6 +31,7 @@
 
         var studentsGrid = Ext.create('Ilc.tasks.training.grid.Students', {
             store: studentsStore,
+            entity: entity
         });
 
         var doneButton = Ext.create('Ext.button.Button', {

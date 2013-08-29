@@ -5,9 +5,11 @@
     title: Ilc.resources.Manager.getResourceString('common.newInterview'),
     layout: 'anchor',
 
-    constructor: function () {
+    constructor: function (args) {
         var me = this;
 
+        var task = args.task;
+        var student = args.student;
         var store = Ext.create('Ext.data.Store', {
             fields: ['text', 'order'],
             data: {
@@ -37,7 +39,7 @@
                 queryMode: 'local',
                 displayField: 'text',
                 valueField: 'id',
-                name: 'listening.currentLevel',
+                name: 'listeningLevel',
                 anchor: '100%'
             },
             {
@@ -47,7 +49,91 @@
                 queryMode: 'local',
                 displayField: 'text',
                 valueField: 'id',
-                name: 'listening.desiredLevel',
+                name: 'listeningDesiredLevel',
+                anchor: '100%'
+            },
+            
+            {
+                xtype: 'combobox',
+                store: store,
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.readingLevel'),
+                queryMode: 'local',
+                displayField: 'text',
+                valueField: 'id',
+                name: 'readingLevel',
+                anchor: '100%'
+            },
+            {
+                xtype: 'combobox',
+                store: store,
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.readingTargetLevel'),
+                queryMode: 'local',
+                displayField: 'text',
+                valueField: 'id',
+                name: 'readingTargetLevel',
+                anchor: '100%'
+            },
+            
+            {
+                xtype: 'combobox',
+                store: store,
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.interactiveTalkingLevel'),
+                queryMode: 'local',
+                displayField: 'text',
+                valueField: 'id',
+                name: 'interactiveTalkingLevel',
+                anchor: '100%'
+            },
+            {
+                xtype: 'combobox',
+                store: store,
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.interactiveTalkingDesiredLevel'),
+                queryMode: 'local',
+                displayField: 'text',
+                valueField: 'id',
+                name: 'interactiveTalkingDesiredLevel',
+                anchor: '100%'
+            },
+            
+            {
+                xtype: 'combobox',
+                store: store,
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.productiveTalkingLevel'),
+                queryMode: 'local',
+                displayField: 'text',
+                valueField: 'id',
+                name: 'productiveTalkingLevel',
+                anchor: '100%'
+            },
+            {
+                xtype: 'combobox',
+                store: store,
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.productiveTalkingTargetLevel'),
+                queryMode: 'local',
+                displayField: 'text',
+                valueField: 'id',
+                name: 'productiveTalkingTargetLevel',
+                anchor: '100%'
+            },
+            
+            {
+                xtype: 'combobox',
+                store: store,
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.writingLevel'),
+                queryMode: 'local',
+                displayField: 'text',
+                valueField: 'id',
+                name: 'writingLevel',
+                anchor: '100%'
+            },
+            {
+                xtype: 'combobox',
+                store: store,
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.writingTargetLevel'),
+                queryMode: 'local',
+                displayField: 'text',
+                valueField: 'id',
+                name: 'writingTargetLevel',
                 anchor: '100%'
             },
             {
@@ -64,6 +150,9 @@
                     // };
 
                     model = Ilc.utils.Forms.extractModel(me.query('textfield'));
+
+                    model.studentId = student.get('id');
+                    model.taskEntityId = task.get('id');
                     me.fireEvent('addInterview', me, model);
                 }
             }

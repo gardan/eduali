@@ -108,6 +108,37 @@ namespace Ilc.Web.Services
                 };
         }
 
+        public HttpResult Post(StudentInterviewModel request)
+        {
+            var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
+            var wfActivity = new Training();
+            var proc = new WorkflowProcess(extensionManager, wfActivity);
+            var training = Trainings.GetById(request.TaskEntityId);
+
+            var workflowData = new Dictionary<string, object>();
+
+            if (!request.IsEmpty())
+            {
+                var interview = new StudentInterview().InjectFrom(request) as StudentInterview;
+                interview.TrainingId = request.TaskEntityId;
+                workflowData["Interview"] = interview;
+            }
+
+            proc.Resume(training.WokrflowId.Value, TrainingStatus.Interview, workflowData,
+                        PersistableIdleAction.Unload);
+
+            if (request.IsEmpty())
+            {
+                training.Status = TrainingStatus.Offer;
+                Trainings.Update(training);
+            }
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
+
         public HttpResult Post(TrainingEvaluationModel request)
         {
             var trainingEval = new TrainingEvaluation();
@@ -134,6 +165,33 @@ namespace Ilc.Web.Services
                 {
                     StatusCode = HttpStatusCode.OK
                 };
+        }
+    }
+
+    public class StudentInterviewModel
+    {
+        public string ListeningLevel { get; set; }
+        public string TargetListeningLevel { get; set; }
+
+        public string ReadingLevel { get; set; }
+        public string TargetReadingLevel { get; set; }
+
+        public string InteractiveTalkingLevel { get; set; }
+        public string TargetInteractiveTalkingLevel { get; set; }
+
+        public string ProductiveTalkingLevel { get; set; }
+        public string TargetProductiveTalkingLevel { get; set; }
+
+        public string WritingLevel { get; set; }
+        public string TargetWritingLevel { get; set; }
+        
+        public int StudentId { get; set; }
+
+        public int TaskEntityId { get; set; }
+
+        public bool IsEmpty()
+        {
+            return TaskEntityId == 0;
         }
     }
 

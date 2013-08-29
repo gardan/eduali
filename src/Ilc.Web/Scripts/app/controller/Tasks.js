@@ -107,7 +107,34 @@
     addInterview: function(sender, data) {
         console.log(data);
         console.log('addInterview event.');
-        sender.close();
+        
+        var tasksService = {
+            interview: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/tasks/training/interview',
+                    method: 'POST',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+
+        // tasksService.interview(data)
+        //     .then(function (response) {
+        //         // just reload the tasks
+        //         // | just the one task returned.
+        //     }).done(function () {
+        //         sender.close();
+        //     });
     },
     allInterviewsAdded: function(sender, data) {
         console.log('allInterviewsAdded called.');

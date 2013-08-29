@@ -65,7 +65,14 @@
         'common.creator': 'Creator',
         'common.createAt': 'Created at',
         'common.planning': 'Planning',
-
+        'common.readingLevel': 'Reading level',
+        'common.readingTargetLevel': 'Reading target level',
+        'common.interactiveTalkingLevel': 'Interactive talking level',        'common.interactiveTalkingDesiredLevel': 'Interactive talking target level',
+        'common.productiveTalkingLevel': 'Productive talking level',
+        'common.productiveTalkingTargetLevel': 'Productive talking target level',
+        'common.writingLevel': 'Writing level',
+        'common.writingTargetLevel': 'Writing target level',
+        
         'formats.date': 'MM-DD-YYYY HH:mm',
         'formats.extjsdate': 'm-d-Y g:i'
     }
