@@ -4,8 +4,9 @@
 
     title: Ilc.resources.Manager.getResourceString('common.planInterview'),
 
-    constructor: function () {
+    constructor: function (args) {
         var me = this;
+        var entity = args.entity;
 
         me.items = [
             {
@@ -31,6 +32,7 @@
                         var value = textbox.getRawValue();
                         model[name] = value;
                     }
+                    model.taskEntityId = entity.get('id');
 
                     me.fireEvent('addinterviewplan', me, model);
                 }

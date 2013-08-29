@@ -73,13 +73,13 @@
 
     addinterviewplan: function(sender, data) {
         console.log('addinterviewplan executed.');
-
+        console.log(data);
         var tasksService = {
             planInterview: function(entity) {
                 var deferred = Q.defer();
 
                 Ext.Ajax.request({
-                    url: 'api/tasks/training/planInterview',
+                    url: 'api/tasks/training/interviewPlan',
                     method: 'POST',
                     jsonData: entity,
                     success: function (response) {
