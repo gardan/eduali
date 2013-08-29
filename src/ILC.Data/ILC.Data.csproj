@@ -135,6 +135,10 @@
     <Compile Include="Migrations\201308271704358_TrainingEvaluationSchema.Designer.cs">
       <DependentUpon>201308271704358_TrainingEvaluationSchema.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201308291409450_StudentInterviewProperties.cs" />
+    <Compile Include="Migrations\201308291409450_StudentInterviewProperties.Designer.cs">
+      <DependentUpon>201308291409450_StudentInterviewProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -216,6 +220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201308271704358_TrainingEvaluationSchema.resx">
       <DependentUpon>201308271704358_TrainingEvaluationSchema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308291409450_StudentInterviewProperties.resx">
+      <DependentUpon>201308291409450_StudentInterviewProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
