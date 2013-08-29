@@ -29,10 +29,18 @@
                             return record.get('interviewId') == 0 ? addLbl : viewLbl;
                         },
                         handler: function(grid, rowIndex, colIndex, item, e, record) {
-                            var action = (record.get('interviewId') == 0 ? "Create" : "View");
+                            var action = (record.get('interviewId') == 0 ? 'Create' : 'View');
  
                             var windowClass = 'Ilc.tasks.training.window.' + action + 'StudentInterview';
                             var window = Ext.create(windowClass);
+
+                            if (action === 'Create') {
+                                window.on('addInterview', function (sender, data) {
+                                    me.fireEvent('addInterview', sender, data);
+                                });
+                            }
+                            
+
                             window.show();
                         }
                     }
