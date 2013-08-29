@@ -11,7 +11,6 @@
 
     constructor: function (args) {
         var me = this;
-        debugger;
         var entity = args.entity;
 
         me.items = [

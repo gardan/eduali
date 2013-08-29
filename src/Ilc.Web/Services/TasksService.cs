@@ -81,6 +81,33 @@ namespace Ilc.Web.Services
                 };
         }
 
+        public HttpResult Post(InterviewPlanModel request)
+        {
+            var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
+            var wfActivity = new Training();
+            var proc = new WorkflowProcess(extensionManager, wfActivity);
+            var training = Trainings.GetById(request.TaskEntityId);
+
+            var workflowData = new Dictionary<string, object>();
+            if (!request.IsEmpty())
+            {
+                var interviewPlan = new InterviewPlan().InjectFrom(request) as InterviewPlan;
+                interviewPlan.TrainingId = request.TaskEntityId;
+                workflowData["InterviewPlan"] = interviewPlan;
+            }
+
+            proc.Resume(training.WokrflowId.Value, TrainingStatus.PlanInterview, workflowData,
+                        PersistableIdleAction.Unload);
+
+            training.Status = TrainingStatus.Interview;
+            Trainings.Update(training);
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
+
         public HttpResult Post(TrainingEvaluationModel request)
         {
             var trainingEval = new TrainingEvaluation();
@@ -107,6 +134,18 @@ namespace Ilc.Web.Services
                 {
                     StatusCode = HttpStatusCode.OK
                 };
+        }
+    }
+
+    public class InterviewPlanModel
+    {
+        public DateTimeOffset Date { get; set; }
+        public string Location { get; set; }
+        public int TaskEntityId { get; set; }
+
+        public bool IsEmpty()
+        {
+            return Date == DateTimeOffset.MinValue && string.IsNullOrEmpty(Location) && TaskEntityId == 0;
         }
     }
 

@@ -74,18 +74,28 @@
     addinterviewplan: function(sender, data) {
         console.log('addinterviewplan executed.');
 
-        var interviewPlans = {
-            add: function(dataObj) {
-                return Q.fcall(function() {
-                    return {
-                        id: 1
-                    };
+        var tasksService = {
+            planInterview: function(entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/tasks/training/planInterview',
+                    method: 'POST',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
                 });
+
+                return deferred.promise;
             }
         };
 
 
-        interviewPlans.add(data)
+        tasksService.planInterview(data)
             .then(function(response) {
                 // just reload the tasks
                 // | just the one task returned.
