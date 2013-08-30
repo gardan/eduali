@@ -17,9 +17,7 @@ namespace Ilc.Web.Authentication
             var user = UsersService.GetByUsername(username);
             if (user == null) return false;
 
-            if (CheckPassword(username, password)) return false;
-
-            return false;
+            return CheckPassword(username, password);
         }
 
 
