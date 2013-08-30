@@ -1,4 +1,5 @@
 ﻿using Ilc.Web.Models;
+using Ilc.Web.Models.Student;
 using ServiceStack.ServiceHost;
 
 namespace Ilc.Web.AppStart
@@ -12,6 +13,7 @@ namespace Ilc.Web.AppStart
 
             routes.Add<FilterParametersTrainings>("/api/trainings", "GET");
             routes.Add<CreateTrainingModel>("/api/trainings", "POST");
+            routes.Add<TrainingStudentInterviewModel>("/api/trainings/{id}/students", "GET");
 
             routes.Add<FilterParametersCustomers>("/api/customers", "GET");
             routes.Add<CreateCustomerModel>("/api/customers", "POST");

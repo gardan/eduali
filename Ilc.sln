@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilc.Core", "src\Ilc.Core\Il
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilc.Tests", "tests\Ilc.Tests\Ilc.Tests.csproj", "{8E6879C7-C16C-4B7E-B8CC-7E06DBA785C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilc.Crypto", "Ilc.Membership\Ilc.Crypto.csproj", "{060C54E7-ABB7-4C57-BDFD-3A67D0C982DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{8E6879C7-C16C-4B7E-B8CC-7E06DBA785C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E6879C7-C16C-4B7E-B8CC-7E06DBA785C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E6879C7-C16C-4B7E-B8CC-7E06DBA785C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{060C54E7-ABB7-4C57-BDFD-3A67D0C982DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{060C54E7-ABB7-4C57-BDFD-3A67D0C982DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{060C54E7-ABB7-4C57-BDFD-3A67D0C982DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{060C54E7-ABB7-4C57-BDFD-3A67D0C982DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

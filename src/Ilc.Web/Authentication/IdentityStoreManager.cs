@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Web.Security;
+//using System.Web.Security;
 using Ilc.Core.Contracts;
 using Ilc.Web.Authentication.Contracts;
 using WebMatrix.WebData;
@@ -10,6 +10,7 @@ namespace Ilc.Web.Authentication
     {
         // this is set via DI
         public IUsersService UsersService { get; set; }
+        public IMembershipService Membership { get; set; }
 
         public bool ValidateLocalLogin(string username, string password)
         {
@@ -25,6 +26,11 @@ namespace Ilc.Web.Authentication
         private bool CheckPassword(string username, string password)
         {
             return Membership.ValidateUser(username, password);
+        }
+
+        public void CreateLocalLogin(string username, string password)
+        {
+            Membership.CreateAccount(username, password);
         }
     }
 }

@@ -3841,6 +3841,7 @@
     <Compile Include="Models\LightOfferModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\StudentModel.cs" />
+    <Compile Include="Models\Student\TrainingStudentInterviewModel.cs" />
     <Compile Include="Models\SubjectModel.cs" />
     <Compile Include="Models\TrainerModel.cs" />
     <Compile Include="Models\TrainingEvaluationPdfModel.cs" />

@@ -147,6 +147,10 @@
     <Compile Include="UserProfileRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Ilc.Membership\Ilc.Crypto.csproj">
+      <Project>{060c54e7-abb7-4c57-bdfd-3a67d0c982de}</Project>
+      <Name>Ilc.Crypto</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ilc.Data.Contracts\Ilc.Data.Contracts.csproj">
       <Project>{3fa100bf-8cd4-4ca0-be9d-9ef503ca7214}</Project>
       <Name>Ilc.Data.Contracts</Name>

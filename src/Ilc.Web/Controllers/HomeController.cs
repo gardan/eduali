@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Ilc.Web.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public ViewResult Index()
