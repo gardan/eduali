@@ -29,7 +29,7 @@ namespace Ilc.Web.Authentication
         private ClaimsPrincipal CreateApplicationPrincipal(string username)
         {
             var claims = new List<Claim>() { new Claim(ClaimTypes.Name, username) };
-            return new ClaimsPrincipal(new ClaimsIdentity(claims));
+            return new ClaimsPrincipal(new ClaimsIdentity(claims, "SAM"));
         }
 
         private void EstablishSession(ClaimsPrincipal principal)
