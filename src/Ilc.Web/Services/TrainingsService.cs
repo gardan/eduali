@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
+using Ilc.Data.Models;
 using Ilc.Infrastructure;
 using Ilc.Infrastructure.Workflows;
 using Ilc.Web.InjectorConventions;
@@ -24,6 +25,7 @@ namespace Ilc.Web.Services
         public ITrainingsService Trainings { get; set; }
         public IUow Uow { get; set; }
         public IOffersService Offers { get; set; }
+        public IUsersService Users { get; set; }
 
         public FilteredDataModel<TrainingModel> Get(FilterParametersTrainings request)
         {
@@ -46,8 +48,8 @@ namespace Ilc.Web.Services
                     DesiredEndDate = request.DesiredEndDate,
                     Status = "Rfi",
                     TrainerId = request.TrainerId,
-                    CustomerId = request.CustomerId
-                    // Owners = new UserProfile[] { AuthManager.GetCurrentUser() }
+                    CustomerId = request.CustomerId,
+                    Owners = new [] { Users.GetByUsername() }
                 };
 
             var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
@@ -58,7 +60,9 @@ namespace Ilc.Web.Services
             newTraining.WokrflowId = (Guid?)results["InstanceId"];
             Trainings.Create(newTraining);
 
-            return new HttpResult(newTraining)
+            var retTraining = new TrainingModel();
+
+            return new HttpResult(retTraining)
                 {
                     StatusCode = HttpStatusCode.Created,
                     Location = Request.AbsoluteUri.CombineWith(newTraining.Id)
