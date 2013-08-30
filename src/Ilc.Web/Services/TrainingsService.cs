@@ -26,6 +26,7 @@ namespace Ilc.Web.Services
         public IUow Uow { get; set; }
         public IOffersService Offers { get; set; }
         public IUsersService Users { get; set; }
+        public IStudentsService Students { get; set; }
 
         public FilteredDataModel<TrainingModel> Get(FilterParametersTrainings request)
         {
@@ -41,12 +42,21 @@ namespace Ilc.Web.Services
 
         public HttpResult Post(CreateTrainingModel request)
         {
+            var students = new List<Student>();
+
+            foreach (var studentModel in request.Students)
+            {
+                var student = Students.GetByStudentId(studentModel.Id);
+                students.Add(student);
+            }
+
             var newTraining = new Training
                 {
                     SubjectId = request.SubjectId,
                     DesiredStartDate = request.DesiredStartDate,
                     DesiredEndDate = request.DesiredEndDate,
                     Status = "Rfi",
+                    Students = students,
                     TrainerId = request.TrainerId,
                     CustomerId = request.CustomerId,
                     Owners = new [] { Users.GetByUsername() }
