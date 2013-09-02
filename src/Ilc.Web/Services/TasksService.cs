@@ -191,7 +191,7 @@ namespace Ilc.Web.Services
 
         public bool IsEmpty()
         {
-            return TaskEntityId == 0;
+            return StudentId == 0;
         }
     }
 

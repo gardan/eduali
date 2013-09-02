@@ -33,7 +33,6 @@
                             var action = (record.get('interviewId') == 0 ? 'Create' : 'View');
  
                             var windowClass = 'Ilc.tasks.training.window.' + action + 'StudentInterview';
-                            debugger;
                             var window = Ext.create(windowClass, {
                                 student: record,
                                 task: entity

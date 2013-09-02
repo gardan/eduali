@@ -23,7 +23,9 @@
             text: Ilc.resources.Manager.getResourceString('common.done'),
             disabled: true,
             handler: function () {
-                me.fireEvent('allInterviewsAdded', me, {});
+                me.fireEvent('allInterviewsAdded', me, {
+                    taskEntityId: entity.get('id')
+                });
             }
         });
 

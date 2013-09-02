@@ -15,7 +15,8 @@
                 addinterviewplan: me.addinterviewplan
             },
             'interviewwindow': {
-                addInterview: me.addInterview
+                addInterview: me.addInterview,
+                allInterviewsAdded: me.addInterview
             },
             'acceptedwindow': {
                 addTrainingSchedule: me.addTrainingSchedule
@@ -58,7 +59,6 @@
 
         taskService.rfi(data)
         .then(function (response) {
-            debugger;
             sender.close();
         });
 
@@ -128,13 +128,13 @@
             }
         };
 
-        // tasksService.interview(data)
-        //     .then(function (response) {
-        //         // just reload the tasks
-        //         // | just the one task returned.
-        //     }).done(function () {
-        //         sender.close();
-        //     });
+        tasksService.interview(data)
+            .then(function (response) {
+                // just reload the tasks
+                // | just the one task returned.
+            }).done(function () {
+                sender.close();
+            });
     },
     allInterviewsAdded: function(sender, data) {
         console.log('allInterviewsAdded called.');
