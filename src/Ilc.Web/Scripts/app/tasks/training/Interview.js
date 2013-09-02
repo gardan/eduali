@@ -10,24 +10,9 @@
 
         var entity = args.entity;
 
-        var studentsStore = Ext.create('Ext.data.Store', {
-            fields: ['name', 'interviewId'],
-            data: {
-                data: [
-                    { id: 1, name: 'Ion Ionel', interviewId: 1 },
-                    { id: 2, name: 'Parvan Vasile', interviewId: 2 },
-                    { id: 3, name: 'The Pro', interviewId: 0 }
-                ]
-            },
-            proxy: {
-                type: 'memory',
-                reader: {
-                    type: 'json',
-                    root: 'data'
-                }
-            }
+        var studentsStore = Ext.create('Ilc.tasks.training.store.Students', {
+            trainingId: entity.get('id')
         });
-
 
         var studentsGrid = Ext.create('Ilc.tasks.training.grid.Students', {
             store: studentsStore,

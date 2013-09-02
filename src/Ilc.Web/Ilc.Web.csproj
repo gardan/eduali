@@ -201,6 +201,7 @@
     <Content Include="Scripts\app\tasks\training\PlanInterview.js" />
     <Content Include="Scripts\app\tasks\training\Rfi.js" />
     <Content Include="Scripts\app\tasks\training\Rfp.js" />
+    <Content Include="Scripts\app\tasks\training\store\Students.js" />
     <Content Include="Scripts\app\tasks\training\TrainingEvaluation.js" />
     <Content Include="Scripts\app\tasks\training\window\CreateStudentEvaluation.js" />
     <Content Include="Scripts\app\tasks\training\window\CreateStudentInterview.js" />
@@ -3860,6 +3861,7 @@
     <Compile Include="Services\GridConfigurationService.cs" />
     <Compile Include="Services\OffersService.cs" />
     <Compile Include="Services\StatisticsService.cs" />
+    <Compile Include="Services\StudentsInterviewService.cs" />
     <Compile Include="Services\StudentsService.cs" />
     <Compile Include="InjectorConventions\StudentToStudentModel.cs" />
     <Compile Include="Services\TasksService.cs" />
