@@ -1,4 +1,4 @@
-﻿Ext.define('Ilc.tasks.trainings.Offer', {
+﻿Ext.define('Ilc.tasks.training.Offer', {
     extend: 'Ext.window.Window',
     
     constructor: function () {
@@ -12,7 +12,18 @@
         // textbox - duration
         
         // combobox - location, predefined cities
-        
+
+        me.items = [
+            {
+                xtype: 'button',
+                text: Ilc.resources.Manager.getResourceString('common.accepted')
+            },
+            {
+                xtype: 'button',
+                text: Ilc.resources.Manager.getResourceString('common.rejected')
+            }
+        ];
+              
         me.callParent(arguments);
     },
     

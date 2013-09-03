@@ -39,6 +39,8 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.RfiModel>("/api/tasks/training/rfi", "POST");
             routes.Add<Services.InterviewPlanModel>("/api/tasks/training/interviewplan", "POST");
             routes.Add<Services.StudentInterviewModel>("/api/tasks/training/interview", "POST");
+            routes.Add<Services.TrainingOfferModel>("/api/tasks/training/offer", "POST");
+            routes.Add<Services.RejectedModel>("/api/tasks/training/rejected", "POST");
             routes.Add<Services.TrainingEvaluationModel>("/api/tasks/training/trainingevaluations", "POST");
 
             routes.Add<Services.FilesFilterParameters>("/api/files", "GET");

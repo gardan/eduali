@@ -139,6 +139,58 @@ namespace Ilc.Web.Services
                 };
         }
 
+        public HttpResult Post(TrainingOfferModel request)
+        {
+            var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
+            var wfActivity = new Training();
+            var proc = new WorkflowProcess(extensionManager, wfActivity);
+            var training = Trainings.GetById(request.TaskEntityId);
+
+            var workflowData = new Dictionary<string, object>();
+
+            workflowData["Complete"] = request.Action == TrainingStatus.Accepted;
+
+            proc.Resume(training.WokrflowId.Value, TrainingStatus.Offer, workflowData,
+                        PersistableIdleAction.Unload);
+
+            training.Status = (bool)workflowData["Complete"] ? TrainingStatus.Accepted : TrainingStatus.Rejected;
+            Trainings.Update(training);
+            
+
+            return new HttpResult()
+            {
+                StatusCode = HttpStatusCode.OK
+            };
+        }
+
+        public HttpResult Post(RejectedModel request)
+        {
+
+            var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
+            var wfActivity = new Training();
+            var proc = new WorkflowProcess(extensionManager, wfActivity);
+            var training = Trainings.GetById(request.TaskEntityId);
+
+            var workflowData = new Dictionary<string, object>();
+
+            proc.Resume(training.WokrflowId.Value, TrainingStatus.Rejected, workflowData,
+                        PersistableIdleAction.Unload);
+
+            training.Status = TrainingStatus.Rejected;
+            Trainings.Update(training);
+
+
+            return new HttpResult()
+            {
+                StatusCode = HttpStatusCode.OK
+            };
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
+
         public HttpResult Post(TrainingEvaluationModel request)
         {
             var trainingEval = new TrainingEvaluation();
@@ -166,6 +218,17 @@ namespace Ilc.Web.Services
                     StatusCode = HttpStatusCode.OK
                 };
         }
+    }
+
+    public class RejectedModel
+    {
+        public int TaskEntityId { get; set; }
+    }
+
+    public class TrainingOfferModel
+    {
+        public string Action { get; set; }
+        public int TaskEntityId { get; set; }
     }
 
     public class StudentInterviewModel

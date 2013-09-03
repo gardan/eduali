@@ -72,7 +72,9 @@
         'common.productiveTalkingTargetLevel': 'Productive talking target level',
         'common.writingLevel': 'Writing level',
         'common.writingTargetLevel': 'Writing target level',
-        
+        'common.accepted': 'Accepted',
+        'common.rejected': 'Rejected',
+
         'formats.date': 'MM-DD-YYYY HH:mm',
         'formats.extjsdate': 'm-d-Y g:i'
     }
