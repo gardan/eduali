@@ -539,7 +539,20 @@
                                     <Transition.To>
                                       <State x:Name="__ReferenceID13" DisplayName="Rejected" sap2010:WorkflowViewState.IdRef="State_6">
                                         <State.Transitions>
-                                          <Transition DisplayName="BookmarkRejected" sap2010:WorkflowViewState.IdRef="Transition_12" To="{x:Reference __ReferenceID5}" />
+                                          <Transition DisplayName="BookmarkRejected" sap2010:WorkflowViewState.IdRef="Transition_12">
+                                            <Transition.Trigger>
+                                              <local:WaitForResponse x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_18">
+                                                <local:WaitForResponse.ArgumentName>
+                                                  <InArgument x:TypeArguments="x:String">
+                                                    <mca:CSharpValue x:TypeArguments="x:String">TrainingStatus.Rejected</mca:CSharpValue>
+                                                  </InArgument>
+                                                </local:WaitForResponse.ArgumentName>
+                                              </local:WaitForResponse>
+                                            </Transition.Trigger>
+                                            <Transition.To>
+                                              <x:Reference>__ReferenceID5</x:Reference>
+                                            </Transition.To>
+                                          </Transition>
                                         </State.Transitions>
                                       </State>
                                     </Transition.To>
@@ -658,7 +671,7 @@
         </Variable.Default>
       </Variable>
     </StateMachine.Variables>
-    <sads:DebugSymbol.Symbol>dz5DOlxQcm9qZWN0c1xJTENcc3JjXElsYy5JbmZyYXN0cnVjdHVyZVxXb3JrZmxvd3NcVHJhaW5pbmcueGFtbIABMAOWBRICAQGRBQuRBWsDAaYDMgf7BA8DAdICag/QBBcDAbgCigEXvwQfAwGBAsIBH6gEJwMB5AHlASeUBC8DAcQBnAQnoAQvAwHBAYUCL/cDNwMBuAGXAjfwAz8DAYEB4AI/5wNHAgEKuwNHzwNPAgEHvwNPywNXAgEC9QQP9QSNAQMB1AL5BDn5BEADAdMCNg9kGgMB/AJnD2dZAwH2Au0ED+0EWgMB8ALVBA/qBBoDAdsCbheHASIDAb8CwgQXyAQ1AwG6Ar0ESb0EUAMBggKOAR+8ASoDAZQCvwEfvwFpAwGPArYEH7YEagMBigKtBB+zBDkDAYQCxgEn3wEyAwHuAeIBJ+IBcQMB6gGZBCeZBHIDAeYB6QEvggI6AwHRAfoDL4wEOQMBxgGJAjeUAk8DAboB7gNp7gNwAwGCAZsCP8kCSgMBlAHYAj/YAooBAwGPAc8CP9UCYgMBiQHdAj/dAokBAwGEAeQCR7UDUgIBH7gDR7gDkQECARndA0fdA5IBAgET1ANH2gNqAgEMwQNTyQNmAgEENxFCKQMBmQNDEWMWAwH9AtYEEeEEJwMB4wLiBBHpBCQDAdwCbxl6MQMByQJ7GYYBIgMBwALFBB3FBHQDAbsCjwEhmgE5AwGtApsBIbsBJgMBlQKwBCWwBHsDAYUCxwEp0gFBAwH4AdMBKd4BMgMB7wHqATH1AUkDAdsB9gExgQI6AwHSAf0DNf0DngEDAc0BhAQzigRMAwHHAYwCPYwCkQEDAb4BkQI9kQKpAQMBuwGcAkGnAlkDAa0BqAJByAJGAwGVAdICRdICpgEDAYoB6QJJ9AJhAgFw9QJJ+wJyAgFm/AJJhwNSAgFViANJkwNSAgFElANJtANOAgEg1wNN1wOuAQIBDcQDWcYDIAIBBToXOmcDAaADPxc/fwMBmgNGF0ZzAwH+AkoVVR4DAYwDWBVhHgMBhAPeBBfeBHEDAeoC2QQX2QRmAwHkAuUEF+YEPAMB3QJyH3J5AwHOAncfd5EBAwHKAoMBH4MBmgEDAcUCfh9+fgMBwQKSASeSAX0DAbMClwEnlwGVAQMBrgKeASeeAY0BAwGWAqIBJa0BLgMBogKwASW5AS4DAZsCygEvygGBAQMB/QHPAS/PAZkBAwH5AdsBL9sBigEDAfQB1gEv1gGBAQMB8AHtATftAYwBAwHgAfIBN/IBpAEDAdwB/gE3/gHKAQMB1wH5ATf5AaEBAwHTAYcEOYcEkQEDAcgBnwJHnwKmAQMBswGkAkekAr4BAwGuAasCR6sCvwEDAZYBrwJFugJOAwGiAb0CRcYCTgMBmwHsAk/sAq4BAgF58QJP8QLGAQIBcfgCT/gCxgECAWj1AsAB9QLDAQIBZ4QDT4QDuQECAV7/Ak//AqQBAgFWkANPkAO8AQIBTYsDT4sDsAECAUWXA0+XA8IBAgEhmwNNpANWAgE6pwNNsgNWAgEpUhtShAEDAZMDTRtNcgMBjQNfQV9FAwGLA1sbW20DAYUDqgErqgGkAQMBqAKlASulAYkBAwGjArcBUbcBVQMBoQKzASuzAX0DAZwCtwJLtwLaAQMBqAGyAkuyArQBAwGjAcQCccQCdQMBoQHAAkvAAp0BAwGcAaIDeaIDfQIBQ54DU54DpQECATuvA1OvA+IBAgEyqgNTqgO8AQIBKg==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dz5DOlxQcm9qZWN0c1xJTENcc3JjXElsYy5JbmZyYXN0cnVjdHVyZVxXb3JrZmxvd3NcVHJhaW5pbmcueGFtbIIBMAOjBRICAQGeBQueBWsDAagDMgeIBQ8DAdQCag/dBBcDAboCigEXzAQfAwGDAsIBH7UEJwMB5gHlASeUBC8DAcYBnAQnrQQvAwHBAYUCL/cDNwMBuAGXAjfwAz8DAYEB4AI/5wNHAgEKuwNHzwNPAgEHvwNPywNXAgECggUPggWNAQMB1gKGBTmGBUADAdUCNg9kGgMB/gJnD2dZAwH4AvoED/oEWgMB8gLiBA/3BBoDAd0CbheHASIDAcECzwQX1QQ1AwG8AsoEScoEUAMBhAKOAR+8ASoDAZYCvwEfvwFpAwGRAsMEH8MEagMBjAK6BB/ABDkDAYYCxgEn3wEyAwHwAeIBJ+IBcQMB7AGZBCeZBHIDAegB6QEvggI6AwHTAfoDL4wEOQMByAGgBC+mBEcDAcMBiQI3lAJPAwG6Ae4Dae4DcAMBggGbAj/JAkoDAZQB2AI/2AKKAQMBjwHPAj/VAmIDAYkB3QI/3QKJAQMBhAHkAke1A1ICAR+4A0e4A5EBAgEZ3QNH3QOSAQIBE9QDR9oDagIBDMEDU8kDZgIBBDcRQikDAZsDQxFjFgMB/wLjBBHuBCcDAeUC7wQR9gQkAwHeAm8ZejEDAcsCexmGASIDAcIC0gQd0gR0AwG9Ao8BIZoBOQMBrwKbASG7ASYDAZcCvQQlvQR7AwGHAscBKdIBQQMB+gHTASneATIDAfEB6gEx9QFJAwHdAfYBMYECOgMB1AH9AzX9A54BAwHPAYQEM4oETAMByQGjBDWjBIoBAwHEAYwCPYwCkQEDAb4BkQI9kQKpAQMBuwGcAkGnAlkDAa0BqAJByAJGAwGVAdICRdICpgEDAYoB6QJJ9AJhAgFw9QJJ+wJyAgFm/AJJhwNSAgFViANJkwNSAgFElANJtANOAgEg1wNN1wOuAQIBDcQDWcYDIAIBBToXOmcDAaIDPxc/fwMBnANGF0ZzAwGAA0oVVR4DAY4DWBVhHgMBhgPrBBfrBHEDAewC5gQX5gRmAwHmAvIEF/MEPAMB3wJyH3J5AwHQAncfd5EBAwHMAoMBH4MBmgEDAccCfh9+fgMBwwKSASeSAX0DAbUClwEnlwGVAQMBsAKeASeeAY0BAwGYAqIBJa0BLgMBpAKwASW5AS4DAZ0CygEvygGBAQMB/wHPAS/PAZkBAwH7AdsBL9sBigEDAfYB1gEv1gGBAQMB8gHtATftAYwBAwHiAfIBN/IBpAEDAd4B/gE3/gHKAQMB2QH5ATf5AaEBAwHVAYcEOYcEkQEDAcoBnwJHnwKmAQMBswGkAkekAr4BAwGuAasCR6sCvwEDAZYBrwJFugJOAwGiAb0CRcYCTgMBmwHsAk/sAq4BAgF58QJP8QLGAQIBcfgCT/gCxgECAWj1AsAB9QLDAQIBZ4QDT4QDuQECAV7/Ak//AqQBAgFWkANPkAO8AQIBTYsDT4sDsAECAUWXA0+XA8IBAgEhmwNNpANWAgE6pwNNsgNWAgEpUhtShAEDAZUDTRtNcgMBjwNfQV9FAwGNA1sbW20DAYcDqgErqgGkAQMBqgKlASulAYkBAwGlArcBUbcBVQMBowKzASuzAX0DAZ4CtwJLtwLaAQMBqAGyAkuyArQBAwGjAcQCccQCdQMBoQHAAkvAAp0BAwGcAaIDeaIDfQIBQ54DU54DpQECATuvA1OvA+IBAgEyqgNTqgO8AQIBKg==</sads:DebugSymbol.Symbol>
   </StateMachine>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -823,7 +836,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_10" sap:VirtualizedContainerService.HintSize="351,499">
+      <sap2010:ViewStateData Id="State_10" sap:VirtualizedContainerService.HintSize="190,99">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">295,780.5</av:Point>
@@ -906,6 +919,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WaitForResponse`1_18" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="Transition_12" sap:VirtualizedContainerService.HintSize="430,507">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -924,7 +938,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Transition_14" sap:VirtualizedContainerService.HintSize="430,535">
+      <sap2010:ViewStateData Id="Transition_14" sap:VirtualizedContainerService.HintSize="430,723">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:PointCollection x:Key="ConnectorLocation">313,350 295.7,350 295.7,419.5 385.7,419.5 385.7,449.5</av:PointCollection>
