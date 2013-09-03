@@ -3,18 +3,31 @@
     
     model: 'Sch.model.Resource',
 
-    data: [
-        {
-            Id: 'a',
-            Name: 'Lesson 1'
+    //data: [
+    //    {
+    //        Id: '1',
+    //        Name: 'Lesson 1'
+    //    },
+    //    {
+    //        Id: '2',
+    //        Name: 'Lesson 2'
+    //    },
+    //    {
+    //        Id: '3',
+    //        Name: 'Lesson 3'
+    //    }
+    //]
+    proxy: {
+        type: 'rest',
+        url: 'api/trainings/1/lessons',
+        extraParams: {
+            format: 'json'
         },
-        {
-            Id: 'b',
-            Name: 'Lesson 2'
-        },
-        {
-            Id: 'c',
-            Name: 'Lesson 3'
+        reader: {
+            type: 'json',
+            root: 'data',
+            totalProperty: 'totalRecords'
         }
-    ]
+    },
+    autoLoad: true
 });

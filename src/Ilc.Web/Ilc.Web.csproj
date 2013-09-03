@@ -90,6 +90,7 @@
     <Reference Include="System.Activities" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.identitymodel.services" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -3859,6 +3860,7 @@
     <Compile Include="Models\FilterParametersCustomerStatisticsModel.cs" />
     <Compile Include="Services\FilesService.cs" />
     <Compile Include="Services\GridConfigurationService.cs" />
+    <Compile Include="Services\LessonsService.cs" />
     <Compile Include="Services\OffersService.cs" />
     <Compile Include="Services\StatisticsService.cs" />
     <Compile Include="Services\StudentsInterviewService.cs" />

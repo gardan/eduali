@@ -163,27 +163,10 @@ namespace Ilc.Web.Services
             };
         }
 
-        public HttpResult Post(RejectedModel request)
+        public HttpResult Post(AcceptedModel request)
         {
 
-            var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
-            var wfActivity = new Training();
-            var proc = new WorkflowProcess(extensionManager, wfActivity);
-            var training = Trainings.GetById(request.TaskEntityId);
 
-            var workflowData = new Dictionary<string, object>();
-
-            proc.Resume(training.WokrflowId.Value, TrainingStatus.Rejected, workflowData,
-                        PersistableIdleAction.Unload);
-
-            training.Status = TrainingStatus.Rejected;
-            Trainings.Update(training);
-
-
-            return new HttpResult()
-            {
-                StatusCode = HttpStatusCode.OK
-            };
 
             return new HttpResult()
                 {
@@ -218,6 +201,11 @@ namespace Ilc.Web.Services
                     StatusCode = HttpStatusCode.OK
                 };
         }
+    }
+
+    public class AcceptedModel
+    {
+        public int TaskEntityId { get; set; }
     }
 
     public class RejectedModel
