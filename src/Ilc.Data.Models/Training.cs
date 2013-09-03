@@ -12,7 +12,8 @@ namespace Ilc.Data.Models
 {
     public class Training : EntityBase
     {
-        private ICollection<Student> _students;
+        public bool Complete { get; set; }
+        
         public DateTimeOffset PlannedStartDate { get; set; }
         public DateTimeOffset PlannedEndDate { get; set; }
 
@@ -24,6 +25,7 @@ namespace Ilc.Data.Models
         [ForeignKey("SubjectId")]
         public virtual Subject Subject { get; set; }
 
+        private ICollection<Student> _students;
         public virtual ICollection<Student> Students
         {
             get { return _students ?? (_students = new List<Student>()); }
