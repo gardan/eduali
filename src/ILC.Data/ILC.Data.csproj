@@ -143,6 +143,10 @@
     <Compile Include="Migrations\201309030948415_TrainingCompleteFlag.Designer.cs">
       <DependentUpon>201309030948415_TrainingCompleteFlag.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201309031026373_TrainingAcceptedFlag.cs" />
+    <Compile Include="Migrations\201309031026373_TrainingAcceptedFlag.Designer.cs">
+      <DependentUpon>201309031026373_TrainingAcceptedFlag.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -234,6 +238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201309030948415_TrainingCompleteFlag.resx">
       <DependentUpon>201309030948415_TrainingCompleteFlag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309031026373_TrainingAcceptedFlag.resx">
+      <DependentUpon>201309031026373_TrainingAcceptedFlag.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

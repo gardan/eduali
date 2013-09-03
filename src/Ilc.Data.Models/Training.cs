@@ -13,6 +13,7 @@ namespace Ilc.Data.Models
     public class Training : EntityBase
     {
         public bool Complete { get; set; }
+        public bool Accepted { get; set; }
         
         public DateTimeOffset PlannedStartDate { get; set; }
         public DateTimeOffset PlannedEndDate { get; set; }
