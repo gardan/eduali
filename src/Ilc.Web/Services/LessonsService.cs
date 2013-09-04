@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
+using Ilc.Core.Contracts;
 using Ilc.Web.Models;
 using ServiceStack.Common.Web;
 using ServiceStack.ServiceInterface;
@@ -12,27 +13,59 @@ namespace Ilc.Web.Services
 {
     public class LessonsService : Service
     {
+        public ITrainingsService Trainings { get; set; }
 
         public FilteredDataModel<LessonModel> Get(FilterParametersLessons request)
         {
+            var offer = Trainings.GetById(request.TrainingId).Offers.First();
+
+            var data = new List<LessonModel>();
+            for (var i = 1; i <= offer.NoLessons; i++ )
+            {
+                data.Add(new LessonModel()
+                    {
+                        Id = i,
+                        Name = "Lesson " + i
+                    });
+            }
+
             var res = new FilteredDataModel<LessonModel>()
             {
-                Data = new List<LessonModel>()
-                        {
-                            new LessonModel() {Id = 1, Name = "Lesson 1"},
-                            new LessonModel() {Id = 2, Name = "Lesson 2"},
-                            new LessonModel() {Id = 3, Name = "Lesson 3"}
-                        }
+                Data = data
             };
-
-            // using (var config = JsConfig.BeginScope())
-            // {
-            //     config.EmitCamelCaseNames = false;
-            //     return new HttpResult(res.ToJson());
-            // }
 
             return res;
         }
+
+        public FilteredDataModel<LessonScheduleModel> Get(FilterParametersLessonSchedule request)
+        {
+            return new FilteredDataModel<LessonScheduleModel>()
+                {
+                    Data = new List<LessonScheduleModel>()
+                        {
+                            new LessonScheduleModel()
+                                {
+                                    ResourceId = 1,
+                                    Name = "Lesson 1",
+                                    StartDate = new DateTimeOffset(2010, 4, 24, 6, 0, 0, TimeSpan.Zero),
+                                    EndDate = new DateTimeOffset(2010, 4, 24, 8, 0, 0, TimeSpan.Zero)
+                                }
+                        }
+                };
+        }
+    }
+
+    [DataContract]
+    public class LessonScheduleModel
+    {
+        [DataMember(Name="ResourceId")]
+        public int ResourceId { get; set; }
+        [DataMember(Name = "Name")]
+        public string Name { get; set; }
+        [DataMember(Name = "StartDate")]
+        public DateTimeOffset StartDate { get; set; }
+        [DataMember(Name = "EndDate")]
+        public DateTimeOffset EndDate { get; set; }
     }
 
     [DataContract]
@@ -47,6 +80,11 @@ namespace Ilc.Web.Services
         // property name when serializing.
         [DataMember(Name = "dummy")]
         public string Dummy { get; set; }
+    }
+
+    public class FilterParametersLessonSchedule : FilterParametersBase
+    {
+        public int TrainingId { get; set; }
     }
 
     public class FilterParametersLessons : FilterParametersBase

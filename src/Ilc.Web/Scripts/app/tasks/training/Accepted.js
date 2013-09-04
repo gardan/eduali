@@ -4,10 +4,14 @@
 
     title: Ilc.resources.Manager.getResourceString('common.planLessons'),
 
-    constructor: function () {
+    constructor: function (args) {
         var me = this;
 
-        var resourceStore = Ext.create('Ilc.store.scheduler.Lessons');
+        var trainingEntity = args.entity;
+
+        var resourceStore = Ext.create('Ilc.store.scheduler.Lessons', {
+            trainingId: trainingEntity.get('id')
+        });
 
         // Store holding all the events
         var eventStore = Ext.create('Ilc.store.scheduler.LessonAppointments');
@@ -70,6 +74,7 @@
             'addTrainingSchedule'
         );
 
+        resourceStore.load();
         me.callParent(arguments);
     },
 });

@@ -17,17 +17,32 @@
     //        Name: 'Lesson 3'
     //    }
     //]
-    proxy: {
-        type: 'rest',
-        url: 'api/trainings/1/lessons',
-        extraParams: {
-            format: 'json'
-        },
-        reader: {
-            type: 'json',
-            root: 'data',
-            totalProperty: 'totalRecords'
+    
+    
+    constructor: function (args) {
+        var me = this;
+
+        var trainingId = args.trainingId;
+        var url = 'api/trainings/{trainingId}/lessons';
+        if (trainingId == null) {
+            console.error('No trainingId was provided.');
         }
-    },
-    autoLoad: true
+
+        url = url.replace('{trainingId}', trainingId);
+
+        me.proxy = {
+            type: 'rest',
+            url: url,
+            extraParams: {
+                format: 'json'
+            },
+            reader: {
+                type: 'json',
+                root: 'data',
+                totalProperty: 'totalRecords'
+            }
+        };
+
+        me.callParent(arguments);
+    }    
 });
