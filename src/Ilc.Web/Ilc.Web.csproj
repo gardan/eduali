@@ -344,6 +344,7 @@
     <Content Include="Scripts\bryntum\resources\images\zonebg.png" />
     <Content Include="Scripts\bryntum\sch-all-debug.js" />
     <Content Include="Scripts\bryntum\sch-all.js" />
+    <Content Include="Scripts\extjs\ext-all.js" />
     <Content Include="Scripts\extjs\ext-debug.js" />
     <Content Include="Scripts\extjs\locale\ext-lang-en.js" />
     <Content Include="Scripts\extjs\locale\ext-lang-nl.js" />
