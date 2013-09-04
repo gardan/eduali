@@ -64,7 +64,7 @@
             var window = Ext.create('Ilc.view.trainings.View', {
                 closeAction: 'destroy',
                 modal: true,
-                model: record.data
+                model: record
             });
             window.show();
         });

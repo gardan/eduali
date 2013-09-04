@@ -20,7 +20,7 @@
 
         var studentsStore = Ext.create('Ext.data.Store', {
             fields: ['id', 'name', 'phone'],
-            data: model.students
+            data: model.get('students')
         });
 
         var documentsTreeStore = Ext.create('Ext.data.TreeStore', {
@@ -135,7 +135,7 @@
                 case 'offer':
                     documentsStore.load({
                         params: {
-                            trainingId: model.id,
+                            trainingId: model.get('id'),
                             category: 'offer'
                         }
                     });
@@ -197,17 +197,17 @@
                         items: [
                             {
                                 title: 'Trainer',
-                                html: model.trainer.name,
+                                html: model.get('trainer').name,
                                 anchor: '100%'
                             },
                             {
                                 title: 'Start',
-                                html: moment(model.desiredStartDate).format(Ilc.resources.Manager.getResourceString('formats.date')),
+                                html: moment(model.get('desiredStartDate')).format(Ilc.resources.Manager.getResourceString('formats.date')),
                                 anchor: '100%'
                             },
                             {
                                 title: 'End',
-                                html: moment(model.desiredEndDate).format(Ilc.resources.Manager.getResourceString('formats.date')),
+                                html: moment(model.get('desiredEndDate')).format(Ilc.resources.Manager.getResourceString('formats.date')),
                                 anchor: '100%'
                             },
                             {
@@ -232,7 +232,8 @@
 
                     },
                     {
-                        xtype: 'planningTab'
+                        xtype: 'planningTab',
+                        entity: model
                     },
                     {
                         xtype: 'panel',

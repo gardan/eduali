@@ -6,7 +6,7 @@
 
     constructor: function (args) {
         var me = this;
-
+        
         var trainingEntity = args.entity;
 
         var resourceStore = Ext.create('Ilc.store.scheduler.Lessons', {
@@ -14,7 +14,9 @@
         });
 
         // Store holding all the events
-        var eventStore = Ext.create('Ilc.store.scheduler.LessonAppointments');
+        var eventStore = Ext.create('Ilc.store.scheduler.LessonAppointments', {
+            trainingId: trainingEntity.get('id')
+        });
 
         var startDate = new Date(2010, 4, 22, 6);
 
@@ -22,7 +24,7 @@
             width: 800,
             height: 400,
 
-            startDate: startDate,
+            // startDate: startDate,
             // endDate: Sch.util.Date.add(startDate, Sch.util.Date.DAY, 10),
 
             resourceStore: resourceStore,
@@ -75,6 +77,7 @@
         );
 
         resourceStore.load();
+        // eventStore.load();
         me.callParent(arguments);
     },
 });

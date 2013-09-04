@@ -47,8 +47,8 @@ namespace Ilc.Web.Services
                                 {
                                     ResourceId = 1,
                                     Name = "Lesson 1",
-                                    StartDate = new DateTimeOffset(2010, 4, 24, 6, 0, 0, TimeSpan.Zero),
-                                    EndDate = new DateTimeOffset(2010, 4, 24, 8, 0, 0, TimeSpan.Zero)
+                                    StartDate = new DateTimeOffset(2010, 05, 22, 10, 00, 00, TimeSpan.Zero),
+                                    EndDate = new DateTimeOffset(2010, 05, 22, 12, 00, 00, TimeSpan.Zero)
                                 }
                         }
                 };
