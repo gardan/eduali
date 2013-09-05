@@ -206,6 +206,7 @@ namespace Ilc.Web.Services
     public class AcceptedModel
     {
         public int TaskEntityId { get; set; }
+        public List<LessonModel> Lessons { get; set; }
     }
 
     public class RejectedModel

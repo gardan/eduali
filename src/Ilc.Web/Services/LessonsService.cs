@@ -80,6 +80,8 @@ namespace Ilc.Web.Services
         // property name when serializing.
         [DataMember(Name = "dummy")]
         public string Dummy { get; set; }
+
+        public List<LessonScheduleModel> LessonSchedules { get; set; }
     }
 
     public class FilterParametersLessonSchedule : FilterParametersBase

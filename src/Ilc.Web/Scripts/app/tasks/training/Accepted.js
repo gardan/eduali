@@ -18,8 +18,6 @@
             trainingId: trainingEntity.get('id')
         });
 
-        var startDate = new Date(2010, 4, 22, 6);
-
         var trainingScheduler = Ext.create('Ilc.scheduler.Training', {
             width: 800,
             height: 400,
@@ -31,9 +29,10 @@
             eventStore: eventStore,
             
             onEventCreated: function (newEventRecord) {
+                var resourceModel = resourceStore.getById(newEventRecord.get('ResourceId'));
+                
                 newEventRecord.set({
-                    Name: "Hey, let's meet",
-                    Type: 'Meeting'
+                    Name: resourceModel.get('Name')
                 });
             },
         });
@@ -56,16 +55,41 @@
                 text: Ilc.resources.Manager.getResourceString('common.done'),
                 handler: function () {
                     var model = {
-                        schedule: [
-                            {
-                                name: 'Lesson 1',
-                                startDate: 'startDate',
-                                endDate: 'endDate'
-                            }
+                        lessons: [
+                        //    {
+                        //        id: 1,
+                        //        lessonSchedules: [
+                        //            {
+                        //                startDate: 'startDate',
+                        //                endDate: 'endDate'
+                        //            }
+                        //        ]
+                        //    }
                         ]
                     };
-                    
 
+                    resourceStore.each(function (record) {
+                        //debugger;
+                        var lesson = {};
+                        lesson.id = record.get('Id');
+                        lesson.lessonSchedules = [];
+
+                        var events = eventStore.queryBy(function (eventRecord, id) {
+                            if (eventRecord.get('ResourceId') == record.get('Id')) {
+                                return true;
+                            }
+                        });
+                        //debugger;
+                        Ext.Array.each(events.items, function (event) {
+                            var lessonSchedule = {};
+                            lessonSchedule.startDate = event.get('StartDate');
+                            lessonSchedule.endDate = event.get('EndDate');
+                            
+                            lesson.lessonSchedules.push(lessonSchedule);
+                        });
+
+                        model.lessons.push(lesson);
+                    });
 
                     me.fireEvent('addTrainingSchedule', me, model);
                 }
