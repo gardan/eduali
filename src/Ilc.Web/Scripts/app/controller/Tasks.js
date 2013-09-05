@@ -144,7 +144,34 @@
     addTrainingSchedule: function(sender, data) {
         console.log('addTrainingSchedule called.');
         console.log(data);
-        sender.close();
+        
+        var tasksService = {
+            accepted: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/tasks/training/accepted',
+                    method: 'POST',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+
+        tasksService.accepted(data)
+            .then(function (response) {
+                // just reload the tasks
+                // | just the one task returned.
+            }).done(function () {
+                sender.close();
+            });
     },
 
     addStudentEvaluation: function (sender, data, options) {

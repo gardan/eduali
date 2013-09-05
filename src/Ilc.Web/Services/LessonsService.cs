@@ -47,8 +47,8 @@ namespace Ilc.Web.Services
                                 {
                                     ResourceId = 1,
                                     Name = "Lesson 1",
-                                    StartDate = new DateTimeOffset(2010, 05, 22, 10, 00, 00, TimeSpan.Zero),
-                                    EndDate = new DateTimeOffset(2010, 05, 22, 12, 00, 00, TimeSpan.Zero)
+                                    StartDate = DateTimeOffset.UtcNow,
+                                    EndDate = DateTimeOffset.UtcNow.AddHours(2)
                                 }
                         }
                 };
@@ -81,6 +81,7 @@ namespace Ilc.Web.Services
         [DataMember(Name = "dummy")]
         public string Dummy { get; set; }
 
+        [DataMember(Name = "LessonSchedules")]
         public List<LessonScheduleModel> LessonSchedules { get; set; }
     }
 

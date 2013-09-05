@@ -55,6 +55,7 @@
                 text: Ilc.resources.Manager.getResourceString('common.done'),
                 handler: function () {
                     var model = {
+                        taskEntityId: trainingEntity.get('id'),
                         lessons: [
                         //    {
                         //        id: 1,
@@ -79,7 +80,7 @@
                                 return true;
                             }
                         });
-                        //debugger;
+                        
                         Ext.Array.each(events.items, function (event) {
                             var lessonSchedule = {};
                             lessonSchedule.startDate = event.get('StartDate');
@@ -101,7 +102,7 @@
         );
 
         resourceStore.load();
-        // eventStore.load();
+        eventStore.load();
         me.callParent(arguments);
     },
 });

@@ -165,13 +165,44 @@ namespace Ilc.Web.Services
 
         public HttpResult Post(AcceptedModel request)
         {
+            var training = Trainings.GetById(request.TaskEntityId);
 
+            var schedule = new List<TrainingScheduleDay>();
+
+            foreach (var lessonModel in request.Lessons)
+            {
+                var firstSchedule = lessonModel.LessonSchedules.First();
+                var scheduleDay = new TrainingScheduleDay()
+                    {
+                        Order = lessonModel.Id,
+                        StartDate = firstSchedule.StartDate,
+                        EndDate = firstSchedule.EndDate,
+                        TrainingId = request.TaskEntityId,
+                        LessonName = "Lesson " + lessonModel.Id
+                    };
+                schedule.Add(scheduleDay);
+            }
+
+
+            var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
+            var wfActivity = new Training();
+            var proc = new WorkflowProcess(extensionManager, wfActivity);
+
+            var workflowData = new Dictionary<string, object>();
+
+            workflowData["Schedule"] = schedule;
+
+            proc.Resume(training.WokrflowId.Value, TrainingStatus.Accepted, workflowData,
+                        PersistableIdleAction.Unload);
+
+            training.Status = TrainingStatus.Planned;
+            Trainings.Update(training);
 
 
             return new HttpResult()
-                {
-                    StatusCode = HttpStatusCode.OK
-                };
+            {
+                StatusCode = HttpStatusCode.OK
+            };
         }
 
         public HttpResult Post(TrainingEvaluationModel request)
