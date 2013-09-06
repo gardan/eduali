@@ -15,5 +15,7 @@ namespace Ilc.Web.Models.Student
         public int Id { get; set; }
         public string Name { get; set; }
         public int InterviewId { get; set; }
+
+        public int ProgressEvaluationId { get; set; }
     }
 }

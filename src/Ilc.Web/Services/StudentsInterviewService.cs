@@ -39,4 +39,40 @@ namespace Ilc.Web.Services
         }
 
     }
+
+    public class StudentsProgressEvaluationService : Service
+    {
+        public ITrainingsService Trainings { get; set; }
+
+        public FilteredDataModel<TrainingStudentInterviewModel> Get(FilterParameterProgressEvaluations request)
+        {
+            var data = new List<TrainingStudentInterviewModel>();
+            var training = Trainings.GetById(request.TrainingId);
+            var progressEvaluations = training.ProgressEvaluations.Where( p => p.Order == request.LessonId).ToList();
+
+            var students = training.Students;
+            foreach (var student in students)
+            {
+                var evaluation = progressEvaluations.FirstOrDefault(i => i.StudentId == student.Id);
+
+                data.Add(new TrainingStudentInterviewModel()
+                {
+                    Id = student.Id,
+                    Name = student.Name,
+                    ProgressEvaluationId = evaluation == null ? 0 : evaluation.Id
+                });
+            }
+
+            return new FilteredDataModel<TrainingStudentInterviewModel>()
+            {
+                Data = data
+            };
+        }
+    }
+
+    public class FilterParameterProgressEvaluations : FilterParametersBase
+    {
+        public int TrainingId { get; set; }
+        public int LessonId { get; set; }
+    }
 }

@@ -183,6 +183,7 @@
     <Content Include="Scripts\app\model\Transfer.js" />
     <Content Include="Scripts\app\routing\Router.js" />
     <Content Include="Scripts\app\store\Customers.js" />
+    <Content Include="Scripts\app\store\Lessons.js" />
     <Content Include="Scripts\app\store\Questions.js" />
     <Content Include="Scripts\app\store\scheduler\LessonAppointments.js" />
     <Content Include="Scripts\app\store\scheduler\Lessons.js" />

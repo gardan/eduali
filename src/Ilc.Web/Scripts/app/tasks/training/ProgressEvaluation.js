@@ -7,23 +7,25 @@
     width: 800,
     layout: 'anchor',
     bodyPadding: 0,
-    constructor: function () {
+    constructor: function (args) {
         var me = this;
-        var lessonsStore = Ext.create('Ext.data.Store', {
-            fields: ['id', 'name'],
-            data: [{id: 1, name: 'Lesson 1'}, {id: 2, name: 'Lesson 2'}]
-        });
 
-        var studentsStore = Ext.create('Ext.data.Store', {
-            fields: ['id', 'name', 'evaluationId'],
-            data: [{ id: 1, name: 'Gheorghe Alex', evaluationId: 1 }, { id: 2, name: 'Pascu Vlad', evaluationId: 0 }]
-        });
+        var entity = args.entity;
 
+        var lessonsStore = Ext.create('Ilc.store.Lessons', {
+            trainingId: entity.get('id')
+        });
+        
+
+        var studentsStore = Ext.create('Ilc.tasks.training.store.ProgressEvalStudents', {
+            trainingId: entity.get('id')
+        });     
+        
         // grid with all the lessons
         var lessonsGrid = Ext.create('Ext.grid.Panel', {
             store: lessonsStore,
             columns: [
-                { dataIndex: 'name', text: Ilc.resources.Manager.getResourceString('common.name'), flex: 1 }
+                { dataIndex: 'Name', text: Ilc.resources.Manager.getResourceString('common.name'), flex: 1 }
             ],
             title: Ilc.resources.Manager.getResourceString('common.lessons'),
             margin: 2,
@@ -38,13 +40,13 @@
                 {
                     xtype: 'actioncolumn',
                     getClass: function (v, meta, record) {
-                        return record.get('evaluationId') == 0 ? 'add-col' : 'view-col';
+                        return record.get('progressEvaluationId') == 0 ? 'add-col' : 'view-col';
                     },
                     getTip: function (v, meta, record) {
-                        return record.get('evaluationId') == 0 ? Ilc.resources.Manager.getResourceString('common.add') : Ilc.resources.Manager.getResourceString('common.view');
+                        return record.get('progressEvaluationId') == 0 ? Ilc.resources.Manager.getResourceString('common.add') : Ilc.resources.Manager.getResourceString('common.view');
                     },
                     handler: function (grid, rowIndex, colIndex, item, e, record) {
-                        var windowToCreate = record.get('evaluationId') == 0 ? 'CreateStudentEvaluation' : 'ViewStudentEvaluation';
+                        var windowToCreate = record.get('progressEvaluationId') == 0 ? 'CreateStudentEvaluation' : 'ViewStudentEvaluation';
                         var window = Ext.create('Ilc.tasks.training.window.' + windowToCreate, {
                             closeAction: 'destroy'
                         });
@@ -60,6 +62,26 @@
             title: Ilc.resources.Manager.getResourceString('common.evaluations'),
             margin: 2,
             columnWidth: 0.60
+        });
+
+        lessonsStore.on('load', function (store, records, successfull, eOpts) {
+            // select the first item
+            lessonsGrid.getSelectionModel().select(0);
+            debugger;
+            // load the students
+            studentsStore.load({
+                params: {
+                    lessonId: records[0].get('Id')
+                }
+            });
+        });
+
+        lessonsGrid.on('select', function (row, record) {
+            studentsStore.load({
+                params: {
+                    lessonId: record.get('Id')
+                }
+            });
         });
 
         me.items = [
@@ -94,6 +116,8 @@
             'addEvaluation',
             'allEvaluationsAdded'
         );
+
+        lessonsStore.load();
 
         me.callParent(arguments);
     }
