@@ -205,6 +205,28 @@ namespace Ilc.Web.Services
             };
         }
 
+        public HttpResult Post(PlannedModel request)
+        {
+            var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
+            var wfActivity = new Training();
+            var proc = new WorkflowProcess(extensionManager, wfActivity);
+            var training = Trainings.GetById(request.TaskEntityId);
+
+            var workflowData = new Dictionary<string, object>();
+
+            proc.Resume(training.WokrflowId.Value, TrainingStatus.Planned, workflowData,
+                        PersistableIdleAction.Unload);
+
+            training.Status = TrainingStatus.ProgressEvaluation;
+            Trainings.Update(training);
+
+
+            return new HttpResult()
+            {
+                StatusCode = HttpStatusCode.OK
+            };
+        }
+
         public HttpResult Post(TrainingEvaluationModel request)
         {
             var trainingEval = new TrainingEvaluation();
@@ -232,6 +254,11 @@ namespace Ilc.Web.Services
                     StatusCode = HttpStatusCode.OK
                 };
         }
+    }
+
+    public class PlannedModel
+    {
+        public int TaskEntityId { get; set; }
     }
 
     public class AcceptedModel
