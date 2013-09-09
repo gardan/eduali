@@ -7,11 +7,13 @@
 
     layout: 'anchor',
     title: 'Add student evaluation',
-    constructor: function () {
+    constructor: function (args) {
         var me = this;
 
-
-
+        var trainingEntity = args.trainingEntity;
+        var lessonEntity = args.lessonEntity;
+        var studentEntity = args.student;
+        
         me.items = [
             {
                 xtype: 'textarea',
@@ -26,6 +28,9 @@
                 handler: function () {
                     var model = {};
                     model = Ilc.utils.Forms.extractModel(me.query('textfield'));
+                    model.taskEntityId = trainingEntity.get('id');
+                    model.lessonId = lessonEntity.get('Id');
+                    model.studentId = studentEntity.get('id');
 
                     me.fireEvent('addEvaluation', me, model);
                 }

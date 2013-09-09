@@ -46,11 +46,17 @@
                         return record.get('progressEvaluationId') == 0 ? Ilc.resources.Manager.getResourceString('common.add') : Ilc.resources.Manager.getResourceString('common.view');
                     },
                     handler: function (grid, rowIndex, colIndex, item, e, record) {
+                        var selectedLesson = lessonsGrid.getSelectionModel().getSelection()[0];
+
                         var windowToCreate = record.get('progressEvaluationId') == 0 ? 'CreateStudentEvaluation' : 'ViewStudentEvaluation';
                         var window = Ext.create('Ilc.tasks.training.window.' + windowToCreate, {
-                            closeAction: 'destroy'
+                            closeAction: 'destroy',
+                            trainingEntity: entity,
+                            lessonEntity: selectedLesson,
+                            student: record
                         });
                         window.on('addEvaluation', function (sender, model) {
+                            
                             me.fireEvent('addEvaluation', sender, model, {
                                 studentsStore: studentsStore
                             });
@@ -64,17 +70,14 @@
             columnWidth: 0.60
         });
 
-        lessonsStore.on('load', function (store, records, successfull, eOpts) {
+        var firstLoad = function(store, records, successfull, eOpts) {
             // select the first item
             lessonsGrid.getSelectionModel().select(0);
-            debugger;
-            // load the students
-            studentsStore.load({
-                params: {
-                    lessonId: records[0].get('Id')
-                }
-            });
-        });
+            lessonsStore.un('load', firstLoad);
+
+        };
+
+        lessonsStore.on('load', firstLoad);
 
         lessonsGrid.on('select', function (row, record) {
             studentsStore.load({

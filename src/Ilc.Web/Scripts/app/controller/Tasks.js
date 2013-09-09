@@ -177,7 +177,37 @@
     addStudentEvaluation: function (sender, data, options) {
         console.log('addStudentEvaluation called.');
         console.log(data);
-        sender.close();
+        
+        var tasksService = {
+            progressEvaluation: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/tasks/training/progressevaluation',
+                    method: 'POST',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+
+        tasksService.progressEvaluation(data)
+            .then(function (response) {
+                // reload the students
+                options.studentsStore.reload();
+
+                // just reload the tasks
+                // | just the one task returned.
+            }).done(function () {
+                sender.close();
+            });
     },
 
         // routes functions

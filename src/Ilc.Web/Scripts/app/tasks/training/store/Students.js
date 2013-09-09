@@ -1,7 +1,7 @@
 ﻿Ext.define('Ilc.tasks.training.store.Students', {
     extend: 'Ext.data.Store',
 
-    fields: ['name', 'interviewId'],
+    fields: ['id', 'name', 'interviewId'],
     // data: {
     //     data: [
     //         { id: 1, name: 'Ion Ionel', interviewId: 1 },

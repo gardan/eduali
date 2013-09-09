@@ -25,7 +25,8 @@
             type: 'rest',
             url: url,
             extraParams: {
-                format: 'json'
+                format: 'json',
+                lessonId: 0
             },
             reader: {
                 type: 'json',

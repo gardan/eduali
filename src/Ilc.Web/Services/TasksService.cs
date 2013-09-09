@@ -227,6 +227,41 @@ namespace Ilc.Web.Services
             };
         }
 
+        public HttpResult Post(ProgressEvaluationModel request)
+        {
+            var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
+            var wfActivity = new Training();
+            var proc = new WorkflowProcess(extensionManager, wfActivity);
+            var training = Trainings.GetById(request.TaskEntityId);
+
+            var workflowData = new Dictionary<string, object>();
+
+            if (!request.IsEmpty())
+            {
+                workflowData["ProgressEvaluation"] = new ProgressEvaluation()
+                    {
+                        Order = request.LessonId,
+                        Progress = request.Progress,
+                        StudentId = request.StudentId,
+                        TrainingId = request.TaskEntityId
+                    };
+            }
+
+            proc.Resume(training.WokrflowId.Value, TrainingStatus.ProgressEvaluation, workflowData,
+                        PersistableIdleAction.Unload);
+
+            if (request.IsEmpty())
+            {
+                training.Status = TrainingStatus.ProgressEvaluation;
+                Trainings.Update(training);
+            }
+            
+            return new HttpResult()
+            {
+                StatusCode = HttpStatusCode.OK
+            };
+        }
+
         public HttpResult Post(TrainingEvaluationModel request)
         {
             var trainingEval = new TrainingEvaluation();
@@ -253,6 +288,19 @@ namespace Ilc.Web.Services
                 {
                     StatusCode = HttpStatusCode.OK
                 };
+        }
+    }
+
+    public class ProgressEvaluationModel
+    {
+        public int TaskEntityId { get; set; }
+        public string Progress { get; set; }
+        public int LessonId { get; set; }
+        public int StudentId { get; set; }
+
+        public bool IsEmpty()
+        {
+            return (LessonId == 0 && string.IsNullOrEmpty(Progress));
         }
     }
 
