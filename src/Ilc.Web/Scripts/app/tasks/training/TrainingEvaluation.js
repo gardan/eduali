@@ -1,6 +1,8 @@
 ﻿Ext.define('Ilc.tasks.training.TrainingEvaluation', {
     extend: 'Ext.window.Window',
     
+    xtype: 'trainingevaluationwindow',
+
     layout: 'anchor',
     title: Ilc.resources.Manager.getResourceString('common.trainingEval'),
 

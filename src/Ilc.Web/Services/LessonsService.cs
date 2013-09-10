@@ -17,15 +17,22 @@ namespace Ilc.Web.Services
 
         public FilteredDataModel<LessonModel> Get(FilterParametersLessons request)
         {
-            var offer = Trainings.GetById(request.TrainingId).Offers.First();
+            var training = Trainings.GetById(request.TrainingId);
+            var offer = training.Offers.First();
+            var totalStudents = training.Students.Count();
+
 
             var data = new List<LessonModel>();
             for (var i = 1; i <= offer.NoLessons; i++ )
             {
+                var totalProgressEvaluations = training.ProgressEvaluations.Count(p => p.Order == i);
+                
+
                 data.Add(new LessonModel()
                     {
                         Id = i,
-                        Name = "Lesson " + i
+                        Name = "Lesson " + i,
+                        ProgressEvaluationComplete = totalProgressEvaluations == totalStudents
                     });
             }
 
@@ -83,6 +90,9 @@ namespace Ilc.Web.Services
 
         [DataMember(Name = "LessonSchedules")]
         public List<LessonScheduleModel> LessonSchedules { get; set; }
+
+        [DataMember]
+        public bool ProgressEvaluationComplete { get; set; }
     }
 
     public class FilterParametersLessonSchedule : FilterParametersBase

@@ -70,13 +70,24 @@
             columnWidth: 0.60
         });
 
+        var doneButton = Ext.create('Ext.button.Button', {
+            text: Ilc.resources.Manager.getResourceString('common.done'),
+            disabled: true,
+            handler: function () {
+                var model = {};
+                model.taskEntityId = entity.get('id');
+                me.fireEvent('allEvaluationsAdded', me, model);
+            }
+        });
+
         var firstLoad = function(store, records, successfull, eOpts) {
             // select the first item
             lessonsGrid.getSelectionModel().select(0);
+            
+            
             lessonsStore.un('load', firstLoad);
 
         };
-
         lessonsStore.on('load', firstLoad);
 
         lessonsGrid.on('select', function (row, record) {
@@ -85,6 +96,19 @@
                     lessonId: record.get('Id')
                 }
             });
+        });
+
+        studentsStore.on('load', function (store, records) {
+            // toggle disabled of 'done' button
+            var disabled = false;
+            lessonsStore.each(function (record) {
+                //debugger;
+                var complete = record.get('progressEvaluationComplete');
+                if (complete == false) {
+                    disabled = true;
+                }
+            });
+            doneButton.setDisabled(disabled);
         });
 
         me.items = [
@@ -97,15 +121,7 @@
                     studentsGrid
                 ]   
             },
-            {
-                xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.done'),
-                disabled: true,
-                handler: function() {
-                    var model = {};
-                    me.fireEvent('allInterviewsAdded', me, model);
-                }
-            },
+            doneButton,
             {
                 xtype: 'button',
                 text: Ilc.resources.Manager.getResourceString('common.close'),

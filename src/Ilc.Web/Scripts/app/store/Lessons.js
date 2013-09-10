@@ -1,7 +1,7 @@
 ﻿Ext.define('Ilc.store.Lessons', {
     extend: 'Ext.data.Store',
     
-    fields: ['Id', 'Name'],
+    fields: ['Id', 'Name', 'progressEvaluationComplete'],
 
     constructor: function (args) {
         var me = this;

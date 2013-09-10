@@ -19,7 +19,7 @@
                 xtype: 'textarea',
                 fieldLabel: 'Progress',
                 anchor: '100%',
-                resizable: true,
+                //resizable: true,
                 name: 'progress'
             },
             {

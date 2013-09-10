@@ -22,7 +22,11 @@
                 addTrainingSchedule: me.addTrainingSchedule
             },
             'progressEvaluationWindow': {
-                addEvaluation: me.addStudentEvaluation
+                addEvaluation: me.addStudentEvaluation,
+                allEvaluationsAdded: me.addStudentEvaluation
+            },
+            'trainingevaluationwindow': {
+                addEvaluation: addTrainingEvaluation
             }
         });
 
@@ -201,7 +205,43 @@
         tasksService.progressEvaluation(data)
             .then(function (response) {
                 // reload the students
-                options.studentsStore.reload();
+                if (options && options.studentsStore) {
+                    options.studentsStore.reload();
+                }
+                
+                // just reload the tasks
+                // | just the one task returned.
+            }).done(function () {
+                sender.close();
+            });
+    },
+
+    addTrainingEvaluation: function (sender, data, options) {
+        console.log('addStudentEvaluation called.');
+        console.log(data);
+
+        var tasksService = {
+            trainingEvaluation: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/tasks/training/trainingevaluation',
+                    method: 'POST',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+
+        tasksService.trainingEvaluation(data)
+            .then(function (response) {
 
                 // just reload the tasks
                 // | just the one task returned.

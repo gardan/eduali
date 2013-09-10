@@ -252,7 +252,7 @@ namespace Ilc.Web.Services
 
             if (request.IsEmpty())
             {
-                training.Status = TrainingStatus.ProgressEvaluation;
+                training.Status = TrainingStatus.TrainingEvaluation;
                 Trainings.Update(training);
             }
             
