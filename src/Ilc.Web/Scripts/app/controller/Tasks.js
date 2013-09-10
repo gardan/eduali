@@ -26,7 +26,7 @@
                 allEvaluationsAdded: me.addStudentEvaluation
             },
             'trainingevaluationwindow': {
-                addEvaluation: addTrainingEvaluation
+                addEvaluation: me.addTrainingEvaluation
             }
         });
 
@@ -217,8 +217,10 @@
     },
 
     addTrainingEvaluation: function (sender, data, options) {
-        console.log('addStudentEvaluation called.');
+        console.log('addTrainingEvaluation called.');
         console.log(data);
+
+        return;
 
         var tasksService = {
             trainingEvaluation: function (entity) {
