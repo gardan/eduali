@@ -24,6 +24,24 @@ namespace Ilc.Data.Migrations
                 new Subject() {Name = "Romanian"});
 
             SeedInitialAccount(context);
+            SeedEvaluationQuestions(context);
+        }
+
+        private void SeedEvaluationQuestions(AppContext context)
+        {
+            context.RadioPossibleAnswers.AddOrUpdate(a => a.Text,
+                new RadioPossibleAnswer() { Text = "Answer1" },
+                new RadioPossibleAnswer() { Text = "Answer2" },
+                new RadioPossibleAnswer() { Text = "Answer3" });
+
+            context.SaveChanges();
+
+            context.TrainingEvaluationQuestions.AddOrUpdate(q => q.Text,
+                new TrainingEvaluationQuestion() { Text = "One answer question?", Type = "string" },
+                new TrainingEvaluationQuestion() { Text = "RadioGroup question?", Type = "radiogroup", Answers = context.RadioPossibleAnswers.ToList() },
+                new TrainingEvaluationQuestion() { Text = "Checkbox question?", Type = "checkbox" });
+
+            context.SaveChanges();
         }
 
         protected void SeedInitialAccount(AppContext context)

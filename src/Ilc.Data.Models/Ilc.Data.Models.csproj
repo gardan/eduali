@@ -52,6 +52,7 @@
     <Compile Include="InterviewPlan.cs" />
     <Compile Include="ProgressEvaluation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RadioPossibleAnswer.cs" />
     <Compile Include="RoleClaim.cs" />
     <Compile Include="SimpleMembership\Membership.cs" />
     <Compile Include="SimpleMembership\Role.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Trainer.cs" />
     <Compile Include="Training.cs" />
     <Compile Include="TrainingEvaluation.cs" />
+    <Compile Include="TrainingEvaluationQuestion.cs" />
     <Compile Include="TrainingOffer.cs" />
     <Compile Include="TrainingScheduleDay.cs" />
     <Compile Include="UserProfile.cs" />

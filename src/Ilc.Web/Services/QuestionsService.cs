@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Ilc.Data.Contracts;
 using Ilc.Web.Models;
 using ServiceStack.ServiceInterface;
 
@@ -9,22 +10,41 @@ namespace Ilc.Web.Services
 {
     public class QuestionsService : Service
     {
+        public IUow Uow { get; set; }
 
         public FilteredDataModel<QuestionModel> Get(FilterParametersQuestions request)
         {
+            var questions = Uow.Questions.GetAll().ToList();
+            var data = new List<QuestionModel>();
+            foreach (var question in questions)
+            {
+                var questionModel = new QuestionModel()
+                    {
+                        Id = question.Id,
+                        Text = question.Text,
+                        Type = question.Type
+                    };
+
+                if (question.Type == "radiogroup")
+                {
+                    questionModel.Answers = new List<RadioAnswerModel>();
+                    foreach (var radioPossibleAnswer in question.Answers)
+                    {
+                        questionModel.Answers.Add(new RadioAnswerModel()
+                            {
+                                Text = radioPossibleAnswer.Text,
+                                Id = radioPossibleAnswer.Id
+                            });
+                    }
+                }
+
+
+                data.Add(questionModel);
+            }
+
             return new FilteredDataModel<QuestionModel>()
                 {
-                    Data = new List<QuestionModel>()
-                        {
-                            new QuestionModel() { Id = 1, Text = "Question Nr. 1?", Type = "string" },
-                            new QuestionModel() { Id = 2, Text = "Pick one", Type = "radiogroup", Answers = new List<RadioAnswerModel>()
-                                {
-                                    new RadioAnswerModel() { Id = 1, Text = "Option 1" },
-                                    new RadioAnswerModel() { Id = 2, Text = "Option 2" }
-                                }},
-                            new QuestionModel() { Id = 3, Text = "Do you accept?", Type = "checkbox" }
-                            
-                        }
+                    Data = data
                 };
         }
     }

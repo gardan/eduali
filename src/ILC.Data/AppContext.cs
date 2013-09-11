@@ -43,7 +43,10 @@ namespace Ilc.Data
         public DbSet<Trainer> Trainers { get; set; }
         public DbSet<TrainingOffer> Offers { get; set; }
         public DbSet<InterviewPlan> InterviewPlans { get; set; }
-        public DbSet<TrainingEvaluation> TrainingEvaluations { get; set; } 
+        public DbSet<TrainingEvaluation> TrainingEvaluations { get; set; }
+
+        public DbSet<TrainingEvaluationQuestion> TrainingEvaluationQuestions { get; set; }
+        public DbSet<RadioPossibleAnswer> RadioPossibleAnswers { get; set; }
 
         public DbSet<GridConfig> GridConfigs { get; set; }
 

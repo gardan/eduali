@@ -52,6 +52,13 @@
                         var input = Ext.create('Ext.form.field.Text', {
                             labelAlign: 'top',
                             anchor: '100%',
+                            listeners: {
+                                afterrender: function (cmp) {
+                                    cmp.getEl().set({
+                                        'data-questionid': 0
+                                    });
+                                }
+                            },
                             width: 500,
                             fieldLabel: question.get('text')
                         });
@@ -97,26 +104,24 @@
 
             }
 
-            me.add(items);
-            // me.setWidth(500);
-            // me.doLayout();
-
-        });
-
-        questionsStore.load();
-
-        me.items2 = [
-            {
-                xtype: 'button',
+            items.push(Ext.create('Ext.button.Button', {
                 text: Ilc.resources.Manager.getResourceString('common.done'),
                 handler: function () {
                     var model = {};
                     model.taskEntityId = training.get('id');
 
+                    var textfields = me.query('textfield');
+                    var radiogroups = me.query('radiogroup');
+                    var checkboxes = me.query('checkbox(true)');
+                    debugger;
+
                     me.fireEvent('addEvaluation', me, model);
                 }
-            }
-        ];
+            }));
+            me.add(items);
+        });
+
+        questionsStore.load();
 
         me.addEvents(
             'addEvaluation'
