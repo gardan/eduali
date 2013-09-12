@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="IlcDemo" />
+  <setParameter name="AppConnection-Web.config Connection String" value="Data Source=localhost\sqlexpress;Initial Catalog=Ilc;Integrated Security=SSPI;" />
+</parameters>
