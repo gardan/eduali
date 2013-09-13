@@ -16,7 +16,7 @@
 	</PropertyGroup>
 	
 	<PropertyGroup>
-		<ConnectionString>Data Source=localhost\sqlexpress;Initial Catalog=Ilc;Integrated Security=SSPI;</ConnectionString>
+		<ConnectionString>Data Source=localhost\sqlexpress;Initial Catalog=master;Integrated Security=SSPI;</ConnectionString>
 	</PropertyGroup>
 	
 	<ItemGroup>
@@ -171,7 +171,7 @@
 	<Target Name="ContinousIntegrationDemoDeploy" DependsOnTargets="Package">
 		<PropertyGroup>
 				<Source></Source>
-			</PropertyGroup>
-			<Exec Command="CALL $(BuildArtefacts)\package\Ilc.Web.deploy.cmd /Y" />
-		</Target>
+		</PropertyGroup>
+		<Exec Command="CALL $(BuildArtefacts)\package\Ilc.Web.deploy.cmd /Y" />
+	</Target>
 </Project>
