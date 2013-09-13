@@ -39,25 +39,28 @@
             }
         });
 
-        questionsStore.on('load', function (store, records) {
+        questionsStore.on('load', function(store, records) {
             var items = [];
 
-            
+            var afterRender = function(cmp) {
+                cmp.getEl().set({
+                    'data-questionid': cmp.initialConfig['dataQuestionId']
+                });
+            };
+
 
             for (var i = 0; i < records.length; i++) {
                 var question = records[i];
-
+                var questionId = question.get('id');
+                
                 switch (question.get('type')) {
                     case 'string':
                         var input = Ext.create('Ext.form.field.Text', {
                             labelAlign: 'top',
                             anchor: '100%',
+                            dataQuestionId: questionId,
                             listeners: {
-                                afterrender: function (cmp) {
-                                    cmp.getEl().set({
-                                        'data-questionid': 0
-                                    });
-                                }
+                                afterrender: afterRender
                             },
                             width: 500,
                             fieldLabel: question.get('text')
@@ -81,6 +84,10 @@
                             labelAlign: 'top',
                             anchor: '100%',
                             width: 500,
+                            dataQuestionId: questionId,
+                            listeners: {
+                                afterrender: afterRender
+                            },
                             items: radioItems,
                             fieldLabel: question.get('text'),
                             columns: 3
@@ -93,6 +100,10 @@
                             labelAlign: 'top',
                             anchor: '100%',
                             width: 500,
+                            dataQuestionId: questionId,
+                            listeners: {
+                                afterrender: afterRender
+                            },
                             fieldLabel: question.get('text')
                         });
 
@@ -109,11 +120,37 @@
                 handler: function () {
                     var model = {};
                     model.taskEntityId = training.get('id');
+                    model.stringAnswer = [];
+                    model.radiogroupAnswers = [];
+                    model.checkboxAnswers = [];
 
                     var textfields = me.query('textfield');
                     var radiogroups = me.query('radiogroup');
                     var checkboxes = me.query('checkbox(true)');
-                    debugger;
+
+                    for (var j = 0; j < textfields.length; j++) {
+                        var answer = textfields[j].getRawValue();
+                        model.stringAnswer.push({
+                            text: answer,
+                            questionId: textfields[j].getEl().getAttribute('data-questionId')
+                        });
+                    }
+
+                    for (var k = 0; k < radiogroups.length; k++) {
+                        var checkbox = radiogroups[k].getChecked()[0];
+                        model.radiogroupAnswers.push({
+                            questionId: radiogroups[k].getEl().getAttribute('data-questionId'),
+                            answerId: checkbox.inputValue
+                        });
+                    }
+
+                    for (var l = 0; l < checkboxes.length; l++) {
+
+                        model.checkboxAnswers.push({
+                            questionId: checkboxes[l].getEl().getAttribute('data-questionId'),
+                            checked: checkboxes[l].getValue()
+                        });
+                    }
 
                     me.fireEvent('addEvaluation', me, model);
                 }
