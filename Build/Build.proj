@@ -163,7 +163,7 @@
 		
 	<Target Name="DeleteDatabase">
 		<ItemGroup>
-			<DropDbFile Include="$(ProjectRoot)\sql\BuildCIDrop.sql" /> 
+			<DropDbFile Include="$(ProjectRoot)\sqlScripts\BuildCIDrop.sql" /> 
 		</ItemGroup>
 		<ExecuteDDL ConnectionString="$(ConnectionString)" Files="@(DropDbFile)" ContinueOnError="false" />
 	</Target>	
