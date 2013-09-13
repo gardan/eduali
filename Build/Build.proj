@@ -167,7 +167,21 @@
 		</ItemGroup>
 		<ExecuteDDL ConnectionString="$(ConnectionString)" Files="@(DropDbFile)" ContinueOnError="false" />
 	</Target>	
+	
+	<Target Name="CreateDatabase">
+	<ItemGroup>
+			<CreateDbFile Include="$(ProjectRoot)\sqlScripts\CreateDbFile.sql" />
+			<WFStoreSchema Include="$(ProjectRoot)\sqlScripts\SqlWorkflowInstanceStoreSchema.sql" />
+			<WFStoreLogic Include="$(ProjectRoot)\sqlScripts\SqlWorkflowInstanceStoreLogic.sql" />
+			<WFStoreSchemaUpgrade Include="$(ProjectRoot)\sqlScripts\SqlWorkflowInstanceStoreSchemaUpgrade.sql" />
+		</ItemGroup>
+		<ExecuteDDL ConnectionString="$(ConnectionString)" Files="@(CreateDbFile)" ContinueOnError="false" />
 		
+		<ExecuteDDL ConnectionString="$(ConnectionString)" Files="@(WFStoreSchema)" ContinueOnError="false" />
+		<ExecuteDDL ConnectionString="$(ConnectionString)" Files="@(WFStoreLogic)" ContinueOnError="false" />
+		<ExecuteDDL ConnectionString="$(ConnectionString)" Files="@(WFStoreSchemaUpgrade)" ContinueOnError="false" />
+	</Target>
+	
 	<Target Name="ContinousIntegrationDemoDeploy" DependsOnTargets="Package">
 		<PropertyGroup>
 				<Source></Source>
