@@ -18,8 +18,14 @@
                 addInterview: me.addInterview,
                 allInterviewsAdded: me.addInterview
             },
+            'offerwindow': {
+                addOffer: me.addOffer                
+            },
             'acceptedwindow': {
                 addTrainingSchedule: me.addTrainingSchedule
+            },
+            'plannedwindow': {
+                'planned.execute': me.planned
             },
             'progressEvaluationWindow': {
                 addEvaluation: me.addStudentEvaluation,
@@ -145,6 +151,39 @@
         console.log(data);
     },
 
+    addOffer: function (sender, data) {
+        console.log('addOffer called.');
+        console.log(data);
+
+        var tasksService = {
+            offer: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/tasks/training/offer',
+                    method: 'POST',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+
+        tasksService.offer(data)
+            .then(function (response) {
+                // just reload the tasks
+                // | just the one task returned.
+            }).done(function () {
+                sender.close();
+            });
+    },
+    
     addTrainingSchedule: function(sender, data) {
         console.log('addTrainingSchedule called.');
         console.log(data);
@@ -178,6 +217,39 @@
             });
     },
 
+    planned: function (sender, data) {
+        console.log('planned called.');
+        console.log(data);
+
+        var tasksService = {
+            planned: function(entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/tasks/training/planned',
+                    method: 'POST',
+                    jsonData: entity,
+                    success: function(response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function(error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+        
+        tasksService.planned(data)
+            .then(function (response) {
+                // just reload the tasks
+                // | just the one task returned.
+            }).done(function () {
+                sender.close();
+            });
+    },
+    
     addStudentEvaluation: function (sender, data, options) {
         console.log('addStudentEvaluation called.');
         console.log(data);

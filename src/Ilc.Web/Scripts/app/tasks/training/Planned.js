@@ -1,8 +1,12 @@
 ﻿Ext.define('Ilc.tasks.training.Planned', {
     extend: 'Ext.window.Window',
 
-    constructor: function () {
+    xtype: 'plannedwindow',
+
+    constructor: function (args) {
         var me = this;
+
+        var training = args.entity;
 
         // combobox - customers
 
@@ -16,9 +20,19 @@
         me.items = [
             {
                 xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.execute')
+                text: Ilc.resources.Manager.getResourceString('common.execute'),
+                handler: function () {
+                    var model = {
+                        taskEntityId: training.get('id')
+                    };
+                    me.fireEvent('planned.execute', me, model);
+                }
             }
         ];
+
+        me.addEvents(
+            'planned.execute'
+        );
 
         me.callParent(arguments);
     }
