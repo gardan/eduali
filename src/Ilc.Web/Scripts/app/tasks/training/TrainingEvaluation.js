@@ -120,7 +120,7 @@
                 handler: function () {
                     var model = {};
                     model.taskEntityId = training.get('id');
-                    model.stringAnswer = [];
+                    model.stringAnswers = [];
                     model.radiogroupAnswers = [];
                     model.checkboxAnswers = [];
 
@@ -130,7 +130,7 @@
 
                     for (var j = 0; j < textfields.length; j++) {
                         var answer = textfields[j].getRawValue();
-                        model.stringAnswer.push({
+                        model.stringAnswers.push({
                             text: answer,
                             questionId: textfields[j].getEl().getAttribute('data-questionId')
                         });

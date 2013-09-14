@@ -22,6 +22,7 @@ namespace Ilc.Web.Services
     {
         public IUow Uow { get; set; }
         public ITrainingsService Trainings { get; set; }
+        public IUsersService Users { get; set; }
         public IOffersService Offers { get; set; }
 
         public FilteredDataModel<TaskModel> Get(FilterParametersTasks request)
@@ -265,11 +266,12 @@ namespace Ilc.Web.Services
         public HttpResult Post(TrainingEvaluationModel request)
         {
             var trainingEval = new TrainingEvaluation();
+            var currentUser = Users.GetByUsername();
 
             trainingEval.CreateDate = DateTimeOffset.UtcNow;
-            trainingEval.Creator = Uow.UserProfiles.GetById(1);
-            trainingEval.TrainingId = 11;
-            trainingEval.StudentId = 4;
+            trainingEval.Creator = currentUser;
+            trainingEval.TrainingId = request.TaskEntityId;
+            trainingEval.StudentId = currentUser.Id;
             trainingEval.StringAnswers = new List<StringAnswer>();
 
             foreach (var stringAnswerModel in request.StringAnswers)
@@ -277,7 +279,7 @@ namespace Ilc.Web.Services
                 trainingEval.StringAnswers.Add(new StringAnswer()
                     {
                         Text = stringAnswerModel.Text,
-                        StringQuestionId = stringAnswerModel.QuestionId
+                        TrainingEvaluationQuestionId = stringAnswerModel.QuestionId
                     });
             }
 
@@ -373,6 +375,8 @@ namespace Ilc.Web.Services
         // we can infer them when using the workflow
         public int StudentId { get; set; }
         public int TrainingId { get; set; }
+
+        public int TaskEntityId { get; set; }
     }
 
     public class StringAnswerModel

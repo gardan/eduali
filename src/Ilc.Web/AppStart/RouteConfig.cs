@@ -45,7 +45,7 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.AcceptedModel>("/api/tasks/training/accepted", "POST");
             routes.Add<Services.PlannedModel>("/api/tasks/training/planned", "POST");
             routes.Add<Services.ProgressEvaluationModel>("/api/tasks/training/progressevaluation", "POST");
-            routes.Add<Services.TrainingEvaluationModel>("/api/tasks/training/trainingevaluations", "POST");
+            routes.Add<Services.TrainingEvaluationModel>("/api/tasks/training/trainingevaluation", "POST");
 
             routes.Add<Services.FilesFilterParameters>("/api/files", "GET");
 

@@ -7,9 +7,9 @@ namespace Ilc.Data.Models
     {
         public string Text { get; set; }
 
-        public int StringQuestionId { get; set; }
-        [ForeignKey("StringQuestionId")]
-        public virtual StringQuestion StringQuestion { get; set; }
+        public int TrainingEvaluationQuestionId { get; set; }
+        [ForeignKey("TrainingEvaluationQuestionId")]
+        public virtual TrainingEvaluationQuestion Question { get; set; }
 
         public int TrainingEvaluationId { get; set; }
         [ForeignKey("TrainingEvaluationId")]

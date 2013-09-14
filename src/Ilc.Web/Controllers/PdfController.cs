@@ -35,7 +35,7 @@ namespace Ilc.Web.Controllers
                 eval.StringQuestions.Add(new StringQuestion()
                     {
                         Answer = stringAnswer.Text,
-                        Text = stringAnswer.StringQuestion.Text
+                        Text = stringAnswer.Question.Text
                     });
             }
 

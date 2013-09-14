@@ -292,8 +292,6 @@
         console.log('addTrainingEvaluation called.');
         console.log(data);
 
-        return;
-
         var tasksService = {
             trainingEvaluation: function (entity) {
                 var deferred = Q.defer();
