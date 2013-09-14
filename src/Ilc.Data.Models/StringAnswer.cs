@@ -8,14 +8,14 @@ namespace Ilc.Data.Models
         public string Text { get; set; }
     }
 
-    public class RadioGroupAnswer : EntityBase
+    public class RadioGroupAnswer : AnswerBase
     {
         public int AnswerId { get; set; }
         [ForeignKey("AnswerId")]
         public RadioPossibleAnswer Answer { get; set; }
     }
 
-    public class CheckboxAnswer : EntityBase
+    public class CheckboxAnswer : AnswerBase
     {
         public bool Checked { get; set; }
     }

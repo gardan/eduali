@@ -273,6 +273,8 @@ namespace Ilc.Web.Services
             trainingEval.TrainingId = request.TaskEntityId;
             trainingEval.StudentId = currentUser.Id;
             trainingEval.StringAnswers = new List<StringAnswer>();
+            trainingEval.RadioGroupAnswers = new List<RadioGroupAnswer>();
+            trainingEval.CheckboxAnswers = new List<CheckboxAnswer>();
 
             foreach (var stringAnswerModel in request.StringAnswers)
             {
@@ -280,6 +282,24 @@ namespace Ilc.Web.Services
                     {
                         Text = stringAnswerModel.Text,
                         TrainingEvaluationQuestionId = stringAnswerModel.QuestionId
+                    });
+            }
+
+            foreach (var answer in request.RadioGroupAnswers)
+            {
+                trainingEval.RadioGroupAnswers.Add(new RadioGroupAnswer()
+                    {
+                        AnswerId = answer.AnswerId,
+                        TrainingEvaluationQuestionId = answer.QuestionId
+                    });
+            }
+
+            foreach (var answer in request.CheckboxAnswers)
+            {
+                trainingEval.CheckboxAnswers.Add(new CheckboxAnswer()
+                    {
+                        Checked = answer.Checked,
+                        TrainingEvaluationQuestionId = answer.QuestionId
                     });
             }
 
@@ -370,6 +390,8 @@ namespace Ilc.Web.Services
     public class TrainingEvaluationModel
     {
         public List<StringAnswerModel> StringAnswers { get; set; }
+        public List<RadioGroupAnswerModel> RadioGroupAnswers { get; set; }
+        public List<CheckboxAnswerModel> CheckboxAnswers { get; set; }
 
         // These properties should not really be here, 
         // we can infer them when using the workflow
@@ -377,6 +399,18 @@ namespace Ilc.Web.Services
         public int TrainingId { get; set; }
 
         public int TaskEntityId { get; set; }
+    }
+
+    public class RadioGroupAnswerModel
+    {
+        public int QuestionId { get; set; }
+        public int AnswerId { get; set; }
+    }
+
+    public class CheckboxAnswerModel
+    {
+        public int QuestionId { get; set; }
+        public bool Checked { get; set; }
     }
 
     public class StringAnswerModel

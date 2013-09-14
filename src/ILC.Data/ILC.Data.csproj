@@ -159,6 +159,10 @@
     <Compile Include="Migrations\201309141847146_AddedAnswersToTrainingEvaluation.Designer.cs">
       <DependentUpon>201309141847146_AddedAnswersToTrainingEvaluation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201309141918496_AnswersBugProperInheritance.cs" />
+    <Compile Include="Migrations\201309141918496_AnswersBugProperInheritance.Designer.cs">
+      <DependentUpon>201309141918496_AnswersBugProperInheritance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -262,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201309141847146_AddedAnswersToTrainingEvaluation.resx">
       <DependentUpon>201309141847146_AddedAnswersToTrainingEvaluation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309141918496_AnswersBugProperInheritance.resx">
+      <DependentUpon>201309141918496_AnswersBugProperInheritance.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
