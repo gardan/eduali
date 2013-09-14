@@ -7,6 +7,9 @@ namespace Ilc.Data.Models
     public class TrainingEvaluation : StampedEntity
     {
         public virtual List<StringAnswer> StringAnswers { get; set; }
+        public virtual List<RadioGroupAnswer> RadioGroupAnswers { get; set; }
+        public virtual List<CheckboxAnswer> CheckboxAnswers { get; set; } 
+
 
         public int TrainingId { get; set; }
         [ForeignKey("TrainingId")]

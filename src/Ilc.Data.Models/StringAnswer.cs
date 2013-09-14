@@ -3,16 +3,20 @@ using Ilc.Data.Models.Base;
 
 namespace Ilc.Data.Models
 {
-    public class StringAnswer : EntityBase
+    public class StringAnswer : AnswerBase
     {
         public string Text { get; set; }
+    }
 
-        public int TrainingEvaluationQuestionId { get; set; }
-        [ForeignKey("TrainingEvaluationQuestionId")]
-        public virtual TrainingEvaluationQuestion Question { get; set; }
+    public class RadioGroupAnswer : EntityBase
+    {
+        public int AnswerId { get; set; }
+        [ForeignKey("AnswerId")]
+        public RadioPossibleAnswer Answer { get; set; }
+    }
 
-        public int TrainingEvaluationId { get; set; }
-        [ForeignKey("TrainingEvaluationId")]
-        public TrainingEvaluation TrainingEvaluation { get; set; }
+    public class CheckboxAnswer : EntityBase
+    {
+        public bool Checked { get; set; }
     }
 }

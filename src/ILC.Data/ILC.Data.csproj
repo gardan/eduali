@@ -155,6 +155,10 @@
     <Compile Include="Migrations\201309141222412_AnswersAreAllConnectedToASingleQuestion.Designer.cs">
       <DependentUpon>201309141222412_AnswersAreAllConnectedToASingleQuestion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201309141847146_AddedAnswersToTrainingEvaluation.cs" />
+    <Compile Include="Migrations\201309141847146_AddedAnswersToTrainingEvaluation.Designer.cs">
+      <DependentUpon>201309141847146_AddedAnswersToTrainingEvaluation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -255,6 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201309141222412_AnswersAreAllConnectedToASingleQuestion.resx">
       <DependentUpon>201309141222412_AnswersAreAllConnectedToASingleQuestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309141847146_AddedAnswersToTrainingEvaluation.resx">
+      <DependentUpon>201309141847146_AddedAnswersToTrainingEvaluation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
