@@ -8,11 +8,11 @@ namespace Ilc.Web.Models
 {
     public class TrainingEvaluationPdfModel
     {
-        public IEnumerable<RadioQuestion> RadioQuestions { get; set; }
+        public List<RadioQuestion> RadioQuestions { get; set; }
 
         public List<StringQuestion> StringQuestions { get; set; }
 
-        public IEnumerable<CheckBoxQuestion> CheckBoxQuestions { get; set; }
+        public List<CheckBoxQuestion> CheckBoxQuestions { get; set; }
     }
 
     public class CheckBoxQuestion

@@ -29,6 +29,8 @@ namespace Ilc.Web.Controllers
 
             var trainingEval = Uow.TrainingEvaluations.GetById(id);
             eval.StringQuestions = new List<StringQuestion>();
+            eval.CheckBoxQuestions = new List<CheckBoxQuestion>();
+            eval.RadioQuestions = new List<RadioQuestion>();
 
             foreach (var stringAnswer in trainingEval.StringAnswers)
             {
@@ -40,25 +42,35 @@ namespace Ilc.Web.Controllers
             }
 
 
-            eval.RadioQuestions = new List<RadioQuestion>()
+            foreach (var answer in trainingEval.RadioGroupAnswers)
+            {
+                var answers = new List<RadioQuestionAnswers>();
+
+                foreach (var radioQuestionAnswerse in answer.Question.Answers)
                 {
-                    new RadioQuestion() { DisplayCategory = true, CategoryName = "Training", Text = "Veeeeeeery looooooong fucking questioooooooooooooooooooooooooooooooon??????????????????????????????????", Answers = new List<RadioQuestionAnswers>()
+                    answers.Add(new RadioQuestionAnswers()
                         {
-                            new RadioQuestionAnswers() { Text = "Ion" },
-                            new RadioQuestionAnswers() { Text = "Gheo" },
-                            new RadioQuestionAnswers() { Text = "Vasile", IsSelected = true},
-                            new RadioQuestionAnswers() { Text = "Gheo" },
-                            new RadioQuestionAnswers() { Text = "Gheo" },
-                            new RadioQuestionAnswers() { Text = "Gheo" }
-                        }}
-                };
+                            Text = radioQuestionAnswerse.Text,
+                            IsSelected = radioQuestionAnswerse.Id == answer.AnswerId
+                        });
+                }
 
-            eval.CheckBoxQuestions = new List<CheckBoxQuestion>()
-                {
-                    new CheckBoxQuestion() {Text = "Text me?", Checked = false},
-                    new CheckBoxQuestion() {Text = "Don't text me?", Checked = true}
-                };
+                eval.RadioQuestions.Add(new RadioQuestion()
+                    {
+                        Text = answer.Question.Text,
+                        Answers = answers
+                    });
+            }
 
+            foreach (var answer in trainingEval.CheckboxAnswers)
+            {
+                eval.CheckBoxQuestions.Add(new CheckBoxQuestion()
+                    {
+                        Checked = answer.Checked,
+                        Text = answer.Question.Text
+                    });
+            }
+            
             return new PdfResult(eval, "TrainingEvaluation");
         }
     }
