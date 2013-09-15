@@ -265,6 +265,35 @@ namespace Ilc.Web.Services
 
         public HttpResult Post(TrainingEvaluationModel request)
         {
+            var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
+            var wfActivity = new Training();
+            var proc = new WorkflowProcess(extensionManager, wfActivity);
+            var training = Trainings.GetById(request.TaskEntityId);
+
+            var workflowData = new Dictionary<string, object>();
+
+            workflowData["TrainingEvaluation"] = Extract(request);
+
+            var results = proc.Resume(training.WokrflowId.Value, TrainingStatus.ProgressEvaluation, workflowData,
+                        PersistableIdleAction.Unload);
+
+            if (Convert.ToBoolean(results["Complete"]))
+            {
+                training.Status = TrainingStatus.Ended;
+                training.Complete = true;
+                Trainings.Update(training);
+            }
+
+            return new HttpResult()
+            {
+                StatusCode = HttpStatusCode.OK
+            };
+
+            
+        }
+
+        private TrainingEvaluation Extract(TrainingEvaluationModel request)
+        {
             var trainingEval = new TrainingEvaluation();
             var currentUser = Users.GetByUsername();
 
@@ -279,37 +308,30 @@ namespace Ilc.Web.Services
             foreach (var stringAnswerModel in request.StringAnswers)
             {
                 trainingEval.StringAnswers.Add(new StringAnswer()
-                    {
-                        Text = stringAnswerModel.Text,
-                        TrainingEvaluationQuestionId = stringAnswerModel.QuestionId
-                    });
+                {
+                    Text = stringAnswerModel.Text,
+                    TrainingEvaluationQuestionId = stringAnswerModel.QuestionId
+                });
             }
 
             foreach (var answer in request.RadioGroupAnswers)
             {
                 trainingEval.RadioGroupAnswers.Add(new RadioGroupAnswer()
-                    {
-                        AnswerId = answer.AnswerId,
-                        TrainingEvaluationQuestionId = answer.QuestionId
-                    });
+                {
+                    AnswerId = answer.AnswerId,
+                    TrainingEvaluationQuestionId = answer.QuestionId
+                });
             }
 
             foreach (var answer in request.CheckboxAnswers)
             {
                 trainingEval.CheckboxAnswers.Add(new CheckboxAnswer()
-                    {
-                        Checked = answer.Checked,
-                        TrainingEvaluationQuestionId = answer.QuestionId
-                    });
-            }
-
-            Uow.TrainingEvaluations.Add(trainingEval);
-            Uow.Commit();
-
-            return new HttpResult()
                 {
-                    StatusCode = HttpStatusCode.OK
-                };
+                    Checked = answer.Checked,
+                    TrainingEvaluationQuestionId = answer.QuestionId
+                });
+            }
+            return trainingEval;
         }
     }
 
