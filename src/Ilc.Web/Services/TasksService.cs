@@ -33,6 +33,8 @@ namespace Ilc.Web.Services
 
             foreach (var training in trainings)
             {
+                if (training.Complete) continue;
+                
                 var task = new TaskModel();
                 task.Id = training.Id;
                 task.Action = Char.ToLowerInvariant(training.Status[0]) + training.Status.Substring(1);
@@ -273,8 +275,9 @@ namespace Ilc.Web.Services
             var workflowData = new Dictionary<string, object>();
 
             workflowData["TrainingEvaluation"] = Extract(request);
+            workflowData["TrainingId"] = training.Id;
 
-            var results = proc.Resume(training.WokrflowId.Value, TrainingStatus.ProgressEvaluation, workflowData,
+            var results = proc.Resume(training.WokrflowId.Value, TrainingStatus.TrainingEvaluation, workflowData,
                         PersistableIdleAction.Unload);
 
             if (Convert.ToBoolean(results["Complete"]))

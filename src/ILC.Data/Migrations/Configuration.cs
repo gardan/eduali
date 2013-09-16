@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Infrastructure;
 using Ilc.Data;
@@ -19,12 +20,63 @@ namespace Ilc.Data.Migrations
 
         protected override void Seed(AppContext context)
         {
-            context.Subjects.AddOrUpdate(s => s.Name, 
-                new Subject() {Name = "English"},
-                new Subject() {Name = "Romanian"});
+            context.Subjects.AddOrUpdate(s => s.Name,
+                new Subject() { Name = "English" },
+                new Subject() { Name = "Romanian" });
 
             SeedInitialAccount(context);
             SeedEvaluationQuestions(context);
+            SeedCustomer(context);
+            SeenStudents(context);
+            SeedTrainer(context);
+        }
+
+        private void SeedTrainer(AppContext context)
+        {
+            context.Trainers.AddOrUpdate(t => t.Name,
+                new Trainer()
+                    {
+                        Address = "Str. Orsova, Nr. 26",
+                        Name = "Alecsandru Tache",
+                        Phone = "alecs@mail.com"
+                    });
+        }
+
+        private void SeenStudents(AppContext context)
+        {
+            var customerId = context.Customers.FirstOrDefault().Id;
+            context.Students.AddOrUpdate(s => s.Name,
+                new Student()
+                    {
+                        Name = "Ionel Popescu",
+                        CustomerId = customerId,
+                    },
+                new Student()
+                    {
+                        Name = "Ghita Alexandru",
+                        CustomerId = customerId
+                    });
+        }
+
+        private void SeedCustomer(AppContext context)
+        {
+            context.Customers.AddOrUpdate(c => c.Name,
+                new Customer()
+                    {
+                        BankAccount = "IBAN0912749126972",
+                        Name = "Ilc",
+                        BillingAddress = "Str. Whatever",
+                        ContactPersons = new List<ContactPerson>()
+                            {
+                                new ContactPerson()
+                                    {
+                                        Email = "ilc@ilc.com",
+                                        IsMain = true,
+                                        Name = "George Adams"
+                                    }
+                            }
+                    });
+            context.SaveChanges();
         }
 
         private void SeedEvaluationQuestions(AppContext context)
@@ -72,7 +124,7 @@ namespace Ilc.Data.Migrations
             }
 
             // create the user profile
-            var firstUser = new UserProfile() {Username = "admin"};
+            var firstUser = new UserProfile() { Username = "admin" };
             context.UserProfiles.Add(firstUser);
             context.SaveChanges();
 
@@ -89,9 +141,9 @@ namespace Ilc.Data.Migrations
                     PasswordSalt = salt
                 };
             context.Membership.Add(firstMembership);
-            
 
-            
+
+
         }
     }
 }

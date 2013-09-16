@@ -17,7 +17,8 @@ namespace Ilc.Infrastructure.Workflows.Activities.Training
         protected override void Execute(CodeActivityContext context)
         {
             var trainings = context.GetExtension<ITrainingsService>();
-            var training = trainings.GetById(TrainingId.Get<int>(context));
+            var trainingId = TrainingId.Get<int>(context);
+            var training = trainings.GetById(trainingId);
             var totalTrainingStudents = training.Students.Count();
             var totalTrainingEvaluations = training.TrainingEvaluations.Count();
             TrainingEvaluationStatistics.Set(context, new Dictionary<string, object>()

@@ -370,12 +370,17 @@
                                                                             </OutArgument>
                                                                           </local:WaitForResponse.Result>
                                                                         </local:WaitForResponse>
-                                                                        <local1:GetTrainingEvaluationStatistics sap2010:WorkflowViewState.IdRef="GetTrainingEvaluationStatistics_1" TrainingId="1">
+                                                                        <local1:GetTrainingEvaluationStatistics sap2010:WorkflowViewState.IdRef="GetTrainingEvaluationStatistics_1">
                                                                           <local1:GetTrainingEvaluationStatistics.TrainingEvaluationStatistics>
                                                                             <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">
                                                                               <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:String, x:Object)">varEvaluationStatistics</mca:CSharpReference>
                                                                             </OutArgument>
                                                                           </local1:GetTrainingEvaluationStatistics.TrainingEvaluationStatistics>
+                                                                          <local1:GetTrainingEvaluationStatistics.TrainingId>
+                                                                            <InArgument x:TypeArguments="x:Int32">
+                                                                              <mca:CSharpValue x:TypeArguments="x:Int32">Convert.ToInt32(varInTrainingEvaluation["TrainingId"])</mca:CSharpValue>
+                                                                            </InArgument>
+                                                                          </local1:GetTrainingEvaluationStatistics.TrainingId>
                                                                         </local1:GetTrainingEvaluationStatistics>
                                                                         <Assign sap2010:WorkflowViewState.IdRef="Assign_12">
                                                                           <Assign.To>
@@ -693,7 +698,7 @@
         </Variable.Default>
       </Variable>
     </StateMachine.Variables>
-    <sads:DebugSymbol.Symbol>dz5DOlxQcm9qZWN0c1xJTENcc3JjXElsYy5JbmZyYXN0cnVjdHVyZVxXb3JrZmxvd3NcVHJhaW5pbmcueGFtbIcBMAO5BRICAQG0BQu0BWsDAbcDMgeeBQ8DAeMCag/zBBcDAckCigEX4gQfAwGSAsIBH8sEJwMB9QHlASeqBC8DAdUBsgQnwwQvAwHQAYUCL40ENwMBxwGXAjeGBD8DAZAB4AI//QNHAgEKuANHzANPAgEHvANPyANXAgECmAUPmAWNAQMB5QKcBTmcBUADAeQCNg9kGgMBjQNnD2dZAwGHA5AFD5AFWgMBgQP4BA+NBRoDAewCbheHASIDAdAC5QQX6wQ1AwHLAuAESeAEUAMBkwKOAR+8ASoDAaUCvwEfvwFpAwGgAtkEH9kEagMBmwLQBB/WBDkDAZUCxgEn3wEyAwH/AeIBJ+IBcQMB+wGvBCevBHIDAfcB6QEvggI6AwHiAZAEL6IEOQMB1wG2BC+8BEcDAdIBiQI3lAJPAwHJAYQEaYQEcAMBkQGbAj/JAkoDAaMB2AI/2AKKAQMBngHPAj/VAmIDAZgB3QI/3QKJAQMBkwHkAke1A1ICAS7aA0faA5EBAgEozwNH1wNaAgEh8wNH8wOSAQIBG98DR/ADUgIBDL4DU8YDZgIBBDcRQikDAaoDQxFjFgMBjgP5BBGEBScDAfQChQURjAUkAwHtAm8ZejEDAdoCexmGASIDAdEC6AQd6AR0AwHMAo8BIZoBOQMBvgKbASG7ASYDAaYC0wQl0wR7AwGWAscBKdIBQQMBiQLTASneATIDAYAC6gEx9QFJAwHsAfYBMYECOgMB4wGTBDWTBJ4BAwHeAZoEM6AETAMB2AG5BDW5BIoBAwHTAYwCPYwCkQEDAc0BkQI9kQKpAQMBygGcAkGnAlkDAbwBqAJByAJGAwGkAdICRdICpgEDAZkB6QJJ9AJhAgF/9QJJ+wJyAgF1/AJJhwNSAgFkiANJkwNSAgFTlANJtANOAgEv0gNN1AMUAgEi4ANJ5gNsAgEU5wNJ7wNcAgENwQNZwwMgAgEFOhc6ZwMBsQM/Fz9/AwGrA0YXRnMDAY8DShVVHgMBnQNYFWEeAwGVA4EFF4EFcQMB+wL8BBf8BGYDAfUCiAUXiQU8AwHuAnIfcnkDAd8Cdx93kQEDAdsCgwEfgwGaAQMB1gJ+H35+AwHSApIBJ5IBfQMBxAKXASeXAZUBAwG/Ap4BJ54BjQEDAacCogElrQEuAwGzArABJbkBLgMBrALKAS/KAYEBAwGOAs8BL88BmQEDAYoC2wEv2wGKAQMBhQLWAS/WAYEBAwGBAu0BN+0BjAEDAfEB8gE38gGkAQMB7QH+ATf+AcoBAwHoAfkBN/kBoQEDAeQBnQQ5nQSRAQMB2QGfAkefAqYBAwHCAaQCR6QCvgEDAb0BqwJHqwK/AQMBpQGvAkW6Ak4DAbEBvQJFxgJOAwGqAewCT+wCrgEDAYgB8QJP8QLGAQMBgAH4Ak/4AsYBAgF39QLAAfUCwwECAXaEA0+EA7kBAgFt/wJP/wKkAQIBZZADT5ADvAECAVyLA0+LA7ABAgFUlwNPlwPCAQIBMJsDTaQDVgIBSacDTbIDVgIBOOMDT+MDsAECARXqA0/sAxQCAQ5SG1KEAQMBpANNG01yAwGeA19BX0UDAZwDWxtbbQMBlgOqASuqAaQBAwG5AqUBK6UBiQEDAbQCtwFRtwFVAwGyArMBK7MBfQMBrQK3Aku3AtoBAwG3AbICS7ICtAEDAbIBxAJxxAJ1AwGwAcACS8ACnQEDAasBogN5ogN9AgFSngNTngOlAQIBSq8DU68D4gECAUGqA1OqA7wBAgE5</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dz5DOlxQcm9qZWN0c1xJTENcc3JjXElsYy5JbmZyYXN0cnVjdHVyZVxXb3JrZmxvd3NcVHJhaW5pbmcueGFtbIcBMAO+BRICAQG5BQu5BWsDAb4DMgejBQ8DAeoCag/4BBcDAdACigEX5wQfAwGZAsIBH9AEJwMB/AHlASevBC8DAdwBtwQnyAQvAwHXAYUCL5IENwMBzgGXAjeLBD8DAZcB4AI/ggRHAgEKvQNH0QNPAgEHwQNPzQNXAgECnQUPnQWNAQMB7AKhBTmhBUADAesCNg9kGgMBlANnD2dZAwGOA5UFD5UFWgMBiAP9BA+SBRoDAfMCbheHASIDAdcC6gQX8AQ1AwHSAuUESeUEUAMBmgKOAR+8ASoDAawCvwEfvwFpAwGnAt4EH94EagMBogLVBB/bBDkDAZwCxgEn3wEyAwGGAuIBJ+IBcQMBggK0BCe0BHIDAf4B6QEvggI6AwHpAZUEL6cEOQMB3gG7BC/BBEcDAdkBiQI3lAJPAwHQAYkEaYkEcAMBmAGbAj/JAkoDAaoB2AI/2AKKAQMBpQHPAj/VAmIDAZ8B3QI/3QKJAQMBmgHkAke6A1ICAS7fA0ffA5EBAgEo1ANH3ANaAgEh+ANH+AOSAQIBG+QDR/UDUgIBDMMDU8sDZgIBBDcRQikDAbEDQxFjFgMBlQP+BBGJBScDAfsCigURkQUkAwH0Am8ZejEDAeECexmGASIDAdgC7QQd7QR0AwHTAo8BIZoBOQMBxQKbASG7ASYDAa0C2AQl2AR7AwGdAscBKdIBQQMBkALTASneATIDAYcC6gEx9QFJAwHzAfYBMYECOgMB6gGYBDWYBJ4BAwHlAZ8EM6UETAMB3wG+BDW+BIoBAwHaAYwCPYwCkQEDAdQBkQI9kQKpAQMB0QGcAkGnAlkDAcMBqAJByAJGAwGrAdICRdICpgEDAaAB6QJJ9AJhAwGGAfUCSYADcgIBdYEDSYwDUgIBZI0DSZgDUgIBU5kDSbkDTgIBL9cDTdkDFAIBIuUDSesDbAIBFOwDSfQDXAIBDcYDWcgDIAIBBToXOmcDAbgDPxc/fwMBsgNGF0ZzAwGWA0oVVR4DAaQDWBVhHgMBnAOGBReGBXEDAYIDgQUXgQVmAwH8Ao0FF44FPAMB9QJyH3J5AwHmAncfd5EBAwHiAoMBH4MBmgEDAd0Cfh9+fgMB2QKSASeSAX0DAcsClwEnlwGVAQMBxgKeASeeAY0BAwGuAqIBJa0BLgMBugKwASW5AS4DAbMCygEvygGBAQMBlQLPAS/PAZkBAwGRAtsBL9sBigEDAYwC1gEv1gGBAQMBiALtATftAYwBAwH4AfIBN/IBpAEDAfQB/gE3/gHKAQMB7wH5ATf5AaEBAwHrAaIEOaIEkQEDAeABnwJHnwKmAQMByQGkAkekAr4BAwHEAasCR6sCvwEDAawBrwJFugJOAwG4Ab0CRcYCTgMBsQHsAk/sAq4BAwGPAfECT/ECxgEDAYcB+AJP+ALGAQIBfv0CT/0CwgECAXaJA0+JA7kBAgFthANPhAOkAQIBZZUDT5UDvAECAVyQA0+QA7ABAgFUnANPnAPCAQIBMKADTakDVgIBSawDTbcDVgIBOOgDT+gDsAECARXvA0/xAxQCAQ5SG1KEAQMBqwNNG01yAwGlA19BX0UDAaMDWxtbbQMBnQOqASuqAaQBAwHAAqUBK6UBiQEDAbsCtwFRtwFVAwG5ArMBK7MBfQMBtAK3Aku3AtoBAwG+AbICS7ICtAEDAbkBxAJxxAJ1AwG3AcACS8ACnQEDAbIBpwN5pwN9AgFSowNTowOlAQIBSrQDU7QD4gECAUGvA1OvA7wBAgE5</sads:DebugSymbol.Symbol>
   </StateMachine>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -837,7 +842,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="NotifyHost_3" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="Transition_10" sap:VirtualizedContainerService.HintSize="573,1404">
+      <sap2010:ViewStateData Id="Transition_10" sap:VirtualizedContainerService.HintSize="573,1502">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:PointCollection x:Key="ConnectorLocation">380.5,780.5 380.5,750.5 380,750.5 380,700.5</av:PointCollection>
