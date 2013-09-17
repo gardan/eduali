@@ -19,5 +19,6 @@ namespace Ilc.Infrastructure.Workflows
         public const string Exam = "Exam";
         public const string TrainingEvaluation = "TrainingEvaluation";
         public const string Ended = "Ended";
+        public const string Complete = "Complete";
     }
 }

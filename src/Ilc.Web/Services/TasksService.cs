@@ -33,7 +33,7 @@ namespace Ilc.Web.Services
 
             foreach (var training in trainings)
             {
-                if (training.Complete) continue;
+                if (training.Status == TrainingStatus.Complete) continue;
                 
                 var task = new TaskModel();
                 task.Id = training.Id;
@@ -295,6 +295,23 @@ namespace Ilc.Web.Services
             
         }
 
+        public HttpResult Post(EndedModel request)
+         {
+            var currentUser = Users.GetByUsername("admin");
+            
+            var assesment = new Assesment().InjectFrom(request) as Assesment;
+            assesment.TrainingId = request.TaskEntityId;
+            assesment.CreateDate = DateTimeOffset.UtcNow;
+            assesment.Creator = currentUser;
+
+            Uow.Assesments.Add(assesment);
+            Uow.Commit();
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+         }
+
         private TrainingEvaluation Extract(TrainingEvaluationModel request)
         {
             var trainingEval = new TrainingEvaluation();
@@ -336,6 +353,30 @@ namespace Ilc.Web.Services
             }
             return trainingEval;
         }
+    }
+
+    public class EndedModel
+    {
+        public string EntryListeningLevel { get; set; }
+        public string ExitListeningLevel { get; set; }
+
+        public string EntryReadingLevel { get; set; }
+        public string ExittReadingLevel { get; set; }
+
+        public string EntryInteractiveTalkingLevel { get; set; }
+        public string ExitInteractiveTalkingLevel { get; set; }
+
+        public string EntryProductiveTalkingLevel { get; set; }
+        public string ExitProductiveTalkingLevel { get; set; }
+
+        public string EntryWritingLevel { get; set; }
+        public string ExitWritingLevel { get; set; }
+
+        public string EntryRemarks { get; set; }
+        public string ExitRemarks { get; set; }
+
+        public int StudentId { get; set; }
+        public int TaskEntityId { get; set; }
     }
 
     public class ProgressEvaluationModel

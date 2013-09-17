@@ -200,6 +200,7 @@
     <Content Include="Scripts\app\store\TrainingSystems.js" />
     <Content Include="Scripts\app\store\Transfers.js" />
     <Content Include="Scripts\app\tasks\training\Accepted.js" />
+    <Content Include="Scripts\app\tasks\training\Ended.js" />
     <Content Include="Scripts\app\tasks\training\Exam.js" />
     <Content Include="Scripts\app\tasks\training\Planned.js" />
     <Content Include="Scripts\app\tasks\training\ProgressEvaluation.js" />

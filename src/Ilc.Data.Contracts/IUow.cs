@@ -30,6 +30,7 @@ namespace Ilc.Data.Contracts
         IRepository<ProgressEvaluation> ProgressEvaluations { get; }
         IRepository<TrainingEvaluation> TrainingEvaluations { get; }
         IRepository<Membership> Memberships { get; }
+        IRepository<Assesment> Assesments { get; }
 
         IRepository<TrainingEvaluationQuestion> Questions { get; } 
     }

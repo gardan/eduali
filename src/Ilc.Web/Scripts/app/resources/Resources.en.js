@@ -75,6 +75,8 @@
         'common.accepted': 'Accepted',
         'common.rejected': 'Rejected',
 
+        'tasks.title.ended': 'Students assesments',
+
         'formats.date': 'MM-DD-YYYY HH:mm',
         'formats.extjsdate': 'm-d-Y g:i'
     }

@@ -47,11 +47,11 @@
   </TextExpression.ReferencesForImplementation>
   <StateMachine sap2010:WorkflowViewState.IdRef="StateMachine_1">
     <StateMachine.InitialState>
-      <State x:Name="__ReferenceID9" DisplayName="PendingRfi" sap2010:WorkflowViewState.IdRef="State_1">
+      <State x:Name="__ReferenceID11" DisplayName="PendingRfi" sap2010:WorkflowViewState.IdRef="State_1">
         <State.Transitions>
           <Transition DisplayName="BookmarkRfi" sap2010:WorkflowViewState.IdRef="Transition_5">
             <Transition.Trigger>
-              <Sequence x:Name="__ReferenceID8" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <Sequence x:Name="__ReferenceID10" sap2010:WorkflowViewState.IdRef="Sequence_2">
                 <local:WaitForResponse x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_10">
                   <local:WaitForResponse.ArgumentName>
                     <InArgument x:TypeArguments="x:String">
@@ -103,7 +103,7 @@
               <mca:CSharpValue x:TypeArguments="x:Boolean">varComplete</mca:CSharpValue>
             </Transition.Condition>
             <Transition.To>
-              <State x:Name="__ReferenceID10" DisplayName="PendingInterviewPlanning" sap2010:WorkflowViewState.IdRef="State_2">
+              <State x:Name="__ReferenceID12" DisplayName="PendingInterviewPlanning" sap2010:WorkflowViewState.IdRef="State_2">
                 <State.Transitions>
                   <Transition DisplayName="BookmarkPlanInterview" sap2010:WorkflowViewState.IdRef="Transition_4">
                     <Transition.Trigger>
@@ -135,11 +135,11 @@
                       </Sequence>
                     </Transition.Trigger>
                     <Transition.To>
-                      <State x:Name="__ReferenceID7" DisplayName="PendingInterview" sap2010:WorkflowViewState.IdRef="State_3">
+                      <State x:Name="__ReferenceID9" DisplayName="PendingInterview" sap2010:WorkflowViewState.IdRef="State_3">
                         <State.Transitions>
                           <Transition DisplayName="BookmarkInterview" sap2010:WorkflowViewState.IdRef="Transition_3">
                             <Transition.Trigger>
-                              <Sequence x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                              <Sequence x:Name="__ReferenceID8" sap2010:WorkflowViewState.IdRef="Sequence_4">
                                 <local:WaitForResponse x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_12">
                                   <local:WaitForResponse.ArgumentName>
                                     <InArgument x:TypeArguments="x:String">
@@ -191,11 +191,11 @@
                               <mca:CSharpValue x:TypeArguments="x:Boolean">varComplete</mca:CSharpValue>
                             </Transition.Condition>
                             <Transition.To>
-                              <State x:Name="__ReferenceID11" DisplayName="PendingOfferApproval" sap2010:WorkflowViewState.IdRef="State_4">
+                              <State x:Name="__ReferenceID13" DisplayName="PendingOfferApproval" sap2010:WorkflowViewState.IdRef="State_4">
                                 <State.Transitions>
                                   <Transition DisplayName="BookmarkOffer" sap2010:WorkflowViewState.IdRef="Transition_1">
                                     <Transition.Trigger>
-                                      <Sequence x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                                      <Sequence x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="Sequence_5">
                                         <local:WaitForResponse x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_13">
                                           <local:WaitForResponse.ArgumentName>
                                             <InArgument x:TypeArguments="x:String">
@@ -226,7 +226,7 @@
                                       <mca:CSharpValue x:TypeArguments="x:Boolean">varComplete</mca:CSharpValue>
                                     </Transition.Condition>
                                     <Transition.To>
-                                      <State x:Name="__ReferenceID12" DisplayName="Accepted" sap2010:WorkflowViewState.IdRef="State_5">
+                                      <State x:Name="__ReferenceID14" DisplayName="Accepted" sap2010:WorkflowViewState.IdRef="State_5">
                                         <State.Transitions>
                                           <Transition sap2010:Annotation.AnnotationText="Persist the schedule&#xA;" DisplayName="BookmarkAccepted" sap2010:WorkflowViewState.IdRef="Transition_6">
                                             <Transition.Trigger>
@@ -258,7 +258,7 @@
                                               </Sequence>
                                             </Transition.Trigger>
                                             <Transition.To>
-                                              <State x:Name="__ReferenceID14" DisplayName="TrainingPlanned" sap2010:WorkflowViewState.IdRef="State_7">
+                                              <State x:Name="__ReferenceID16" DisplayName="TrainingPlanned" sap2010:WorkflowViewState.IdRef="State_7">
                                                 <State.Transitions>
                                                   <Transition DisplayName="BookmarkPlanned" sap2010:WorkflowViewState.IdRef="Transition_8">
                                                     <Transition.Trigger>
@@ -349,11 +349,11 @@
                                                               <mca:CSharpValue x:TypeArguments="x:Boolean">varComplete</mca:CSharpValue>
                                                             </Transition.Condition>
                                                             <Transition.To>
-                                                              <State x:Name="__ReferenceID3" DisplayName="TrainingEvaluation" sap2010:WorkflowViewState.IdRef="State_10">
+                                                              <State x:Name="__ReferenceID5" DisplayName="TrainingEvaluation" sap2010:WorkflowViewState.IdRef="State_10">
                                                                 <State.Transitions>
                                                                   <Transition DisplayName="BookmarkTrainingEvaluation" sap2010:WorkflowViewState.IdRef="Transition_10">
                                                                     <Transition.Trigger>
-                                                                      <Sequence x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                                                                      <Sequence x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="Sequence_8">
                                                                         <Sequence.Variables>
                                                                           <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="varInTrainingEvaluation" />
                                                                           <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="varEvaluationStatistics" />
@@ -442,11 +442,28 @@
                                                                       </Sequence>
                                                                     </Transition.Trigger>
                                                                     <Transition.To>
-                                                                      <State x:Name="__ReferenceID16" DisplayName="Ended" sap2010:WorkflowViewState.IdRef="State_12">
+                                                                      <State x:Name="__ReferenceID3" DisplayName="Ended" sap2010:WorkflowViewState.IdRef="State_12">
                                                                         <State.Transitions>
                                                                           <Transition DisplayName="BookmarkEnded" sap2010:WorkflowViewState.IdRef="Transition_9">
+                                                                            <Transition.Trigger>
+                                                                              <local:WaitForResponse x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_19">
+                                                                                <local:WaitForResponse.ArgumentName>
+                                                                                  <InArgument x:TypeArguments="x:String">
+                                                                                    <mca:CSharpValue x:TypeArguments="x:String">TrainingStatus.Ended</mca:CSharpValue>
+                                                                                  </InArgument>
+                                                                                </local:WaitForResponse.ArgumentName>
+                                                                                <local:WaitForResponse.Result>
+                                                                                  <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                                                                                    <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:String, x:Object)">varInEndedModel</mca:CSharpReference>
+                                                                                  </OutArgument>
+                                                                                </local:WaitForResponse.Result>
+                                                                              </local:WaitForResponse>
+                                                                            </Transition.Trigger>
+                                                                            <Transition.Condition>
+                                                                              <mca:CSharpValue x:TypeArguments="x:Boolean">varComplete</mca:CSharpValue>
+                                                                            </Transition.Condition>
                                                                             <Transition.To>
-                                                                              <State x:Name="__ReferenceID5" DisplayName="Complete" sap2010:WorkflowViewState.IdRef="State_11" IsFinal="True">
+                                                                              <State x:Name="__ReferenceID7" DisplayName="Complete" sap2010:WorkflowViewState.IdRef="State_11" IsFinal="True">
                                                                                 <State.Entry>
                                                                                   <local:NotifyHost sap2010:WorkflowViewState.IdRef="NotifyHost_2">
                                                                                     <local:NotifyHost.Arguments>
@@ -461,7 +478,16 @@
                                                                               </State>
                                                                             </Transition.To>
                                                                           </Transition>
+                                                                          <Transition Trigger="{x:Reference __ReferenceID2}" DisplayName="BookmarkEnded" sap2010:WorkflowViewState.IdRef="Transition_21" To="{x:Reference __ReferenceID3}">
+                                                                            <Transition.Condition>
+                                                                              <mca:CSharpValue x:TypeArguments="x:Boolean">!varComplete</mca:CSharpValue>
+                                                                            </Transition.Condition>
+                                                                          </Transition>
                                                                         </State.Transitions>
+                                                                        <State.Variables>
+                                                                          <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="varInEndedModel" />
+                                                                          <Variable x:TypeArguments="x:Boolean" Name="varComplete" />
+                                                                        </State.Variables>
                                                                       </State>
                                                                     </Transition.To>
                                                                     <Transition.Action>
@@ -479,7 +505,7 @@
                                                                       <mca:CSharpValue x:TypeArguments="x:Boolean">varComplete</mca:CSharpValue>
                                                                     </Transition.Condition>
                                                                   </Transition>
-                                                                  <Transition Trigger="{x:Reference __ReferenceID2}" sap2010:Annotation.AnnotationText="If it is complete, move to the next step,&#xA;if NOT then persist the recieved evaluation." DisplayName="BookmarkTrainingEvaluation" sap2010:WorkflowViewState.IdRef="Transition_18" To="{x:Reference __ReferenceID3}">
+                                                                  <Transition Trigger="{x:Reference __ReferenceID4}" sap2010:Annotation.AnnotationText="If it is complete, move to the next step,&#xA;if NOT then persist the recieved evaluation." DisplayName="BookmarkTrainingEvaluation" sap2010:WorkflowViewState.IdRef="Transition_18" To="{x:Reference __ReferenceID5}">
                                                                     <Transition.Action>
                                                                       <Sequence sap2010:WorkflowViewState.IdRef="Sequence_9">
                                                                         <local1:PersistTrainingEvaluation sap2010:WorkflowViewState.IdRef="PersistTrainingEvaluation_1">
@@ -559,12 +585,12 @@
                                       </State>
                                     </Transition.To>
                                   </Transition>
-                                  <Transition Trigger="{x:Reference __ReferenceID4}" DisplayName="BookmarkOffer" sap2010:WorkflowViewState.IdRef="Transition_14">
+                                  <Transition Trigger="{x:Reference __ReferenceID6}" DisplayName="BookmarkOffer" sap2010:WorkflowViewState.IdRef="Transition_14">
                                     <Transition.Condition>
                                       <mca:CSharpValue x:TypeArguments="x:Boolean">!varComplete</mca:CSharpValue>
                                     </Transition.Condition>
                                     <Transition.To>
-                                      <State x:Name="__ReferenceID13" DisplayName="Rejected" sap2010:WorkflowViewState.IdRef="State_6">
+                                      <State x:Name="__ReferenceID15" DisplayName="Rejected" sap2010:WorkflowViewState.IdRef="State_6">
                                         <State.Transitions>
                                           <Transition DisplayName="BookmarkRejected" sap2010:WorkflowViewState.IdRef="Transition_12">
                                             <Transition.Trigger>
@@ -577,7 +603,7 @@
                                               </local:WaitForResponse>
                                             </Transition.Trigger>
                                             <Transition.To>
-                                              <x:Reference>__ReferenceID5</x:Reference>
+                                              <x:Reference>__ReferenceID7</x:Reference>
                                             </Transition.To>
                                           </Transition>
                                         </State.Transitions>
@@ -592,7 +618,7 @@
                               </State>
                             </Transition.To>
                           </Transition>
-                          <Transition Trigger="{x:Reference __ReferenceID6}" DisplayName="BookmarkInterview" sap2010:WorkflowViewState.IdRef="Transition_20" To="{x:Reference __ReferenceID7}">
+                          <Transition Trigger="{x:Reference __ReferenceID8}" DisplayName="BookmarkInterview" sap2010:WorkflowViewState.IdRef="Transition_20" To="{x:Reference __ReferenceID9}">
                             <Transition.Action>
                               <local1:PersistInterview sap2010:WorkflowViewState.IdRef="PersistInterview_2">
                                 <local1:PersistInterview.Interview>
@@ -632,7 +658,7 @@
               </State>
             </Transition.To>
           </Transition>
-          <Transition Trigger="{x:Reference __ReferenceID8}" DisplayName="BookmarkRfi" sap2010:WorkflowViewState.IdRef="Transition_19" To="{x:Reference __ReferenceID9}">
+          <Transition Trigger="{x:Reference __ReferenceID10}" DisplayName="BookmarkRfi" sap2010:WorkflowViewState.IdRef="Transition_19" To="{x:Reference __ReferenceID11}">
             <Transition.Action>
               <Sequence sap2010:WorkflowViewState.IdRef="Sequence_1">
                 <local1:PersistOffer sap2010:WorkflowViewState.IdRef="PersistOffer_1">
@@ -674,23 +700,23 @@
         </State.Variables>
       </State>
     </StateMachine.InitialState>
-    <x:Reference>__ReferenceID9</x:Reference>
-    <x:Reference>__ReferenceID10</x:Reference>
-    <x:Reference>__ReferenceID7</x:Reference>
     <x:Reference>__ReferenceID11</x:Reference>
     <x:Reference>__ReferenceID12</x:Reference>
+    <x:Reference>__ReferenceID9</x:Reference>
     <x:Reference>__ReferenceID13</x:Reference>
     <x:Reference>__ReferenceID14</x:Reference>
+    <x:Reference>__ReferenceID15</x:Reference>
+    <x:Reference>__ReferenceID16</x:Reference>
     <x:Reference>__ReferenceID0</x:Reference>
-    <State x:Name="__ReferenceID15" DisplayName="Exam" sap2010:WorkflowViewState.IdRef="State_8">
+    <State x:Name="__ReferenceID17" DisplayName="Exam" sap2010:WorkflowViewState.IdRef="State_8">
       <State.Transitions>
-        <Transition DisplayName="BookmarkExam" sap2010:WorkflowViewState.IdRef="Transition_11" To="{x:Reference __ReferenceID3}" />
-        <Transition DisplayName="BookmarkExam" sap2010:WorkflowViewState.IdRef="Transition_17" To="{x:Reference __ReferenceID15}" />
+        <Transition DisplayName="BookmarkExam" sap2010:WorkflowViewState.IdRef="Transition_11" To="{x:Reference __ReferenceID5}" />
+        <Transition DisplayName="BookmarkExam" sap2010:WorkflowViewState.IdRef="Transition_17" To="{x:Reference __ReferenceID17}" />
       </State.Transitions>
     </State>
-    <x:Reference>__ReferenceID3</x:Reference>
-    <x:Reference>__ReferenceID16</x:Reference>
     <x:Reference>__ReferenceID5</x:Reference>
+    <x:Reference>__ReferenceID3</x:Reference>
+    <x:Reference>__ReferenceID7</x:Reference>
     <StateMachine.Variables>
       <Variable x:TypeArguments="idm:Training" Name="varTrainingEntity">
         <Variable.Default>
@@ -698,7 +724,7 @@
         </Variable.Default>
       </Variable>
     </StateMachine.Variables>
-    <sads:DebugSymbol.Symbol>dz5DOlxQcm9qZWN0c1xJTENcc3JjXElsYy5JbmZyYXN0cnVjdHVyZVxXb3JrZmxvd3NcVHJhaW5pbmcueGFtbIcBMAO+BRICAQG5BQu5BWsDAb4DMgejBQ8DAeoCag/4BBcDAdACigEX5wQfAwGZAsIBH9AEJwMB/AHlASevBC8DAdwBtwQnyAQvAwHXAYUCL5IENwMBzgGXAjeLBD8DAZcB4AI/ggRHAgEKvQNH0QNPAgEHwQNPzQNXAgECnQUPnQWNAQMB7AKhBTmhBUADAesCNg9kGgMBlANnD2dZAwGOA5UFD5UFWgMBiAP9BA+SBRoDAfMCbheHASIDAdcC6gQX8AQ1AwHSAuUESeUEUAMBmgKOAR+8ASoDAawCvwEfvwFpAwGnAt4EH94EagMBogLVBB/bBDkDAZwCxgEn3wEyAwGGAuIBJ+IBcQMBggK0BCe0BHIDAf4B6QEvggI6AwHpAZUEL6cEOQMB3gG7BC/BBEcDAdkBiQI3lAJPAwHQAYkEaYkEcAMBmAGbAj/JAkoDAaoB2AI/2AKKAQMBpQHPAj/VAmIDAZ8B3QI/3QKJAQMBmgHkAke6A1ICAS7fA0ffA5EBAgEo1ANH3ANaAgEh+ANH+AOSAQIBG+QDR/UDUgIBDMMDU8sDZgIBBDcRQikDAbEDQxFjFgMBlQP+BBGJBScDAfsCigURkQUkAwH0Am8ZejEDAeECexmGASIDAdgC7QQd7QR0AwHTAo8BIZoBOQMBxQKbASG7ASYDAa0C2AQl2AR7AwGdAscBKdIBQQMBkALTASneATIDAYcC6gEx9QFJAwHzAfYBMYECOgMB6gGYBDWYBJ4BAwHlAZ8EM6UETAMB3wG+BDW+BIoBAwHaAYwCPYwCkQEDAdQBkQI9kQKpAQMB0QGcAkGnAlkDAcMBqAJByAJGAwGrAdICRdICpgEDAaAB6QJJ9AJhAwGGAfUCSYADcgIBdYEDSYwDUgIBZI0DSZgDUgIBU5kDSbkDTgIBL9cDTdkDFAIBIuUDSesDbAIBFOwDSfQDXAIBDcYDWcgDIAIBBToXOmcDAbgDPxc/fwMBsgNGF0ZzAwGWA0oVVR4DAaQDWBVhHgMBnAOGBReGBXEDAYIDgQUXgQVmAwH8Ao0FF44FPAMB9QJyH3J5AwHmAncfd5EBAwHiAoMBH4MBmgEDAd0Cfh9+fgMB2QKSASeSAX0DAcsClwEnlwGVAQMBxgKeASeeAY0BAwGuAqIBJa0BLgMBugKwASW5AS4DAbMCygEvygGBAQMBlQLPAS/PAZkBAwGRAtsBL9sBigEDAYwC1gEv1gGBAQMBiALtATftAYwBAwH4AfIBN/IBpAEDAfQB/gE3/gHKAQMB7wH5ATf5AaEBAwHrAaIEOaIEkQEDAeABnwJHnwKmAQMByQGkAkekAr4BAwHEAasCR6sCvwEDAawBrwJFugJOAwG4Ab0CRcYCTgMBsQHsAk/sAq4BAwGPAfECT/ECxgEDAYcB+AJP+ALGAQIBfv0CT/0CwgECAXaJA0+JA7kBAgFthANPhAOkAQIBZZUDT5UDvAECAVyQA0+QA7ABAgFUnANPnAPCAQIBMKADTakDVgIBSawDTbcDVgIBOOgDT+gDsAECARXvA0/xAxQCAQ5SG1KEAQMBqwNNG01yAwGlA19BX0UDAaMDWxtbbQMBnQOqASuqAaQBAwHAAqUBK6UBiQEDAbsCtwFRtwFVAwG5ArMBK7MBfQMBtAK3Aku3AtoBAwG+AbICS7ICtAEDAbkBxAJxxAJ1AwG3AcACS8ACnQEDAbIBpwN5pwN9AgFSowNTowOlAQIBSrQDU7QD4gECAUGvA1OvA7wBAgE5</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dz5DOlxQcm9qZWN0c1xJTENcc3JjXElsYy5JbmZyYXN0cnVjdHVyZVxXb3JrZmxvd3NcVHJhaW5pbmcueGFtbIwBMAPYBRICAQHTBQvTBWsDAc4DMge9BQ8DAfoCag+SBRcDAeACigEXgQUfAwGpAsIBH+oEJwMBjALlASfJBC8DAewB0QQn4gQvAwHnAYUCL6wENwMB3gGXAjelBD8DAacB4AI/nARHAgEavQNH6wNPAgEH0gNP3gNXAgECtwUPtwWNAQMB/AK7BTm7BUADAfsCNg9kGgMBpANnD2dZAwGeA68FD68FWgMBmAOXBQ+sBRoDAYMDbheHASIDAecChAUXigU1AwHiAv8ESf8EUAMBqgKOAR+8ASoDAbwCvwEfvwFpAwG3AvgEH/gEagMBsgLvBB/1BDkDAawCxgEn3wEyAwGWAuIBJ+IBcQMBkgLOBCfOBHIDAY4C6QEvggI6AwH5Aa8EL8EEOQMB7gHVBC/bBEcDAekBiQI3lAJPAwHgAaMEaaMEcAMBqAGbAj/JAkoDAboB2AI/2AKKAQMBtQHPAj/VAmIDAa8B3QI/3QKJAQMBqgHkAke6A1ICAT75A0f5A5EBAgE47gNH9gNaAgExkgRHkgSSAQIBK/4DR48EUgIBHMEDT8wDZwIBEc8DT88DmQECAQ3jA0/jA5oBAgEJ1ANT3ANmAgEENxFCKQMBwQNDEWMWAwGlA5gFEaMFJwMBiwOkBRGrBSQDAYQDbxl6MQMB8QJ7GYYBIgMB6AKHBR2HBXQDAeMCjwEhmgE5AwHVApsBIbsBJgMBvQLyBCXyBHsDAa0CxwEp0gFBAwGgAtMBKd4BMgMBlwLqATH1AUkDAYMC9gExgQI6AwH6AbIENbIEngEDAfUBuQQzvwRMAwHvAdgENdgEigEDAeoBjAI9jAKRAQMB5AGRAj2RAqkBAwHhAZwCQacCWQMB0wGoAkHIAkYDAbsB0gJF0gKmAQMBsAHpAkn0AmEDAZYB9QJJgANyAwGFAYEDSYwDUgIBdI0DSZgDUgIBY5kDSbkDTgIBP/EDTfMDFAIBMv8DSYUEbAIBJIYESY4EXAIBHcQDVcQDpwECARbJA1XJA8QBAgES1wNZ2QMgAgEFOhc6ZwMByAM/Fz9/AwHCA0YXRnMDAaYDShVVHgMBtANYFWEeAwGsA6AFF6AFcQMBkgObBRebBWYDAYwDpwUXqAU8AwGFA3IfcnkDAfYCdx93kQEDAfICgwEfgwGaAQMB7QJ+H35+AwHpApIBJ5IBfQMB2wKXASeXAZUBAwHWAp4BJ54BjQEDAb4CogElrQEuAwHKArABJbkBLgMBwwLKAS/KAYEBAwGlAs8BL88BmQEDAaEC2wEv2wGKAQMBnALWAS/WAYEBAwGYAu0BN+0BjAEDAYgC8gE38gGkAQMBhAL+ATf+AcoBAwH/AfkBN/kBoQEDAfsBvAQ5vASRAQMB8AGfAkefAqYBAwHZAaQCR6QCvgEDAdQBqwJHqwK/AQMBvAGvAkW6Ak4DAcgBvQJFxgJOAwHBAewCT+wCrgEDAZ8B8QJP8QLGAQMBlwH4Ak/4AsYBAwGOAf0CT/0CwgEDAYYBiQNPiQO5AQIBfYQDT4QDpAECAXWVA0+VA7wBAgFskANPkAOwAQIBZJwDT5wDwgECAUCgA02pA1YCAVmsA023A1YCAUiCBE+CBLABAgEliQRPiwQUAgEeUhtShAEDAbsDTRtNcgMBtQNfQV9FAwGzA1sbW20DAa0DqgErqgGkAQMB0AKlASulAYkBAwHLArcBUbcBVQMByQKzASuzAX0DAcQCtwJLtwLaAQMBzgGyAkuyArQBAwHJAcQCccQCdQMBxwHAAkvAAp0BAwHCAacDeacDfQIBYqMDU6MDpQECAVq0A1O0A+IBAgFRrwNTrwO8AQIBSQ==</sads:DebugSymbol.Symbol>
   </StateMachine>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -813,6 +839,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WaitForResponse`1_19" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="NotifyHost_2" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="State_11" sap:VirtualizedContainerService.HintSize="114,61">
         <sap:WorkflowViewStateService.ViewState>
@@ -829,6 +856,17 @@
             <av:PointCollection x:Key="ConnectorLocation">380,639.5 380,562.15 520,562.15</av:PointCollection>
             <x:Int32 x:Key="SrcConnectionPointIndex">38</x:Int32>
             <x:Int32 x:Key="DestConnectionPointIndex">49</x:Int32>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Transition_21" sap:VirtualizedContainerService.HintSize="430,531">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:PointCollection x:Key="ConnectorLocation">380,639.5 380,616.1 467,616.1 467,676.1 437,676.1</av:PointCollection>
+            <x:Int32 x:Key="SrcConnectionPointIndex">38</x:Int32>
+            <x:Int32 x:Key="DestConnectionPointIndex">44</x:Int32>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
