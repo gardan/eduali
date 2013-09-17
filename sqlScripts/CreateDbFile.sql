@@ -3,7 +3,7 @@ GO
 
 /****** Object:  Database [Ilc]    Script Date: 09/13/2013 18:24:08 ******/
 CREATE DATABASE [Ilc] ON  PRIMARY 
-( NAME = N'Ilc', FILENAME = N'c:\Program Files\Microsoft SQL Server\MSSQL11.SQLEXPRESS\MSSQL\DATA\Ilc.mdf' , SIZE = 2304KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+( NAME = N'Ilc', FILENAME = N'c:\Program Files\Microsoft SQL Server\MSSQL11.SQLEXPRESS\MSSQL\DATA\Ilc.mdf' , SIZE = 4096KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
  LOG ON 
 ( NAME = N'Ilc_log', FILENAME = N'c:\Program Files\Microsoft SQL Server\MSSQL11.SQLEXPRESS\MSSQL\DATA\Ilc_log.LDF' , SIZE = 768KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
 GO
