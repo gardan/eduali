@@ -18,17 +18,20 @@ namespace Ilc.Web.Services
             var data = new List<TrainingStudentInterviewModel>();
             var training = Trainings.GetById(request.Id);
             var interviews = training.Interviews;
+            var assesments = training.Assesments;
 
             var students = training.Students;
             foreach (var student in students)
             {
                 var interview = interviews.FirstOrDefault(i => i.StudentId == student.Id);
+                var assesment = assesments.FirstOrDefault(a => a.StudentId == student.Id);
 
                 data.Add(new TrainingStudentInterviewModel()
                     {
                         Id = student.Id,
                         Name = student.Name,
-                        InterviewId = interview == null ? 0 : interview.Id
+                        InterviewId = interview == null ? 0 : interview.Id,
+                        AssesmentId = assesment == null ? 0 : assesment.Id    
                     });
             }
 

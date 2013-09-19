@@ -316,12 +316,12 @@ namespace Ilc.Web.Services
                 workflowData["Assesment"] = assesment;
             }
 
-            var results = proc.Resume(training.WokrflowId.Value, TrainingStatus.TrainingEvaluation, workflowData,
+            var results = proc.Resume(training.WokrflowId.Value, TrainingStatus.Ended, workflowData,
                         PersistableIdleAction.Unload);
 
-            if (Convert.ToBoolean(results["Complete"]))
+            if (request.TaskEntityId == 0)
             {
-                training.Status = TrainingStatus.Ended;
+                training.Status = TrainingStatus.Complete;
                 training.Complete = true;
                 Trainings.Update(training);
             }
