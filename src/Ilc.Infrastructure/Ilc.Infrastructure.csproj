@@ -55,6 +55,7 @@
     <Compile Include="WorkflowProcess.cs" />
     <Compile Include="Workflows\Activities\NotifyHost.cs" />
     <Compile Include="Workflows\Activities\Training\GetTrainingEvaluationStatistics.cs" />
+    <Compile Include="Workflows\Activities\Training\PersistAssesment.cs" />
     <Compile Include="Workflows\Activities\Training\PersistInterview.cs" />
     <Compile Include="Workflows\Activities\Training\PersistInterviewPlan.cs" />
     <Compile Include="Workflows\Activities\Training\PersistOffer.cs" />

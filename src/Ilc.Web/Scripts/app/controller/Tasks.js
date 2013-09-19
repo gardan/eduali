@@ -19,7 +19,7 @@
                 allInterviewsAdded: me.addInterview
             },
             'offerwindow': {
-                addOffer: me.addOffer                
+                addOffer: me.addOffer
             },
             'acceptedwindow': {
                 addTrainingSchedule: me.addTrainingSchedule
@@ -33,6 +33,9 @@
             },
             'trainingevaluationwindow': {
                 addEvaluation: me.addTrainingEvaluation
+            },
+            'endedwindow': {
+                addAssesment: me.addAssesment
             }
         });
 
@@ -315,6 +318,40 @@
         tasksService.trainingEvaluation(data)
             .then(function (response) {
 
+                // just reload the tasks
+                // | just the one task returned.
+            }).done(function () {
+                sender.close();
+            });
+    },
+
+    addAssesment: function(sender, data, options) {
+        console.log('addAssesment called.');
+        console.log(data);
+
+        var tasksService = {
+            ended: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/tasks/training/ended',
+                    method: 'POST',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+
+        tasksService.ended(data)
+            .then(function (response) {
+                options.studentsStore.load();
                 // just reload the tasks
                 // | just the one task returned.
             }).done(function () {

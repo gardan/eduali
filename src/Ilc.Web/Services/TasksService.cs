@@ -34,7 +34,7 @@ namespace Ilc.Web.Services
             foreach (var training in trainings)
             {
                 if (training.Status == TrainingStatus.Complete) continue;
-                
+
                 var task = new TaskModel();
                 task.Id = training.Id;
                 task.Action = Char.ToLowerInvariant(training.Status[0]) + training.Status.Substring(1);
@@ -70,7 +70,7 @@ namespace Ilc.Web.Services
             }
 
             proc.Resume(training.WokrflowId.Value, TrainingStatus.Rfi, workflowData, PersistableIdleAction.Unload);
-            
+
             if (request.Complete)
             {
                 training.Status = TrainingStatus.PlanInterview;
@@ -158,7 +158,7 @@ namespace Ilc.Web.Services
 
             training.Status = (bool)workflowData["Complete"] ? TrainingStatus.Accepted : TrainingStatus.Rejected;
             Trainings.Update(training);
-            
+
 
             return new HttpResult()
             {
@@ -258,7 +258,7 @@ namespace Ilc.Web.Services
                 training.Status = TrainingStatus.TrainingEvaluation;
                 Trainings.Update(training);
             }
-            
+
             return new HttpResult()
             {
                 StatusCode = HttpStatusCode.OK
@@ -292,25 +292,45 @@ namespace Ilc.Web.Services
                 StatusCode = HttpStatusCode.OK
             };
 
-            
+
         }
 
         public HttpResult Post(EndedModel request)
-         {
-            var currentUser = Users.GetByUsername("admin");
-            
-            var assesment = new Assesment().InjectFrom(request) as Assesment;
-            assesment.TrainingId = request.TaskEntityId;
-            assesment.CreateDate = DateTimeOffset.UtcNow;
-            assesment.Creator = currentUser;
+        {
+            var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
+            var wfActivity = new Training();
+            var proc = new WorkflowProcess(extensionManager, wfActivity);
+            var training = Trainings.GetById(request.TaskEntityId);
 
-            Uow.Assesments.Add(assesment);
-            Uow.Commit();
+            var workflowData = new Dictionary<string, object>();
+
+            if (request.TaskEntityId != 0)
+            {
+                var currentUser = Users.GetByUsername("admin");
+
+                var assesment = new Assesment().InjectFrom(request) as Assesment;
+                assesment.TrainingId = request.TaskEntityId;
+                assesment.CreateDate = DateTimeOffset.UtcNow;
+                assesment.Creator = currentUser;
+
+                workflowData["Assesment"] = assesment;
+            }
+
+            var results = proc.Resume(training.WokrflowId.Value, TrainingStatus.TrainingEvaluation, workflowData,
+                        PersistableIdleAction.Unload);
+
+            if (Convert.ToBoolean(results["Complete"]))
+            {
+                training.Status = TrainingStatus.Ended;
+                training.Complete = true;
+                Trainings.Update(training);
+            }
+
             return new HttpResult()
-                {
-                    StatusCode = HttpStatusCode.OK
-                };
-         }
+            {
+                StatusCode = HttpStatusCode.OK
+            };
+        }
 
         private TrainingEvaluation Extract(TrainingEvaluationModel request)
         {
@@ -430,7 +450,7 @@ namespace Ilc.Web.Services
 
         public string WritingLevel { get; set; }
         public string TargetWritingLevel { get; set; }
-        
+
         public int StudentId { get; set; }
 
         public int TaskEntityId { get; set; }

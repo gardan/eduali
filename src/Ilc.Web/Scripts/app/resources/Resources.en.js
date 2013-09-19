@@ -74,6 +74,17 @@
         'common.writingTargetLevel': 'Writing target level',
         'common.accepted': 'Accepted',
         'common.rejected': 'Rejected',
+        'common.newAssesment': 'New assesment',
+        'common.listeningEntryLevel': 'Listening entry level',
+        'common.listeningExitLevel': 'Listening exit level',
+        'common.readingEntryLevel': 'Reading entry level',
+        'common.readingExitLevel': 'Reading exit level',
+        'common.interactiveTalkingEntryLevel': 'Interactive talking entry level',
+        'common.interactiveTalkingExitLevel': 'Interactive talking exit level',
+        'common.productiveTalkingEntryLevel': 'Productive talking entry level',
+        'common.productiveTalkingExitLevel': 'Productive talking exit level',
+        'common.writingEntryLevel': 'Writing entry level',
+        'common.writingExitLevel': 'Writing exit level',
 
         'tasks.title.ended': 'Students assesments',
 

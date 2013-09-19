@@ -1,9 +1,13 @@
-﻿Ext.define('Ilc.tasks.training.window.CreateStudentInterview', {
+﻿Ext.define('Ilc.tasks.training.window.CreateStudentAssesment', {
     extend: 'Ext.window.Window',
     modal: true,
 
-    title: Ilc.resources.Manager.getResourceString('common.newInterview'),
+    title: Ilc.resources.Manager.getResourceString('common.newAssesment'),
     layout: 'anchor',
+
+    requires: [
+        'Ilc.utils.Forms'
+    ],
 
     constructor: function (args) {
         var me = this;
@@ -16,131 +20,124 @@
             {
                 xtype: 'combobox',
                 store: store,
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.listeningLevel'),
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.listeningEntryLevel'),
                 queryMode: 'local',
                 displayField: 'text',
                 valueField: 'id',
-                name: 'listeningLevel',
+                name: 'entryListeningLevel',
                 anchor: '100%'
             },
             {
                 xtype: 'combobox',
                 store: store,
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.listeningTargetLevel'),
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.listeningExitLevel'),
                 queryMode: 'local',
                 displayField: 'text',
                 valueField: 'id',
-                name: 'listeningDesiredLevel',
+                name: 'exitListeningLevel',
                 anchor: '100%'
             },
-            
+
             {
                 xtype: 'combobox',
                 store: store,
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.readingLevel'),
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.readingEntryLevel'),
                 queryMode: 'local',
                 displayField: 'text',
                 valueField: 'id',
-                name: 'readingLevel',
-                anchor: '100%'
-            },
-            {
-                xtype: 'combobox',
-                store: store,
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.readingTargetLevel'),
-                queryMode: 'local',
-                displayField: 'text',
-                valueField: 'id',
-                name: 'readingTargetLevel',
-                anchor: '100%'
-            },
-            
-            {
-                xtype: 'combobox',
-                store: store,
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.interactiveTalkingLevel'),
-                queryMode: 'local',
-                displayField: 'text',
-                valueField: 'id',
-                name: 'interactiveTalkingLevel',
+                name: 'entryReadingLevel',
                 anchor: '100%'
             },
             {
                 xtype: 'combobox',
                 store: store,
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.interactiveTalkingDesiredLevel'),
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.readingExitLevel'),
                 queryMode: 'local',
                 displayField: 'text',
                 valueField: 'id',
-                name: 'interactiveTalkingDesiredLevel',
+                name: 'exitReadingLevel',
                 anchor: '100%'
             },
-            
+
             {
                 xtype: 'combobox',
                 store: store,
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.productiveTalkingLevel'),
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.interactiveTalkingEntryLevel'),
                 queryMode: 'local',
                 displayField: 'text',
                 valueField: 'id',
-                name: 'productiveTalkingLevel',
-                anchor: '100%'
-            },
-            {
-                xtype: 'combobox',
-                store: store,
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.productiveTalkingTargetLevel'),
-                queryMode: 'local',
-                displayField: 'text',
-                valueField: 'id',
-                name: 'productiveTalkingTargetLevel',
-                anchor: '100%'
-            },
-            
-            {
-                xtype: 'combobox',
-                store: store,
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.writingLevel'),
-                queryMode: 'local',
-                displayField: 'text',
-                valueField: 'id',
-                name: 'writingLevel',
+                name: 'entryInteractiveTalkingLevel',
                 anchor: '100%'
             },
             {
                 xtype: 'combobox',
                 store: store,
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.writingTargetLevel'),
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.interactiveTalkingExitLevel'),
                 queryMode: 'local',
                 displayField: 'text',
                 valueField: 'id',
-                name: 'writingTargetLevel',
+                name: 'exitInteractiveTalkingLevel',
+                anchor: '100%'
+            },
+
+            {
+                xtype: 'combobox',
+                store: store,
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.productiveTalkingEntryLevel'),
+                queryMode: 'local',
+                displayField: 'text',
+                valueField: 'id',
+                name: 'entryProductiveTalkingLevel',
+                anchor: '100%'
+            },
+            {
+                xtype: 'combobox',
+                store: store,
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.productiveTalkingExitLevel'),
+                queryMode: 'local',
+                displayField: 'text',
+                valueField: 'id',
+                name: 'exitProductiveTalkingLevel',
+                anchor: '100%'
+            },
+
+            {
+                xtype: 'combobox',
+                store: store,
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.writingEntryLevel'),
+                queryMode: 'local',
+                displayField: 'text',
+                valueField: 'id',
+                name: 'entryWritingLevel',
+                anchor: '100%'
+            },
+            {
+                xtype: 'combobox',
+                store: store,
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.writingExitLevel'),
+                queryMode: 'local',
+                displayField: 'text',
+                valueField: 'id',
+                name: 'exitWritingLevel',
                 anchor: '100%'
             },
             {
                 xtype: 'button',
                 text: Ilc.resources.Manager.getResourceString('common.add'),
-                handler: function(btn, events) {
+                handler: function (btn, events) {
                     var model = {};
-                    // example: 
-                    // {
-                    //     listening: { currentLevel: 1, desiredLevel: 4 },
-                    //     reading: { currentLevel: 1, desiredLevel: 4 },
-                    //     productiveSpeaking: { currentLevel: 1, desiredLevel: 4 },
-                    //     writing: { currentLevel: 1, desiredLevel: 4 }
-                    // };
 
                     model = Ilc.utils.Forms.extractModel(me.query('textfield'));
 
                     model.studentId = student.get('id');
                     model.taskEntityId = task.get('id');
-                    me.fireEvent('addInterview', me, model);
+                    me.fireEvent('addAssesment', me, model);
                 }
             }
         ];
 
         me.addEvents(
-            'addInterview'
+            'addAssesment'
         );
 
         me.callParent(arguments);

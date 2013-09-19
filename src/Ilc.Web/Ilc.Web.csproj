@@ -210,9 +210,11 @@
     <Content Include="Scripts\app\tasks\training\PlanInterview.js" />
     <Content Include="Scripts\app\tasks\training\Rfi.js" />
     <Content Include="Scripts\app\tasks\training\Rfp.js" />
+    <Content Include="Scripts\app\tasks\training\store\Grades.js" />
     <Content Include="Scripts\app\tasks\training\store\ProgressEvalStudents.js" />
     <Content Include="Scripts\app\tasks\training\store\Students.js" />
     <Content Include="Scripts\app\tasks\training\TrainingEvaluation.js" />
+    <Content Include="Scripts\app\tasks\training\window\CreateStudentAssesment.js" />
     <Content Include="Scripts\app\tasks\training\window\CreateStudentEvaluation.js" />
     <Content Include="Scripts\app\tasks\training\window\CreateStudentInterview.js" />
     <Content Include="Scripts\app\tasks\training\window\ViewStudentInterview.js" />
