@@ -304,7 +304,7 @@ namespace Ilc.Web.Services
 
             var workflowData = new Dictionary<string, object>();
 
-            if (request.TaskEntityId != 0)
+            if (request.StudentId != 0)
             {
                 var currentUser = Users.GetByUsername("admin");
 
@@ -319,7 +319,7 @@ namespace Ilc.Web.Services
             var results = proc.Resume(training.WokrflowId.Value, TrainingStatus.Ended, workflowData,
                         PersistableIdleAction.Unload);
 
-            if (request.TaskEntityId == 0)
+            if (request.StudentId == 0)
             {
                 training.Status = TrainingStatus.Complete;
                 training.Complete = true;

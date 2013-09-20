@@ -50,7 +50,16 @@
             studentsGrid,
             {
                 xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.done')
+                text: Ilc.resources.Manager.getResourceString('common.done'),
+                handler: function () {
+                    var model = {
+                        taskEntityId: trainingEntity.get('id')
+                    };
+
+                    me.fireEvent('addAssesment', me, model, {
+                        studentsStore: studentsStore
+                    });
+                }
             },
             {
                 xtype: 'button',
