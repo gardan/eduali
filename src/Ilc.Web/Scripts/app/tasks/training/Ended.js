@@ -46,21 +46,32 @@
             ]
         });
 
+        var doneButton = Ext.create('Ext.button.Button', {
+            text: Ilc.resources.Manager.getResourceString('common.done'),
+            handler: function () {
+                var model = {
+                    taskEntityId: trainingEntity.get('id')
+                };
+
+                me.fireEvent('addAssesment', me, model);
+            }
+        });
+
+        studentsStore.on('load', function (store, records) {
+            
+            var isDisabled = false;
+            for (var i = 0; i < records.length; i++) {
+                var record = records[i];
+                if (record.get('assesmentId') == 0) {
+                    isDisabled = true;
+                }
+            }
+            doneButton.setDisabled(isDisabled);
+        });
+
         me.items = [
             studentsGrid,
-            {
-                xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.done'),
-                handler: function () {
-                    var model = {
-                        taskEntityId: trainingEntity.get('id')
-                    };
-
-                    me.fireEvent('addAssesment', me, model, {
-                        studentsStore: studentsStore
-                    });
-                }
-            },
+            doneButton,
             {
                 xtype: 'button',
                 text: Ilc.resources.Manager.getResourceString('common.close'),

@@ -117,7 +117,7 @@
             });
     },
 
-    addInterview: function(sender, data) {
+    addInterview: function(sender, data, options) {
         console.log(data);
         console.log('addInterview event.');
         
@@ -143,6 +143,10 @@
 
         tasksService.interview(data)
             .then(function (response) {
+
+                if (options && options.studentsStore) {
+                    options.studentsStore.load();
+                }
                 // just reload the tasks
                 // | just the one task returned.
             }).done(function () {
@@ -351,7 +355,10 @@
 
         tasksService.ended(data)
             .then(function (response) {
-                options.studentsStore.load();
+                if (options && options.studentsStore) {
+                    options.studentsStore.load();
+                }
+                
                 // just reload the tasks
                 // | just the one task returned.
             }).done(function () {
