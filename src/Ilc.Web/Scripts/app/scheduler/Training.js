@@ -28,21 +28,6 @@
             ]
         });
 
-        // zooming
-        var slider = Ext.create('Ext.slider.SingleSlider', {
-            style: 'margin-left:10px',
-            width: 100,
-            value: 0,
-            increment: 1,
-            minValue: 0,
-            maxValue: 10,
-            listeners: {
-                change: function (p, v) {
-                    me.zoomToLevel(parseInt(v), true);
-                }
-            }
-        });
-
         // scrolling to event
         var eventsCombo = Ext.create('Ext.form.ComboBox', {
             store: args.eventStore,
@@ -85,10 +70,6 @@
             }
         ];
 
-        me.bbar = [
-            slider
-        ];
-
         me.listeners = {
             eventcontextmenu: function (s, rec, e) {
                 e.stopEvent();
@@ -106,12 +87,6 @@
                 }
                 s.ctx.rec = rec;
                 s.ctx.showAt(e.getXY());
-            },
-            afterlayout: function () {
-                slider.setMinValue(10);
-                slider.setMaxValue(14);
-
-                slider.setValue(me.getCurrentZoomLevelIndex());
             },
 
             single: true

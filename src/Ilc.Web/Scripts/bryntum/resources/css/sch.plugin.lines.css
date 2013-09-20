@@ -1,0 +1,36 @@
+/*
+
+Ext Scheduler 2.2.9
+Copyright(c) 2009-2013 Bryntum AB
+http://bryntum.com/contact
+http://bryntum.com/license
+
+*/
+.sch-timeline {
+    cursor       : pointer;
+    height       : 100%;
+    position     : absolute;
+    border-style : dotted;
+    border-color : #aaa;
+    border-width : 0 0 0 1px;
+    overflow     : hidden;
+    z-index      : 4;
+    margin-left  : -1px;
+}
+
+.sch-vertical .sch-timeline {
+    border-width : 1px 0 0 0;
+}
+
+.sch-schedulerpanel .x-grid-group-hd {
+    position : relative;
+    z-index  : 101;
+}
+
+.x-ie .sch-timeline {
+    margin-left : 0;
+}
+
+.x-safari .sch-timeline {
+    margin-left : 1px;
+}

@@ -6,116 +6,6 @@ http://bryntum.com/contact
 http://bryntum.com/license
 
 */
-.sch-clockwrap
-{
-    position:relative;
-}
-
-.sch-clock
-{
-    position:absolute;
-    background: url(../images/clock-bare.png) no-repeat left top !important;
-    height:20px;
-    width:21px;
-    white-space:nowrap;
-    display:inline-block;
-    text-indent:-100px;
-    border-radius: 1px;
-}
-
-.sch-day-resolution .sch-clock
-{
-    background: #fff none !important;
-    border:1px solid #ccc;
-}
-
-.sch-clock-text
-{
-    margin-left:25px;
-    padding-bottom:5px;
-    padding-top:2px;
-    display:inline-block;
-    white-space:nowrap;
-}
-
-.sch-day-resolution .sch-clock .sch-hourIndicator
-{
-    width:100%;
-    position:static !important;
-    background-color: rgb(89, 102, 176);
-    border-bottom: 1px solid navy;
-    font-size:7px;
-    line-height: 7px;
-    text-align:center;
-    color:#fff;
-    height:8px;
-    text-indent:0px;
-    margin-top:-1px;
-    text-shadow: rgba(200,200,200,.2) 0 -1px 0;
-    transform:none !important;
-    -moz-transform: none!important;
-    -webkit-transform: none!important;
-    -o-transform:none !important;
-    -ms-transform:none !important;
-    filter: none !important;
-    -ms-filter: none !important;
-}
-
-.sch-day-resolution .sch-clock .sch-minuteIndicator
-{
-    color:#555;
-    width:100%;
-    position:static !important;
-    height:16px;
-    background-color: transparent;
-    font-size:10px;
-    text-align:center;
-    text-indent:0px;
-    text-shadow: rgba(0,0,0,.2) 0 -1px 0;
-    transform:none !important;
-    -moz-transform: none !important;
-    -webkit-transform: none !important;
-    -o-transform:none !important;
-    -ms-transform:none !important;
-    filter: none !important;
-    -ms-filter: none !important;
-}
-
-
-.sch-clock .sch-hourIndicator
-{   
-    overflow:hidden;
-    background: #000;
-    position:absolute;
-    left:10px;
-    top:4px;
-    width:2px;
-    height:6px;
-    transform-origin: 50% 100%;
-    -o-transform-origin: 50% 100%;
-    -moz-transform-origin: 50% 100%;
-    -webkit-transform-origin: 50% 100%;
-    -ms-transform-origin: 50% 100%;
-}
-
-.sch-clock .sch-minuteIndicator
-{
-    overflow:hidden;
-    background: #4E5252;
-    position:absolute;
-    left:10px;
-    top:3px;
-    width:2px;
-    height:7px;
-    transform-origin: 50% 100%;
-    -o-transform-origin: 50% 100%;
-    -moz-transform-origin: 50% 100%;
-    -webkit-transform-origin: 50% 100%;
-    -ms-transform-origin: 50% 100%;
-}
-
-
-
 .sch-header-row .x-column-header-inner,
 .sch-timeheader
 {
@@ -233,6 +123,49 @@ td.sch-nested-hdr-cell-last
     margin-left: -1px;
 }
 
+
+/* Using same styling as the regular Ext JS grid header cells */
+.sch-column-header
+{
+    border-right: 1px solid #C5C5C5;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+    background-image: none;
+    background-color: #C5C5C5;
+    background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(0%,#F9F9F9),color-stop(100%,#E3E4E6));
+    background-image: -webkit-linear-gradient(top,#F9F9F9,#E3E4E6);
+    background-image: -moz-linear-gradient(top,#F9F9F9,#E3E4E6);
+    background-image: -o-linear-gradient(top,#F9F9F9,#E3E4E6);
+    background-image: -ms-linear-gradient(top,#F9F9F9,#E3E4E6);
+    background-image: linear-gradient(top,#F9F9F9,#E3E4E6);
+}
+
+/* Using same styling as the regular Ext JS grid header cells */
+/* No gradient version */
+.x-nlg .sch-column-header
+{
+    background: transparent url("../images/column-header-bg.gif") repeat-x 0 top;
+}
+
+.sch-header-row {
+    border-top     : 1px solid #C5C5C5
+}
+
+.sch-column-header-over
+{
+    background-image: none;
+    background-color: #aaccf6;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ebf3fd), color-stop(39%, #ebf3fd), color-stop(40%, #d9e8fb), color-stop(100%, #d9e8fb));
+    background-image: -webkit-linear-gradient(top, #ebf3fd, #ebf3fd 39%, #d9e8fb 40%, #d9e8fb);
+    background-image: -moz-linear-gradient(top, #ebf3fd, #ebf3fd 39%, #d9e8fb 40%, #d9e8fb);
+    background-image: -o-linear-gradient(top, #ebf3fd, #ebf3fd 39%, #d9e8fb 40%, #d9e8fb);
+    background-image: -ms-linear-gradient(top, #ebf3fd, #ebf3fd 39%, #d9e8fb 40%, #d9e8fb);
+    background-image: linear-gradient(top, #ebf3fd, #ebf3fd 39%, #d9e8fb 40%, #d9e8fb);
+}
+
+.x-nlg .sch-column-header-over
+{
+    background: #ebf3fd url('../images/column-header-over-bg.gif') repeat-x 0 top;
+}
 
 .sch-event
 {
@@ -461,45 +394,6 @@ div.sch-dragcreator-proxy {
 
 
 
-.sch-event-tools {
-	border:thin solid #8EAACE;
-	background:#E9F2FF;
-	padding:3px;
-	-webkit-border-radius:3px;
-	-moz-border-radius:3px;
-	border-radius:3px;
-	-webkit-box-shadow:1px 1px 3px 0 rgba(0, 0, 0, 0.5);
-	-moz-box-shadow:1px 1px 3px 0 rgba(0, 0, 0, 0.5);
-	box-shadow:1px 1px 3px 0 rgba(0, 0, 0, 0.5);
-	z-index:10;
-}
-
-.sch-tool {
-	float:left;
-}
-
-.sch-tool img {
-	width:18px;
-	height:18px;
-	padding:1px;
-	margin:1px;
-	cursor: pointer;
-	overflow: hidden;
-	background-position:center center;
-	background-repeat:no-repeat;
-}
-
-.sch-tool-over img {
-	background-color:rgba(255, 255, 255, 0.5);
-	border:0px transparent;
-	-webkit-border-radius:3px;
-	-moz-border-radius:3px;
-	border-radius:3px;
-	-webkit-box-shadow:0 0 2px 0 rgba(220, 127, 0, 1);
-	-moz-box-shadow:0 0 2px 0 rgba(220, 127, 0, 1);
-	box-shadow:0 0 2px 0 rgba(220, 127, 0, 1);
-}
-
 /* Make sure the drag selector is shown above any event nodes */
 .sch-drag-selector {
     z-index          : 5000;
@@ -613,31 +507,6 @@ div.sch-dragcreator-proxy {
     border-left-color : #f4f4f4;
 }
 
-.sch-resourcezone
-{
-  position:absolute;
-  height:100%;
-  overflow:hidden;
-  background: #eee;
-  pointer-events : none;
-}
-
-.x-ie .sch-resourcezone
-{
-    z-index: -1;
-}
-
-.sch-horizontal .sch-resourcezone
-{
-    top:0 !important;
-    height:100% !important;
-}
-
-.sch-vertical .sch-resourcezone
-{
-    left:0 !important;
-    width:100% !important;
-}
 /* Styles for Exporting. */
 .sch-export {
     padding: 0;
@@ -771,40 +640,6 @@ div.sch-dragcreator-proxy {
     cursor: default;
 }
 
-.sch-column-line
-{
-    border-left: 1px solid #EEE;
-    height: 100%;
-    position: absolute;
-    overflow: hidden;
-    margin-left: -1px;
-    z-index:0;
-    pointer-events:none;
-}
-
-/* Mac Safari */
-.x-safari .sch-column-line
-{
-    margin-left:0;
-}
-
-/* Windows Safari */
-.x-safari:not(.x-mac) .sch-column-line
-{
-    margin-left:1px;
-}
-
-
-.x-ie .sch-column-line
-{
-    z-index:-1;
-}
-
-/* For immediate hiding on orientation switch */
-.sch-vertical .sch-column-line
-{
-    visibility:hidden;
-}
 
 /* Remove any background image since they won't be printed anyway unless user changes browser setting. */
 .sch-print-header-wrap *
@@ -890,6 +725,116 @@ div.sch-print-normal-rows-ct
 	}
 }
 
+.sch-clockwrap
+{
+    position:relative;
+}
+
+.sch-clock
+{
+    position:absolute;
+    background: url(../images/clock-bare.png) no-repeat left top !important;
+    height:20px;
+    width:21px;
+    white-space:nowrap;
+    display:inline-block;
+    text-indent:-100px;
+    border-radius: 1px;
+}
+
+.sch-day-resolution .sch-clock
+{
+    background: #fff none !important;
+    border:1px solid #ccc;
+}
+
+.sch-clock-text
+{
+    margin-left:25px;
+    padding-bottom:5px;
+    padding-top:2px;
+    display:inline-block;
+    white-space:nowrap;
+}
+
+.sch-day-resolution .sch-clock .sch-hourIndicator
+{
+    width:100%;
+    position:static !important;
+    background-color: rgb(89, 102, 176);
+    border-bottom: 1px solid navy;
+    font-size:7px;
+    line-height: 7px;
+    text-align:center;
+    color:#fff;
+    height:8px;
+    text-indent:0px;
+    margin-top:-1px;
+    text-shadow: rgba(200,200,200,.2) 0 -1px 0;
+    transform:none !important;
+    -moz-transform: none!important;
+    -webkit-transform: none!important;
+    -o-transform:none !important;
+    -ms-transform:none !important;
+    filter: none !important;
+    -ms-filter: none !important;
+}
+
+.sch-day-resolution .sch-clock .sch-minuteIndicator
+{
+    color:#555;
+    width:100%;
+    position:static !important;
+    height:16px;
+    background-color: transparent;
+    font-size:10px;
+    text-align:center;
+    text-indent:0px;
+    text-shadow: rgba(0,0,0,.2) 0 -1px 0;
+    transform:none !important;
+    -moz-transform: none !important;
+    -webkit-transform: none !important;
+    -o-transform:none !important;
+    -ms-transform:none !important;
+    filter: none !important;
+    -ms-filter: none !important;
+}
+
+
+.sch-clock .sch-hourIndicator
+{   
+    overflow:hidden;
+    background: #000;
+    position:absolute;
+    left:10px;
+    top:4px;
+    width:2px;
+    height:6px;
+    transform-origin: 50% 100%;
+    -o-transform-origin: 50% 100%;
+    -moz-transform-origin: 50% 100%;
+    -webkit-transform-origin: 50% 100%;
+    -ms-transform-origin: 50% 100%;
+}
+
+.sch-clock .sch-minuteIndicator
+{
+    overflow:hidden;
+    background: #4E5252;
+    position:absolute;
+    left:10px;
+    top:3px;
+    width:2px;
+    height:7px;
+    transform-origin: 50% 100%;
+    -o-transform-origin: 50% 100%;
+    -moz-transform-origin: 50% 100%;
+    -webkit-transform-origin: 50% 100%;
+    -ms-transform-origin: 50% 100%;
+}
+
+
+
 .sch-tip-ok
 {
   padding-left:20px;
@@ -905,11 +850,6 @@ div.sch-print-normal-rows-ct
 .sch-tooltip-enddate
 {
     padding-top:2px;
-}
-/* Hide title in the scheduler section */
-.sch-schedulerview .x-grid-group-title
-{
-    visibility:hidden;
 }
 .x-ie .sch-horizontal .sch-timelineview td.sch-timetd,
 .x-ie10 .sch-horizontal .sch-timelineview td.sch-timetd {
@@ -958,14 +898,6 @@ div.sch-print-normal-rows-ct
 /* Remove Ext JS default 1px border top of the table */
 .sch-timelinepanel .x-grid-with-row-lines .x-grid-table {
     border-top-color: transparent;
-}
-/* Default cursor for tree scheduler should be auto */
-.sch-timelinetreeview .x-grid-row .x-grid-cell-inner {
-    cursor: default;
-}
-
-.sch-tree-filtered .x-tree-expander {
-	visibility     : hidden;
 }
 /* Use 3 specifiers to make sure we don't "lose" to .x-reset .x-grid-row .x-grid-cell which sets it to #fff */
 .sch-timelineview .x-grid-row td.sch-timetd {
@@ -1044,183 +976,45 @@ td.sch-timetd .x-grid-cell-inner {
     background : transparent url("../images/column-header-over-bg.gif") repeat-x 0 top;
 }
 
-.sch-vertical .x-grid-inner-locked .x-grid-cell
+/* Default cursor for tree scheduler should be auto */
+.sch-timelinetreeview .x-grid-row .x-grid-cell-inner {
+    cursor: default;
+}
+
+.sch-tree-filtered .x-tree-expander {
+	visibility     : hidden;
+}
+.sch-column-line
 {
-    background: #F9F9F9;
+    border-left: 1px solid #EEE;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    margin-left: -1px;
+    z-index:0;
+    pointer-events:none;
 }
- 
-.sch-vertical .x-grid-inner-locked .x-grid-cell-inner
+
+/* Mac Safari */
+.x-safari .sch-column-line
 {
-    color:#666;
-    padding:0 3px;
+    margin-left:0;
 }
 
-.sch-vertical .sch-timetd
+/* Windows Safari */
+.x-safari:not(.x-mac) .sch-column-line
 {
-    border-top-color: transparent;
+    margin-left:1px;
 }
 
-.sch-vertical .sch-animations-enabled .sch-event
+
+.x-ie .sch-column-line
 {
-    -moz-transition-property: width, left;
-    -moz-transition-duration: 0.4s;
-    -webkit-transition-property: width, left;
-    -webkit-transition-duration: 0.4s;
-    -ms-transition-property: width, left;
-    -ms-transition-duration: 0.4s;
-    transition-property: width, left;
-    transition-duration: 0.4s;
+    z-index:-1;
 }
 
-
-.sch-vertical .sch-schedulerview .x-grid-cell-inner
+/* For immediate hiding on orientation switch */
+.sch-vertical .sch-column-line
 {
-    height:100%;
-    overflow: visible;
-}
-
-
-.sch-vertical .sch-schedulerview td.sch-timetd{
-	background:transparent;
-}
-
-/* Alternating coloring for columns */
-.sch-vertical .sch-schedulerview td.sch-col-alt
-{
-	background:transparent url(../images/altrow.png) repeat;
-}
-
-/* No mouse over effect for vertical time column cells */
-.sch-vertical .x-grid-inner-locked .x-grid-row-over .x-grid-cell
-{
-    background-color:#F9F9F9;
-    border-color:#FAFAFA #EDEDED #EDEDED;
-}
-
-.sch-vertical .x-grid-inner-locked .x-column-header-text
-{
-    background-image: none;
-}
-
-
-
-/* Using same styling as the regular Ext JS grid header cells */
-.sch-column-header
-{
-    border-right: 1px solid #C5C5C5;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
-    background-image: none;
-    background-color: #C5C5C5;
-    background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(0%,#F9F9F9),color-stop(100%,#E3E4E6));
-    background-image: -webkit-linear-gradient(top,#F9F9F9,#E3E4E6);
-    background-image: -moz-linear-gradient(top,#F9F9F9,#E3E4E6);
-    background-image: -o-linear-gradient(top,#F9F9F9,#E3E4E6);
-    background-image: -ms-linear-gradient(top,#F9F9F9,#E3E4E6);
-    background-image: linear-gradient(top,#F9F9F9,#E3E4E6);
-}
-
-/* Using same styling as the regular Ext JS grid header cells */
-/* No gradient version */
-.x-nlg .sch-column-header
-{
-    background: transparent url("../images/column-header-bg.gif") repeat-x 0 top;
-}
-
-.sch-header-row {
-    border-top     : 1px solid #C5C5C5
-}
-
-.sch-column-header-over
-{
-    background-image: none;
-    background-color: #aaccf6;
-    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ebf3fd), color-stop(39%, #ebf3fd), color-stop(40%, #d9e8fb), color-stop(100%, #d9e8fb));
-    background-image: -webkit-linear-gradient(top, #ebf3fd, #ebf3fd 39%, #d9e8fb 40%, #d9e8fb);
-    background-image: -moz-linear-gradient(top, #ebf3fd, #ebf3fd 39%, #d9e8fb 40%, #d9e8fb);
-    background-image: -o-linear-gradient(top, #ebf3fd, #ebf3fd 39%, #d9e8fb 40%, #d9e8fb);
-    background-image: -ms-linear-gradient(top, #ebf3fd, #ebf3fd 39%, #d9e8fb 40%, #d9e8fb);
-    background-image: linear-gradient(top, #ebf3fd, #ebf3fd 39%, #d9e8fb 40%, #d9e8fb);
-}
-
-.x-nlg .sch-column-header-over
-{
-    background: #ebf3fd url('../images/column-header-over-bg.gif') repeat-x 0 top;
-}
-
-.sch-event
-{
-	border:1px solid #aaa;
-	background:lightblue url(../images/transp-1px.png) repeat-x left top;
-    position : absolute;
-    overflow:hidden;
-    cursor:pointer;
-    z-index:3;
-    text-align: left;
-}
-
-div.sch-event-fixed
-{
-	cursor: default;
-}
-
-.sch-event-inner
-{
-    overflow:hidden;
-    height:100%;
-    white-space:nowrap;
-    margin-left:3px;
-    margin-right:5px;
-	margin-top:2px;
-}
-
-.sch-event-withicon .sch-event-inner
-{
-    padding-left:19px;
-    height:16px;
-}
-
-/* Hide right border for events ending outside the view */
-.sch-schedulerpanel .sch-event-endsoutside
-{
-	border-right:0 none;
-	-moz-border-radius-topright:0 !important;
-	-moz-border-radius-bottomright:0 !important;
-	-webkit-border-radius-top-right:0 !important;
-	-webkit-border-radius-bottom-right:0 !important;
-	-ms-border-radius-top-right:0 !important;
-	-ms-border-radius-bottom-right:0 !important;
-	border-top-right-radius:0 !important;
-	border-bottom-right-radius:0 !important;
-}
-
-/* Hide left border for events starting outside the view */
-.sch-schedulerpanel .sch-event-startsoutside
-{
-	border-left:0 none;
-	-moz-border-radius-topleft:0 !important;
-	-moz-border-radius-bottomleft:0 !important;
-	-webkit-border-radius-top-left:0 !important;
-	-webkit-border-radius-bottom-left:0 !important;
-	-ms-border-radius-top-left:0 !important;
-	-ms-border-radius-bottom-left:0 !important;
-	border-top-left-radius:0 !important;
-	border-bottom-left-radius:0 !important;
-}
-
-div.sch-event-selected 
-{
-	border-color:red;
-    -webkit-box-shadow: 1px 1px 1px rgba(100, 100, 100, 0.5);
-    -moz-box-shadow: 1px 1px 1px rgba(100, 100, 100, 0.5); 
-    box-shadow: 1px 1px 1px rgba(100, 100, 100, 0.5); 
-}
-
-div.sch-event-hover 
-{
-	border-color:#888;
-}
-
-.x-rtl .sch-event
-{
-    text-align: right;
+    visibility:hidden;
 }
