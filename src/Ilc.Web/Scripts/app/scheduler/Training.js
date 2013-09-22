@@ -53,6 +53,34 @@
                 }
             },
             {
+                text : 'Hours',
+                toggleGroup : 'presets',
+                enableToggle : true,
+                pressed : true,
+                iconCls : 'icon-calendar',
+                handler : function() {
+                    me.switchViewPreset('hourAndDay');
+                }
+            },
+            {
+                text : 'Days',
+                toggleGroup : 'presets',
+                enableToggle : true,
+                iconCls : 'icon-calendar',
+                handler : function() {
+                    me.switchViewPreset('weekAndDay');
+                }
+            },
+            {
+                text : 'Weeks',
+                toggleGroup : 'presets',
+                enableToggle : true,
+                iconCls : 'icon-calendar',
+                handler : function() {
+                    me.switchViewPreset('weekAndMonth');
+                }
+            },
+            {
                 text: '+',
                 scale: 'medium',
                 iconCls: 'zoomIn',
