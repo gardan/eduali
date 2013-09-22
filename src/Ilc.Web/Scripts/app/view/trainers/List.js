@@ -100,6 +100,8 @@
             'deleteTrainer'
         );
 
+        trainersStore.load();
+
         me.callParent(arguments);
     }
 });

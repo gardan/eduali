@@ -2,7 +2,6 @@
     extend: 'Ext.data.Store',
     
     fields: ['id', 'name', 'phone', 'address'],
-    autoLoad: true,
 
     proxy: {
         type: 'rest',

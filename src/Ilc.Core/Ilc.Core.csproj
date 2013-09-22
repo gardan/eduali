@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FilterArgumentsTrainers.cs" />
     <Compile Include="Services\GridConfigsService.cs" />
     <Compile Include="Contracts\ICustomersService.cs" />
     <Compile Include="Contracts\IGridConfigsService.cs" />

@@ -75,7 +75,15 @@
                 }
             });
         });
-        
+
+        subjectComboBox.on('select', function (comboBox, records, eOpts) {
+            trainersStore.load({
+                params: {
+                    subjectId: records[0].get('id')
+                }
+            });
+        });
+
         me.items = [
             customerComboBox,
             subjectComboBox,
