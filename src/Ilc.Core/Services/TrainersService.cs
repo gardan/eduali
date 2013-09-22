@@ -22,7 +22,7 @@ namespace Ilc.Core.Services
             // filter by relations ids
             if (parameters.SubjectId > 0)
             {
-                // query =query.Where(t => t.)
+                query = query.Where(t => t.Subjects.Any(s => s.Id == parameters.SubjectId));
             }
 
             // filter
