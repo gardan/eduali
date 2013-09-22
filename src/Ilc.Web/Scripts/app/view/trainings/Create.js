@@ -116,6 +116,8 @@
             'addTraining'
         );
 
+        subjectsStore.load();
+
         me.callParent(arguments);
     }
 });

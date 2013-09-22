@@ -3878,6 +3878,7 @@
     <Compile Include="Services\StudentsInterviewService.cs" />
     <Compile Include="Services\StudentsService.cs" />
     <Compile Include="InjectorConventions\StudentToStudentModel.cs" />
+    <Compile Include="Services\SubjectsService.cs" />
     <Compile Include="Services\TasksService.cs" />
     <Compile Include="Services\TrainersService.cs" />
     <Compile Include="Services\QuestionsService.cs" />
