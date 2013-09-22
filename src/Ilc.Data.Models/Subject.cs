@@ -6,5 +6,7 @@ namespace Ilc.Data.Models
     public class Subject : EntityBase
     {
         public string Name { get; set; }
+
+        public virtual ICollection<Trainer> Trainers { get; set; }
     }
 }

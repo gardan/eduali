@@ -28,18 +28,32 @@ namespace Ilc.Data.Migrations
             SeedEvaluationQuestions(context);
             SeedCustomer(context);
             SeenStudents(context);
+            SeedSubjects(context);
             SeedTrainer(context);
+        }
+
+        private void SeedSubjects(AppContext context)
+        {
+            context.Subjects.AddOrUpdate(s => s.Name,
+                new Subject() { Name = "Romanian" },
+                new Subject() { Name = "English" });
+
+            context.SaveChanges();
         }
 
         private void SeedTrainer(AppContext context)
         {
+            var subjects = context.Subjects.ToList();
+
             context.Trainers.AddOrUpdate(t => t.Name,
                 new Trainer()
                     {
                         Address = "Str. Orsova, Nr. 26",
                         Name = "Alecsandru Tache",
-                        Phone = "alecs@mail.com"
+                        Phone = "alecs@mail.com",
+                        Subjects = subjects
                     });
+            context.SaveChanges();
         }
 
         private void SeenStudents(AppContext context)

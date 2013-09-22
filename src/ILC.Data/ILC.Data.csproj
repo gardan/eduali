@@ -167,6 +167,10 @@
     <Compile Include="Migrations\201309171331227_AddedAssesments.Designer.cs">
       <DependentUpon>201309171331227_AddedAssesments.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201309221412033_TieSubjectsToTrainers.cs" />
+    <Compile Include="Migrations\201309221412033_TieSubjectsToTrainers.Designer.cs">
+      <DependentUpon>201309221412033_TieSubjectsToTrainers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -276,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201309171331227_AddedAssesments.resx">
       <DependentUpon>201309171331227_AddedAssesments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309221412033_TieSubjectsToTrainers.resx">
+      <DependentUpon>201309221412033_TieSubjectsToTrainers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
