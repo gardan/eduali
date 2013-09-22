@@ -87,6 +87,8 @@ namespace Ilc.Infrastructure
                 {
                     str += " " + availableBookmark.BookmarkName;
                 }
+                
+                _wfApp.Unload();
                 throw new InvalidOperationException("This application has no bookmarks. Available bookmarks:" + str);
             }
 
