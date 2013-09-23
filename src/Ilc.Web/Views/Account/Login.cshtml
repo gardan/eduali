@@ -1,10 +1,86 @@
 ﻿@model Ilc.Web.Models.LoginViewModel
-
-@using (Html.BeginForm(new {ReturnUrl = ViewBag.ReturnUrl}))
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
 {
-    @Html.TextBoxFor(m => m.Username)
-
-    @Html.PasswordFor(m => m.Password)
-
-    <input type="submit" value="Log in" />
+<div class="x-panel x-panel-default-framed" style="width: 400px; height: 184px; margin-right: auto; margin-left: auto; top: 131px;" id="login-form-1033">
+    <div class="x-panel-header x-header x-header-horizontal x-docked x-unselectable x-panel-header-default-framed x-horizontal x-panel-header-horizontal x-panel-header-default-framed-horizontal x-top x-panel-header-top x-panel-header-default-framed-top x-docked-top x-panel-header-docked-top x-panel-header-default-framed-docked-top" id="login-form-1033_header" style="width: 100%; right: auto; left: -5px; top: -5px;">
+        <div id="login-form-1033_header-body" class="x-header-body x-panel-header-body x-panel-header-body-default-framed x-panel-header-body-horizontal x-panel-header-body-default-framed-horizontal x-panel-header-body-top x-panel-header-body-default-framed-top x-panel-header-body-docked-top x-panel-header-body-default-framed-docked-top x-box-layout-ct x-panel-header-body-default-framed-horizontal x-panel-header-body-default-framed-top x-panel-header-body-default-framed-docked-top" style="width: 300px;">
+            <div id="login-form-1033_header-innerCt" class="x-box-inner " role="presentation" style="width: 300px; height: 16px;">
+                <div id="login-form-1033_header-targetEl" class="x-box-target" style="width: 300px;">
+                    <div class="x-component x-header-text-container x-panel-header-text-container x-panel-header-text-container-default-framed x-box-item x-component-default" unselectable="on" id="login-form-1033_header_hd" style="right: auto; left: 0px; top: 0px; margin: 0px; width: 300px;"><span id="login-form-1033_header_hd-textEl" class="x-header-text x-panel-header-text x-panel-header-text-default-framed" unselectable="on">Login</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="login-form-1033-body" class="x-panel-body x-panel-body-default-framed x-panel-body-default-framed x-noborder-trbl" style="padding: 0px; width: 100%; left: 0px; top: 31px; height: 107px;">
+        <span id="login-form-1033-outerCt" style="display: table; width: 100%; table-layout: fixed;">
+            <div id="login-form-1033-innerCt" style="display: table-cell; height: 100%; vertical-align: top; padding: 10px 10px 10px 10px" class="">
+                <table class="x-field x-table-plain x-form-item x-form-type-text x-field-default x-anchor-form-item" cellpadding="0" id="textfield-1034" style="table-layout: fixed; width: 370px;">
+                    <tbody>
+                        <tr role="presentation" id="textfield-1034-inputRow" class="x-form-item-input-row">
+                            <td role="presentation" id="textfield-1034-labelCell" style="" valign="top" halign="left" width="105" class="x-field-label-cell">
+                                <label id="textfield-1034-labelEl" for="textfield-1034-inputEl" class="x-form-item-label x-unselectable x-form-item-label-left" style="width: 100px; margin-right: 5px;" unselectable="on">User ID:</label></td>
+                            <td role="presentation" class="x-form-item-body  " id="textfield-1034-bodyEl" colspan="2" style="width: 100%;">
+                                @Html.TextBoxFor(m => m.Username, new Dictionary<string, object>()
+                                    {
+                                        { "class", "x-form-field x-form-empty-field x-form-required-field x-form-text" },
+                                        { "style", "width: 100%" },
+                                        { "id", "textfield-1034-inputEl" }
+                                    }) 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="x-field x-table-plain x-form-item x-form-type-password x-field-default x-anchor-form-item" cellpadding="0" id="textfield-1035" style="table-layout: fixed; width: 370px;">
+                    <tbody>
+                        <tr role="presentation" id="textfield-1035-inputRow" class="x-form-item-input-row">
+                            <td role="presentation" id="textfield-1035-labelCell" style="" valign="top" halign="left" width="105" class="x-field-label-cell">
+                                <label id="textfield-1035-labelEl" for="textfield-1035-inputEl" class="x-form-item-label x-unselectable x-form-item-label-left" style="width: 100px; margin-right: 5px;" unselectable="on">Password:</label></td>
+                            <td role="presentation" class="x-form-item-body  " id="textfield-1035-bodyEl" colspan="2" style="width: 100%;">
+                                @Html.PasswordFor(m => m.Password, new Dictionary<string, object>()
+                                    {
+                                        { "class", "x-form-field x-form-empty-field x-form-required-field x-form-text" },
+                                        { "style", "width: 100%" },
+                                        { "id", "textfield-1035-inputEl" }
+                                    })
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="x-field x-table-plain x-form-item x-form-type-checkbox x-field-default x-anchor-form-item" cellpadding="0" id="checkbox-1036" style="table-layout: fixed; width: 370px;">
+                    <tbody>
+                        <tr role="presentation" id="checkbox-1036-inputRow" class="x-form-item-input-row">
+                            <td role="presentation" id="checkbox-1036-labelCell" style="" valign="top" halign="left" width="105" class="x-field-label-cell">
+                                <label id="checkbox-1036-labelEl" for="checkbox-1036-inputEl" class="x-form-item-label x-unselectable x-form-item-label-left" style="width: 100px; margin-right: 5px;" unselectable="on">Remember me:</label></td>
+                            <td role="presentation" class="x-form-item-body  x-form-cb-wrap" id="checkbox-1036-bodyEl" colspan="2" style="width: 100%;">
+                                <input type="button" id="checkbox-1036-inputEl" class="x-form-field x-form-checkbox x-form-cb " autocomplete="off" hidefocus="true" aria-invalid="false" data-errorqtip=""></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </span>
+    </div>
+    <div class="x-toolbar x-docked x-toolbar-footer x-docked-bottom x-toolbar-docked-bottom x-toolbar-footer-docked-bottom x-box-layout-ct" id="toolbar-1037" style="width: 100%; right: auto; left: 0px; top: 138px;">
+        <div id="toolbar-1037-innerCt" class="x-box-inner " role="presentation" style="width: 100%; height: 24px;">
+            <div id="toolbar-1037-targetEl" class="x-box-target" style="width: 100%;">
+                <a class="x-btn x-unselectable x-box-item x-toolbar-item x-btn-default-small x-noicon x-btn-noicon x-btn-default-small-noicon" role="button" hidefocus="on" unselectable="on" tabindex="0" id="button-1038" style="right: auto; left: 217px; margin: 0px; top: 0px; width: 75px;">
+                    <span id="button-1038-btnWrap" class="x-btn-wrap" unselectable="on">
+                        <span id="button-1038-btnEl" class="x-btn-button">
+                            <span id="button-1038-btnInnerEl" class="x-btn-inner x-btn-inner-center" unselectable="on">Register</span>
+                            <span role="img" id="button-1038-btnIconEl" class="x-btn-icon-el  " unselectable="on" style=""></span>
+                        </span>
+                    </span>
+                </a>
+                <a class="x-btn x-unselectable x-box-item x-toolbar-item x-btn-default-small x-noicon x-btn-noicon x-btn-default-small-noicon" onclick="document.forms[0].submit();" role="button" hidefocus="on" unselectable="on" tabindex="0" id="button-1039" style="right: auto; left: 303px; margin: 0px; top: 0px; width: 75px;">
+                    <span id="button-1039-btnWrap" class="x-btn-wrap" unselectable="on">
+                        <span id="button-1039-btnEl" class="x-btn-button">
+                            <span id="button-1039-btnInnerEl" class="x-btn-inner x-btn-inner-center" unselectable="on">Login</span>
+                            <span role="img" id="button-1039-btnIconEl" class="x-btn-icon-el  " unselectable="on" style=""></span>
+                        </span>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>    
 }
+
