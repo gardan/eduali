@@ -7,6 +7,7 @@
     constructor: function (args) {
         var me = this;
         var entity = args.entity;
+        var tasksStore = args.tasksStore;
 
         me.items = [
             {
@@ -34,7 +35,9 @@
                     }
                     model.taskEntityId = entity.get('id');
 
-                    me.fireEvent('addinterviewplan', me, model);
+                    me.fireEvent('addinterviewplan', me, model, {
+                        tasksStore: tasksStore
+                    });
                 }
             }
         ];

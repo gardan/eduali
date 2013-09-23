@@ -11,6 +11,7 @@
         var me = this;
 
         var entity = args.entity;
+        var tasksStore = args.tasksStore;
 
         var lessonsStore = Ext.create('Ilc.store.Lessons', {
             trainingId: entity.get('id')
@@ -58,7 +59,8 @@
                         window.on('addEvaluation', function (sender, model) {
                             
                             me.fireEvent('addEvaluation', sender, model, {
-                                studentsStore: studentsStore
+                                studentsStore: studentsStore,
+                                lessonsStore: lessonsStore
                             });
                         });
                         window.show();
@@ -76,7 +78,9 @@
             handler: function () {
                 var model = {};
                 model.taskEntityId = entity.get('id');
-                me.fireEvent('allEvaluationsAdded', me, model);
+                me.fireEvent('allEvaluationsAdded', me, model, {
+                    tasksStore: tasksStore
+                });
             }
         });
 
@@ -84,9 +88,7 @@
             // select the first item
             lessonsGrid.getSelectionModel().select(0);
             
-            
-            lessonsStore.un('load', firstLoad);
-
+            //lessonsStore.un('load', firstLoad);
         };
         lessonsStore.on('load', firstLoad);
 

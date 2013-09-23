@@ -47,7 +47,7 @@
         sender.close();
     },
 
-    addrfi: function(sender, data) {
+    addrfi: function(sender, data, options) {
         console.log('addrfi executed.');
 
         var taskService = {
@@ -72,6 +72,11 @@
 
         taskService.rfi(data)
         .then(function (response) {
+            if (options && options.tasksStore) {
+                options.tasksStore.load();
+            }
+        })
+        .done(function () {
             sender.close();
         });
 
@@ -84,7 +89,7 @@
 
     },
 
-    addinterviewplan: function(sender, data) {
+    addinterviewplan: function(sender, data, options) {
         console.log('addinterviewplan executed.');
         console.log(data);
         var tasksService = {
@@ -112,6 +117,9 @@
             .then(function(response) {
                 // just reload the tasks
                 // | just the one task returned.
+                if (options && options.tasksStore) {
+                    options.tasksStore.load();
+                }
             }).done(function() {
                 sender.close();
             });
@@ -143,9 +151,12 @@
 
         tasksService.interview(data)
             .then(function (response) {
-
+                debugger;
                 if (options && options.studentsStore) {
                     options.studentsStore.load();
+                }
+                if (options && options.tasksStore) {
+                    options.tasksStore.load();
                 }
                 // just reload the tasks
                 // | just the one task returned.
@@ -153,12 +164,12 @@
                 sender.close();
             });
     },
-    allInterviewsAdded: function(sender, data) {
+    allInterviewsAdded: function (sender, data, options) {
         console.log('allInterviewsAdded called.');
         console.log(data);
     },
 
-    addOffer: function (sender, data) {
+    addOffer: function (sender, data, options) {
         console.log('addOffer called.');
         console.log(data);
 
@@ -186,12 +197,15 @@
             .then(function (response) {
                 // just reload the tasks
                 // | just the one task returned.
+                if (options && options.tasksStore) {
+                    options.tasksStore.load();
+                }
             }).done(function () {
                 sender.close();
             });
     },
     
-    addTrainingSchedule: function(sender, data) {
+    addTrainingSchedule: function (sender, data, options) {
         console.log('addTrainingSchedule called.');
         console.log(data);
         
@@ -219,12 +233,15 @@
             .then(function (response) {
                 // just reload the tasks
                 // | just the one task returned.
+                if (options && options.tasksStore) {
+                    options.tasksStore.load();
+                }
             }).done(function () {
                 sender.close();
             });
     },
 
-    planned: function (sender, data) {
+    planned: function (sender, data, options) {
         console.log('planned called.');
         console.log(data);
 
@@ -252,6 +269,10 @@
             .then(function (response) {
                 // just reload the tasks
                 // | just the one task returned.
+                debugger;
+                if (options && options.tasksStore) {
+                    options.tasksStore.load();
+                }
             }).done(function () {
                 sender.close();
             });
@@ -284,12 +305,20 @@
         tasksService.progressEvaluation(data)
             .then(function (response) {
                 // reload the students
-                if (options && options.studentsStore) {
-                    options.studentsStore.reload();
-                }
+                // if (options && options.studentsStore) {
+                //     options.studentsStore.reload();
+                // }
                 
+                // reload the lessons
+                if (options && options.lessonsStore) {
+                    options.lessonsStore.load();
+                }
+
                 // just reload the tasks
                 // | just the one task returned.
+                if (options && options.tasksStore) {
+                    options.tasksStore.load();
+                }
             }).done(function () {
                 sender.close();
             });
@@ -324,6 +353,9 @@
 
                 // just reload the tasks
                 // | just the one task returned.
+                if (options && options.tasksStore) {
+                    options.tasksStore.load();
+                }
             }).done(function () {
                 sender.close();
             });
@@ -361,6 +393,9 @@
                 
                 // just reload the tasks
                 // | just the one task returned.
+                if (options && options.tasksStore) {
+                    options.tasksStore.load();
+                }
             }).done(function () {
                 sender.close();
             });

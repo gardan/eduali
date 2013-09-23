@@ -9,6 +9,7 @@
         var me = this;
 
         var trainingEntity = args.entity;
+        var tasksStore = args.tasksStore;
 
         var studentsStore = Ext.create('Ilc.tasks.training.store.Students', {
             trainingId: trainingEntity.get('id')
@@ -53,7 +54,9 @@
                     taskEntityId: trainingEntity.get('id')
                 };
 
-                me.fireEvent('addAssesment', me, model);
+                me.fireEvent('addAssesment', me, model, {
+                    tasksStore: tasksStore
+                });
             }
         });
 

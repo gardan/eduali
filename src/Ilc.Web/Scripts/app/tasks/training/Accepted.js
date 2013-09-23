@@ -8,6 +8,7 @@
         var me = this;
         
         var trainingEntity = args.entity;
+        var tasksStore = args.tasksStore;
 
         var resourceStore = Ext.create('Ilc.store.scheduler.Lessons', {
             trainingId: trainingEntity.get('id')
@@ -92,7 +93,9 @@
                         model.lessons.push(lesson);
                     });
 
-                    me.fireEvent('addTrainingSchedule', me, model);
+                    me.fireEvent('addTrainingSchedule', me, model, {
+                        tasksStore: tasksStore
+                    });
                 }
             }
         ];

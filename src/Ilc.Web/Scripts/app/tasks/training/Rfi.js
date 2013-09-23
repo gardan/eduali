@@ -12,6 +12,7 @@
     constructor: function (args) {
         var me = this;
         var entity = args.entity;
+        var tasksStore = args.tasksStore;
 
         me.items = [
             {
@@ -45,6 +46,7 @@
                     }
                     model.trainingId = entity.get('id');
 
+
                     me.fireEvent('addrfi', me, model);
                 }
             },
@@ -58,7 +60,9 @@
                         trainingId: entity.get('id')
                     };
                     
-                    me.fireEvent('addrfi', me, model);
+                    me.fireEvent('addrfi', me, model, {
+                        tasksStore: tasksStore
+                    });
                 }
             }
         ];

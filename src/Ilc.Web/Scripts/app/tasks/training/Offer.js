@@ -7,6 +7,7 @@
         var me = this;
 
         var training = args.entity;
+        var tasksStore = args.tasksStore;
 
         // combobox - customers
         
@@ -38,7 +39,9 @@
                         taskEntityId: training.get('id'),
                         action: 'Rejected' // This is a special string, that is defined in TrainingStatus.cs
                     };
-                    me.fireEvent('addOffer', me, model);
+                    me.fireEvent('addOffer', me, model, {
+                        tasksStore: tasksStore
+                    });
                 }
             }
         ];

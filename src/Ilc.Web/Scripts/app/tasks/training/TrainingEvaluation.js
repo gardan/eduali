@@ -21,6 +21,7 @@
         var me = this;
 
         var training = args.entity;
+        var tasksStore = args.tasksStore;
 
         var questionsStore = Ext.create('Ext.data.Store', {
             fields: ['id', 'text', 'type', 'answers'],
@@ -152,7 +153,9 @@
                         });
                     }
 
-                    me.fireEvent('addEvaluation', me, model);
+                    me.fireEvent('addEvaluation', me, model, {
+                        tasksStore: tasksStore
+                    });
                 }
             }));
             me.add(items);

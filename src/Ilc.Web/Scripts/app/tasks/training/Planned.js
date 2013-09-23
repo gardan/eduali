@@ -7,6 +7,7 @@
         var me = this;
 
         var training = args.entity;
+        var tasksStore = args.tasksStore;
 
         // combobox - customers
 
@@ -25,7 +26,9 @@
                     var model = {
                         taskEntityId: training.get('id')
                     };
-                    me.fireEvent('planned.execute', me, model);
+                    me.fireEvent('planned.execute', me, model, {
+                        tasksStore: tasksStore
+                    });
                 }
             }
         ];

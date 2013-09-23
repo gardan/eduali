@@ -59,7 +59,8 @@
                         var window = Ext.create('Ilc.tasks.training.' + action, {
                             modal: true,
                             hideAction: 'destroy',
-                            entity: record
+                            entity: record,
+                            tasksStore: store
                         });
                         window.show();
                         window.setWidth(window.getWidth());
