@@ -87,6 +87,9 @@
         'common.writingExitLevel': 'Writing exit level',
 
         'tasks.title.ended': 'Students assesments',
+        'tasks.title.offer': 'Accept/reject the training offer',
+
+        'tasks.offer.mainLbl': 'Please select the next status of the training to either accepted or rejected',
 
         'formats.date': 'MM-DD-YYYY HH:mm',
         'formats.extjsdate': 'm-d-Y g:i'

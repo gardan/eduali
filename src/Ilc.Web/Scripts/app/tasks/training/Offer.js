@@ -3,6 +3,8 @@
     
     xtype: 'offerwindow',
 
+    title: Ilc.resources.Manager.getResourceString('tasks.title.offer'),
+
     constructor: function (args) {
         var me = this;
 
@@ -18,31 +20,52 @@
         
         // combobox - location, predefined cities
 
+        me.dockedItems = [
+            {
+                xtype: 'toolbar',
+                dock: 'bottom',
+                items: [
+                    {
+                        xtype: 'button',
+                        text: Ilc.resources.Manager.getResourceString('common.accepted'),
+                        handler: function () {
+                            var model = {
+                                taskEntityId: training.get('id'),
+                                action: 'Accepted' // This is a special string, that is defined in TrainingStatus.cs
+                            };
+
+                            me.fireEvent('addOffer', me, model);
+                        }
+                    },
+                    {
+                        xtype: 'button',
+                        text: Ilc.resources.Manager.getResourceString('common.rejected'),
+                        handler: function () {
+                            var model = {
+                                taskEntityId: training.get('id'),
+                                action: 'Rejected' // This is a special string, that is defined in TrainingStatus.cs
+                            };
+                            me.fireEvent('addOffer', me, model, {
+                                tasksStore: tasksStore
+                            });
+                        }
+                    },
+                    '->',
+                    {
+                        xtype: 'button',
+                        text: Ilc.resources.Manager.getResourceString('common.close'),
+                        handler: function () {
+                            me.close();
+                        }
+                    }
+                ]
+            }
+        ];
+
         me.items = [
             {
-                xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.accepted'),
-                handler: function () {
-                    var model = {
-                        taskEntityId: training.get('id'),
-                        action: 'Accepted' // This is a special string, that is defined in TrainingStatus.cs
-                    };
-
-                    me.fireEvent('addOffer', me, model);
-                }
-            },
-            {
-                xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.rejected'),
-                handler: function () {
-                    var model = {
-                        taskEntityId: training.get('id'),
-                        action: 'Rejected' // This is a special string, that is defined in TrainingStatus.cs
-                    };
-                    me.fireEvent('addOffer', me, model, {
-                        tasksStore: tasksStore
-                    });
-                }
+                xtype: 'label',
+                text: Ilc.resources.Manager.getResourceString('tasks.offer.mainLbl')
             }
         ];
 
@@ -51,7 +74,5 @@
         );
 
         me.callParent(arguments);
-    },
-    
-    html: 'The offer window, i do not have any clue what is this step supposed to do.'
+    }
 });
