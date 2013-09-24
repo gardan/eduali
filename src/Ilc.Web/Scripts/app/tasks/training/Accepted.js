@@ -13,6 +13,9 @@
         console.log(trainingEntity);
         var tasksStore = args.tasksStore;
 
+        var startDate = trainingEntity.get('taskObject').desiredStartDate;
+        console.log(startDate);
+
         var resourceStore = Ext.create('Ilc.store.scheduler.Lessons', {
             trainingId: trainingEntity.get('id')
         });
@@ -26,8 +29,8 @@
             anchor: '100%',
             height: 400,
 
-            // startDate: startDate,
-            // endDate: Sch.util.Date.add(startDate, Sch.util.Date.DAY, 10),
+            startDate: new Date(startDate),
+            endDate: Sch.util.Date.add(new Date(startDate), Sch.util.Date.MONTH, 3),
 
             resourceStore: resourceStore,
             eventStore: eventStore,

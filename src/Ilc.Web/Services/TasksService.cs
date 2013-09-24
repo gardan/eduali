@@ -10,6 +10,7 @@ using Ilc.Data.Contracts;
 using Ilc.Data.Models;
 using Ilc.Infrastructure;
 using Ilc.Infrastructure.Workflows;
+using Ilc.Web.InjectorConventions;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
 using ServiceStack.Common.Web;
@@ -40,6 +41,7 @@ namespace Ilc.Web.Services
                 task.Action = Char.ToLowerInvariant(training.Status[0]) + training.Status.Substring(1);
                 task.Name = training.Status;
                 task.CustomerName = training.Customer.Name;
+                task.TaskObject = new TrainingModel().InjectFrom<TrainingToWebModel>(training) as TrainingModel;
 
                 data.Add(task);
 
@@ -524,6 +526,7 @@ namespace Ilc.Web.Services
         public string Name { get; set; }
         public string Action { get; set; }
         public string CustomerName { get; set; }
+        public dynamic TaskObject { get; set; }
     }
 
     public class FilterParametersTasks : FilterParametersBase

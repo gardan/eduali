@@ -49,15 +49,6 @@ namespace Ilc.Web.Services
             return new FilteredDataModel<LessonScheduleModel>()
                 {
                     Data = new List<LessonScheduleModel>()
-                        {
-                            new LessonScheduleModel()
-                                {
-                                    ResourceId = 1,
-                                    Name = "Lesson 1",
-                                    StartDate = DateTimeOffset.UtcNow,
-                                    EndDate = DateTimeOffset.UtcNow.AddHours(2)
-                                }
-                        }
                 };
         }
     }
