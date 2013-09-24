@@ -38,5 +38,10 @@ namespace Ilc.Web.Authentication
 
             FederatedAuthentication.SessionAuthenticationModule.WriteSessionTokenToCookie(sessionToken);
         }
+
+        public void Logout()
+        {
+            FederatedAuthentication.SessionAuthenticationModule.SignOut();
+        }
     }
 }

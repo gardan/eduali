@@ -85,6 +85,7 @@
         'common.productiveTalkingExitLevel': 'Productive talking exit level',
         'common.writingEntryLevel': 'Writing entry level',
         'common.writingExitLevel': 'Writing exit level',
+        'common.logout': 'Logout',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',

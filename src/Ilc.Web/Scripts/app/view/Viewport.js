@@ -24,28 +24,46 @@
             items: [
                 {
                     text: Ilc.resources.Manager.getResourceString('mainMenu.tasks'),
-                    itemId: 'tasks'
+                    itemId: 'menu.tasks'
                 },
                 {
                     text: Ilc.resources.Manager.getResourceString('mainMenu.trainings'),
-                    itemId: 'trainings',
+                    itemId: 'menu.trainings',
                     pressed: true
                 },
                 {
                     text: Ilc.resources.Manager.getResourceString('mainMenu.customers'),
-                    itemId: 'customers',
+                    itemId: 'menu.customers',
                 },
                 {
                     text: Ilc.resources.Manager.getResourceString('mainMenu.students'),
-                    itemId: 'students',
+                    itemId: 'menu.students',
                 },
                 {
                     text: Ilc.resources.Manager.getResourceString('mainMenu.statistics'),
-                    itemId: 'statistics',
+                    itemId: 'menu.statistics',
                 },
                 {
                     text: Ilc.resources.Manager.getResourceString('mainMenu.trainers'),
-                    itemId: 'trainers',
+                    itemId: 'menu.trainers',
+                },
+                '->',
+                {
+                    text: '[username]',
+                    toggleGroup: '',
+                    scale: 'medium',
+                    padding: '0',
+                    menu: [
+                        {
+                            text: 'Item 1',
+                        },
+                        {
+                            text: Ilc.resources.Manager.getResourceString('common.logout'),
+                            handler: function () {
+                                window.location.href = 'account/logout';
+                            }
+                        }
+                    ]
                 }
             ]
         },

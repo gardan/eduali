@@ -33,11 +33,15 @@ namespace Ilc.Web.Controllers
                 Debug.WriteLine("User failed authentication.");
             }
 
-            return View(model);
+            return Redirect("Login");
         }
 
 
-
+        public ActionResult Logout()
+        {
+            AuthenticationManager.Logout();
+            return RedirectToAction("Login", "Account");
+        }
 
         private ActionResult RedirectToLocal(string returnUrl)
         {

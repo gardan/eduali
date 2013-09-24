@@ -112,6 +112,11 @@
     },
 
     onMainNavClick: function (btn) {
-        Ext.Router.redirect(btn.itemId === 'evaluation' ? '' : btn.itemId);
+        var routeId = '';
+        if (btn.itemId == undefined) { // check if it is a menu button
+            return;
+        }
+        routeId = btn.itemId.substring(5);
+        Ext.Router.redirect(routeId === 'evaluation' ? '' : routeId);
     }
 });
