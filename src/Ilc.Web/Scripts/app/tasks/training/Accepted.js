@@ -3,11 +3,14 @@
     xtype: 'acceptedwindow',
 
     title: Ilc.resources.Manager.getResourceString('common.planLessons'),
+    layout: 'anchor',
+    width: 800,
 
     constructor: function (args) {
         var me = this;
         
         var trainingEntity = args.entity;
+        console.log(trainingEntity);
         var tasksStore = args.tasksStore;
 
         var resourceStore = Ext.create('Ilc.store.scheduler.Lessons', {
@@ -20,7 +23,7 @@
         });
 
         var trainingScheduler = Ext.create('Ilc.scheduler.Training', {
-            width: 800,
+            anchor: '100%',
             height: 400,
 
             // startDate: startDate,
@@ -50,7 +53,11 @@
         });
         
         me.items = [
-            trainingScheduler,
+            trainingScheduler
+            
+        ];
+
+        me.buttons = [
             {
                 xtype: 'button',
                 text: Ilc.resources.Manager.getResourceString('common.done'),
@@ -81,12 +88,12 @@
                                 return true;
                             }
                         });
-                        
+
                         Ext.Array.each(events.items, function (event) {
                             var lessonSchedule = {};
                             lessonSchedule.startDate = event.get('StartDate');
                             lessonSchedule.endDate = event.get('EndDate');
-                            
+
                             lesson.lessonSchedules.push(lessonSchedule);
                         });
 

@@ -80,6 +80,7 @@
                     me.switchViewPreset('weekAndMonth');
                 }
             },
+            '->',
             {
                 text: '+',
                 scale: 'medium',
