@@ -119,7 +119,7 @@
             
             //HOUR
             { width: 50, increment: 6, resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' },
-            { width: 50, increment: 3, resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' }
+            { width: 50, increment: 1, resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' }
         ];
 
         me.listeners = {
