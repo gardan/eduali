@@ -12,7 +12,7 @@
     // startDate: startDate,
     // endDate: Sch.util.Date.add(startDate, Sch.util.Date.DAY, 10),
 
-    // viewPreset: 'hourAndDay',
+    viewPreset: 'hourAndDay',
 
     // Setup your static columns
 
@@ -58,7 +58,7 @@
                 enableToggle : true,
                 iconCls : 'icon-calendar',
                 handler : function() {
-                    me.switchViewPreset('hourAndDay', me.startDate, me.endDate);
+                    me.zoomToLevel(3);
                 }
             },
             {
@@ -67,7 +67,7 @@
                 enableToggle : true,
                 iconCls      : 'icon-calendar',
                 handler: function () {
-                    me.switchViewPreset('weekAndDay', me.startDate, me.endDate);
+                    me.zoomToLevel(2);
                 }
             },
             {
@@ -76,17 +76,28 @@
                 enableToggle : true,
                 iconCls : 'icon-calendar',
                 handler : function() {
-                    me.switchViewPreset('weekAndMonth', me.startDate, me.endDate);
+                    me.zoomToLevel(1);
                 }
             },
             '->',
+            {
+                text: 'prev',
+                handler: function () {
+                    me.shiftPrevious();
+                }
+            },
+            {
+                text: 'next',
+                handler: function () {
+                    me.shiftNext();
+                }
+            },
             {
                 text: '+',
                 scale: 'medium',
                 iconCls: 'zoomIn',
                 handler: function () {
                     me.zoomIn();
-                    console.log(me.calculateCurrentZoomLevel());
                 }
             },
             {
@@ -95,13 +106,19 @@
                 iconCls: 'zoomOut',
                 handler: function () {
                     me.zoomOut();
-                    console.log(me.calculateCurrentZoomLevel());
                 }
             }
         ];
 
         me.zoomLevels = [
-            { width: 100, increment: 1, resolution: 1, preset: 'weekAndDay', resolutionUnit: 'HOUR' },
+            // WEEK
+            { width: 50, increment: 1, resolution: 30, preset: 'weekAndMonth', resolutionUnit: 'MINUTE' },
+
+            // DAY
+            { width: 100, increment: 1, resolution: 30, preset: 'weekAndDay', resolutionUnit: 'MINUTE' },
+            
+            //HOUR
+            { width: 50, increment: 6, resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' }
         ];
 
         me.listeners = {
@@ -122,7 +139,9 @@
                 s.ctx.rec = rec;
                 s.ctx.showAt(e.getXY());
             },
-
+            afterlayout: function () {
+                me.zoomOut();
+            },
             single: true
         };
 

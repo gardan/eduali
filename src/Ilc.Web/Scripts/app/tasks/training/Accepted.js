@@ -30,7 +30,7 @@
             height: 400,
 
             startDate: new Date(startDate),
-            endDate: Sch.util.Date.add(new Date(startDate), Sch.util.Date.MONTH, 3),
+            //endDate: Sch.util.Date.add(new Date(startDate), Sch.util.Date.MONTH, 3),
 
             resourceStore: resourceStore,
             eventStore: eventStore,
