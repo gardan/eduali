@@ -34,7 +34,9 @@
                                 action: 'Accepted' // This is a special string, that is defined in TrainingStatus.cs
                             };
 
-                            me.fireEvent('addOffer', me, model);
+                            me.fireEvent('addOffer', me, model, {
+                                tasksStore: tasksStore
+                            });
                         }
                     },
                     {
