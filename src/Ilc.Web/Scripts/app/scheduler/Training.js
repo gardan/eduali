@@ -118,7 +118,8 @@
             { width: 100, increment: 1, resolution: 30, preset: 'weekAndDay', resolutionUnit: 'MINUTE' },
             
             //HOUR
-            { width: 50, increment: 6, resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' }
+            { width: 50, increment: 6, resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' },
+            { width: 50, increment: 3, resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' }
         ];
 
         me.listeners = {
@@ -140,7 +141,7 @@
                 s.ctx.showAt(e.getXY());
             },
             afterlayout: function () {
-                me.zoomOut();
+                me.zoomToLevel(4);
             },
             single: true
         };
