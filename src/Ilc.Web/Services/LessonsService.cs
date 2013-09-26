@@ -46,9 +46,24 @@ namespace Ilc.Web.Services
 
         public FilteredDataModel<LessonScheduleModel> Get(FilterParametersLessonSchedule request)
         {
+            var training = Trainings.GetById(request.TrainingId);
+            var scheduleDays = training.ScheduleDays;
+            var data = new List<LessonScheduleModel>();
+
+            foreach (var day in scheduleDays)
+            {
+                data.Add(new LessonScheduleModel()
+                    {
+                        StartDate = day.StartDate,
+                        EndDate = day.EndDate,
+                        Name = day.LessonName,
+                        ResourceId = day.Order
+                    });
+            }
+
             return new FilteredDataModel<LessonScheduleModel>()
                 {
-                    Data = new List<LessonScheduleModel>()
+                    Data = data
                 };
         }
     }

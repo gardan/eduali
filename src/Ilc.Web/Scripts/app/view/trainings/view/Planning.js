@@ -34,6 +34,7 @@
             trainingScheduler
         ];
         resourceStore.load();
+        eventStore.load();
         me.callParent(arguments);
     }
 });
