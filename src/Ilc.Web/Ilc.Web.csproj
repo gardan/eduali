@@ -173,6 +173,7 @@
     <Content Include="Scripts\app\form\TransferBlockForm.js" />
     <Content Include="Scripts\app\grid\Competences.js" />
     <Content Include="Scripts\app\grid\EvalQuestions.js" />
+    <Content Include="Scripts\app\grid\Offers.js" />
     <Content Include="Scripts\app\helpers\AppConfig.js" />
     <Content Include="Scripts\app\helpers\GridColumns.js" />
     <Content Include="Scripts\app\resources\Resources.en.js" />
@@ -189,6 +190,7 @@
     <Content Include="Scripts\app\routing\Router.js" />
     <Content Include="Scripts\app\store\Customers.js" />
     <Content Include="Scripts\app\store\Lessons.js" />
+    <Content Include="Scripts\app\store\Offers.js" />
     <Content Include="Scripts\app\store\Questions.js" />
     <Content Include="Scripts\app\store\scheduler\LessonAppointments.js" />
     <Content Include="Scripts\app\store\scheduler\Lessons.js" />
@@ -214,6 +216,7 @@
     <Content Include="Scripts\app\tasks\training\store\ProgressEvalStudents.js" />
     <Content Include="Scripts\app\tasks\training\store\Students.js" />
     <Content Include="Scripts\app\tasks\training\TrainingEvaluation.js" />
+    <Content Include="Scripts\app\tasks\training\window\CreateRfi.js" />
     <Content Include="Scripts\app\tasks\training\window\CreateStudentAssesment.js" />
     <Content Include="Scripts\app\tasks\training\window\CreateStudentEvaluation.js" />
     <Content Include="Scripts\app\tasks\training\window\CreateStudentInterview.js" />

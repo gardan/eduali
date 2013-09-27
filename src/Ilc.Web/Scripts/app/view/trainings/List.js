@@ -57,7 +57,14 @@
                         return ret.slice(0, ret.length - 1);
                     }
                 }
-            ], 'trainings')
+            ], 'trainings'),
+            dockedItems: [
+                {
+                    xtype: 'pagingtoolbar',
+                    store: trainingsStore,
+                    dock: 'bottom'
+                }
+            ]
         });
 
         trainingsGrid.on('itemdblclick', function (grid, record) {

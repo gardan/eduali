@@ -13,6 +13,11 @@ namespace Ilc.Core
             Filter = new List<Filter>();
         }
 
+        public int Limit {
+            get { return this.Length; }
+            set { this.Length = value; }
+        }
+
         /// <summary>
         /// Collection of the filters
         /// </summary>

@@ -14,61 +14,50 @@
         var entity = args.entity;
         var tasksStore = args.tasksStore;
 
+        var offersStore = Ext.create('Ilc.store.Offers');
+
+        var offersGrid = Ext.create('Ilc.grid.Offers', {
+            store: offersStore
+        });
+
         me.items = [
+            offersGrid
+        ];
+
+        offersGrid.on('newofferclick', function() {
+            // show the CreateRfi window
+            var createOfferWindow = Ext.create('Ilc.tasks.training.window.CreateRfi', {
+                closeAction: 'destroy',
+                entity: entity
+            });
+
+            createOfferWindow.on('addrfi', function (sender, model) {
+                me.fireEvent('addrfi', sender, model, {
+                    tasksStore: tasksStore
+                });
+            });
+
+            createOfferWindow.show();
+        });
+
+        me.buttons = [
             {
-                xtype: 'textfield',
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.possibleCosts'),
-                name: 'possibleCost'
-            },
-            {
-                xtype: 'textfield',
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.lessonNo'),
-                name: 'lessonsNo'
-            },
-            {
-                xtype: 'textfield',
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.lessonDuration'),
-                name: 'lessonDuration'
+                xtype: 'button',
+                text: 'Select offer'
             },
             {
                 xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.createOffer'),
+                text: Ilc.resources.Manager.getResourceString('common.close'),
                 handler: function () {
-                    console.log('Firing addrfi');
-                    var model = {};
-
-                    var textboxes = me.query('textfield');
-                    for (var i = 0; i < textboxes.length; i++) {
-                        var textbox = textboxes[i];
-                        var name = textbox.name;
-                        var value = textbox.getRawValue();
-                        model[name] = value;
-                    }
-                    model.trainingId = entity.get('id');
-
-
-                    me.fireEvent('addrfi', me, model);
-                }
-            },
-            {
-                xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.execute'),
-                handler: function (btn, event) {
-                    console.log('Firing addrfi');
-                    var model = {
-                        complete: true,
-                        trainingId: entity.get('id')
-                    };
-                    
-                    me.fireEvent('addrfi', me, model, {
-                        tasksStore: tasksStore
-                    });
+                    me.close();
                 }
             }
         ];
 
         me.addEvents('addrfi');
         
+        offersStore.load();
+
         this.callParent(arguments);
     }
 });
