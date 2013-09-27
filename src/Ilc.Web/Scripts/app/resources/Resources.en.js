@@ -45,7 +45,7 @@
         'common.trainingEval': 'Training evaluation',
         'common.planInterview': 'Plan interview',
         'common.interview': 'Interview',
-        'common.newInterview': 'New interview',
+        'common.newInterview': 'Enter interview findings',
         'common.listeningLevel': 'Listening level',
         'common.listeningTargetLevel': 'Listening target level',
         'common.planLessons': 'Plan lessons',
@@ -86,6 +86,8 @@
         'common.writingEntryLevel': 'Writing entry level',
         'common.writingExitLevel': 'Writing exit level',
         'common.logout': 'Logout',
+        'common.save': 'Save',
+        'common.remarks': 'Remarks',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',

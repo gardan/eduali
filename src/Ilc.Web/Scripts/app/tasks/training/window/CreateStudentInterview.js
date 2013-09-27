@@ -118,8 +118,15 @@
                 anchor: '100%'
             },
             {
+                xtype: 'textarea',
+                name: 'remarks',
+                anchor: '100%',
+                grow: true,
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.remarks')
+            },
+            {
                 xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.add'),
+                text: Ilc.resources.Manager.getResourceString('common.save'),
                 handler: function(btn, events) {
                     var model = {};
                     // example: 
