@@ -14,7 +14,17 @@
                 text: Ilc.resources.Manager.getResourceString('common.possibleCosts'),
                 dataIndex: 'possibleCost',
                 flex: 1
-            }
+            },
+            {
+                text: Ilc.resources.Manager.getResourceString('common.lessonNo'),
+                dataIndex: 'lessonsNo',
+                flex: 1
+            },
+            {
+                text: Ilc.resources.Manager.getResourceString('common.lessonDuration'),
+                dataIndex: 'lessonDuration',
+                flex: 1
+            },
         ];
 
         me.dockedItems = [

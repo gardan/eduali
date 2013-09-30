@@ -20,9 +20,11 @@
                 xtype: 'textfield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.lessonDuration'),
                 name: 'lessonDuration'
-            },
+            }
+        ];
+
+        me.buttons = [
             {
-                xtype: 'button',
                 text: Ilc.resources.Manager.getResourceString('common.createOffer'),
                 handler: function () {
                     console.log('Firing addrfi');
@@ -37,19 +39,6 @@
                     }
                     model.trainingId = entity.get('id');
 
-
-                    me.fireEvent('addrfi', me, model);
-                }
-            },
-            {
-                xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.execute'),
-                handler: function (btn, event) {
-                    console.log('Firing addrfi');
-                    var model = {
-                        complete: true,
-                        trainingId: entity.get('id')
-                    };
 
                     me.fireEvent('addrfi', me, model);
                 }

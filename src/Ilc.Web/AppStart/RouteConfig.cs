@@ -37,6 +37,7 @@ namespace Ilc.Web.AppStart
             routes.Add<UpdateGridColumnConfigModel>("/api/config/grid", "PUT");
 
             routes.Add<CreateOfferModel>("/api/offers", "POST");
+            routes.Add<Services.FilterParametersOffer>("/api/offers", "GET");
 
             routes.Add<Services.FilterParametersTasks>("/api/tasks", "GET");
             routes.Add<Services.RfiModel>("/api/tasks/training/rfi", "POST");

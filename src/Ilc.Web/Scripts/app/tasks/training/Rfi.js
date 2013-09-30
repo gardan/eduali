@@ -4,8 +4,11 @@
 
     layout: 'anchor',
 
+    minWidth: 300,
+    width: 500,
+
     defaults: {
-        width: 250,
+        width: 500,
         anchor: '100%'
     },
 
@@ -18,6 +21,14 @@
 
         var offersGrid = Ext.create('Ilc.grid.Offers', {
             store: offersStore
+        });
+
+        var selectOfferBtn = Ext.create('Ext.button.Button', {
+            text: 'Select offer',
+            disabled: true,
+            handler: function () {
+
+            }
         });
 
         me.items = [
@@ -40,11 +51,12 @@
             createOfferWindow.show();
         });
 
+        offersGrid.on('select', function (grid, record) {
+            selectOfferBtn.setDisabled(false);
+        });
+
         me.buttons = [
-            {
-                xtype: 'button',
-                text: 'Select offer'
-            },
+            selectOfferBtn,
             {
                 xtype: 'button',
                 text: Ilc.resources.Manager.getResourceString('common.close'),
@@ -56,7 +68,11 @@
 
         me.addEvents('addrfi');
         
-        offersStore.load();
+        offersStore.load({
+            params: {
+                trainingId: entity.get('id')
+            }
+        });
 
         this.callParent(arguments);
     }
