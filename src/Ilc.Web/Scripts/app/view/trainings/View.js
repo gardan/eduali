@@ -139,13 +139,6 @@
                             category: 'offer'
                         }
                     });
-                    // documentsStore.add({
-                    //     name: 'Offer-1-Customer',
-                    //     // url: 'http://localhost:54877/pdf/offers/1',
-                    //     url: 'http://localhost:54877/lightoffer/pdf/1',
-                    //     creator: { id: 1, name: 'admin' },
-                    //     createDate: '2013-12-12T12:34:45'
-                    // });
                     break;
                 case 'intakes':
                     documentsStore.add({
@@ -182,6 +175,23 @@
             default:
             }
             
+        });
+
+        documentsTree.on('itemcontextmenu', function (view, record, node, index, event) {
+            console.log('fired');
+            var menu = Ext.create('Ext.menu.Menu', {
+                items: [
+                    {
+                        text: 'zip',
+                        handler: function () {
+                            window.open('zip/offers?trainingId=12');
+                        }
+                    }
+                ]
+            });
+
+            menu.showAt(event.getXY());
+            event.stopEvent();
         });
 
         me.items = [
