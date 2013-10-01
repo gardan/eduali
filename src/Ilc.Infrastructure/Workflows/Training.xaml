@@ -99,9 +99,6 @@
                 </If>
               </Sequence>
             </Transition.Trigger>
-            <Transition.Condition>
-              <mca:CSharpValue x:TypeArguments="x:Boolean">varComplete</mca:CSharpValue>
-            </Transition.Condition>
             <Transition.To>
               <State x:Name="__ReferenceID12" DisplayName="PendingInterviewPlanning" sap2010:WorkflowViewState.IdRef="State_2">
                 <State.Transitions>
@@ -480,7 +477,7 @@
                                                                                     </Assign>
                                                                                   </If.Then>
                                                                                   <If.Else>
-                                                                                    <Assign>
+                                                                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_15">
                                                                                       <Assign.To>
                                                                                         <OutArgument x:TypeArguments="x:Boolean">
                                                                                           <mca:CSharpReference x:TypeArguments="x:Boolean">varComplete</mca:CSharpReference>
@@ -489,7 +486,6 @@
                                                                                       <Assign.Value>
                                                                                         <InArgument x:TypeArguments="x:Boolean">True</InArgument>
                                                                                       </Assign.Value>
-                                                                                      <sap2010:WorkflowViewState.IdRef>Assign_15</sap2010:WorkflowViewState.IdRef>
                                                                                     </Assign>
                                                                                   </If.Else>
                                                                                 </If>
@@ -703,6 +699,32 @@
                 </State.Variables>
               </State>
             </Transition.To>
+            <Transition.Action>
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_11">
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_16">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">
+                      <mca:CSharpReference x:TypeArguments="x:Int32">varOfferId</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">
+                      <mca:CSharpValue x:TypeArguments="x:Int32">Convert.ToInt32(varInRfi["OfferId"])</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+                <local1:ToggleSelectedOffer sap2010:WorkflowViewState.IdRef="ToggleSelectedOffer_1">
+                  <local1:ToggleSelectedOffer.OfferId>
+                    <InArgument x:TypeArguments="x:Int32">
+                      <mca:CSharpValue x:TypeArguments="x:Int32">varOfferId</mca:CSharpValue>
+                    </InArgument>
+                  </local1:ToggleSelectedOffer.OfferId>
+                </local1:ToggleSelectedOffer>
+              </Sequence>
+            </Transition.Action>
+            <Transition.Condition>
+              <mca:CSharpValue x:TypeArguments="x:Boolean">varComplete</mca:CSharpValue>
+            </Transition.Condition>
           </Transition>
           <Transition Trigger="{x:Reference __ReferenceID10}" DisplayName="BookmarkRfi" sap2010:WorkflowViewState.IdRef="Transition_19" To="{x:Reference __ReferenceID11}">
             <Transition.Action>
@@ -743,6 +765,7 @@
           </Variable>
           <Variable x:TypeArguments="idm:TrainingOffer" Name="varOffer" />
           <Variable x:TypeArguments="x:Boolean" Default="False" Name="varComplete" />
+          <Variable x:TypeArguments="x:Int32" Name="varOfferId" />
         </State.Variables>
       </State>
     </StateMachine.InitialState>
@@ -770,7 +793,7 @@
         </Variable.Default>
       </Variable>
     </StateMachine.Variables>
-    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </StateMachine>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -1143,13 +1166,22 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Transition_5" sap:VirtualizedContainerService.HintSize="573,971">
+      <sap2010:ViewStateData Id="Assign_16" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="ToggleSelectedOffer_1" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Sequence_11" sap:VirtualizedContainerService.HintSize="264,248">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Transition_5" sap:VirtualizedContainerService.HintSize="573,1374">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:PointCollection x:Key="ConnectorLocation">112.7,141 112.7,171 90.1,171 90.1,229</av:PointCollection>
             <x:Int32 x:Key="SrcConnectionPointIndex">43</x:Int32>
             <x:Int32 x:Key="DestConnectionPointIndex">30</x:Int32>
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>

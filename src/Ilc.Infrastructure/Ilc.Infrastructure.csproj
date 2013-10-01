@@ -62,6 +62,7 @@
     <Compile Include="Workflows\Activities\Training\PersistProgressEvaluation.cs" />
     <Compile Include="Workflows\Activities\Training\PersistSchedule.cs" />
     <Compile Include="Workflows\Activities\Training\PersistTrainingEvaluation.cs" />
+    <Compile Include="Workflows\Activities\Training\ToggleSelectedOffer.cs" />
     <Compile Include="Workflows\Activities\WaitForResponse.cs" />
     <Compile Include="Workflows\TrainingExtensionManager.cs" />
     <Compile Include="Workflows\TrainingStatus.cs" />

@@ -70,6 +70,10 @@ namespace Ilc.Web.Services
 
                 workflowData["Offer"] = offer;
             }
+            else
+            {
+                workflowData["OfferId"] = request.OfferId;
+            }
 
             proc.Resume(training.WokrflowId.Value, TrainingStatus.Rfi, workflowData, PersistableIdleAction.Unload);
 
@@ -518,6 +522,7 @@ namespace Ilc.Web.Services
         public int LessonsNo { get; set; }
 
         public bool Complete { get; set; }
+        public int OfferId { get; set; }
     }
 
     public class TaskModel

@@ -12,6 +12,8 @@
         anchor: '100%'
     },
 
+    selected: null,
+
     constructor: function (args) {
         var me = this;
         var entity = args.entity;
@@ -27,7 +29,16 @@
             text: 'Select offer',
             disabled: true,
             handler: function () {
+                var model = {
+                    complete: true,
+                    trainingId: entity.get('id'),
+                    offerId: me.selected.get('id')
+                };
+                console.log(model);
 
+                me.fireEvent('addrfi', me, model, {
+                    tasksStore: tasksStore
+                });
             }
         });
 
@@ -53,6 +64,7 @@
 
         offersGrid.on('select', function (grid, record) {
             selectOfferBtn.setDisabled(false);
+            me.selected = record;
         });
 
         me.buttons = [
