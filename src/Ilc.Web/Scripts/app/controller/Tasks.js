@@ -75,6 +75,10 @@
             if (options && options.tasksStore) {
                 options.tasksStore.load();
             }
+
+            if (options && options.offersStore) {
+                options.offersStore.load(options.offersLoadConfig);
+            }
         })
         .done(function () {
             sender.close();

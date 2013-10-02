@@ -55,7 +55,12 @@
 
             createOfferWindow.on('addrfi', function (sender, model) {
                 me.fireEvent('addrfi', sender, model, {
-                    tasksStore: tasksStore
+                    offersStore: offersStore,
+                    offersLoadConfig: {
+                        params: {
+                            trainingId: entity.get('id')
+                        }
+                    }
                 });
             });
 

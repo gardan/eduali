@@ -45,28 +45,23 @@
                     text: Ilc.resources.Manager.getResourceString('common.customer'),
                     dataIndex: 'customerName',
                     flex: 1
-                },
-                {
-                    xtype: 'actioncolumn',
-                    tooltip: Ilc.resources.Manager.getResourceString('common.execute'),
-                    icon: 'images/web/view.png',
-                    handler: function (self, rowIndex, colIndex, item, e, record, row) {
-                        me.fireEvent('beforeActionWindow');
-
-                        // make first char uppercase.
-                        // e.g. test => Test
-                        var action = record.data.action.charAt(0).toUpperCase() + record.data.action.slice(1);
-                        var window = Ext.create('Ilc.tasks.training.' + action, {
-                            modal: true,
-                            hideAction: 'destroy',
-                            entity: record,
-                            tasksStore: store
-                        });
-                        window.show();
-                        window.setWidth(window.getWidth());
-                    }
-                }            
+                }           
             ]
+        });
+
+        grid.on('itemdblclick', function(self, record, item) {
+            // make first char uppercase.
+            // e.g. test => Test
+            var action = record.data.action.charAt(0).toUpperCase() + record.data.action.slice(1);
+
+            var window = Ext.create('Ilc.tasks.training.' + action, {
+                modal: true,
+                hideAction: 'destroy',
+                entity: record,
+                tasksStore: store
+            });
+            window.show();
+            window.setWidth(window.getWidth());
         });
 
         me.addEvents('execute');
