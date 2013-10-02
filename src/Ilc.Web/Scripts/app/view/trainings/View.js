@@ -30,7 +30,7 @@
                 children: [
                     {
                         text: 'Offer',
-                        category: 'offer',
+                        category: 'offers',
                         leaf: true
                     },
                     {
@@ -132,7 +132,7 @@
         documentsTree.on('select', function (row, record) {
             documentsStore.removeAll();
             switch (record.get('category')) {
-                case 'offer':
+                case 'offers':
                     documentsStore.load({
                         params: {
                             trainingId: model.get('id'),
@@ -184,7 +184,8 @@
                     {
                         text: 'zip',
                         handler: function () {
-                            window.open('zip/offers?trainingId=12');
+                            var path = 'zip/' + record.get('category') + '?trainingId=' + model.get('id');
+                            window.open(path);
                         }
                     }
                 ]
