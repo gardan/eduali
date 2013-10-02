@@ -88,6 +88,13 @@
         'common.logout': 'Logout',
         'common.save': 'Save',
         'common.remarks': 'Remarks',
+        'common.level': 'Level',
+        'common.targetLevel': 'Target level',
+        'common.listening': 'Listening',
+        'common.reading': 'Reading',
+        'common.interactiveTalking': 'Interactive talking',
+        'common.productiveTalking': 'Productive talking',
+        'common.writing': 'Writing',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',
