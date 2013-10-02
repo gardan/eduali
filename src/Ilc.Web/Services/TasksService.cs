@@ -427,6 +427,11 @@ namespace Ilc.Web.Services
     {
         public int TaskEntityId { get; set; }
         public List<LessonModel> Lessons { get; set; }
+
+        public bool IsEmpty()
+        {
+            return Lessons == null || Lessons.Count == 0;
+        }
     }
 
     public class RejectedModel

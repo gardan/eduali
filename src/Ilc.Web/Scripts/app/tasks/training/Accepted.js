@@ -107,6 +107,9 @@
                         tasksStore: tasksStore
                     });
                 }
+            },
+            {
+                text: Ilc.resources.Manager.getResourceString('common.close')
             }
         ];
 
