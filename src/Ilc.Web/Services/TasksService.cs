@@ -191,16 +191,20 @@ namespace Ilc.Web.Services
 
                 foreach (var lessonModel in request.Lessons)
                 {
-                    var firstSchedule = lessonModel.LessonSchedules.First();
-                    var scheduleDay = new TrainingScheduleDay()
+                    if (lessonModel.LessonSchedules.Count > 0)
                     {
-                        Order = lessonModel.Id,
-                        StartDate = firstSchedule.StartDate,
-                        EndDate = firstSchedule.EndDate,
-                        TrainingId = request.TaskEntityId,
-                        LessonName = "Lesson " + lessonModel.Id
-                    };
-                    schedule.Add(scheduleDay);
+                        var firstSchedule = lessonModel.LessonSchedules.First();
+                        var scheduleDay = new TrainingScheduleDay()
+                        {
+                            Order = lessonModel.Id,
+                            StartDate = firstSchedule.StartDate,
+                            EndDate = firstSchedule.EndDate,
+                            TrainingId = request.TaskEntityId,
+                            LessonName = "Lesson " + lessonModel.Id
+                        };
+                        schedule.Add(scheduleDay);
+                    }
+                    
                 }
 
                 workflowData["Schedule"] = schedule;

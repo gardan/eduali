@@ -10,11 +10,9 @@
         var me = this;
         
         var trainingEntity = args.entity;
-        console.log(trainingEntity);
         var tasksStore = args.tasksStore;
 
         var startDate = trainingEntity.get('taskObject').desiredStartDate;
-        console.log(startDate);
 
         var resourceStore = Ext.create('Ilc.store.scheduler.Lessons', {
             trainingId: trainingEntity.get('id')
