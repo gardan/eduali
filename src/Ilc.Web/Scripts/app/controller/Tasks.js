@@ -241,7 +241,7 @@
                     options.tasksStore.load();
                 }
             }).done(function () {
-                sender.close();
+                // sender.close();
             });
     },
 

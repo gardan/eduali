@@ -54,7 +54,52 @@
                 return false;
             }
         });
-        
+
+        var onEventCreateOrDragged = function(scheduler) {
+            var model = {
+                taskEntityId: trainingEntity.get('id'),
+                lessons: [
+                    //    {
+                //        id: 1,
+                //        lessonSchedules: [
+                //            {
+                //                startDate: 'startDate',
+                //                endDate: 'endDate'
+                //            }
+                //        ]
+                //    }
+                ]
+            };
+
+            resourceStore.each(function(record) {
+                //debugger;
+                var lesson = {};
+                lesson.id = record.get('Id');
+                lesson.lessonSchedules = [];
+
+                var events = eventStore.queryBy(function(eventRecord, id) {
+                    if (eventRecord.get('ResourceId') == record.get('Id')) {
+                        return true;
+                    }
+                });
+
+                Ext.Array.each(events.items, function(event) {
+                    var lessonSchedule = {};
+                    lessonSchedule.startDate = event.get('StartDate');
+                    lessonSchedule.endDate = event.get('EndDate');
+
+                    lesson.lessonSchedules.push(lessonSchedule);
+                });
+
+                model.lessons.push(lesson);
+            });
+
+            me.fireEvent('addTrainingSchedule', me, model);
+        };
+
+        trainingScheduler.on('afterdragcreate', onEventCreateOrDragged);
+        trainingScheduler.on('eventdrop', onEventCreateOrDragged);
+
         me.items = [
             trainingScheduler
             
@@ -65,47 +110,7 @@
                 xtype: 'button',
                 text: Ilc.resources.Manager.getResourceString('common.done'),
                 handler: function () {
-                    var model = {
-                        taskEntityId: trainingEntity.get('id'),
-                        lessons: [
-                        //    {
-                        //        id: 1,
-                        //        lessonSchedules: [
-                        //            {
-                        //                startDate: 'startDate',
-                        //                endDate: 'endDate'
-                        //            }
-                        //        ]
-                        //    }
-                        ]
-                    };
-
-                    resourceStore.each(function (record) {
-                        //debugger;
-                        var lesson = {};
-                        lesson.id = record.get('Id');
-                        lesson.lessonSchedules = [];
-
-                        var events = eventStore.queryBy(function (eventRecord, id) {
-                            if (eventRecord.get('ResourceId') == record.get('Id')) {
-                                return true;
-                            }
-                        });
-
-                        Ext.Array.each(events.items, function (event) {
-                            var lessonSchedule = {};
-                            lessonSchedule.startDate = event.get('StartDate');
-                            lessonSchedule.endDate = event.get('EndDate');
-
-                            lesson.lessonSchedules.push(lessonSchedule);
-                        });
-
-                        model.lessons.push(lesson);
-                    });
-
-                    me.fireEvent('addTrainingSchedule', me, model, {
-                        tasksStore: tasksStore
-                    });
+                    
                 }
             },
             {

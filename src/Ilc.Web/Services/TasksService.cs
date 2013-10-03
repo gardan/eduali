@@ -176,21 +176,7 @@ namespace Ilc.Web.Services
         {
             var training = Trainings.GetById(request.TaskEntityId);
 
-            var schedule = new List<TrainingScheduleDay>();
-
-            foreach (var lessonModel in request.Lessons)
-            {
-                var firstSchedule = lessonModel.LessonSchedules.First();
-                var scheduleDay = new TrainingScheduleDay()
-                    {
-                        Order = lessonModel.Id,
-                        StartDate = firstSchedule.StartDate,
-                        EndDate = firstSchedule.EndDate,
-                        TrainingId = request.TaskEntityId,
-                        LessonName = "Lesson " + lessonModel.Id
-                    };
-                schedule.Add(scheduleDay);
-            }
+            
 
 
             var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
@@ -199,14 +185,29 @@ namespace Ilc.Web.Services
 
             var workflowData = new Dictionary<string, object>();
 
-            workflowData["Schedule"] = schedule;
+            if (!request.IsEmpty())
+            {
+                var schedule = new List<TrainingScheduleDay>();
 
+                foreach (var lessonModel in request.Lessons)
+                {
+                    var firstSchedule = lessonModel.LessonSchedules.First();
+                    var scheduleDay = new TrainingScheduleDay()
+                    {
+                        Order = lessonModel.Id,
+                        StartDate = firstSchedule.StartDate,
+                        EndDate = firstSchedule.EndDate,
+                        TrainingId = request.TaskEntityId,
+                        LessonName = "Lesson " + lessonModel.Id
+                    };
+                    schedule.Add(scheduleDay);
+                }
+
+                workflowData["Schedule"] = schedule;
+            }
+            
             proc.Resume(training.WokrflowId.Value, TrainingStatus.Accepted, workflowData,
                         PersistableIdleAction.Unload);
-
-            training.Status = TrainingStatus.Planned;
-            Trainings.Update(training);
-
 
             return new HttpResult()
             {

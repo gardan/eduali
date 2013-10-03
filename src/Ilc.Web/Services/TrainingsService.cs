@@ -62,13 +62,18 @@ namespace Ilc.Web.Services
                     Owners = new [] { Users.GetByUsername() }
                 };
 
+            Trainings.Create(newTraining);
+
             var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
             var wfActivity = new Infrastructure.Workflows.Training();
-            var proc = new WorkflowProcess(extensionManager, wfActivity);
+            var proc = new WorkflowProcess(extensionManager, wfActivity, new Dictionary<string, object>()
+                {
+                    {"argInTrainingId", newTraining.Id}
+                });
             var results = proc.Start(PersistableIdleAction.Unload);
 
             newTraining.WokrflowId = (Guid?)results["InstanceId"];
-            Trainings.Create(newTraining);
+            Trainings.Update(newTraining);
 
             var retTraining = new TrainingModel();
 

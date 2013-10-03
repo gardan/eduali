@@ -21,13 +21,16 @@ namespace Ilc.Infrastructure
         private bool _isInMemory;
         private Exception _workflowException;
 
-        public WorkflowProcess(IExtensionManager extensionManager, Activity wfActivity)
+        public WorkflowProcess(IExtensionManager extensionManager, Activity wfActivity) : this(extensionManager, wfActivity, new Dictionary<string, object>()) { }
+
+        public WorkflowProcess(IExtensionManager extensionManager, Activity wfActivity, IDictionary<string, object> inputs )
         {
             _extensionManager = extensionManager;
             _results = new Dictionary<string, object>();
             _resetEvent = new ManualResetEventSlim(false);
 
-            _wfApp = new WorkflowApplication(wfActivity);
+            _wfApp = inputs.Keys.Count == 0 ? new WorkflowApplication(wfActivity) : new WorkflowApplication(wfActivity, inputs);
+            
 
             ConfigureExtensions();
             ConfigureInstanceStore();
