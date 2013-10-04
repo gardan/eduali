@@ -58,6 +58,27 @@
                     }
                 }
             ], 'trainings'),
+            tbar: {
+                items: [
+                    {
+                        xtype: 'button',
+                        text: Ilc.resources.Manager.getResourceString('common.newTraining'),
+                        handler: function (btn, e) {
+                            var window = Ext.create('Ilc.view.trainings.Create', {
+                                modal: true,
+                                closeAction: 'destroy'
+                            });
+
+                            window.on('addTraining', function (sender, data) {
+                                me.fireEvent('addTraining', sender, data, {
+                                    store: trainingsStore
+                                });
+                            });
+                            window.show();
+                        }
+                    }
+                ]
+            },
             dockedItems: [
                 {
                     xtype: 'pagingtoolbar',
@@ -94,23 +115,6 @@
         });
 
         me.items = [,
-            {
-                xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.newTraining'),
-                handler: function (btn, e) {
-                    var window = Ext.create('Ilc.view.trainings.Create', {
-                        modal: true,
-                        closeAction: 'destroy'
-                    });
-                    
-                    window.on('addTraining', function (sender, data) {
-                        me.fireEvent('addTraining', sender, data, {
-                            store: trainingsStore
-                        });
-                    });
-                    window.show();
-                }
-            },
             trainingsGrid
         ];
 

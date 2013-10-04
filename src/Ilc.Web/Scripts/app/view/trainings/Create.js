@@ -103,9 +103,11 @@
                 format: Ilc.resources.Manager.getResourceString('formats.extjsdate'),
                 name: 'desiredEndDate',
                 anchor: '100%'
-            },
+            }
+        ];
+
+        me.buttons = [
             {
-                xtype: 'button',
                 text: Ilc.resources.Manager.getResourceString('common.add'),
                 handler: function (btn, e) {
                     var model = {};
@@ -114,8 +116,14 @@
 
                     model = Ilc.utils.Forms.extractModel(textboxes);
 
-                   
+
                     me.fireEvent('addTraining', me, model);
+                }
+            },
+            {
+                text: Ilc.resources.Manager.getResourceString('common.cancel'),
+                handler: function () {
+                    me.close();
                 }
             }
         ];

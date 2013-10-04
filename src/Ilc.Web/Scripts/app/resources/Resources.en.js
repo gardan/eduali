@@ -95,6 +95,7 @@
         'common.interactiveTalking': 'Interactive talking',
         'common.productiveTalking': 'Productive talking',
         'common.writing': 'Writing',
+        'common.cancel': 'Cancel',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',

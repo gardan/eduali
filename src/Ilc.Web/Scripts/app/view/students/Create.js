@@ -1,6 +1,6 @@
 ﻿Ext.define('Ilc.view.students.Create', {
     extend: 'Ext.window.Window',
-    
+
     title: Ilc.resources.Manager.getResourceString('common.newStudent'),
 
     requires: [
@@ -31,21 +31,28 @@
                 name: 'name',
                 anchor: '100%'
             },
-            customerComboBox,
+            customerComboBox
+        ];
+
+        me.buttons = [
+             {
+                 text: Ilc.resources.Manager.getResourceString('common.add'),
+                 handler: function () {
+                     var model = {};
+                     var inputs = me.query('textfield');
+
+                     model = Ilc.utils.Forms.extractModel(inputs);
+
+                     me.fireEvent('addStudent', me, model);
+                 }
+             },
             {
-                xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.add'),
+                text: Ilc.resources.Manager.getResourceString('common.cancel'),
                 handler: function () {
-                    var model = {};
-                    var inputs = me.query('textfield');
-
-                    model = Ilc.utils.Forms.extractModel(inputs);
-
-                    me.fireEvent('addStudent', me, model);
+                    me.close();
                 }
             }
         ];
-
 
         me.addEvents(
             'addStudent'

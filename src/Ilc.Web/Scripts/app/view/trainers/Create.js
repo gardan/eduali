@@ -30,7 +30,10 @@
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.address'),
                 name: 'address',
                 anchor: '100%'
-            },
+            }
+        ];
+
+        me.buttons = [
             {
                 xtype: 'button',
                 text: Ilc.resources.Manager.getResourceString('common.add'),
@@ -39,6 +42,12 @@
                     var inputs = me.query('textfield');
                     model = Ilc.utils.Forms.extractModel(inputs);
                     me.fireEvent('addTrainer', me, model);
+                }
+            },
+            {
+                text: Ilc.resources.Manager.getResourceString('common.cancel'),
+                handler: function () {
+                    me.close();
                 }
             }
         ];

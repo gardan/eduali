@@ -42,9 +42,11 @@
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.contactEmail'),
                 name: 'contactEmail',
                 anchor: '100%'
-            },
+            }
+        ];
+
+        me.buttons = [
             {
-                xtype: 'button',
                 anchor: '100%',
                 text: Ilc.resources.Manager.getResourceString('common.add'),
                 handler: function (button, e) {
@@ -57,9 +59,14 @@
                     // raise the event
                     me.fireEvent('addCustomer', me, model);
                 }
+            },
+            {
+                text: Ilc.resources.Manager.getResourceString('common.cancel'),
+                handler: function () {
+                    me.close();
+                }
             }
         ];
-
 
         me.addEvents(
             'addCustomer'
