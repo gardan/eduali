@@ -6,6 +6,14 @@
     layout: 'anchor',
     width: 800,
 
+    doneClicked: false,
+
+    end: function() {
+        var me = this;
+        console.log(me);
+        if(me.doneClicked) me.close();
+    },
+
     constructor: function (args) {
         var me = this;
         
@@ -108,11 +116,23 @@
                 xtype: 'button',
                 text: Ilc.resources.Manager.getResourceString('common.done'),
                 handler: function () {
-                    
+                    var model = {
+                        taskEntityId: trainingEntity.get('id'),
+                        lessons: []
+                    };
+
+                    me.doneClicked = true;
+
+                    me.fireEvent('addTrainingSchedule', me, model, {
+                        tasksStore: tasksStore
+                    });
                 }
             },
             {
-                text: Ilc.resources.Manager.getResourceString('common.close')
+                text: Ilc.resources.Manager.getResourceString('common.close'),
+                handler: function() {
+                    me.close();
+                }
             }
         ];
 
