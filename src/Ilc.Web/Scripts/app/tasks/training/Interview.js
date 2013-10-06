@@ -33,15 +33,7 @@
         });
 
         me.items = [
-            studentsGrid,
-            doneButton,
-            {
-                xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.close'),
-                handler: function () {
-                    me.close();
-                }
-            }
+            studentsGrid
         ];
 
         studentsGrid.on('addInterview', function (sender, data) {
@@ -63,12 +55,24 @@
             }
             doneButton.setDisabled(isDisabled);
         });
-        studentsStore.load();
+
+        me.buttons = [
+            doneButton,
+            {
+                xtype: 'button',
+                text: Ilc.resources.Manager.getResourceString('common.close'),
+                handler: function () {
+                    me.close();
+                }
+            }
+        ];
 
         me.addEvents(
             'addInterview',
             'allInterviewsAdded'
         );
+
+        studentsStore.load();
 
         me.callParent(arguments);
     }

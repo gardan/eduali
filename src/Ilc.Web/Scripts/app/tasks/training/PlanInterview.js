@@ -3,6 +3,10 @@
     xtype: 'planinterviewwindow',
 
     title: Ilc.resources.Manager.getResourceString('common.planInterview'),
+    layout: 'anchor',
+    defaults: {
+        anchor: '100%'
+    },
 
     constructor: function (args) {
         var me = this;
@@ -19,13 +23,16 @@
                 xtype: 'textfield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.location'),
                 name: 'location'
-            },
+            }
+        ];
+
+        me.buttons = [
             {
                 xtype: 'button',
                 text: Ilc.resources.Manager.getResourceString('common.createInterview'),
                 handler: function (btn, e) {
                     var model = {};
-                    
+
                     var textboxes = me.query('textfield');
                     for (var i = 0; i < textboxes.length; i++) {
                         var textbox = textboxes[i];
@@ -38,6 +45,12 @@
                     me.fireEvent('addinterviewplan', me, model, {
                         tasksStore: tasksStore
                     });
+                }
+            },
+            {
+                text: Ilc.resources.Manager.getResourceString('common.cancel'),
+                handler: function() {
+                    me.close();
                 }
             }
         ];

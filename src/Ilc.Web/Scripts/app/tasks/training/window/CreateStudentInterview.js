@@ -4,6 +4,7 @@
 
     title: Ilc.resources.Manager.getResourceString('common.newInterview'),
     layout: 'anchor',
+    width: 300,
 
     constructor: function (args) {
         var me = this;
@@ -144,16 +145,23 @@
                 ]
             },
             {
-                xtype: 'textarea',
-                name: 'remarks',
-                anchor: '100%',
-                grow: true,
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.remarks')
-            },
+                xtype: 'fieldset',
+                title: Ilc.resources.Manager.getResourceString('common.remarks'),
+                items: [
+                     {
+                         xtype: 'textarea',
+                         name: 'remarks',
+                         anchor: '100%'
+                     }
+                ]
+            }
+        ];
+        
+        me.buttons = [
             {
                 xtype: 'button',
                 text: Ilc.resources.Manager.getResourceString('common.save'),
-                handler: function(btn, events) {
+                handler: function (btn, events) {
                     var model = {};
                     // example: 
                     // {
@@ -168,6 +176,12 @@
                     model.studentId = student.get('id');
                     model.taskEntityId = task.get('id');
                     me.fireEvent('addInterview', me, model);
+                }
+            },
+            {
+                text: Ilc.resources.Manager.getResourceString('common.cancel'),
+                handler: function() {
+                    me.close();
                 }
             }
         ];
