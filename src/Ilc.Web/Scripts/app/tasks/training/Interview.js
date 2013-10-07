@@ -1,7 +1,12 @@
 ﻿Ext.define('Ilc.tasks.training.Interview', {
     extend: 'Ext.window.Window',
     xtype: 'interviewwindow',
-    width: 600,
+    width: 350,
+    layout: 'anchor',
+    
+    defaults: {
+        anchor: '100%'
+    },
 
     title: Ilc.resources.Manager.getResourceString('common.studentsInterviews'),
 

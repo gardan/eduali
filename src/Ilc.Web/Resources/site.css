@@ -6,3 +6,12 @@
 .view-col {
     background-image: url('../images/web/view.png')
 }
+
+/* Grid complete/pending row indicator */
+.grid-row-complete {
+    color:green
+}
+
+.grid-row-pending {
+    color:red
+}
