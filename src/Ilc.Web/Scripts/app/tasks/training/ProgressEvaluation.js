@@ -25,6 +25,12 @@
         // grid with all the lessons
         var lessonsGrid = Ext.create('Ext.grid.Panel', {
             store: lessonsStore,
+            viewConfig: {
+                getRowClass: function (record) {
+                    var complete = record.get('progressEvaluationComplete');
+                    return complete != true ? 'grid-row-pending' : 'grid-row-complete';
+                }
+            },
             columns: [
                 { dataIndex: 'Name', text: Ilc.resources.Manager.getResourceString('common.name'), flex: 1 }
             ],
@@ -36,36 +42,14 @@
         // grid with all the students, and their evaluations based on the selected lesson
         var studentsGrid = Ext.create('Ext.grid.Panel', {
             store: studentsStore,
+            viewConfig: {
+                getRowClass: function (record) {
+                    var progressEvaluationId = record.get('progressEvaluationId');
+                    return progressEvaluationId == 0 ? 'grid-row-pending' : 'grid-row-complete';
+                }
+            },
             columns: [
                 { dataIndex: 'name', text: Ilc.resources.Manager.getResourceString('common.name'), flex: 1 },
-                {
-                    xtype: 'actioncolumn',
-                    getClass: function (v, meta, record) {
-                        return record.get('progressEvaluationId') == 0 ? 'add-col' : 'view-col';
-                    },
-                    getTip: function (v, meta, record) {
-                        return record.get('progressEvaluationId') == 0 ? Ilc.resources.Manager.getResourceString('common.add') : Ilc.resources.Manager.getResourceString('common.view');
-                    },
-                    handler: function (grid, rowIndex, colIndex, item, e, record) {
-                        var selectedLesson = lessonsGrid.getSelectionModel().getSelection()[0];
-
-                        var windowToCreate = record.get('progressEvaluationId') == 0 ? 'CreateStudentEvaluation' : 'ViewStudentEvaluation';
-                        var window = Ext.create('Ilc.tasks.training.window.' + windowToCreate, {
-                            closeAction: 'destroy',
-                            trainingEntity: entity,
-                            lessonEntity: selectedLesson,
-                            student: record
-                        });
-                        window.on('addEvaluation', function (sender, model) {
-                            
-                            me.fireEvent('addEvaluation', sender, model, {
-                                studentsStore: studentsStore,
-                                lessonsStore: lessonsStore
-                            });
-                        });
-                        window.show();
-                    }
-                }
             ],
             title: Ilc.resources.Manager.getResourceString('common.evaluations'),
             margin: 2,
@@ -113,6 +97,26 @@
             doneButton.setDisabled(disabled);
         });
 
+        studentsGrid.on('itemdblclick', function (grid, record) {
+            var selectedLesson = lessonsGrid.getSelectionModel().getSelection()[0];
+
+            var windowToCreate = record.get('progressEvaluationId') == 0 ? 'CreateStudentEvaluation' : 'ViewStudentEvaluation';
+            var window = Ext.create('Ilc.tasks.training.window.' + windowToCreate, {
+                closeAction: 'destroy',
+                trainingEntity: entity,
+                lessonEntity: selectedLesson,
+                student: record
+            });
+            window.on('addEvaluation', function (sender, model) {
+
+                me.fireEvent('addEvaluation', sender, model, {
+                    studentsStore: studentsStore,
+                    lessonsStore: lessonsStore
+                });
+            });
+            window.show();
+        });
+
         me.items = [
             {
                 xtype: 'panel',
@@ -122,7 +126,10 @@
                     lessonsGrid,
                     studentsGrid
                 ]   
-            },
+            }
+        ];
+
+        me.buttons = [
             doneButton,
             {
                 xtype: 'button',

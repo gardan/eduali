@@ -21,7 +21,10 @@
                 anchor: '100%',
                 //resizable: true,
                 name: 'progress'
-            },
+            }
+        ];
+
+        me.buttons = [
             {
                 xtype: 'button',
                 text: 'Add',
@@ -33,6 +36,12 @@
                     model.studentId = studentEntity.get('id');
 
                     me.fireEvent('addEvaluation', me, model);
+                }
+            },
+            {
+                text: Ilc.resources.Manager.getResourceString('common.cancel'),
+                handler: function() {
+                    me.close();
                 }
             }
         ];
