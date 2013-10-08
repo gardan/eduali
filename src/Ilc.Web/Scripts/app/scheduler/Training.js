@@ -37,6 +37,14 @@
             displayField: 'Name' //,
             // valueField: '',
         });
+        
+        var dateMenu = Ext.create('Ext.menu.DatePicker', {
+            handler: function (dp, date) {
+                me.scrollToDate(date);
+                // Ext.Msg.alert('Date Selected', 'You selected ' + Ext.Date.format(date, 'M j, Y'));
+            }
+        });
+
         me.tbar = [
             eventsCombo,
             {
@@ -53,31 +61,11 @@
                 }
             },
             {
-                text : 'Hours',
-                toggleGroup : 'presets',
-                enableToggle : true,
+                xtype: 'button',
+                text : 'Date',
+                enableToggle : false,
                 iconCls : 'icon-calendar',
-                handler : function() {
-                    me.zoomToLevel(3);
-                }
-            },
-            {
-                text         : 'Days',
-                toggleGroup  : 'presets',
-                enableToggle : true,
-                iconCls      : 'icon-calendar',
-                handler: function () {
-                    me.zoomToLevel(2);
-                }
-            },
-            {
-                text : 'Weeks',
-                toggleGroup : 'presets',
-                enableToggle : true,
-                iconCls : 'icon-calendar',
-                handler : function() {
-                    me.zoomToLevel(1);
-                }
+                menu: dateMenu
             },
             '->',
             {
