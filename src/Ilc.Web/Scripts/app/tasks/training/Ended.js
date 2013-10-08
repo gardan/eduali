@@ -4,7 +4,7 @@
     xtype: 'endedwindow',
 
     title: Ilc.resources.Manager.getResourceString('tasks.title.ended'),
-    width: 800,
+    width: 350,
     constructor: function (args) {
         var me = this;
 
@@ -17,33 +17,14 @@
 
         var studentsGrid = Ext.create('Ext.grid.Panel', {
             store: studentsStore,
-            columns: [
-                { dataIndex: 'name', text: Ilc.resources.Manager.getResourceString('common.name'), flex: 1 },
-                {
-                    xtype: 'actioncolumn',
-                    getClass: function (v, meta, record) {
-                        return record.get('assesmentId') == 0 ? 'add-col' : 'view-col';
-                    },
-                    getTip: function (v, meta, record) {
-                        return record.get('assesmentId') == 0 ? Ilc.resources.Manager.getResourceString('common.add') : Ilc.resources.Manager.getResourceString('common.view');
-                    },
-                    handler: function (grid, rowIndex, colIndex, item, e, record) {
-
-                        var windowToCreate = record.get('assesmentId') == 0 ? 'CreateStudentAssesment' : 'ViewStudentAssesment';
-                        var window = Ext.create('Ilc.tasks.training.window.' + windowToCreate, {
-                            closeAction: 'destroy',
-                            student: record,
-                            task: trainingEntity
-                        });
-                        window.on('addAssesment', function (sender, model) {
-                            console.log(model);
-                            me.fireEvent('addAssesment', sender, model, {
-                                studentsStore: studentsStore
-                            });
-                        });
-                        window.show();
-                    }
+            viewConfig: {
+                getRowClass: function (record) {
+                    var assesmentId = record.get('assesmentId');
+                    return assesmentId == 0 ? 'grid-row-pending' : 'grid-row-complete';
                 }
+            },
+            columns: [
+                { dataIndex: 'name', text: Ilc.resources.Manager.getResourceString('common.name'), flex: 1 }
             ]
         });
 
@@ -72,8 +53,27 @@
             doneButton.setDisabled(isDisabled);
         });
 
+        studentsGrid.on('itemdblclick', function(grid, record) {
+            var windowToCreate = record.get('assesmentId') == 0 ? 'CreateStudentAssesment' : 'ViewStudentAssesment';
+            var window = Ext.create('Ilc.tasks.training.window.' + windowToCreate, {
+                closeAction: 'destroy',
+                student: record,
+                task: trainingEntity
+            });
+            window.on('addAssesment', function (sender, model) {
+                console.log(model);
+                me.fireEvent('addAssesment', sender, model, {
+                    studentsStore: studentsStore
+                });
+            });
+            window.show();
+        });
+
         me.items = [
-            studentsGrid,
+            studentsGrid
+        ];
+
+        me.buttons = [
             doneButton,
             {
                 xtype: 'button',
