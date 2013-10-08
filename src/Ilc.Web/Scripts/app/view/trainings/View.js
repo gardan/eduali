@@ -220,7 +220,17 @@
                                 title: 'End',
                                 html: moment(model.get('desiredEndDate')).format(Ilc.resources.Manager.getResourceString('formats.date')),
                                 anchor: '100%'
-                            },
+                            }
+                        ]
+
+                    },
+                    {
+                        xtype: 'planningTab',
+                        entity: model
+                    },
+                    {
+                        title: 'Students',
+                        items: [
                             {
                                 xtype: 'grid',
                                 store: studentsStore,
@@ -240,11 +250,6 @@
                                 ]
                             }
                         ]
-
-                    },
-                    {
-                        xtype: 'planningTab',
-                        entity: model
                     },
                     {
                         xtype: 'panel',
