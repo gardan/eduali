@@ -18,7 +18,7 @@ namespace Ilc.Web.Services
         public FilteredDataModel<LessonModel> Get(FilterParametersLessons request)
         {
             var training = Trainings.GetById(request.TrainingId);
-            var offer = training.Offers.First();
+            var offer = training.Offers.First(o => o.Selected);
             var totalStudents = training.Students.Count();
 
 
