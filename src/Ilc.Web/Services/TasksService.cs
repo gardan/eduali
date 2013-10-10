@@ -167,6 +167,36 @@ namespace Ilc.Web.Services
                 StatusCode = HttpStatusCode.OK
             };
         }
+        public HttpResult Post(TrainingOfferSelectModel request)
+        {
+            var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
+            var wfActivity = new Training();
+            var proc = new WorkflowProcess(extensionManager, wfActivity);
+            var training = Uow.Trainings.GetById(request.TrainingId);
+
+            var workflowData = new Dictionary<string, object>();
+
+            if (request.OfferId == 0)
+            {
+                var offer = new TrainingOffer().InjectFrom(request) as TrainingOffer;
+                offer.Price = request.PossibleCost;
+                offer.NoLessons = request.LessonsNo;
+
+                workflowData["Offer"] = offer;
+            }
+            else
+            {
+                workflowData["OfferId"] = request.OfferId;
+            }
+
+            proc.Resume(training.WokrflowId.Value, "SelectOffer", workflowData, PersistableIdleAction.Unload);
+
+            return new HttpResult()
+            {
+                StatusCode = HttpStatusCode.OK
+            };
+        }
+
 
         public HttpResult Post(AcceptedModel request)
         {
@@ -438,6 +468,11 @@ namespace Ilc.Web.Services
     public class RejectedModel
     {
         public int TaskEntityId { get; set; }
+    }
+
+    public class TrainingOfferSelectModel : RfiModel
+    {
+        
     }
 
     public class TrainingOfferModel
