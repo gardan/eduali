@@ -19,7 +19,8 @@
                 allInterviewsAdded: me.addInterview
             },
             'offerwindow': {
-                addOffer: me.addOffer
+                addOffer: me.addOffer,
+                addrfi: me.addOfferRfi
             },
             'acceptedwindow': {
                 addTrainingSchedule: me.addTrainingSchedule
@@ -203,6 +204,41 @@
                 // | just the one task returned.
                 if (options && options.tasksStore) {
                     options.tasksStore.load();
+                }
+            }).done(function () {
+                sender.close();
+            });
+    },
+    addOfferRfi: function (sender, data, options) {
+        console.log('addOfferRfi called.');
+        console.log(data);
+
+        var tasksService = {
+            offer: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/tasks/training/offer/toggle',
+                    method: 'POST',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+
+        tasksService.offer(data)
+            .then(function (response) {
+                // just reload the tasks
+                // | just the one task returned.
+                if (options && options.offersStore) {
+                    options.offersStore.load(options.offersFilter);
                 }
             }).done(function () {
                 sender.close();

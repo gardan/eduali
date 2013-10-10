@@ -730,7 +730,13 @@
                                   </Transition>
                                   <Transition DisplayName="ChooseOffer" sap2010:WorkflowViewState.IdRef="Transition_23">
                                     <Transition.Trigger>
-                                      <local:WaitForResponse x:TypeArguments="scg:Dictionary(x:String, x:Object)" ArgumentName="SelectOffer" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_20" />
+                                      <local:WaitForResponse x:TypeArguments="scg:Dictionary(x:String, x:Object)" ArgumentName="SelectOffer" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_20">
+                                        <local:WaitForResponse.Result>
+                                          <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                                            <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:String, x:Object)">varInChooseOffer</mca:CSharpReference>
+                                          </OutArgument>
+                                        </local:WaitForResponse.Result>
+                                      </local:WaitForResponse>
                                     </Transition.Trigger>
                                     <Transition.To>
                                       <x:Reference>__ReferenceID10</x:Reference>
@@ -766,7 +772,7 @@
                                           </Sequence>
                                         </If.Then>
                                         <If.Else>
-                                          <Sequence>
+                                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_15">
                                             <Assign sap2010:WorkflowViewState.IdRef="Assign_19">
                                               <Assign.To>
                                                 <OutArgument x:TypeArguments="x:Int32">
@@ -779,15 +785,13 @@
                                                 </InArgument>
                                               </Assign.Value>
                                             </Assign>
-                                            <local1:ToggleSelectedOffer>
+                                            <local1:ToggleSelectedOffer sap2010:WorkflowViewState.IdRef="ToggleSelectedOffer_2">
                                               <local1:ToggleSelectedOffer.OfferId>
                                                 <InArgument x:TypeArguments="x:Int32">
                                                   <mca:CSharpValue x:TypeArguments="x:Int32">varSelectedOfferId</mca:CSharpValue>
                                                 </InArgument>
                                               </local1:ToggleSelectedOffer.OfferId>
-                                              <sap2010:WorkflowViewState.IdRef>ToggleSelectedOffer_2</sap2010:WorkflowViewState.IdRef>
                                             </local1:ToggleSelectedOffer>
-                                            <sap2010:WorkflowViewState.IdRef>Sequence_15</sap2010:WorkflowViewState.IdRef>
                                           </Sequence>
                                         </If.Else>
                                       </If>
@@ -937,7 +941,7 @@
         </Variable.Default>
       </Variable>
     </StateMachine.Variables>
-    <sads:DebugSymbol.Symbol>dz5DOlxQcm9qZWN0c1xJTENcc3JjXElsYy5JbmZyYXN0cnVjdHVyZVxXb3JrZmxvd3NcVHJhaW5pbmcueGFtbL8BAXkBewECNgOtBxICAQGoBwuoB2sDAf0FOAeSBw8DAfYEbQ/MBhcDAdcEjQEXuwYfAwGXBMUBH6QGJwMB/wLlASegBS8DAbYCtgUnxwUvAwGwAo4CL+IENwMBpQKgAjfbBD8DAeUB6QI/0gRHAgFHxgNHoQRPAgEI/gNPigRXAgECiwcPiweNAQMB+ASPBzmPB0ADAfcEPA9qGgMBxwXmBg/mBlkDAb8FzwYP4wYaAwGkBYMHD4MHWgMBnAXrBg+ABxoDAYEFcReKASIDAd8EvgYXxAY1AwHZBLkGSbkGUAMBmASRAR+/ASoDAa0EwgEfwgFpAwGnBLIGH7IGagMBoQSpBh+vBjkDAZoEyQEn4gEyAwH0A7EFJ7EFcQMB7AOjBSeuBUUDAdsD2AUn2AVyAwHTA8oFJ9UFRQMBwgPdBSfdBccBAwHAA+MFJ5kGLAMBgQPpAS+LAjoDAeIC8wQv8wSBAQMB3QLlBC/wBE0DAdICmAUvmAWBAQMBzQL4BC+VBToDAbgCugUvwAVHAwGyApICN50CTwMBpwLZBGnZBHADAeYBpAI/0gJKAwH7AeECP+ECigEDAfUB2AI/3gJiAwHuAeYCP+YCiQEDAegB7QJHwwNSAgFwrwRHrwSRAQIBaaQER6wEWgIBYcgER8gEkgECAVq0BEfFBFICAUnKA0/4A1oCAR37A0/7A5kBAgEXmARPmASaAQIBEY8ET5UEaQIBCoAEU4gEZgIBBD0RSCkDAewFSRFpFgMByAXQBhHbBhoDAa4F3AYR4gYuAwGlBewGEfcGJwMBiwX4BhH/BiQDAYIFchl9MQMB6wR+GYkBIgMB4ATBBh3BBnQDAdoEkgEhnQE5AwHKBJ4BIb4BJgMBrgSsBiWsBnsDAZsEygEp1QFBAwGGBNYBKeEBMgMB9QOmBS2mBYIBAwHkA6sFLasFeQMB3APNBS3NBYIBAwHLA9IFLdIFeQMBwwPdBYAB3QWNAQMBwQPmBS3mBZEBAwGCA+oFK/4FNgMBpQOBBiuXBjYDAYoD6gEx9QFJAwH0AvYBMYoCNgMB4wLoBDXoBIkBAwHYAu0ENe0EgQEDAdMC+QQx/wRRAwHHAoAFMZQFPAMBuQK9BTW9BYoBAwGzApUCPZUCkQEDAawCmgI9mgKpAQMBqAKlAkGwAlkDAZgCsQJB0QJGAwH8AdsCRdsCpgEDAe8B8gJJ/QJhAwHSAf4CSYkDcgMBvwGKA0mVA1IDAawBlgNJoQNSAwGZAaIDScIDTgIBcacETakEFAIBYrUESbsEbAIBUrwEScQEXAIBSssDUdYDaQIBOtcDUfcDVgIBHpIEVZIEpAECAQuDBFmFBCACAQVAF0BnAwH1BUUXRX8DAe0FTBdMcwMByQVQFVseAwHbBV4VZx4DAdEF2AYX2AZ4AwG3BdMGF9MGZgMBrwXfBhffBl4DAaYF9AYX9AZxAwGUBe8GF+8GZgMBjAX7Bhf8BjwDAYMFdR91eQMB8QR6H3qRAQMB7ASGAR+GAZoBAwHmBIEBH4EBfgMB4QSVASeVAX0DAdEEmgEnmgGVAQMBywShASehAY0BAwGvBKUBJbABLgMBvQSzASW8AS4DAbUEzQEvzQGBAQMBjwTSAS/SAZkBAwGHBN4BL94BigEDAf4D2QEv2QGBAQMB9gPrBS32BTYDAa8D9wUt/QVDAwGmA4IGLY0GNgMBlAOOBi2VBkoDAYsD7QE37QGMAQMB+gLyATfyAaQBAwH1AvkBN/kBmwEDAeQC/QE1iAI+AwHpAvwEN/wEgwEDAcgCgQUzkwU9AwG6AqgCR6gCpgEDAZ8CrQJHrQK+AQMBmQK0Ake0Ar8BAwH9AbgCRcMCTgMBiwLGAkXPAk4DAYMC9QJP9QKuAQMB3AH6Ak/6AsYBAwHTAYEDT4EDxgEDAckBhgNPhgPCAQMBwAGSA0+SA7kBAwG2AY0DT40DpAEDAa0BngNPngO8AQMBowGZA0+ZA7ABAwGaAaUDT6UDwgECAXKpA02yA1YDAY4BtQNNwANWAgF7uARPuASwAQIBU78ET8EEFAIBS84DV84DqQECAUHTA1fTA8YBAgE72gNX2gO+AQIBH94DVekDXgIBLewDVfUDXgIBJVgbWIQBAwHkBVMbU3IDAdwFZUFlRQMB2gVhG2FtAwHSBa0BK60BpAEDAcQEqAErqAGJAQMBvgS6AVG6AVUDAbwEtgErtgF9AwG2BPMFM/MFpAEDAbgD7gUz7gWKAQMBsAP6BTP6BYIBAwGnA4oGM4oGnAEDAZ0DhQYzhQaKAQMBlQORBjORBoIBAwGMA4UCO4UCzgEDAe8CgAI7gAKlAQMB6gKEBTmEBaIBAwHCAosFN5EFUAMBuwLAAkvAAtoBAwGSArsCS7sCtAEDAYwCzQJxzQJ1AwGKAskCS8kCnQEDAYQCsAN5sAN9AwGYAawDU6wDpQEDAY8BvQNTvQPiAQMBhQG4A1O4A7wBAgF85gNb5gPHAQIBNOEDW+EDsgECAS7zA4EB8wOFAQIBLO8DW+8DrQECASaOBT2OBZUBAwG8Ag==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </StateMachine>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>

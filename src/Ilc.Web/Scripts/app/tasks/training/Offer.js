@@ -43,11 +43,20 @@
             // show the CreateRfi window
             var createOfferWindow = Ext.create('Ilc.tasks.training.window.CreateRfi', {
                 closeAction: 'destroy',
-                entity: entity
+                entity: training
             });
 
             createOfferWindow.on('addrfi', function (sender, model) {
                 // TODO: Need to modify the workflow to accept offers at this step aswell.
+                
+                me.fireEvent('addrfi', sender, model, {
+                    offersStore: offersStore,
+                    offersFilter: {
+                        params: {
+                            trainingId: training.get('id')
+                        }
+                    }
+                });
             });
 
             createOfferWindow.show();
@@ -85,7 +94,8 @@
         ];
 
         me.addEvents(
-            'addOffer'
+            'addOffer',
+            'addrfi'
         );
 
         offersStore.load({

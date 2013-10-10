@@ -44,6 +44,7 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.InterviewPlanModel>("/api/tasks/training/interviewplan", "POST");
             routes.Add<Services.StudentInterviewModel>("/api/tasks/training/interview", "POST");
             routes.Add<Services.TrainingOfferModel>("/api/tasks/training/offer", "POST");
+            routes.Add<Services.TrainingOfferSelectModel>("/api/tasks/training/offer/toggle", "POST");
             // routes.Add<Services.RejectedModel>("/api/tasks/training/rejected", "POST");
             routes.Add<Services.AcceptedModel>("/api/tasks/training/accepted", "POST");
             routes.Add<Services.PlannedModel>("/api/tasks/training/planned", "POST");
