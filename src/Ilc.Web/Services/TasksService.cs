@@ -162,10 +162,6 @@ namespace Ilc.Web.Services
             proc.Resume(training.WokrflowId.Value, TrainingStatus.Offer, workflowData,
                         PersistableIdleAction.Unload);
 
-            training.Status = (bool)workflowData["Complete"] ? TrainingStatus.Accepted : TrainingStatus.Rejected;
-            Trainings.Update(training);
-
-
             return new HttpResult()
             {
                 StatusCode = HttpStatusCode.OK
