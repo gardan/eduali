@@ -82,7 +82,7 @@ namespace Ilc.Infrastructure
 
 
             // check if there are any bookmarks
-            if (_wfApp.GetBookmarks().Any(bookmark => bookmark.BookmarkName != bookmarkName))
+            if (_wfApp.GetBookmarks().All(bookmark => bookmark.BookmarkName != bookmarkName))
             {
                 var availableBookmarks = _wfApp.GetBookmarks();
                 var str = "";
