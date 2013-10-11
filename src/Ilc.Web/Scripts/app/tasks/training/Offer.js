@@ -12,6 +12,8 @@
 
     title: Ilc.resources.Manager.getResourceString('tasks.title.offer'),
 
+    selectedOfferId: 0,
+
     constructor: function (args) {
         var me = this;
 
@@ -27,8 +29,10 @@
         var acceptedOfferBtn = Ext.create('Ext.button.Button', {
             text: Ilc.resources.Manager.getResourceString('common.accepted'),
             handler: function () {
+                debugger;
                 var model = {
                     taskEntityId: training.get('id'),
+                    offerId: me.selectedOfferId,
                     action: 'Accepted' // This is a special string, that is defined in TrainingStatus.cs
                 };
 
@@ -62,11 +66,16 @@
             createOfferWindow.show();
         });
 
+        offersGrid.on('select', function(rowModel, record) {
+            me.selectedOfferId = record.get('id');
+        });
+
         offersStore.on('load', function (store, records) {
             var indexOfSelectedOffer = 0;
             Ext.Array.forEach(records, function(record, index) {
                 if (record.get('selected') == true) {
                     indexOfSelectedOffer = index;
+                    me.selectedOfferId = record.get('id');
                 }
             });
 

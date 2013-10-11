@@ -158,6 +158,7 @@ namespace Ilc.Web.Services
             var workflowData = new Dictionary<string, object>();
 
             workflowData["Complete"] = request.Action == TrainingStatus.Accepted;
+            workflowData["OfferId"] = request.OfferId;
 
             proc.Resume(training.WokrflowId.Value, TrainingStatus.Offer, workflowData,
                         PersistableIdleAction.Unload);
@@ -479,6 +480,7 @@ namespace Ilc.Web.Services
     {
         public string Action { get; set; }
         public int TaskEntityId { get; set; }
+        public int OfferId { get; set; }
     }
 
     public class StudentInterviewModel
