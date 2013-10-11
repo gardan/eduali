@@ -1,7 +1,7 @@
 ﻿Ext.define('Ilc.store.Offers', {
     extend: 'Ext.data.Store',
     
-    fields: ['id', 'possibleCost', 'price', 'lessonsNo', 'lessonDuration'],
+    fields: ['id', 'possibleCost', 'price', 'lessonsNo', 'lessonDuration', 'selected'],
 
     //data: {
     //    data: [

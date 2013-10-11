@@ -61,7 +61,18 @@
 
             createOfferWindow.show();
         });
-        
+
+        offersStore.on('load', function (store, records) {
+            var indexOfSelectedOffer = 0;
+            Ext.Array.forEach(records, function(record, index) {
+                if (record.get('selected') == true) {
+                    indexOfSelectedOffer = index;
+                }
+            });
+
+            offersGrid.getSelectionModel().select(indexOfSelectedOffer);
+        });
+
         me.items = [
             offersGrid
         ];
