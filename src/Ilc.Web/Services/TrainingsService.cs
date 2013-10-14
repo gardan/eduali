@@ -86,6 +86,13 @@ namespace Ilc.Web.Services
 
         public HttpResult Put(UpdateTrainingModel request)
         {
+            var training = Trainings.GetById(request.Id);
+            var interviewPlan = Uow.InterviewPlans.GetById(training.InterviewPlans.FirstOrDefault().Id);
+
+            interviewPlan.Date = request.InterviewDate;
+            Uow.InterviewPlans.Update(interviewPlan);
+            Uow.Commit();
+
             return new HttpResult()
                 {
                     StatusCode = HttpStatusCode.OK

@@ -262,6 +262,7 @@
                     },
                     Ext.create('Ilc.view.trainings.view.InterviewPlan', {
                         title: 'Interview',
+                        training: model,
                         plan: Ext.create('Ilc.model.InterviewPlan', {
                             date: model.get('interviewPlan').date,
                             location: model.get('interviewPlan').location
