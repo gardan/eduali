@@ -178,6 +178,7 @@
     <Content Include="Scripts\app\grid\Offers.js" />
     <Content Include="Scripts\app\helpers\AppConfig.js" />
     <Content Include="Scripts\app\helpers\GridColumns.js" />
+    <Content Include="Scripts\app\model\InterviewPlan.js" />
     <Content Include="Scripts\app\resources\Resources.en.js" />
     <Content Include="Scripts\app\resources\Manager.js" />
     <Content Include="Scripts\app\resources\Resources.nl.js" />
@@ -333,6 +334,7 @@
     <Content Include="Scripts\app\view\trainings\Create.js" />
     <Content Include="Scripts\app\view\trainings\List.js" />
     <Content Include="Scripts\app\view\trainings\View.js" />
+    <Content Include="Scripts\app\view\trainings\view\InterviewPlan.js" />
     <Content Include="Scripts\app\view\trainings\view\Planning.js" />
     <Content Include="Scripts\app\view\Viewport.js" />
     <Content Include="Scripts\bryntum\resources\css\sch-all-debug.css" />

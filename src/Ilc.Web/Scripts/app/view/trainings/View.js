@@ -259,7 +259,14 @@
                             documentsTree,
                             documentsPanel
                         ]
-                    }
+                    },
+                    Ext.create('Ilc.view.trainings.view.InterviewPlan', {
+                        title: 'Interview',
+                        plan: Ext.create('Ilc.model.InterviewPlan', {
+                            date: model.interviewPlan.date,
+                            location: model.interviewPlan.location
+                        })
+                    })
                 ]
             }
 

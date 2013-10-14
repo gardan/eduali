@@ -12,7 +12,8 @@ namespace Ilc.Web.InjectorConventions
     {
         protected override bool Match(ConventionInfo c)
         {
-            return c.SourceProp.Name == c.TargetProp.Name;
+            return c.SourceProp.Name == c.TargetProp.Name ||
+                (c.SourceProp.Name == "InterviewPlans" && c.TargetProp.Name == "InterviewPlan");
         }
 
         protected override object SetValue(ConventionInfo c)
@@ -38,6 +39,11 @@ namespace Ilc.Web.InjectorConventions
             if (c.SourceProp.Name == "Customer" && c.TargetProp.Name == "Customer")
             {
                 return new CustomerModel().InjectFrom(c.SourceProp.Value);
+            }
+            if (c.SourceProp.Name == "InterviewPlans" && c.TargetProp.Name == "InterviewPlan")
+            {
+                var interviewPlan = (c.SourceProp.Value as ICollection<InterviewPlan>).FirstOrDefault();
+                return new InterviewPlanApiModel().InjectFrom(interviewPlan);
             }
             return base.SetValue(c);
         }

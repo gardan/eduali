@@ -83,5 +83,20 @@ namespace Ilc.Web.Services
                     Location = Request.AbsoluteUri.CombineWith(newTraining.Id)
                 };
         }
+
+        public HttpResult Put(UpdateTrainingModel request)
+        {
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
+    }
+
+    public class UpdateTrainingModel
+    {
+        public DateTimeOffset InterviewDate { get; set; }
+        public int TrainerId { get; set; }
+        public int Id { get; set; }
     }
 }
