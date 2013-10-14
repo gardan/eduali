@@ -117,6 +117,35 @@
             ]
         });
 
+        // General
+        var trainersStore = Ext.create('Ilc.store.Trainers');
+        
+        var trainersComboBox = Ext.create('Ext.form.ComboBox', {
+            store: trainersStore,
+            queryMode: 'local',
+            displayField: 'name',
+            valueField: 'id',
+            name: 'trainerId',
+            fieldLabel: Ilc.resources.Manager.getResourceString('common.trainer'),
+            anchor: '100%',
+            margin: 5,
+        });
+
+        trainersStore.on('load', function (store, records) {
+            Ext.Array.forEach(records, function(record) {
+                if (record.get('id') == model.get('trainer').id) {
+                    trainersComboBox.select(record);
+                }
+            });
+            
+        });
+
+        trainersStore.load({
+            params: {
+                subjectId: model.get('subject').id
+            }
+        });
+
         // Select the first item
         var viewReady = function (tree) {
             var rootNode = tree.getRootNode();
@@ -206,11 +235,7 @@
                             bodyPadding: 10
                         },
                         items: [
-                            {
-                                title: 'Trainer',
-                                html: model.get('trainer').name,
-                                anchor: '100%'
-                            },
+                            trainersComboBox,
                             {
                                 title: 'Start',
                                 html: moment(model.get('desiredStartDate')).format(Ilc.resources.Manager.getResourceString('formats.date')),
@@ -234,7 +259,6 @@
                             {
                                 xtype: 'grid',
                                 store: studentsStore,
-                                title: 'Students',
                                 bodyPadding: 0,
                                 columns: [
                                     {
