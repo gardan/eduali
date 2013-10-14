@@ -263,14 +263,23 @@
                     Ext.create('Ilc.view.trainings.view.InterviewPlan', {
                         title: 'Interview',
                         plan: Ext.create('Ilc.model.InterviewPlan', {
-                            date: model.interviewPlan.date,
-                            location: model.interviewPlan.location
-                        })
+                            date: model.get('interviewPlan').date,
+                            location: model.get('interviewPlan').location
+                        }),
+                        listeners: {
+                            updatetraining: function(sender, args) {
+                                me.fireEvent('updatetraining', sender, args);
+                            }
+                        }
                     })
                 ]
             }
 
         ];
+
+        me.addEvents(
+            'updatetraining'
+        );
 
         me.callParent(arguments);
     }

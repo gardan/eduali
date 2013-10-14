@@ -94,6 +94,11 @@
                 modal: true,
                 model: record
             });
+
+            window.on('updatetraining', function(sender, args) {
+                me.fireEvent('updatetraining', sender, args);
+            });
+
             window.show();
         });
        
@@ -119,7 +124,8 @@
         ];
 
         me.addEvents(
-            'addTraining'
+            'addTraining',
+            'updatetraining'
         );
 
         me.callParent(arguments);

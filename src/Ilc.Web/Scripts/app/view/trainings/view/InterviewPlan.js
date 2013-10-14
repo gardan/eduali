@@ -16,14 +16,14 @@
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.interviewDay'),
                 name: 'interviewDay',
                 disabled: (me.plan === null),
-                value: me.plan == null ? null : plan.get('interviewDate')
+                value: me.plan == null ? null : new Date(me.plan.get('date'))
             },
             {
                 xtype: 'textfield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.location'),
                 name: 'location',
                 disabled: (me.plan === null),
-                value: me.plan == null ? null : plan.get('location')
+                value: me.plan == null ? null : me.plan.get('location')
             }
         ];
 
@@ -38,10 +38,15 @@
                         location: 'asjodhajshd'
                     };
 
-                    me.fireEvent('updateTraining', me, model);
+                    me.fireEvent('updatetraining', me, model);
+                    me.mask();
                 }
             }
         ];
+
+        me.addEvents(
+            'updatetraining'
+        );
 
         this.callParent();
     }
