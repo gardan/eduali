@@ -247,10 +247,8 @@
                             {
                                 text: Ilc.resources.Manager.getResourceString('common.update'),
                                 handler: function () {
-                                    var args = {
-                                        id: model.get('id'),
-                                        trainerId: 2
-                                    };
+                                    var args = Ilc.utils.Forms.extractModel([trainersComboBox]);
+                                    args.id = model.get('id');
 
                                     me.mask();
                                     me.fireEvent('updatetraining', me, args);
