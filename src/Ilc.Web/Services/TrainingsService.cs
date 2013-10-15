@@ -89,7 +89,14 @@ namespace Ilc.Web.Services
             var training = Trainings.GetById(request.Id);
             var interviewPlan = Uow.InterviewPlans.GetById(training.InterviewPlans.FirstOrDefault().Id);
 
-            interviewPlan.Date = request.InterviewDate;
+            training.TrainerId = request.TrainerId == 0 
+                                    ? training.TrainerId 
+                                    : request.TrainerId;
+            Uow.Trainings.Update(training);
+
+            interviewPlan.Date = request.InterviewDate == DateTimeOffset.MinValue
+                                     ? interviewPlan.Date
+                                     : request.InterviewDate;
             Uow.InterviewPlans.Update(interviewPlan);
             Uow.Commit();
 

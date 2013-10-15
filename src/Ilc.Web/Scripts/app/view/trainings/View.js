@@ -232,19 +232,29 @@
                         xtype: 'panel',
                         title: 'General',
                         defaults: {
-                            bodyPadding: 10
+                            bodyPadding: 10,
+                            margin: 5
                         },
                         items: [
                             trainersComboBox,
                             {
-                                title: 'Start',
-                                html: moment(model.get('desiredStartDate')).format(Ilc.resources.Manager.getResourceString('formats.date')),
-                                anchor: '100%'
-                            },
+                                xtype: 'datefield',
+                                fieldLabel: Ilc.resources.Manager.getResourceString('common.startDate'),
+                                value: new Date(model.get('desiredStartDate'))
+                            }
+                        ],
+                        buttons: [
                             {
-                                title: 'End',
-                                html: moment(model.get('desiredEndDate')).format(Ilc.resources.Manager.getResourceString('formats.date')),
-                                anchor: '100%'
+                                text: Ilc.resources.Manager.getResourceString('common.update'),
+                                handler: function () {
+                                    var args = {
+                                        id: model.get('id'),
+                                        trainerId: 2
+                                    };
+
+                                    me.mask();
+                                    me.fireEvent('updatetraining', me, args);
+                                }
                             }
                         ]
 
