@@ -165,6 +165,7 @@
     <Content Include="Scripts\app\controller\Tasks.js" />
     <Content Include="Scripts\app\controller\Trainers.js" />
     <Content Include="Scripts\app\controller\Trainings.js" />
+    <Content Include="Scripts\app\controller\Users.js" />
     <Content Include="Scripts\app\form\ClientOfferResponseForm.js" />
     <Content Include="Scripts\app\form\CourseForm.js" />
     <Content Include="Scripts\app\form\EvaluationQuestionsForm.js" />
@@ -176,6 +177,7 @@
     <Content Include="Scripts\app\grid\Competences.js" />
     <Content Include="Scripts\app\grid\EvalQuestions.js" />
     <Content Include="Scripts\app\grid\Offers.js" />
+    <Content Include="Scripts\app\grid\Users.js" />
     <Content Include="Scripts\app\helpers\AppConfig.js" />
     <Content Include="Scripts\app\helpers\GridColumns.js" />
     <Content Include="Scripts\app\model\InterviewPlan.js" />
@@ -204,6 +206,7 @@
     <Content Include="Scripts\app\store\Trainings.js" />
     <Content Include="Scripts\app\store\TrainingSystems.js" />
     <Content Include="Scripts\app\store\Transfers.js" />
+    <Content Include="Scripts\app\store\Users.js" />
     <Content Include="Scripts\app\tasks\training\Accepted.js" />
     <Content Include="Scripts\app\tasks\training\Ended.js" />
     <Content Include="Scripts\app\tasks\training\Exam.js" />
@@ -336,6 +339,7 @@
     <Content Include="Scripts\app\view\trainings\View.js" />
     <Content Include="Scripts\app\view\trainings\view\InterviewPlan.js" />
     <Content Include="Scripts\app\view\trainings\view\Planning.js" />
+    <Content Include="Scripts\app\view\users\List.js" />
     <Content Include="Scripts\app\view\Viewport.js" />
     <Content Include="Scripts\bryntum\resources\css\sch-all-debug.css" />
     <Content Include="Scripts\bryntum\resources\css\sch-all-neptune-debug.css" />
@@ -3893,6 +3897,7 @@
     <Compile Include="Services\TrainingsService.cs" />
     <Compile Include="Services\TransfersService.cs" />
     <Compile Include="Models\UpdateGridColumnConfigModel.cs" />
+    <Compile Include="Services\UsersService.cs" />
     <Compile Include="TransfersRepo.cs" />
   </ItemGroup>
   <ItemGroup>

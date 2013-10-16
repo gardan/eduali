@@ -10,6 +10,7 @@
         'mainMenu.students': 'Students',
         'mainMenu.statistics': 'Statistics',
         'mainMenu.trainers': 'Trainers',
+        'mainMenu.users': 'Users',
 
         'common.name': 'Name',
         'common.status': 'Status',
@@ -97,6 +98,7 @@
         'common.writing': 'Writing',
         'common.cancel': 'Cancel',
         'common.update': 'Update',
+        'common.username': 'Username',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',

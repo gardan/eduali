@@ -32,6 +32,8 @@ namespace Ilc.Web.AppStart
             routes.Add<EditTrainerModel>("/api/trainers/{id}", "PUT");
             routes.Add<DeleteTrainerModel>("/api/trainers/{id}", "DELETE");
 
+            routes.Add<Services.FilterParametersUsers>("/api/users", "GET");
+
             routes.Add<Services.FilterSubjectsParameters>("/api/subjects", "GET");
 
             routes.Add<GridConfigRequestParameters>("/api/config/grid", "GET");

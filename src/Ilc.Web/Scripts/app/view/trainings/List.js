@@ -119,7 +119,7 @@
             Ilc.helpers.GridColumns.updateColumns(headerContainer, 'trainings');
         });
 
-        me.items = [,
+        me.items = [
             trainingsGrid
         ];
 

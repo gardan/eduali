@@ -47,6 +47,10 @@
                     text: Ilc.resources.Manager.getResourceString('mainMenu.trainers'),
                     itemId: 'menu.trainers',
                 },
+                {
+                    text: Ilc.resources.Manager.getResourceString('mainMenu.users'),
+                    itemId: 'menu.users',
+                },
                 '->',
                 {
                     text: '[username]',
