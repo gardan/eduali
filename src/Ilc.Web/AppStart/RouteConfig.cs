@@ -34,6 +34,8 @@ namespace Ilc.Web.AppStart
 
             routes.Add<Services.FilterParametersUsers>("/api/users", "GET");
 
+            routes.Add<Services.FilterParametersRoles>("/api/roles", "GET");
+
             routes.Add<Services.FilterSubjectsParameters>("/api/subjects", "GET");
 
             routes.Add<GridConfigRequestParameters>("/api/config/grid", "GET");

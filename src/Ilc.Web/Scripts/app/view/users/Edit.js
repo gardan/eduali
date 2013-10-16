@@ -11,24 +11,39 @@
 
     hideAction: 'destroy',
 
-    items: [
-        {
-            xtype: 'tabpanel',
-            items: [
-                {
-                    title: 'General'
-                },
-                {
-                    title: 'Roles'
-                }
-            ]
-        }
-    ],
+    user: null,
 
     initComponent: function() {
         var me = this;
 
+        var rolesStore = Ext.create('Ilc.store.Roles');
 
+        var rolesGrid = Ext.create('Ilc.grid.Roles', {
+            store: rolesStore
+        });
+
+        me.items = [
+            {
+                xtype: 'tabpanel',
+                items: [
+                    {
+                        title: 'General'
+                    },
+                    {
+                        title: 'Roles',
+                        items: [
+                            rolesGrid
+                        ]
+                    }
+                ]
+            }
+        ],
+        
+        rolesStore.load({
+            params: {
+                userId: me.user.get('id')
+            }
+        });
 
         me.callParent(arguments);
     }

@@ -177,6 +177,7 @@
     <Content Include="Scripts\app\grid\Competences.js" />
     <Content Include="Scripts\app\grid\EvalQuestions.js" />
     <Content Include="Scripts\app\grid\Offers.js" />
+    <Content Include="Scripts\app\grid\Roles.js" />
     <Content Include="Scripts\app\grid\Users.js" />
     <Content Include="Scripts\app\helpers\AppConfig.js" />
     <Content Include="Scripts\app\helpers\GridColumns.js" />
@@ -197,6 +198,7 @@
     <Content Include="Scripts\app\store\Lessons.js" />
     <Content Include="Scripts\app\store\Offers.js" />
     <Content Include="Scripts\app\store\Questions.js" />
+    <Content Include="Scripts\app\store\Roles.js" />
     <Content Include="Scripts\app\store\scheduler\LessonAppointments.js" />
     <Content Include="Scripts\app\store\scheduler\Lessons.js" />
     <Content Include="Scripts\app\store\statistics\Customers.js" />
@@ -339,6 +341,7 @@
     <Content Include="Scripts\app\view\trainings\View.js" />
     <Content Include="Scripts\app\view\trainings\view\InterviewPlan.js" />
     <Content Include="Scripts\app\view\trainings\view\Planning.js" />
+    <Content Include="Scripts\app\view\users\Edit.js" />
     <Content Include="Scripts\app\view\users\List.js" />
     <Content Include="Scripts\app\view\Viewport.js" />
     <Content Include="Scripts\bryntum\resources\css\sch-all-debug.css" />
@@ -366,6 +369,8 @@
     <Content Include="Scripts\bryntum\resources\images\zonebg.png" />
     <Content Include="Scripts\bryntum\sch-all-debug.js" />
     <Content Include="Scripts\bryntum\sch-all.js" />
+    <Content Include="Scripts\extjs\ext-all-debug-w-comments.js" />
+    <Content Include="Scripts\extjs\ext-all-debug.js" />
     <Content Include="Scripts\extjs\ext-all.js" />
     <Content Include="Scripts\extjs\ext-debug.js" />
     <Content Include="Scripts\extjs\locale\ext-lang-en.js" />
@@ -3886,6 +3891,8 @@
     <Compile Include="Services\GridConfigurationService.cs" />
     <Compile Include="Services\LessonsService.cs" />
     <Compile Include="Services\OffersService.cs" />
+    <Compile Include="Services\RolesService.cs" />
+    <Compile Include="InjectorConventions\RoleToModel.cs" />
     <Compile Include="Services\StatisticsService.cs" />
     <Compile Include="Services\StudentsInterviewService.cs" />
     <Compile Include="Services\StudentsService.cs" />

@@ -10,9 +10,9 @@
             store: usersStore
         });
 
-        usersGrid.on('itemdblclick', function() {
+        usersGrid.on('itemdblclick', function(grid, record) {
             var window = Ext.create('Ilc.view.users.Edit', {
-                
+                user: record
             }).show();
         });
 
