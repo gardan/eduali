@@ -175,6 +175,10 @@
     <Compile Include="Migrations\201310010756202_TrainingOfferSelectedFlag.Designer.cs">
       <DependentUpon>201310010756202_TrainingOfferSelectedFlag.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201310161825498_DeleteCompanyIdFromRole.cs" />
+    <Compile Include="Migrations\201310161825498_DeleteCompanyIdFromRole.Designer.cs">
+      <DependentUpon>201310161825498_DeleteCompanyIdFromRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -290,6 +294,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201310010756202_TrainingOfferSelectedFlag.resx">
       <DependentUpon>201310010756202_TrainingOfferSelectedFlag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310161825498_DeleteCompanyIdFromRole.resx">
+      <DependentUpon>201310161825498_DeleteCompanyIdFromRole.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

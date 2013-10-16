@@ -12,7 +12,6 @@ namespace Ilc.Data.Models.SimpleMembership
         public override int Id { get { return RoleId; } set { RoleId = value; } }
         public int RoleId { get; set; }
         public string RoleName { get; set; }
-        public int? CompanyId { get; set; }
         public virtual ICollection<UserProfile> UserProfiles { get; set; }
         public virtual ICollection<RoleClaim> Claims { get; set; }
 
