@@ -11,6 +11,7 @@
         'mainMenu.statistics': 'Statistics',
         'mainMenu.trainers': 'Trainers',
         'mainMenu.users': 'Users',
+        'mainMenu.roles': 'Roles',
 
         'common.name': 'Name',
         'common.status': 'Status',

@@ -160,6 +160,7 @@
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\app\controller\Customers.js" />
     <Content Include="Scripts\app\controller\Home.js" />
+    <Content Include="Scripts\app\controller\Roles.js" />
     <Content Include="Scripts\app\controller\Statistics.js" />
     <Content Include="Scripts\app\controller\Students.js" />
     <Content Include="Scripts\app\controller\Tasks.js" />
@@ -328,6 +329,7 @@
     <Content Include="Scripts\app\view\home\Intake.js" />
     <Content Include="Scripts\app\view\home\Transfer.js" />
     <Content Include="Scripts\app\view\home\Offer.js" />
+    <Content Include="Scripts\app\view\roles\List.js" />
     <Content Include="Scripts\app\view\statistics\View.js" />
     <Content Include="Scripts\app\view\students\Create.js" />
     <Content Include="Scripts\app\view\students\Edit.js" />

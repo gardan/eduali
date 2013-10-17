@@ -51,6 +51,10 @@
                     text: Ilc.resources.Manager.getResourceString('mainMenu.users'),
                     itemId: 'menu.users',
                 },
+                {
+                    text: Ilc.resources.Manager.getResourceString('mainMenu.roles'),
+                    itemId: 'menu.roles',
+                },
                 '->',
                 {
                     text: '[username]',

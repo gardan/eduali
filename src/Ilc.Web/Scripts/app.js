@@ -13,7 +13,8 @@ Ext.application({
         'Statistics',
         'Trainers',
         'Tasks',
-        'Users'
+        'Users',
+        'Roles'
     ],
 
     requires: [
@@ -30,7 +31,8 @@ Ext.application({
         'statistics.View',
         'trainers.List',
         'tasks.List',
-        'users.List'
+        'users.List',
+        'roles.List'
     ],  
         
     routes: {
@@ -41,7 +43,8 @@ Ext.application({
         'statistics': 'statistics#view',
         'trainers': 'trainers#list',
         'tasks': 'tasks#list',
-        'users': 'users#list'
+        'users': 'users#list',
+        'roles': 'roles#list'
     },
 
     enableRouter: true,
