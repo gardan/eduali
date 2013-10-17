@@ -3,6 +3,8 @@
     width: 800,
     bodyPadding: 0,
 
+    xtype: 'edituserwindow',
+
     layout: 'anchor',
 
     defaults: {
@@ -12,6 +14,10 @@
     hideAction: 'destroy',
 
     user: null,
+
+    requires: [
+        'Ilc.utils.Forms'
+    ],
 
     initComponent: function() {
         var me = this;
@@ -27,15 +33,49 @@
                     items: [
                         {
                             text: 'Assign role',
-                            handler: function() {
+                            handler: function () {
+                                var unassignedRolesStore = Ext.create('Ilc.store.Roles');
+
+                                unassignedRolesStore.load({
+                                    params: {
+                                        assigned: false,
+                                        userId: me.user.get('id')
+                                    }
+                                });
+
                                 var window = Ext.create('Ext.window.Window', {
                                     items: [
                                         {
                                             xtype: 'combobox',
-                                            fieldLabel: 'Roles'
+                                            queryMode: 'local',
+                                            displayField: 'name',
+                                            valueField: 'id',
+                                            fieldLabel: 'Roles',
+                                            name: 'roleId',
+                                            store: unassignedRolesStore
+                                        }
+                                    ],
+                                    buttons: [
+                                        {
+                                            text: 'Assign',
+                                            handler: function () {
+                                                var inputs = window.query('textfield');
+                                                var model = Ilc.utils.Forms.extractModel(inputs);
+                                                model.userId = me.user.get('id');
+
+                                                me.fireEvent('assignrole', window, model, {
+                                                    rolesStore: rolesStore,
+                                                    rolesLoadObj: {
+                                                        params: {
+                                                            userId: me.user.get('id')
+                                                        }
+                                                    }
+                                                });
+                                            }
                                         }
                                     ]
                                 });
+                                window.show();
                             }
                         }
                     ]
@@ -65,6 +105,10 @@
                 userId: me.user.get('id')
             }
         });
+
+        me.addEvents(
+            'assignrole'
+        );
 
         me.callParent(arguments);
     }

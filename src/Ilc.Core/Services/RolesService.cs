@@ -22,7 +22,15 @@ namespace Ilc.Core.Services
             // predefined search
             if (parameters.UserId > 0)
             {
-                query = query.Where(r => r.UserProfiles.Any(u => u.Id == parameters.UserId));
+                // query = query.Where(r => r.UserProfiles.Any(u => (u.Id == parameters.UserId) == parameters.Assigned));
+                if (parameters.Assigned)
+                {
+                    query = query.Where(r => r.UserProfiles.Any(u => u.Id == parameters.UserId));
+                }
+                else
+                {
+                    query = query.Where(r => r.UserProfiles.All(u => u.Id != parameters.UserId));
+                }
             }
 
             var totalResults = query.Count();

@@ -3891,6 +3891,7 @@
     <Compile Include="Services\GridConfigurationService.cs" />
     <Compile Include="Services\LessonsService.cs" />
     <Compile Include="Services\OffersService.cs" />
+    <Compile Include="Services\RoleAssignmentsService.cs" />
     <Compile Include="Services\RolesService.cs" />
     <Compile Include="InjectorConventions\RoleToModel.cs" />
     <Compile Include="Services\StatisticsService.cs" />
