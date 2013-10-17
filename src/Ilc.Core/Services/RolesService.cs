@@ -18,6 +18,13 @@ namespace Ilc.Core.Services
             parameters.Filter = parameters.Filter ?? new List<Filter>();
 
             var query = Uow.Roles.GetAll();
+            
+            // predefined search
+            if (parameters.UserId > 0)
+            {
+                query = query.Where(r => r.UserProfiles.Any(u => u.Id == parameters.UserId));
+            }
+
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
 

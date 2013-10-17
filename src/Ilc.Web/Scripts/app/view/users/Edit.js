@@ -19,7 +19,28 @@
         var rolesStore = Ext.create('Ilc.store.Roles');
 
         var rolesGrid = Ext.create('Ilc.grid.Roles', {
-            store: rolesStore
+            store: rolesStore,
+            dockedItems: [
+                {
+                    xtype: 'toolbar',
+                    dock: 'bottom',
+                    items: [
+                        {
+                            text: 'Assign role',
+                            handler: function() {
+                                var window = Ext.create('Ext.window.Window', {
+                                    items: [
+                                        {
+                                            xtype: 'combobox',
+                                            fieldLabel: 'Roles'
+                                        }
+                                    ]
+                                });
+                            }
+                        }
+                    ]
+                }
+            ]
         });
 
         me.items = [
