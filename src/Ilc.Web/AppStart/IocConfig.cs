@@ -32,6 +32,7 @@ namespace Ilc.Web.AppStart
             container.RegisterAutoWiredAs<OffersService, IOffersService>().ReusedWithin(ReuseScope.Request);
             container.RegisterAutoWiredAs<MembershipService, IMembershipService>().ReusedWithin(ReuseScope.Request);
             container.RegisterAutoWiredAs<RolesService, IRolesService>().ReusedWithin(ReuseScope.Request);
+            container.RegisterAutoWiredAs<ClaimsService, IClaimsService>().ReusedWithin(ReuseScope.Request);
 
             container.RegisterAutoWiredAs<StatisticsService, IStatisticsService>().ReusedWithin(ReuseScope.Request);            
         }

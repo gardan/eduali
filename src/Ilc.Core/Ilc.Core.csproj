@@ -42,7 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\ClaimsService.cs" />
+    <Compile Include="Contracts\IClaimsService.cs" />
     <Compile Include="Contracts\IRolesService.cs" />
+    <Compile Include="FilterArgumentsClaims.cs" />
     <Compile Include="Services\RolesService.cs" />
     <Compile Include="FilterArgumentsOffers.cs" />
     <Compile Include="FilterArgumentsRoles.cs" />
