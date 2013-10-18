@@ -176,18 +176,21 @@
     <Content Include="Scripts\app\form\QuestionWithPredefinedAnswers.js" />
     <Content Include="Scripts\app\form\TransferBlockForm.js" />
     <Content Include="Scripts\app\grid\Competences.js" />
+    <Content Include="Scripts\app\grid\Claims.js" />
     <Content Include="Scripts\app\grid\EvalQuestions.js" />
     <Content Include="Scripts\app\grid\Offers.js" />
     <Content Include="Scripts\app\grid\Roles.js" />
     <Content Include="Scripts\app\grid\Users.js" />
     <Content Include="Scripts\app\helpers\AppConfig.js" />
     <Content Include="Scripts\app\helpers\GridColumns.js" />
+    <Content Include="Scripts\app\model\Claim.js" />
     <Content Include="Scripts\app\model\InterviewPlan.js" />
     <Content Include="Scripts\app\resources\Resources.en.js" />
     <Content Include="Scripts\app\resources\Manager.js" />
     <Content Include="Scripts\app\resources\Resources.nl.js" />
     <Content Include="Scripts\app\resources\Resources.ro.js" />
     <Content Include="Scripts\app\scheduler\Training.js" />
+    <Content Include="Scripts\app\store\Claims.js" />
     <Content Include="Scripts\app\store\GridConfig.js" />
     <Content Include="Scripts\app\grid\Transfers.js" />
     <Content Include="Scripts\app\model\Customer.js" />
@@ -329,6 +332,7 @@
     <Content Include="Scripts\app\view\home\Intake.js" />
     <Content Include="Scripts\app\view\home\Transfer.js" />
     <Content Include="Scripts\app\view\home\Offer.js" />
+    <Content Include="Scripts\app\view\roles\Edit.js" />
     <Content Include="Scripts\app\view\roles\List.js" />
     <Content Include="Scripts\app\view\statistics\View.js" />
     <Content Include="Scripts\app\view\students\Create.js" />
@@ -3883,6 +3887,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\CreateStudentModel.cs" />
     <Compile Include="Models\CreateOfferModel.cs" />
+    <Compile Include="Services\ClaimsService.cs" />
     <Compile Include="Services\CustomersService.cs" />
     <Compile Include="InjectorConventions\CustomerToCustomerModel.cs" />
     <Compile Include="Models\CustomerStatisticsModel.cs" />

@@ -38,6 +38,8 @@ namespace Ilc.Web.AppStart
 
             routes.Add<Services.CreateRoleAssignmentModel>("/api/roleassignments", "POST");
 
+            routes.Add<Services.FilterParametersClaims>("/api/claims", "GET");
+
             routes.Add<Services.FilterSubjectsParameters>("/api/subjects", "GET");
 
             routes.Add<GridConfigRequestParameters>("/api/config/grid", "GET");

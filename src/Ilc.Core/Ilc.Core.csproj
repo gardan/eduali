@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IRolesService.cs" />
+    <Compile Include="FilterArgumentsClaims.cs" />
     <Compile Include="Services\RolesService.cs" />
     <Compile Include="FilterArgumentsOffers.cs" />
     <Compile Include="FilterArgumentsRoles.cs" />
