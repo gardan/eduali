@@ -19,7 +19,7 @@ namespace Ilc.Data.Models
         public virtual List<Role> Roles
         {
             get { return _roles ?? (_roles = new List<Role>()); }
-            protected set { _roles = value; }
+            set { _roles = value; }
         }
         // public virtual List<UserProfileWorkspaceView> UserProfileWorkspaceViews { get; set; }
 
