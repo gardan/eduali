@@ -100,6 +100,8 @@
         'common.cancel': 'Cancel',
         'common.update': 'Update',
         'common.username': 'Username',
+        'common.newUser': 'New user',
+        'common.createUser': 'Create User',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',

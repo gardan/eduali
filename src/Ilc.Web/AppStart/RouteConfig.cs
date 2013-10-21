@@ -33,6 +33,7 @@ namespace Ilc.Web.AppStart
             routes.Add<DeleteTrainerModel>("/api/trainers/{id}", "DELETE");
 
             routes.Add<Services.FilterParametersUsers>("/api/users", "GET");
+            routes.Add<Services.CreateUserModel>("/api/users", "POST");
 
             routes.Add<Services.FilterParametersRoles>("/api/roles", "GET");
 

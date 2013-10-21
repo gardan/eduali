@@ -4,6 +4,7 @@ using System.Security.Claims;
 using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models;
+using Ilc.Data.Models.SimpleMembership;
 
 namespace Ilc.Core.Services
 {
@@ -60,6 +61,26 @@ namespace Ilc.Core.Services
         {
             var principal = ClaimsPrincipal.Current;
             return GetByUsername(principal.FindFirst(c => c.Type == ClaimTypes.Name).Value);
+        }
+
+        public void Create(UserProfile user, string password)
+        {
+            // Create the profile
+            Uow.UserProfiles.Add(user);
+            Uow.Commit();
+
+            // Create the membership
+            var salt = Crypto.Crypto.GenerateSalt();
+            var hashedPwd = Crypto.Crypto.Hash(salt + Crypto.Crypto.Hash(salt + password));
+
+            Uow.Memberships.Add(new Membership()
+                {
+                    UserId = user.Id,
+                    PasswordFailuresSinceLastSuccess = 0,
+                    Password = hashedPwd,
+                    PasswordSalt = salt
+                });
+            Uow.Commit();
         }
     }
 }
