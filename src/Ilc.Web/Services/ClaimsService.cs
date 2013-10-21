@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Ilc.Core;
 using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
 using Ilc.Web.Models;
 using ServiceStack.Common.Web;
-using Ilc.Data.Contracts;
-using Ilc.Web.Models;
 using ServiceStack.ServiceInterface;
 
 namespace Ilc.Web.Services
@@ -41,11 +37,30 @@ namespace Ilc.Web.Services
 
             var claims = role.Claims.ToList();
 
-            dataList = claims.Select(roleClaim => new ClaimModel()
+            if (!request.Assigned)
+            {
+                dataList = new List<ClaimModel>();
+                var systemClaims = Claims.GetAll();
+                foreach (var systemClaim in systemClaims)
+                {
+                    if (!claims.Exists(rc => rc.Name == systemClaim))
+                    {
+                        dataList.Add(new ClaimModel()
+                            {
+                                Name = systemClaim
+                            });
+                    }
+                }
+            }
+            else
+            {
+                dataList = claims.Select(roleClaim => new ClaimModel()
                 {
                     Name = roleClaim.Name
                 }).ToList();
 
+            }
+            
             return new FilteredDataModel<ClaimModel>()
                 {
                     Data = dataList

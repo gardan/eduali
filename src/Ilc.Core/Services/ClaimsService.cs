@@ -10,7 +10,9 @@ namespace Ilc.Core.Services
         {
             return new List<string>()
                 {
-                    "tasks-run-rfi"
+                    "tasks-run-rfi",
+                    "tasks-run-planinterview",
+                    "tasks-run-interview"
                 };
         }
     }
