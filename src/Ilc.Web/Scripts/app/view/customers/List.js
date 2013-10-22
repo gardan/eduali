@@ -22,6 +22,31 @@
         var customersGrid = Ext.create('Ext.grid.Panel', {
             store: customersStore,
             features: [filters],
+            dockedItems: [
+                {
+                    xtype: 'toolbar',
+                    dock: 'top',
+                    items: [
+                        {
+                            xtype: 'button',
+                            text: Ilc.resources.Manager.getResourceString('common.newCustomer'),
+                            handler: function (btn, e) {
+                                var window = Ext.create('Ilc.view.customers.Create', {
+                                    hideAction: 'destroy'
+                                });
+
+                                window.on('addCustomer', function (sender, model) {
+                                    me.fireEvent('addCustomer', sender, model, {
+                                        store: customersStore
+                                    });
+                                });
+
+                                window.show();
+                            }
+                        }
+                    ]
+                }
+            ],
             columns: [
                 {
                     dataIndex: 'name',
@@ -94,23 +119,6 @@
         });
 
         me.items = [
-            {
-                xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.newCustomer'),
-                handler: function (btn, e) {
-                    var window = Ext.create('Ilc.view.customers.Create', {
-                        hideAction: 'destroy'
-                    });
-
-                    window.on('addCustomer', function (sender, model) {
-                        me.fireEvent('addCustomer', sender, model, {
-                            store: customersStore
-                        });
-                    });
-
-                    window.show();
-                }
-            },
             customersGrid
         ];
 
