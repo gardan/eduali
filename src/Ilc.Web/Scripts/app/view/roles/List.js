@@ -14,7 +14,7 @@
                     dock: 'top',
                     items: [
                         {
-                            text: '',
+                            text: 'Create role',
                             handler: function() {
                                 var window = Ext.create('Ilc.view.roles.Create', {
                                     rolesStore: rolesStore
