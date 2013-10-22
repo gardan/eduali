@@ -19,6 +19,19 @@ namespace Ilc.Core.Services
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
 
+            foreach (var filter in parameters.Filter)
+            {
+                var inFilter = filter;
+                switch (inFilter.Field)
+                {
+                    case "status":
+                        query = query.Where(t => t.Status == inFilter.Value);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             // order
             query = query.OrderBy(e => e.Id);
 

@@ -11,13 +11,24 @@
 
         var trainingsStore = Ext.create('Ilc.store.Trainings');
 
+        var filters = {
+            ftype: 'jsvfilters',
+            // encode and local configuration options defined previously for easier reuse
+            // encode: true, // json encode the filter query
+            local: false,   // defaults to false (remote filtering)
+        };
+
         var trainingsGrid = Ext.create('Ext.grid.Panel', {
             store: trainingsStore,
+            features: [filters],
             columns: Ilc.helpers.GridColumns.process([
                 {
                     dataIndex: 'status',
                     flex: 1,
-                    text: Ilc.resources.Manager.getResourceString('common.status')
+                    text: Ilc.resources.Manager.getResourceString('common.status'),
+                    filter: {
+                        type: 'string'
+                    }
                 },
                 {
                     dataIndex: 'customer',
