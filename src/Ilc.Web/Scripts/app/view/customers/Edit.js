@@ -31,7 +31,11 @@
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.billingAddress'),
                 name: 'billingAddress',
                 value: cfgModel.billingAddress
-            },
+            }
+            
+        ];
+
+        me.buttons = [
             {
                 xtype: 'button',
                 text: Ilc.resources.Manager.getResourceString('common.edit'),
@@ -45,9 +49,14 @@
                     // raise the event
                     me.fireEvent('editCustomer', me, model);
                 }
+            },
+            {
+                text: Ilc.resources.Manager.getResourceString('common.cancel'),
+                handler: function() {
+                    me.close();
+                }
             }
         ];
-
 
         me.addEvents(
             'editCustomer'
