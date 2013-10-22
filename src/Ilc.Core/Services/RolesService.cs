@@ -65,5 +65,11 @@ namespace Ilc.Core.Services
                 TotalRecords = totalDisplayRecords
             };
         }
+
+        public void Create(Role role)
+        {
+            Uow.Roles.Add(role);
+            Uow.Commit();
+        }
     }
 }

@@ -67,6 +67,7 @@ Ext.application({
         // Defaults
         Ext.window.Window.prototype.bodyPadding = 10;
         Ext.window.Window.prototype.modal = true;
+        Ext.window.Window.prototype.hideAction = 'destroy';
     }
 });
 

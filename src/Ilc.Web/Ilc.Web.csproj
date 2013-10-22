@@ -332,6 +332,7 @@
     <Content Include="Scripts\app\view\home\Intake.js" />
     <Content Include="Scripts\app\view\home\Transfer.js" />
     <Content Include="Scripts\app\view\home\Offer.js" />
+    <Content Include="Scripts\app\view\roles\Create.js" />
     <Content Include="Scripts\app\view\roles\Edit.js" />
     <Content Include="Scripts\app\view\roles\List.js" />
     <Content Include="Scripts\app\view\statistics\View.js" />

@@ -7,7 +7,25 @@
         var rolesStore = Ext.create('Ilc.store.Roles');
 
         var usersGrid = Ext.create('Ilc.grid.Roles', {
-            store: rolesStore
+            store: rolesStore,
+            dockedItems: [
+                {
+                    xtype: 'toolbar',
+                    dock: 'top',
+                    items: [
+                        {
+                            text: '',
+                            handler: function() {
+                                var window = Ext.create('Ilc.view.roles.Create', {
+                                    rolesStore: rolesStore
+                                });
+
+                                window.show();
+                            }
+                        }
+                    ]
+                }
+            ]
         });
 
         usersGrid.on('itemdblclick', function (grid, record) {
