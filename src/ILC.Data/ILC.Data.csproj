@@ -179,6 +179,10 @@
     <Compile Include="Migrations\201310161825498_DeleteCompanyIdFromRole.Designer.cs">
       <DependentUpon>201310161825498_DeleteCompanyIdFromRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201310220815345_RoleFlagToPreventDeletion.cs" />
+    <Compile Include="Migrations\201310220815345_RoleFlagToPreventDeletion.Designer.cs">
+      <DependentUpon>201310220815345_RoleFlagToPreventDeletion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -297,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201310161825498_DeleteCompanyIdFromRole.resx">
       <DependentUpon>201310161825498_DeleteCompanyIdFromRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310220815345_RoleFlagToPreventDeletion.resx">
+      <DependentUpon>201310220815345_RoleFlagToPreventDeletion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

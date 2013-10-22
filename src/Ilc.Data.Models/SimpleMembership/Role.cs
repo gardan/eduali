@@ -21,5 +21,7 @@ namespace Ilc.Data.Models.SimpleMembership
             get { return _owners ?? (_owners = new List<UserProfile>()); }
             protected set { _owners = value; }
         }
+
+        public bool CanDelete { get; set; }
     }
 }
