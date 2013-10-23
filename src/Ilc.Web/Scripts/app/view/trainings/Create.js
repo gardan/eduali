@@ -116,6 +116,22 @@
 
                     model = Ilc.utils.Forms.extractModel(textboxes);
 
+                    var ownerCfg = {
+                        sales: {
+                            id: 1
+                        },
+                        administration: {
+                            id: 1
+                        },
+                        coordinator: {
+                            id: 1
+                        },
+                        trainer: {
+                            id: 1
+                        }
+                    };
+
+                    model.workflowOwners = ownerCfg;
 
                     me.fireEvent('addTraining', me, model);
                 }

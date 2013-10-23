@@ -28,7 +28,23 @@ namespace Ilc.Web.Services
 
         public FilteredDataModel<TaskModel> Get(FilterParametersTasks request)
         {
-            var trainings = Uow.Trainings.GetAll().ToList();
+            var currentUser = Users.GetByUsername();
+
+
+            // var trainings = Uow.Trainings.GetAll().Where(t => t.Owners.Any(u => u.Id == currentUser.Id)).ToList();
+
+            var trainings = new List<Data.Models.Training>();
+
+            foreach (var training in Uow.Trainings.GetAll().ToList())
+            {
+                foreach (var userProfile in training.Owners)
+                {
+                    if (userProfile.Id == currentUser.Id)
+                    {
+                        trainings.Add(training);
+                    }
+                }
+            }
 
             var data = new List<TaskModel>();
 
@@ -79,7 +95,19 @@ namespace Ilc.Web.Services
 
             if (request.Complete)
             {
+                // update the status
                 training.Status = TrainingStatus.PlanInterview;
+                
+                // update the owner
+                foreach (var owner in training.Owners.ToList())
+                {
+                    training.Owners.Remove(owner);
+                }
+
+                var newOwnerId = Uow.TrainingOwnersConfiguration.GetById(request.TrainingId).AdministrationId;
+                var newOwner = Uow.UserProfiles.GetById(newOwnerId);
+                training.Owners = new List<UserProfile>() { newOwner };
+
                 Uow.Trainings.Update(training);
                 Uow.Commit();
             }

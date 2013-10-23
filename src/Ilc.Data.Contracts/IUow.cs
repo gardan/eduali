@@ -31,7 +31,8 @@ namespace Ilc.Data.Contracts
         IRepository<TrainingEvaluation> TrainingEvaluations { get; }
         IRepository<Membership> Memberships { get; }
         IRepository<Assesment> Assesments { get; }
-
+        IRepository<TrainingOwnersConfiguration> TrainingOwnersConfiguration { get; }
+            
         IRepository<TrainingEvaluationQuestion> Questions { get; } 
     }
 }

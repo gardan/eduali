@@ -183,6 +183,10 @@
     <Compile Include="Migrations\201310220815345_RoleFlagToPreventDeletion.Designer.cs">
       <DependentUpon>201310220815345_RoleFlagToPreventDeletion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201310231120348_OwnerConfigurationWorkflowSupport.cs" />
+    <Compile Include="Migrations\201310231120348_OwnerConfigurationWorkflowSupport.Designer.cs">
+      <DependentUpon>201310231120348_OwnerConfigurationWorkflowSupport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -304,6 +308,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201310220815345_RoleFlagToPreventDeletion.resx">
       <DependentUpon>201310220815345_RoleFlagToPreventDeletion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310231120348_OwnerConfigurationWorkflowSupport.resx">
+      <DependentUpon>201310231120348_OwnerConfigurationWorkflowSupport.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

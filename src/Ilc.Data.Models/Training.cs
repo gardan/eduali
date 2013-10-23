@@ -41,6 +41,9 @@ namespace Ilc.Data.Models
         [ForeignKey("CustomerId")]
         public virtual Customer Customer { get; set; }
 
+        /// <summary>
+        /// Holds a list of all the users that at a current state of the training own it.
+        /// </summary>
         public virtual ICollection<UserProfile> Owners { get; set; }
 
         public virtual ICollection<TrainingOffer> Offers { get; set; }
@@ -58,5 +61,18 @@ namespace Ilc.Data.Models
         public virtual ICollection<Assesment> Assesments { get; set; } 
 
         public Guid? WokrflowId { get; set; }
+
+        public TrainingOwnersConfiguration OwnersConfiguration { get; set; }
+    }
+
+    public class TrainingOwnersConfiguration : EntityBase
+    {
+        public int SalesId { get; set; }
+        public int AdministrationId { get; set; }
+        public int CoordinatorId { get; set; }
+        public int TrainerId { get; set; }
+
+        [Required]
+        public Training Training { get; set; }
     }
 }

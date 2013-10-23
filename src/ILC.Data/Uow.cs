@@ -35,6 +35,7 @@ namespace Ilc.Data
         public IRepository<TrainingEvaluation> TrainingEvaluations { get { return GetStandardRepo<TrainingEvaluation>(); } }
         public IRepository<Membership> Memberships { get { return GetStandardRepo<Membership>(); } }
         public IRepository<Assesment> Assesments { get { return GetStandardRepo<Assesment>(); } }
+        public IRepository<TrainingOwnersConfiguration> TrainingOwnersConfiguration { get { return GetStandardRepo<TrainingOwnersConfiguration>(); } }
         public IRepository<TrainingEvaluationQuestion> Questions { get { return GetStandardRepo<TrainingEvaluationQuestion>(); } }
 
         public Uow(IRepositoryProvider repositoryProvider)

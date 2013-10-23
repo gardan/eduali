@@ -42,7 +42,6 @@
                      var inputs = me.query('textfield');
 
                      model = Ilc.utils.Forms.extractModel(inputs);
-                     model.id = training.get('id');
                      me.fireEvent('addStudent', me, model);
                  }
              },

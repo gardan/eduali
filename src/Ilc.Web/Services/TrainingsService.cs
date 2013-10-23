@@ -50,6 +50,20 @@ namespace Ilc.Web.Services
                 students.Add(student);
             }
 
+            var sales = Uow.UserProfiles.GetById(request.WorkflowOwners.Sales.Id);
+            var administration = Uow.UserProfiles.GetById(request.WorkflowOwners.Administration.Id);
+            var coordinator = Uow.UserProfiles.GetById(request.WorkflowOwners.Coordinator.Id);
+            var trainer = Uow.UserProfiles.GetById(request.WorkflowOwners.Trainer.Id);
+
+
+            var ownersConfiguration = new TrainingOwnersConfiguration()
+                {
+                    SalesId = sales.Id,
+                    AdministrationId = administration.Id,
+                    CoordinatorId = coordinator.Id,
+                    TrainerId = trainer.Id
+                };
+
             var newTraining = new Training
                 {
                     SubjectId = request.SubjectId,
@@ -59,7 +73,9 @@ namespace Ilc.Web.Services
                     Students = students,
                     TrainerId = request.TrainerId,
                     CustomerId = request.CustomerId,
-                    Owners = new [] { Users.GetByUsername() }
+                    // Owners = new [] { Users.GetByUsername() }, // We need to get the guy with Sales role that was specified at the beggining
+                    Owners = new [] { sales },
+                    OwnersConfiguration = ownersConfiguration
                 };
 
             Trainings.Create(newTraining);

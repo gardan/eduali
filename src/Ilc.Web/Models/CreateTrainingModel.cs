@@ -13,5 +13,20 @@ namespace Ilc.Web.Models
         public int CustomerId { get; set; }
 
         public int TrainerId { get; set; }
+
+        public OwnersModel WorkflowOwners { get; set; }
+    }
+
+    public class OwnersModel
+    {
+        public OwnerModel Sales { get; set; }
+        public OwnerModel Administration { get; set; }
+        public OwnerModel Coordinator { get; set; }
+        public OwnerModel Trainer { get; set; }
+    }
+
+    public class OwnerModel
+    {
+        public int Id { get; set; }
     }
 }
