@@ -19,10 +19,10 @@ namespace Ilc.Web.Models
 
     public class OwnersModel
     {
-        public OwnerModel Sales { get; set; }
-        public OwnerModel Administration { get; set; }
-        public OwnerModel Coordinator { get; set; }
-        public OwnerModel Trainer { get; set; }
+        public int Sales { get; set; }
+        public int Administration { get; set; }
+        public int Coordinator { get; set; }
+        public int Trainer { get; set; }
     }
 
     public class OwnerModel

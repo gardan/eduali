@@ -4,7 +4,15 @@
     requires: [
         'Ilc.utils.Forms'
     ],
+        
+    defaults: {
+        xtype: 'combobox',
+        anchor: '100%',
+        labelWidth: 120
+    },
+
     layout: 'anchor',
+    width: 400,
     modal: true,
     bodyPadding: 10,
     constructor: function () {
@@ -17,6 +25,10 @@
         var subjectsStore = Ext.create('Ilc.store.Subjects');
         var trainersStore = Ext.create('Ilc.store.Trainers');
 
+        var salesUsersStore = Ext.create('Ilc.store.Users').load();
+        var coordinatorsUsersStore = Ext.create('Ilc.store.Users').load();
+        var administratorsUsersStore = Ext.create('Ilc.store.Users').load();
+
         var customerComboBox = Ext.create('Ext.form.ComboBox', {
             store: customersStore,
             queryMode: 'local',
@@ -24,7 +36,8 @@
             valueField: 'id',
             name: 'customerId',
             fieldLabel: Ilc.resources.Manager.getResourceString('common.customer'),
-            anchor: '100%'
+            anchor: '100%',
+            labelWidth: 120
         });
 
         var studentsComboBox = Ext.create('Ext.form.ComboBox', {
@@ -35,7 +48,8 @@
             fieldLabel: Ilc.resources.Manager.getResourceString('common.students'),
             name: 'students',
             multiSelect: true,
-            anchor: '100%'
+            anchor: '100%',
+            labelWidth: 120
         });
 
         var trainingSystemComboBox = Ext.create('Ext.form.ComboBox', {
@@ -45,7 +59,8 @@
             valueField: 'id',
             name: 'trainingSystem',
             fieldLabel: Ilc.resources.Manager.getResourceString('common.system'),
-            anchor: '100%'
+            anchor: '100%',
+            labelWidth: 120
         });
 
         var subjectComboBox = Ext.create('Ext.form.ComboBox', {
@@ -55,7 +70,8 @@
             valueField: 'id',
             name: 'subjectId',
             fieldLabel: Ilc.resources.Manager.getResourceString('common.subject'),
-            anchor: '100%'
+            anchor: '100%',
+            labelWidth: 120
         });
 
         var trainersComboBox = Ext.create('Ext.form.ComboBox', {
@@ -65,7 +81,8 @@
             valueField: 'id',
             name: 'trainerId',
             fieldLabel: Ilc.resources.Manager.getResourceString('common.trainer'),
-            anchor: '100%'
+            anchor: '100%',
+            labelWidth: 120
         });
 
         customerComboBox.on('select', function (comboBox, records, eOpts) {
@@ -90,6 +107,27 @@
             trainingSystemComboBox,
             trainersComboBox,
             studentsComboBox,
+            {
+                fieldLabel: 'Sales user',
+                store: salesUsersStore,
+                displayField: 'username',
+                valueField: 'id',
+                name: 'workflowOwners.sales'
+            },
+            {
+                fieldLabel: 'Administration user',
+                store: administratorsUsersStore,
+                displayField: 'username',
+                valueField: 'id',
+                name: 'workflowOwners.administration'
+            },
+            {
+                fieldLabel: 'Coordination user',
+                store: coordinatorsUsersStore,
+                displayField: 'username',
+                valueField: 'id',
+                name: 'workflowOwners.coordinator'
+            },
             {
                 xtype: 'datefield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.startDate'),
@@ -116,22 +154,7 @@
 
                     model = Ilc.utils.Forms.extractModel(textboxes);
 
-                    var ownerCfg = {
-                        sales: {
-                            id: 1
-                        },
-                        administration: {
-                            id: 1
-                        },
-                        coordinator: {
-                            id: 1
-                        },
-                        trainer: {
-                            id: 1
-                        }
-                    };
-
-                    model.workflowOwners = ownerCfg;
+                    console.log(model);
 
                     me.fireEvent('addTraining', me, model);
                 }

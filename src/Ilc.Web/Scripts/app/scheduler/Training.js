@@ -12,7 +12,7 @@
     // startDate: startDate,
     // endDate: Sch.util.Date.add(startDate, Sch.util.Date.DAY, 10),
 
-    viewPreset: 'hourAndDay',
+    viewPreset: 'dayAndWeek',
 
     // Setup your static columns
 

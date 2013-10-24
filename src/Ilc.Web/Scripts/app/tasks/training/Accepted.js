@@ -31,12 +31,25 @@
             trainingId: trainingEntity.get('id')
         });
 
+        debugger;
+        var d1 = new Date(startDate);
+        
+        var d = new Date(d1.getUTCFullYear(),
+                       d1.getUTCMonth(),
+                       d1.getUTCDate(),
+                       d1.getUTCHours(),
+                       d1.getUTCMinutes(),
+                       d1.getUTCSeconds());
+        
+        // var d = new Date('2013-10-27T02:00:00');
+        var d2 = new Date();
         var trainingScheduler = Ext.create('Ilc.scheduler.Training', {
             anchor: '100%',
             height: 400,
 
-            startDate: new Date(startDate),
-            //endDate: Sch.util.Date.add(new Date(startDate), Sch.util.Date.MONTH, 3),
+            //startDate: new Date(startDate),
+            startDate: d,
+            // endDate: Sch.util.Date.add(new Date(startDate), Sch.util.Date.MONTH, 3),
 
             resourceStore: resourceStore,
             eventStore: eventStore,

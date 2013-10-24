@@ -190,9 +190,6 @@
                                 </If>
                               </Sequence>
                             </Transition.Trigger>
-                            <Transition.Condition>
-                              <mca:CSharpValue x:TypeArguments="x:Boolean">varComplete</mca:CSharpValue>
-                            </Transition.Condition>
                             <Transition.To>
                               <State x:Name="__ReferenceID10" DisplayName="PendingOfferApproval" sap2010:WorkflowViewState.IdRef="State_4">
                                 <State.Transitions>
@@ -826,6 +823,23 @@
                                 </State.Variables>
                               </State>
                             </Transition.To>
+                            <Transition.Action>
+                              <local1:UpdateTrainingStatus sap2010:WorkflowViewState.IdRef="UpdateTrainingStatus_6">
+                                <local1:UpdateTrainingStatus.NewStatus>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <mca:CSharpValue x:TypeArguments="x:String">TrainingStatus.Offer</mca:CSharpValue>
+                                  </InArgument>
+                                </local1:UpdateTrainingStatus.NewStatus>
+                                <local1:UpdateTrainingStatus.TrainingId>
+                                  <InArgument x:TypeArguments="x:Int32">
+                                    <mca:CSharpValue x:TypeArguments="x:Int32">argInTrainingId</mca:CSharpValue>
+                                  </InArgument>
+                                </local1:UpdateTrainingStatus.TrainingId>
+                              </local1:UpdateTrainingStatus>
+                            </Transition.Action>
+                            <Transition.Condition>
+                              <mca:CSharpValue x:TypeArguments="x:Boolean">varComplete</mca:CSharpValue>
+                            </Transition.Condition>
                           </Transition>
                           <Transition Trigger="{x:Reference __ReferenceID11}" DisplayName="BookmarkInterview" sap2010:WorkflowViewState.IdRef="Transition_20" To="{x:Reference __ReferenceID12}">
                             <Transition.Action>
@@ -850,13 +864,27 @@
                       </State>
                     </Transition.To>
                     <Transition.Action>
-                      <local1:PersistInterviewPlan sap2010:WorkflowViewState.IdRef="PersistInterviewPlan_1">
-                        <local1:PersistInterviewPlan.InterviewPlan>
-                          <InArgument x:TypeArguments="idm:InterviewPlan">
-                            <mca:CSharpValue x:TypeArguments="idm:InterviewPlan">varInterviewPlan</mca:CSharpValue>
-                          </InArgument>
-                        </local1:PersistInterviewPlan.InterviewPlan>
-                      </local1:PersistInterviewPlan>
+                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_16">
+                        <local1:PersistInterviewPlan sap2010:WorkflowViewState.IdRef="PersistInterviewPlan_1">
+                          <local1:PersistInterviewPlan.InterviewPlan>
+                            <InArgument x:TypeArguments="idm:InterviewPlan">
+                              <mca:CSharpValue x:TypeArguments="idm:InterviewPlan">varInterviewPlan</mca:CSharpValue>
+                            </InArgument>
+                          </local1:PersistInterviewPlan.InterviewPlan>
+                        </local1:PersistInterviewPlan>
+                        <local1:UpdateTrainingStatus sap2010:WorkflowViewState.IdRef="UpdateTrainingStatus_5">
+                          <local1:UpdateTrainingStatus.NewStatus>
+                            <InArgument x:TypeArguments="x:String">
+                              <mca:CSharpValue x:TypeArguments="x:String">TrainingStatus.Interview</mca:CSharpValue>
+                            </InArgument>
+                          </local1:UpdateTrainingStatus.NewStatus>
+                          <local1:UpdateTrainingStatus.TrainingId>
+                            <InArgument x:TypeArguments="x:Int32">
+                              <mca:CSharpValue x:TypeArguments="x:Int32">argInTrainingId</mca:CSharpValue>
+                            </InArgument>
+                          </local1:UpdateTrainingStatus.TrainingId>
+                        </local1:UpdateTrainingStatus>
+                      </Sequence>
                     </Transition.Action>
                   </Transition>
                 </State.Transitions>
@@ -887,6 +915,18 @@
                     </InArgument>
                   </local1:ToggleSelectedOffer.OfferId>
                 </local1:ToggleSelectedOffer>
+                <local1:UpdateTrainingStatus sap2010:WorkflowViewState.IdRef="UpdateTrainingStatus_4">
+                  <local1:UpdateTrainingStatus.NewStatus>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String">TrainingStatus.PlanInterview</mca:CSharpValue>
+                    </InArgument>
+                  </local1:UpdateTrainingStatus.NewStatus>
+                  <local1:UpdateTrainingStatus.TrainingId>
+                    <InArgument x:TypeArguments="x:Int32">
+                      <mca:CSharpValue x:TypeArguments="x:Int32">argInTrainingId</mca:CSharpValue>
+                    </InArgument>
+                  </local1:UpdateTrainingStatus.TrainingId>
+                </local1:UpdateTrainingStatus>
               </Sequence>
             </Transition.Action>
             <Transition.Condition>
@@ -960,7 +1000,7 @@
         </Variable.Default>
       </Variable>
     </StateMachine.Variables>
-    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </StateMachine>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -1340,13 +1380,14 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Transition_3" sap:VirtualizedContainerService.HintSize="430,270">
+      <sap2010:ViewStateData Id="UpdateTrainingStatus_6" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Transition_3" sap:VirtualizedContainerService.HintSize="430,800">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:PointCollection x:Key="ConnectorLocation">559,262.5 559,292.5 402,292.5 402,319.5</av:PointCollection>
             <x:Int32 x:Key="SrcConnectionPointIndex">39</x:Int32>
             <x:Int32 x:Key="DestConnectionPointIndex">38</x:Int32>
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -1357,7 +1398,7 @@
             <av:PointCollection x:Key="ConnectorLocation">559,262.5 559,291 675,291 675,231 645,231</av:PointCollection>
             <x:Int32 x:Key="SrcConnectionPointIndex">39</x:Int32>
             <x:Int32 x:Key="DestConnectionPointIndex">36</x:Int32>
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -1373,7 +1414,15 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="PersistInterviewPlan_1" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="Transition_4" sap:VirtualizedContainerService.HintSize="430,695">
+      <sap2010:ViewStateData Id="UpdateTrainingStatus_5" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_16" sap:VirtualizedContainerService.HintSize="222,208">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Transition_4" sap:VirtualizedContainerService.HintSize="430,793">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:PointCollection x:Key="ConnectorLocation">209.5,263.1 239.5,263.1 239.5,240.45 473,240.45</av:PointCollection>
@@ -1395,14 +1444,15 @@
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Assign_16" sap:VirtualizedContainerService.HintSize="242,62" />
       <sap2010:ViewStateData Id="ToggleSelectedOffer_1" sap:VirtualizedContainerService.HintSize="242,22" />
-      <sap2010:ViewStateData Id="Sequence_11" sap:VirtualizedContainerService.HintSize="264,248">
+      <sap2010:ViewStateData Id="UpdateTrainingStatus_4" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Sequence_11" sap:VirtualizedContainerService.HintSize="264,310">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Transition_5" sap:VirtualizedContainerService.HintSize="573,1374">
+      <sap2010:ViewStateData Id="Transition_5" sap:VirtualizedContainerService.HintSize="573,1436">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:PointCollection x:Key="ConnectorLocation">112.7,141 112.7,171 90.1,171 90.1,229</av:PointCollection>

@@ -50,10 +50,10 @@ namespace Ilc.Web.Services
                 students.Add(student);
             }
 
-            var sales = Uow.UserProfiles.GetById(request.WorkflowOwners.Sales.Id);
-            var administration = Uow.UserProfiles.GetById(request.WorkflowOwners.Administration.Id);
-            var coordinator = Uow.UserProfiles.GetById(request.WorkflowOwners.Coordinator.Id);
-            var trainer = Uow.UserProfiles.GetById(request.WorkflowOwners.Trainer.Id);
+            var sales = Uow.UserProfiles.GetById(request.WorkflowOwners.Sales);
+            var administration = Uow.UserProfiles.GetById(request.WorkflowOwners.Administration);
+            var coordinator = Uow.UserProfiles.GetById(request.WorkflowOwners.Coordinator);
+            // var trainer = Uow.UserProfiles.GetById(request.WorkflowOwners.Trainer);
 
 
             var ownersConfiguration = new TrainingOwnersConfiguration()
@@ -61,7 +61,7 @@ namespace Ilc.Web.Services
                     SalesId = sales.Id,
                     AdministrationId = administration.Id,
                     CoordinatorId = coordinator.Id,
-                    TrainerId = trainer.Id
+                    TrainerId = request.TrainerId
                 };
 
             var newTraining = new Training

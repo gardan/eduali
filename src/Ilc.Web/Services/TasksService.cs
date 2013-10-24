@@ -93,24 +93,24 @@ namespace Ilc.Web.Services
 
             proc.Resume(training.WokrflowId.Value, TrainingStatus.Rfi, workflowData, PersistableIdleAction.Unload);
 
-            if (request.Complete)
-            {
-                // update the status
-                training.Status = TrainingStatus.PlanInterview;
-                
-                // update the owner
-                foreach (var owner in training.Owners.ToList())
-                {
-                    training.Owners.Remove(owner);
-                }
-
-                var newOwnerId = Uow.TrainingOwnersConfiguration.GetById(request.TrainingId).AdministrationId;
-                var newOwner = Uow.UserProfiles.GetById(newOwnerId);
-                training.Owners = new List<UserProfile>() { newOwner };
-
-                Uow.Trainings.Update(training);
-                Uow.Commit();
-            }
+            // if (request.Complete)
+            // {
+            //     // update the status
+            //     training.Status = TrainingStatus.PlanInterview;
+            //     
+            //     // update the owner
+            //     foreach (var owner in training.Owners.ToList())
+            //     {
+            //         training.Owners.Remove(owner);
+            //     }
+            // 
+            //     var newOwnerId = Uow.TrainingOwnersConfiguration.GetById(request.TrainingId).AdministrationId;
+            //     var newOwner = Uow.UserProfiles.GetById(newOwnerId);
+            //     training.Owners = new List<UserProfile>() { newOwner };
+            // 
+            //     Uow.Trainings.Update(training);
+            //     Uow.Commit();
+            // }
 
             return new HttpResult()
                 {
@@ -135,10 +135,6 @@ namespace Ilc.Web.Services
 
             proc.Resume(training.WokrflowId.Value, TrainingStatus.PlanInterview, workflowData,
                         PersistableIdleAction.Unload);
-
-            training.Status = TrainingStatus.Interview;
-            Trainings.Update(training);
-
             return new HttpResult()
                 {
                     StatusCode = HttpStatusCode.OK
@@ -163,12 +159,6 @@ namespace Ilc.Web.Services
 
             proc.Resume(training.WokrflowId.Value, TrainingStatus.Interview, workflowData,
                         PersistableIdleAction.Unload);
-
-            if (request.IsEmpty())
-            {
-                training.Status = TrainingStatus.Offer;
-                Trainings.Update(training);
-            }
 
             return new HttpResult()
                 {
