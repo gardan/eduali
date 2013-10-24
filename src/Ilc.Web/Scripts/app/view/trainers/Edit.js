@@ -29,7 +29,11 @@
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.address'),
                 name: 'address',
                 value: cfgModel.address
-            },
+            }
+            
+        ];
+
+        me.buttons = [
             {
                 xtype: 'button',
                 text: Ilc.resources.Manager.getResourceString('common.edit'),
@@ -37,10 +41,15 @@
                     var model = {};
                     var inputs = me.query('textfield');
                     model = Ilc.utils.Forms.extractModel(inputs);
-
                     model.id = cfgModel.id;
 
                     me.fireEvent('editTrainer', me, model);
+                }
+            },
+            {
+                text: Ilc.resources.Manager.getResourceString('common.cancel'),
+                handler: function () {
+                    me.close();
                 }
             }
         ];
