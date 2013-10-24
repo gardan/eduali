@@ -15,6 +15,29 @@
         var studentsGrid = Ext.create('Ext.grid.Panel', {
             store: studentsStore,
             features: [filters],
+            dockedItems: [
+                {
+                    xtype: 'toolbar',
+                    dock: 'top',
+                    items: [
+                        {
+                            xtype: 'button',
+                            text: Ilc.resources.Manager.getResourceString('common.newStudent'),
+                            handler: function () {
+                                var window = Ext.create('Ilc.view.students.Create', {
+                                    closeAction: 'destroy'
+                                });
+
+                                window.on('addStudent', function (sender, model) {
+                                    me.fireEvent('addStudent', sender, model, {
+                                        store: studentsStore
+                                    });
+                                });
+
+                                window.show();
+                            }
+                        }]
+                }],
             columns: [
                 {
                     dataIndex: 'name',
@@ -77,23 +100,6 @@
         });
 
         me.items = [
-            {
-                xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.newStudent'),
-                handler: function () {
-                    var window = Ext.create('Ilc.view.students.Create', {
-                        closeAction: 'destroy'
-                    });
-
-                    window.on('addStudent', function (sender, model) {
-                        me.fireEvent('addStudent', sender, model, {
-                             store: studentsStore
-                        });
-                    });
-
-                    window.show();
-                }
-            },
             studentsGrid
         ];
 
