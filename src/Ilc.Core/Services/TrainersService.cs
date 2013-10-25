@@ -9,6 +9,7 @@ namespace Ilc.Core.Services
     public class TrainersService : ITrainersService
     {
         public IUow Uow { get; set; }
+        public IUsersService Users { get; set; }
 
         public FilteredResults<Trainer> GetFiltered(FilterArgumentsTrainers parameters)
         {
@@ -64,6 +65,36 @@ namespace Ilc.Core.Services
 
         public void Create(Trainer newTrainer)
         {
+            // first create the user.
+            var username = newTrainer.Name.Trim().Split(Convert.ToChar(" "))[0].ToLower();
+            var originalUsername = username;
+            // check to see if the username exists
+            var index = 0;
+            UserProfile user;
+            var usernameFound = true;
+            do
+            {
+                user = Uow.UserProfiles.GetAll().FirstOrDefault(u => u.Username == username);
+                
+                if (user != null)
+                {
+                    username = originalUsername + "_" + index++;
+                    usernameFound = false;
+                }
+                else
+                {
+                    usernameFound = true;
+                }
+            } while (!usernameFound);
+
+            // Creat the user
+            var newUser = new UserProfile() {Username = username};
+            Users.Create(newUser, username);
+
+            // Append the userId to the trainer
+            newTrainer.UserProfileId = newUser.Id;
+
+            // Create the trainer
             Uow.Trainers.Add(newTrainer);
             Uow.Commit();
         }
