@@ -14,6 +14,10 @@ namespace Ilc.Data.Models
         public string Phone { get; set; }
         public string Address { get; set; }
 
-        public virtual ICollection<Subject> Subjects { get; set; } 
+        public virtual ICollection<Subject> Subjects { get; set; }
+
+        public int UserProfileId { get; set; }
+        [ForeignKey("UserProfileId")]
+        public virtual  UserProfile UserProfile { get; set; }   
     }
 }

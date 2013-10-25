@@ -44,6 +44,8 @@ namespace Ilc.Data.Migrations
         private void SeedTrainer(AppContext context)
         {
             var subjects = context.Subjects.ToList();
+            var user = new UserProfile() {Username = "alex"};
+            AddUser(context, user);
 
             context.Trainers.AddOrUpdate(t => t.Name,
                 new Trainer()
@@ -51,7 +53,8 @@ namespace Ilc.Data.Migrations
                         Address = "Str. Orsova, Nr. 26",
                         Name = "Alecsandru Tache",
                         Phone = "alecs@mail.com",
-                        Subjects = subjects
+                        Subjects = subjects,
+                        UserProfileId = user.Id
                     });
             context.SaveChanges();
         }

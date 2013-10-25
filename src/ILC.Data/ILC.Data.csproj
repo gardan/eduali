@@ -187,6 +187,10 @@
     <Compile Include="Migrations\201310231120348_OwnerConfigurationWorkflowSupport.Designer.cs">
       <DependentUpon>201310231120348_OwnerConfigurationWorkflowSupport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201310251035153_AddTrainerToUserProfile.cs" />
+    <Compile Include="Migrations\201310251035153_AddTrainerToUserProfile.Designer.cs">
+      <DependentUpon>201310251035153_AddTrainerToUserProfile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -311,6 +315,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201310231120348_OwnerConfigurationWorkflowSupport.resx">
       <DependentUpon>201310231120348_OwnerConfigurationWorkflowSupport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310251035153_AddTrainerToUserProfile.resx">
+      <DependentUpon>201310251035153_AddTrainerToUserProfile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
