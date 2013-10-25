@@ -155,9 +155,26 @@ namespace Ilc.Data.Migrations
                     PasswordSalt = salt
                 };
             context.Membership.Add(firstMembership);
+        }
 
+        private void AddUser(AppContext context, UserProfile user)
+        {
+            context.UserProfiles.Add(user);
+            context.SaveChanges();
 
+            // create the membership
+            var pwd = user.Username;
+            var salt = Crypto.Crypto.GenerateSalt();
+            var hashedPwd = Crypto.Crypto.Hash(salt + Crypto.Crypto.Hash(salt + pwd));
 
+            var firstMembership = new Models.SimpleMembership.Membership()
+            {
+                UserId = user.Id,
+                PasswordFailuresSinceLastSuccess = 0,
+                Password = hashedPwd,
+                PasswordSalt = salt
+            };
+            context.Membership.Add(firstMembership);
         }
     }
 }
