@@ -14,6 +14,10 @@ namespace Ilc.Data.Models
 
         public virtual ICollection<Training> Trainings { get; set; }
 
-        public virtual ICollection<Assesment> Assesments { get; set; } 
+        public virtual ICollection<Assesment> Assesments { get; set; }
+
+        public int UserProfileId { get; set; }
+        [ForeignKey("UserProfileId")]
+        public virtual UserProfile UserProfile { get; set; }
     }
 }

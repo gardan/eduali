@@ -27,7 +27,7 @@ namespace Ilc.Data.Migrations
             SeedInitialAccount(context);
             SeedEvaluationQuestions(context);
             SeedCustomer(context);
-            SeenStudents(context);
+            SeedStudents(context);
             SeedSubjects(context);
             SeedTrainer(context);
         }
@@ -44,7 +44,7 @@ namespace Ilc.Data.Migrations
         private void SeedTrainer(AppContext context)
         {
             var subjects = context.Subjects.ToList();
-            var user = new UserProfile() {Username = "alex"};
+            var user = new UserProfile() { Username = "alex" };
             if (context.UserProfiles.FirstOrDefault(u => u.Username == "alex") != null) return;
             AddUser(context, user);
 
@@ -60,20 +60,39 @@ namespace Ilc.Data.Migrations
             context.SaveChanges();
         }
 
-        private void SeenStudents(AppContext context)
+        private void SeedStudents(AppContext context)
         {
+
             var customerId = context.Customers.FirstOrDefault().Id;
-            context.Students.AddOrUpdate(s => s.Name,
-                new Student()
-                    {
-                        Name = "Ionel Popescu",
-                        CustomerId = customerId,
-                    },
-                new Student()
-                    {
-                        Name = "Ghita Alexandru",
-                        CustomerId = customerId
-                    });
+
+            var user1 = new UserProfile() { Username = "ionel" };
+            var user2 = new UserProfile() { Username = "ghita" };
+
+            if (context.UserProfiles.FirstOrDefault(u => u.Username == "ionel") == null)
+            {
+                AddUser(context, user1);
+                context.Students.AddOrUpdate(s => s.Name,
+                                             new Student()
+                                                 {
+                                                     Name = "Ionel Popescu",
+                                                     CustomerId = customerId,
+                                                     UserProfileId = user1.Id
+                                                 });
+                context.SaveChanges();
+            }
+
+            if (context.UserProfiles.FirstOrDefault(u => u.Username == "ghita") == null)
+            {
+                AddUser(context, user2);
+                context.Students.AddOrUpdate(s => s.Name,
+                                                new Student()
+                                                {
+                                                    Name = "Ghita Alexandru",
+                                                    CustomerId = customerId,
+                                                    UserProfileId = user2.Id
+                                                });
+                context.SaveChanges();
+            }
         }
 
         private void SeedCustomer(AppContext context)

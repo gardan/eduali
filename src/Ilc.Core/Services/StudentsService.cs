@@ -9,6 +9,7 @@ namespace Ilc.Core.Services
     public class StudentsService : IStudentsService
     {
         public IUow Uow { get; set; }
+        public IUsersService Users { get; set; }
 
         public FilteredResults<Student> GetFiltered(FilterArgumentsStudents parameters)
         {
@@ -62,7 +63,36 @@ namespace Ilc.Core.Services
 
         public void Create(Student newStudent)
         {
+            // first create the user.
+            var username = newStudent.Name.Trim().Split(Convert.ToChar(" "))[0].ToLower();
+            var originalUsername = username;
+            // check to see if the username exists
+            var index = 0;
+            UserProfile user;
+            var usernameFound = true;
+            do
+            {
+                user = Uow.UserProfiles.GetAll().FirstOrDefault(u => u.Username == username);
+
+                if (user != null)
+                {
+                    username = originalUsername + "_" + index++;
+                    usernameFound = false;
+                }
+                else
+                {
+                    usernameFound = true;
+                }
+            } while (!usernameFound);
+
+            // Creat the user
+            var newUser = new UserProfile() { Username = username };
+            Users.Create(newUser, username);
+
+            newStudent.UserProfileId = newUser.Id;
+
             Uow.Students.Add(newStudent);
+            // TODO: i don't know why this is here, i feel like this is redundant
             newStudent.Customer = Uow.Customers.GetById(newStudent.CustomerId);
             Uow.Commit();
         }
