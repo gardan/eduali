@@ -45,17 +45,18 @@ namespace Ilc.Data.Migrations
         {
             var subjects = context.Subjects.ToList();
             var user = new UserProfile() {Username = "alex"};
+            if (context.UserProfiles.FirstOrDefault(u => u.Username == "alex") != null) return;
             AddUser(context, user);
 
             context.Trainers.AddOrUpdate(t => t.Name,
-                new Trainer()
-                    {
-                        Address = "Str. Orsova, Nr. 26",
-                        Name = "Alecsandru Tache",
-                        Phone = "alecs@mail.com",
-                        Subjects = subjects,
-                        UserProfileId = user.Id
-                    });
+                                         new Trainer()
+                                             {
+                                                 Address = "Str. Orsova, Nr. 26",
+                                                 Name = "Alecsandru Tache",
+                                                 Phone = "alecs@mail.com",
+                                                 Subjects = subjects,
+                                                 UserProfileId = user.Id
+                                             });
             context.SaveChanges();
         }
 

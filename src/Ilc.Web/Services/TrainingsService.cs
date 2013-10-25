@@ -53,7 +53,7 @@ namespace Ilc.Web.Services
             var sales = Uow.UserProfiles.GetById(request.WorkflowOwners.Sales);
             var administration = Uow.UserProfiles.GetById(request.WorkflowOwners.Administration);
             var coordinator = Uow.UserProfiles.GetById(request.WorkflowOwners.Coordinator);
-            // var trainer = Uow.UserProfiles.GetById(request.WorkflowOwners.Trainer);
+            var trainer = Uow.Trainers.GetById(request.TrainerId);
 
 
             var ownersConfiguration = new TrainingOwnersConfiguration()
@@ -61,7 +61,7 @@ namespace Ilc.Web.Services
                     SalesId = sales.Id,
                     AdministrationId = administration.Id,
                     CoordinatorId = coordinator.Id,
-                    TrainerId = request.TrainerId
+                    TrainerId = trainer.UserProfileId
                 };
 
             var newTraining = new Training
