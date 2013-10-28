@@ -276,10 +276,6 @@ namespace Ilc.Web.Services
             proc.Resume(training.WokrflowId.Value, TrainingStatus.Planned, workflowData,
                         PersistableIdleAction.Unload);
 
-            training.Status = TrainingStatus.ProgressEvaluation;
-            Trainings.Update(training);
-
-
             return new HttpResult()
             {
                 StatusCode = HttpStatusCode.OK
@@ -309,12 +305,6 @@ namespace Ilc.Web.Services
             proc.Resume(training.WokrflowId.Value, TrainingStatus.ProgressEvaluation, workflowData,
                         PersistableIdleAction.Unload);
 
-            if (request.IsEmpty())
-            {
-                training.Status = TrainingStatus.TrainingEvaluation;
-                Trainings.Update(training);
-            }
-
             return new HttpResult()
             {
                 StatusCode = HttpStatusCode.OK
@@ -335,13 +325,6 @@ namespace Ilc.Web.Services
 
             var results = proc.Resume(training.WokrflowId.Value, TrainingStatus.TrainingEvaluation, workflowData,
                         PersistableIdleAction.Unload);
-
-            if (Convert.ToBoolean(results["Complete"]))
-            {
-                training.Status = TrainingStatus.Ended;
-                training.Complete = true;
-                Trainings.Update(training);
-            }
 
             return new HttpResult()
             {

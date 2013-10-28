@@ -5,25 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ilc.Data.Contracts;
-using Ilc.Data.Models;
 
 namespace Ilc.Infrastructure.Workflows.Activities.Training
 {
-    public class PersistTrainingEvaluation : CodeActivity
+    public class RemoveOwner : CodeActivity 
     {
-        public InArgument<TrainingEvaluation> TrainingEvaluation { get; set; }
+        public InArgument<int> TrainingId { get; set; }
+        public InArgument<int> OwnerUserId { get; set; }
 
         protected override void Execute(CodeActivityContext context)
         {
-            // Create the evaluation
             var uow = context.GetExtension<IUow>();
-            var evaluation = TrainingEvaluation.Get<TrainingEvaluation>(context);
-            uow.TrainingEvaluations.Add(evaluation);
-            uow.Commit();
 
-            // Remove the current owner (student) from this training
-            var trainingId = evaluation.TrainingId;
-            var userId = evaluation.StudentId;
+            var trainingId = TrainingId.Get<int>(context);
+            var userId = OwnerUserId.Get<int>(context);
+
             var training = uow.Trainings.GetById(trainingId);
             foreach (var userProfile in training.Owners.Where(userProfile => userProfile.Id == userId))
             {

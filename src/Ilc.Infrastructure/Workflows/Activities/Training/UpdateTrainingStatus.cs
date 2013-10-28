@@ -65,7 +65,9 @@ namespace Ilc.Infrastructure.Workflows.Activities.Training
 
                     break;
                 case TrainingStatus.ProgressEvaluation:
-                    // I don't think this is needed because the owner does not change from Planned -> Progress Evaluation
+                    newOwnerId = uow.TrainingOwnersConfiguration.GetById(trainingId).TrainerId;
+                    newOwner = uow.UserProfiles.GetById(newOwnerId);
+                    training.Owners = new List<UserProfile>() { newOwner };
                     break;
                 case TrainingStatus.Exam:
                     // This step is not used. but i'll just leave it here.
@@ -74,8 +76,9 @@ namespace Ilc.Infrastructure.Workflows.Activities.Training
                     // This is a special case because here we need to add all the students as owners
                     var students = uow.Trainings.GetById(trainingId).Students;
 
-                    // training.Owners = students.ToList();
+                    var studentUsers = students.Select(student => student.UserProfile).ToList();
 
+                    training.Owners = studentUsers;
                     break;
                 case TrainingStatus.Ended:
                     newOwnerId = uow.TrainingOwnersConfiguration.GetById(trainingId).TrainerId;
