@@ -1,6 +1,6 @@
 ﻿Ext.define('Ilc.view.students.Edit', {
     extend: 'Ext.window.Window',
-    
+
     title: Ilc.resources.Manager.getResourceString('common.student'),
 
     requires: [
@@ -25,7 +25,7 @@
 
         customersStore.on('load', function () {
             var store = this;
-            
+
             var studentCustomer = store.findRecord('id', cfgModel.customer.id);
             customerComboBox.select(studentCustomer);
         });
@@ -40,8 +40,9 @@
            },
         ];
 
-        me.buttons = [
+            me.buttons = [
             {
+
                 xtype: 'button',
                 text: Ilc.resources.Manager.getResourceString('common.edit'),
                 handler: function () {
@@ -53,14 +54,14 @@
                     me.fireEvent('editStudent', me, model);
                 }
             },
-            {
-                text: Ilc.resources.Manager.getResourceString('common.cancel'),
-                handler: function () {
-                    me.close();
-                }
-            }
+{
+    text: Ilc.resources.Manager.getResourceString('common.cancel'),
+    handler: function () {
+        me.close();
+    }
+}
         ];
-        
+
         me.addEvents(
             'editStudent'
         );

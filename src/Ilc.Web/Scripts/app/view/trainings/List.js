@@ -34,24 +34,33 @@
                     dataIndex: 'customer',
                     flex: 1,
                     text: Ilc.resources.Manager.getResourceString('common.customer'),
-                    renderer: function(value) {
+                    renderer: function (value) {
                         return value.name;
+                    },
+                    filter: {
+                        type: 'string'
                     }
                 },
                 {
                     dataIndex: 'trainer',
                     flex: 1,
                     text: Ilc.resources.Manager.getResourceString('common.trainer'),
-                    renderer: function(value) {
+                    renderer: function (value) {
                         return value.name;
+                    },
+                    filter: {
+                        type: 'string'
                     }
                 },
                 {
                     dataIndex: 'subject',
                     text: Ilc.resources.Manager.getResourceString('common.subject'),
                     flex: 1,
-                    renderer: function(value) {
+                    renderer: function (value) {
                         return value.name;
+                    },
+                    filter: {
+                        type: 'string'
                     }
                 },
                 {
@@ -59,7 +68,7 @@
                     text: Ilc.resources.Manager.getResourceString('common.owners'),
                     flex: 1,
                     sortable: false,
-                    renderer: function(value, metaData) {
+                    renderer: function (value, metaData) {
                         var ret = '';
                         for (var i = 0; i < value.length; i++) {
                             var anchor = '<a>' + value[i].username + '</a>,';
@@ -106,13 +115,13 @@
                 model: record
             });
 
-            window.on('updatetraining', function(sender, args) {
+            window.on('updatetraining', function (sender, args) {
                 me.fireEvent('updatetraining', sender, args);
             });
 
             window.show();
         });
-       
+
         // update the columns if they change
         trainingsGrid.on('columnhide', function (headerContainer) {
             // debugger;
