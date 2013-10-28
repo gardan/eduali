@@ -34,23 +34,23 @@ namespace Ilc.Core.Services
             // search
             foreach (var filter in parameters.Filter)
             {
-                // var inFilter = filter;
-                // switch (filter.Field)
-                // {
-                //     case "name":
-                //         query = query.Where(c => c.Name.Contains(inFilter.Value));
-                //         break;
-                //     case "contactPerson":
-                //         query = query.Where(c => c.ContactPersons.FirstOrDefault(cp => cp.IsMain).Name.Contains(inFilter.Value));
-                //         break;
-                //     case "bankAccount":
-                //         query = query.Where(c => c.BankAccount.Contains(inFilter.Value));
-                //         break;
-                //     default:
-                //         // if trying to search for unavalable column, just exit
-                //         // TODO: log this shit.
-                //         break;
-                // }
+                //var inFilter = filter;
+                //switch (filter.Field)
+                //{
+                //    case "name":
+                //        query = query.Where(c => c.Name.Contains(inFilter.Value));
+                //        break;
+                //    case "contactPerson":
+                //        query = query.Where(c => c.ContactPersons.FirstOrDefault(cp => cp.IsMain).Name.Contains(inFilter.Value));
+                //        break;
+                //    case "bankAccount":
+                //        query = query.Where(c => c.BankAccount.Contains(inFilter.Value));
+                //        break;
+                //    default:
+                //        // if trying to search for unavalable column, just exit
+                //        // TODO: log this shit.
+                //        break;
+                //}
             }
 
             // order
