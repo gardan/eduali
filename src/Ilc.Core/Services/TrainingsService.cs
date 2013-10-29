@@ -27,6 +27,15 @@ namespace Ilc.Core.Services
                     case "status":
                         query = query.Where(t => t.Status == inFilter.Value);
                         break;
+                    case "customer":
+                        query = query.Where(t => t.Customer.Name.Contains(inFilter.Value));
+                        break;
+                    case "trainer":
+                        query = query.Where(t => t.Trainer.Name.Contains(inFilter.Value));
+                        break;
+                    case "subject":
+                        query = query.Where(t => t.Subject.Name.Contains(inFilter.Value));
+                        break;
                     default:
                         break;
                 }

@@ -8,8 +8,16 @@
 
         var usersStore = Ext.create('Ilc.store.Users');
 
+        var filters = {
+            ftype: 'jsvfilters',
+            // encode and local configuration options defined previously for easier reuse
+            // encode: true, // json encode the filter query
+            local: false,   // defaults to false (remote filtering)
+        };
+
         var usersGrid = Ext.create('Ilc.grid.Users', {
             store: usersStore,
+            features: [filters],
             dockedItems: [
                 {
                     xtype: 'toolbar',

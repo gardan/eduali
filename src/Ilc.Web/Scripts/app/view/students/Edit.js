@@ -1,6 +1,6 @@
 ﻿Ext.define('Ilc.view.students.Edit', {
     extend: 'Ext.window.Window',
-    
+
     title: Ilc.resources.Manager.getResourceString('common.student'),
 
     requires: [
@@ -25,7 +25,7 @@
 
         customersStore.on('load', function () {
             var store = this;
-            
+
             var studentCustomer = store.findRecord('id', cfgModel.customer.id);
             customerComboBox.select(studentCustomer);
         });
@@ -37,22 +37,31 @@
                fieldLabel: Ilc.resources.Manager.getResourceString('common.name'),
                name: 'name',
                value: cfgModel.name
-           },
-           customerComboBox,
-           {
-               xtype: 'button',
-               text: Ilc.resources.Manager.getResourceString('common.edit'),
-               handler: function () {
-                   var model = {};
-                   var inputs = me.query('textfield');
-
-                   model = Ilc.utils.Forms.extractModel(inputs);
-                   model.id = cfgModel.id;
-                   me.fireEvent('editStudent', me, model);
-               }
            }
         ];
-        
+
+        me.buttons = [
+            {
+
+                xtype: 'button',
+                text: Ilc.resources.Manager.getResourceString('common.edit'),
+                handler: function () {
+                    var model = {};
+                    var inputs = me.query('textfield');
+
+                    model = Ilc.utils.Forms.extractModel(inputs);
+                    model.id = cfgModel.id;
+                    me.fireEvent('editStudent', me, model);
+                }
+            },
+            {
+                text: Ilc.resources.Manager.getResourceString('common.cancel'),
+                handler: function () {
+                    me.close();
+                }
+            }
+        ];
+
         me.addEvents(
             'editStudent'
         );

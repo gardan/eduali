@@ -1,7 +1,7 @@
 ﻿Ext.define('Ilc.view.tasks.List', {
     extend: 'Ext.container.Container',
     xtype: 'taskslist',
-    
+
     constructor: function () {
         var me = this;
         var store = Ext.create('Ext.data.Store', {
@@ -32,24 +32,39 @@
                 }
             }
         });
+        var filters = {
+            ftype: 'jsvfilters',
+            // encode and local configuration options defined previously for easier reuse
+            // encode: true, // json encode the filter query
+            local: false,   // defaults to false (remote filtering)
+        };
+
 
         var grid = Ext.create('Ext.grid.Panel', {
             store: store,
+            features: [filters],
             columns: [
                 {
                     text: Ilc.resources.Manager.getResourceString('common.name'),
                     dataIndex: 'name',
-                    flex: 1
+                    flex: 1,
+                    filter: {
+                        type: 'string'
+                    }
+
                 },
                 {
                     text: Ilc.resources.Manager.getResourceString('common.customer'),
                     dataIndex: 'customerName',
-                    flex: 1
-                }           
+                    flex: 1,
+                    filter: {
+                        type: 'string'
+                    }
+                }
             ]
         });
 
-        grid.on('itemdblclick', function(self, record, item) {
+        grid.on('itemdblclick', function (self, record, item) {
             // make first char uppercase.
             // e.g. test => Test
             var action = record.data.action.charAt(0).toUpperCase() + record.data.action.slice(1);

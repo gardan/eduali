@@ -15,6 +15,30 @@
         var trainersGrid = Ext.create('Ext.grid.Panel', {
             store: trainersStore,
             features: [filter],
+            dockedItems: [
+                {
+                    xtype: 'toolbar',
+                    dock: 'top',
+                    items: [
+                        {
+                            xtype: 'button',
+                            text: Ilc.resources.Manager.getResourceString('common.newTrainer'),
+                            handler: function (button, e) {
+                                var window = Ext.create('Ilc.view.trainers.Create', {
+                                    closeAction: 'destroy'
+                                });
+
+                                window.on('addTrainer', function (sender, model) {
+                                    me.fireEvent('addTrainer', sender, model, {
+                                        store: trainersStore
+                                    });
+                                });
+
+                                window.show();
+                            }
+                        }]
+                }
+            ],
             columns: [
                 {
                     dataIndex: 'name',
@@ -74,23 +98,6 @@
         });
 
         me.items = [
-            {
-                xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.newTrainer'),
-                handler: function (button, e) {
-                    var window = Ext.create('Ilc.view.trainers.Create', {
-                        closeAction: 'destroy'
-                    });
-
-                    window.on('addTrainer', function (sender, model) {
-                        me.fireEvent('addTrainer', sender, model, {
-                            store: trainersStore
-                        });
-                    });
-
-                    window.show();
-                }
-            },
             trainersGrid
         ];
 
