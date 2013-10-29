@@ -37,10 +37,10 @@
                fieldLabel: Ilc.resources.Manager.getResourceString('common.name'),
                name: 'name',
                value: cfgModel.name
-           },
+           }
         ];
 
-            me.buttons = [
+        me.buttons = [
             {
 
                 xtype: 'button',
@@ -54,12 +54,12 @@
                     me.fireEvent('editStudent', me, model);
                 }
             },
-{
-    text: Ilc.resources.Manager.getResourceString('common.cancel'),
-    handler: function () {
-        me.close();
-    }
-}
+            {
+                text: Ilc.resources.Manager.getResourceString('common.cancel'),
+                handler: function () {
+                    me.close();
+                }
+            }
         ];
 
         me.addEvents(

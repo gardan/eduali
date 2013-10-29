@@ -30,7 +30,6 @@
                 name: 'address',
                 value: cfgModel.address
             }
-            
         ];
 
         me.buttons = [

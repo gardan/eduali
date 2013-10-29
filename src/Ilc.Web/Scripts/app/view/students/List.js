@@ -37,7 +37,8 @@
                                 window.show();
                             }
                         }]
-                }],
+                }
+            ],
             columns: [
                 {
                     dataIndex: 'name',
