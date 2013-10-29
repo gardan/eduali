@@ -76,7 +76,7 @@ namespace Ilc.Core.Services
         {
             // timestamps
             // TODO: this should be moved to a generic method that takes a StampedEntity as a parameter, stamps it, and returns it.
-            newOffer.Creator = Users.GetByUsername("admin");
+            newOffer.Creator = Users.GetByUsername();
             newOffer.CreateDate = DateTimeOffset.UtcNow;
 
             Uow.Offers.Add(newOffer);

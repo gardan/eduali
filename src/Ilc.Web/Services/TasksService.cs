@@ -345,7 +345,7 @@ namespace Ilc.Web.Services
 
             if (request.StudentId != 0)
             {
-                var currentUser = Users.GetByUsername("admin");
+                var currentUser = Users.GetByUsername();
 
                 var assesment = new Assesment().InjectFrom(request) as Assesment;
                 assesment.TrainingId = request.TaskEntityId;
