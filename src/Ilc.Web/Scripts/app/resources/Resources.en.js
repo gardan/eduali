@@ -102,6 +102,9 @@
         'common.username': 'Username',
         'common.newUser': 'New user',
         'common.createUser': 'Create User',
+        'common.firstName': 'Firstname',
+        'common.lastName': 'Lastname',
+        'common.email': 'Email',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',

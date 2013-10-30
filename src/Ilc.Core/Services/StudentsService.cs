@@ -31,7 +31,8 @@ namespace Ilc.Core.Services
                 switch (filter.Field)
                 {
                     case "name":
-                        query = query.Where(s => s.Name.Contains(inFilter.Value));
+                        query = query.Where(s => s.UserProfile.UserDetails.FirstName.Contains(inFilter.Value) ||
+                                                 s.UserProfile.UserDetails.LastName.Contains(inFilter.Value));
                         break;
                     case "customer":
                         query = query.Where(s => s.Customer.Name.Contains(inFilter.Value));
@@ -64,7 +65,9 @@ namespace Ilc.Core.Services
         public void Create(Student newStudent)
         {
             // first create the user.
-            var username = newStudent.Name.Trim().Split(Convert.ToChar(" "))[0].ToLower();
+            var username = newStudent.UserProfile.UserDetails.FirstName.Trim().Split(Convert.ToChar(" "))[0].ToLower();
+            var userDetails = newStudent.UserProfile.UserDetails;
+            newStudent.UserProfile = null;
             var originalUsername = username;
             // check to see if the username exists
             var index = 0;
@@ -86,7 +89,7 @@ namespace Ilc.Core.Services
             } while (!usernameFound);
 
             // Creat the user
-            var newUser = new UserProfile() { Username = username };
+            var newUser = new UserProfile() { Username = username, UserDetails = userDetails };
             Users.Create(newUser, username);
 
             newStudent.UserProfileId = newUser.Id;

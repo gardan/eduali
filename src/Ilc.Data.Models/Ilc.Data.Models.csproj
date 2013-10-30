@@ -69,6 +69,7 @@
     <Compile Include="TrainingEvaluationQuestion.cs" />
     <Compile Include="TrainingOffer.cs" />
     <Compile Include="TrainingScheduleDay.cs" />
+    <Compile Include="UserDetails.cs" />
     <Compile Include="UserProfile.cs" />
     <Compile Include="WebClient\GridConfig.cs" />
   </ItemGroup>

@@ -5,6 +5,7 @@ using System.Net;
 using System.Web;
 using Ilc.Core.Contracts;
 using Ilc.Data.Models;
+using Ilc.Web.InjectorConventions;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
 using ServiceStack.Common;
@@ -24,7 +25,7 @@ namespace Ilc.Web.Services
 
             return new FilteredDataModel<TrainerModel>()
                 {
-                    Data = results.Data.Select(t => new TrainerModel().InjectFrom(t) as TrainerModel).ToList(),
+                    Data = results.Data.Select(t => new TrainerModel().InjectFrom<TrainerToTrainerModel>(t) as TrainerModel).ToList(),
                     TotalRecords = 2,
                     TotalDisplayRecords = 2
                 };

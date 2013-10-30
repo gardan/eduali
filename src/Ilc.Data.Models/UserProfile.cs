@@ -43,6 +43,8 @@ namespace Ilc.Data.Models
         public virtual ICollection<Training> OwnedTrainings {
             get { return _ownedTrainings ?? (_ownedTrainings = new List<Training>()); }
             protected set { _ownedTrainings = value; }
-        } 
+        }
+
+        public virtual UserDetails UserDetails { get; set; }
     }
 }

@@ -26,7 +26,7 @@
 
             switch (xtype) {
                 case 'textfield':
-                    model[input.name] = input.getRawValue();
+                    Ilc.utils.Forms._addProperty(model, input.name, input.getRawValue());
                     break;
                 case 'combobox':
                     if (input.multiSelect) { // multiple items

@@ -41,9 +41,12 @@
             ],
             columns: [
                 {
-                    dataIndex: 'name',
+                    dataIndex: 'name', // There actually isn't any column 'name', we just use it for filtering porpuses, see 'renderer' for the actual value
                     text: Ilc.resources.Manager.getResourceString('common.name'),
                     flex: 1,
+                    renderer: function(value, meta, record) {
+                        return record.get('userInfo').name;
+                    },
                     filter: {
                         type: 'string'
                     }
@@ -71,7 +74,7 @@
                             handler: function (grid, rowIndex, colIndex, item, e, record) {
                                 var editWindow = Ext.create('Ilc.view.students.Edit', {
                                     closeAction: 'destroy',
-                                    model: record.data
+                                    model: record
                                 });
 
                                 editWindow.on('editStudent', function (sender, model) {

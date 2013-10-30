@@ -6,9 +6,15 @@
     requires: [
         'Ilc.utils.Forms'
     ],
-    modal: true,
+    
+    defaults: {
+        xtype: 'textfield',
+        anchor: '100%'
+    },
+
     layout: 'anchor',
     bodyPadding: 10,
+    
     constructor: function () {
         var me = this;
 
@@ -26,10 +32,20 @@
 
         me.items = [
             {
-                xtype: 'textfield',
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.name'),
-                name: 'name',
-                anchor: '100%'
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.firstName'),
+                name: 'userInfo.firstName',
+            },
+            {
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.lastName'),
+                name: 'userInfo.lastName',
+            },
+            {
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.email'),
+                name: 'userInfo.email',
+            },
+            {
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.phone'),
+                name: 'userInfo.phone',
             },
             customerComboBox
         ];
@@ -42,6 +58,8 @@
                      var inputs = me.query('textfield');
 
                      model = Ilc.utils.Forms.extractModel(inputs);
+
+                     console.log(model);
                      me.fireEvent('addStudent', me, model);
                  }
              },

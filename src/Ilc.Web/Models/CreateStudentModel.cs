@@ -2,7 +2,7 @@
 {
     public class CreateStudentModel
     {
-        public string Name { get; set; }
         public int CustomerId { get; set; }
+        public UserInfoModel UserInfo { get; set; }
     }
 }

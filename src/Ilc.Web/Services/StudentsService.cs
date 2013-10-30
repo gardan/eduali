@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Net;
 using Ilc.Core.Contracts;
+using Ilc.Data.Contracts;
 using Ilc.Data.Models;
 using Ilc.Web.InjectorConventions;
 using Ilc.Web.Models;
@@ -14,6 +15,7 @@ namespace Ilc.Web.Services
     public class StudentsService : Service
     {
         public IStudentsService Students { get; set; }
+        public IUow Uow { get; set; }
 
         public FilteredDataModel<StudentModel> Get(FilterParametersStudents request)
         {
@@ -31,6 +33,8 @@ namespace Ilc.Web.Services
         public HttpResult Post(CreateStudentModel request)
         {
             var newStudent = new Student().InjectFrom(request) as Student;
+            var userInfo = new UserDetails().InjectFrom(request.UserInfo) as UserDetails;
+            newStudent.UserProfile = new UserProfile() {UserDetails = userInfo};
 
             Students.Create(newStudent);
 
@@ -45,12 +49,12 @@ namespace Ilc.Web.Services
 
         public HttpResult Put(EditStudentModel request)
         {
-            var updatedStudent = new Student()
-                {
-                    Name = request.Name,
-                    CustomerId = request.CustomerId,
-                    Id = request.Id
-                };
+
+            var updatedStudent = Uow.Students.GetById(request.Id);
+            updatedStudent.UserProfile.UserDetails.FirstName = request.UserInfo.FirstName;
+            updatedStudent.UserProfile.UserDetails.LastName = request.UserInfo.LastName;
+            updatedStudent.UserProfile.UserDetails.Email = request.UserInfo.Email;
+            updatedStudent.UserProfile.UserDetails.Phone = request.UserInfo.Phone;
 
             Students.Update(updatedStudent);
 

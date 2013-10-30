@@ -195,6 +195,10 @@
     <Compile Include="Migrations\201310251404519_AddStudentToUserProfile.Designer.cs">
       <DependentUpon>201310251404519_AddStudentToUserProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201310291239001_UserDetailsTable.cs" />
+    <Compile Include="Migrations\201310291239001_UserDetailsTable.Designer.cs">
+      <DependentUpon>201310291239001_UserDetailsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -325,6 +329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201310251404519_AddStudentToUserProfile.resx">
       <DependentUpon>201310251404519_AddStudentToUserProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310291239001_UserDetailsTable.resx">
+      <DependentUpon>201310291239001_UserDetailsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
