@@ -26,15 +26,17 @@ namespace Ilc.Web.Services
             return new FilteredDataModel<TrainerModel>()
                 {
                     Data = results.Data.Select(t => new TrainerModel().InjectFrom<TrainerToTrainerModel>(t) as TrainerModel).ToList(),
-                    TotalRecords = 2,
-                    TotalDisplayRecords = 2
+                    TotalRecords = results.TotalRecords,
+                    TotalDisplayRecords = results.TotalDisplayRecords
                 };
         }
 
         public HttpResult Post(CreateTrainerModel request)
         {
             var newTrainer = new Trainer().InjectFrom(request) as Trainer;
- 
+            var userInfo = new UserDetails().InjectFrom(request.UserInfo) as UserDetails;
+            newTrainer.UserProfile = new UserProfile() { UserDetails = userInfo };
+
             Trainers.Create(newTrainer);
 
             var transferObject = new TrainerModel().InjectFrom(newTrainer);
@@ -47,9 +49,14 @@ namespace Ilc.Web.Services
 
         public HttpResult Put(EditTrainerModel request)
         {
-            var updatedTrainer = new Trainer().InjectFrom(request) as Trainer;
-            Trainers.Update(updatedTrainer);
+            var updatedTrainer = Trainers.GetByTrainerId(request.Id);
+            updatedTrainer.UserProfile.UserDetails.FirstName = request.UserInfo.FirstName;
+            updatedTrainer.UserProfile.UserDetails.LastName = request.UserInfo.LastName;
+            updatedTrainer.UserProfile.UserDetails.Email = request.UserInfo.Email;
+            updatedTrainer.UserProfile.UserDetails.Phone = request.UserInfo.Phone;
 
+            Trainers.Update(updatedTrainer);
+            
             return new HttpResult()
                 {
                     StatusCode = HttpStatusCode.OK

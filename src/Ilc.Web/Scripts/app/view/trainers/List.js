@@ -52,6 +52,9 @@
                     dataIndex: 'phone',
                     text: Ilc.resources.Manager.getResourceString('common.phone'),
                     flex: 1,
+                    renderer: function(value, meta, record) {
+                        return record.get('userInfo').phone;
+                    },
                     filter: {
                         type: 'string'
                     }

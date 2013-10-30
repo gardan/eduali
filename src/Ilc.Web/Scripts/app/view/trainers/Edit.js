@@ -6,29 +6,39 @@
     requires: [
         'Ilc.utils.Forms'
     ],
+    
+    defaults: {
+        xtype: 'textfield',
+        anchor: '100%'
+    },
+    
+    layout: 'anchor',
+
     constructor: function (config) {
         var me = this;
 
         var cfgModel = config.model;
 
         me.items = [
+             {
+                 fieldLabel: Ilc.resources.Manager.getResourceString('common.firstName'),
+                 name: 'userInfo.firstName',
+                 value: cfgModel.userInfo.firstName
+             },
             {
-                xtype: 'textfield',
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.name'),
-                name: 'name',
-                value: cfgModel.name
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.lastName'),
+                name: 'userInfo.lastName',
+                value: cfgModel.userInfo.lastName
             },
             {
-                xtype: 'textfield',
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.phoneNr'),
-                name: 'phone',
-                value: cfgModel.phone
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.email'),
+                name: 'userInfo.email',
+                value: cfgModel.userInfo.email
             },
             {
-                xtype: 'textfield',
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.address'),
-                name: 'address',
-                value: cfgModel.address
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.phone'),
+                name: 'userInfo.phone',
+                value: cfgModel.userInfo.phone
             }
         ];
 

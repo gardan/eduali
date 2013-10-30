@@ -66,7 +66,9 @@ namespace Ilc.Core.Services
         public void Create(Trainer newTrainer)
         {
             // first create the user.
-            var username = newTrainer.Name.Trim().Split(Convert.ToChar(" "))[0].ToLower();
+            var username = newTrainer.UserProfile.UserDetails.FirstName.Trim().Split(Convert.ToChar(" "))[0].ToLower();
+            var userDetails = newTrainer.UserProfile.UserDetails;
+            newTrainer.UserProfile = null;
             var originalUsername = username;
             // check to see if the username exists
             var index = 0;
@@ -88,7 +90,7 @@ namespace Ilc.Core.Services
             } while (!usernameFound);
 
             // Creat the user
-            var newUser = new UserProfile() {Username = username};
+            var newUser = new UserProfile() {Username = username, UserDetails = userDetails};
             Users.Create(newUser, username);
 
             // Append the userId to the trainer

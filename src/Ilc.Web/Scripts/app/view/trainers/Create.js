@@ -6,7 +6,12 @@
     requires: [
         'Ilc.utils.Forms'
     ],
-    modal: true,
+    
+    defaults: {
+        xtype: 'textfield',
+        anchor: '100%'
+    },
+    
     layout: 'anchor',
     bodyPadding: 10,
     constructor: function () {
@@ -14,22 +19,20 @@
 
         me.items = [
             {
-                xtype: 'textfield',
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.name'),
-                name: 'name',
-                anchor: '100%'
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.firstName'),
+                name: 'userInfo.firstName',
             },
             {
-                xtype: 'textfield',
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.phoneNr'),
-                name: 'phone',
-                anchor: '100%'
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.lastName'),
+                name: 'userInfo.lastName',
             },
             {
-                xtype: 'textfield',
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.address'),
-                name: 'address',
-                anchor: '100%'
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.email'),
+                name: 'userInfo.email',
+            },
+            {
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.phone'),
+                name: 'userInfo.phone',
             }
         ];
 
