@@ -30,6 +30,19 @@ namespace Ilc.Data.Migrations
             SeedStudents(context);
             SeedSubjects(context);
             SeedTrainer(context);
+            SeedStatusDictionary(context);
+        }
+
+        private void SeedStatusDictionary(AppContext context)
+        {
+            var arr = new[] { "Rfi", "PlanInterview", "Interview", "Offer", "Accepted", "Rejected", "Planned", 
+                              "ProgressEvaluation", "Exam", "TrainingEvaluation", "Ended", "Complete" };
+            foreach (var status in arr)
+            {
+                context.StatusDictionaries.AddOrUpdate(s => s.Name, 
+                    new StatusDictionary() {Name = status, FriendlyName = status});
+            }
+            context.SaveChanges();
         }
 
         private void SeedSubjects(AppContext context)

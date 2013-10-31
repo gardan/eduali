@@ -3,7 +3,7 @@ using Ilc.Web.Services;
 
 namespace Ilc.Web.Models
 {
-    public class TrainingModel : CreateTrainingModel
+    public class TrainingModel : CreateTrainingModel, IStatus
     {
         public int Id { get; set; }
 
@@ -17,6 +17,11 @@ namespace Ilc.Web.Models
         public string CustomerName { get; set; }
         public string Status { get; set; }
         public string SubjectName { get; set; }
+    }
+
+    public interface IStatus
+    {
+        string Status { get; set; }
     }
 
     public class InterviewPlanApiModel

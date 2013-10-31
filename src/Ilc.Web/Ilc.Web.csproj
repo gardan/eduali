@@ -3858,6 +3858,7 @@
     <Compile Include="Controllers\PdfController.cs" />
     <Compile Include="Controllers\TransfersController.cs" />
     <Compile Include="Controllers\ZipController.cs" />
+    <Compile Include="Filters\Response\ModelWithStatusResponseFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

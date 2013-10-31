@@ -199,6 +199,10 @@
     <Compile Include="Migrations\201310291239001_UserDetailsTable.Designer.cs">
       <DependentUpon>201310291239001_UserDetailsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201310311616303_TableForStatusFriendlyNames.cs" />
+    <Compile Include="Migrations\201310311616303_TableForStatusFriendlyNames.Designer.cs">
+      <DependentUpon>201310311616303_TableForStatusFriendlyNames.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -332,6 +336,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201310291239001_UserDetailsTable.resx">
       <DependentUpon>201310291239001_UserDetailsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310311616303_TableForStatusFriendlyNames.resx">
+      <DependentUpon>201310311616303_TableForStatusFriendlyNames.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

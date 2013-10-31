@@ -33,7 +33,9 @@ namespace Ilc.Data.Contracts
         IRepository<Assesment> Assesments { get; }
         IRepository<TrainingOwnersConfiguration> TrainingOwnersConfiguration { get; }
         IRepository<Subject> Subjects { get; }
-            
-        IRepository<TrainingEvaluationQuestion> Questions { get; } 
+        IRepository<StatusDictionary> StatusDictionary { get; }
+
+
+        IRepository<TrainingEvaluationQuestion> Questions { get; }
     }
 }

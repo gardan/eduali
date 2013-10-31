@@ -58,6 +58,7 @@
     <Compile Include="RoleClaim.cs" />
     <Compile Include="SimpleMembership\Membership.cs" />
     <Compile Include="SimpleMembership\Role.cs" />
+    <Compile Include="StatusDictionary.cs" />
     <Compile Include="StringAnswer.cs" />
     <Compile Include="StringQuestion.cs" />
     <Compile Include="Student.cs" />

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models;
 
-namespace Ilc.Core.Contracts
+namespace Ilc.Core.Services
 {
     public class SubjectsService : ISubjectsService
     {

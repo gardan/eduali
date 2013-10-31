@@ -10,6 +10,7 @@ using Ilc.Data.Contracts;
 using Ilc.Data.Models;
 using Ilc.Infrastructure;
 using Ilc.Infrastructure.Workflows;
+using Ilc.Web.Filters.Response;
 using Ilc.Web.InjectorConventions;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
@@ -28,6 +29,7 @@ namespace Ilc.Web.Services
         public IUsersService Users { get; set; }
         public IStudentsService Students { get; set; }
 
+        [ModelWithStatusResponseFilter]
         public FilteredDataModel<TrainingModel> Get(FilterParametersTrainings request)
         {
             var ret = new FilteredDataModel<TrainingModel>();
