@@ -33,7 +33,8 @@ namespace Ilc.Core.Services
                 switch (filter.Field)
                 {
                     case "name":
-                        query = query.Where(t => t.Name.Contains(inFilter.Value));
+                        query = query.Where(s => s.UserProfile.UserDetails.FirstName.Contains(inFilter.Value) ||
+                                                 s.UserProfile.UserDetails.LastName.Contains(inFilter.Value));
                         break;
                     case "phone":
                         query = query.Where(t => t.Phone.Contains(inFilter.Value));
