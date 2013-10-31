@@ -163,6 +163,7 @@
     <Content Include="Scripts\app\controller\Roles.js" />
     <Content Include="Scripts\app\controller\Statistics.js" />
     <Content Include="Scripts\app\controller\Students.js" />
+    <Content Include="Scripts\app\controller\Subjects.js" />
     <Content Include="Scripts\app\controller\Tasks.js" />
     <Content Include="Scripts\app\controller\Trainers.js" />
     <Content Include="Scripts\app\controller\Trainings.js" />
@@ -339,6 +340,9 @@
     <Content Include="Scripts\app\view\students\Create.js" />
     <Content Include="Scripts\app\view\students\Edit.js" />
     <Content Include="Scripts\app\view\students\List.js" />
+    <Content Include="Scripts\app\view\subjects\Create.js" />
+    <Content Include="Scripts\app\view\subjects\Edit.js" />
+    <Content Include="Scripts\app\view\subjects\List.js" />
     <Content Include="Scripts\app\view\tasks\List.js" />
     <Content Include="Scripts\app\view\trainers\Create.js" />
     <Content Include="Scripts\app\view\trainers\Edit.js" />

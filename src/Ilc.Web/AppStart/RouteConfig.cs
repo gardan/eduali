@@ -45,6 +45,7 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.CreateRoleClaimsModel>("/api/roleclaims", "POST");
 
             routes.Add<Services.FilterSubjectsParameters>("/api/subjects", "GET");
+            routes.Add<Services.SubjectModel>("/api/subjects", "POST");
 
             routes.Add<GridConfigRequestParameters>("/api/config/grid", "GET");
             routes.Add<UpdateGridColumnConfigModel>("/api/config/grid", "PUT");

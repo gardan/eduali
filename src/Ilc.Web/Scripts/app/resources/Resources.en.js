@@ -12,6 +12,7 @@
         'mainMenu.trainers': 'Trainers',
         'mainMenu.users': 'Users',
         'mainMenu.roles': 'Roles',
+        'mainMenu.subjects': 'Subjects',
 
         'common.name': 'Name',
         'common.status': 'Status',
@@ -105,6 +106,7 @@
         'common.firstName': 'Firstname',
         'common.lastName': 'Lastname',
         'common.email': 'Email',
+        'common.newSubject': 'New subject',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',
