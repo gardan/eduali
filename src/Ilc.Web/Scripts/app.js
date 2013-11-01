@@ -15,7 +15,8 @@ Ext.application({
         'Tasks',
         'Users',
         'Roles',
-        'Subjects'
+        'Subjects',
+        'Settings'
     ],
 
     requires: [
@@ -34,7 +35,8 @@ Ext.application({
         'tasks.List',
         'users.List',
         'roles.List',
-        'subjects.List'
+        'subjects.List',
+        'settings.Default'
     ],  
         
     routes: {
@@ -47,7 +49,8 @@ Ext.application({
         'tasks': 'tasks#list',
         'users': 'users#list',
         'roles': 'roles#list',
-        'subjects': 'subjects#list'
+        'subjects': 'subjects#list',
+        'settings': 'settings#default'
     },
 
     enableRouter: true,

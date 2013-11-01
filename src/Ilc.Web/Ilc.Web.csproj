@@ -161,6 +161,7 @@
     <Content Include="Scripts\app\controller\Customers.js" />
     <Content Include="Scripts\app\controller\Home.js" />
     <Content Include="Scripts\app\controller\Roles.js" />
+    <Content Include="Scripts\app\controller\Settings.js" />
     <Content Include="Scripts\app\controller\Statistics.js" />
     <Content Include="Scripts\app\controller\Students.js" />
     <Content Include="Scripts\app\controller\Subjects.js" />
@@ -336,6 +337,7 @@
     <Content Include="Scripts\app\view\roles\Create.js" />
     <Content Include="Scripts\app\view\roles\Edit.js" />
     <Content Include="Scripts\app\view\roles\List.js" />
+    <Content Include="Scripts\app\view\settings\Default.js" />
     <Content Include="Scripts\app\view\statistics\View.js" />
     <Content Include="Scripts\app\view\students\Create.js" />
     <Content Include="Scripts\app\view\students\Edit.js" />
@@ -379,6 +381,8 @@
     <Content Include="Scripts\bryntum\resources\images\resize-handle-ver.gif" />
     <Content Include="Scripts\bryntum\resources\images\transp-1px.png" />
     <Content Include="Scripts\bryntum\resources\images\zonebg.png" />
+    <Content Include="Scripts\bryntum\sch-all-2.2.12-debug.js" />
+    <Content Include="Scripts\bryntum\sch-all-2.2.12.js" />
     <Content Include="Scripts\bryntum\sch-all-debug.js" />
     <Content Include="Scripts\bryntum\sch-all.js" />
     <Content Include="Scripts\extjs\ext-all-debug-w-comments.js" />

@@ -13,6 +13,7 @@
         'mainMenu.users': 'Users',
         'mainMenu.roles': 'Roles',
         'mainMenu.subjects': 'Subjects',
+        'mainMenu.settings': 'Settings',
 
         'common.name': 'Name',
         'common.status': 'Status',
