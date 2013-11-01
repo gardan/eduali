@@ -1,6 +1,7 @@
 ﻿Ext.define('Ilc.view.subjects.List', {
     extend: 'Ext.container.Container',
-    
+    xtype: 'listsubjectswindow',
+
     initComponent: function () {
         var me = this;
 

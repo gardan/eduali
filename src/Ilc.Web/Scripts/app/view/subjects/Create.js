@@ -32,7 +32,6 @@
                     var inputs = me.query('textfield');
                     var model = Ilc.utils.Forms.extractModel(inputs);
 
-                    console.log(model);
                     me.fireEvent('addsubject', me, model);
                 }
             },

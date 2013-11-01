@@ -27,7 +27,6 @@
                         settingsContainer.removeAll();
                         var newComponent = Ext.create(record.get('component'));
                         settingsContainer.add(newComponent);
-                        console.log(record.data);
                     }
                 }
             },

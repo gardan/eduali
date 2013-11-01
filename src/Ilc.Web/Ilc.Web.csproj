@@ -337,6 +337,7 @@
     <Content Include="Scripts\app\view\roles\Create.js" />
     <Content Include="Scripts\app\view\roles\Edit.js" />
     <Content Include="Scripts\app\view\roles\List.js" />
+    <Content Include="Scripts\app\view\settings\Categories.js" />
     <Content Include="Scripts\app\view\settings\Default.js" />
     <Content Include="Scripts\app\view\statistics\View.js" />
     <Content Include="Scripts\app\view\students\Create.js" />
