@@ -3919,6 +3919,7 @@
     <Compile Include="Services\RolesService.cs" />
     <Compile Include="InjectorConventions\RoleToModel.cs" />
     <Compile Include="Services\StatisticsService.cs" />
+    <Compile Include="Services\StatusDefinitionsService.cs" />
     <Compile Include="Services\StudentsInterviewService.cs" />
     <Compile Include="Services\StudentsService.cs" />
     <Compile Include="InjectorConventions\StudentToStudentModel.cs" />

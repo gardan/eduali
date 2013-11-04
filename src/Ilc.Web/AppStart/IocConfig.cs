@@ -35,6 +35,7 @@ namespace Ilc.Web.AppStart
             container.RegisterAutoWiredAs<ClaimsService, IClaimsService>().ReusedWithin(ReuseScope.Request);
             container.RegisterAutoWiredAs<SubjectsService, ISubjectsService>().ReusedWithin(ReuseScope.Request);
             container.RegisterAutoWiredAs<StatusService, IStatusService>().ReusedWithin(ReuseScope.Request);
+            container.RegisterAutoWiredAs<StatusDefinitionsService, IStatusDefinitionsService>().ReusedWithin(ReuseScope.Request);
 
             container.RegisterAutoWiredAs<StatisticsService, IStatisticsService>().ReusedWithin(ReuseScope.Request);            
         }
