@@ -48,7 +48,7 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.SubjectModel>("/api/subjects", "POST");
 
             routes.Add<Services.FilterStatusDefinitionsParameters>("/api/statusdefinitions", "GET");
-            routes.Add<Services.StatusDefinionModel>("/api/statusdefinitions/{id}", "PUT");
+            routes.Add<Services.StatusDefinitionUpdateModel>("/api/statusdefinitions/{id}", "PUT");
 
             routes.Add<GridConfigRequestParameters>("/api/config/grid", "GET");
             routes.Add<UpdateGridColumnConfigModel>("/api/config/grid", "PUT");

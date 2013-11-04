@@ -16,7 +16,8 @@ Ext.application({
         'Users',
         'Roles',
         'Subjects',
-        'Settings'
+        'Settings',
+        'StatusDefinitions'
     ],
 
     requires: [

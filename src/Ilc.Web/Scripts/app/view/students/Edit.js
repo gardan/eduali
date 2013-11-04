@@ -63,7 +63,6 @@
 
         me.buttons = [
             {
-
                 xtype: 'button',
                 text: Ilc.resources.Manager.getResourceString('common.edit'),
                 handler: function () {

@@ -33,6 +33,11 @@
                                 text: 'Users',
                                 leaf: true,
                                 component: 'Ilc.view.users.List'
+                            },
+                            {
+                                text: 'Status Definitions',
+                                leaf: true,
+                                component: 'Ilc.view.statusDefinitions.List'
                             }
                         ]
                     }

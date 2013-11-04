@@ -163,6 +163,7 @@
     <Content Include="Scripts\app\controller\Roles.js" />
     <Content Include="Scripts\app\controller\Settings.js" />
     <Content Include="Scripts\app\controller\Statistics.js" />
+    <Content Include="Scripts\app\controller\StatusDefinitions.js" />
     <Content Include="Scripts\app\controller\Students.js" />
     <Content Include="Scripts\app\controller\Subjects.js" />
     <Content Include="Scripts\app\controller\Tasks.js" />
@@ -182,6 +183,7 @@
     <Content Include="Scripts\app\grid\EvalQuestions.js" />
     <Content Include="Scripts\app\grid\Offers.js" />
     <Content Include="Scripts\app\grid\Roles.js" />
+    <Content Include="Scripts\app\grid\StatusDefinitions.js" />
     <Content Include="Scripts\app\grid\Users.js" />
     <Content Include="Scripts\app\helpers\AppConfig.js" />
     <Content Include="Scripts\app\helpers\GridColumns.js" />
@@ -208,6 +210,7 @@
     <Content Include="Scripts\app\store\scheduler\LessonAppointments.js" />
     <Content Include="Scripts\app\store\scheduler\Lessons.js" />
     <Content Include="Scripts\app\store\statistics\Customers.js" />
+    <Content Include="Scripts\app\store\StatusDefinitions.js" />
     <Content Include="Scripts\app\store\Students.js" />
     <Content Include="Scripts\app\store\Subjects.js" />
     <Content Include="Scripts\app\store\Trainers.js" />
@@ -340,6 +343,8 @@
     <Content Include="Scripts\app\view\settings\Categories.js" />
     <Content Include="Scripts\app\view\settings\Default.js" />
     <Content Include="Scripts\app\view\statistics\View.js" />
+    <Content Include="Scripts\app\view\statusDefinitions\Edit.js" />
+    <Content Include="Scripts\app\view\statusDefinitions\List.js" />
     <Content Include="Scripts\app\view\students\Create.js" />
     <Content Include="Scripts\app\view\students\Edit.js" />
     <Content Include="Scripts\app\view\students\List.js" />

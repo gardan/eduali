@@ -28,7 +28,7 @@ namespace Ilc.Web.Services
                 };
         }
 
-        public HttpResult Put(StatusDefinionModel request)
+        public HttpResult Put(StatusDefinitionUpdateModel request)
         {
             var statusDefinition = StatusDefinitions.GetById(request.Id).InjectFrom(request) as StatusDictionary;
             
@@ -41,9 +41,16 @@ namespace Ilc.Web.Services
         }
     }
 
+    public class StatusDefinitionUpdateModel
+    {
+        public int Id { get; set; }
+        public string FriendlyName { get; set; }
+    }
+
     public class StatusDefinionModel
     {
         public int Id { get; set; }
+        public string Name { get; set; }
         public string FriendlyName { get; set; }
     }
 
