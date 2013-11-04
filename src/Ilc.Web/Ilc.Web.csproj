@@ -3873,6 +3873,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="InjectorConventions\TrainerToTrainerModel.cs" />
     <Compile Include="InjectorConventions\TrainingToWebModel.cs" />
     <Compile Include="Models\ContactPersonModel.cs" />
     <Compile Include="Models\CreateCustomerModel.cs" />

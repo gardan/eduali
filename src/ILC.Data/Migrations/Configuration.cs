@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.Entity.Infrastructure;
 using Ilc.Data;
 using Ilc.Data.Models;
+using Ilc.Data.Models.SimpleMembership;
 
 namespace Ilc.Data.Migrations
 {
@@ -24,6 +25,7 @@ namespace Ilc.Data.Migrations
                 new Subject() { Name = "English" },
                 new Subject() { Name = "Romanian" });
 
+            SeedRoles(context);
             SeedInitialAccount(context);
             SeedEvaluationQuestions(context);
             SeedCustomer(context);
@@ -31,6 +33,31 @@ namespace Ilc.Data.Migrations
             SeedSubjects(context);
             SeedTrainer(context);
             SeedStatusDictionary(context);
+        }
+
+        private void SeedRoles(AppContext context)
+        {
+            
+            context.Roles.AddOrUpdate(r => r.RoleName,
+                                      new Role() // Student
+                                          {
+                                              CanDelete = false,
+                                              RoleName = "Student",
+                                              Claims = new List<RoleClaim>()
+                                                  {
+                                                      new RoleClaim() {Name = "tasks-student", Value = true.ToString()}
+                                                  }
+                                          },
+                                      new Role() // Trainer
+                                          {
+                                              CanDelete = false,
+                                              RoleName = "Trainer",
+                                              Claims = new List<RoleClaim>()
+                                                  {
+                                                      new RoleClaim() {Name = "tasks-trainer", Value = true.ToString()}
+                                                  }
+                                          });
+            context.SaveChanges();
         }
 
         private void SeedStatusDictionary(AppContext context)
@@ -57,7 +84,13 @@ namespace Ilc.Data.Migrations
         private void SeedTrainer(AppContext context)
         {
             var subjects = context.Subjects.ToList();
-            var user = new UserProfile() { Username = "alex" };
+            var user = new UserProfile() { Username = "alex", UserDetails = new UserDetails()
+                {
+                    Email = "alecs@mail.com",
+                    FirstName = "Alecsandru",
+                    LastName = "Tache",
+                    Phone = "139057098375"
+                }};
             if (context.UserProfiles.FirstOrDefault(u => u.Username == "alex") != null) return;
             AddUser(context, user);
 
@@ -78,18 +111,33 @@ namespace Ilc.Data.Migrations
 
             var customerId = context.Customers.FirstOrDefault().Id;
 
-            var user1 = new UserProfile() { Username = "ionel" };
-            var user2 = new UserProfile() { Username = "ghita" };
+            var role = context.Roles.FirstOrDefault(r => r.RoleName == "Student");
+            var user1 = new UserProfile() { Username = "ionel", Roles = new List<Role>() { role }, UserDetails = new UserDetails()
+                {
+                    Email = "ionel@ion.ion",
+                    FirstName = "Ionel",
+                    LastName = "Popescu",
+                    Phone = "03418497814879"
+                }};
+            var user2 = new UserProfile() { Username = "ghita", Roles = new List<Role>() { role }, UserDetails = new UserDetails()
+                {
+                    Email = "ghita@ghita.ghita",
+                    FirstName = "Ghita",
+                    LastName = "Alexandru",
+                    Phone = "159379385"
+                }};
+            
 
             if (context.UserProfiles.FirstOrDefault(u => u.Username == "ionel") == null)
             {
+                
                 AddUser(context, user1);
                 context.Students.AddOrUpdate(s => s.Name,
                                              new Student()
                                                  {
                                                      Name = "Ionel Popescu",
                                                      CustomerId = customerId,
-                                                     UserProfileId = user1.Id
+                                                     UserProfileId = user1.Id,
                                                  });
                 context.SaveChanges();
             }
