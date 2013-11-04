@@ -23,7 +23,7 @@
             features: [filters],
             columns: Ilc.helpers.GridColumns.process([
                 {
-                    dataIndex: 'status',
+                    dataIndex: 'statusFriendlyName',
                     flex: 1,
                     text: Ilc.resources.Manager.getResourceString('common.status'),
                     filter: {

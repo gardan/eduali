@@ -3,7 +3,7 @@ using Ilc.Web.Services;
 
 namespace Ilc.Web.Models
 {
-    public class TrainingModel : CreateTrainingModel, IStatus
+    public class TrainingModel : StatusModel
     {
         public int Id { get; set; }
 
@@ -15,13 +15,25 @@ namespace Ilc.Web.Models
 
         public string TrainerName { get; set; }
         public string CustomerName { get; set; }
-        public string Status { get; set; }
         public string SubjectName { get; set; }
+
+        public DateTimeOffset DesiredStartDate { get; set; }
+        public DateTimeOffset DesiredEndDate { get; set; }
+        public StudentModel[] Students { get; set; }
+
+        public int SubjectId { get; set; }
+        public int TrainingSystemId { get; set; }
+        public int CustomerId { get; set; }
+
+        public int TrainerId { get; set; }
+
+        public OwnersModel WorkflowOwners { get; set; }
     }
 
-    public interface IStatus
+    public abstract class StatusModel
     {
-        string Status { get; set; }
+        public string Status { get; set; }
+        public string StatusFriendlyName { get; set; }
     }
 
     public class InterviewPlanApiModel

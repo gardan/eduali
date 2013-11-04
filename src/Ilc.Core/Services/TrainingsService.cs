@@ -3,6 +3,7 @@ using System.Linq;
 using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models;
+using LinqKit;
 
 namespace Ilc.Core.Services
 {
@@ -19,13 +20,23 @@ namespace Ilc.Core.Services
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
 
+            // Filtering
             foreach (var filter in parameters.Filter)
             {
                 var inFilter = filter;
                 switch (inFilter.Field)
                 {
-                    case "status":
-                        query = query.Where(t => t.Status == inFilter.Value);
+                    case "statusFriendlyName":
+                        var statusDefinitions = Uow.StatusDictionary.GetAll().Where(s => s.FriendlyName.Contains(inFilter.Value)).ToList();
+                        
+                        var predicate = PredicateBuilder.False<Training>();
+
+                        foreach (var statusDefinition in statusDefinitions)
+                        {
+                            string temp = statusDefinition.Name;
+                            predicate = predicate.Or(t => t.Status.Contains(temp));
+                        }
+                        query = query.AsExpandable().Where(predicate);
                         break;
                     case "customer":
                         query = query.Where(t => t.Customer.Name.Contains(inFilter.Value));
@@ -40,7 +51,7 @@ namespace Ilc.Core.Services
                         break;
                 }
             }
-
+            
             // order
             query = query.OrderBy(e => e.Id);
 

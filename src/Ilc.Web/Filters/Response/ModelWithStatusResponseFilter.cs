@@ -16,9 +16,9 @@ namespace Ilc.Web.Filters.Response
         public override void Execute(IHttpRequest req, IHttpResponse res, object responseDto)
         {
             var response = (FilteredDataModel<TrainingModel>)responseDto;
-            foreach (IStatus trainingModel in response.Data)
+            foreach (var trainingModel in response.Data)
             {
-                trainingModel.Status = StatusService.Translate(trainingModel.Status);
+                trainingModel.StatusFriendlyName = StatusService.Translate(trainingModel.Status);
             }
         }
     }
