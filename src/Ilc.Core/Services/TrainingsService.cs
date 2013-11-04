@@ -27,6 +27,7 @@ namespace Ilc.Core.Services
                 switch (inFilter.Field)
                 {
                     case "statusFriendlyName":
+                        // http://www.albahari.com/nutshell/predicatebuilder.aspx
                         var statusDefinitions = Uow.StatusDictionary.GetAll().Where(s => s.FriendlyName.Contains(inFilter.Value)).ToList();
                         
                         var predicate = PredicateBuilder.False<Training>();

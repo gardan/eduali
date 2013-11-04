@@ -10,6 +10,7 @@ using Ilc.Data.Contracts;
 using Ilc.Data.Models;
 using Ilc.Infrastructure;
 using Ilc.Infrastructure.Workflows;
+using Ilc.Web.Filters.Response;
 using Ilc.Web.InjectorConventions;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
@@ -26,6 +27,7 @@ namespace Ilc.Web.Services
         public IUsersService Users { get; set; }
         public IOffersService Offers { get; set; }
 
+        [TaskModelWithStatusResponseFilter]
         public FilteredDataModel<TaskModel> Get(FilterParametersTasks request)
         {
             var currentUser = Users.GetByUsername();
@@ -569,7 +571,7 @@ namespace Ilc.Web.Services
         public int OfferId { get; set; }
     }
 
-    public class TaskModel
+    public class TaskModel : StatusModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
