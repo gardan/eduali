@@ -53,14 +53,11 @@
                 },
                 '->',
                 {
-                    text: '[username]',
+                    text: Ilc.Configuration.get().username,
                     toggleGroup: '',
                     scale: 'medium',
                     padding: '0',
                     menu: [
-                        {
-                            text: 'Item 1',
-                        },
                         {
                             text: Ilc.resources.Manager.getResourceString('common.logout'),
                             handler: function () {

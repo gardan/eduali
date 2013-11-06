@@ -3910,6 +3910,7 @@
     <Compile Include="Models\CreateStudentModel.cs" />
     <Compile Include="Models\CreateOfferModel.cs" />
     <Compile Include="Services\ClaimsService.cs" />
+    <Compile Include="Services\ClientConfigurationService.cs" />
     <Compile Include="Services\CustomersService.cs" />
     <Compile Include="InjectorConventions\CustomerToCustomerModel.cs" />
     <Compile Include="Models\CustomerStatisticsModel.cs" />

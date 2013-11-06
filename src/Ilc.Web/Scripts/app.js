@@ -23,7 +23,8 @@ Ext.application({
     requires: [
         'Ext.ux.Router',
         'Ilc.helpers.AppConfig',
-        'Ilc.resources.Manager'
+        'Ilc.resources.Manager',
+        'Ilc.Configuration'
     ],
     
     views: [
@@ -57,7 +58,7 @@ Ext.application({
     enableRouter: true,
 
     launch: function () {
-        Ext.create('Ilc.view.Viewport');
+        
         
         var gridCfgStore = Ext.create('Ilc.store.GridConfig', { autoLoad: false });
 
@@ -69,8 +70,26 @@ Ext.application({
             // that is why we fire it manually from here
             Ext.History.fireEvent('change', window.location.hash.substring(1));
         });
-        gridCfgStore.load();
-        
+
+        Ext.Ajax.defaultHeaders = {
+            'Content-Type': 'application/json'
+        };
+        Ext.Ajax.request({
+            url: 'api/configuration',
+            method: 'GET',
+            success: function (response) {
+                var configuration = Ext.JSON.decode(response.responseText);
+                Ilc.Configuration.set(configuration);
+                
+                Ext.create('Ilc.view.Viewport');
+
+                gridCfgStore.load();
+            },
+            failure: function (error) {
+                
+            }
+        });
+
         // Defaults
         Ext.window.Window.prototype.bodyPadding = 10;
         Ext.window.Window.prototype.modal = true;
