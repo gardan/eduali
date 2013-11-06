@@ -18,6 +18,7 @@ namespace Ilc.Web.Services
     {
 
         public ITrainersService Trainers { get; set; }
+        public ISubjectsService Subjects { get; set; }
 
         public FilteredDataModel<TrainerModel> Get(FilterParametersTrainers request)
         {
@@ -38,6 +39,14 @@ namespace Ilc.Web.Services
             newTrainer.UserProfile = new UserProfile() { UserDetails = userInfo };
 
             Trainers.Create(newTrainer);
+            newTrainer.Subjects = new List<Subject>();
+
+            foreach (var subjectModel in request.Subjects)
+            {
+                newTrainer.Subjects.Add(Subjects.GetById(subjectModel.Id));
+            }
+
+            Trainers.Update(newTrainer);
 
             var transferObject = new TrainerModel().InjectFrom(newTrainer);
             return new HttpResult(transferObject)

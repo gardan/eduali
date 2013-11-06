@@ -17,6 +17,8 @@
     constructor: function () {
         var me = this;
 
+        var subjectsStore = Ext.create('Ilc.store.Subjects');
+
         me.items = [
             {
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.firstName'),
@@ -33,6 +35,16 @@
             {
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.phone'),
                 name: 'userInfo.phone',
+            },
+            {
+                xtype: 'combobox',
+                store: subjectsStore,
+                queryMode: 'local',
+                displayField: 'name',
+                multiSelect: true,
+                valueField: 'id',
+                name: 'subjects',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.subject'),
             }
         ];
 
@@ -44,6 +56,7 @@
                     var model = {};
                     var inputs = me.query('textfield');
                     model = Ilc.utils.Forms.extractModel(inputs);
+
                     me.fireEvent('addTrainer', me, model);
                 }
             },
@@ -58,6 +71,8 @@
         me.addEvents(
             'addTrainer'
         );
+
+        subjectsStore.load();
 
         me.callParent(arguments);
     }

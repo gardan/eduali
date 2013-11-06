@@ -158,6 +158,7 @@
     <Content Include="Images\web\view.png" />
     <Content Include="Resources\site.css" />
     <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\app\Configuration.js" />
     <Content Include="Scripts\app\controller\Customers.js" />
     <Content Include="Scripts\app\controller\Home.js" />
     <Content Include="Scripts\app\controller\Roles.js" />

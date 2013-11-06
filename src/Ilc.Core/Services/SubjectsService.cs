@@ -53,7 +53,7 @@ namespace Ilc.Core.Services
 
         public Subject GetById(int id)
         {
-            throw new NotImplementedException();
+            return Uow.Subjects.GetById(id);
         }
 
         public void Create(Subject newSubject)
