@@ -8,7 +8,7 @@ namespace Ilc.Core.Contracts
 {
     public interface ISubjectsService
     {
-        FilteredResults<Subject> GetFiltered(FilterArguments parameters);
+        FilteredResults<Subject> GetFiltered(FilterArgumentsSubjects parameters);
         Subject GetById(int id);
         void Create(Subject newSubject);
         void Update(Subject updatedSubject);

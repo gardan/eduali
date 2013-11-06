@@ -48,6 +48,7 @@
     <Compile Include="Contracts\ISubjectsService.cs" />
     <Compile Include="FilterArgumentsStatusDefinitions.cs" />
     <Compile Include="Contracts\IStatusDefinitionsService.cs" />
+    <Compile Include="FilterArgumentsSubjects.cs" />
     <Compile Include="Services\StatusDefinitionsService.cs" />
     <Compile Include="Services\SubjectsService.cs" />
     <Compile Include="Services\ClaimsService.cs" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
+using Ilc.Core;
 using Ilc.Core.Contracts;
 using Ilc.Data.Models;
 using Ilc.Web.Models;
@@ -23,8 +24,8 @@ namespace Ilc.Web.Services
             return new FilteredDataModel<SubjectModel>()
                 {
                     Data = results.Data.Select(s => new SubjectModel().InjectFrom(s) as SubjectModel).ToList(),
-                    TotalDisplayRecords = 2,
-                    TotalRecords = 2
+                    TotalDisplayRecords = results.TotalDisplayRecords,
+                    TotalRecords = results.TotalRecords
                 };
         }
 
@@ -47,7 +48,7 @@ namespace Ilc.Web.Services
         public string Name { get; set; }
     }
 
-    public class FilterSubjectsParameters : FilterParametersBase
+    public class FilterSubjectsParameters : FilterArgumentsSubjects
     {
     }
 }

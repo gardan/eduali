@@ -11,15 +11,27 @@ namespace Ilc.Core.Services
     {
         public IUow Uow { get; set; }
 
-        public FilteredResults<Subject> GetFiltered(FilterArguments parameters)
+        public FilteredResults<Subject> GetFiltered(FilterArgumentsSubjects parameters)
         {
             // set defaults
             parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
             parameters.Filter = parameters.Filter ?? new List<Filter>();
 
             var query = Uow.Subjects.GetAll();
-            var totalResults = query.Count();
-            var totalDisplayRecords = totalResults;
+            
+            // predefined search
+            if (parameters.TrainerId > 0)
+            {
+                if (parameters.Assigned)
+                {
+                    query = query.Where(s => s.Trainers.Any(t => t.Id == parameters.TrainerId));
+                }
+                else
+                {
+                    query = query.Where(s => s.Trainers.All(t => t.Id != parameters.TrainerId));
+                }
+
+            }
 
             // search
             foreach (var filter in parameters.Filter)
@@ -36,6 +48,9 @@ namespace Ilc.Core.Services
                         break;
                 }
             }
+
+            var totalResults = query.Count();
+            var totalDisplayRecords = totalResults;
 
             // order
             query = query.OrderBy(e => e.Id);
