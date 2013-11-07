@@ -68,25 +68,6 @@
                     menuDisabled: true,
                     items: [
                         {
-                            icon: 'images/web/edit.png',
-                            scope: me,
-                            tooltip: Ilc.resources.Manager.getResourceString('common.edit'),
-                            handler: function (grid, rowIndex, colIndex, item, e, record) {
-                                var editWindow = Ext.create('Ilc.view.students.Edit', {
-                                    closeAction: 'destroy',
-                                    model: record
-                                });
-
-                                editWindow.on('editStudent', function (sender, model) {
-                                    me.fireEvent('editStudent', sender, model, {
-                                        store: studentsStore
-                                    });
-                                });
-
-                                editWindow.show();
-                            }
-                        },
-                        {
                             icon: 'images/web/remove.png',
                             scope: me,
                             tooltip: Ilc.resources.Manager.getResourceString('common.delete'),
@@ -101,6 +82,21 @@
                     ]
                 }
             ]
+        });
+
+        studentsGrid.on('itemdblclick', function (grid, record) {
+            var editWindow = Ext.create('Ilc.view.students.Edit', {
+                closeAction: 'destroy',
+                model: record
+            });
+
+            editWindow.on('editStudent', function (sender, model) {
+                me.fireEvent('editStudent', sender, model, {
+                    store: studentsStore
+                });
+            });
+
+            editWindow.show();
         });
 
         me.items = [
