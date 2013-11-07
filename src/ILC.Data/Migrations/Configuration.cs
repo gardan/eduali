@@ -222,7 +222,13 @@ namespace Ilc.Data.Migrations
             }
 
             // create the user profile
-            var firstUser = new UserProfile() { Username = "admin" };
+            var firstUser = new UserProfile() { Username = "admin", UserDetails = new UserDetails()
+                {
+                    Email = "zeus@olympus.com",
+                    FirstName = "Zeus",
+                    LastName = "",
+                    Phone = "91387983571"
+                }};
             context.UserProfiles.Add(firstUser);
             context.SaveChanges();
 
