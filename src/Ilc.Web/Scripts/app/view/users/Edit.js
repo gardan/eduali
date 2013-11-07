@@ -94,7 +94,35 @@
                 xtype: 'tabpanel',
                 items: [
                     {
-                        title: 'General'
+                        title: 'General',
+                        defaults: {
+                            xtype: 'textfield',
+                            anchor: '100%'
+                        },
+                        layout: 'anchor',
+                        items: [
+                            {
+                                fieldLabel: Ilc.resources.Manager.getResourceString('common.firstName'),
+                                name: 'userInfo.firstName',
+                                value: me.user.get('userInfo').firstName
+                            },
+                            {
+                                fieldLabel: Ilc.resources.Manager.getResourceString('common.lastName'),
+                                name: 'userInfo.lastName',
+                                value: me.user.get('userInfo').lastName
+                            },
+                            {
+                                fieldLabel: Ilc.resources.Manager.getResourceString('common.email'),
+                                name: 'userInfo.email',
+                                value: me.user.get('userInfo').email
+                            },
+                            {
+                                fieldLabel: Ilc.resources.Manager.getResourceString('common.phone'),
+                                name: 'userInfo.phone',
+                                value: me.user.get('userInfo').phone
+                            }
+                        ]
+                        
                     },
                     {
                         title: 'Roles',

@@ -8,6 +8,7 @@ using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models;
 using Ilc.Data.Models.SimpleMembership;
+using Ilc.Web.InjectorConventions;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
 using ServiceStack.Common.Web;
@@ -25,7 +26,7 @@ namespace Ilc.Web.Services
             var results = Users.GetFiltered(request);
             return new FilteredDataModel<UserModel>()
                 {
-                    Data = results.Data.Select(u => new UserModel().InjectFrom(u) as UserModel).ToList(),
+                    Data = results.Data.Select(u => new UserModel().InjectFrom<UserProfileToUserModel>(u) as UserModel).ToList(),
                     TotalDisplayRecords = results.TotalDisplayRecords,
                     TotalRecords = results.TotalRecords
                 }; 
@@ -64,6 +65,7 @@ namespace Ilc.Web.Services
     {
         public int Id { get; set; }
         public string Username { get; set; }
+        public UserInfoModel UserInfo { get; set; }
     }
 
     public class FilterParametersUsers : FilterArguments
