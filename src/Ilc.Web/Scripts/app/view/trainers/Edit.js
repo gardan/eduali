@@ -1,5 +1,6 @@
 ﻿Ext.define('Ilc.view.trainers.Edit', {
     extend: 'Ext.window.Window',
+    xtype: 'edittrainerwindow',
 
     title: Ilc.resources.Manager.getResourceString('common.trainer'),
 
@@ -16,12 +17,24 @@
     width: 600,
     bodyPadding: 0,
 
-    constructor: function (config) {
+    subjectsStore: null,
+    model: null,
+
+    loadSubjects: function () {
+        this.subjectsStore.load({
+            params: {
+                trainerId: this.model.id
+            }
+        });
+    },
+
+    initComponent: function (config) {
         var me = this;
 
-        var cfgModel = config.model;
+        var cfgModel = me.model;
 
         var subjectsStore = Ext.create('Ilc.store.Subjects');
+        this.subjectsStore = subjectsStore;
 
         var subjectsGrid = Ext.create('Ext.grid.Panel', {
             store: subjectsStore,
@@ -38,11 +51,11 @@
                     dock: 'bottom',
                     items: [
                         {
-                            text: 'Add subject',
+                            text: 'Add subjects',
                             handler: function () {
-                                var unassignedSubjects = Ext.create('Ilc.store.Subjects');
+                                var unassignedSubjectsStore = Ext.create('Ilc.store.Subjects');
                                 
-                                unassignedSubjects.load({
+                                unassignedSubjectsStore.load({
                                     params: {
                                         assigned: false,
                                         trainerId: cfgModel.id
@@ -53,7 +66,34 @@
                                     items: [
                                         {
                                             xtype: 'combobox',
-                                            store: ['asdas', 'asdas']
+                                            editable: false,
+                                            queryMode: 'local',
+                                            displayField: 'name',
+                                            valueField: 'name',
+                                            multiSelect: true,
+                                            store: unassignedSubjectsStore,
+                                            name: 'subjects'
+                                        }
+                                    ],
+                                    buttons: [
+                                        {
+                                            text: Ilc.resources.Manager.getResourceString('common.add'),
+                                            handler: function() {
+                                                var model = {};
+                                                var inputs = window.query('textfield');
+                                                model = Ilc.utils.Forms.extractModel(inputs);
+                                                model.trainerId = cfgModel.id;
+
+                                                me.fireEvent('addsubjectstotrainer', window, model, {
+                                                    parent: me
+                                                });
+                                            }
+                                        },
+                                        {
+                                            text: Ilc.resources.Manager.getResourceString('common.cancel'),
+                                            handler: function () {
+                                                window.close();
+                                            }
                                         }
                                     ]
                                 });
@@ -140,14 +180,16 @@
         ];
 
         me.addEvents(
-            'editTrainer'
+            'editTrainer',
+            'addsubjectstotrainer'
         );
 
-        subjectsStore.load({
-            params: {
-                trainerId: cfgModel.id
-            }
-        });
+        // subjectsStore.load({
+        //     params: {
+        //         trainerId: cfgModel.id
+        //     }
+        // });
+        me.loadSubjects();
 
         me.callParent(arguments);
     }

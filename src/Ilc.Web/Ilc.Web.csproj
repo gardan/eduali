@@ -3935,6 +3935,7 @@
     <Compile Include="Services\TasksService.cs" />
     <Compile Include="Services\TrainersService.cs" />
     <Compile Include="Services\QuestionsService.cs" />
+    <Compile Include="Services\TrainersSubjectsService.cs" />
     <Compile Include="Services\TrainingsService.cs" />
     <Compile Include="Services\TransfersService.cs" />
     <Compile Include="Models\UpdateGridColumnConfigModel.cs" />
