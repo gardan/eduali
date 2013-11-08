@@ -45,7 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\GradesService.cs" />
+    <Compile Include="Contracts\IGradesService.cs" />
     <Compile Include="Contracts\ISubjectsService.cs" />
+    <Compile Include="FilterArgumentsGrades.cs" />
     <Compile Include="FilterArgumentsStatusDefinitions.cs" />
     <Compile Include="Contracts\IStatusDefinitionsService.cs" />
     <Compile Include="FilterArgumentsSubjects.cs" />

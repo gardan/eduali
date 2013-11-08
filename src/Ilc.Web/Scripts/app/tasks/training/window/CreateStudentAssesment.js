@@ -16,6 +16,12 @@
         var student = args.student;
         var store = Ext.create('Ilc.tasks.training.store.Grades');
 
+        store.load({
+            params: {
+                gradingSystemId: task.get('taskObject').gradingSystemId
+            }
+        });
+
         me.items = [
             {
                 xtype: 'fieldset',

@@ -6,12 +6,20 @@
     layout: 'anchor',
     width: 300,
 
+    gradingSystemId: null,
+
     constructor: function (args) {
         var me = this;
 
         var task = args.task;
         var student = args.student;
         var store = Ext.create('Ilc.tasks.training.store.Grades');
+
+        store.load({
+            params: {
+                gradingSystemId: task.get('taskObject').gradingSystemId
+            }
+        });
 
         me.items = [
             {
@@ -23,7 +31,7 @@
                         store: store,
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.level'),
                         queryMode: 'local',
-                        displayField: 'text',
+                        displayField: 'name',
                         valueField: 'id',
                         name: 'listeningLevel',
                         anchor: '100%'
@@ -33,7 +41,7 @@
                         store: store,
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.targetLevel'),
                         queryMode: 'local',
-                        displayField: 'text',
+                        displayField: 'name',
                         valueField: 'id',
                         name: 'listeningDesiredLevel',
                         anchor: '100%'
@@ -49,7 +57,7 @@
                         store: store,
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.level'),
                         queryMode: 'local',
-                        displayField: 'text',
+                        displayField: 'name',
                         valueField: 'id',
                         name: 'readingLevel',
                         anchor: '100%'
@@ -59,7 +67,7 @@
                         store: store,
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.targetLevel'),
                         queryMode: 'local',
-                        displayField: 'text',
+                        displayField: 'name',
                         valueField: 'id',
                         name: 'readingTargetLevel',
                         anchor: '100%'
@@ -75,7 +83,7 @@
                         store: store,
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.level'),
                         queryMode: 'local',
-                        displayField: 'text',
+                        displayField: 'name',
                         valueField: 'id',
                         name: 'interactiveTalkingLevel',
                         anchor: '100%'
@@ -85,7 +93,7 @@
                         store: store,
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.targetLevel'),
                         queryMode: 'local',
-                        displayField: 'text',
+                        displayField: 'name',
                         valueField: 'id',
                         name: 'interactiveTalkingDesiredLevel',
                         anchor: '100%'
@@ -101,7 +109,7 @@
                         store: store,
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.level'),
                         queryMode: 'local',
-                        displayField: 'text',
+                        displayField: 'name',
                         valueField: 'id',
                         name: 'productiveTalkingLevel',
                         anchor: '100%'
@@ -111,7 +119,7 @@
                         store: store,
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.targetLevel'),
                         queryMode: 'local',
-                        displayField: 'text',
+                        displayField: 'name',
                         valueField: 'id',
                         name: 'productiveTalkingTargetLevel',
                         anchor: '100%'
@@ -127,7 +135,7 @@
                         store: store,
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.level'),
                         queryMode: 'local',
-                        displayField: 'text',
+                        displayField: 'name',
                         valueField: 'id',
                         name: 'writingLevel',
                         anchor: '100%'
@@ -137,7 +145,7 @@
                         store: store,
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.targetLevel'),
                         queryMode: 'local',
-                        displayField: 'text',
+                        displayField: 'name',
                         valueField: 'id',
                         name: 'writingTargetLevel',
                         anchor: '100%'

@@ -35,7 +35,8 @@ namespace Ilc.Data.Contracts
         IRepository<Subject> Subjects { get; }
         IRepository<StatusDictionary> StatusDictionary { get; }
         IRepository<GradingSystem> GradingSystems { get; }
-
+        IRepository<Grade> Grades { get; }
+        
         IRepository<TrainingEvaluationQuestion> Questions { get; }
     }
 }

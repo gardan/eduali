@@ -22,10 +22,10 @@ namespace Ilc.Web.Models
         public StudentModel[] Students { get; set; }
 
         public int SubjectId { get; set; }
-        public int TrainingSystemId { get; set; }
         public int CustomerId { get; set; }
 
         public int TrainerId { get; set; }
+        public int GradingSystemId { get; set; }
 
         public OwnersModel WorkflowOwners { get; set; }
     }

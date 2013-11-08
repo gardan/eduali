@@ -3921,6 +3921,7 @@
     <Compile Include="Models\TrainingModel.cs" />
     <Compile Include="Models\FilterParametersCustomerStatisticsModel.cs" />
     <Compile Include="Services\FilesService.cs" />
+    <Compile Include="Services\GradesService.cs" />
     <Compile Include="Services\GradingSystemsService.cs" />
     <Compile Include="Services\GridConfigurationService.cs" />
     <Compile Include="Services\LessonsService.cs" />
