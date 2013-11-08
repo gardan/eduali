@@ -50,6 +50,8 @@ namespace Ilc.Web.AppStart
 
             routes.Add<Services.CreateTrainersSubjectModel>("/api/trainerssubjects", "POST");
 
+            routes.Add<Services.FilterParametersGradingSystems>("/api/gradingsystems", "GET");
+
             routes.Add<Services.FilterStatusDefinitionsParameters>("/api/statusdefinitions", "GET");
             routes.Add<Services.StatusDefinitionUpdateModel>("/api/statusdefinitions/{id}", "PUT");
 

@@ -3874,6 +3874,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="InjectorConventions\GradingSystemToWebModel.cs" />
     <Compile Include="InjectorConventions\TrainerToTrainerModel.cs" />
     <Compile Include="InjectorConventions\TrainingToWebModel.cs" />
     <Compile Include="InjectorConventions\UserProfileToUserModel.cs" />
@@ -3920,6 +3921,7 @@
     <Compile Include="Models\TrainingModel.cs" />
     <Compile Include="Models\FilterParametersCustomerStatisticsModel.cs" />
     <Compile Include="Services\FilesService.cs" />
+    <Compile Include="Services\GradingSystemsService.cs" />
     <Compile Include="Services\GridConfigurationService.cs" />
     <Compile Include="Services\LessonsService.cs" />
     <Compile Include="Services\OffersService.cs" />

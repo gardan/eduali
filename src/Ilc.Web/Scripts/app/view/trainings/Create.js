@@ -57,7 +57,7 @@
             queryMode: 'local',
             displayField: 'name',
             valueField: 'id',
-            name: 'trainingSystem',
+            name: 'gradingSystemId',
             fieldLabel: Ilc.resources.Manager.getResourceString('common.system'),
             anchor: '100%',
             labelWidth: 120
@@ -172,7 +172,8 @@
         );
 
         subjectsStore.load();
-
+        trainingSystemsStore.load();
+        
         me.callParent(arguments);
     }
 });

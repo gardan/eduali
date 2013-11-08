@@ -38,6 +38,7 @@ namespace Ilc.Data
         public IRepository<TrainingOwnersConfiguration> TrainingOwnersConfiguration { get { return GetStandardRepo<TrainingOwnersConfiguration>(); } }
         public IRepository<Subject> Subjects { get { return GetStandardRepo<Subject>(); } }
         public IRepository<StatusDictionary> StatusDictionary { get { return GetStandardRepo<StatusDictionary>(); } }
+        public IRepository<GradingSystem> GradingSystems { get { return GetStandardRepo<GradingSystem>(); } }
         public IRepository<TrainingEvaluationQuestion> Questions { get { return GetStandardRepo<TrainingEvaluationQuestion>(); } }
 
         public Uow(IRepositoryProvider repositoryProvider)

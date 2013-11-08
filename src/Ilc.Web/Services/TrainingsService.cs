@@ -71,6 +71,7 @@ namespace Ilc.Web.Services
                     SubjectId = request.SubjectId,
                     DesiredStartDate = request.DesiredStartDate,
                     DesiredEndDate = request.DesiredEndDate,
+                    GradingSystemId = request.GradingSystemId,
                     Status = "Rfi",
                     Students = students,
                     TrainerId = request.TrainerId,

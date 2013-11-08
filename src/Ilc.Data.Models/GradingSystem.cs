@@ -21,6 +21,6 @@ namespace Ilc.Data.Models
 
         public int GradingSystemId { get; set; }
         [ForeignKey("GradingSystemId")]
-        public GradingSystem GradingSystem { get; set; }
+        public virtual GradingSystem GradingSystem { get; set; }
     }
 }
