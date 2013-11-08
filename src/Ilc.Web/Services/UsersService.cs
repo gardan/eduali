@@ -50,6 +50,22 @@ namespace Ilc.Web.Services
                 };
         }
 
+        public HttpResult Put(UserModel request)
+        {
+            var user = Users.GetById(request.Id);
+            user.UserDetails.FirstName = request.UserInfo.FirstName;
+            user.UserDetails.LastName = request.UserInfo.LastName;
+            user.UserDetails.Email = request.UserInfo.Email;
+            user.UserDetails.Phone = request.UserInfo.Phone;
+
+            Users.Update(user);
+
+            return new HttpResult()
+                {
+                    StatusCode =  HttpStatusCode.OK
+                };
+        }
+
     }
 
     public class CreateUserModel

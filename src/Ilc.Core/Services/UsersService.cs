@@ -63,6 +63,11 @@ namespace Ilc.Core.Services
             return GetByUsername(principal.FindFirst(c => c.Type == ClaimTypes.Name).Value);
         }
 
+        public UserProfile GetById(int id)
+        {
+            return Uow.UserProfiles.GetById(id);
+        }
+
         public void Create(UserProfile user, string password)
         {
             // Create the profile
@@ -80,6 +85,12 @@ namespace Ilc.Core.Services
                     Password = hashedPwd,
                     PasswordSalt = salt
                 });
+            Uow.Commit();
+        }
+
+        public void Update(UserProfile user)
+        {
+            Uow.UserProfiles.Update(user);
             Uow.Commit();
         }
     }

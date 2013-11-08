@@ -5,7 +5,8 @@
         var me = this;
         this.control({
             'edituserwindow': {
-                'assignrole': this.assignRole
+                'assignrole': this.assignRole,
+                'updateuser': this.updateUser
             },
             'listusers': {
                 'createuser': this.createUser
@@ -41,6 +42,36 @@
         })
         .finally(function () {
             sender.close();
+        });
+    },
+
+    updateUser: function (sender, model, options) {
+        var usersService = {
+            update: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/users/' + model.id,
+                    method: 'PUT',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+        sender.mask();
+        usersService.update(model)
+        .then(function (response) {
+            
+        })
+        .finally(function () {
+            sender.unmask();
         });
     },
 

@@ -7,6 +7,8 @@ namespace Ilc.Core.Contracts
         FilteredResults<UserProfile> GetFiltered(FilterArguments parameters);
         UserProfile GetByUsername(string username);
         UserProfile GetByUsername();
+        UserProfile GetById(int id);
         void Create(UserProfile user, string password);
+        void Update(UserProfile user);
     }
 }

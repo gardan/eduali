@@ -121,8 +121,27 @@
                                 name: 'userInfo.phone',
                                 value: me.user.get('userInfo').phone
                             }
+                        ],
+                        buttons: [
+                            {
+                                text: Ilc.resources.Manager.getResourceString('common.edit'),
+                                handler: function(button) {
+                                    var model = {};
+                                    var parent = button.up().up();
+                                    var inputs = parent.query('textfield');
+                                    model = Ilc.utils.Forms.extractModel(inputs);
+                                    model.id = me.user.get('id');
+
+                                    me.fireEvent('updateuser', me, model);
+                                }
+                            },
+                            {
+                                text: Ilc.resources.Manager.getResourceString('common.cancel'),
+                                handler: function() {
+                                    me.close();
+                                }
+                            }
                         ]
-                        
                     },
                     {
                         title: 'Roles',
@@ -141,7 +160,8 @@
         });
 
         me.addEvents(
-            'assignrole'
+            'assignrole',
+            'updateuser'
         );
 
         me.callParent(arguments);
