@@ -203,6 +203,10 @@
     <Compile Include="Migrations\201310311616303_TableForStatusFriendlyNames.Designer.cs">
       <DependentUpon>201310311616303_TableForStatusFriendlyNames.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201311081045402_AddingGradingSystemTable.cs" />
+    <Compile Include="Migrations\201311081045402_AddingGradingSystemTable.Designer.cs">
+      <DependentUpon>201311081045402_AddingGradingSystemTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -339,6 +343,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201310311616303_TableForStatusFriendlyNames.resx">
       <DependentUpon>201310311616303_TableForStatusFriendlyNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311081045402_AddingGradingSystemTable.resx">
+      <DependentUpon>201311081045402_AddingGradingSystemTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

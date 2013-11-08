@@ -46,6 +46,7 @@ namespace Ilc.Data
         public DbSet<InterviewPlan> InterviewPlans { get; set; }
         public DbSet<TrainingEvaluation> TrainingEvaluations { get; set; }
         public DbSet<StatusDictionary> StatusDictionaries { get; set; }
+        public DbSet<GradingSystem> GradingSystems { get; set; }
 
         public DbSet<TrainingEvaluationQuestion> TrainingEvaluationQuestions { get; set; }
         public DbSet<RadioPossibleAnswer> RadioPossibleAnswers { get; set; }

@@ -63,6 +63,10 @@ namespace Ilc.Data.Models
         public Guid? WokrflowId { get; set; }
 
         public TrainingOwnersConfiguration OwnersConfiguration { get; set; }
+
+        public int GradingSystemId { get; set; }
+        [ForeignKey("GradingSystemId")]
+        public GradingSystem GradingSystem { get; set; }
     }
 
     public class TrainingOwnersConfiguration : EntityBase
