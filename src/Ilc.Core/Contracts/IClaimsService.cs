@@ -8,5 +8,6 @@ namespace Ilc.Core.Contracts
     public interface IClaimsService
     {
         List<string> GetAll();
+        List<string> GetByUserId(int userId);
     }
 }

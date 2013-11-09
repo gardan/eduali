@@ -25,6 +25,7 @@ namespace Ilc.Data.Migrations
                 new Subject() { Name = "English" },
                 new Subject() { Name = "Romanian" });
 
+            SeedGradingSystems(context);
             SeedRoles(context);
             SeedInitialAccount(context);
             SeedEvaluationQuestions(context);
@@ -33,6 +34,41 @@ namespace Ilc.Data.Migrations
             SeedSubjects(context);
             SeedTrainer(context);
             SeedStatusDictionary(context);
+        }
+
+        private void SeedGradingSystems(AppContext context)
+        {
+            context.GradingSystems.AddOrUpdate(s => s.Name,
+                new GradingSystem()
+                    {
+                        Name = "European",
+                        Grades = new List<Grade>()
+                            {
+                                new Grade() { Name = "A1", Order = 1 },
+                                new Grade() { Name = "A2", Order = 2 },
+                                new Grade() { Name = "B1", Order = 3 },
+                                new Grade() { Name = "B1", Order = 4 },
+                                new Grade() { Name = "C1", Order = 5 },
+                                new Grade() { Name = "C1", Order = 6 }
+                            }
+                    },
+                new GradingSystem()
+                    {
+                        Name = "Romanian",
+                        Grades = new List<Grade>()
+                            {
+                                new Grade() { Name = "10", Order = 1 },
+                                new Grade() { Name = "9", Order = 2 },
+                                new Grade() { Name = "8", Order = 3 },
+                                new Grade() { Name = "7", Order = 4 },
+                                new Grade() { Name = "6", Order = 5 },
+                                new Grade() { Name = "5", Order = 6 },
+                                new Grade() { Name = "4", Order = 7 },
+                                new Grade() { Name = "3", Order = 8 },
+                                new Grade() { Name = "2", Order = 9 },
+                                new Grade() { Name = "1", Order = 10 }
+                            }      
+                    });
         }
 
         private void SeedRoles(AppContext context)
@@ -56,7 +92,18 @@ namespace Ilc.Data.Migrations
                                                   {
                                                       new RoleClaim() {Name = "tasks-trainer", Value = true.ToString()}
                                                   }
-                                          });
+                                          },
+                                      new Role() // Zeus
+                                          {
+                                              CanDelete = false,
+                                              RoleName = "Zeus",
+                                              Claims = new List<RoleClaim>()
+                                                  {
+                                                      new RoleClaim() {Name = "tasks-administrator", Value = true.ToString()},
+                                                      new RoleClaim() {Name = "ui-settings-read", Value = true.ToString()}
+                                                  }       
+                                          }
+                                      );
             context.SaveChanges();
         }
 
@@ -221,8 +268,10 @@ namespace Ilc.Data.Migrations
                 }
             }
 
+            // 
+            var role = context.Roles.FirstOrDefault(r => r.RoleName == "Zeus");
             // create the user profile
-            var firstUser = new UserProfile() { Username = "admin", UserDetails = new UserDetails()
+            var firstUser = new UserProfile() { Username = "admin", Roles = new List<Role>() { role }, UserDetails = new UserDetails()
                 {
                     Email = "zeus@olympus.com",
                     FirstName = "Zeus",

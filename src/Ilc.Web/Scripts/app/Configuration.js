@@ -7,8 +7,12 @@
         Ilc.Configuration.configuration = configuration;
     },
 
-    get: function (cfg) {
+    get: function () {
         return Ilc.Configuration.configuration;
+    },
+
+    claimExists: function (claim) {
+        return Ext.Array.contains(Ilc.Configuration.configuration.claims, claim);
     },
 
     constructor: function () {

@@ -50,6 +50,7 @@
                 {
                     text: Ilc.resources.Manager.getResourceString('mainMenu.settings'),
                     itemId: 'menu.settings',
+                    hidden: !Ilc.Configuration.claimExists('ui-settings-read')
                 },
                 '->',
                 {

@@ -15,10 +15,12 @@ namespace Ilc.Core
         public const string TasksTrainer = "tasks-trainer";
         public const string TasksStudent = "tasks-student";
 
+        public const string UiSettingsRead = "ui-settings-read";
+
         public static List<string> GetAll()
         {
             var type = typeof (SystemClaims);
-            var fields = type.GetFields(BindingFlags.Static);
+            var fields = type.GetFields(BindingFlags.Static | BindingFlags.Public | BindingFlags.FlattenHierarchy);
 
             var ret = new List<string>();
             foreach (var fieldInfo in fields)
