@@ -57,5 +57,11 @@ namespace Ilc.Core.Services
                 TotalRecords = totalDisplayRecords
             };
         }
+
+        public void Create(Grade grade)
+        {
+            Uow.Grades.Add(grade);
+            Uow.Commit();
+        }
     }
 }

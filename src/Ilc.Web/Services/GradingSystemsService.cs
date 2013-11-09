@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using Ilc.Core;
 using Ilc.Data.Contracts;
+using Ilc.Data.Models;
 using Ilc.Web.InjectorConventions;
 using Omu.ValueInjecter;
+using ServiceStack.Common.Web;
 using ServiceStack.ServiceInterface;
 
 namespace Ilc.Web.Services
@@ -33,6 +36,19 @@ namespace Ilc.Web.Services
                     //                     }.OrderBy(g => g.Order).ToArray()
                     //             }
                     //     }
+                };
+        }
+
+        public HttpResult Post(GradingSystemModel request)
+        {
+            var gradingSystem = new GradingSystem().InjectFrom(request) as GradingSystem;
+
+            Uow.GradingSystems.Add(gradingSystem);
+            Uow.Commit();
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
                 };
         }
     }

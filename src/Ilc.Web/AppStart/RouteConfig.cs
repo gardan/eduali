@@ -51,8 +51,10 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.CreateTrainersSubjectModel>("/api/trainerssubjects", "POST");
 
             routes.Add<Services.FilterParametersGradingSystems>("/api/gradingsystems", "GET");
+            routes.Add<Services.GradingSystemModel>("/api/gradingsystems", "POST");
 
             routes.Add<Services.FilterParametersGrades>("/api/grades", "GET");
+            routes.Add<Services.CreateGradeModel>("/api/grades", "POST");
 
             routes.Add<Services.FilterStatusDefinitionsParameters>("/api/statusdefinitions", "GET");
             routes.Add<Services.StatusDefinitionUpdateModel>("/api/statusdefinitions/{id}", "PUT");

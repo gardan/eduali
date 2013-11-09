@@ -9,5 +9,6 @@ namespace Ilc.Core.Contracts
     public interface IGradesService
     {
         FilteredResults<Grade> GetFiltered(FilterArgumentsGrades arguments);
+        void Create(Grade grade);
     }
 }
