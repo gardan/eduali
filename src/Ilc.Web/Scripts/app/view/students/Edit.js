@@ -64,7 +64,7 @@
         me.buttons = [
             {
                 xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.edit'),
+                text: Ilc.resources.Manager.getResourceString('common.save'),
                 handler: function () {
                     var model = {};
                     var inputs = me.query('textfield');

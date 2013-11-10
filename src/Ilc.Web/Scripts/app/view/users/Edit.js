@@ -124,7 +124,7 @@
                         ],
                         buttons: [
                             {
-                                text: Ilc.resources.Manager.getResourceString('common.edit'),
+                                text: Ilc.resources.Manager.getResourceString('common.save'),
                                 handler: function(button) {
                                     var model = {};
                                     var parent = button.up().up();

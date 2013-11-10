@@ -38,7 +38,7 @@
         me.buttons = [
             {
                 xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.edit'),
+                text: Ilc.resources.Manager.getResourceString('common.save'),
                 handler: function (button, e) {
                     var model = {};
 
