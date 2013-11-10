@@ -97,14 +97,16 @@
                         title: 'General',
                         defaults: {
                             xtype: 'textfield',
-                            anchor: '100%'
+                            anchor: '100%',
+                            padding: '0 10 0 10'
                         },
                         layout: 'anchor',
                         items: [
                             {
                                 fieldLabel: Ilc.resources.Manager.getResourceString('common.firstName'),
                                 name: 'userInfo.firstName',
-                                value: me.user.get('userInfo').firstName
+                                value: me.user.get('userInfo').firstName,
+                                padding: '10 10 0 10'
                             },
                             {
                                 fieldLabel: Ilc.resources.Manager.getResourceString('common.lastName'),
@@ -119,7 +121,8 @@
                             {
                                 fieldLabel: Ilc.resources.Manager.getResourceString('common.phone'),
                                 name: 'userInfo.phone',
-                                value: me.user.get('userInfo').phone
+                                value: me.user.get('userInfo').phone,
+                                padding: '0 10 10 10'
                             }
                         ],
                         buttons: [

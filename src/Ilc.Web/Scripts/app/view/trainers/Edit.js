@@ -117,6 +117,7 @@
                             xtype: 'textfield',
                             anchor: '100%'
                         },
+                        padding: 10,
                         layout: 'anchor',
                         items: [
                             {

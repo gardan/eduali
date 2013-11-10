@@ -333,6 +333,7 @@
     <Content Include="Scripts\app\view\customers\Create.js" />
     <Content Include="Scripts\app\view\customers\Edit.js" />
     <Content Include="Scripts\app\view\customers\List.js" />
+    <Content Include="Scripts\app\view\gradingSystems\List.js" />
     <Content Include="Scripts\app\view\home\Evaluation.js" />
     <Content Include="Scripts\app\view\home\Frame.js" />
     <Content Include="Scripts\app\view\home\Intake.js" />
