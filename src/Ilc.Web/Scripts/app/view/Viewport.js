@@ -54,7 +54,7 @@
                 },
                 {
                     text: Ilc.resources.Manager.getResourceString('mainMenu.planning'),
-                    itemId: 'menu.settings'
+                    itemId: 'menu.planning'
                 },
                 '->',
                 {
