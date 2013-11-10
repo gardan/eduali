@@ -39,7 +39,8 @@ namespace Ilc.Web.Services
             var userProfile = new UserProfile()
                 {
                     Username = request.Username,
-                    Roles = roles
+                    Roles = roles,
+                    UserDetails = new UserDetails().InjectFrom(request.UserInfo) as UserDetails
                 };
 
             Users.Create(userProfile, request.Password);
@@ -74,6 +75,8 @@ namespace Ilc.Web.Services
         public RoleModel[] Roles { get; set; }
 
         public string Password { get; set; }
+
+        public UserInfoModel UserInfo { get; set; }
     }
 
 

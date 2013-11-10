@@ -23,16 +23,28 @@
 
         me.items = [
             {
-                fieldLabel: 'Email',
-                name: 'email'
-            },
-            {
                 fieldLabel: 'Username',
                 name: 'username'
             },
             {
                 fieldLabel: 'Password',
                 name: 'password'
+            },
+            {
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.firstName'),
+                name: 'userInfo.firstName',
+            },
+            {
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.lastName'),
+                name: 'userInfo.lastName',
+            },
+            {
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.email'),
+                name: 'userInfo.email',
+            },
+            {
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.phone'),
+                name: 'userInfo.phone',
             },
             {
                 xtype: 'combobox',
