@@ -52,6 +52,10 @@
                     itemId: 'menu.settings',
                     hidden: !Ilc.Configuration.claimExists('ui-settings-read')
                 },
+                {
+                    text: Ilc.resources.Manager.getResourceString('mainMenu.planning'),
+                    itemId: 'menu.settings'
+                },
                 '->',
                 {
                     text: Ilc.Configuration.get().username,

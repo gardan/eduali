@@ -15,7 +15,7 @@
         var me = this;
 
         var settingsContainer = Ext.create('Ext.panel.Panel', {
-            title: 'Panel 2',
+            title: '&nbsp;',
             flex: 1
         });
 

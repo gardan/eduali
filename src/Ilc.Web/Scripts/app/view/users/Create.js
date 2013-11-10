@@ -72,6 +72,9 @@
             },
             {
                 text: Ilc.resources.Manager.getResourceString('common.cancel'),
+                handler: function() {
+                    me.close();
+                }
             }
         ];
 

@@ -17,7 +17,8 @@ Ext.application({
         'Roles',
         'Subjects',
         'Settings',
-        'StatusDefinitions'
+        'StatusDefinitions',
+        // 'Planning'
     ],
 
     requires: [
@@ -38,7 +39,8 @@ Ext.application({
         'users.List',
         'roles.List',
         'subjects.List',
-        'settings.Default'
+        'settings.Default',
+        'planning.Default'
     ],  
         
     routes: {
@@ -52,7 +54,8 @@ Ext.application({
         'users': 'users#list',
         'roles': 'roles#list',
         'subjects': 'subjects#list',
-        'settings': 'settings#default'
+        'settings': 'settings#default',
+        'planning': 'planning#default'
     },
 
     enableRouter: true,

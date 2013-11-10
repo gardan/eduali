@@ -14,6 +14,7 @@
         'mainMenu.roles': 'Roles',
         'mainMenu.subjects': 'Subjects',
         'mainMenu.settings': 'Settings',
+        'mainMenu.planning': 'Planning',
 
         'common.name': 'Name',
         'common.status': 'Status',
