@@ -1,61 +1,54 @@
 ﻿Ext.define('Ilc.view.settings.Categories', {
-    extend: 'Ext.tree.Panel',
+    extend: 'Ext.panel.Panel',
     xtype: 'settingscategories',
 
     title: 'Settings',
     width: 250,
     autoScroll: true,
-    rootVisible: false,
+
+    tpl: '<tpl for="."><div class="feed-list-item">{text}</div></tpl>',
 
     initComponent: function() {
         var me = this;
 
-        var store = Ext.create('Ext.data.TreeStore', {
+        var store = Ext.create('Ext.data.Store', {
             fields: ['component', 'text'],
-            root: {
-                expanded: true,
-                children: [
-                    {
-                        text: 'General',
-                        expanded: true,
-                        children: [
-                            {
-                                text: 'Roles',
-                                leaf: true,
-                                component: 'Ilc.view.roles.List'
-                            },
-                            {
-                                text: 'Subjects',
-                                leaf: true,
-                                component: 'Ilc.view.subjects.List'
-                            },
-                            {
-                                text: 'Users',
-                                leaf: true,
-                                component: 'Ilc.view.users.List'
-                            },
-                            {
-                                text: 'Status Definitions',
-                                leaf: true,
-                                component: 'Ilc.view.statusDefinitions.List'
-                            }
-                        ]
+            data: [
+                {
+                    text: 'Roles',
+                    component: 'Ilc.view.roles.List'
+                },
+                {
+                    text: 'Subjects',
+                    component: 'Ilc.view.subjects.List'
+                },
+                {
+                    text: 'Users',
+                    component: 'Ilc.view.users.List'
+                },
+                {
+                    text: 'Status Definitions',
+                    component: 'Ilc.view.statusDefinitions.List'
+                }
+            ]
+        });
+
+        me.items = [
+            {
+                xtype: 'dataview',
+                trackOver: true,
+                store: store,
+                cls: 'settings-list',
+                itemSelector: '.settings-item',
+                overItemCls: 'settings-list-item-hover',
+                tpl: '<tpl for="."><div class="settings-item">{text}</div></tpl>',
+                listeners: {
+                    select: function (view, record) {
+                        me.fireEvent('leafselected', view, record);
                     }
-                ]
+                }
             }
-        });
-
-        me.on('beforeselect', function (tree, record) {
-            if (record.get('leaf') != true) return false;
-        });
-
-        me.on('select', function (tree, record) {
-            if (record.get('leaf') == true) {
-                me.fireEvent('leafselected', tree, record);
-            }
-        });
-
-        me.store = store;
+        ];
 
         me.addEvents(
             'leafselected'

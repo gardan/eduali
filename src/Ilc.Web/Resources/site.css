@@ -1,17 +1,38 @@
 ﻿
 /* Grid show/hide buttons */
 .add-col {
-    background-image: url('../images/web/add.png')
+    background-image: url('../images/web/add.png');
 }
+
 .view-col {
-    background-image: url('../images/web/view.png')
+    background-image: url('../images/web/view.png');
 }
 
 /* Grid complete/pending row indicator */
 .grid-row-complete {
-    color:green
+    color: green;
 }
 
 .grid-row-pending {
-    color:red
+    color: red;
+}
+/* Settings - Left list */
+.settings-item {
+    margin-top: 3px;
+    padding-left: 20px;
+    font-size: 11px;
+    line-height: 20px;
+    cursor: pointer;
+    border: 1px solid #fff;
+}
+
+.settings-list-item-hover {
+    background-color: #eee;
+}
+
+.settings-list .x-item-selected {
+    font-weight: bold;
+    color: #15428B;
+    background-color: #DFE8F6;
+    border: 1px dotted #A3BAE9;
 }
