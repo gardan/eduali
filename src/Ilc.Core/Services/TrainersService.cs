@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models;
+using Ilc.Data.Models.SimpleMembership;
 
 namespace Ilc.Core.Services
 {
@@ -91,7 +93,8 @@ namespace Ilc.Core.Services
             } while (!usernameFound);
 
             // Creat the user
-            var newUser = new UserProfile() {Username = username, UserDetails = userDetails};
+            var role = Uow.Roles.GetAll().FirstOrDefault(r => r.RoleName == "Trainer");
+            var newUser = new UserProfile() {Username = username, UserDetails = userDetails, Roles = new List<Role>() { role }};
             Users.Create(newUser, username);
 
             // Append the userId to the trainer

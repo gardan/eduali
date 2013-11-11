@@ -3,19 +3,15 @@
 
     fields: ['id', 'username', 'userInfo'],
 
-    claims: '',
-
     constructor: function (args) {
         var me = this;
-
-        me.claims = args.claims;
 
         var extraParams = {
             format: 'json'
         };
 
-        if (me.claims != '') {
-            extraParams.claims = me.claims;
+        if (args && args.claims != null) {
+            extraParams.claims = args.claims;
         }
 
         me.proxy = {
