@@ -87,7 +87,7 @@ namespace Ilc.Web.Services
         public UserInfoModel UserInfo { get; set; }
     }
 
-    public class FilterParametersUsers : FilterArguments
+    public class FilterParametersUsers : FilterArgumentsUsers
     {
         
     }

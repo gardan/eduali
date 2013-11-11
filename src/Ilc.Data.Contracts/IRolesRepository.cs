@@ -11,5 +11,6 @@ namespace Ilc.Data.Contracts
     public interface IRolesRepository : IRepository<Role>
     {
         List<RoleClaim> GetRolesClaims(IList<string> roles);
+        List<Role> GetRolesByClaims(string[] claims);
     }
 }

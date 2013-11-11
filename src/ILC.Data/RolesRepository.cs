@@ -34,5 +34,23 @@ namespace Ilc.Data
             }
             return retClaims;
         }
+
+        public List<Role> GetRolesByClaims(string[] claims)
+        {
+            var roles = DbSet.ToList();
+            var retRoles = new List<Role>();
+            foreach (var role in roles)
+            {
+                foreach (var claim in claims)
+                {
+                    if (role.Claims.Any(c => c.Name == claim))
+                    {
+                        retRoles.Add(role);
+                    }
+                }
+            }
+
+            return retRoles;
+        }
     }
 }

@@ -4,7 +4,7 @@ namespace Ilc.Core.Contracts
 {
     public interface IUsersService
     {
-        FilteredResults<UserProfile> GetFiltered(FilterArguments parameters);
+        FilteredResults<UserProfile> GetFiltered(FilterArgumentsUsers parameters);
         UserProfile GetByUsername(string username);
         UserProfile GetByUsername();
         UserProfile GetById(int id);

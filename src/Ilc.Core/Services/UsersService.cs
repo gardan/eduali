@@ -12,7 +12,7 @@ namespace Ilc.Core.Services
     {
         public IUow Uow { get; set; }
 
-        public FilteredResults<UserProfile> GetFiltered(FilterArguments parameters)
+        public FilteredResults<UserProfile> GetFiltered(FilterArgumentsUsers parameters)
         {
             // set defaults
             parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
@@ -21,6 +21,14 @@ namespace Ilc.Core.Services
             var query = Uow.UserProfiles.GetAll();
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
+
+            // filter by claims
+            if (!string.IsNullOrEmpty(parameters.Claims))
+            {
+                var roles = Uow.Roles.GetRolesByClaims(parameters.Claims.Split(",".ToCharArray()));
+                var roleIds = roles.Select(r => r.Id);
+                query = query.Where(u => u.Roles.Any(r => roleIds.Contains(r.RoleId)));
+            }
 
             // search
             foreach (var filter in parameters.Filter)

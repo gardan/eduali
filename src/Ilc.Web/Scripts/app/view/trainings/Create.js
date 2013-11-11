@@ -25,9 +25,15 @@
         var subjectsStore = Ext.create('Ilc.store.Subjects');
         var trainersStore = Ext.create('Ilc.store.Trainers');
 
-        var salesUsersStore = Ext.create('Ilc.store.Users').load();
-        var coordinatorsUsersStore = Ext.create('Ilc.store.Users').load();
-        var administratorsUsersStore = Ext.create('Ilc.store.Users').load();
+        var salesUsersStore = Ext.create('Ilc.store.Users', {
+            claims: 'tasks-sales'
+        });
+        var coordinatorsUsersStore = Ext.create('Ilc.store.Users', {
+            claims: 'tasks-coordinator'
+        });
+        var administratorsUsersStore = Ext.create('Ilc.store.Users', {
+            claims: 'tasks-administrator'
+        });
 
         var customerComboBox = Ext.create('Ext.form.ComboBox', {
             store: customersStore,
