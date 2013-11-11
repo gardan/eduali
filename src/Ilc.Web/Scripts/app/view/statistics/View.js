@@ -6,6 +6,10 @@
         align: 'stretch'
     },
 
+    style: {
+        'background-color': 'white'
+    },
+
     constructor: function () {
         var me = this;
 
