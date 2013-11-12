@@ -10,8 +10,8 @@
             triggerAction: 'all',
             editable: false,
             queryMode: 'local',
-            displayField: 'name' //,
-            // valueField: '',
+            displayField: 'name', //,
+            valueField: 'id',
         });
 
         // Fix for this: https://www.assembla.com/spaces/bryntum/support/tickets/13#/activity/ticket:
@@ -33,7 +33,7 @@
                 handler: function () {
                     var val = eventsCombo.getValue(),
                         // doHighlight = Ext.getCmp('btnHighlight').pressed,
-                        rec = args.eventStore.getAt(args.eventStore.find('Name', val));
+                        rec = me.eventStore.getAt(me.eventStore.find('id', val));
 
                     if (rec) {
                         me.getSchedulingView().scrollEventIntoView(rec, true);
