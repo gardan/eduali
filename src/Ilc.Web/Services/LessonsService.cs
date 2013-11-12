@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
+using Ilc.Core;
 using Ilc.Core.Contracts;
 using Ilc.Web.Models;
 using ServiceStack.Common.Web;
@@ -66,6 +67,47 @@ namespace Ilc.Web.Services
                     Data = data
                 };
         }
+
+        public FilteredDataModel<LessonScheduleModelNormal> Get(FilterParametersLessonsSchedule request)
+        {
+            var trainings = Trainings.GetFilteredTrainings(new FilterArguments());
+            var data = new List<LessonScheduleModelNormal>();
+            var id = 1;
+
+            foreach (var training in trainings.Data)
+            {
+                var scheduleDays = training.ScheduleDays;
+               
+
+                foreach (var day in scheduleDays)
+                {
+                    data.Add(new LessonScheduleModelNormal()
+                    {
+                        Id = id++,
+                        StartDate = day.StartDate,
+                        EndDate = day.EndDate,
+                        Name = day.LessonName,
+                        ResourceId = training.TrainerId ?? 0 // This must be the trainerId
+                    });
+                }
+            }
+
+
+
+            return new FilteredDataModel<LessonScheduleModelNormal>()
+            {
+                Data = data
+            };
+        }
+    }
+
+    public class LessonScheduleModelNormal
+    {
+        public int Id { get; set; }
+        public int ResourceId { get; set; }
+        public string Name { get; set; }
+        public DateTimeOffset StartDate { get; set; }
+        public DateTimeOffset EndDate { get; set; }
     }
 
     [DataContract]
@@ -104,6 +146,10 @@ namespace Ilc.Web.Services
     public class FilterParametersLessonSchedule : FilterParametersBase
     {
         public int TrainingId { get; set; }
+    }
+
+    public class FilterParametersLessonsSchedule : FilterParametersBase
+    {
     }
 
     public class FilterParametersLessons : FilterParametersBase

@@ -21,7 +21,6 @@
         var me = this;
 
         // Fix for this: https://www.assembla.com/spaces/bryntum/support/tickets/13#/activity/ticket:
-
         Ext.apply(this, {
             columns: [
                 { header: Ilc.resources.Manager.getResourceString('common.lessons'), width: 130, dataIndex: 'Name', visible: false }

@@ -161,6 +161,7 @@
     <Content Include="Scripts\app\Configuration.js" />
     <Content Include="Scripts\app\controller\Customers.js" />
     <Content Include="Scripts\app\controller\Home.js" />
+    <Content Include="Scripts\app\controller\Planning.js" />
     <Content Include="Scripts\app\controller\Roles.js" />
     <Content Include="Scripts\app\controller\Settings.js" />
     <Content Include="Scripts\app\controller\Statistics.js" />
@@ -194,6 +195,7 @@
     <Content Include="Scripts\app\resources\Manager.js" />
     <Content Include="Scripts\app\resources\Resources.nl.js" />
     <Content Include="Scripts\app\resources\Resources.ro.js" />
+    <Content Include="Scripts\app\scheduler\Planning.js" />
     <Content Include="Scripts\app\scheduler\Training.js" />
     <Content Include="Scripts\app\store\Claims.js" />
     <Content Include="Scripts\app\store\GridConfig.js" />

@@ -14,7 +14,7 @@ namespace Ilc.Core.Services
         public FilteredResults<Training> GetFilteredTrainings(FilterArguments parameters)
         {
             // set defaults
-            parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
+            parameters.Length = parameters.Length == 0 ? 100 : parameters.Length;
 
             var query = Uow.Trainings.GetAll();
             var totalResults = query.Count();
