@@ -15,7 +15,9 @@
         'mainMenu.subjects': 'Subjects',
         'mainMenu.settings': 'Settings',
         'mainMenu.planning': 'Planning',
-
+        
+        'common.trainingId': 'Training Id',
+        'common.id': 'Id',
         'common.name': 'Name',
         'common.status': 'Status',
         'common.execute': 'Execute',

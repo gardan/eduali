@@ -45,13 +45,36 @@
             features: [filters],
             columns: [
                 {
-                    text: Ilc.resources.Manager.getResourceString('common.name'),
+                    text: Ilc.resources.Manager.getResourceString('common.trainingId'),
+                    dataIndex: 'taskObject',
+                    renderer: function(value) {
+                        return value.id;
+                    }
+                },
+                {
+                    text: Ilc.resources.Manager.getResourceString('common.status'),
                     dataIndex: 'name',
                     flex: 1,
                     filter: {
                         type: 'string'
                     }
 
+                },
+                {
+                    text: Ilc.resources.Manager.getResourceString('common.trainer'),
+                    dataIndex: 'taskObject',
+                    flex: 1,
+                    renderer: function (value) {
+                        return value.trainer.name;
+                    }
+                },
+                {
+                    text: Ilc.resources.Manager.getResourceString('common.subject'),
+                    dataIndex: 'taskObject',
+                    flex: 1,
+                    renderer: function (value) {
+                        return value.subject.name;
+                    }
                 },
                 {
                     text: Ilc.resources.Manager.getResourceString('common.customer'),
