@@ -10,7 +10,7 @@ namespace Ilc.Core
     public static class SystemClaims
     {
         public const string TasksSales = "tasks-sales";
-        public const string TasksAdministration = "tasks-administration";
+        public const string TasksAdministration = "tasks-administrator";
         public const string TasksCoordinator = "tasks-coordinator";
         public const string TasksTrainer = "tasks-trainer";
         public const string TasksStudent = "tasks-student";
