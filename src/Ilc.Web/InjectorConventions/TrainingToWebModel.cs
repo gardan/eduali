@@ -33,7 +33,7 @@ namespace Ilc.Web.InjectorConventions
             }
             if (c.SourceProp.Name == "Trainer" && c.TargetProp.Name == "Trainer")
             {
-                return new TrainerModel().InjectFrom(c.SourceProp.Value);
+                return new TrainerModel().InjectFrom<TrainerToTrainerModel>(c.SourceProp.Value);
             }
             if (c.SourceProp.Name == "Customer" && c.TargetProp.Name == "Customer")
             {
