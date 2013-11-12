@@ -26,6 +26,10 @@ namespace Ilc.Core.Services
                 var inFilter = filter;
                 switch (inFilter.Field)
                 {
+                    case "id":
+                        var id = Convert.ToInt32(inFilter.Value);
+                        query = query.Where(t => t.Id == id);
+                        break;
                     case "statusFriendlyName":
                         // http://www.albahari.com/nutshell/predicatebuilder.aspx
                         var statusDefinitions = Uow.StatusDictionary.GetAll().Where(s => s.FriendlyName.Contains(inFilter.Value)).ToList();
