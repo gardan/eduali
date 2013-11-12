@@ -43,6 +43,12 @@
                    me.fireEvent('updatetraining', me, model);
                     me.mask();
                 }
+            },
+            {
+                text: Ilc.resources.Manager.getResourceString('common.cancel'),
+                handler: function () {
+                    me.fireEvent('closewindow');
+                }
             }
         ];
 

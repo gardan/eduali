@@ -253,6 +253,12 @@
                                     me.mask();
                                     me.fireEvent('updatetraining', me, args);
                                 }
+                            },
+                            {
+                                text: Ilc.resources.Manager.getResourceString('common.cancel'),
+                                handler: function() {
+                                    me.close();
+                                }
                             }
                         ]
 
@@ -302,6 +308,9 @@
                         listeners: {
                             updatetraining: function(sender, args) {
                                 me.fireEvent('updatetraining', sender, args);
+                            },
+                            closewindow: function() {
+                                me.close();
                             }
                         }
                     })
