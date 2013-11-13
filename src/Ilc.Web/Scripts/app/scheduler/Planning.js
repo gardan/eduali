@@ -63,6 +63,22 @@
                 handler: function () {
                     me.shiftNext();
                 }
+            },
+            {
+                text: '+',
+                scale: 'medium',
+                iconCls: 'zoomIn',
+                handler: function () {
+                    me.zoomIn();
+                }
+            },
+            {
+                text: '-',
+                scale: 'medium',
+                iconCls: 'zoomOut',
+                handler: function () {
+                    me.zoomOut();
+                }
             }
         ];
 
