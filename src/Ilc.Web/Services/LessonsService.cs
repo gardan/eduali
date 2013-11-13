@@ -88,7 +88,7 @@ namespace Ilc.Web.Services
                         EndDate = day.EndDate,
                         Name = day.LessonName,
                         ResourceId = training.TrainerId ?? 0, // This must be the trainerId
-                        Color = "#4ADAF7"
+                        Color = training.Color
                     });
                 }
             }

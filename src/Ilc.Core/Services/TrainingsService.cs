@@ -78,6 +78,9 @@ namespace Ilc.Core.Services
 
         public void Create(Training newTraining)
         {
+            // add a random color
+            newTraining.Color = "#" + Misc.Utils.GetRandomHexString(6);
+
             Uow.Trainings.Add(newTraining);
             Uow.Commit();
         }

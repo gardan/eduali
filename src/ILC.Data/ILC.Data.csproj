@@ -207,6 +207,10 @@
     <Compile Include="Migrations\201311081045402_AddingGradingSystemTable.Designer.cs">
       <DependentUpon>201311081045402_AddingGradingSystemTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201311131102157_TrainingColorColumn.cs" />
+    <Compile Include="Migrations\201311131102157_TrainingColorColumn.Designer.cs">
+      <DependentUpon>201311131102157_TrainingColorColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -346,6 +350,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201311081045402_AddingGradingSystemTable.resx">
       <DependentUpon>201311081045402_AddingGradingSystemTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311131102157_TrainingColorColumn.resx">
+      <DependentUpon>201311131102157_TrainingColorColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
