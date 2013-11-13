@@ -5,7 +5,7 @@
         var style = 'background-color: ' + eventRecord.get('color');
         tmplData.style = style;
 
-        // return eventRecord.get('name');
+        return eventRecord.get('name');
         // return {
         //     startDate: eventRecord.get('startDate')    
         // };
@@ -16,6 +16,13 @@
     //     'Start date: {startDate}' +
     //     '</div>'
     // ),
+
+    tooltipTpl: new Ext.XTemplate(
+        '<div>' +
+        'Subject: <b>{subjectName}</b> <br />' +
+        'Customer: <b>{customerName}</b>' +
+        '</div>'
+    ),
 
     initComponent: function() {
         var me = this;

@@ -88,7 +88,9 @@ namespace Ilc.Web.Services
                         EndDate = day.EndDate,
                         Name = day.LessonName,
                         ResourceId = training.TrainerId ?? 0, // This must be the trainerId
-                        Color = training.Color
+                        Color = training.Color,
+                        CustomerName = training.Customer.Name,
+                        SubjectName = training.Subject.Name
                     });
                 }
             }
@@ -110,6 +112,8 @@ namespace Ilc.Web.Services
         public DateTimeOffset StartDate { get; set; }
         public DateTimeOffset EndDate { get; set; }
         public string Color { get; set; }
+        public string CustomerName { get; set; }
+        public string SubjectName { get; set; }
     }
 
     [DataContract]

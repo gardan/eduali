@@ -13,7 +13,9 @@
                 { name: 'resourceId', type: 'int' },
                 { name: 'startDate', type: 'date', dateFormat: 'c' },
                 { name: 'endDate', type: 'date', dateFormat: 'c' },
-                { name: 'color', type: 'string' }
+                { name: 'color', type: 'string' },
+                { name: 'customerName', type: 'string' },
+                { name: 'subjectName', type: 'string' }
             ],
              
             idProperty: 'id',
