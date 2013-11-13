@@ -1,8 +1,6 @@
 ﻿Ext.define('Ilc.resources.Resources', {
     singleton: true,
     
-    locale: 'en-GB',
-
     resources: {
         'mainMenu.tasks': 'Tasks',
         'mainMenu.trainings': 'Trainings',
