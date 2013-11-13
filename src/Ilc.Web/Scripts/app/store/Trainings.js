@@ -12,17 +12,17 @@
     //    }
     //],
     
-    proxy: {
-        type: 'rest',
-        url: 'api/trainings',
-        extraParams: {
-            format: 'json'
-        },
-        reader: {
-            type: 'json',
-            root: 'data',
-            totalProperty: 'totalRecords'
-        }
-    }
+    //proxy: {
+    //    type: 'rest',
+    //    url: 'api/trainings',
+    //    extraParams: {
+    //        format: 'json'
+    //    },
+    //    reader: {
+    //        type: 'json',
+    //        root: 'data',
+    //        totalProperty: 'totalRecords'
+    //    }
+    //}
     
 });

@@ -90,7 +90,8 @@ namespace Ilc.Web.Services
                         ResourceId = training.TrainerId ?? 0, // This must be the trainerId
                         Color = training.Color,
                         CustomerName = training.Customer.Name,
-                        SubjectName = training.Subject.Name
+                        SubjectName = training.Subject.Name,
+                        TrainingId = training.Id
                     });
                 }
             }
@@ -114,6 +115,7 @@ namespace Ilc.Web.Services
         public string Color { get; set; }
         public string CustomerName { get; set; }
         public string SubjectName { get; set; }
+        public int TrainingId { get; set; }
     }
 
     [DataContract]

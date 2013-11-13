@@ -1,6 +1,10 @@
 ﻿Ext.define('Ilc.view.planning.Default', {
     extend: 'Ext.container.Container',
     
+    requires: [
+        'Ilc.model.Training'
+    ],
+
     initComponent: function() {
         var me = this;
 
@@ -86,6 +90,24 @@
             viewPreset: 'hourAndDay'
             // startDate: new Date('11-09-2013T10:00:00'),
             // endDate: new Date('11-16-2013T12:00:00')
+        });
+
+        planningScheduler.on('eventdblclick', function(scheduler, eventRecord, e, eOpts) {
+            scheduler.mask();
+
+            var trainingId = eventRecord.get('trainingId');
+            Ext.ModelManager.getModel('Ilc.model.Training').load(trainingId, {
+                success: function (training) {
+                    scheduler.unmask();
+                    
+                    var window = Ext.create('Ilc.view.trainings.View', {
+                        closeAction: 'destroy',
+                        modal: true,
+                        model: training
+                    }).show();
+
+                }
+            });
         });
 
         me.items = [

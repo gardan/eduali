@@ -1,6 +1,17 @@
 ﻿Ext.define('Ilc.model.Training', {
     extend: 'Ext.data.Model',
-    fields: ['status', 'statusFriendlyName', 'customer', 'trainer', 'subject', 'owners', 'desiredStartDate', 'desiredEndDate', 'students', 'interviewPlan', 'gradingSystemId'],
-    
-    
+    fields: ['id', 'status', 'statusFriendlyName', 'customer', 'trainer', 'subject', 'owners', 'desiredStartDate', 'desiredEndDate', 'students', 'interviewPlan', 'gradingSystemId'],  
+
+    proxy: {
+        type: 'rest',
+        url: 'api/trainings',
+        extraParams: {
+            format: 'json'
+        },
+        reader: {
+            type: 'json',
+            root: 'data',
+            totalProperty: 'totalRecords'
+        }
+    }
 });

@@ -1,5 +1,6 @@
 ﻿Ext.define('Ilc.view.trainings.View', {
     extend: 'Ext.window.Window',
+    xtype: 'viewtrainingwindow',
 
     title: 'Trainings details',
     requires: [

@@ -37,9 +37,19 @@ namespace Ilc.Web.Services
             var results = Trainings.GetFilteredTrainings(request);
             ret.TotalDisplayRecords = results.TotalDisplayRecords;
             ret.TotalRecords = results.TotalRecords;
-            ret.Data = results.Data.Select(r => new TrainingModel().InjectFrom <TrainingToWebModel>(r) as TrainingModel).ToList();
+            ret.Data = results.Data.Select(r => new TrainingModel().InjectFrom<TrainingToWebModel>(r) as TrainingModel).ToList();
 
             return ret;
+        }
+
+        public HttpResult Get(UpdateTrainingModel request)
+        {
+            var trainingModel =
+                new TrainingModel().InjectFrom<TrainingToWebModel>(Trainings.GetById(request.Id)) as TrainingModel;
+            return new HttpResult(new[] { trainingModel })
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
         }
 
         public HttpResult Post(CreateTrainingModel request)
