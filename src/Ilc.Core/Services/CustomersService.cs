@@ -27,6 +27,10 @@ namespace Ilc.Core.Services
                 var inFilter = filter;
                 switch (filter.Field)
                 {
+                    case "id":
+                        var id = Convert.ToInt32(inFilter.Value);
+                        query = query.Where(c => c.Id == id);
+                        break;
                     case "name":
                         query = query.Where(c => c.Name.Contains(inFilter.Value));
                         break;

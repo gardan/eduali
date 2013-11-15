@@ -49,6 +49,13 @@
             ],
             columns: [
                 {
+                    dataIndex: 'id',
+                    text: Ilc.resources.Manager.getResourceString('common.id'),
+                    filter: {
+                        type: 'string'
+                    }
+                },
+                {
                     dataIndex: 'name',
                     text: Ilc.resources.Manager.getResourceString('common.name'),
                     flex: 1,
