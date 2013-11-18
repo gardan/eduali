@@ -23,7 +23,7 @@
             features: [filters],
             columns: Ilc.helpers.GridColumns.process([
                 {
-                    dataIndex: 'id',
+                    dataIndex: 'compositeId',
                     text: Ilc.resources.Manager.getResourceString('common.id'),
                     filter: {
                         type: 'string'

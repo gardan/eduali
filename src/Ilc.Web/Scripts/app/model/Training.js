@@ -1,6 +1,6 @@
 ﻿Ext.define('Ilc.model.Training', {
     extend: 'Ext.data.Model',
-    fields: ['id', 'status', 'statusFriendlyName', 'customer', 'trainer', 'subject', 'owners', 'desiredStartDate', 'desiredEndDate', 'students', 'interviewPlan', 'gradingSystemId'],  
+    fields: ['id', 'compositeId', 'status', 'statusFriendlyName', 'customer', 'trainer', 'subject', 'owners', 'desiredStartDate', 'desiredEndDate', 'students', 'interviewPlan', 'gradingSystemId'],  
 
     proxy: {
         type: 'rest',

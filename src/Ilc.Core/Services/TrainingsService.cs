@@ -81,6 +81,9 @@ namespace Ilc.Core.Services
             // add a random color
             newTraining.Color = "#" + Misc.Utils.GetRandomHexString(6);
 
+            // Create the number of customer training
+            newTraining.NoOfCustomerTraining = GetNoOfNewCustomerTraining(newTraining.CustomerId);
+
             Uow.Trainings.Add(newTraining);
             Uow.Commit();
         }
@@ -95,6 +98,18 @@ namespace Ilc.Core.Services
         {
             Uow.Trainings.Delete(id);
             Uow.Commit();
+        }
+
+        /// <remarks>
+        /// This function is not really safe, if two trainings get created, for the same customer, at the exact same time, 
+        /// they could end up with the same NoOfCustomerTraining.
+        /// </remarks>
+        private int GetNoOfNewCustomerTraining(int customerId)
+        {
+            var customer = Uow.Customers.GetById(customerId);
+            if (customer.Trainings.Count == 0) return 1;
+
+            return customer.Trainings.LastOrDefault().NoOfCustomerTraining + 1;
         }
     }
 }

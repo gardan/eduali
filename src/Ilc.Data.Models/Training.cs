@@ -69,6 +69,8 @@ namespace Ilc.Data.Models
         public GradingSystem GradingSystem { get; set; }
 
         public string Color { get; set; }
+
+        public int NoOfCustomerTraining { get; set; }
     }
 
     public class TrainingOwnersConfiguration : EntityBase

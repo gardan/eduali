@@ -6,7 +6,12 @@ namespace Ilc.Web.Models
     public class TrainingModel : StatusModel
     {
         public int Id { get; set; }
+        public string CompositeId {
+            get { return string.Format("{0}-{1}", CustomerId, NoOfCustomerTraining); }
+        }
 
+        public int NoOfCustomerTraining { get; set; }
+        
         public UserModel[] Owners { get; set; }
         public TrainerModel Trainer { get; set; }
         public CustomerModel Customer { get; set; }
