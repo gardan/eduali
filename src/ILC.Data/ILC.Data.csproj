@@ -215,6 +215,10 @@
     <Compile Include="Migrations\201311180925340_NumberOfTrainingForCustomerColumn.Designer.cs">
       <DependentUpon>201311180925340_NumberOfTrainingForCustomerColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201311181239496_ManyToManyCustomerToUsersContactPersons.cs" />
+    <Compile Include="Migrations\201311181239496_ManyToManyCustomerToUsersContactPersons.Designer.cs">
+      <DependentUpon>201311181239496_ManyToManyCustomerToUsersContactPersons.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -360,6 +364,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201311180925340_NumberOfTrainingForCustomerColumn.resx">
       <DependentUpon>201311180925340_NumberOfTrainingForCustomerColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311181239496_ManyToManyCustomerToUsersContactPersons.resx">
+      <DependentUpon>201311181239496_ManyToManyCustomerToUsersContactPersons.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

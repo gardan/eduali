@@ -1,5 +1,6 @@
 ﻿Ext.define('Ilc.view.customers.Edit', {
-    extend: 'Ext.window.Window',
+    extend: 'Ext.panel.Panel',
+    xtype: 'editcustomer',
 
     title: Ilc.resources.Manager.getResourceString('common.customer'),
 
@@ -7,30 +8,36 @@
         'Ilc.utils.Forms'
     ],
 
-    constructor: function (config) {
-        
-        var me = this;
+    customer: null,
 
-        var cfgModel = config.model;
+    bodyPadding: 10,
+    
+    editComplete: function () {
+        this.fireEvent('editcomplete');
+        this.fireEvent('cancelclicked');
+    },
+
+    initComponent: function () {       
+        var me = this;
 
         me.items = [
             {
                 xtype: 'textfield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.name'),
                 name: 'name',
-                value: cfgModel.name
+                value: me.customer.name
             },
             {
                 xtype: 'textfield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.bankAccount'),
                 name: 'bankAccount',
-                value: cfgModel.bankAccount
+                value: me.customer.bankAccount
             },
             {
                 xtype: 'textfield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.billingAddress'),
                 name: 'billingAddress',
-                value: cfgModel.billingAddress
+                value: me.customer.billingAddress
             }
             
         ];
@@ -45,21 +52,23 @@
                     var textboxes = me.query('textfield');
 
                     model = Ilc.utils.Forms.extractModel(textboxes);
-                    model.id = cfgModel.id;
+                    model.id = me.customer.id;
                     // raise the event
-                    me.fireEvent('editCustomer', me, model);
+                    me.fireEvent('edit', me, model);
                 }
             },
             {
                 text: Ilc.resources.Manager.getResourceString('common.cancel'),
                 handler: function() {
-                    me.close();
+                    me.fireEvent('cancelclicked', me);
                 }
             }
         ];
 
         me.addEvents(
-            'editCustomer'
+            'edit',
+            'editcomplete',
+            'cancelclicked'
         );
 
         me.callParent(arguments);

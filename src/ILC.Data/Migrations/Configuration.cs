@@ -205,6 +205,18 @@ namespace Ilc.Data.Migrations
 
         private void SeedCustomer(AppContext context)
         {
+            var user1 = new UserProfile()
+            {
+                Username = "ilc",
+                // Roles = new List<Role>() { role },
+                UserDetails = new UserDetails()
+                {
+                    Email = "ilc@ilc.ilc",
+                    FirstName = "Ilc",
+                    LastName = "Boss",
+                    Phone = "03418497814879"
+                }
+            };
             context.Customers.AddOrUpdate(c => c.Name,
                 new Customer()
                     {
@@ -215,9 +227,8 @@ namespace Ilc.Data.Migrations
                             {
                                 new ContactPerson()
                                     {
-                                        Email = "ilc@ilc.com",
-                                        IsMain = true,
-                                        Name = "George Adams"
+                                        UserProfile = user1,
+                                        IsMain = true
                                     }
                             }
                     });

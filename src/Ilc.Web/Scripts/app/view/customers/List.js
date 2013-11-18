@@ -107,15 +107,13 @@
         });
 
         customersGrid.on('itemdblclick', function (grid, record) {
-            var editWindow = Ext.create('Ilc.view.customers.Edit', {
+            var editWindow = Ext.create('Ilc.view.customers.View', {
                 closeAction: 'destroy',
-                model: record.data
+                customer: record.data
             });
 
-            editWindow.on('editCustomer', function (sender, model) {
-                me.fireEvent('editCustomer', sender, model, {
-                    store: customersStore
-                });
+            editWindow.on('reloadcustomers', function() {
+                customersStore.load();
             });
 
             editWindow.show();

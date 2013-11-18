@@ -332,6 +332,7 @@
     <Content Include="Scripts\app\ux\TabScrollerMenu.js" />
     <Content Include="Scripts\app\ux\ToolbarDroppable.js" />
     <Content Include="Scripts\app\ux\TreePicker.js" />
+    <Content Include="Scripts\app\view\customers\View.js" />
     <Content Include="Scripts\app\view\customers\Create.js" />
     <Content Include="Scripts\app\view\customers\Edit.js" />
     <Content Include="Scripts\app\view\customers\List.js" />
@@ -3998,7 +3999,9 @@
       <Name>Ilc.Data.Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Scripts\app\view\customers\contacts\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

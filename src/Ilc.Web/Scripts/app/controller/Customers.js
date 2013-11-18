@@ -7,6 +7,9 @@
                 'addCustomer': this.addCustomer,
                 'editCustomer': this.editCustomer,
                 'deleteCustomer': this.deleteCustomer
+            },
+            'editcustomer': {
+                'edit': this.editCustomer
             }
         });
     },
@@ -67,10 +70,11 @@
         
         customersService.edit(model)
         .then(function (response) {
-            options.store.load();
+            // options.store.load();
         })
         .finally(function () {
-            sender.close();
+            sender.editComplete();
+            // sender.close();
         });
     },
     
