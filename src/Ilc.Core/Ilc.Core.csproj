@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\ContactsService.cs" />
+    <Compile Include="Contracts\IContactsService.cs" />
     <Compile Include="FilterArgumentsContacts.cs" />
     <Compile Include="FilterArgumentsUsers.cs" />
     <Compile Include="Services\GradesService.cs" />

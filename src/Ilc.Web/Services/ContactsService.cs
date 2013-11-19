@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using Ilc.Core;
+using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models;
 using Ilc.Web.Models;
@@ -16,14 +17,15 @@ namespace Ilc.Web.Services
     public class ContactsService : Service
     {
         public IUow Uow { get; set; }
+        public IContactsService Contacts { get; set; }
 
         public FilteredDataModel<ContactModel> Get(FilterParametersContacts request)
         {
-            var results = Uow.Customers.GetById(request.CustomerId).ContactPersons;
+            var results = Contacts.GetFiltered(request);
 
             var retResults = new List<ContactModel>();
 
-            foreach (var contactPerson in results)
+            foreach (var contactPerson in results.Data)
             {
                 retResults.Add(new ContactModel()
                     {
