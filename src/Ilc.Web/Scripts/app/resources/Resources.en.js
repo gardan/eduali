@@ -109,6 +109,10 @@
         'common.lastName': 'Lastname',
         'common.email': 'Email',
         'common.newSubject': 'New subject',
+        'common.yes': 'Yes',
+        'common.no': 'No',
+        'common.main': 'Main',
+        'common.trainingContact': 'Training contact',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',

@@ -73,8 +73,26 @@ namespace Ilc.Data.Migrations
 
         private void SeedRoles(AppContext context)
         {
-            
+
             context.Roles.AddOrUpdate(r => r.RoleName,
+                                      new Role()
+                                          {
+                                              CanDelete = false,
+                                              RoleName = "Customer Contact",
+                                              Claims = new List<RoleClaim>()
+                                                  {
+                                                      // new RoleClaim() {Name = "tasks-student", Value = true.ToString()}
+                                                  }
+                                          },
+                                      new Role()
+                                          {
+                                              CanDelete = false,
+                                              RoleName = "Customer Supervizor",
+                                              Claims = new List<RoleClaim>()
+                                                  {
+                                                      // new RoleClaim() {Name = "tasks-student", Value = true.ToString()}
+                                                  }
+                                          },
                                       new Role() // Student
                                           {
                                               CanDelete = false,
@@ -205,10 +223,12 @@ namespace Ilc.Data.Migrations
 
         private void SeedCustomer(AppContext context)
         {
+            var roles = context.Roles.Where(r => r.RoleName == "Customer Contact" || r.RoleName == "Customer Supervizor").ToList();
+
             var user1 = new UserProfile()
             {
                 Username = "ilc",
-                // Roles = new List<Role>() { role },
+                Roles = new List<Role>(roles),
                 UserDetails = new UserDetails()
                 {
                     Email = "ilc@ilc.ilc",

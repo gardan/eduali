@@ -2,16 +2,20 @@
     extend: 'Ext.window.Window',
     
     requires: [
-        'Ilc.view.customers.Edit'
+        'Ilc.view.customers.Edit',
+        'Ilc.view.customers.contacts.List'
     ],
-
-    width: 600,
+    
     bodyPadding: 0,
-
+    width: 800,
     customer: null,
 
     initComponent: function() {
         var me = this;
+
+        var contactsStore = Ext.create('Ilc.store.Contacts', {
+            customerId: me.customer.id
+        });
 
         me.items = [
             {
@@ -29,6 +33,11 @@
                                 me.fireEvent('reloadcustomers');
                             }
                         }
+                    },
+                    {
+                        xtype: 'contactslist',
+                        title: 'Contacts',
+                        store: contactsStore
                     }
                 ]
             }
@@ -37,6 +46,8 @@
         me.addEvents(
             'reloadcustomers'
         );
+
+        contactsStore.load();
 
         me.callParent(arguments);
     }

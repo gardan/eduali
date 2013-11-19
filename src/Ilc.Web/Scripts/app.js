@@ -18,7 +18,8 @@ Ext.application({
         'Subjects',
         'Settings',
         'StatusDefinitions',
-        'Planning'
+        'Planning',
+        'Contacts'
     ],
 
     requires: [

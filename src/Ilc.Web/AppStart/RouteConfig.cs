@@ -48,6 +48,8 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.FilterSubjectsParameters>("/api/subjects", "GET");
             routes.Add<Services.SubjectModel>("/api/subjects", "POST");
 
+            routes.Add<Services.FilterParametersContacts>("/api/customers/{customerId}/contacts", "GET");
+
             routes.Add<Services.CreateTrainersSubjectModel>("/api/trainerssubjects", "POST");
 
             routes.Add<Services.FilterParametersGradingSystems>("/api/gradingsystems", "GET");

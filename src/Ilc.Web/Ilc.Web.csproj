@@ -159,6 +159,7 @@
     <Content Include="Resources\site.css" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\app\Configuration.js" />
+    <Content Include="Scripts\app\controller\Contacts.js" />
     <Content Include="Scripts\app\controller\Customers.js" />
     <Content Include="Scripts\app\controller\Home.js" />
     <Content Include="Scripts\app\controller\Planning.js" />
@@ -198,6 +199,7 @@
     <Content Include="Scripts\app\scheduler\Planning.js" />
     <Content Include="Scripts\app\scheduler\Training.js" />
     <Content Include="Scripts\app\store\Claims.js" />
+    <Content Include="Scripts\app\store\Contacts.js" />
     <Content Include="Scripts\app\store\GridConfig.js" />
     <Content Include="Scripts\app\grid\Transfers.js" />
     <Content Include="Scripts\app\model\Customer.js" />
@@ -332,6 +334,7 @@
     <Content Include="Scripts\app\ux\TabScrollerMenu.js" />
     <Content Include="Scripts\app\ux\ToolbarDroppable.js" />
     <Content Include="Scripts\app\ux\TreePicker.js" />
+    <Content Include="Scripts\app\view\customers\contacts\List.js" />
     <Content Include="Scripts\app\view\customers\View.js" />
     <Content Include="Scripts\app\view\customers\Create.js" />
     <Content Include="Scripts\app\view\customers\Edit.js" />
@@ -3919,6 +3922,7 @@
     <Compile Include="Models\CreateOfferModel.cs" />
     <Compile Include="Services\ClaimsService.cs" />
     <Compile Include="Services\ClientConfigurationService.cs" />
+    <Compile Include="Services\ContactsService.cs" />
     <Compile Include="Services\CustomersService.cs" />
     <Compile Include="InjectorConventions\CustomerToCustomerModel.cs" />
     <Compile Include="Models\CustomerStatisticsModel.cs" />
@@ -3999,9 +4003,7 @@
       <Name>Ilc.Data.Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\app\view\customers\contacts\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
