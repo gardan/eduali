@@ -224,6 +224,7 @@ namespace Ilc.Data.Migrations
         private void SeedCustomer(AppContext context)
         {
             var roles = context.Roles.Where(r => r.RoleName == "Customer Contact" || r.RoleName == "Customer Supervizor").ToList();
+            var supervizor = context.Roles.FirstOrDefault(r => r.RoleName == "Customer Supervizor");
 
             var user1 = new UserProfile()
             {
@@ -237,6 +238,23 @@ namespace Ilc.Data.Migrations
                     Phone = "03418497814879"
                 }
             };
+
+            var user2 = new UserProfile()
+            {
+                Username = "ilcSupervizor",
+                Roles = new List<Role>() { supervizor },
+                UserDetails = new UserDetails()
+                {
+                    Email = "ilcasd@ilc.ilc",
+                    FirstName = "Ilc",
+                    LastName = "Supervizor",
+                    Phone = "03418497814879"
+                }
+            };
+
+            AddUser(context, user1);
+            AddUser(context, user2);
+
             context.Customers.AddOrUpdate(c => c.Name,
                 new Customer()
                     {
@@ -249,6 +267,11 @@ namespace Ilc.Data.Migrations
                                     {
                                         UserProfile = user1,
                                         IsMain = true
+                                    },
+                                new ContactPerson()
+                                    {
+                                        UserProfile = user2,
+                                        IsMain = false
                                     }
                             }
                     });

@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using Ilc.Core;
 using Ilc.Data.Contracts;
+using Ilc.Data.Models;
 using Ilc.Web.Models;
+using Omu.ValueInjecter;
+using ServiceStack.Common.Web;
 using ServiceStack.ServiceInterface;
 
 namespace Ilc.Web.Services
@@ -34,6 +38,71 @@ namespace Ilc.Web.Services
             return new FilteredDataModel<ContactModel>()
                 {
                     Data = retResults
+                };
+        }
+
+        public HttpResult Put(ContactModel request)
+        {
+            var contact = Uow.Contacts.GetById(request.Id);
+            contact.InjectFrom(request);
+
+            if (request.IsMain)
+            {
+                // does it have the "Customer Contact" role?
+                if (!contact.UserProfile.Roles.Exists(r => r.RoleName == "Customer Contact"))
+                {
+                    // we also need to remove the role from the previous contact.
+                    var customer = contact.Customer;
+                    foreach (var contactPerson in customer.ContactPersons)
+                    {
+                        if (contactPerson.UserProfile.Roles.Exists(r => r.RoleName == "Customer Contact"))
+                        {
+                            contactPerson.UserProfile.Roles.Remove(
+                                Uow.Roles.GetAll().FirstOrDefault(r => r.RoleName == "Customer Contact"));
+                        }
+                    }
+
+                    // no, then add it.
+                    contact.UserProfile.Roles.Add(
+                        Uow.Roles.GetAll().FirstOrDefault(r => r.RoleName == "Customer Contact"));
+                }
+            }
+            else
+            {
+                // does the contact have the "Customer Contact" role?
+                if (contact.UserProfile.Roles.Exists(r => r.RoleName == "Customer Contact"))
+                {
+                    // yes, then remove it.
+                    contact.UserProfile.Roles.Remove(
+                        Uow.Roles.GetAll().FirstOrDefault(r => r.RoleName == "Customer Contact"));
+                }
+            }
+
+            if (request.IsTrainingContact)
+            {
+                // does it have the "Customer Supervizor" role?
+                if (!contact.UserProfile.Roles.Exists(r => r.RoleName == "Customer Supervizor"))
+                {
+                    contact.UserProfile.Roles.Add(
+                        Uow.Roles.GetAll().FirstOrDefault(r => r.RoleName == "Customer Supervizor"));
+                }
+            }
+            else
+            {
+                // does the contact have the "Customer Contact" role?
+                if (contact.UserProfile.Roles.Exists(r => r.RoleName == "Customer Supervizor"))
+                {
+                    contact.UserProfile.Roles.Remove(
+                       Uow.Roles.GetAll().FirstOrDefault(r => r.RoleName == "Customer Supervizor"));
+                }
+            }
+
+            Uow.Contacts.Update(contact);
+            Uow.Commit();
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
                 };
         }
     }

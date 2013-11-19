@@ -37,7 +37,12 @@
                     {
                         xtype: 'contactslist',
                         title: 'Contacts',
-                        store: contactsStore
+                        store: contactsStore,
+                        listeners: {
+                            'updatecomplete': function() {
+                                contactsStore.load();
+                            }
+                        }
                     }
                 ]
             }

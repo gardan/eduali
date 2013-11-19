@@ -33,52 +33,53 @@
         }
     ],
 
-    listeners: {
-        itemcontextmenu: function (view, record, item, index, e) {
-            e.stopEvent();
-            
-            var grid = view.up();
-            var ctxMenu = grid.contactContextMenu;
-            if (ctxMenu == null) {
-                ctxMenu = Ext.create('Ext.menu.Menu', {
-                    items: [
-                        {
-                            text: 'Make main contact'
-                        },
-                        {
-                            text: 'Make training contact'
-                        }
-                    ]
-                });
-                grid.contactContextMenu = ctxMenu;
-            }
+    onItemContextMenu: function (view, record, item, index, e) {
+        e.stopEvent();
 
-            var model = record.data;
-            
-            ctxMenu.items.items[0].handler = function () {
-                model.isMain = true;
-                grid.fireEvent('updatecontact', grid, model);
-            };
-
-            ctxMenu.items.items[1].handler = function () {
-                model.isTrainingContact = true;
-                grid.fireEvent('updatecontact', grid, model);
-            };
-
-            ctxMenu.showAt(e.getXY());
+        var grid = view.up();
+        var ctxMenu = grid.contactContextMenu;
+        if (ctxMenu == null) {
+            ctxMenu = Ext.create('Ext.menu.Menu', {
+                items: [
+                    {
+                        text: 'Toggle main contact'
+                    },
+                    {
+                        text: 'Toggle training contact'
+                    }
+                ]
+            });
+            grid.contactContextMenu = ctxMenu;
         }
+
+        var model = record.data;
+
+        ctxMenu.items.items[0].handler = function () {
+            model.isMain = true;
+            grid.fireEvent('updatecontact', grid, model);
+        };
+
+        ctxMenu.items.items[1].handler = function () {
+            model.isTrainingContact = !record.get('isTrainingContact');
+            grid.fireEvent('updatecontact', grid, model);
+        };
+
+        ctxMenu.showAt(e.getXY());
     },
 
     contactContextMenu: null,
-    editComplete: function() {
-        console.log('complete');
+    editComplete: function () {
+        this.fireEvent('updatecomplete', this);
     },
 
-    initComponent: function() {
+    initComponent: function () {
         var me = this;
 
+        me.on('itemcontextmenu', me.onItemContextMenu);
+
         me.addEvents(
-            'updatecontact'
+            'updatecontact',
+            'updatecomplete'
         );
 
         me.callParent(arguments);

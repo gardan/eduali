@@ -40,6 +40,7 @@ namespace Ilc.Data
         public IRepository<StatusDictionary> StatusDictionary { get { return GetStandardRepo<StatusDictionary>(); } }
         public IRepository<GradingSystem> GradingSystems { get { return GetStandardRepo<GradingSystem>(); } }
         public IRepository<Grade> Grades { get { return GetStandardRepo<Grade>(); } }
+        public IRepository<ContactPerson> Contacts { get { return GetStandardRepo<ContactPerson>(); } }
         public IRepository<TrainingEvaluationQuestion> Questions { get { return GetStandardRepo<TrainingEvaluationQuestion>(); } }
 
         public Uow(IRepositoryProvider repositoryProvider)
