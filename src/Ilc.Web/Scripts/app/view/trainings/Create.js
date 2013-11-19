@@ -35,6 +35,21 @@
             claims: 'tasks-administrator'
         });
 
+        var contactsStore = Ext.create('Ilc.store.Contacts', {
+            isTrainingContact: true
+        });
+
+        var contactsComboBox = Ext.create('Ext.form.ComboBox', {
+            store: contactsStore,
+            queryMode: 'local',
+            displayField: 'name',
+            valueField: 'id',
+            name: 'contacts',
+            fieldLabel: Ilc.resources.Manager.getResourceString('common.customer'),
+            anchor: '100%',
+            labelWidth: 120
+        });
+
         var customerComboBox = Ext.create('Ext.form.ComboBox', {
             store: customersStore,
             queryMode: 'local',
@@ -92,6 +107,9 @@
         });
 
         customerComboBox.on('select', function (comboBox, records, eOpts) {
+            contactsStore.updateCustomerId(records[0].data.id);
+            contactsStore.load();
+            
             studentsStore.load({
                 params: {
                     customerId: records[0].data.id
@@ -109,6 +127,7 @@
 
         me.items = [
             customerComboBox,
+            contactsComboBox,
             subjectComboBox,
             trainingSystemComboBox,
             trainersComboBox,
