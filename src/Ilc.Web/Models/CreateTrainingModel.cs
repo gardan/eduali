@@ -15,7 +15,9 @@ namespace Ilc.Web.Models
         public int TrainerId { get; set; }
 
         public OwnersModel WorkflowOwners { get; set; }
-    }
+
+        public ContactPersonModel[] Contacts { get; set; }
+}
 
     public class OwnersModel
     {

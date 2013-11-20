@@ -41,6 +41,7 @@
 
         var contactsComboBox = Ext.create('Ext.form.ComboBox', {
             store: contactsStore,
+            multiSelect: true,
             queryMode: 'local',
             displayField: 'name',
             valueField: 'id',

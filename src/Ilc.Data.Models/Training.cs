@@ -71,6 +71,8 @@ namespace Ilc.Data.Models
         public string Color { get; set; }
 
         public int NoOfCustomerTraining { get; set; }
+
+        public virtual ICollection<ContactPerson> ContactPersons { get; set; }
     }
 
     public class TrainingOwnersConfiguration : EntityBase

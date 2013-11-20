@@ -61,6 +61,7 @@ namespace Ilc.Web.Services
                 var student = Students.GetByStudentId(studentModel.Id);
                 students.Add(student);
             }
+            var contacts = new List<ContactPerson>(request.Contacts.Select(c => Uow.Contacts.GetById(c.Id)));
 
             var sales = Uow.UserProfiles.GetById(request.WorkflowOwners.Sales);
             var administration = Uow.UserProfiles.GetById(request.WorkflowOwners.Administration);
@@ -88,7 +89,8 @@ namespace Ilc.Web.Services
                     CustomerId = request.CustomerId,
                     // Owners = new [] { Users.GetByUsername() }, // We need to get the guy with Sales role that was specified at the beggining
                     Owners = new [] { sales },
-                    OwnersConfiguration = ownersConfiguration
+                    OwnersConfiguration = ownersConfiguration,
+                    ContactPersons = contacts
                 };
 
             Trainings.Create(newTraining);
