@@ -318,7 +318,7 @@
                     }),
                     {
                         xtype: 'spendingsview',
-                        title: 'Spendings',
+                        title: 'Expenses',
                         spendings: model.get('spendings'),
                         hours: model.get('hours'),
                         listeners: {
