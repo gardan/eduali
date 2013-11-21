@@ -41,6 +41,7 @@ namespace Ilc.Data
         public IRepository<GradingSystem> GradingSystems { get { return GetStandardRepo<GradingSystem>(); } }
         public IRepository<Grade> Grades { get { return GetStandardRepo<Grade>(); } }
         public IRepository<ContactPerson> Contacts { get { return GetStandardRepo<ContactPerson>(); } }
+        public IRepository<Spendings> Spendings { get { return GetStandardRepo<Spendings>(); } }
         public IRepository<TrainingEvaluationQuestion> Questions { get { return GetStandardRepo<TrainingEvaluationQuestion>(); } }
 
         public Uow(IRepositoryProvider repositoryProvider)

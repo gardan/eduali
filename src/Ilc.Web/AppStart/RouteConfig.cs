@@ -59,6 +59,8 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.FilterParametersGrades>("/api/grades", "GET");
             routes.Add<Services.CreateGradeModel>("/api/grades", "POST");
 
+            routes.Add<Services.SpendingModel>("/api/spendings/{id}", "PUT");
+
             routes.Add<Services.FilterStatusDefinitionsParameters>("/api/statusdefinitions", "GET");
             routes.Add<Services.StatusDefinitionUpdateModel>("/api/statusdefinitions/{id}", "PUT");
 

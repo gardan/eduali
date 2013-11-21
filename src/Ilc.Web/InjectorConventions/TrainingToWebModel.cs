@@ -3,7 +3,10 @@ using System.Linq;
 using System.Web;
 using Ilc.Data.Models;
 using Ilc.Web.Models;
+using Ilc.Web.Services;
 using Omu.ValueInjecter;
+using SubjectModel = Ilc.Web.Models.SubjectModel;
+using UserModel = Ilc.Web.Models.UserModel;
 
 namespace Ilc.Web.InjectorConventions
 {
@@ -12,7 +15,8 @@ namespace Ilc.Web.InjectorConventions
         protected override bool Match(ConventionInfo c)
         {
             return c.SourceProp.Name == c.TargetProp.Name ||
-                (c.SourceProp.Name == "InterviewPlans" && c.TargetProp.Name == "InterviewPlan");
+                (c.SourceProp.Name == "InterviewPlans" && c.TargetProp.Name == "InterviewPlan") ||
+                (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "Hours");
         }
 
         protected override object SetValue(ConventionInfo c)
@@ -43,6 +47,23 @@ namespace Ilc.Web.InjectorConventions
             {
                 var interviewPlan = (c.SourceProp.Value as ICollection<InterviewPlan>);
                 return interviewPlan == null ? null : new InterviewPlanApiModel().InjectFrom(interviewPlan);
+            }
+            if (c.SourceProp.Name == "Spendings" && c.TargetProp.Name == "Spendings")
+            {
+                var spendings = c.SourceProp.Value as Spendings;
+                return spendings == null ? null : new SpendingModel().InjectFrom(spendings);
+            }
+            if (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "Hours")
+            {
+                var offers = c.SourceProp.Value as ICollection<TrainingOffer>;
+                foreach (var trainingOffer in offers)
+                {
+                    if (trainingOffer.Selected)
+                    {
+                        return trainingOffer.NoLessons*trainingOffer.LessonDuration;
+                    }
+                }
+                return 0;
             }
             return base.SetValue(c);
         }

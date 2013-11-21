@@ -84,6 +84,9 @@ namespace Ilc.Core.Services
             // Create the number of customer training
             newTraining.NoOfCustomerTraining = GetNoOfNewCustomerTraining(newTraining.CustomerId);
 
+            // add the empty spendings object
+            newTraining.Spendings = new Spendings();
+
             Uow.Trainings.Add(newTraining);
             Uow.Commit();
         }

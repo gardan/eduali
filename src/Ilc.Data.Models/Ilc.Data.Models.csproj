@@ -59,6 +59,7 @@
     <Compile Include="RoleClaim.cs" />
     <Compile Include="SimpleMembership\Membership.cs" />
     <Compile Include="SimpleMembership\Role.cs" />
+    <Compile Include="Spendings.cs" />
     <Compile Include="StatusDictionary.cs" />
     <Compile Include="StringAnswer.cs" />
     <Compile Include="StringQuestion.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="TrainingEvaluation.cs" />
     <Compile Include="TrainingEvaluationQuestion.cs" />
     <Compile Include="TrainingOffer.cs" />
+    <Compile Include="TrainingOwnersConfiguration.cs" />
     <Compile Include="TrainingScheduleDay.cs" />
     <Compile Include="UserDetails.cs" />
     <Compile Include="UserProfile.cs" />
