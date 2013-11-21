@@ -81,7 +81,8 @@ namespace Ilc.Web.Services
                             Name = day.LessonName,
                             ResourceId = day.Order,
                             Resizable = false,
-                            Draggable = false
+                            Draggable = false,
+                            Cls = "disabled "
                         });
                 }
             }
@@ -160,6 +161,9 @@ namespace Ilc.Web.Services
         
         [DataMember(Name = "Draggable")]
         public bool Draggable { get; set; }
+
+        [DataMember(Name = "Cls")]
+        public string Cls { get; set; }
     }
 
     [DataContract]
