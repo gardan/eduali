@@ -16,8 +16,7 @@
             filter: {
                 type: 'string'
             }
-        }
-        ,
+        },
         {
             text: Ilc.resources.Manager.getResourceString('common.name'),
             dataIndex: 'userInfo',
@@ -25,8 +24,7 @@
             renderer: function (value) {
                 return value.name;
             }
-        }
-        ,
+        },
         {
             text: Ilc.resources.Manager.getResourceString('common.email'),
             dataIndex: 'userInfo',
@@ -34,8 +32,7 @@
             renderer: function (value) {
                 return value.email;
             }
-        }
-        ,
+        },
         {
             text: Ilc.resources.Manager.getResourceString('common.phone'),
             dataIndex: 'userInfo',
