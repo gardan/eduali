@@ -219,6 +219,14 @@
     <Compile Include="Migrations\201311181239496_ManyToManyCustomerToUsersContactPersons.Designer.cs">
       <DependentUpon>201311181239496_ManyToManyCustomerToUsersContactPersons.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201311201103174_ManyToManyContactsTrainings.cs" />
+    <Compile Include="Migrations\201311201103174_ManyToManyContactsTrainings.Designer.cs">
+      <DependentUpon>201311201103174_ManyToManyContactsTrainings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311201230186_TrainingSpendings.cs" />
+    <Compile Include="Migrations\201311201230186_TrainingSpendings.Designer.cs">
+      <DependentUpon>201311201230186_TrainingSpendings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -367,6 +375,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201311181239496_ManyToManyCustomerToUsersContactPersons.resx">
       <DependentUpon>201311181239496_ManyToManyCustomerToUsersContactPersons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311201103174_ManyToManyContactsTrainings.resx">
+      <DependentUpon>201311201103174_ManyToManyContactsTrainings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311201230186_TrainingSpendings.resx">
+      <DependentUpon>201311201230186_TrainingSpendings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

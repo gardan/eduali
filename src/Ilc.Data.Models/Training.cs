@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -71,16 +70,9 @@ namespace Ilc.Data.Models
         public string Color { get; set; }
 
         public int NoOfCustomerTraining { get; set; }
-    }
 
-    public class TrainingOwnersConfiguration : EntityBase
-    {
-        public int SalesId { get; set; }
-        public int AdministrationId { get; set; }
-        public int CoordinatorId { get; set; }
-        public int TrainerId { get; set; }
+        public virtual ICollection<ContactPerson> ContactPersons { get; set; }
 
-        [Required]
-        public Training Training { get; set; }
+        public virtual Spendings Spendings { get; set; }
     }
 }

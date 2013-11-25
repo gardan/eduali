@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Web;
 using Ilc.Core;
 using Ilc.Core.Contracts;
+using Ilc.Data.Contracts;
 using Ilc.Web.Models;
 using ServiceStack.Common.Web;
 using ServiceStack.ServiceInterface;
@@ -15,6 +16,7 @@ namespace Ilc.Web.Services
     public class LessonsService : Service
     {
         public ITrainingsService Trainings { get; set; }
+        public IUow Uow { get; set; }
 
         public FilteredDataModel<LessonModel> Get(FilterParametersLessons request)
         {
@@ -51,6 +53,7 @@ namespace Ilc.Web.Services
             var scheduleDays = training.ScheduleDays;
             var data = new List<LessonScheduleModel>();
 
+            // Get the trainings schedule days, if any exist
             foreach (var day in scheduleDays)
             {
                 data.Add(new LessonScheduleModel()
@@ -58,9 +61,32 @@ namespace Ilc.Web.Services
                         StartDate = day.StartDate,
                         EndDate = day.EndDate,
                         Name = day.LessonName,
-                        ResourceId = day.Order
+                        ResourceId = day.Order,
+                        Resizable = true,
+                        Draggable = true
                     });
             }
+
+            // Get the other scheduled lessons, for overlaying purposes
+            var trainings = Uow.Trainings.GetAll().Where(t => t.TrainerId == training.TrainerId && t.Id != training.Id).ToList();
+            
+            foreach (var nonRelatedTraining in trainings)
+            {
+                foreach (var day in nonRelatedTraining.ScheduleDays)
+                {
+                    data.Add(new LessonScheduleModel()
+                        {
+                            StartDate = day.StartDate,
+                            EndDate = day.EndDate,
+                            Name = day.LessonName,
+                            ResourceId = day.Order,
+                            Resizable = false,
+                            Draggable = false,
+                            Cls = "disabled "
+                        });
+                }
+            }
+
 
             return new FilteredDataModel<LessonScheduleModel>()
                 {
@@ -129,6 +155,15 @@ namespace Ilc.Web.Services
         public DateTimeOffset StartDate { get; set; }
         [DataMember(Name = "EndDate")]
         public DateTimeOffset EndDate { get; set; }
+
+        [DataMember(Name = "Resizable")]
+        public bool Resizable { get; set; }
+        
+        [DataMember(Name = "Draggable")]
+        public bool Draggable { get; set; }
+
+        [DataMember(Name = "Cls")]
+        public string Cls { get; set; }
     }
 
     [DataContract]

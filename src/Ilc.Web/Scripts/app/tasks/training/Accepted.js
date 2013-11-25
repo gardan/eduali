@@ -31,7 +31,6 @@
             trainingId: trainingEntity.get('id')
         });
 
-        debugger;
         var d1 = new Date(startDate);
         
         var d = new Date(d1.getUTCFullYear(),
@@ -67,7 +66,7 @@
             // only one event per resource can be created,
             // if one already exists, prevent the new from beeing created.
             var existingEvents = scheduler.eventStore.queryBy(function (record) {
-                return record.get('ResourceId') === newEventRecord.get('ResourceId');
+                return record.get('Draggable') == true && record.get('ResourceId') === newEventRecord.get('ResourceId');
             });
             if (existingEvents.items.length > 0) {
                 return false;
@@ -97,7 +96,7 @@
                 lesson.lessonSchedules = [];
 
                 var events = eventStore.queryBy(function(eventRecord, id) {
-                    if (eventRecord.get('ResourceId') == record.get('Id')) {
+                    if (eventRecord.get('Draggable') == true &&  eventRecord.get('ResourceId') == record.get('Id')) {
                         return true;
                     }
                 });

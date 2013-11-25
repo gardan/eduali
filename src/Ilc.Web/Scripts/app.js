@@ -19,7 +19,8 @@ Ext.application({
         'Settings',
         'StatusDefinitions',
         'Planning',
-        'Contacts'
+        'Contacts',
+        'Spendings'
     ],
 
     requires: [

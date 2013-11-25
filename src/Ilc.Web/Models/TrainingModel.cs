@@ -33,6 +33,17 @@ namespace Ilc.Web.Models
         public int GradingSystemId { get; set; }
 
         public OwnersModel WorkflowOwners { get; set; }
+
+        public SpendingModel Spendings { get; set; }
+
+        /// <summary>
+        /// Total no. of hours required to complete all the lessons
+        /// </summary>
+        /// <remarks>
+        /// e.g. 1 lesson is 2 hours, and we have 20 lessons, 
+        /// then <see cref="Hours" /> is equal to 2 * 20 = 40
+        /// </remarks>
+        public int Hours { get; set; }
     }
 
     public abstract class StatusModel

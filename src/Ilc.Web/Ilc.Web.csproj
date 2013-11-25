@@ -165,6 +165,7 @@
     <Content Include="Scripts\app\controller\Planning.js" />
     <Content Include="Scripts\app\controller\Roles.js" />
     <Content Include="Scripts\app\controller\Settings.js" />
+    <Content Include="Scripts\app\controller\Spendings.js" />
     <Content Include="Scripts\app\controller\Statistics.js" />
     <Content Include="Scripts\app\controller\StatusDefinitions.js" />
     <Content Include="Scripts\app\controller\Students.js" />
@@ -291,6 +292,7 @@
     <Content Include="Scripts\app\ux\FieldReplicator.js" />
     <Content Include="Scripts\app\ux\form\ItemSelector.js" />
     <Content Include="Scripts\app\ux\form\MultiSelect.js" />
+    <Content Include="Scripts\app\ux\form\NumericField.js" />
     <Content Include="Scripts\app\ux\form\SearchField.js" />
     <Content Include="Scripts\app\ux\GMapPanel.js" />
     <Content Include="Scripts\app\ux\grid\css\GridFilters.css" />
@@ -351,6 +353,7 @@
     <Content Include="Scripts\app\view\roles\List.js" />
     <Content Include="Scripts\app\view\settings\Categories.js" />
     <Content Include="Scripts\app\view\settings\Default.js" />
+    <Content Include="Scripts\app\view\spendings\View.js" />
     <Content Include="Scripts\app\view\statistics\View.js" />
     <Content Include="Scripts\app\view\statusDefinitions\Edit.js" />
     <Content Include="Scripts\app\view\statusDefinitions\List.js" />
@@ -3939,6 +3942,7 @@
     <Compile Include="Services\RoleClaimsService.cs" />
     <Compile Include="Services\RolesService.cs" />
     <Compile Include="InjectorConventions\RoleToModel.cs" />
+    <Compile Include="Services\SpendingsServices.cs" />
     <Compile Include="Services\StatisticsService.cs" />
     <Compile Include="Services\StatusDefinitionsService.cs" />
     <Compile Include="Services\StudentsInterviewService.cs" />

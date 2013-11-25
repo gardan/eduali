@@ -5,7 +5,8 @@
     title: 'Trainings details',
     requires: [
         'Ext.util.Point',
-        'Ilc.view.trainings.view.Planning'
+        'Ilc.view.trainings.view.Planning',
+        'Ilc.view.spendings.View'
     ],
     width: 800,
 
@@ -314,7 +315,18 @@
                                 me.close();
                             }
                         }
-                    })
+                    }),
+                    {
+                        xtype: 'spendingsview',
+                        title: 'Expenses',
+                        spendings: model.get('spendings'),
+                        hours: model.get('hours'),
+                        listeners: {
+                            cancelclicked: function () {
+                                me.close();
+                            }
+                        } 
+                    }
                 ]
             }
 
