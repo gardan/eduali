@@ -16,10 +16,34 @@
             filter: {
                 type: 'string'
             }
+        },
+        {
+            text: Ilc.resources.Manager.getResourceString('common.name'),
+            dataIndex: 'userInfo',
+            flex: 1,
+            renderer: function (value) {
+                return value.name;
+            }
+        },
+        {
+            text: Ilc.resources.Manager.getResourceString('common.email'),
+            dataIndex: 'userInfo',
+            flex: 1,
+            renderer: function (value) {
+                return value.email;
+            }
+        },
+        {
+            text: Ilc.resources.Manager.getResourceString('common.phone'),
+            dataIndex: 'userInfo',
+            flex: 1,
+            renderer: function (value) {
+                return value.phone;
+            }
         }
     ],
 
-    initComponent: function() {
+    initComponent: function () {
         var me = this;
 
         me.callParent(arguments);
