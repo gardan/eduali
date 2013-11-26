@@ -16,7 +16,8 @@ namespace Ilc.Web.InjectorConventions
         {
             return c.SourceProp.Name == c.TargetProp.Name ||
                 (c.SourceProp.Name == "InterviewPlans" && c.TargetProp.Name == "InterviewPlan") ||
-                (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "Hours");
+                (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "Hours") ||
+                (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "LessonsNo");
         }
 
         protected override object SetValue(ConventionInfo c)
@@ -61,6 +62,18 @@ namespace Ilc.Web.InjectorConventions
                     if (trainingOffer.Selected)
                     {
                         return trainingOffer.NoLessons*trainingOffer.LessonDuration;
+                    }
+                }
+                return 0;
+            }
+            if (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "LessonsNo")
+            {
+                var offers = c.SourceProp.Value as ICollection<TrainingOffer>;
+                foreach (var trainingOffer in offers)
+                {
+                    if (trainingOffer.Selected)
+                    {
+                        return trainingOffer.NoLessons;
                     }
                 }
                 return 0;

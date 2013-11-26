@@ -59,10 +59,11 @@ namespace Ilc.Web.Services
             {
                 data.Add(new LessonScheduleModel()
                     {
-                        StartDate = day.StartDate,
-                        EndDate = day.EndDate,
+                        
+                        StartDate = day.StartDate.DateTime,
+                        EndDate = day.EndDate.DateTime,
                         Name = day.LessonName,
-                        ResourceId = day.Order,
+                        ResourceId = 1,// day.Order, // this has to be the trainerId
                         Resizable = true,
                         Draggable = true
                     });
@@ -77,10 +78,10 @@ namespace Ilc.Web.Services
                 {
                     data.Add(new LessonScheduleModel()
                         {
-                            StartDate = day.StartDate,
-                            EndDate = day.EndDate,
+                            StartDate = day.StartDate.DateTime,
+                            EndDate = day.EndDate.DateTime,
                             Name = day.LessonName,
-                            ResourceId = day.Order,
+                            ResourceId = 1, // day.Order,
                             Resizable = false,
                             Draggable = false,
                             Cls = "disabled "
@@ -177,9 +178,9 @@ namespace Ilc.Web.Services
         [DataMember(Name = "Name")]
         public string Name { get; set; }
         [DataMember(Name = "StartDate")]
-        public DateTimeOffset StartDate { get; set; }
+        public DateTime StartDate { get; set; }
         [DataMember(Name = "EndDate")]
-        public DateTimeOffset EndDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         [DataMember(Name = "Resizable")]
         public bool Resizable { get; set; }

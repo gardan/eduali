@@ -11,8 +11,15 @@
         var me = this;
 
         var entity = me.entity;
-        var resourceStore = Ext.create('Ilc.store.scheduler.Lessons', {
-            trainingId: entity.get('id')
+        var resourceStore = Ext.create('Sch.data.ResourceStore', {
+            // trainingId: trainingEntity.get('id')
+
+            data: [
+                {
+                    Id: 1,
+                    Name: 'Trainer Name'
+                }
+            ],
         });
 
         // Store holding all the events
@@ -23,7 +30,6 @@
         var trainingScheduler = Ext.create('Ilc.scheduler.Training', {
             // width: 890,
             height: 400,
-            orientation: 'vertical',
             // startDate: new Date(2013, 10, 24, 6),
             eventResizeHandles: 'none',
             enableDragCreation: false,
@@ -37,7 +43,8 @@
         me.items = [
             trainingScheduler
         ];
-        resourceStore.load();
+        
+        // resourceStore.load();
         eventStore.load();
         
         me.callParent(arguments);

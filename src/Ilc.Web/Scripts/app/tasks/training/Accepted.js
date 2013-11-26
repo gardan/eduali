@@ -22,8 +22,15 @@
 
         var startDate = trainingEntity.get('taskObject').desiredStartDate;
 
-        var resourceStore = Ext.create('Ilc.store.scheduler.Lessons', {
-            trainingId: trainingEntity.get('id')
+        var resourceStore = Ext.create('Sch.data.ResourceStore', {
+            // trainingId: trainingEntity.get('id')
+            
+            data: [
+                {
+                    Id: 1,
+                    Name: 'Trainer Name'
+                }
+            ],
         });
 
         // Store holding all the events
@@ -56,19 +63,22 @@
             onEventCreated: function (newEventRecord) {
                 var resourceModel = resourceStore.getById(newEventRecord.get('ResourceId'));
                 
+                var trainingLessons = eventStore.queryBy(function (record) {
+                    return record.get('Draggable') == true;
+                });
+
                 newEventRecord.set({
-                    Name: resourceModel.get('Name')
+                    Name: 'Lesson ' + (trainingLessons.items.length + 1)
                 });
             },
         });
 
         trainingScheduler.on('beforeeventadd', function (scheduler, newEventRecord) {
-            // only one event per resource can be created,
-            // if one already exists, prevent the new from beeing created.
-            var existingEvents = scheduler.eventStore.queryBy(function (record) {
-                return record.get('Draggable') == true && record.get('ResourceId') === newEventRecord.get('ResourceId');
+            // the no of events that cand be created should be == to the one in the selected offer
+            var noOfTrainingLessons = scheduler.eventStore.queryBy(function (record) {
+                return record.get('Draggable') == true;
             });
-            if (existingEvents.items.length > 0) {
+            if (noOfTrainingLessons.items.length >= trainingEntity.get('taskObject').lessonsNo) {
                 return false;
             }
         });
@@ -89,27 +99,34 @@
                 ]
             };
 
+            var i = 0;
             resourceStore.each(function(record) {
                 //debugger;
-                var lesson = {};
-                lesson.id = record.get('Id');
-                lesson.lessonSchedules = [];
+                
 
                 var events = eventStore.queryBy(function(eventRecord, id) {
-                    if (eventRecord.get('Draggable') == true &&  eventRecord.get('ResourceId') == record.get('Id')) {
+                    if (eventRecord.get('Draggable') == true) {
                         return true;
                     }
                 });
 
-                Ext.Array.each(events.items, function(event) {
+                Ext.Array.each(events.items, function (event) {
+                    
+                    i++;
+                    var lesson = {};
+                    lesson.id = i; // record.get('Id'); // this should actually be the order no.
+                    lesson.lessonSchedules = [];
+                    
                     var lessonSchedule = {};
                     lessonSchedule.startDate = event.get('StartDate');
                     lessonSchedule.endDate = event.get('EndDate');
 
                     lesson.lessonSchedules.push(lessonSchedule);
+                    
+                    model.lessons.push(lesson);
                 });
 
-                model.lessons.push(lesson);
+                
             });
 
             me.fireEvent('addTrainingSchedule', me, model);
@@ -152,7 +169,7 @@
             'addTrainingSchedule'
         );
 
-        resourceStore.load();
+        // resourceStore.load();
         eventStore.load();
         me.callParent(arguments);
     },
