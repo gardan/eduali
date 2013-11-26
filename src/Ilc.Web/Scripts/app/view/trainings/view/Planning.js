@@ -22,8 +22,8 @@
 
         var trainingScheduler = Ext.create('Ilc.scheduler.Training', {
             // width: 890,
-            // height: 400,
-
+            height: 400,
+            orientation: 'vertical',
             // startDate: new Date(2013, 10, 24, 6),
             eventResizeHandles: 'none',
             enableDragCreation: false,

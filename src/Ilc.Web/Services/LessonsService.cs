@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Runtime.Serialization;
 using System.Web;
 using Ilc.Core;
@@ -109,9 +110,9 @@ namespace Ilc.Web.Services
                 {
                     data.Add(new LessonScheduleModelNormal()
                     {
-                        Id = id++,
-                        StartDate = day.StartDate,
-                        EndDate = day.EndDate,
+                        Id = day.Id,
+                        StartDate = day.StartDate.DateTime,
+                        EndDate = day.EndDate.DateTime,
                         Name = day.LessonName,
                         ResourceId = training.TrainerId ?? 0, // This must be the trainerId
                         Color = training.Color,
@@ -129,6 +130,30 @@ namespace Ilc.Web.Services
                 Data = data
             };
         }
+
+        public HttpResult Put(UpdateLessonModel request)
+        {
+            var scheduleDay = Uow.TrainingScheduleDays.GetAll().FirstOrDefault(s => s.Id == request.Id);
+
+            scheduleDay.StartDate = new DateTimeOffset(request.StartDate);
+            scheduleDay.EndDate = new DateTimeOffset(request.EndDate);
+
+            Uow.TrainingScheduleDays.Update(scheduleDay);
+            Uow.Commit();
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
+    }
+
+    public class UpdateLessonModel
+    {
+        public int Id { get; set; }
+        public int TrainingId { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
     }
 
     public class LessonScheduleModelNormal
@@ -136,8 +161,8 @@ namespace Ilc.Web.Services
         public int Id { get; set; }
         public int ResourceId { get; set; }
         public string Name { get; set; }
-        public DateTimeOffset StartDate { get; set; }
-        public DateTimeOffset EndDate { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
         public string Color { get; set; }
         public string CustomerName { get; set; }
         public string SubjectName { get; set; }
@@ -174,7 +199,7 @@ namespace Ilc.Web.Services
         [DataMember(Name = "Name")]
         public string Name { get; set; }
 
-        // This is just to remember how i can mix PascalCase and CamelCase 
+        // This is just to remember how i can mix PascalCase and camelCase 
         // property name when serializing.
         [DataMember(Name = "dummy")]
         public string Dummy { get; set; }

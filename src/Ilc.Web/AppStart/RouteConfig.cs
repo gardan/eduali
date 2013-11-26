@@ -90,6 +90,7 @@ namespace Ilc.Web.AppStart
             routes.Add<FilterParametersCustomerStatisticsModel>("/api/statistics/customerTrainings", "GET");
 
             routes.Add<Services.FilterParametersLessons>("/api/trainings/{trainingId}/lessons", "GET");
+            routes.Add<Services.UpdateLessonModel>("/api/trainings/{trainingId}/lessons/{id}", "PUT");
             routes.Add<Services.FilterParametersLessonSchedule>("/api/trainings/{trainingId}/lessonsSchedule", "GET");
             routes.Add<Services.FilterParametersLessonsSchedule>("/api/lessons", "GET");
 

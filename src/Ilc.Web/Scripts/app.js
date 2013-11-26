@@ -20,7 +20,8 @@ Ext.application({
         'StatusDefinitions',
         'Planning',
         'Contacts',
-        'Spendings'
+        'Spendings',
+        'Lessons'
     ],
 
     requires: [

@@ -24,6 +24,8 @@
         '</div>'
     ),
 
+    enableDragCreation: false,
+
     initComponent: function() {
         var me = this;
 
