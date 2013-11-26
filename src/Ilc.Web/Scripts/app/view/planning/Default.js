@@ -116,7 +116,7 @@
         });
 
         planningScheduler.on('eventdrop', function (scheduler, records) {
-            // records is an array of record, for not we can only select one event, so just get the first item in the array
+            // records is an array of record, for now we can only select one event, so just get the first item in the array
             var event = records[0];
             
             var model = {

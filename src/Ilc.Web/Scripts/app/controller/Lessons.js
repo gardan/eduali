@@ -5,11 +5,15 @@
         this.control({
             globalplanning: {
                 updatelesson: this.updateLesson
+            },
+            planningTab: {
+                updatelesson: this.updateLesson
             }
         });
     },
     
-    updateLesson: function(sender, model) {       
+    updateLesson: function (sender, model) {
+        console.log('updateLesson');
         var lessonsService = {
             edit: function (entity) {
                 var deferred = Q.defer();

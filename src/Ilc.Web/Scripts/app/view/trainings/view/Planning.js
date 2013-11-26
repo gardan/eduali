@@ -7,6 +7,10 @@
     
     scheduler: null,
 
+    updateFinished: function() {
+        console.log('update finished');
+    },
+
     initComponent: function (args) {
         var me = this;
 
@@ -39,6 +43,21 @@
 
         });
 
+        trainingScheduler.on('eventdrop', function (scheduler, records) {
+            debugger;
+            // records is an array of record, for now we can only select one event, so just get the first item in the array
+            var event = records[0];
+
+            var model = {
+                startDate: event.get('StartDate'),
+                endDate: event.get('EndDate'),
+                id: event.get('Id'),
+                trainingId: entity.get('id')
+            };
+
+            me.fireEvent('updatelesson', me, model);
+        });
+
         me.scheduler = trainingScheduler;
         me.items = [
             trainingScheduler
@@ -46,7 +65,11 @@
         
         // resourceStore.load();
         eventStore.load();
-        
+
+        me.addEvents(
+            'updatelesson'
+        );
+
         me.callParent(arguments);
     }
 });

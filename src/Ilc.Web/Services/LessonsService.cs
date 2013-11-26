@@ -59,7 +59,7 @@ namespace Ilc.Web.Services
             {
                 data.Add(new LessonScheduleModel()
                     {
-                        
+                        Id = day.Id,
                         StartDate = day.StartDate.DateTime,
                         EndDate = day.EndDate.DateTime,
                         Name = day.LessonName,
@@ -78,6 +78,7 @@ namespace Ilc.Web.Services
                 {
                     data.Add(new LessonScheduleModel()
                         {
+                            Id = day.Id,
                             StartDate = day.StartDate.DateTime,
                             EndDate = day.EndDate.DateTime,
                             Name = day.LessonName,
@@ -173,6 +174,8 @@ namespace Ilc.Web.Services
     [DataContract]
     public class LessonScheduleModel
     {
+        [DataMember(Name = "Id")]
+        public int Id { get; set; }
         [DataMember(Name="ResourceId")]
         public int ResourceId { get; set; }
         [DataMember(Name = "Name")]
