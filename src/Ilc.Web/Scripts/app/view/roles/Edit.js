@@ -35,6 +35,15 @@
                                 });
 
                                 var window = Ext.create('Ext.window.Window', {
+                                    roleAssignmentComplete: function() {
+                                        window.close();
+                                        
+                                        claimsStore.load({
+                                            params: {
+                                                roleId: me.role.get('id')
+                                            }
+                                        });
+                                    },
                                     layout: 'anchor',
                                     defaults: {
                                         anchor: '100%'
