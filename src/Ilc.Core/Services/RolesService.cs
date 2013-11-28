@@ -66,9 +66,20 @@ namespace Ilc.Core.Services
             };
         }
 
+        public Role GetById(int id)
+        {
+            return Uow.Roles.GetById(id);
+        }
+
         public void Create(Role role)
         {
             Uow.Roles.Add(role);
+            Uow.Commit();
+        }
+
+        public void Update(Role role)
+        {
+            Uow.Roles.Update(role);
             Uow.Commit();
         }
     }

@@ -8,7 +8,8 @@
     role: null,
 
     requires: [
-        'Ilc.utils.Forms'
+        'Ilc.utils.Forms',
+        'Ilc.view.roles.edit.Panel'
     ],
 
     initComponent: function () {
@@ -91,7 +92,18 @@
                 xtype: 'tabpanel',
                 items: [
                     {
-                        title: 'General'
+                        xtype: 'editrolepanel',
+                        title: 'General',
+                        role: me.role,
+                        listeners: {
+                            cancelclicked: function() {
+                                me.close();
+                            },
+                            editcomplete: function () {
+                                me.fireEvent('editcomplete');
+                                me.close();
+                            }
+                        }
                     },
                     {
                         title: 'Claims',
@@ -107,6 +119,8 @@
                 roleId: me.role.get('id')
             }
         });
+
+        me.addEvents('editcomplete');
 
         me.callParent(arguments);
     }

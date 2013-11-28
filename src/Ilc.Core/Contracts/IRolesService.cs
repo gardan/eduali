@@ -9,6 +9,8 @@ namespace Ilc.Core.Contracts
     public interface IRolesService
     {
         FilteredResults<Role> GetFiltered(FilterArgumentsRoles parameters);
+        Role GetById(int id);
         void Create(Role role);
+        void Update(Role role);
     }
 }
