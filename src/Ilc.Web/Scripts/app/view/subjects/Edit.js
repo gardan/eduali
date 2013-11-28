@@ -2,17 +2,23 @@
     extend: 'Ext.window.Window',
     xtype: 'editsubjectwindow',
 
-    width: 800,
     bodyPadding: 0,
+    layout: 'anchor',
 
-    role: null,
+    subject: null,
 
     requires: [
         'Ilc.utils.Forms'
     ],
 
     defaults: {
-        xtype: 'textfield'
+        xtype: 'textfield',
+        anchor: '100%'
+    },
+
+    editComplete: function() {
+        this.fireEvent('editcomplete');
+        this.close();
     },
 
     initComponent: function () {
@@ -20,7 +26,10 @@
 
         me.items = [
             {
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.name')
+                padding: '5 5 0 5',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.name'),
+                name: 'name',
+                value: me.subject.get('name')
             }
         ];
 
@@ -30,6 +39,7 @@
                 handler: function() {
                     var inputs = me.query('textfield');
                     var model = Ilc.utils.Forms.extractModel(inputs);
+                    model.id = me.subject.get('id');
 
                     me.fireEvent('editsubject', me, model);
                 }
@@ -43,7 +53,8 @@
         ];
 
         me.addEvents(
-            'editsubject'
+            'editsubject',
+            'editcomplete'
         );
 
         me.callParent(arguments);

@@ -48,6 +48,7 @@ namespace Ilc.Web.AppStart
 
             routes.Add<Services.FilterSubjectsParameters>("/api/subjects", "GET");
             routes.Add<Services.SubjectModel>("/api/subjects", "POST");
+            routes.Add<Services.SubjectModel>("/api/subjects/{id}", "PUT");
 
             routes.Add<Services.FilterParametersContacts>("/api/customers/{customerId}/contacts", "GET");
             routes.Add<Services.ContactModel>("/api/contacts/{id}", "PUT");

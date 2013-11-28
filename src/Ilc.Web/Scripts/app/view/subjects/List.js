@@ -44,8 +44,12 @@
 
         subjectsGrid.on('itemdblclick', function(grid, record) {
             var window = Ext.create('Ilc.view.subjects.Edit', {
-                role: record
+                subject: record
             }).show();
+
+            window.on('editcomplete', function() {
+                subjectsStore.load();
+            });
         });
 
         this.items = [

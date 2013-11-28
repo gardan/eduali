@@ -5,6 +5,9 @@
         this.control({
             'listsubjectswindow': {
                 'addsubject': this.addSubject
+            },
+            'editsubjectwindow': {
+                'editsubject': this.updateSubject
             }
         });
     },
@@ -39,6 +42,38 @@
         });
 
         console.log(model);
+    },
+
+    updateSubject: function (sender, model) {
+        var subjectsService = {
+            update: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/subjects/' + model.id,
+                    method: 'PUT',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+
+        sender.mask();
+        subjectsService.update(model)
+        .then(function (response) {
+
+        })
+        .finally(function () {
+            sender.unmask();
+            sender.editComplete();
+        });
     },
 
     list: function() {

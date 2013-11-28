@@ -40,6 +40,19 @@ namespace Ilc.Web.Services
                     StatusCode = HttpStatusCode.OK
                 };
         }
+
+        public HttpResult Put(SubjectModel request)
+        {
+            var subject = Subjects.GetById(request.Id);
+            subject.InjectFrom(request);
+
+            Subjects.Update(subject);
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
     }
 
     public class SubjectModel

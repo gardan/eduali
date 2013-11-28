@@ -79,7 +79,8 @@ namespace Ilc.Core.Services
 
         public void Update(Subject updatedSubject)
         {
-            throw new NotImplementedException();
+            Uow.Subjects.Update(updatedSubject);
+            Uow.Commit();
         }
 
         public void Delete(int id)
