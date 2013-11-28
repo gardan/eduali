@@ -14,7 +14,7 @@ namespace Ilc.Web.Services
 
         public IUow Uow { get; set; }
 
-        public HttpResult Post(CreateRoleAssignmentModel request)
+        public HttpResult Post(RoleAssignmentModel request)
         {
             var role = Uow.Roles.GetById(request.RoleId);
             var user = Uow.UserProfiles.GetById(request.UserId);
@@ -32,9 +32,27 @@ namespace Ilc.Web.Services
                 };
         }
 
+        public HttpResult Delete(RoleAssignmentModel request)
+        {
+            var role = Uow.Roles.GetById(request.RoleId);
+            var user = Uow.UserProfiles.GetById(request.UserId);
+
+            user.Roles.ToList();
+
+            user.Roles.Remove(role);
+            Uow.UserProfiles.Update(user);
+
+            Uow.Commit();
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
+
     }
 
-    public class CreateRoleAssignmentModel
+    public class RoleAssignmentModel
     {
         public int UserId { get; set; }
         public int RoleId { get; set; }    

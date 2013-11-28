@@ -40,7 +40,8 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.CreateRoleModel>("/api/roles", "POST");
             routes.Add<Services.RoleModel>("/api/roles/{id}", "PUT");
 
-            routes.Add<Services.CreateRoleAssignmentModel>("/api/roleassignments", "POST");
+            routes.Add<Services.RoleAssignmentModel>("/api/roleassignments", "POST");
+            routes.Add<Services.RoleAssignmentModel>("/api/roleassignments/{roleId}/{userId}", "DELETE");
 
             routes.Add<Services.FilterParametersClaims>("/api/claims", "GET");
 
