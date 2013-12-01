@@ -352,6 +352,13 @@ namespace Ilc.Data.Migrations
 
         private void AddUser(AppContext context, UserProfile user)
         {
+            var userExists = context.UserProfiles.FirstOrDefault(u => u.Username == user.Username);
+            if (userExists != null)
+            {
+                user = userExists;
+                return;
+            }
+           
             context.UserProfiles.Add(user);
             context.SaveChanges();
 
