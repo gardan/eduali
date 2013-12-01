@@ -55,6 +55,7 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.ContactModel>("/api/contacts/{id}", "PUT");
 
             routes.Add<Services.CreateTrainersSubjectModel>("/api/trainerssubjects", "POST");
+            routes.Add<Services.TrainerSubjectModel>("/api/trainers/{trainerId}/subjects/{subjectId}", "DELETE");
 
             routes.Add<Services.FilterParametersGradingSystems>("/api/gradingsystems", "GET");
             routes.Add<Services.GradingSystemModel>("/api/gradingsystems", "POST");
