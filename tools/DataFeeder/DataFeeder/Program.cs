@@ -50,28 +50,6 @@ namespace DataFeeder
         {
             //path to file
             parseCSV(File.OpenRead(@"H:\Diverse\Work\GitHub\ILC\tools\DataFeeder\DataFeeder\customers.csv"));
-
-            string error;
-            string cnStringImportdata = @"Data Source=localhost\sqlexpress;Initial Catalog=Ilc;Integrated Security=True";
-            //using (SqlConnection cn = new SqlConnection(cnStringImportdata))
-//            for (int i = 1; i < csv.Count; i++)
-//            {
-//                try
-//                {
-//                    {
-//                        SqlCommand insertCommand =
-//                            new SqlCommand("INSERT INTO Customer(Name, BillingAddress, BankAccount)" +
-//                                           "Values('" + csv[i][0] + "','" + csv[i][2] + "','" + csv[i][1] + "')", cn);
-//                        cn.Open();
-//                        insertCommand.ExecuteNonQuery();
-//                        cn.Close();
-//                    }
-//                }
-//                catch (Exception ex)
-//                {
-//                     Console.WriteLine(ex.Message);
-//                }
-//            }
         }
     }
 }
