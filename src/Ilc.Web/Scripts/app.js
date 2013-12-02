@@ -20,7 +20,8 @@ Ext.application({
         'StatusDefinitions',
         'Planning',
         'Contacts',
-        'Spendings'
+        'Spendings',
+        'Lessons'
     ],
 
     requires: [
@@ -99,6 +100,33 @@ Ext.application({
         Ext.window.Window.prototype.bodyPadding = 10;
         Ext.window.Window.prototype.modal = true;
         Ext.window.Window.prototype.hideAction = 'destroy';
+        
+        // Bryntum Scheduler
+        Sch.preset.Manager.registerPreset('hourAndDayLarge', {
+            timeColumnWidth: 60,
+            rowHeight: 24,
+            resourceColumnWidth: 100,
+            displayDateFormat: 'G:i',
+            shiftIncrement: 1,
+            shiftUnit: "DAY",
+            defaultSpan: 24,
+            timeResolution: {
+                unit: "MINUTE",
+                increment: 30
+            },
+            headerConfig: {
+                middle: {
+                    unit: "HOUR",
+                    align: 'center',
+                    dateFormat: 'G:i a'
+                },
+                top: {
+                    unit: "DAY",
+                    align: 'center',
+                    dateFormat: 'D d/m'
+                }
+            }
+        });
     }
 });
 

@@ -38,8 +38,10 @@ namespace Ilc.Web.AppStart
 
             routes.Add<Services.FilterParametersRoles>("/api/roles", "GET");
             routes.Add<Services.CreateRoleModel>("/api/roles", "POST");
+            routes.Add<Services.RoleModel>("/api/roles/{id}", "PUT");
 
-            routes.Add<Services.CreateRoleAssignmentModel>("/api/roleassignments", "POST");
+            routes.Add<Services.RoleAssignmentModel>("/api/roleassignments", "POST");
+            routes.Add<Services.RoleAssignmentModel>("/api/roleassignments/{roleId}/{userId}", "DELETE");
 
             routes.Add<Services.FilterParametersClaims>("/api/claims", "GET");
 
@@ -47,11 +49,13 @@ namespace Ilc.Web.AppStart
 
             routes.Add<Services.FilterSubjectsParameters>("/api/subjects", "GET");
             routes.Add<Services.SubjectModel>("/api/subjects", "POST");
+            routes.Add<Services.SubjectModel>("/api/subjects/{id}", "PUT");
 
             routes.Add<Services.FilterParametersContacts>("/api/customers/{customerId}/contacts", "GET");
             routes.Add<Services.ContactModel>("/api/contacts/{id}", "PUT");
 
             routes.Add<Services.CreateTrainersSubjectModel>("/api/trainerssubjects", "POST");
+            routes.Add<Services.TrainerSubjectModel>("/api/trainers/{trainerId}/subjects/{subjectId}", "DELETE");
 
             routes.Add<Services.FilterParametersGradingSystems>("/api/gradingsystems", "GET");
             routes.Add<Services.GradingSystemModel>("/api/gradingsystems", "POST");
@@ -90,6 +94,7 @@ namespace Ilc.Web.AppStart
             routes.Add<FilterParametersCustomerStatisticsModel>("/api/statistics/customerTrainings", "GET");
 
             routes.Add<Services.FilterParametersLessons>("/api/trainings/{trainingId}/lessons", "GET");
+            routes.Add<Services.UpdateLessonModel>("/api/trainings/{trainingId}/lessons/{id}", "PUT");
             routes.Add<Services.FilterParametersLessonSchedule>("/api/trainings/{trainingId}/lessonsSchedule", "GET");
             routes.Add<Services.FilterParametersLessonsSchedule>("/api/lessons", "GET");
 

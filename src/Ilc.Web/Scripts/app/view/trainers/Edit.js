@@ -28,6 +28,10 @@
         });
     },
 
+    subjectDeleted: function() {
+        this.loadSubjects();
+    },
+
     initComponent: function (config) {
         var me = this;
 
@@ -43,6 +47,25 @@
                     dataIndex: 'name',
                     text: Ilc.resources.Manager.getResourceString('common.name'),
                     flex: 1
+                },
+                {
+                    xtype: 'actioncolumn',
+                    sortable: false,
+                    menuDisabled: true,
+                    items: [
+                        {
+                            icon: 'images/web/remove.png',
+                            tooltip: Ilc.resources.Manager.getResourceString('common.delete'),
+                            handler: function (grid, rowIndex, colIndex, item, e, record) {
+                                var model = {
+                                    trainerId: me.model.id,
+                                    subjectId: record.get('id')
+                                };
+
+                                me.fireEvent('deletesubjectfromtrainer', me, model);
+                            }
+                        }
+                    ]
                 }
             ],
             dockedItems: [
@@ -182,7 +205,8 @@
 
         me.addEvents(
             'editTrainer',
-            'addsubjectstotrainer'
+            'addsubjectstotrainer',
+            'deletesubjectfromtrainer'
         );
 
         // subjectsStore.load({

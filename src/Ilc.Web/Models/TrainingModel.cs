@@ -44,6 +44,8 @@ namespace Ilc.Web.Models
         /// then <see cref="Hours" /> is equal to 2 * 20 = 40
         /// </remarks>
         public int Hours { get; set; }
+
+        public int LessonsNo { get; set; }
     }
 
     public abstract class StatusModel

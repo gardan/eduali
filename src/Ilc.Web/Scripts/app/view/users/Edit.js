@@ -19,10 +19,21 @@
         'Ilc.utils.Forms'
     ],
 
+    unassignRoleComplete: function() {
+        this.rolesStore.load({
+            params: {
+                userId: this.user.get('id')
+            }
+        });
+    },
+
+    rolesStore: null,
+
     initComponent: function() {
         var me = this;
 
         var rolesStore = Ext.create('Ilc.store.Roles');
+        me.rolesStore = rolesStore;
 
         var rolesGrid = Ext.create('Ilc.grid.Roles', {
             store: rolesStore,
@@ -87,6 +98,16 @@
                     ]
                 }
             ]
+        });
+
+        rolesGrid.on('delete', function(grid, record) {
+            // Delete role from user
+            var model = {
+                userId: me.user.get('id'),
+                roleId: record.get('id')
+            };
+
+            me.fireEvent('unassignrole', me, model);
         });
 
         me.items = [
@@ -164,6 +185,7 @@
 
         me.addEvents(
             'assignrole',
+            'unassignrole',
             'updateuser'
         );
 

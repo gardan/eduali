@@ -32,6 +32,10 @@
             var window = Ext.create('Ilc.view.roles.Edit', {
                 role: record
             }).show();
+
+            window.on('editcomplete', function () {
+                rolesStore.load();
+            });
         });
 
         me.items = [

@@ -6,6 +6,7 @@
         this.control({
             'edituserwindow': {
                 'assignrole': this.assignRole,
+                'unassignrole': this.removeRole,
                 'updateuser': this.updateUser
             },
             'listusers': {
@@ -42,6 +43,39 @@
         })
         .finally(function () {
             sender.close();
+        });
+    },
+
+    removeRole: function (sender, model) {
+        console.log('fired');
+        var roleAssignmentsService = {
+            delete: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/roleassignments/' + entity.roleId + '/' + entity.userId,
+                    method: 'DELETE',
+                    // jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+
+        sender.mask();
+        roleAssignmentsService.delete(model)
+        .then(function (response) {
+            
+        })
+        .finally(function () {
+            sender.unmask();
+            sender.unassignRoleComplete();
         });
     },
 

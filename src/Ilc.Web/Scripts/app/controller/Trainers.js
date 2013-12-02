@@ -9,7 +9,8 @@
                 'deleteTrainer': this.deleteTrainer
             },
             'edittrainerwindow': {
-                'addsubjectstotrainer': this.addSubjectsToTrainer
+                'addsubjectstotrainer': this.addSubjectsToTrainer,
+                'deletesubjectfromtrainer': this.deleteSubjectFromTrainer
             }
         });
     },
@@ -133,6 +134,36 @@
         })
         .finally(function () {
             sender.close();
+        });
+    },
+
+    deleteSubjectFromTrainer: function(sender, model) {
+        var trainerService = {
+            deleteSubjectFromTrainer: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/trainers/' + entity.trainerId + '/subjects/' + entity.subjectId,
+                    method: 'DELETE',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+
+        trainerService.deleteSubjectFromTrainer(model)
+        .then(function (response) {
+            
+        })
+        .finally(function () {
+            sender.subjectDeleted();
         });
     },
 

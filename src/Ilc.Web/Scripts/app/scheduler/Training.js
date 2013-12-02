@@ -12,7 +12,7 @@
     // startDate: startDate,
     // endDate: Sch.util.Date.add(startDate, Sch.util.Date.DAY, 10),
 
-    viewPreset: 'dayAndWeek',
+    viewPreset: 'hourAndDayLarge',
 
     // Setup your static columns
 
@@ -128,7 +128,7 @@
                 s.ctx.showAt(e.getXY());
             },
             afterlayout: function () {
-                me.zoomToLevel(4);
+                // me.zoomToLevel(4);
             },
             single: true
         };

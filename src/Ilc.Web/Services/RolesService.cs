@@ -55,6 +55,19 @@ namespace Ilc.Web.Services
                     StatusCode = HttpStatusCode.OK
                 };
         }
+
+        public HttpResult Put(RoleModel request)
+        {
+            var role = Roles.GetById(request.Id);
+            role.RoleName = request.Name;
+
+            Roles.Update(role);
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
     }
 
     public class CreateRoleModel

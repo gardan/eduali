@@ -118,6 +118,8 @@ namespace Ilc.Data.Migrations
                                               Claims = new List<RoleClaim>()
                                                   {
                                                       new RoleClaim() {Name = "tasks-administrator", Value = true.ToString()},
+                                                      new RoleClaim() {Name = "tasks-sales", Value = true.ToString()},
+                                                      new RoleClaim() {Name = "tasks-coordinator", Value = true.ToString()},
                                                       new RoleClaim() {Name = "ui-settings-read", Value = true.ToString()}
                                                   }       
                                           }
@@ -352,6 +354,13 @@ namespace Ilc.Data.Migrations
 
         private void AddUser(AppContext context, UserProfile user)
         {
+            var userExists = context.UserProfiles.FirstOrDefault(u => u.Username == user.Username);
+            if (userExists != null)
+            {
+                user = userExists;
+                return;
+            }
+           
             context.UserProfiles.Add(user);
             context.SaveChanges();
 

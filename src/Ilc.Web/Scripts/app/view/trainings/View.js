@@ -8,7 +8,7 @@
         'Ilc.view.trainings.view.Planning',
         'Ilc.view.spendings.View'
     ],
-    width: 800,
+    width: 900,
 
     defaults: {
         xtype: 'panel'
@@ -16,9 +16,11 @@
 
     layout: 'anchor',
     bodyPadding: 0,
-    constructor: function (cfg) {
+    model: null,
+
+    initComponent: function (cfg) {
         var me = this;
-        var model = cfg.model;
+        var model = me.model;
 
         var studentsStore = Ext.create('Ext.data.Store', {
             fields: ['id', 'name', 'phone'],
@@ -267,7 +269,8 @@
                     },
                     {
                         xtype: 'planningTab',
-                        entity: model
+                        entity: model,
+                        width: 900
                     },
                     {
                         title: 'Students',

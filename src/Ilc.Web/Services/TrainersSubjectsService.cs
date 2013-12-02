@@ -33,6 +33,35 @@ namespace Ilc.Web.Services
                     StatusCode = HttpStatusCode.OK
                 };
         }
+
+        public HttpResult Delete(TrainerSubjectModel request)
+        {
+            // Delete subjects from trainer
+
+            var trainer = Trainers.GetByTrainerId(request.TrainerId);
+            var justLoadIt = trainer.Subjects.ToList();
+
+            foreach (var subject in justLoadIt)
+            {
+                if (subject.Id == request.SubjectId)
+                {
+                    trainer.Subjects.Remove(subject);
+                    Trainers.Update(trainer);
+                    break;
+                }
+            }
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
+    }
+
+    public class TrainerSubjectModel
+    {
+        public int TrainerId { get; set; }
+        public int SubjectId { get; set; }
     }
 
     public class CreateTrainersSubjectModel
