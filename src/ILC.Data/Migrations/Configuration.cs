@@ -118,6 +118,8 @@ namespace Ilc.Data.Migrations
                                               Claims = new List<RoleClaim>()
                                                   {
                                                       new RoleClaim() {Name = "tasks-administrator", Value = true.ToString()},
+                                                      new RoleClaim() {Name = "tasks-sales", Value = true.ToString()},
+                                                      new RoleClaim() {Name = "tasks-coordinator", Value = true.ToString()},
                                                       new RoleClaim() {Name = "ui-settings-read", Value = true.ToString()}
                                                   }       
                                           }
