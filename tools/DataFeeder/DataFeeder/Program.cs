@@ -37,6 +37,7 @@ namespace DataFeeder
                         cn.Open();
                         insertCommand.ExecuteNonQuery();
                         cn.Close();
+                        Console.WriteLine("Executed: {0}", insertCommand.CommandText);
                     }
                 }
             }
@@ -48,8 +49,14 @@ namespace DataFeeder
 
         static void Main(string[] args)
         {
-            //path to file
-            parseCSV(File.OpenRead(@"H:\Diverse\Work\GitHub\ILC\tools\DataFeeder\DataFeeder\customers.csv"));
+
+            var location = Assembly.GetExecutingAssembly().Location;
+            var directory = Path.GetDirectoryName(location);
+            var csvFilePath = Path.Combine(directory, "customers.csv");
+            
+            parseCSV(File.OpenRead(csvFilePath));
+
+            Console.ReadLine();
         }
     }
 }
