@@ -23,10 +23,15 @@ namespace Ilc.Core
         /// </summary>
         public List<Filter> Filter { get; set; }
 
+        public int Start { get; set; }
+
         /// <summary>
         /// Starting index of the data set
         /// </summary>
-        public int StartIndex { get; set; }
+        public int StartIndex {
+            get { return Start; }
+            set { Start = value; }
+        }
         /// <summary>
         /// Record to return
         /// </summary>
