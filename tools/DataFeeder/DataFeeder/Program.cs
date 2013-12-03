@@ -58,7 +58,7 @@ namespace DataFeeder
 
             var location = Assembly.GetExecutingAssembly().Location;
             var directory = Path.GetDirectoryName(location);
-            string csvFilePath;
+            string csvFilePath = "";
 
             int choice=0;
             if (int.TryParse(ans, out choice))
@@ -76,7 +76,7 @@ namespace DataFeeder
                         break;
                     default:
                         Console.WriteLine("Wrong selection!!!" +
-                                          Environment.NewLine + "Press any kay for exit");
+                                          Environment.NewLine + "Press any key for exit");
                         Console.ReadKey();
                         break;
                 }
