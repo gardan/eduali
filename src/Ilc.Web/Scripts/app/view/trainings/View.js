@@ -124,6 +124,16 @@
         // General
         var trainersStore = Ext.create('Ilc.store.Trainers');
         
+        var salesUsersStore = Ext.create('Ilc.store.Users', {
+            claims: 'tasks-sales'
+        });
+        var coordinatorsUsersStore = Ext.create('Ilc.store.Users', {
+            claims: 'tasks-coordinator'
+        });
+        var administratorsUsersStore = Ext.create('Ilc.store.Users', {
+            claims: 'tasks-administrator'
+        });
+
         var trainersComboBox = Ext.create('Ext.form.ComboBox', {
             store: trainersStore,
             queryMode: 'local',
@@ -132,7 +142,8 @@
             name: 'trainerId',
             fieldLabel: Ilc.resources.Manager.getResourceString('common.trainer'),
             anchor: '100%',
-            margin: 5,
+            margin: '5 5 5 5',
+            labelWidth: 150
         });
 
         trainersStore.on('load', function (store, records) {
@@ -237,10 +248,62 @@
                         title: 'General',
                         defaults: {
                             bodyPadding: 10,
-                            margin: 5
+                            margin: 5,
+                            labelWidth: 150
+                        },
+                        listeners: {
+                            render: function (panel) {
+                                salesUsersStore.load({
+                                    callback: function () {
+                                        // We need to set the id == me.model.get('id')
+                                        panel.items.items[1].setValue(me.model.get('ownersConfiguration').sales);
+                                    }
+                                });
+                                
+                                administratorsUsersStore.load({
+                                    callback: function () {
+                                        // We need to set the id == me.model.get('id')
+                                        panel.items.items[2].setValue(me.model.get('ownersConfiguration').administration);
+                                    }
+                                });
+                                
+                                coordinatorsUsersStore.load({
+                                    callback: function () {
+                                        // We need to set the id == me.model.get('id')
+                                        panel.items.items[3].setValue(me.model.get('ownersConfiguration').coordinator);
+                                    }
+                                });
+                            }
                         },
                         items: [
                             trainersComboBox,
+                            {
+                                xtype: 'combobox',
+                                fieldLabel: 'Sales user',
+                                store: salesUsersStore,
+                                displayField: 'username',
+                                valueField: 'id',
+                                name: 'workflowOwners.sales',
+                                margin: '0 5 5 5'
+                            },
+                            {
+                                xtype: 'combobox',
+                                fieldLabel: 'Administration user',
+                                store: administratorsUsersStore,
+                                displayField: 'username',
+                                valueField: 'id',
+                                name: 'workflowOwners.administration',
+                                margin: '0 5 5 5'
+                            },
+                            {
+                                xtype: 'combobox',
+                                fieldLabel: 'Coordination user',
+                                store: coordinatorsUsersStore,
+                                displayField: 'username',
+                                valueField: 'id',
+                                name: 'workflowOwners.coordinator',
+                                margin: '0 5 5 5'
+                            },
                             {
                                 xtype: 'datefield',
                                 fieldLabel: Ilc.resources.Manager.getResourceString('common.startDate'),
@@ -250,8 +313,10 @@
                         buttons: [
                             {
                                 text: Ilc.resources.Manager.getResourceString('common.update'),
-                                handler: function () {
-                                    var args = Ilc.utils.Forms.extractModel([trainersComboBox]);
+                                handler: function (btn) {
+                                    var controls = btn.up().up().items.items.slice(0, 4);
+                                    
+                                    var args = Ilc.utils.Forms.extractModel(controls);
                                     args.id = model.get('id');
 
                                     me.mask();

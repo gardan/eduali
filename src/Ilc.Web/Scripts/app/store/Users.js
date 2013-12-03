@@ -1,7 +1,8 @@
 ﻿Ext.define('Ilc.store.Users', {
     extend: 'Ext.data.Store',
 
-    fields: ['id', 'username', 'userInfo'],
+    model: 'Ilc.model.User',
+    // fields: ['id', 'username', 'userInfo'],
 
     constructor: function (args) {
         var me = this;

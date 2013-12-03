@@ -46,6 +46,15 @@ namespace Ilc.Web.Models
         public int Hours { get; set; }
 
         public int LessonsNo { get; set; }
+
+        public TrainingOwnersConfigurationModel OwnersConfiguration { get; set; }
+    }
+
+    public class TrainingOwnersConfigurationModel
+    {
+        public int Sales { get; set; }
+        public int Administration { get; set; }
+        public int Coordinator { get; set; }
     }
 
     public abstract class StatusModel

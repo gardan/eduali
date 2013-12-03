@@ -11,7 +11,7 @@ namespace Ilc.Web.Models
         public string BankAccount { get; set; }
         public List<ContactPersonModel> ContactPersons { get; set; }
         public ContactPersonModel ContactPerson {
-            get { return ContactPersons == null ? null : ContactPersons.First(cp => cp.IsMain); }
+            get { return ContactPersons == null || ContactPersons.Count == 0 ? null : ContactPersons.First(cp => cp.IsMain); }
         }
     }
 }

@@ -118,17 +118,83 @@ namespace Ilc.Web.Services
         public HttpResult Put(UpdateTrainingModel request)
         {
             var training = Trainings.GetById(request.Id);
-            var interviewPlan = Uow.InterviewPlans.GetById(training.InterviewPlans.FirstOrDefault().Id);
+            var interviewPlan = training.InterviewPlans.FirstOrDefault();
 
+            // Update the trainer
             training.TrainerId = request.TrainerId == 0 
                                     ? training.TrainerId 
                                     : request.TrainerId;
+            
+
+            // Update the interviewPlanDateAndLocation if one exists
+            if (interviewPlan != null)
+            {
+                interviewPlan.Date = request.InterviewDate == DateTimeOffset.MinValue
+                                         ? interviewPlan.Date
+                                         : request.InterviewDate;
+                Uow.InterviewPlans.Update(interviewPlan);
+            }
+
+
+            // update the owner configuration if one exists
+            var config = training.OwnersConfiguration;
+            var updateConfig = false;
+            var newOwnerId = 0;
+            if (config.SalesId != request.WorkflowOwners.Sales)
+            {
+                config.SalesId = request.WorkflowOwners.Sales;
+                updateConfig = true;
+
+                if (training.Status == TrainingStatus.Rfi || training.Status == TrainingStatus.Offer)
+                {
+                    newOwnerId = config.SalesId;
+                    
+                }
+            }
+
+            if (config.CoordinatorId != request.WorkflowOwners.Coordinator)
+            {
+                config.CoordinatorId = request.WorkflowOwners.Coordinator;
+                updateConfig = true;
+
+                if (training.Status == TrainingStatus.Interview)
+                {
+                    newOwnerId = config.CoordinatorId;
+                    training.Owners = new[] { Uow.UserProfiles.GetById(config.CoordinatorId) };
+                }
+            }
+
+            if (config.AdministrationId != request.WorkflowOwners.Administration)
+            {
+                config.AdministrationId = request.WorkflowOwners.Administration;
+                updateConfig = true;
+
+                if (training.Status == TrainingStatus.PlanInterview || training.Status == TrainingStatus.Accepted || training.Status == TrainingStatus.Rejected)
+                {
+                    newOwnerId = config.AdministrationId;
+                    training.Owners = new[] { Uow.UserProfiles.GetById(config.AdministrationId) };
+                }
+            }
+            if (updateConfig)
+            {
+                Uow.TrainingOwnersConfiguration.Update(config);
+                if (newOwnerId > 0)
+                {
+                    training.Owners = new List<UserProfile>() { Uow.UserProfiles.GetById(newOwnerId) };
+                    
+                    Uow.Trainings.Update(training);
+                    Uow.Commit();
+
+                    var ownerToBeDeleted = training.Owners.First(u => u.Id != newOwnerId);
+                    training.Owners.Remove(ownerToBeDeleted);
+
+                    Uow.Trainings.Update(training);
+                    Uow.Commit();
+                }
+            }
+
             Uow.Trainings.Update(training);
 
-            interviewPlan.Date = request.InterviewDate == DateTimeOffset.MinValue
-                                     ? interviewPlan.Date
-                                     : request.InterviewDate;
-            Uow.InterviewPlans.Update(interviewPlan);
             Uow.Commit();
 
             return new HttpResult()
@@ -143,5 +209,6 @@ namespace Ilc.Web.Services
         public DateTimeOffset InterviewDate { get; set; }
         public int TrainerId { get; set; }
         public int Id { get; set; }
+        public TrainingOwnersConfigurationModel WorkflowOwners { get; set; }
     }
 }

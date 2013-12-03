@@ -17,14 +17,26 @@
         // anchor: '100%'
     },
 
+    totalLabel: null,
+
+    updateTotal: function() {
+        var totalExpenses = this.spendings.supplies + this.spendings.supplies + (this.spendings.trainer * this.hours);
+        this.totalLabel.setText('Total expenses: ' + totalExpenses);
+    },
+
     initComponent: function () {
         var me = this;
 
         var trainerCostField = Ext.create('Ext.ux.form.NumericField', {
             disabled: true,
             value: me.spendings.trainer,
+            width: 100,
             name: 'trainer'
         });
+
+        
+        me.totalLabel = Ext.create('Ext.form.Label');
+        me.updateTotal();
 
         me.items = [
             {
@@ -35,9 +47,12 @@
                         xtype: 'numericfield',
                         fieldLabel: 'Trainer',
                         value: me.spendings.trainer / me.hours,
+                        width: 250,
                         listeners: {
                             change: function (numericfield, newValue, oldValue) {
+                                me.spendings.trainer = newValue;
                                 trainerCostField.setValue(newValue * me.hours);
+                                me.updateTotal();
                             }
                         }
                     },
@@ -52,13 +67,28 @@
             {
                 fieldLabel: 'Supplies',
                 value: me.spendings.supplies,
-                name: 'supplies'
+                width: 250,
+                name: 'supplies',
+                listeners: {
+                    change: function (numericfield, newValue) {
+                        me.spendings.supplies = newValue;
+                        me.updateTotal();
+                    }
+                }
             },
             {
                 fieldLabel: 'Transport',
                 value: me.spendings.transport,
-                name: 'transport'
-            }
+                width: 250,
+                name: 'transport',
+                listeners: {
+                    change: function (numericfield, newValue) {
+                        me.spendings.transport = newValue;
+                        me.updateTotal();
+                    }
+                }
+            },
+            me.totalLabel
         ];
 
         me.buttons = [
