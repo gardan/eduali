@@ -49,11 +49,39 @@ namespace DataFeeder
 
         static void Main(string[] args)
         {
+            Console.WriteLine("Select opction:" +
+                              Environment.NewLine + "1 Import customers\n" +
+                              Environment.NewLine + "2 Import students" +
+                              Environment.NewLine + "3 Import trainers" +
+                              Environment.NewLine + "Please enter your selection:");
+            var ans = Console.ReadLine();
 
             var location = Assembly.GetExecutingAssembly().Location;
             var directory = Path.GetDirectoryName(location);
-            var csvFilePath = Path.Combine(directory, "customers.csv");
-            
+            string csvFilePath;
+
+            int choice=0;
+            if (int.TryParse(ans, out choice))
+            {
+                switch (choice)
+                {
+                    case 1:
+                        csvFilePath = Path.Combine(directory, "customers.csv");
+                        break;
+                    case 2:
+                        csvFilePath = Path.Combine(directory, "students.csv");
+                        break;
+                    case 3:
+                        csvFilePath = Path.Combine(directory, "trainers.csv");
+                        break;
+                    default:
+                        Console.WriteLine("Wrong selection!!!" +
+                                          Environment.NewLine + "Press any kay for exit");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+
             parseCSV(File.OpenRead(csvFilePath));
 
             Console.ReadLine();
