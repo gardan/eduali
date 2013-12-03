@@ -78,6 +78,17 @@ namespace Ilc.Web.InjectorConventions
                 }
                 return 0;
             }
+
+            if (c.SourceProp.Name == "OwnersConfiguration" && c.TargetProp.Name == "OwnersConfiguration")
+            {
+                var config = c.SourceProp.Value as TrainingOwnersConfiguration;
+                return new TrainingOwnersConfigurationModel()
+                    {
+                        Administration = new OwnerModel() { Id = config.AdministrationId},
+                        Coordinator = new OwnerModel() { Id = config.CoordinatorId },
+                        Sales   = new OwnerModel() { Id = config.SalesId }
+                    };
+            }
             return base.SetValue(c);
         }
     }

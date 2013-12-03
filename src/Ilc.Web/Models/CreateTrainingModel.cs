@@ -26,9 +26,4 @@ namespace Ilc.Web.Models
         public int Coordinator { get; set; }
         public int Trainer { get; set; }
     }
-
-    public class OwnerModel
-    {
-        public int Id { get; set; }
-    }
 }

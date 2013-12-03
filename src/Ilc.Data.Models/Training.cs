@@ -61,7 +61,7 @@ namespace Ilc.Data.Models
 
         public Guid? WokrflowId { get; set; }
 
-        public TrainingOwnersConfiguration OwnersConfiguration { get; set; }
+        public virtual TrainingOwnersConfiguration OwnersConfiguration { get; set; }
 
         public int GradingSystemId { get; set; }
         [ForeignKey("GradingSystemId")]

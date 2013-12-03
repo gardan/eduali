@@ -194,6 +194,7 @@
     <Content Include="Scripts\app\helpers\GridColumns.js" />
     <Content Include="Scripts\app\model\Claim.js" />
     <Content Include="Scripts\app\model\InterviewPlan.js" />
+    <Content Include="Scripts\app\model\User.js" />
     <Content Include="Scripts\app\resources\Resources.en.js" />
     <Content Include="Scripts\app\resources\Manager.js" />
     <Content Include="Scripts\app\resources\Resources.nl.js" />
