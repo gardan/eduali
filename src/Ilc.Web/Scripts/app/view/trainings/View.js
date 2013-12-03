@@ -256,21 +256,21 @@
                                 salesUsersStore.load({
                                     callback: function () {
                                         // We need to set the id == me.model.get('id')
-                                        panel.items.items[1].setValue(me.model.get('ownersConfiguration').sales.id);
+                                        panel.items.items[1].setValue(me.model.get('ownersConfiguration').sales);
                                     }
                                 });
                                 
                                 administratorsUsersStore.load({
                                     callback: function () {
                                         // We need to set the id == me.model.get('id')
-                                        panel.items.items[3].setValue(me.model.get('ownersConfiguration').administration.id);
+                                        panel.items.items[2].setValue(me.model.get('ownersConfiguration').administration);
                                     }
                                 });
                                 
                                 coordinatorsUsersStore.load({
                                     callback: function () {
                                         // We need to set the id == me.model.get('id')
-                                        panel.items.items[2].setValue(me.model.get('ownersConfiguration').coordinator.id);
+                                        panel.items.items[3].setValue(me.model.get('ownersConfiguration').coordinator);
                                     }
                                 });
                             }
@@ -313,8 +313,10 @@
                         buttons: [
                             {
                                 text: Ilc.resources.Manager.getResourceString('common.update'),
-                                handler: function () {
-                                    var args = Ilc.utils.Forms.extractModel([trainersComboBox]);
+                                handler: function (btn) {
+                                    var controls = btn.up().up().items.items.slice(0, 4);
+                                    
+                                    var args = Ilc.utils.Forms.extractModel(controls);
                                     args.id = model.get('id');
 
                                     me.mask();

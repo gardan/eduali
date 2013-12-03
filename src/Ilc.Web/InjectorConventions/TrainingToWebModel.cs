@@ -84,9 +84,9 @@ namespace Ilc.Web.InjectorConventions
                 var config = c.SourceProp.Value as TrainingOwnersConfiguration;
                 return new TrainingOwnersConfigurationModel()
                     {
-                        Administration = new OwnerModel() { Id = config.AdministrationId},
-                        Coordinator = new OwnerModel() { Id = config.CoordinatorId },
-                        Sales   = new OwnerModel() { Id = config.SalesId }
+                        Administration = config.AdministrationId,
+                        Coordinator = config.CoordinatorId,
+                        Sales = config.SalesId 
                     };
             }
             return base.SetValue(c);
