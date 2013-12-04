@@ -14,30 +14,39 @@ namespace DataFeeder
         /// <summary>
         /// Csv file is readed via FileUpload method.
         /// </summary>
-        public static void parseCSV(Stream stream)
+        public static void parseCSV(Stream stream, int option)
         {
             try
             {
                 using (StreamReader readFile = new StreamReader(stream))
                 {
-                    string cnStringImportdata = @"Data Source=localhost\sqlexpress;Initial Catalog=Ilc;Integrated Security=True";
-                    SqlConnection cn = new SqlConnection(cnStringImportdata);
+                    const string cnStringImportdata = @"Data Source=localhost\sqlexpress;Initial Catalog=Ilc;Integrated Security=True";
+                    var cn = new SqlConnection(cnStringImportdata);
                     string line;
                     string[] row;
 
                     while ((line = readFile.ReadLine()) != null)
                     {
                         row = line.Split(',');
-                        //skip the first line from csv file
-                        if(row[1].Contains("bankAccount"))
-                            continue;
-                        SqlCommand insertCommand =
-                            new SqlCommand("INSERT INTO Customer(Name, BillingAddress, BankAccount)" +
-                                           "Values('" + row[0] + "','" + row[2] + "','" + row[1] + "')", cn);
-                        cn.Open();
-                        insertCommand.ExecuteNonQuery();
+                        switch (option)
+                        {
+                            case 1:
+                                    //skip the first line from csv file
+                                if (row[1].Contains("bankAccount"))
+                                    continue;
+                                InserCustomerCommand(row, cn);
+                                break;
+                            case 2:
+                                if (row[0].Contains("Username"))
+                                    continue;
+                                InsertUsersCommand(row,cn);
+                                break;
+                            default:
+                                break;
+                        }
+
                         cn.Close();
-                        Console.WriteLine("Executed: {0}", insertCommand.CommandText);
+                        Console.WriteLine("Execution finished. Press any key to exit!");
                     }
                 }
             }
@@ -47,10 +56,80 @@ namespace DataFeeder
             }
         }
 
+        public static void InserCustomerCommand(string[] row, SqlConnection cn)
+        {
+            SqlConnection sqlCon = cn;
+            var insertCommand = new SqlCommand("INSERT INTO Customer(Name, BillingAddress, BankAccount)" +
+                                           "Values('" + row[0] + "','" + row[2] + "','" + row[1] + "')", sqlCon);
+            sqlCon.Open();
+            insertCommand.ExecuteNonQuery();
+            sqlCon.Close();
+        }
+
+        public static void InsertUsersCommand(string[] row, SqlConnection cn)
+        {
+            int userDBId = 0;
+            int customerDBId = 0;
+            SqlConnection sqlCon = cn;
+            SqlCommand selectCommand = null;
+            SqlCommand insertCommand = null;
+            SqlDataReader dataRdr = null;
+            sqlCon.Open();
+
+            insertCommand = new SqlCommand("INSERT INTO UserProfile(Username)" +
+                                           "Values('" + row[0] + "')", sqlCon);
+            insertCommand.ExecuteNonQuery();
+
+            selectCommand = new SqlCommand("SELECT TOP 1 Id, Username" + " FROM UserProfile" + " WHERE (Username LIKE @Username)",
+                                           sqlCon);
+            selectCommand.Parameters.Add(new SqlParameter("@Username", System.Data.SqlDbType.NVarChar, -1, "Username"));
+            selectCommand.Parameters["@Username"].Value = row[0];
+
+            dataRdr = selectCommand.ExecuteReader();
+            if (dataRdr.Read())
+                userDBId = int.Parse(dataRdr["Id"].ToString());
+            sqlCon.Close();
+            
+            sqlCon.Open();
+            var salt = Ilc.Crypto.Crypto.GenerateSalt();
+            var hashedPwd = Ilc.Crypto.Crypto.Hash(salt + Ilc.Crypto.Crypto.Hash(salt + row[0]));
+            insertCommand = new SqlCommand("INSERT INTO webpages_Membership(UserId, PasswordFailuresSinceLastSuccess, Password, PasswordSalt)" +
+                                           "Values('" + userDBId + "','" + 0 + "','" + hashedPwd + "','" + salt + "')", sqlCon);
+            insertCommand.ExecuteNonQuery();
+            sqlCon.Close();
+
+            sqlCon.Open();
+            insertCommand = new SqlCommand("INSERT INTO UserDetails(Id, FirstName, LastName, Email, Phone)" +
+                                           "Values('" + userDBId + "','" + row[1] + "','" + row[2] + "','" + row[3] + "','" + row[4] + "')", sqlCon);
+            insertCommand.ExecuteNonQuery();
+
+            selectCommand = new SqlCommand("SELECT TOP 1 Name, Id" + "  FROM Customer" + " WHERE (Name LIKE @Name)",
+                                           sqlCon);
+            selectCommand.Parameters.Add(new SqlParameter("@Name", System.Data.SqlDbType.NVarChar, -1, "Name"));
+            selectCommand.Parameters["@Name"].Value = row[5];
+
+            dataRdr = selectCommand.ExecuteReader();
+            if (dataRdr.Read())
+                customerDBId = int.Parse(dataRdr["Id"].ToString());
+            sqlCon.Close();
+
+            sqlCon.Open();
+            insertCommand = new SqlCommand("INSERT INTO Student(Name, CustomerId, UserProfileId)" +
+                                           "Values('" + row[1] + " " + row[2] + "','" + customerDBId + "','" + userDBId +"')", sqlCon);
+            insertCommand.ExecuteNonQuery();
+            sqlCon.Close();
+
+            sqlCon.Open();
+            insertCommand = new SqlCommand("INSERT INTO webpages_UsersInRoles(UserId, RoleId)" +
+                                          "Values('" + userDBId + "','" + 1 + "')", sqlCon);
+            insertCommand.ExecuteNonQuery();
+            sqlCon.Close();
+        }
+
         static void Main(string[] args)
         {
             Console.WriteLine("Select opction:" +
-                              Environment.NewLine + "1 Import customers\n" +
+                              Environment.NewLine + "1 Import customers" +
                               Environment.NewLine + "2 Import students" +
                               Environment.NewLine + "3 Import trainers" +
                               Environment.NewLine + "Please enter your selection:");
@@ -59,8 +138,8 @@ namespace DataFeeder
             var location = Assembly.GetExecutingAssembly().Location;
             var directory = Path.GetDirectoryName(location);
             string csvFilePath = "";
-
-            int choice=0;
+            
+            int choice = 0;
             if (int.TryParse(ans, out choice))
             {
                 switch (choice)
@@ -82,9 +161,10 @@ namespace DataFeeder
                 }
             }
 
-            parseCSV(File.OpenRead(csvFilePath));
+            parseCSV(File.OpenRead(csvFilePath), choice);
 
             Console.ReadLine();
+        
         }
     }
 }
