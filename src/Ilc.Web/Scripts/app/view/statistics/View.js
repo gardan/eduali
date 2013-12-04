@@ -9,7 +9,8 @@
 
     requires: [
         'Ilc.chart.Spendings',
-        'Ilc.chart.Customers'
+        'Ilc.chart.Customers',
+        'Ilc.chart.Trainings'
     ],
 
     initComponent: function () {
@@ -18,6 +19,8 @@
         var store = Ext.create('Ilc.store.statistics.Customers');
 
         var spendingsStatsStore = Ext.create('Ilc.store.statistics.Spendings');
+
+        var trainingsCountStore = Ext.create('Ilc.store.statistics.Trainings');
 
         me.items = [
             {
@@ -73,6 +76,23 @@
 
                         }
                     });
+                }
+            },
+            {
+                xtype: 'button',
+                text: 'Trainings / Month',
+                handler: function() {
+                    Ext.create('Ext.window.Window', {
+                        layout: 'anchor',
+                        width: 800,
+                        closeAction: 'destroy',
+                        items: [
+                            {
+                                xtype: 'trainingschart',
+                                store: trainingsCountStore,
+                            }
+                        ]
+                    }).show();
                 }
             }
         ];
