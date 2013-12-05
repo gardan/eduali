@@ -7,6 +7,7 @@ namespace Ilc.Web.Models
     {
         public int Id { get; set; }
         public string CompositeId {
+            // TODO: move to a function that takes a training, and returns the compositeId
             get { return string.Format("{0}-{1}", CustomerId, NoOfCustomerTraining); }
         }
 

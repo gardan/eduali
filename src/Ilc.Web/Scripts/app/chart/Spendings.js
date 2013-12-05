@@ -16,8 +16,8 @@
         {
             position: 'left',
             type: 'Category',
-            fields: ['customerName'],
-            title: 'Customers'
+            fields: ['label'],
+            title: 'Trainings'
         }
     ],
 
@@ -25,7 +25,7 @@
         {
             type: 'bar',
             axis: 'bottom',
-            xField: 'customerName',
+            xField: 'label',
             yField: ['price', 'spendings']
         }
     ],

@@ -27,7 +27,9 @@
                 xtype: 'button',
                 text: 'Price / Spendings',
                 handler: function () {
-                    
+
+                    spendingsStatsStore.load();
+
                     Ext.create('Ext.window.Window', {
                         layout: 'anchor',
                         width: 800,

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Ilc.Core;
 using Ilc.Infrastructure.Contracts;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
@@ -26,5 +27,31 @@ namespace Ilc.Web.Services
                 };
         }
 
+        public FilteredDataModel<SpendingsStatisticsModel> Get(FilterParametersSpendingsStatisticsModel request)
+        {
+            var spendingsStats = Statistics.GetCustomersSpendings();
+
+            return new FilteredDataModel<SpendingsStatisticsModel>()
+            {
+                Data = spendingsStats.Select(cs => new SpendingsStatisticsModel().InjectFrom(cs) as SpendingsStatisticsModel).ToList(),
+                TotalRecords = 4,
+                TotalDisplayRecords = 4
+            };
+        }
+
+    }
+
+    public class FilterParametersSpendingsStatisticsModel : FilterArguments
+    {
+
+    }
+
+    public class SpendingsStatisticsModel
+    {
+        public string CustomerName { get; set; }
+        public string SubjectName { get; set; }
+        public string TrainingCompositeId { get; set; }
+        public decimal Price { get; set; }
+        public decimal Spendings { get; set; }
     }
 }

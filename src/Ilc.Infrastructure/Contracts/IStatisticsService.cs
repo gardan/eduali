@@ -9,5 +9,6 @@ namespace Ilc.Infrastructure.Contracts
     public interface IStatisticsService
     {
         List<CustomerStatistics> GetCustomers();
+        List<SpendingsStatistics> GetCustomersSpendings();
     }
 }
