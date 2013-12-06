@@ -20,8 +20,7 @@
 
         var spendingsStatsStore = Ext.create('Ilc.store.statistics.Spendings');
 
-        var trainingsCountStore = Ext.create('Ilc.store.statistics.Trainings');
-
+        
         me.items = [
             {
                 xtype: 'button',
@@ -87,7 +86,7 @@
                     var subjectsStore = Ext.create('Ilc.store.Subjects');
                     subjectsStore.load({
                         callback: function(records) {
-                            trainingsCountStore.load();
+                            
                             Ext.create('Ext.window.Window', {
                                 layout: 'anchor',
                                 width: 800,
@@ -95,7 +94,6 @@
                                 items: [
                                     {
                                         xtype: 'trainingschart',
-                                        store: trainingsCountStore,
                                         subjects: records
                                     }
                                 ]

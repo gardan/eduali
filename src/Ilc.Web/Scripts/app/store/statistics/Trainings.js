@@ -9,12 +9,6 @@
             }
         },
         {
-            name: 'romanian',
-            convert: function(v, record) {
-                return record.data.subjects.romanian;
-            }
-        },
-        {
             name: 'monthNr'
         },
         {
@@ -22,6 +16,8 @@
         }
     ],
     
+
+
     proxy: {
         type: 'rest',
         url: 'api/statistics/trainings',

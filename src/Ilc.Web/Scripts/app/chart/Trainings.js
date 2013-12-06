@@ -8,9 +8,41 @@
     },
 
     subjects: null,
-  
-    initComponent: function() {
+
+    initComponent: function () {
         var me = this;
+
+        var fields = [
+            {
+                name: 'month',
+                convert: function (v, record) {
+                    return Ext.Date.monthNames[record.data.monthNr];
+                }
+            },
+            {
+                name: 'monthNr'
+            },
+            {
+                name: 'subjects'
+            }
+        ];
+
+        Ext.Array.forEach(me.subjects, function(subject) {
+            fields.push({
+                name: subject.get('name').toLowerCase(),
+                convert: function(v, record) {
+                    return record.data.subjects[subject.get('name').toLowerCase()];
+                }
+            });
+        });
+
+        var trainingsCountStore = Ext.create('Ilc.store.statistics.Trainings', {
+            fields: fields
+        });
+
+        me.store = trainingsCountStore;
+
+        me.store.load();
 
         me.axes = [
             {
