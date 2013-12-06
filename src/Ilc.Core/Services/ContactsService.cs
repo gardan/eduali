@@ -20,8 +20,13 @@ namespace Ilc.Core.Services
             var query = Uow.Contacts.GetAll();
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
-
+            
             // predefined filters
+            if (parameters.CustomerId > 0)
+            {
+                query = query.Where(c => c.CustomerId == parameters.CustomerId);
+            }
+
             if (parameters.IsMain.HasValue)
             {
                 query = query.Where(c => c.UserProfile.Roles.Any(r => r.RoleName == "Customer Contact") == parameters.IsMain.Value);
