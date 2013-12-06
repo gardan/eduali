@@ -397,6 +397,9 @@
                         listeners: {
                             cancelclicked: function () {
                                 me.close();
+                            },
+                            editcomplete: function () {
+                                me.fireEvent('trainingupdated');
                             }
                         } 
                     }

@@ -8,14 +8,13 @@
     scheduler: null,
 
     updateFinished: function() {
-        console.log('update finished');
+        this.fireEvent('updatecomplete');
     },
 
     initComponent: function (args) {
         var me = this;
 
         var entity = me.entity;
-        debugger;
         var resourceStore = Ext.create('Sch.data.ResourceStore', {
             // trainingId: trainingEntity.get('id')
 

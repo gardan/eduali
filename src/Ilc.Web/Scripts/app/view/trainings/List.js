@@ -126,7 +126,8 @@
                 me.fireEvent('updatetraining', sender, args);
             });
 
-            window.on('trainingupdated', function() {
+            window.on('trainingupdated', function () {
+                console.log('trainingupdated');
                 trainingsStore.reload();
             });
 

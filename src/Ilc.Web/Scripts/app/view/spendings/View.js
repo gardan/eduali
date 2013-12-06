@@ -20,8 +20,12 @@
     totalLabel: null,
 
     updateTotal: function () {
-        var totalExpenses = this.spendings.supplies + this.spendings.transport + this.spendings.trainer;
+        var totalExpenses = parseFloat(this.spendings.supplies) + parseFloat(this.spendings.transport) + parseFloat(this.spendings.trainer);
         this.totalLabel.setText('Total expenses: ' + totalExpenses);
+    },
+
+    editComplete: function() {
+        this.fireEvent('editcomplete');
     },
 
     initComponent: function () {
@@ -121,7 +125,8 @@
 
         me.addEvents(
             'updatespendings',
-            'cancelclicked'
+            'cancelclicked',
+            'editcomplete'
         );
 
         this.callParent(arguments);
