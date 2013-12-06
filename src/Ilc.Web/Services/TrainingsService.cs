@@ -125,6 +125,8 @@ namespace Ilc.Web.Services
                                     ? training.TrainerId 
                                     : request.TrainerId;
             
+            // Update te DesiredStartDate
+            training.DesiredStartDate = request.DesiredStartDate;
 
             // Update the interviewPlanDateAndLocation if one exists
             if (interviewPlan != null)
@@ -207,6 +209,7 @@ namespace Ilc.Web.Services
     public class UpdateTrainingModel
     {
         public DateTimeOffset InterviewDate { get; set; }
+        public DateTime DesiredStartDate { get; set; }
         public int TrainerId { get; set; }
         public int Id { get; set; }
         public TrainingOwnersConfigurationModel WorkflowOwners { get; set; }

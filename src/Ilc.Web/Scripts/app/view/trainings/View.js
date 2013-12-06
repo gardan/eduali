@@ -311,14 +311,15 @@
                             {
                                 xtype: 'datefield',
                                 fieldLabel: Ilc.resources.Manager.getResourceString('common.startDate'),
-                                value: new Date(model.get('desiredStartDate'))
+                                value: new Date(model.get('desiredStartDate')),
+                                name: 'desiredStartDate'
                             }
                         ],
                         buttons: [
                             {
                                 text: Ilc.resources.Manager.getResourceString('common.update'),
                                 handler: function (btn) {
-                                    var controls = btn.up().up().items.items.slice(0, 4);
+                                    var controls = btn.up().up().items.items.slice(0, 5);
                                     
                                     var args = Ilc.utils.Forms.extractModel(controls);
                                     args.id = model.get('id');
