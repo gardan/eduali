@@ -83,18 +83,27 @@
             {
                 xtype: 'button',
                 text: 'Trainings / Month',
-                handler: function() {
-                    Ext.create('Ext.window.Window', {
-                        layout: 'anchor',
-                        width: 800,
-                        closeAction: 'destroy',
-                        items: [
-                            {
-                                xtype: 'trainingschart',
-                                store: trainingsCountStore,
-                            }
-                        ]
-                    }).show();
+                handler: function () {
+                    var subjectsStore = Ext.create('Ilc.store.Subjects');
+                    subjectsStore.load({
+                        callback: function(records) {
+                            trainingsCountStore.load();
+                            Ext.create('Ext.window.Window', {
+                                layout: 'anchor',
+                                width: 800,
+                                closeAction: 'destroy',
+                                items: [
+                                    {
+                                        xtype: 'trainingschart',
+                                        store: trainingsCountStore,
+                                        subjects: records
+                                    }
+                                ]
+                            }).show();
+                        }
+                    });
+
+                    
                 }
             }
         ];

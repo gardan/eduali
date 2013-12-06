@@ -6,33 +6,37 @@
     legend: {
         position: 'right'
     },
-    axes: [
-        {
-            position: 'left',
-            type: 'Numeric',
-            fields: ['english', 'french'],
-            title: 'No. of trainings'
-        },
-        {
-            position: 'bottom',
-            type: 'Category',
-            fields: ['month'],
-            title: 'Year'
-        }
-    ],
 
-    series: [
-        {
-            type: 'line',
-            axis: 'left',
-            xField: 'month',
-            yField: ['english']
-        },
-        {
-            type: 'line',
-            axis: 'left',
-            xField: 'month',
-            yField: ['french']
-        }
-    ],
+    subjects: null,
+  
+    initComponent: function() {
+        var me = this;
+
+        me.axes = [
+            {
+                position: 'left',
+                type: 'Numeric',
+                fields: ['english', 'romanian'],
+                title: 'No. of trainings'
+            },
+            {
+                position: 'bottom',
+                type: 'Category',
+                fields: ['month'],
+                title: 'Year'
+            }
+        ];
+
+        me.series = [];
+        Ext.Array.forEach(me.subjects, function (subject) {
+            me.series.push({
+                type: 'line',
+                axis: 'left',
+                xField: 'month',
+                yField: [subject.get('name').toLowerCase()]
+            });
+        });
+
+        me.callParent(arguments);
+    }
 });

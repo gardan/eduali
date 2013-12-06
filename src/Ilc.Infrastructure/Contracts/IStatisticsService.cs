@@ -10,5 +10,6 @@ namespace Ilc.Infrastructure.Contracts
     {
         List<CustomerStatistics> GetCustomers();
         List<SpendingsStatistics> GetCustomersSpendings();
+        List<TrainingStatistics> GetSubjectTrainingsPerMonth(FilterArgumentsTrainingStatistics request);
     }
 }

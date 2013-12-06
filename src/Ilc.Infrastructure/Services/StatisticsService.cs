@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Ilc.Core;
 using Ilc.Core.Contracts;
@@ -52,6 +53,40 @@ namespace Ilc.Infrastructure.Services
                         SubjectName = training.Subject.Name,
                         TrainingCompositeId = string.Format("{0}-{1}", training.CustomerId, training.NoOfCustomerTraining)
                     });
+            }
+
+            return ret;
+        }
+
+        public List<TrainingStatistics> GetSubjectTrainingsPerMonth(FilterArgumentsTrainingStatistics request)
+        {
+            var ret = new List<TrainingStatistics>();
+            var trainings = Uow.Trainings.GetAll().Where(t => t.DesiredStartDate.Year == 2013).ToList();
+
+            for (int i = 0; i < 12; i++)
+            {
+                var internalI = i;
+
+                var subTrainings = trainings.Where(t => t.DesiredStartDate.Month - 1 == internalI);
+                var subjects = new Dictionary<string, int>();
+
+                foreach (var subTraining in subTrainings)
+                {
+                    var key = subTraining.Subject.Name.ToLower();
+                    if (!subjects.ContainsKey(key))
+                    {
+                        subjects.Add(key, 0);
+                    }
+                    var value = subjects[key];
+                    subjects[key] = value + 1;
+                }
+
+                ret.Add(new TrainingStatistics()
+                    {
+                        MonthNr = i,
+                        Subjects = subjects
+                    });
+
             }
 
             return ret;

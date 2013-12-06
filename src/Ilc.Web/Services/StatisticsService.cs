@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Ilc.Core;
+using Ilc.Infrastructure;
 using Ilc.Infrastructure.Contracts;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
@@ -21,7 +22,9 @@ namespace Ilc.Web.Services
 
             return new FilteredDataModel<CustomerStatisticsModel>()
                 {
-                    Data = customerStatistics.Select(cs => new CustomerStatisticsModel().InjectFrom(cs) as CustomerStatisticsModel).ToList(),
+                    Data =
+                        customerStatistics.Select(
+                            cs => new CustomerStatisticsModel().InjectFrom(cs) as CustomerStatisticsModel).ToList(),
                     TotalRecords = 4,
                     TotalDisplayRecords = 4
                 };
@@ -32,12 +35,40 @@ namespace Ilc.Web.Services
             var spendingsStats = Statistics.GetCustomersSpendings();
 
             return new FilteredDataModel<SpendingsStatisticsModel>()
-            {
-                Data = spendingsStats.Select(cs => new SpendingsStatisticsModel().InjectFrom(cs) as SpendingsStatisticsModel).ToList(),
-                TotalRecords = 4,
-                TotalDisplayRecords = 4
-            };
+                {
+                    Data =
+                        spendingsStats.Select(
+                            cs => new SpendingsStatisticsModel().InjectFrom(cs) as SpendingsStatisticsModel).ToList(),
+                    TotalRecords = 4,
+                    TotalDisplayRecords = 4
+                };
         }
+
+        public FilteredDataModel<TrainingsStatisticsModel> Get(FilterParametersTrainingsStatisticsModel request)
+        {
+            var trainingStats = Statistics.GetSubjectTrainingsPerMonth(request);
+
+            return new FilteredDataModel<TrainingsStatisticsModel>()
+                {
+                    Data = trainingStats.Select(s => new TrainingsStatisticsModel().InjectFrom(s) as TrainingsStatisticsModel).ToList(),
+                    TotalRecords = 4,
+                    TotalDisplayRecords = 4
+                };
+        }
+
+    }
+
+    
+
+    public class TrainingsStatisticsModel
+    {
+        public int MonthNr { get; set; }
+        public Dictionary<string, int> Subjects { get; set; }
+    }
+
+
+    public class FilterParametersTrainingsStatisticsModel : FilterArgumentsTrainingStatistics
+    {
 
     }
 
