@@ -18,6 +18,10 @@
     bodyPadding: 0,
     model: null,
 
+    trainingUpdated: function () {
+        this.fireEvent('trainingupdated');
+    },
+
     initComponent: function (cfg) {
         var me = this;
         var model = me.model;
@@ -147,7 +151,7 @@
         });
 
         trainersStore.on('load', function (store, records) {
-            Ext.Array.forEach(records, function(record) {
+            Ext.Array.forEach(records, function (record) {
                 if (record.get('id') == model.get('trainer').id) {
                     trainersComboBox.select(record);
                 }
@@ -401,7 +405,8 @@
         ];
 
         me.addEvents(
-            'updatetraining'
+            'updatetraining',
+            'trainingupdated'
         );
 
         me.callParent(arguments);

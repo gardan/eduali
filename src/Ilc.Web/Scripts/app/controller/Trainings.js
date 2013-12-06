@@ -30,6 +30,7 @@
 
                     trainingDataContext.update(data)
                         .then(function (response) {
+                            sender.trainingUpdated();
                             sender.unmask();
                         });
                 }

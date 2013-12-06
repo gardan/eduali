@@ -126,6 +126,10 @@
                 me.fireEvent('updatetraining', sender, args);
             });
 
+            window.on('trainingupdated', function() {
+                trainingsStore.reload();
+            });
+
             window.show();
         });
 
