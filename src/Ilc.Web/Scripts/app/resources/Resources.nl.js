@@ -110,6 +110,10 @@
         'common.lastName': 'Achternaam',
         'common.email': 'Email',
         'common.newSubject': 'Nieuwe taal',
+        'common.yes': 'Ja',
+        'common.no': 'Nee',
+        'common.main': 'Hooft',
+        'common.trainingContact': 'Cursus contact',
 
         'tasks.title.ended': 'Afgesloten',
         'tasks.title.offer': 'Oferte',
