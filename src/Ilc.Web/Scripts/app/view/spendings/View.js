@@ -19,8 +19,8 @@
 
     totalLabel: null,
 
-    updateTotal: function() {
-        var totalExpenses = this.spendings.supplies + this.spendings.supplies + (this.spendings.trainer * this.hours);
+    updateTotal: function () {
+        var totalExpenses = this.spendings.supplies + this.spendings.transport + this.spendings.trainer;
         this.totalLabel.setText('Total expenses: ' + totalExpenses);
     },
 
@@ -31,7 +31,13 @@
             disabled: true,
             value: me.spendings.trainer,
             width: 100,
-            name: 'trainer'
+            name: 'trainer',
+            listeners: {
+                change: function (numericfield, newValue, oldValue) {
+                    me.spendings.trainer = newValue;
+                    me.updateTotal();
+                }
+            }
         });
 
         
@@ -50,9 +56,7 @@
                         width: 250,
                         listeners: {
                             change: function (numericfield, newValue, oldValue) {
-                                me.spendings.trainer = newValue;
                                 trainerCostField.setValue(newValue * me.hours);
-                                me.updateTotal();
                             }
                         }
                     },
