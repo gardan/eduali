@@ -18,7 +18,12 @@ namespace Ilc.Web.InjectorConventions
             if (c.SourceProp.Name == "ContactPersons" && c.TargetProp.Name == "ContactPersons")
             {
                 var contacts = c.SourceProp.Value as ICollection<ContactPerson>;
-                return contacts.Select(cp => new ContactPersonModel().InjectFrom(cp) as ContactPersonModel).ToList();
+                return contacts.Select(cp => new ContactPersonModel()
+                    {
+                        Id = cp.Id,
+                        IsMain = cp.UserProfile.Roles.Exists(r => r.RoleName == "Customer Contact"),
+                        Name = cp.UserProfile.UserDetails.FirstName + " " + cp.UserProfile.UserDetails.LastName
+                    }).ToList();
             }
 
             return base.SetValue(c);
