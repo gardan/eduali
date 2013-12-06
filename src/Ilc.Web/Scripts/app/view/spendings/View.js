@@ -24,7 +24,7 @@
         this.totalLabel.setText('Total expenses: ' + totalExpenses);
     },
 
-    editComplete: function() {
+    editComplete: function () {
         this.fireEvent('editcomplete');
     },
 

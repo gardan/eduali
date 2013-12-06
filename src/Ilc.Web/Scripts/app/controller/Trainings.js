@@ -27,11 +27,15 @@
                         }
                     };
 
-
+                    sender.mask();
                     trainingDataContext.update(data)
                         .then(function (response) {
-                            sender.trainingUpdated();
+                            
+                        })
+                        .finally(function () {
                             sender.unmask();
+                            debugger;
+                            sender.trainingUpdated();
                         });
                 }
             },

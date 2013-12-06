@@ -66,7 +66,7 @@ namespace Ilc.Web.Models
 
     public class InterviewPlanApiModel
     {
-        public DateTimeOffset Date { get; set; }
+        public DateTime Date { get; set; }
         public string Location { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Ilc.Data.Models;
@@ -47,7 +48,7 @@ namespace Ilc.Web.InjectorConventions
             if (c.SourceProp.Name == "InterviewPlans" && c.TargetProp.Name == "InterviewPlan")
             {
                 var interviewPlan = (c.SourceProp.Value as ICollection<InterviewPlan>);
-                return interviewPlan == null ? null : new InterviewPlanApiModel().InjectFrom(interviewPlan);
+                return interviewPlan == null ? null : new InterviewPlanApiModel() { Date = interviewPlan.First().Date.DateTime, Location = interviewPlan.First().Location };
             }
             if (c.SourceProp.Name == "Spendings" && c.TargetProp.Name == "Spendings")
             {

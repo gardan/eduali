@@ -12,6 +12,10 @@
         margin: 5
     },
 
+    trainingUpdated: function () {
+        this.fireEvent('trainingupdated');
+    },
+
     initComponent: function() {
         var me = this;
 
@@ -21,7 +25,8 @@
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.interviewDay'),
                 name: 'interviewDate',
                 disabled: (me.plan === null),
-                value: me.plan == null ? null : new Date(me.plan.get('date'))
+                value: me.plan == null ? null : new Date(me.plan.get('date')),
+                format: 'Y-m-d'
             },
             {
                 xtype: 'textfield',
@@ -53,7 +58,8 @@
         ];
 
         me.addEvents(
-            'updatetraining'
+            'updatetraining',
+            'trainingupdated'
         );
 
         this.callParent();

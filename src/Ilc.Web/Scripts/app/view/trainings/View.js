@@ -312,6 +312,7 @@
                                 xtype: 'datefield',
                                 fieldLabel: Ilc.resources.Manager.getResourceString('common.startDate'),
                                 value: new Date(model.get('desiredStartDate')),
+                                format: 'Y-m-d',
                                 name: 'desiredStartDate'
                             }
                         ],
@@ -324,7 +325,6 @@
                                     var args = Ilc.utils.Forms.extractModel(controls);
                                     args.id = model.get('id');
 
-                                    me.mask();
                                     me.fireEvent('updatetraining', me, args);
                                 }
                             },
@@ -386,6 +386,9 @@
                             },
                             closewindow: function() {
                                 me.close();
+                            },
+                            trainingupdated: function () {
+                                me.fireEvent('trainingupdated');
                             }
                         }
                     }),

@@ -122,9 +122,9 @@
                 model: record
             });
 
-            window.on('updatetraining', function (sender, args) {
-                me.fireEvent('updatetraining', sender, args);
-            });
+            // window.on('updatetraining', function (sender, args) {
+            //     me.fireEvent('updatetraining', sender, args);
+            // });
 
             window.on('trainingupdated', function () {
                 console.log('trainingupdated');
