@@ -15,13 +15,14 @@
         var me = this;
 
         var entity = me.entity;
+        debugger;
         var resourceStore = Ext.create('Sch.data.ResourceStore', {
             // trainingId: trainingEntity.get('id')
 
             data: [
                 {
-                    Id: 1,
-                    Name: 'Trainer Name'
+                    Id: entity.get('trainer').id,
+                    Name: entity.get('trainer').name
                 }
             ],
         });
