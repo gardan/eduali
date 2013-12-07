@@ -48,7 +48,7 @@ namespace Ilc.Web.InjectorConventions
             if (c.SourceProp.Name == "InterviewPlans" && c.TargetProp.Name == "InterviewPlan")
             {
                 var interviewPlan = (c.SourceProp.Value as ICollection<InterviewPlan>);
-                return interviewPlan == null ? null : new InterviewPlanApiModel() { Date = interviewPlan.First().Date.DateTime, Location = interviewPlan.First().Location };
+                return interviewPlan.Count == 0 ? null : new InterviewPlanApiModel() { Date = interviewPlan.First().Date.DateTime, Location = interviewPlan.First().Location };
             }
             if (c.SourceProp.Name == "Spendings" && c.TargetProp.Name == "Spendings")
             {
