@@ -4,12 +4,14 @@ using System.Linq;
 using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models;
+using Ilc.Data.Models.SimpleMembership;
 
 namespace Ilc.Core.Services
 {
     public class ContactsService : IContactsService
     {
         public IUow Uow { get; set; }
+        public IUsersService Users { get; set; }
 
         public FilteredResults<ContactPerson> GetFiltered(FilterArgumentsContacts parameters)
         {
@@ -66,6 +68,43 @@ namespace Ilc.Core.Services
                 TotalDisplayRecords = totalDisplayRecords,
                 TotalRecords = totalDisplayRecords
             };
+        }
+
+        public void Create(ContactPerson contact)
+        {
+            // first create the user.
+            var username = contact.UserProfile.UserDetails.FirstName.Trim().Split(Convert.ToChar(" "))[0].ToLower();
+            var userDetails = contact.UserProfile.UserDetails;
+            contact.UserProfile = null;
+            var originalUsername = username;
+            // check to see if the username exists
+            var index = 0;
+            UserProfile user;
+            var usernameFound = true;
+            do
+            {
+                user = Uow.UserProfiles.GetAll().FirstOrDefault(u => u.Username == username);
+
+                if (user != null)
+                {
+                    username = originalUsername + "_" + index++;
+                    usernameFound = false;
+                }
+                else
+                {
+                    usernameFound = true;
+                }
+            } while (!usernameFound);
+
+            // create the user
+            var role = Uow.Roles.GetAll().FirstOrDefault(r => r.RoleName == "Contact Supervizor");
+            var newUser = new UserProfile() { Username = username, UserDetails = userDetails, Roles = new List<Role>() { role } };
+            Users.Create(newUser, username);
+
+            contact.UserProfileId = newUser.Id;
+
+            Uow.Contacts.Add(contact);
+            Uow.Commit();
         }
     }
 }
