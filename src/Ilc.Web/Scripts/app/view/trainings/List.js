@@ -71,6 +71,17 @@
                     }
                 },
                 {
+                    dataIndex: 'desiredStartDate',
+                    text: Ilc.resources.Manager.getResourceString('common.startDate'),
+                    flex: 1,
+                    renderer: function (value) {
+                        return Ext.Date.format(new Date(value), 'Y-m-d');
+                    },
+                    filter: {
+                        type: 'string'
+                    }
+                },
+                {
                     dataIndex: 'owners',
                     text: Ilc.resources.Manager.getResourceString('common.owners'),
                     flex: 1,
