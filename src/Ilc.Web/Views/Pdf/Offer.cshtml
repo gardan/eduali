@@ -5,7 +5,20 @@
 }
 
 <itext>
-    <paragraph>Possible costs: @Model.PossibleCosts</paragraph>
-    <paragraph>Start date: @Model.StartDate</paragraph>
-    <paragraph>Duration: @Model.NoLessons lessons / @Model.LessonDuration hours</paragraph>
+    <paragraph style="font-family:Helvetica;font-size:28;font-style:italic;">
+        <image url="@Context.Server.MapPath("~/Images/logo-ilc.gif")"/>
+        <chunk red="200" green="0" blue="0">Offer</chunk>
+    </paragraph>
+    <newline/>
+    <list numbered="true" symbolindent="15" font="unknown">
+        <listitem leading="18.0" font="Times" size="12.0" align="Default" indentationleft="15.0">
+            <chunk font="Times" size="12.0">Possible costs: @Model.PossibleCosts</chunk>
+        </listitem>
+        <listitem leading="18.0" font="Times" size="12.0" align="Default" indentationleft="15.0">
+            <chunk font="Times" size="12.0">Start date: @Model.StartDate</chunk>
+        </listitem>
+        <listitem leading="18.0" font="Times" size="12.0" align="Default" indentationleft="15.0">
+            <chunk font="Times" size="12.0">Duration: @Model.NoLessons lessons / @Model.LessonDuration hours</chunk>
+        </listitem>
+</list>
 </itext>
