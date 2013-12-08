@@ -14,8 +14,8 @@
         'mainMenu.settings': 'Instellingen',
         'mainMenu.planning': 'Planning',
 
-        'common.trainingId': 'Trainingnummer',
-        'common.id': 'Trainingnummer',
+        'common.trainingId': 'Id',
+        'common.id': 'Id',
         'common.name': 'Naam',
         'common.status': 'Status',
         'common.execute': 'Uitvoeren',
@@ -112,11 +112,14 @@
         'common.newSubject': 'Nieuwe taal',
         'common.yes': 'Ja',
         'common.no': 'Nee',
-        'common.main': 'Hooft',
+        'common.main': 'Hoofd',
         'common.trainingContact': 'Cursus contact',
+        'common.price': 'Prijs',
+        'common.subjects': 'Talen',
 
         'tasks.title.ended': 'Afgesloten',
         'tasks.title.offer': 'Oferte',
+        'tasks.planned.mainLbl': 'Klaar om het cursus te beginen ?',
 
         'tasks.offer.mainLbl': 'Selecteer de volgende status van de opleiding aan is aanvaard of geweigerd aub',
         
