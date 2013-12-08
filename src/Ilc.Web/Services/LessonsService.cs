@@ -63,7 +63,7 @@ namespace Ilc.Web.Services
                         StartDate = day.StartDate.DateTime,
                         EndDate = day.EndDate.DateTime,
                         Name = day.LessonName,
-                        ResourceId = 1,// day.Order, // this has to be the trainerId
+                        ResourceId = training.TrainerId.GetValueOrDefault(),// day.Order, // this has to be the trainerId
                         Resizable = true,
                         Draggable = true
                     });
@@ -82,7 +82,7 @@ namespace Ilc.Web.Services
                             StartDate = day.StartDate.DateTime,
                             EndDate = day.EndDate.DateTime,
                             Name = day.LessonName,
-                            ResourceId = 1, // day.Order,
+                            ResourceId = training.TrainerId.GetValueOrDefault(), // day.Order,
                             Resizable = false,
                             Draggable = false,
                             Cls = "disabled "
