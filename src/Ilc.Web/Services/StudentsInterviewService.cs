@@ -29,7 +29,7 @@ namespace Ilc.Web.Services
                 data.Add(new TrainingStudentInterviewModel()
                     {
                         Id = student.Id,
-                        Name = student.UserProfile.UserDetails.FirstName + " " + student.UserProfile.UserDetails.FirstName,
+                        Name = student.UserProfile.UserDetails.FirstName + " " + student.UserProfile.UserDetails.LastName,
                         InterviewId = interview == null ? 0 : interview.Id,
                         AssesmentId = assesment == null ? 0 : assesment.Id    
                     });
