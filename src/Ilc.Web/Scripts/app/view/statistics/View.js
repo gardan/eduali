@@ -33,6 +33,7 @@
                         layout: 'anchor',
                         width: 800,
                         closeAction: 'destroy',
+                        modal: false,
                         items: [
                             {
                                 xtype: 'spendingschart',
@@ -70,6 +71,7 @@
                                 layout: 'anchor',
                                 width: 800,
                                 closeAction: 'destroy',
+                                modal: false,
                                 items: [
                                     chart
                                 ]
@@ -90,6 +92,7 @@
                             Ext.create('Ext.window.Window', {
                                 layout: 'anchor',
                                 width: 800,
+                                modal: false,
                                 closeAction: 'destroy',
                                 items: [
                                     {

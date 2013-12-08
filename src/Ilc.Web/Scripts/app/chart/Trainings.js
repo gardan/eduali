@@ -9,6 +9,16 @@
 
     subjects: null,
 
+    initHandlers: function() {
+        var me = this;
+
+        me.store.on('load', function (records) {
+            // me.axes.items[0].maximum =30;
+            // debugger;
+        });
+
+    },
+
     initComponent: function () {
         var me = this;
 
@@ -41,15 +51,19 @@
         });
 
         me.store = trainingsCountStore;
-
+        me.initHandlers();
         me.store.load();
 
+        var subjectsCollection = [];
+        Ext.Array.forEach(me.subjects, function(subject) {
+            subjectsCollection.push(subject.get('name').toLowerCase());
+        });
         me.axes = [
             {
                 position: 'left',
                 type: 'Numeric',
-                fields: ['english', 'romanian'],
-                minorTickSteps: 1,
+                fields: subjectsCollection,
+                majorTickSteps: 1,
                 title: 'No. of trainings'
             },
             {
@@ -66,6 +80,7 @@
                 type: 'line',
                 axis: 'left',
                 xField: 'month',
+                
                 yField: [subject.get('name').toLowerCase()]
             });
         });
