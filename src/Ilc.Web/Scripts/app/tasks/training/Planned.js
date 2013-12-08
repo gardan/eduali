@@ -20,7 +20,13 @@
 
         me.items = [
             {
-                xtype: 'button',
+                xtype: 'label',
+                text: Ilc.resources.Manager.getResourceString('tasks.planned.mainLbl')
+            }
+        ];
+
+        me.buttons = [
+            {
                 text: Ilc.resources.Manager.getResourceString('common.yes'),
                 handler: function () {
                     var model = {
@@ -32,7 +38,6 @@
                 }
             },
             {
-                xtype: 'button',
                 text: Ilc.resources.Manager.getResourceString('common.no'),
                 handler: function () {
                     me.close();

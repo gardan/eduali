@@ -118,6 +118,7 @@
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',
+        'tasks.planned.mainLbl': 'Ready to start the training?',
 
         'tasks.offer.mainLbl': 'Please select the next status of the training to either accepted or rejected',
 
