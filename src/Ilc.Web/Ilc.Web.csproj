@@ -149,6 +149,7 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Images\checked.png" />
+    <Content Include="Images\logo-ilc.gif" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\unchecked.png" />
     <Content Include="Images\view.png" />
