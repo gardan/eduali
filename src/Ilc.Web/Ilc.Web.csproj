@@ -149,8 +149,14 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Images\checked.png" />
+    <Content Include="Images\scheduler\arrow_left.png" />
+    <Content Include="Images\scheduler\arrow_right.png" />
+    <Content Include="Images\scheduler\calendar.png" />
+    <Content Include="Images\scheduler\go.png" />
     <Content Include="Images\logo-ilc.gif" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\scheduler\zoom_in.png" />
+    <Content Include="Images\scheduler\zoom_out.png" />
     <Content Include="Images\unchecked.png" />
     <Content Include="Images\view.png" />
     <Content Include="Images\web\add.png" />

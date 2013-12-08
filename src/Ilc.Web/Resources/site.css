@@ -41,3 +41,28 @@
 .disabled { 
     background-color: #7F7F7F;
 }
+
+/* Scheduler - toolbar */
+.go {
+    background-image: url(../images/scheduler/go.png);
+}
+
+.icon-calendar {
+    background-image: url(../images/scheduler/calendar.png);
+}
+
+.icon-zoom-in {
+    background-image: url(../images/scheduler/zoom_in.png);
+}
+
+.icon-zoom-out {
+    background-image: url(../images/scheduler/zoom_out.png);
+}
+
+.icon-left {
+    background-image: url(../images/scheduler/arrow_left.png);
+}
+
+.icon-right {
+    background-image: url(../images/scheduler/arrow_right.png);
+}
