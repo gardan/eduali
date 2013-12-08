@@ -48,6 +48,8 @@ namespace Ilc.Web.Models
 
         public int LessonsNo { get; set; }
 
+        public decimal Price { get; set; }
+
         public TrainingOwnersConfigurationModel OwnersConfiguration { get; set; }
     }
 

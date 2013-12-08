@@ -113,6 +113,7 @@
         'common.no': 'No',
         'common.main': 'Main',
         'common.trainingContact': 'Training contact',
+        'common.price': 'Price',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',

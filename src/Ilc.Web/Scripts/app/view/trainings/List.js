@@ -82,6 +82,25 @@
                     }
                 },
                 {
+                    dataIndex: 'price',
+                    text: Ilc.resources.Manager.getResourceString('common.price'),
+                    flex: 1,
+                    filter: {
+                        type: 'string'
+                    }
+                },
+                {
+                    dataIndex: 'spendings',
+                    text: 'Expenses',
+                    flex: 1,
+                    renderer: function(value) {
+                        return value.trainer + value.supplies + value.transport;
+                    },
+                    filter: {
+                        type: 'string'
+                    }
+                },
+                {
                     dataIndex: 'owners',
                     text: Ilc.resources.Manager.getResourceString('common.owners'),
                     flex: 1,
