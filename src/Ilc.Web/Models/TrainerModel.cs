@@ -8,6 +8,8 @@
         public string Address { get; set; }
 
         public UserInfoModel UserInfo { get; set; }
+
+        public SubjectModel[] Subjects { get; set; }
     }
 
 

@@ -1,7 +1,7 @@
 ﻿Ext.define('Ilc.store.Trainers', {
     extend: 'Ext.data.Store',
     
-    fields: ['id', 'name', 'userInfo'],
+    fields: ['id', 'name', 'userInfo', 'subjects'],
 
     proxy: {
         type: 'rest',

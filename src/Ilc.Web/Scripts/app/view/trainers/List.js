@@ -60,6 +60,18 @@
                     }
                 },
                 {
+                    dataIndex: 'subjects',
+                    text: Ilc.resources.Manager.getResourceString('common.subjects'),
+                    flex: 1,
+                    renderer: function(value) {
+                        var ret = '';
+                        Ext.Array.forEach(value, function(subject) {
+                            ret += subject.name + ', ';
+                        });
+                        return ret.substring(0, ret.length - 2);
+                    }
+                },
+                {
                     xtype: 'actioncolumn',
                     sortable: false,
                     menuDisabled: true,
