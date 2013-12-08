@@ -133,8 +133,12 @@ namespace Ilc.Data.Migrations
                               "ProgressEvaluation", "Exam", "TrainingEvaluation", "Ended", "Complete" };
             foreach (var status in arr)
             {
-                context.StatusDictionaries.AddOrUpdate(s => s.Name, 
-                    new StatusDictionary() {Name = status, FriendlyName = status});
+                var record = context.StatusDictionaries.FirstOrDefault(r => r.Name == status);
+                if (record == null)
+                {
+                    context.StatusDictionaries.AddOrUpdate(s => s.Name,
+                    new StatusDictionary() { Name = status, FriendlyName = status });
+                }
             }
             context.SaveChanges();
         }
