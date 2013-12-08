@@ -7,7 +7,6 @@
         {
             name: 'label',
             convert: function (v, record) {
-                debugger;
                 return record.data.customerName + '/' + record.data.subjectName + '/' + record.data.trainingCompositeId;
             }
         },
