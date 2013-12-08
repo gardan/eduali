@@ -48,7 +48,7 @@
                     text: Ilc.resources.Manager.getResourceString('common.trainingId'),
                     dataIndex: 'taskObject',
                     renderer: function(value) {
-                        return value.id;
+                        return value.compositeId;
                     }
                 },
                 {
