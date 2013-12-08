@@ -32,9 +32,24 @@
             ]
         });
 
+        var comboStore = Ext.create('Ext.data.Store', {
+            fields: ['Name', 'Cls']
+        });
+
+        args.eventStore.on('load', function() {
+            var data = [];
+            args.eventStore.each(function (record) {
+                if (record.get('Cls') != '') {
+                    data.push(record);
+                }
+            });
+
+            comboStore.loadData(data);
+        });
+
         // scrolling to event
         var eventsCombo = Ext.create('Ext.form.ComboBox', {
-            store: args.eventStore,
+            store: comboStore,
             triggerAction: 'all',
             editable: false,
             queryMode: 'local',
@@ -45,7 +60,6 @@
         var dateMenu = Ext.create('Ext.menu.DatePicker', {
             handler: function (dp, date) {
                 me.scrollToDate(date);
-                // Ext.Msg.alert('Date Selected', 'You selected ' + Ext.Date.format(date, 'M j, Y'));
             }
         });
 
