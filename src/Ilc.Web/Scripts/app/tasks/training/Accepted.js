@@ -104,6 +104,8 @@
             resourceStore: resourceStore,
             eventStore: eventStore,
             
+            plugins: [],
+
             onEventCreated: function (newEventRecord) {
                 var resourceModel = resourceStore.getById(newEventRecord.get('ResourceId'));
                 

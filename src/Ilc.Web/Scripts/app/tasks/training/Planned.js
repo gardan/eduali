@@ -21,7 +21,7 @@
         me.items = [
             {
                 xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.execute'),
+                text: Ilc.resources.Manager.getResourceString('common.yes'),
                 handler: function () {
                     var model = {
                         taskEntityId: training.get('id')
@@ -29,6 +29,13 @@
                     me.fireEvent('planned.execute', me, model, {
                         tasksStore: tasksStore
                     });
+                }
+            },
+            {
+                xtype: 'button',
+                text: Ilc.resources.Manager.getResourceString('common.no'),
+                handler: function () {
+                    me.close();
                 }
             }
         ];
