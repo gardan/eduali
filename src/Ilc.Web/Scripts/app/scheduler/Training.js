@@ -36,10 +36,11 @@
             fields: ['Name', 'Cls']
         });
 
-        args.eventStore.on('load', function() {
+        args.eventStore.on('load', function(records) {
             var data = [];
             args.eventStore.each(function (record) {
-                if (record.get('Cls') != '') {
+                debugger;
+                if (record.get('Cls') == '') {
                     data.push(record);
                 }
             });
