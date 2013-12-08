@@ -26,6 +26,12 @@
 
     enableDragCreation: false,
 
+    plugins: [
+                new Sch.plugin.Pan({
+                    enableVerticalPan: true
+                })
+    ],
+
     initComponent: function() {
         var me = this;
 

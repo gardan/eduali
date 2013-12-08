@@ -16,6 +16,11 @@
 
     // Setup your static columns
 
+    plugins : [
+                new Sch.plugin.Pan({
+                    enableVerticalPan : true
+                })
+    ],
 
     constructor: function (args) {
         var me = this;

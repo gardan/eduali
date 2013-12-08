@@ -49,6 +49,7 @@
                 position: 'left',
                 type: 'Numeric',
                 fields: ['english', 'romanian'],
+                minorTickSteps: 1,
                 title: 'No. of trainings'
             },
             {
