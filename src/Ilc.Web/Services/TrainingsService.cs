@@ -125,11 +125,15 @@ namespace Ilc.Web.Services
                                     ? training.TrainerId 
                                     : request.TrainerId;
             
+            // Update te DesiredStartDate
+            training.DesiredStartDate =  request.DesiredStartDate == DateTimeOffset.MinValue.DateTime
+                                            ? training.DesiredStartDate
+                                            : request.DesiredStartDate;
 
             // Update the interviewPlanDateAndLocation if one exists
             if (interviewPlan != null)
             {
-                interviewPlan.Date = request.InterviewDate == DateTimeOffset.MinValue
+                interviewPlan.Date = request.InterviewDate == DateTimeOffset.MinValue.DateTime
                                          ? interviewPlan.Date
                                          : request.InterviewDate;
                 Uow.InterviewPlans.Update(interviewPlan);
@@ -137,59 +141,62 @@ namespace Ilc.Web.Services
 
 
             // update the owner configuration if one exists
-            var config = training.OwnersConfiguration;
-            var updateConfig = false;
-            var newOwnerId = 0;
-            if (config.SalesId != request.WorkflowOwners.Sales)
+            if (request.WorkflowOwners != null)
             {
-                config.SalesId = request.WorkflowOwners.Sales;
-                updateConfig = true;
-
-                if (training.Status == TrainingStatus.Rfi || training.Status == TrainingStatus.Offer)
+                var config = training.OwnersConfiguration;
+                var updateConfig = false;
+                var newOwnerId = 0;
+                if (config.SalesId != request.WorkflowOwners.Sales)
                 {
-                    newOwnerId = config.SalesId;
-                    
+                    config.SalesId = request.WorkflowOwners.Sales;
+                    updateConfig = true;
+
+                    if (training.Status == TrainingStatus.Rfi || training.Status == TrainingStatus.Offer)
+                    {
+                        newOwnerId = config.SalesId;
+
+                    }
                 }
-            }
 
-            if (config.CoordinatorId != request.WorkflowOwners.Coordinator)
-            {
-                config.CoordinatorId = request.WorkflowOwners.Coordinator;
-                updateConfig = true;
-
-                if (training.Status == TrainingStatus.Interview)
+                if (config.CoordinatorId != request.WorkflowOwners.Coordinator)
                 {
-                    newOwnerId = config.CoordinatorId;
-                    training.Owners = new[] { Uow.UserProfiles.GetById(config.CoordinatorId) };
+                    config.CoordinatorId = request.WorkflowOwners.Coordinator;
+                    updateConfig = true;
+
+                    if (training.Status == TrainingStatus.Interview)
+                    {
+                        newOwnerId = config.CoordinatorId;
+                        training.Owners = new[] { Uow.UserProfiles.GetById(config.CoordinatorId) };
+                    }
                 }
-            }
 
-            if (config.AdministrationId != request.WorkflowOwners.Administration)
-            {
-                config.AdministrationId = request.WorkflowOwners.Administration;
-                updateConfig = true;
-
-                if (training.Status == TrainingStatus.PlanInterview || training.Status == TrainingStatus.Accepted || training.Status == TrainingStatus.Rejected)
+                if (config.AdministrationId != request.WorkflowOwners.Administration)
                 {
-                    newOwnerId = config.AdministrationId;
-                    training.Owners = new[] { Uow.UserProfiles.GetById(config.AdministrationId) };
+                    config.AdministrationId = request.WorkflowOwners.Administration;
+                    updateConfig = true;
+
+                    if (training.Status == TrainingStatus.PlanInterview || training.Status == TrainingStatus.Accepted || training.Status == TrainingStatus.Rejected)
+                    {
+                        newOwnerId = config.AdministrationId;
+                        training.Owners = new[] { Uow.UserProfiles.GetById(config.AdministrationId) };
+                    }
                 }
-            }
-            if (updateConfig)
-            {
-                Uow.TrainingOwnersConfiguration.Update(config);
-                if (newOwnerId > 0)
+                if (updateConfig)
                 {
-                    training.Owners = new List<UserProfile>() { Uow.UserProfiles.GetById(newOwnerId) };
-                    
-                    Uow.Trainings.Update(training);
-                    Uow.Commit();
+                    Uow.TrainingOwnersConfiguration.Update(config);
+                    if (newOwnerId > 0)
+                    {
+                        training.Owners = new List<UserProfile>() { Uow.UserProfiles.GetById(newOwnerId) };
 
-                    var ownerToBeDeleted = training.Owners.First(u => u.Id != newOwnerId);
-                    training.Owners.Remove(ownerToBeDeleted);
+                        Uow.Trainings.Update(training);
+                        Uow.Commit();
 
-                    Uow.Trainings.Update(training);
-                    Uow.Commit();
+                        var ownerToBeDeleted = training.Owners.First(u => u.Id != newOwnerId);
+                        training.Owners.Remove(ownerToBeDeleted);
+
+                        Uow.Trainings.Update(training);
+                        Uow.Commit();
+                    }
                 }
             }
 
@@ -206,7 +213,8 @@ namespace Ilc.Web.Services
 
     public class UpdateTrainingModel
     {
-        public DateTimeOffset InterviewDate { get; set; }
+        public DateTime InterviewDate { get; set; }
+        public DateTime DesiredStartDate { get; set; }
         public int TrainerId { get; set; }
         public int Id { get; set; }
         public TrainingOwnersConfigurationModel WorkflowOwners { get; set; }

@@ -4,10 +4,6 @@
 
     columns: [
         {
-            dataIndex: 'id',
-            text: Ilc.resources.Manager.getResourceString('common.id')
-        },
-        {
             dataIndex: 'firstName',
             flex: 1,
             text: Ilc.resources.Manager.getResourceString('common.name'),

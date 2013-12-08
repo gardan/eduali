@@ -10,5 +10,6 @@ namespace Ilc.Core.Contracts
     public interface IContactsService
     {
         FilteredResults<ContactPerson> GetFiltered(FilterArgumentsContacts arguments);
+        void Create(ContactPerson contact);
     }
 }

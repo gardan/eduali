@@ -17,6 +17,11 @@
             features: [filters],
             dockedItems: [
                 {
+                    xtype: 'pagingtoolbar',
+                    store: studentsStore,
+                    dock: 'bottom'
+                },
+                {
                     xtype: 'toolbar',
                     dock: 'top',
                     items: [

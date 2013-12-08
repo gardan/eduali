@@ -107,6 +107,26 @@ namespace Ilc.Web.Services
                     StatusCode = HttpStatusCode.OK
                 };
         }
+
+        public HttpResult Post(CreateContactModel request)
+        {
+            var contactPerson = new ContactPerson()
+                {
+                    UserProfile = new UserProfile() { UserDetails = new UserDetails() }
+                };
+            contactPerson.CustomerId = request.CustomerId;
+            contactPerson.UserProfile.UserDetails.Phone = request.Phone;
+            contactPerson.UserProfile.UserDetails.Email = request.Email;
+            contactPerson.UserProfile.UserDetails.FirstName = request.FirstName;
+            contactPerson.UserProfile.UserDetails.LastName = request.LastName;
+
+            Contacts.Create(contactPerson);
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
     }
 
     public class ContactModel
@@ -117,6 +137,15 @@ namespace Ilc.Web.Services
         public string Name { get { return string.Format("{0} {1}", FirstName, LastName); } }
         public bool IsMain { get; set; }
         public bool IsTrainingContact { get; set; }
+    }
+
+    public class CreateContactModel
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public int CustomerId { get; set; }
     }
 
     public class FilterParametersContacts : FilterArgumentsContacts

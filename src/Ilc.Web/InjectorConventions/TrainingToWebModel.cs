@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Ilc.Data.Models;
@@ -17,7 +18,8 @@ namespace Ilc.Web.InjectorConventions
             return c.SourceProp.Name == c.TargetProp.Name ||
                 (c.SourceProp.Name == "InterviewPlans" && c.TargetProp.Name == "InterviewPlan") ||
                 (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "Hours") ||
-                (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "LessonsNo");
+                (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "LessonsNo") ||
+                (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "Price");
         }
 
         protected override object SetValue(ConventionInfo c)
@@ -47,7 +49,7 @@ namespace Ilc.Web.InjectorConventions
             if (c.SourceProp.Name == "InterviewPlans" && c.TargetProp.Name == "InterviewPlan")
             {
                 var interviewPlan = (c.SourceProp.Value as ICollection<InterviewPlan>);
-                return interviewPlan == null ? null : new InterviewPlanApiModel().InjectFrom(interviewPlan);
+                return interviewPlan.Count == 0 ? null : new InterviewPlanApiModel() { Date = interviewPlan.First().Date.DateTime, Location = interviewPlan.First().Location };
             }
             if (c.SourceProp.Name == "Spendings" && c.TargetProp.Name == "Spendings")
             {
@@ -78,7 +80,15 @@ namespace Ilc.Web.InjectorConventions
                 }
                 return 0;
             }
-
+            if (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "Price")
+            {
+                var offers = c.SourceProp.Value as ICollection<TrainingOffer>;
+                foreach (var trainingOffer in offers)
+                {
+                    if (trainingOffer.Selected) return trainingOffer.Price;
+                }
+                return 0m;
+            }
             if (c.SourceProp.Name == "OwnersConfiguration" && c.TargetProp.Name == "OwnersConfiguration")
             {
                 var config = c.SourceProp.Value as TrainingOwnersConfiguration;

@@ -29,12 +29,13 @@
                 return deferred.promise;
             }
         };
-
+        sender.mask();
         spendingsService.edit(model)
         .then(function (response) {
             // options.store.load();
         })
         .finally(function () {
+            sender.unmask();
             sender.editComplete();
             // sender.close();
         });

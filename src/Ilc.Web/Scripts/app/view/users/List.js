@@ -12,6 +12,11 @@
             store: usersStore,
             dockedItems: [
                 {
+                    xtype: 'pagingtoolbar',
+                    store: usersStore,
+                    dock: 'bottom'
+                },
+                {
                     xtype: 'toolbar',
                     dock: 'top',
                     items: [

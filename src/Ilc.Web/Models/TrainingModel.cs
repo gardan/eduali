@@ -7,6 +7,7 @@ namespace Ilc.Web.Models
     {
         public int Id { get; set; }
         public string CompositeId {
+            // TODO: move to a function that takes a training, and returns the compositeId
             get { return string.Format("{0}-{1}", CustomerId, NoOfCustomerTraining); }
         }
 
@@ -47,6 +48,8 @@ namespace Ilc.Web.Models
 
         public int LessonsNo { get; set; }
 
+        public decimal Price { get; set; }
+
         public TrainingOwnersConfigurationModel OwnersConfiguration { get; set; }
     }
 
@@ -65,7 +68,7 @@ namespace Ilc.Web.Models
 
     public class InterviewPlanApiModel
     {
-        public DateTimeOffset Date { get; set; }
+        public DateTime Date { get; set; }
         public string Location { get; set; }
     }
 }

@@ -38,9 +38,31 @@
                         xtype: 'contactslist',
                         title: 'Contacts',
                         store: contactsStore,
+                        dockedItems: [
+                            {
+                                xtype: 'toolbar',
+                                dock: 'top',
+                                items: [
+                                    {
+                                        text: 'New contact',
+                                        handler: function() {
+                                            var window = Ext.create('Ilc.view.customers.contacts.Create', {
+                                                customer: me.customer,
+                                                listeners: {
+                                                    contactcreated: function() {
+                                                        contactsStore.reload();
+                                                    }
+                                                }
+                                            }).show();
+                                        }
+                                    }
+                                ]
+                            }
+                        ],
                         listeners: {
                             'updatecomplete': function() {
-                                contactsStore.load();
+                                contactsStore.reload();
+                                me.fireEvent('reloadcustomers');
                             }
                         }
                     }

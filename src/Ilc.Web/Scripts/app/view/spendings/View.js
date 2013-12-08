@@ -19,9 +19,13 @@
 
     totalLabel: null,
 
-    updateTotal: function() {
-        var totalExpenses = this.spendings.supplies + this.spendings.supplies + (this.spendings.trainer * this.hours);
+    updateTotal: function () {
+        var totalExpenses = parseFloat(this.spendings.supplies) + parseFloat(this.spendings.transport) + parseFloat(this.spendings.trainer);
         this.totalLabel.setText('Total expenses: ' + totalExpenses);
+    },
+
+    editComplete: function () {
+        this.fireEvent('editcomplete');
     },
 
     initComponent: function () {
@@ -31,7 +35,13 @@
             disabled: true,
             value: me.spendings.trainer,
             width: 100,
-            name: 'trainer'
+            name: 'trainer',
+            listeners: {
+                change: function (numericfield, newValue, oldValue) {
+                    me.spendings.trainer = newValue;
+                    me.updateTotal();
+                }
+            }
         });
 
         
@@ -50,9 +60,7 @@
                         width: 250,
                         listeners: {
                             change: function (numericfield, newValue, oldValue) {
-                                me.spendings.trainer = newValue;
                                 trainerCostField.setValue(newValue * me.hours);
-                                me.updateTotal();
                             }
                         }
                     },
@@ -117,7 +125,8 @@
 
         me.addEvents(
             'updatespendings',
-            'cancelclicked'
+            'cancelclicked',
+            'editcomplete'
         );
 
         this.callParent(arguments);

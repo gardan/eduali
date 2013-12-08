@@ -26,6 +26,12 @@
 
     enableDragCreation: false,
 
+    plugins: [
+                new Sch.plugin.Pan({
+                    enableVerticalPan: true
+                })
+    ],
+
     initComponent: function() {
         var me = this;
 
@@ -55,29 +61,25 @@
                 menu: dateMenu
             },
             {
-                text: 'prev',
+                iconCls: 'icon-left',
                 handler: function () {
                     me.shiftPrevious();
                 }
             },
             {
-                text: 'next',
+                iconCls: 'icon-right',
                 handler: function () {
                     me.shiftNext();
                 }
             },
             {
-                text: '+',
-                scale: 'medium',
-                iconCls: 'zoomIn',
+                iconCls: 'icon-zoom-in',
                 handler: function () {
                     me.zoomIn();
                 }
             },
             {
-                text: '-',
-                scale: 'medium',
-                iconCls: 'zoomOut',
+                iconCls: 'icon-zoom-out',
                 handler: function () {
                     me.zoomOut();
                 }

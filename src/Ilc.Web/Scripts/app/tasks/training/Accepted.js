@@ -8,27 +8,55 @@
 
     doneClicked: false,
 
+    doneBtn: null,
+    currentLessons: 0,
+    trainingEntity: null,
+
+
     end: function() {
         var me = this;
         console.log(me);
         if(me.doneClicked) me.close();
     },
 
-    constructor: function (args) {
+    updateDoneBtnTextCounter: function () {
+        var doneBtnText = Ilc.resources.Manager.getResourceString('common.done') + ' (' + this.currentLessons + '/' + this.trainingEntity.get('taskObject').lessonsNo + ')';
+        this.doneBtn.setText(doneBtnText);
+        this.doneBtn.setDisabled(this.currentLessons != this.trainingEntity.get('taskObject').lessonsNo);
+    },
+
+    initComponent: function (args) {
         var me = this;
         
-        var trainingEntity = args.entity;
-        var tasksStore = args.tasksStore;
+        var trainingEntity = me.entity;
+        me.trainingEntity = trainingEntity;
+        var tasksStore = me.tasksStore;
 
         var startDate = trainingEntity.get('taskObject').desiredStartDate;
 
-        var resourceStore = Ext.create('Sch.data.ResourceStore', {
-            // trainingId: trainingEntity.get('id')
-            
+        var doneBtn = Ext.create('Ext.button.Button', {
+            text: Ilc.resources.Manager.getResourceString('common.done'),
+            handler: function () {
+                var model = {
+                    taskEntityId: trainingEntity.get('id'),
+                    lessons: []
+                };
+
+                me.doneClicked = true;
+
+                me.fireEvent('addTrainingSchedule', me, model, {
+                    tasksStore: tasksStore
+                });
+            }
+        });
+
+        me.doneBtn = doneBtn;
+
+        var resourceStore = Ext.create('Sch.data.ResourceStore', {         
             data: [
                 {
-                    Id: 1,
-                    Name: 'Trainer Name'
+                    Id: trainingEntity.get('taskObject').trainer.id,
+                    Name: trainingEntity.get('taskObject').trainer.name
                 }
             ],
         });
@@ -38,6 +66,22 @@
             trainingId: trainingEntity.get('id')
         });
 
+        eventStore.load({
+            callback: function () {
+                var noOfTrainingLessons = eventStore.queryBy(function (record) {
+                    return record.get('Draggable') == true;
+                }).items.length;
+
+                me.currentLessons = noOfTrainingLessons;
+
+                me.updateDoneBtnTextCounter();
+            }
+        });
+
+        
+        
+        
+        
         var d1 = new Date(startDate);
         
         var d = new Date(d1.getUTCFullYear(),
@@ -66,7 +110,9 @@
                 var trainingLessons = eventStore.queryBy(function (record) {
                     return record.get('Draggable') == true;
                 });
-
+                
+                me.currentLessons = me.currentLessons + 1;
+                me.updateDoneBtnTextCounter();
                 newEventRecord.set({
                     Name: 'Lesson ' + (trainingLessons.items.length + 1)
                 });
@@ -141,22 +187,7 @@
         ];
 
         me.buttons = [
-            {
-                xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.done'),
-                handler: function () {
-                    var model = {
-                        taskEntityId: trainingEntity.get('id'),
-                        lessons: []
-                    };
-
-                    me.doneClicked = true;
-
-                    me.fireEvent('addTrainingSchedule', me, model, {
-                        tasksStore: tasksStore
-                    });
-                }
-            },
+            doneBtn,
             {
                 text: Ilc.resources.Manager.getResourceString('common.close'),
                 handler: function() {
@@ -170,7 +201,7 @@
         );
 
         // resourceStore.load();
-        eventStore.load();
+        
         me.callParent(arguments);
     },
 });

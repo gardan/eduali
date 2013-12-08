@@ -1,40 +1,33 @@
 ﻿Ext.define('Ilc.store.statistics.Trainings', {
     extend: 'Ext.data.Store',
     
-    fields: ['month', 'english', 'french'],
-    
-    data: [
+    fields: [
         {
-            month: 'January',
-            english: 15,
-            french: 10,
-            data1: 10,
-            data2: 20,
-            data3: 15
+            name: 'month',
+            convert: function(v, record) {
+                return Ext.Date.monthNames[record.data.monthNr];
+            }
         },
         {
-            month: 'February',
-            english: 20,
-            french: 16,
-            data1: 20,
-            data2: 30,
-            data3: 25
+            name: 'monthNr'
         },
         {
-            month: 'March',
-            english: 26,
-            french: 30,
-            data1: 40,
-            data2: 30,
-            data3: 35
-        },
-        {
-            month: 'April',
-            english: 30,
-            french: 60,
-            data1: 50,
-            data2: 30,
-            data3: 10
+            name: 'subjects'
         }
-    ]
+    ],
+    
+
+
+    proxy: {
+        type: 'rest',
+        url: 'api/statistics/trainings',
+        extraParams: {
+            format: 'json'
+        },
+        reader: {
+            type: 'json',
+            root: 'data',
+            totalProperty: 'totalRecords'
+        }
+    }
 });

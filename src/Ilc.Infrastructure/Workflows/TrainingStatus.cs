@@ -20,5 +20,26 @@ namespace Ilc.Infrastructure.Workflows
         public const string TrainingEvaluation = "TrainingEvaluation";
         public const string Ended = "Ended";
         public const string Complete = "Complete";
+
+        public static double GetWeight(string status)
+        {
+            var d = new Dictionary<string, double>()
+                {
+                    { Rfi, 0.1 },
+                    { PlanInterview, 0.2 },
+                    { Interview, 0.3 },
+                    { Offer, 0.4 },
+                    { Accepted, 0.5 },
+                    { Rejected, 0.5 },
+                    { Planned, 0.6 },
+                    { ProgressEvaluation, 0.7 },
+                    { Exam, 0.8 },
+                    { TrainingEvaluation, 0.9 },
+                    { Ended, 0.91 },
+                    { Complete, 1 }
+                };
+
+            return d[status];
+        }
     }
 }

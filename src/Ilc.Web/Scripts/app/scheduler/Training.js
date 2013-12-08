@@ -16,6 +16,11 @@
 
     // Setup your static columns
 
+    plugins : [
+                new Sch.plugin.Pan({
+                    enableVerticalPan : true
+                })
+    ],
 
     constructor: function (args) {
         var me = this;
@@ -23,13 +28,28 @@
         // Fix for this: https://www.assembla.com/spaces/bryntum/support/tickets/13#/activity/ticket:
         Ext.apply(this, {
             columns: [
-                { header: Ilc.resources.Manager.getResourceString('common.lessons'), width: 130, dataIndex: 'Name', visible: false }
+                { header: Ilc.resources.Manager.getResourceString('common.trainer'), width: 130, dataIndex: 'Name', visible: false }
             ]
+        });
+
+        var comboStore = Ext.create('Ext.data.Store', {
+            fields: ['Name', 'Cls']
+        });
+
+        args.eventStore.on('load', function() {
+            var data = [];
+            args.eventStore.each(function (record) {
+                if (record.get('Cls') != '') {
+                    data.push(record);
+                }
+            });
+
+            comboStore.loadData(data);
         });
 
         // scrolling to event
         var eventsCombo = Ext.create('Ext.form.ComboBox', {
-            store: args.eventStore,
+            store: comboStore,
             triggerAction: 'all',
             editable: false,
             queryMode: 'local',
@@ -40,7 +60,6 @@
         var dateMenu = Ext.create('Ext.menu.DatePicker', {
             handler: function (dp, date) {
                 me.scrollToDate(date);
-                // Ext.Msg.alert('Date Selected', 'You selected ' + Ext.Date.format(date, 'M j, Y'));
             }
         });
 
@@ -68,29 +87,25 @@
             },
             '->',
             {
-                text: 'prev',
+                iconCls: 'icon-left',
                 handler: function () {
                     me.shiftPrevious();
                 }
             },
             {
-                text: 'next',
+                iconCls: 'icon-right',
                 handler: function () {
                     me.shiftNext();
                 }
             },
             {
-                text: '+',
-                scale: 'medium',
-                iconCls: 'zoomIn',
+                iconCls: 'icon-zoom-in',
                 handler: function () {
                     me.zoomIn();
                 }
             },
             {
-                text: '-',
-                scale: 'medium',
-                iconCls: 'zoomOut',
+                iconCls: 'icon-zoom-out',
                 handler: function () {
                     me.zoomOut();
                 }

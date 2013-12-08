@@ -16,7 +16,8 @@
 
         var settingsContainer = Ext.create('Ext.panel.Panel', {
             title: '&nbsp;',
-            flex: 1
+            flex: 1,
+            autoScroll: true
         });
 
         me.items = [

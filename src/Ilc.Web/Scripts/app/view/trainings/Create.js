@@ -46,7 +46,7 @@
             displayField: 'name',
             valueField: 'id',
             name: 'contacts',
-            fieldLabel: Ilc.resources.Manager.getResourceString('common.customer'),
+            fieldLabel: Ilc.resources.Manager.getResourceString('common.contact'),
             anchor: '100%',
             labelWidth: 120
         });

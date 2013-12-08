@@ -149,7 +149,14 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Images\checked.png" />
+    <Content Include="Images\scheduler\arrow_left.png" />
+    <Content Include="Images\scheduler\arrow_right.png" />
+    <Content Include="Images\scheduler\calendar.png" />
+    <Content Include="Images\scheduler\go.png" />
+    <Content Include="Images\logo-ilc.gif" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\scheduler\zoom_in.png" />
+    <Content Include="Images\scheduler\zoom_out.png" />
     <Content Include="Images\unchecked.png" />
     <Content Include="Images\view.png" />
     <Content Include="Images\web\add.png" />
@@ -158,7 +165,9 @@
     <Content Include="Images\web\view.png" />
     <Content Include="Resources\site.css" />
     <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\app\chart\Customers.js" />
     <Content Include="Scripts\app\chart\Spendings.js" />
+    <Content Include="Scripts\app\chart\Trainings.js" />
     <Content Include="Scripts\app\Configuration.js" />
     <Content Include="Scripts\app\controller\Contacts.js" />
     <Content Include="Scripts\app\controller\Customers.js" />
@@ -220,6 +229,7 @@
     <Content Include="Scripts\app\store\scheduler\Lessons.js" />
     <Content Include="Scripts\app\store\statistics\Customers.js" />
     <Content Include="Scripts\app\store\statistics\Spendings.js" />
+    <Content Include="Scripts\app\store\statistics\Trainings.js" />
     <Content Include="Scripts\app\store\StatusDefinitions.js" />
     <Content Include="Scripts\app\store\Students.js" />
     <Content Include="Scripts\app\store\Subjects.js" />
@@ -340,6 +350,7 @@
     <Content Include="Scripts\app\ux\TabScrollerMenu.js" />
     <Content Include="Scripts\app\ux\ToolbarDroppable.js" />
     <Content Include="Scripts\app\ux\TreePicker.js" />
+    <Content Include="Scripts\app\view\customers\contacts\Create.js" />
     <Content Include="Scripts\app\view\customers\contacts\List.js" />
     <Content Include="Scripts\app\view\customers\View.js" />
     <Content Include="Scripts\app\view\customers\Create.js" />
@@ -359,6 +370,7 @@
     <Content Include="Scripts\app\view\settings\Categories.js" />
     <Content Include="Scripts\app\view\settings\Default.js" />
     <Content Include="Scripts\app\view\spendings\View.js" />
+    <Content Include="Scripts\app\view\statistics\Types.js" />
     <Content Include="Scripts\app\view\statistics\View.js" />
     <Content Include="Scripts\app\view\statusDefinitions\Edit.js" />
     <Content Include="Scripts\app\view\statusDefinitions\List.js" />

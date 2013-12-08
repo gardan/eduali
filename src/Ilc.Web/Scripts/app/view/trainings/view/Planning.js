@@ -8,7 +8,7 @@
     scheduler: null,
 
     updateFinished: function() {
-        console.log('update finished');
+        this.fireEvent('updatecomplete');
     },
 
     initComponent: function (args) {
@@ -20,8 +20,8 @@
 
             data: [
                 {
-                    Id: 1,
-                    Name: 'Trainer Name'
+                    Id: entity.get('trainer').id,
+                    Name: entity.get('trainer').name
                 }
             ],
         });

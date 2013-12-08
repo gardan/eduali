@@ -1,13 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Ilc.Core;
 using Ilc.Core.Contracts;
+using Ilc.Data.Contracts;
 using Ilc.Infrastructure.Contracts;
+using Ilc.Infrastructure.Workflows;
 
 namespace Ilc.Infrastructure.Services
 {
     public class StatisticsService : IStatisticsService
     {
         public ICustomersService Customers { get; set; }
+        public IUow Uow { get; set; }
 
         public List<CustomerStatistics> GetCustomers()
         {
@@ -23,6 +28,68 @@ namespace Ilc.Infrastructure.Services
                     });
             }
             return statisticsRet;
+        }
+
+        public List<SpendingsStatistics> GetCustomersSpendings()
+        {
+            var ret = new List<SpendingsStatistics>();
+            var trainings = Uow.Trainings.GetAll().ToList();
+
+            foreach (var training in trainings)
+            {
+                // Skip if training status is smaller or equal to accepted
+                if (TrainingStatus.GetWeight(training.Status) <= TrainingStatus.GetWeight(TrainingStatus.Offer))
+                {
+                    continue;
+                }
+
+                var selectedOffer = training.Offers.FirstOrDefault(o => o.Selected);
+
+                ret.Add(new SpendingsStatistics()
+                    {
+                        Price = selectedOffer.Price,
+                        Spendings = training.Spendings.Trainer,
+                        CustomerName = training.Customer.Name,
+                        SubjectName = training.Subject.Name,
+                        TrainingCompositeId = string.Format("{0}-{1}", training.CustomerId, training.NoOfCustomerTraining)
+                    });
+            }
+
+            return ret;
+        }
+
+        public List<TrainingStatistics> GetSubjectTrainingsPerMonth(FilterArgumentsTrainingStatistics request)
+        {
+            var ret = new List<TrainingStatistics>();
+            var trainings = Uow.Trainings.GetAll().Where(t => t.DesiredStartDate.Year == 2013).ToList();
+
+            for (int i = 0; i < 12; i++)
+            {
+                var internalI = i;
+
+                var subTrainings = trainings.Where(t => t.DesiredStartDate.Month - 1 == internalI);
+                var subjects = new Dictionary<string, int>();
+
+                foreach (var subTraining in subTrainings)
+                {
+                    var key = subTraining.Subject.Name.ToLower();
+                    if (!subjects.ContainsKey(key))
+                    {
+                        subjects.Add(key, 0);
+                    }
+                    var value = subjects[key];
+                    subjects[key] = value + 1;
+                }
+
+                ret.Add(new TrainingStatistics()
+                    {
+                        MonthNr = i,
+                        Subjects = subjects
+                    });
+
+            }
+
+            return ret;
         }
     }
 }

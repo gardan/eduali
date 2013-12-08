@@ -48,6 +48,9 @@
   <ItemGroup>
     <Compile Include="Contracts\IStatisticsService.cs" />
     <Compile Include="Contracts\IStatusService.cs" />
+    <Compile Include="TrainingStatistics.cs" />
+    <Compile Include="FilterArgumentsTrainingStatistics.cs" />
+    <Compile Include="SpendingsStatistics.cs" />
     <Compile Include="Services\StatusService.cs" />
     <Compile Include="CustomerStatistics.cs" />
     <Compile Include="Contracts\IExtensionManager.cs" />
