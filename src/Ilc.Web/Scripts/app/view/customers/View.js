@@ -62,6 +62,7 @@
                         listeners: {
                             'updatecomplete': function() {
                                 contactsStore.reload();
+                                me.fireEvent('reloadcustomers');
                             }
                         }
                     }
