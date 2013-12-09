@@ -122,6 +122,10 @@
 
         'tasks.offer.mainLbl': 'Please select the next status of the training to either accepted or rejected',
 
+        'statistics.priceSpendings': 'Price / Spendings',
+        'statistics.customerPurchases': 'Customer purchases',
+        'statistics.trainingsMonth': 'Trainings / Month',
+
         'formats.date': 'MM-DD-YYYY HH:mm',
         'formats.extjsdate': 'm-d-Y g:i'
     }

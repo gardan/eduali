@@ -16,17 +16,17 @@
             data: [
                 {
                     index: 1,
-                    text: 'Price / Spendings',
+                    text: Ilc.resources.Manager.getResourceString('statistics.priceSpendings'), // 'Price / Spendings',
                     component: 'Ilc.view.roles.List'
                 },
                 {
                     index: 2,
-                    text: 'Customer purchases',
+                    text: Ilc.resources.Manager.getResourceString('statistics.customerPurchases'), // 'Customer purchases',
                     component: 'Ilc.view.subjects.List'
                 },
                 {
                     index: 3,
-                    text: 'Trainings / Month',
+                    text: Ilc.resources.Manager.getResourceString('statistics.trainingsMonth'), // 'Trainings / Month',
                     component: 'Ilc.view.users.List'
                 }
             ]
