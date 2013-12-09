@@ -35,6 +35,7 @@
             disabled: true,
             value: me.spendings.trainer,
             width: 100,
+            useThousandSeparator: false,
             name: 'trainer',
             listeners: {
                 change: function (numericfield, newValue, oldValue) {
@@ -73,6 +74,7 @@
                 ]
             },
             {
+                useThousandSeparator: false,
                 fieldLabel: 'Supplies',
                 value: me.spendings.supplies,
                 width: 250,
@@ -85,6 +87,7 @@
                 }
             },
             {
+                useThousandSeparator: false,
                 fieldLabel: 'Transport',
                 value: me.spendings.transport,
                 width: 250,
