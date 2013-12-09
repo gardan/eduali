@@ -79,8 +79,8 @@
             me.series.push({
                 type: 'line',
                 axis: 'left',
+                title: subject.get('name'),
                 xField: 'month',
-                
                 yField: [subject.get('name').toLowerCase()]
             });
         });

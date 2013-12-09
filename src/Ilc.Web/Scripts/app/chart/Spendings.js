@@ -25,6 +25,7 @@
         {
             type: 'bar',
             axis: 'bottom',
+            title: [Ilc.resources.Manager.getResourceString('common.price'), Ilc.resources.Manager.getResourceString('common.spendings')],
             xField: 'label',
             yField: ['price', 'spendings']
         }

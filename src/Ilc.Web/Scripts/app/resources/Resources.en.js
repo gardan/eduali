@@ -115,6 +115,7 @@
         'common.trainingContact': 'Training contact',
         'common.price': 'Price',
         'common.subjects': 'Subjects',
+        'common.spendings': 'Spendings',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',
