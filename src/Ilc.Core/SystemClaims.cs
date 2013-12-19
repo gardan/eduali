@@ -17,6 +17,9 @@ namespace Ilc.Core
 
         public const string UiSettingsRead = "ui-settings-read";
 
+        public const string MainCustomerContact = "common-main-customer-contact";
+        public const string CustomerTrainingContact = "common-customer-training-contact";
+
         public static List<string> GetAll()
         {
             var type = typeof (SystemClaims);

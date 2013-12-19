@@ -81,7 +81,7 @@ namespace Ilc.Data.Migrations
                                               RoleName = "Customer Contact",
                                               Claims = new List<RoleClaim>()
                                                   {
-                                                      // new RoleClaim() {Name = "tasks-student", Value = true.ToString()}
+                                                      new RoleClaim() {Name = "common-main-customer-contact", Value = true.ToString()}
                                                   }
                                           },
                                       new Role()
@@ -90,7 +90,7 @@ namespace Ilc.Data.Migrations
                                               RoleName = "Customer Supervizor",
                                               Claims = new List<RoleClaim>()
                                                   {
-                                                      // new RoleClaim() {Name = "tasks-student", Value = true.ToString()}
+                                                      new RoleClaim() {Name = "common-customer-training-contact", Value = true.ToString()}
                                                   }
                                           },
                                       new Role() // Student
