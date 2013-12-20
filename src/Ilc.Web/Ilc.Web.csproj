@@ -3903,6 +3903,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="InjectorConventions\AvailabilityToAvailabilityModel.cs" />
     <Compile Include="InjectorConventions\GradingSystemToWebModel.cs" />
     <Compile Include="InjectorConventions\TrainerToTrainerModel.cs" />
     <Compile Include="InjectorConventions\TrainingToWebModel.cs" />
@@ -3941,6 +3942,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\CreateStudentModel.cs" />
     <Compile Include="Models\CreateOfferModel.cs" />
+    <Compile Include="Services\AvailabilityService.cs" />
     <Compile Include="Services\ClaimsService.cs" />
     <Compile Include="Services\ClientConfigurationService.cs" />
     <Compile Include="Services\ContactsService.cs" />

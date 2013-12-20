@@ -101,6 +101,8 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.FilterParametersLessonSchedule>("/api/trainings/{trainingId}/lessonsSchedule", "GET");
             routes.Add<Services.FilterParametersLessonsSchedule>("/api/lessons", "GET");
 
+            routes.Add<Services.FilterParametersAvailability>("/api/availabilities", "GET");
+
             routes.Add<Services.FilterParametersQuestions>("/api/questions", "GET");
         }
     }

@@ -38,6 +38,7 @@ namespace Ilc.Web.AppStart
             container.RegisterAutoWiredAs<StatusDefinitionsService, IStatusDefinitionsService>().ReusedWithin(ReuseScope.Request);
             container.RegisterAutoWiredAs<GradesService, IGradesService>().ReusedWithin(ReuseScope.Request);
             container.RegisterAutoWiredAs<ContactsService, IContactsService>().ReusedWithin(ReuseScope.Request);
+            container.RegisterAutoWiredAs<AvailabilityService, IAvailabilityService>().ReusedWithin(ReuseScope.Request);
 
             container.RegisterAutoWiredAs<StatisticsService, IStatisticsService>().ReusedWithin(ReuseScope.Request);            
         }

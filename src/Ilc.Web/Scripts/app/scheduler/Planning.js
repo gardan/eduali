@@ -46,6 +46,21 @@
         return result;
     },
 
+    loadAvailabilityZones: function() {
+        var me = this;
+        var availabilityStore = me.resourceZones;
+
+        var startDate = Sch.util.Date.add(me.getStartDate(), Sch.util.Date.DAY, -2);
+        var endDate = Sch.util.Date.add(me.getEndDate(), Sch.util.Date.DAY, 2);
+
+        availabilityStore.load({
+            params: {
+                startDate: startDate,
+                endDate: endDate
+            }
+        });
+    },
+
     initComponent: function() {
         var me = this;
 
@@ -78,24 +93,28 @@
                 iconCls: 'icon-left',
                 handler: function () {
                     me.shiftPrevious();
+                    me.loadAvailabilityZones();
                 }
             },
             {
                 iconCls: 'icon-right',
                 handler: function () {
                     me.shiftNext();
+                    me.loadAvailabilityZones();
                 }
             },
             {
                 iconCls: 'icon-zoom-in',
                 handler: function () {
                     me.zoomIn();
+                    me.loadAvailabilityZones();
                 }
             },
             {
                 iconCls: 'icon-zoom-out',
                 handler: function () {
                     me.zoomOut();
+                    me.loadAvailabilityZones();
                 }
             }
         ];
@@ -103,11 +122,24 @@
         var availabilityStore = Ext.create('Sch.data.EventStore', {
             model: 'Ilc.model.Availability',
             
-            data: [
-                { id: 1, resourceId: 2, startDate: "2013-12-11T08:00:00", endDate: "2013-12-11T12:00:00" },
-                { id: 2, resourceId: 3, startDate: "2013-12-11T08:00:00", endDate: "2013-12-11T12:00:00" }
-                // { ResourceId: 2, StartDate: "2011-09-01T10:00", EndDate: "2011-09-01T16:00" }
-            ],
+            // data: [
+            //     { id: 1, resourceId: 2, startDate: "2013-12-11T08:00:00", endDate: "2013-12-11T12:00:00" },
+            //     { id: 2, resourceId: 3, startDate: "2013-12-11T08:00:00", endDate: "2013-12-11T12:00:00" }
+            //     // { ResourceId: 2, StartDate: "2011-09-01T10:00", EndDate: "2011-09-01T16:00" }
+            // ],
+
+            proxy: {
+                type: 'rest',
+                url: 'api/availabilities',
+                extraParams: {
+                    format: 'json'
+                },
+                reader: {
+                    type: 'json',
+                    root: 'data',
+                    totalProperty: 'totalRecords'
+                }
+            },
             
             isResourceAvailable: function (resource, start, end) {
                 var availability = this.getEventsForResource(resource);
@@ -128,8 +160,12 @@
             }
         });
         
-        me.resourceZones = availabilityStore;
+        // availabilityStore.load();
 
+        
+        me.resourceZones = availabilityStore;
         me.callParent(arguments);
+
+        me.loadAvailabilityZones();
     }
 });

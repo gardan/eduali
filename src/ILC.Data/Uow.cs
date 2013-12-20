@@ -43,6 +43,7 @@ namespace Ilc.Data
         public IRepository<ContactPerson> Contacts { get { return GetStandardRepo<ContactPerson>(); } }
         public IRepository<Spendings> Spendings { get { return GetStandardRepo<Spendings>(); } }
         public IRepository<TrainingEvaluationQuestion> Questions { get { return GetStandardRepo<TrainingEvaluationQuestion>(); } }
+        public IRepository<Availability> Availabilities { get { return GetStandardRepo<Availability>(); } }
 
         public Uow(IRepositoryProvider repositoryProvider)
         {

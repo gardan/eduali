@@ -39,5 +39,6 @@ namespace Ilc.Data.Contracts
         IRepository<ContactPerson> Contacts { get; }
         IRepository<Spendings> Spendings { get; } 
         IRepository<TrainingEvaluationQuestion> Questions { get; }
+        IRepository<Availability> Availabilities { get; }
     }
 }
