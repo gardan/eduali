@@ -18,7 +18,8 @@
 
     plugins : [
                 new Sch.plugin.Pan({
-                    enableVerticalPan : true
+                    enableVerticalPan: true,
+                    disableOnKey: Sch.plugin.Pan.KEY_SHIFT
                 })
     ],
 
