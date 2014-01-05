@@ -56,6 +56,24 @@
                     text: Ilc.resources.Manager.getResourceString('mainMenu.planning'),
                     itemId: 'menu.planning'
                 },
+                {
+                    text: 'More',// Ilc.resources.Manager.getResourceString('common.more'),
+                    toggleGroup: '',
+                    menu: [
+                        {
+                            text: 'Availability', // Ilc.resources.Manager.getResourceString('common.logout'),
+                            itemId: 'menu.availability',
+                            listeners: {
+                                click: function(panel) {
+                                    var viewport = panel.up('viewport');
+                                    viewport.fireEvent('menuclick', {
+                                        itemId: 'menu.availability'
+                                    });
+                                }
+                            }
+                        }
+                    ]
+                },
                 '->',
                 {
                     text: Ilc.Configuration.get().username,
@@ -79,5 +97,11 @@
             region: 'center',
             layout: 'fit'
         }
-    ]
+    ],
+    
+    initComponent: function () {
+        this.addEvents('menuclick');
+
+        this.callParent(arguments);
+    }
 });

@@ -21,7 +21,8 @@ Ext.application({
         'Planning',
         'Contacts',
         'Spendings',
-        'Lessons'
+        'Lessons',
+        'Availability'
     ],
 
     requires: [
@@ -43,7 +44,8 @@ Ext.application({
         'roles.List',
         'subjects.List',
         'settings.Default',
-        'planning.Default'
+        'planning.Default',
+        'availability.Default'
     ],  
         
     routes: {
@@ -58,7 +60,8 @@ Ext.application({
         'roles': 'roles#list',
         'subjects': 'subjects#list',
         'settings': 'settings#default',
-        'planning': 'planning#default'
+        'planning': 'planning#default',
+        'availability': 'availability#default'
     },
 
     enableRouter: true,
