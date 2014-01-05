@@ -6,6 +6,7 @@ using System.Threading;
 using System.Web;
 using Ilc.Core.Contracts;
 using Ilc.Data.Models;
+using Ilc.Misc;
 using Ilc.Web.InjectorConventions;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
@@ -42,6 +43,13 @@ namespace Ilc.Web.Services
                     BillingAddress = request.BillingAddress,
                     ContactPersons = new List<ContactPerson>() {new ContactPerson()
                         {
+                            UserProfile = new UserProfile() {UserDetails = new UserDetails()
+                                {
+                                   FirstName = Utils.SplitNameString(request.ContactName)[0],
+                                   LastName = Utils.SplitNameString(request.ContactName)[1],
+                                   Email = request.ContactEmail,
+                                   Phone = "",
+                                }},
                             Name = request.ContactName,
                             Email = request.ContactEmail,
                             IsMain = true
@@ -50,12 +58,10 @@ namespace Ilc.Web.Services
 
             Customers.Create(newCustomer);
 
-            var returnModel = new CustomerModel().InjectFrom<CustomerToCustomerModel>(newCustomer) as CustomerModel;
-
-            return new HttpResult(returnModel)
+            return new HttpResult()
                 {
                     StatusCode = HttpStatusCode.Created,
-                    Location = Request.AbsoluteUri.CombineWith(returnModel.Id)
+                    Location = Request.AbsoluteUri.CombineWith(newCustomer.Id)
                 };
         }
 

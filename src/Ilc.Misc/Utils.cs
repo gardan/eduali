@@ -17,8 +17,26 @@ namespace Ilc.Misc
                 int num = random.Next(16);
                 ret += num.ToString("X");
             }
-            
+
             return ret;
+        }
+
+        public static string[] SplitNameString(string name)
+        {
+            if (!name.Contains(" "))
+            {
+                return new []
+                    {
+                        name, 
+                        name
+                    };
+            }
+
+            return new string[]
+                {
+                    name.Split(Convert.ToChar("."))[0],
+                    name.Substring(name.IndexOf(Convert.ToChar(" ")))
+                };
         }
     }
 }

@@ -10,6 +10,7 @@ namespace Ilc.Core.Services
     public class CustomersService : ICustomersService
     {
         public IUow Uow { get; set; }
+        public IContactsService Contacts { get; set; }
 
         public FilteredResults<Customer> GetFiltered(FilterArguments parameters)
         {
@@ -68,8 +69,14 @@ namespace Ilc.Core.Services
 
         public void Create(Customer newCustomer)
         {
+            var contact = newCustomer.ContactPersons.FirstOrDefault();
+            newCustomer.ContactPersons.Clear();
+
             Uow.Customers.Add(newCustomer);
             Uow.Commit();
+
+            contact.CustomerId = newCustomer.Id;
+            Contacts.Create(contact);
         }
 
         public void Update(Customer updateCustomer)
