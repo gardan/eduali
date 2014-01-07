@@ -30,7 +30,7 @@ namespace Ilc.Web.Services
         }
 
 
-        public HttpResult Post(AvailabilityModel request)
+        public HttpResult Post(CreateAvailabilityModel request)
         {
 
             if (request.TemplateId <= 0)
@@ -70,6 +70,8 @@ namespace Ilc.Web.Services
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int ResourceId { get; set; }
+
+        public int TemplateId { get; set; }
     }
 
     public class AvailabilityModel
@@ -78,8 +80,6 @@ namespace Ilc.Web.Services
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int ResourceId { get; set; }
-
-        public int TemplateId { get; set; }
     }
 
     public class FilterParametersAvailability : FilterArgumentsAvailability
