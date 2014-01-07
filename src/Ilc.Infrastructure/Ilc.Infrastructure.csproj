@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\AvailabilityTemplatesService.cs" />
+    <Compile Include="Contracts\IAvailabilityTemplatesService.cs" />
     <Compile Include="Contracts\IStatisticsService.cs" />
     <Compile Include="Contracts\IStatusService.cs" />
     <Compile Include="TrainingStatistics.cs" />

@@ -9,7 +9,6 @@
         var me = this;
 
         var trainerId = Ilc.Configuration.get().trainerId;
-        console.log(trainerId);
         var resourceStore = Ext.create('Sch.data.ResourceStore', {
             data: [
                 { Id: trainerId, Name: 'Trainer Name' }
@@ -21,12 +20,7 @@
             {
                 xtype: 'availabilityscheduler',
                 resourceStore: resourceStore,
-                eventStore: availabilitiesStore,
-                listeners: {
-                    availabilitycreated: function() {
-                        console.log('asdasdasd12124');
-                    }
-                }
+                eventStore: availabilitiesStore
             }
         ];
 

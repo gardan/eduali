@@ -69,6 +69,7 @@
                             var model = {
                                 id: scheduler.contextMenu.record.get('id')
                             };
+                            
                             me.fireEvent('availabilityremoved', scheduler, model);
                             scheduler.eventStore.remove(scheduler.contextMenu.record);
                         }
@@ -117,6 +118,13 @@
                 handler: function () {
                     me.zoomOut();
                     me.loadAvailabilityStore();
+                }
+            },
+            {
+                text: 'Create from templates',
+                handler: function () {
+                    var createAvailabilitiesWindows = Ext.create('Ilc.view.availability.CreateAvailabilities');
+                    createAvailabilitiesWindows.show();
                 }
             }
         ];

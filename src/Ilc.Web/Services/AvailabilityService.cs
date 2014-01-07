@@ -6,6 +6,7 @@ using System.Web;
 using Ilc.Core;
 using Ilc.Core.Contracts;
 using Ilc.Data.Models;
+using Ilc.Infrastructure.Contracts;
 using Ilc.Web.InjectorConventions;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
@@ -17,6 +18,7 @@ namespace Ilc.Web.Services
     public class AvailabilityService : Service
     {
         public IAvailabilityService Availability { get; set; }
+        public IAvailabilityTemplatesService AvailabilityTemplates { get; set; }
 
         public FilteredDataModel<AvailabilityModel> Get(FilterParametersAvailability request)
         {
@@ -28,17 +30,23 @@ namespace Ilc.Web.Services
         }
 
 
-        public HttpResult Post(CreateAvailabilityModel request)
+        public HttpResult Post(AvailabilityModel request)
         {
-            var availabilities = new List<AvailabilityModel>(request.Data);
 
-
-
-            foreach (var availabilityModel in availabilities)
+            if (request.TemplateId <= 0)
             {
-                var availability = new Availability().InjectFrom<AvailabilityModelToAvailability>(availabilityModel) as Availability; 
+                var availability = new Availability().InjectFrom<AvailabilityModelToAvailability>(request) as Availability;
                 Availability.Create(availability);
             }
+            else
+            {
+                var availabilities = AvailabilityTemplates.GetAvailabilities(request.TemplateId, request.StartDate, request.EndDate);
+                foreach (var availability in availabilities)
+                {
+                    Availability.Create(availability);
+                }
+            }
+            
 
             return new HttpResult()
                 {
@@ -59,7 +67,9 @@ namespace Ilc.Web.Services
 
     public class CreateAvailabilityModel
     {
-        public AvailabilityModel[] Data { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public int ResourceId { get; set; }
     }
 
     public class AvailabilityModel
@@ -68,6 +78,8 @@ namespace Ilc.Web.Services
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int ResourceId { get; set; }
+
+        public int TemplateId { get; set; }
     }
 
     public class FilterParametersAvailability : FilterArgumentsAvailability

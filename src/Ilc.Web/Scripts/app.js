@@ -103,7 +103,10 @@ Ext.application({
         Ext.window.Window.prototype.bodyPadding = 10;
         Ext.window.Window.prototype.modal = true;
         Ext.window.Window.prototype.hideAction = 'destroy';
-        
+
+        Ext.form.field.Date.prototype.format = Ilc.resources.Manager.getResourceString('formats.extjsdate');
+
+
         // Bryntum Scheduler
         Sch.preset.Manager.registerPreset('hourAndDayLarge', {
             timeColumnWidth: 60,

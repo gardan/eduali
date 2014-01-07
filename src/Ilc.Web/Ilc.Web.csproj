@@ -354,6 +354,7 @@
     <Content Include="Scripts\app\ux\TabScrollerMenu.js" />
     <Content Include="Scripts\app\ux\ToolbarDroppable.js" />
     <Content Include="Scripts\app\ux\TreePicker.js" />
+    <Content Include="Scripts\app\view\availability\CreateAvailabilities.js" />
     <Content Include="Scripts\app\view\availability\Default.js" />
     <Content Include="Scripts\app\view\customers\contacts\Create.js" />
     <Content Include="Scripts\app\view\customers\contacts\List.js" />

@@ -10,15 +10,7 @@
         });
     },
     
-    addAvailabilities: function (sender, models) {
-        console.log('asdasdas');
-        // normalize the models
-        if (!Array.isArray(models)) {
-            var model = models;
-            models = [model];
-        }
-        
-
+    addAvailabilities: function (sender, model) {   
         var availabilitiesService = {
             create: function (entity) {
                 var deferred = Q.defer();
@@ -39,11 +31,7 @@
             }
         };
 
-        var preparedModel = {
-            data: models
-        };
-
-        availabilitiesService.create(preparedModel)
+        availabilitiesService.create(model)
         .then(function (response) {
             // options.store.load();
         })
