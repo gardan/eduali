@@ -6,5 +6,6 @@ namespace Ilc.Core.Contracts
     {
         FilteredResults<Availability> GetFiltered(FilterArgumentsAvailability arguments);
         void Create(Availability availability);
+        void Delete(int id);
     }
 }

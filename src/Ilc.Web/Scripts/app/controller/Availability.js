@@ -4,7 +4,8 @@
     init: function() {
         this.control({
             'availabilityscheduler': {
-                'availabilitycreated': this.addAvailabilities
+                'availabilitycreated': this.addAvailabilities,
+                'availabilityremoved': this.removeAvailability
             }
         });
     },
@@ -53,6 +54,37 @@
 
 
 
+    },
+
+    removeAvailability: function(sender, model) {
+        var availabilitiesService = {
+            delete: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/availabilities/' + entity.id,
+                    method: 'DELETE',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+        
+        availabilitiesService.delete(model)
+        .then(function (response) {
+            // options.store.load();
+        })
+        .finally(function () {
+            // sender.availabilityPersisted();
+            // sender.close();
+        });
     },
 
     default: function() {

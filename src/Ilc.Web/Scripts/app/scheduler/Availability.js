@@ -15,6 +15,8 @@
         'Ilc.model.Availability'
     ],
 
+    contextMenu: null,
+
     loadAvailabilityStore: function() {
         var me = this;
 
@@ -55,6 +57,39 @@
             });
         });
 
+        me.on('eventcontextmenu', function (scheduler, eventRecord, e, eOpts) {
+            e.stopEvent();
+
+            if (!scheduler.contextMenu) {
+                scheduler.contextMenu = Ext.create('Ext.menu.Menu', {
+                    items: [{
+                        text: 'Delete event',
+                        iconCls: 'icon-delete',
+                        handler: function () {
+                            var model = {
+                                id: scheduler.contextMenu.record.get('id')
+                            };
+                            me.fireEvent('availabilityremoved', scheduler, model);
+                            scheduler.eventStore.remove(scheduler.contextMenu.record);
+                        }
+                    }]
+                });
+            }
+            scheduler.contextMenu.record = eventRecord;
+            scheduler.contextMenu.showAt(e.getXY());
+        });
+
+        // Fix for this: https://www.assembla.com/spaces/bryntum/support/tickets/13#/activity/ticket:
+        Ext.apply(this, {
+            columns: [
+                {
+                    header: Ilc.resources.Manager.getResourceString('common.trainer'),
+                    width: 130,
+                    dataIndex: 'Name'
+                }
+            ]
+        });
+
         me.tbar = [
             {
                 iconCls: 'icon-left',
@@ -87,7 +122,8 @@
         ];
 
         me.addEvents(
-            'availabilitycreated'
+            'availabilitycreated',
+            'availabilityremoved'
         );
 
         me.callParent(arguments);

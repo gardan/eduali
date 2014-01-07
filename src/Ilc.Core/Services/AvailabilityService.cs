@@ -46,5 +46,11 @@ namespace Ilc.Core.Services
             Uow.Availabilities.Add(availability);
             Uow.Commit();
         }
+
+        public void Delete(int id)
+        {
+            Uow.Availabilities.Delete(id);
+            Uow.Commit();
+        }
     }
 }

@@ -45,6 +45,16 @@ namespace Ilc.Web.Services
                     StatusCode = HttpStatusCode.OK
                 };
         }
+
+        public HttpResult Delete(AvailabilityModel request)
+        {
+            Availability.Delete(request.Id);
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
+
     }
 
     public class CreateAvailabilityModel

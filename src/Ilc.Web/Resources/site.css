@@ -66,3 +66,7 @@
 .icon-right {
     background-image: url(../images/scheduler/arrow_right.png);
 }
+
+.icon-delete {
+    background-image: url(../images/web/remove.png);
+}
