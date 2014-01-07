@@ -79,6 +79,7 @@
         var dateMenu = Ext.create('Ext.menu.DatePicker', {
             handler: function (dp, date) {
                 me.scrollToDate(date);
+                me.loadAvailabilityZones();
             }
         });
 
