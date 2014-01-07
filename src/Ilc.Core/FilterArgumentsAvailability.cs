@@ -6,5 +6,7 @@ namespace Ilc.Core
     {
         public DateTimeOffset StartDate { get; set; }
         public DateTimeOffset EndDate { get; set; }
+
+        public bool IfTrainer { get; set; }
     }
 }

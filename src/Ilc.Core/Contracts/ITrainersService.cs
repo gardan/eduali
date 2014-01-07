@@ -13,5 +13,6 @@ namespace Ilc.Core.Contracts
         void Create(Trainer newTrainer);
         void Update(Trainer updateTrainer);
         void Delete(int id);
+        Trainer GetByUserId(int id);
     }
 }

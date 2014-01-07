@@ -12,6 +12,8 @@ namespace Ilc.Core.Services
     public class AvailabilityService : IAvailabilityService
     {
         public IUow Uow { get; set; }
+        public ITrainersService Trainers { get; set; }
+        public IUsersService Users { get; set; }
 
         public FilteredResults<Availability> GetFiltered(FilterArgumentsAvailability arguments)
         {
@@ -20,12 +22,29 @@ namespace Ilc.Core.Services
 
             var query = Uow.Availabilities.GetAll().Where(a => a.StartDate >= arguments.StartDate && a.EndDate <= arguments.EndDate);
 
+            if (arguments.IfTrainer)
+            {
+                var trainer = Trainers.GetByUserId(Users.GetByUsername().Id);
+                if (trainer != null)
+                {
+                    query = query.Where(a => a.TrainerId == trainer.Id);
+                }
+                
+            }
+
+
             return new FilteredResults<Availability>()
                 {
                     Data = query.ToList(),
                     TotalDisplayRecords = query.Count(),
                     TotalRecords = query.Count()
                 };
+        }
+
+        public void Create(Availability availability)
+        {
+            Uow.Availabilities.Add(availability);
+            Uow.Commit();
         }
     }
 }

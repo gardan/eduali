@@ -116,5 +116,10 @@ namespace Ilc.Core.Services
             Uow.Trainers.Delete(id);
             Uow.Commit();
         }
+
+        public Trainer GetByUserId(int id)
+        {
+            return Uow.Trainers.GetAll().FirstOrDefault(t => t.UserProfileId == id);
+        }
     }
 }

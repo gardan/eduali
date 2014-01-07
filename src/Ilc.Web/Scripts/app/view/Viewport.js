@@ -57,22 +57,17 @@
                     itemId: 'menu.planning'
                 },
                 {
-                    text: 'More',// Ilc.resources.Manager.getResourceString('common.more'),
-                    toggleGroup: '',
-                    menu: [
-                        {
-                            text: 'Availability', // Ilc.resources.Manager.getResourceString('common.logout'),
-                            itemId: 'menu.availability',
-                            listeners: {
-                                click: function(panel) {
-                                    var viewport = panel.up('viewport');
-                                    viewport.fireEvent('menuclick', {
-                                        itemId: 'menu.availability'
-                                    });
-                                }
-                            }
+                    text: 'Availability', // Ilc.resources.Manager.getResourceString('common.logout'),
+                    itemId: 'menu.availability',
+                    hidden: !Ilc.Configuration.claimExists('tasks-trainer'),
+                    listeners: {
+                        click: function (panel) {
+                            var viewport = panel.up('viewport');
+                            viewport.fireEvent('menuclick', {
+                                itemId: 'menu.availability'
+                            });
                         }
-                    ]
+                    }
                 },
                 '->',
                 {
