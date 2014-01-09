@@ -55,8 +55,6 @@ namespace SqlMigrator
 
                 Console.WriteLine("Succesfully executed {0}!", migrationName);
             }
-
-            Console.ReadKey();
         }
     }
 }
