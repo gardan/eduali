@@ -18,7 +18,7 @@
 	<PropertyGroup>
 		<ConnectionString>Data Source=localhost\sqlexpress;Initial Catalog=master;Integrated Security=SSPI;</ConnectionString>
 		<IlcConnectionString>"Data Source=localhost\sqlexpress;Initial Catalog=Ilc;Integrated Security=SSPI;"</IlcConnectionString>
-		<SqlUpdateScriptsPath>"$(ProjectRoot)\sqlScripts\AppMigrations\"</SqlUpdateScriptsPath>
+		<SqlUpdateScriptsPath>"$(ProjectRoot)\sqlScripts\AppMigrations"</SqlUpdateScriptsPath>
 	</PropertyGroup>
 	
 	<ItemGroup>
