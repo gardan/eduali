@@ -185,7 +185,7 @@
 	</Target>
 	
 	<Target Name="UpdateDatabase">
-		<Exec Command="CALL $(tools)\SqlMigrator\bin\debug\SqlMigrator.exe -cs:$(IlcConnectionString) -updateScriptsPath:$(SqlUpdateScriptsPath)" />
+		<Exec Command="CALL $(tools)\Built\SqlMigrator\SqlMigrator.exe -cs:$(IlcConnectionString) -updateScriptsPath:$(SqlUpdateScriptsPath)" />
 	</Target>
 	
 	<Target Name="CreateDatabase2008">
