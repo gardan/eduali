@@ -90,6 +90,10 @@
       <Project>{0D1BF8AA-DB0E-454B-8D1C-8629F1B5DD0A}</Project>
       <Name>Ilc.Data.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ilc.Misc\Ilc.Misc.csproj">
+      <Project>{9393D425-993F-4BFF-90B7-484CF358E8FC}</Project>
+      <Name>Ilc.Misc</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <XamlAppDef Include="Workflows\Training.xaml">

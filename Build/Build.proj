@@ -17,6 +17,8 @@
 	
 	<PropertyGroup>
 		<ConnectionString>Data Source=localhost\sqlexpress;Initial Catalog=master;Integrated Security=SSPI;</ConnectionString>
+		<IlcConnectionString>"Data Source=localhost\sqlexpress;Initial Catalog=Ilc;Integrated Security=SSPI;"</IlcConnectionString>
+		<SqlUpdateScriptsPath>"$(ProjectRoot)\sqlScripts\AppMigrations\"</SqlUpdateScriptsPath>
 	</PropertyGroup>
 	
 	<ItemGroup>
@@ -180,6 +182,10 @@
 		<ExecuteDDL ConnectionString="$(ConnectionString)" Files="@(WFStoreSchema)" ContinueOnError="false" />
 		<ExecuteDDL ConnectionString="$(ConnectionString)" Files="@(WFStoreLogic)" ContinueOnError="false" />
 		<ExecuteDDL ConnectionString="$(ConnectionString)" Files="@(WFStoreSchemaUpgrade)" ContinueOnError="false" />
+	</Target>
+	
+	<Target Name="UpdateDatabase">
+		<Exec Command="CALL $(tools)\SqlMigrator\bin\debug\SqlMigrator.exe -cs:$(IlcConnectionString) -updateScriptsPath:$(SqlUpdateScriptsPath)" />
 	</Target>
 	
 	<Target Name="CreateDatabase2008">

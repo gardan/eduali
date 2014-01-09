@@ -48,6 +48,7 @@ namespace Ilc.Data
         public DbSet<StatusDictionary> StatusDictionaries { get; set; }
         public DbSet<GradingSystem> GradingSystems { get; set; }
         public DbSet<Availability> Availabilities { get; set; }
+        public DbSet<Template> Templates { get; set; }
 
         public DbSet<TrainingEvaluationQuestion> TrainingEvaluationQuestions { get; set; }
         public DbSet<RadioPossibleAnswer> RadioPossibleAnswers { get; set; }

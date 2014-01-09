@@ -22,7 +22,7 @@ namespace Ilc.Tests.Unit.Infrastructure
         public void Start_To_Finish()
         {
             // Arrange
-            var training = new Data.Models.Training();
+            var training = new Ilc.Data.Models.Training();
             training.Students = new List<Student>()
                 {
                     new Student(),
