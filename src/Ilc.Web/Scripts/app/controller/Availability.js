@@ -6,6 +6,9 @@
             'availabilityscheduler': {
                 'availabilitycreated': this.addAvailabilities,
                 'availabilityremoved': this.removeAvailability
+            },
+            'createavailabilities': {
+                'addavailability': this.addAvailabilities
             }
         });
     },
@@ -39,8 +42,6 @@
             sender.availabilityPersisted();
             // sender.close();
         });
-
-
 
     },
 

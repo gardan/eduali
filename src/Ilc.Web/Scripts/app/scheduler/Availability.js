@@ -124,6 +124,10 @@
                 text: 'Create from templates',
                 handler: function () {
                     var createAvailabilitiesWindows = Ext.create('Ilc.view.availability.CreateAvailabilities');
+                    createAvailabilitiesWindows.on('addedavailability', function () {
+                        me.loadAvailabilityStore();
+                    });
+                    
                     createAvailabilitiesWindows.show();
                 }
             }

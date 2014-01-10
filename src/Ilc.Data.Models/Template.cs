@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,17 +34,5 @@ namespace Ilc.Data.Models
             _currentDayIndex++;
             return ret;
         }
-    }
-
-    public class TemplateDay : EntityBase
-    {
-        public DateTimeOffset StartDate { get; set; }
-        public DateTimeOffset EndDate { get; set; }
-
-        public bool OffDay { get; set; }
-        
-        public int TemplateId { get; set; }
-        [ForeignKey("TemplateId")]
-        public virtual Template Template { get; set; }
     }
 }

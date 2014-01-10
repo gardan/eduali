@@ -3911,6 +3911,8 @@
     <Compile Include="InjectorConventions\AvailabilityModelToAvailability.cs" />
     <Compile Include="InjectorConventions\AvailabilityToAvailabilityModel.cs" />
     <Compile Include="InjectorConventions\GradingSystemToWebModel.cs" />
+    <Compile Include="InjectorConventions\TemplateDayToTemplateDayModel.cs" />
+    <Compile Include="InjectorConventions\TemplateToTemplateModel.cs" />
     <Compile Include="InjectorConventions\TrainerToTrainerModel.cs" />
     <Compile Include="InjectorConventions\TrainingToWebModel.cs" />
     <Compile Include="InjectorConventions\UserProfileToUserModel.cs" />
@@ -3976,6 +3978,7 @@
     <Compile Include="InjectorConventions\StudentToStudentModel.cs" />
     <Compile Include="Services\SubjectsService.cs" />
     <Compile Include="Services\TasksService.cs" />
+    <Compile Include="Services\TemplatesService.cs" />
     <Compile Include="Services\TrainersService.cs" />
     <Compile Include="Services\QuestionsService.cs" />
     <Compile Include="Services\TrainersSubjectsService.cs" />

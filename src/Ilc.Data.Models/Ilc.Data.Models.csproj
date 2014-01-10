@@ -68,6 +68,7 @@
     <Compile Include="StudentInterview.cs" />
     <Compile Include="Subject.cs" />
     <Compile Include="Template.cs" />
+    <Compile Include="TemplateDay.cs" />
     <Compile Include="Trainer.cs" />
     <Compile Include="Training.cs" />
     <Compile Include="TrainingEvaluation.cs" />

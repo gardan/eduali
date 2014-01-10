@@ -105,6 +105,8 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.CreateAvailabilityModel>("/api/availabilities", "POST");
             routes.Add<Services.AvailabilityModel>("/api/availabilities/{id}", "DELETE");
 
+            routes.Add<Services.FilterParametersTemplates>("/api/templates", "GET");
+
             routes.Add<Services.FilterParametersQuestions>("/api/questions", "GET");
         }
     }
