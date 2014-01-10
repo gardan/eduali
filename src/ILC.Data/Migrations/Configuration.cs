@@ -34,6 +34,62 @@ namespace Ilc.Data.Migrations
             SeedSubjects(context);
             SeedTrainer(context);
             SeedStatusDictionary(context);
+            SeedTemplates(context);
+        }
+
+        private void SeedTemplates(AppContext context)
+        {
+            var admin = context.UserProfiles.Find(1);
+
+            context.Templates.AddOrUpdate(t => t.Name,
+                new Template()
+                {
+                    Name = "Morning",
+                    CreateDate = DateTimeOffset.UtcNow,
+                    Creator = admin,
+                    TemplateDays = new List<TemplateDay>()
+                            {
+                                new TemplateDay() { StartDate = new DateTimeOffset(1, 1, 1, 8, 0, 0, 0, TimeSpan.Zero ), EndDate = new DateTimeOffset(1, 1, 1, 16, 0, 0, 0, TimeSpan.Zero ) },
+                                new TemplateDay() { StartDate = new DateTimeOffset(1, 1, 1, 8, 0, 0, 0, TimeSpan.Zero ), EndDate = new DateTimeOffset(1, 1, 1, 16, 0, 0, 0, TimeSpan.Zero ) },
+                                new TemplateDay() { StartDate = new DateTimeOffset(1, 1, 1, 8, 0, 0, 0, TimeSpan.Zero ), EndDate = new DateTimeOffset(1, 1, 1, 16, 0, 0, 0, TimeSpan.Zero ) },
+                                new TemplateDay() { StartDate = new DateTimeOffset(1, 1, 1, 8, 0, 0, 0, TimeSpan.Zero ), EndDate = new DateTimeOffset(1, 1, 1, 16, 0, 0, 0, TimeSpan.Zero ) },
+                                new TemplateDay() { StartDate = new DateTimeOffset(1, 1, 1, 8, 0, 0, 0, TimeSpan.Zero ), EndDate = new DateTimeOffset(1, 1, 1, 16, 0, 0, 0, TimeSpan.Zero ) },
+                                new TemplateDay() { OffDay = true },
+                                new TemplateDay() { OffDay = true }
+                            }
+                },
+                new Template()
+                {
+                    Name = "Afternoon",
+                    CreateDate = DateTimeOffset.UtcNow,
+                    Creator = admin,
+                    TemplateDays = new List<TemplateDay>()
+                           {
+                               new TemplateDay() { StartDate = new DateTimeOffset(1, 1, 1, 16, 0, 0, 0, TimeSpan.Zero ), EndDate = new DateTimeOffset(1, 1, 1, 0, 0, 0, 0, TimeSpan.Zero ) },
+                               new TemplateDay() { StartDate = new DateTimeOffset(1, 1, 1, 16, 0, 0, 0, TimeSpan.Zero ), EndDate = new DateTimeOffset(1, 1, 1, 0, 0, 0, 0, TimeSpan.Zero ) },
+                               new TemplateDay() { StartDate = new DateTimeOffset(1, 1, 1, 16, 0, 0, 0, TimeSpan.Zero ), EndDate = new DateTimeOffset(1, 1, 1, 0, 0, 0, 0, TimeSpan.Zero ) },
+                               new TemplateDay() { StartDate = new DateTimeOffset(1, 1, 1, 16, 0, 0, 0, TimeSpan.Zero ), EndDate = new DateTimeOffset(1, 1, 1, 0, 0, 0, 0, TimeSpan.Zero ) },
+                               new TemplateDay() { StartDate = new DateTimeOffset(1, 1, 1, 16, 0, 0, 0, TimeSpan.Zero ), EndDate = new DateTimeOffset(1, 1, 1, 0, 0, 0, 0, TimeSpan.Zero ) },
+                               new TemplateDay() { OffDay = true },
+                               new TemplateDay() { OffDay = true }
+                           }
+                },
+                new Template()
+                {
+                    Name = "Night",
+                    CreateDate = DateTimeOffset.UtcNow,
+                    Creator = admin,
+                    TemplateDays = new List<TemplateDay>()
+                           {
+                               new TemplateDay() { StartDate = new DateTimeOffset(1, 1, 1, 0, 0, 0, 0, TimeSpan.Zero ), EndDate = new DateTimeOffset(1, 1, 1, 8, 0, 0, 0, TimeSpan.Zero ) },
+                               new TemplateDay() { StartDate = new DateTimeOffset(1, 1, 1, 0, 0, 0, 0, TimeSpan.Zero ), EndDate = new DateTimeOffset(1, 1, 1, 8, 0, 0, 0, TimeSpan.Zero ) },
+                               new TemplateDay() { StartDate = new DateTimeOffset(1, 1, 1, 0, 0, 0, 0, TimeSpan.Zero ), EndDate = new DateTimeOffset(1, 1, 1, 8, 0, 0, 0, TimeSpan.Zero ) },
+                               new TemplateDay() { StartDate = new DateTimeOffset(1, 1, 1, 0, 0, 0, 0, TimeSpan.Zero ), EndDate = new DateTimeOffset(1, 1, 1, 8, 0, 0, 0, TimeSpan.Zero ) },
+                               new TemplateDay() { StartDate = new DateTimeOffset(1, 1, 1, 0, 0, 0, 0, TimeSpan.Zero ), EndDate = new DateTimeOffset(1, 1, 1, 8, 0, 0, 0, TimeSpan.Zero ) },
+                               new TemplateDay() { OffDay = true },
+                               new TemplateDay() { OffDay = true }
+                           }
+                });
         }
 
         private void SeedGradingSystems(AppContext context)
@@ -67,7 +123,7 @@ namespace Ilc.Data.Migrations
                                 new Grade() { Name = "3", Order = 8 },
                                 new Grade() { Name = "2", Order = 9 },
                                 new Grade() { Name = "1", Order = 10 }
-                            }      
+                            }
                     });
         }
 
@@ -121,7 +177,7 @@ namespace Ilc.Data.Migrations
                                                       new RoleClaim() {Name = "tasks-sales", Value = true.ToString()},
                                                       new RoleClaim() {Name = "tasks-coordinator", Value = true.ToString()},
                                                       new RoleClaim() {Name = "ui-settings-read", Value = true.ToString()}
-                                                  }       
+                                                  }
                                           }
                                       );
             context.SaveChanges();
@@ -155,13 +211,17 @@ namespace Ilc.Data.Migrations
         private void SeedTrainer(AppContext context)
         {
             var subjects = context.Subjects.ToList();
-            var user = new UserProfile() { Username = "alex", UserDetails = new UserDetails()
-                {
-                    Email = "alecs@mail.com",
-                    FirstName = "Alecsandru",
-                    LastName = "Tache",
-                    Phone = "139057098375"
-                }};
+            var user = new UserProfile()
+            {
+                Username = "alex",
+                UserDetails = new UserDetails()
+                    {
+                        Email = "alecs@mail.com",
+                        FirstName = "Alecsandru",
+                        LastName = "Tache",
+                        Phone = "139057098375"
+                    }
+            };
             if (context.UserProfiles.FirstOrDefault(u => u.Username == "alex") != null) return;
             AddUser(context, user);
 
@@ -183,25 +243,35 @@ namespace Ilc.Data.Migrations
             var customerId = context.Customers.FirstOrDefault().Id;
 
             var role = context.Roles.FirstOrDefault(r => r.RoleName == "Student");
-            var user1 = new UserProfile() { Username = "ionel", Roles = new List<Role>() { role }, UserDetails = new UserDetails()
-                {
-                    Email = "ionel@ion.ion",
-                    FirstName = "Ionel",
-                    LastName = "Popescu",
-                    Phone = "03418497814879"
-                }};
-            var user2 = new UserProfile() { Username = "ghita", Roles = new List<Role>() { role }, UserDetails = new UserDetails()
-                {
-                    Email = "ghita@ghita.ghita",
-                    FirstName = "Ghita",
-                    LastName = "Alexandru",
-                    Phone = "159379385"
-                }};
-            
+            var user1 = new UserProfile()
+            {
+                Username = "ionel",
+                Roles = new List<Role>() { role },
+                UserDetails = new UserDetails()
+                    {
+                        Email = "ionel@ion.ion",
+                        FirstName = "Ionel",
+                        LastName = "Popescu",
+                        Phone = "03418497814879"
+                    }
+            };
+            var user2 = new UserProfile()
+            {
+                Username = "ghita",
+                Roles = new List<Role>() { role },
+                UserDetails = new UserDetails()
+                    {
+                        Email = "ghita@ghita.ghita",
+                        FirstName = "Ghita",
+                        LastName = "Alexandru",
+                        Phone = "159379385"
+                    }
+            };
+
 
             if (context.UserProfiles.FirstOrDefault(u => u.Username == "ionel") == null)
             {
-                
+
                 AddUser(context, user1);
                 context.Students.AddOrUpdate(s => s.Name,
                                              new Student()
@@ -331,13 +401,18 @@ namespace Ilc.Data.Migrations
             // 
             var role = context.Roles.FirstOrDefault(r => r.RoleName == "Zeus");
             // create the user profile
-            var firstUser = new UserProfile() { Username = "admin", Roles = new List<Role>() { role }, UserDetails = new UserDetails()
-                {
-                    Email = "zeus@olympus.com",
-                    FirstName = "Zeus",
-                    LastName = "",
-                    Phone = "91387983571"
-                }};
+            var firstUser = new UserProfile()
+            {
+                Username = "admin",
+                Roles = new List<Role>() { role },
+                UserDetails = new UserDetails()
+                    {
+                        Email = "zeus@olympus.com",
+                        FirstName = "Zeus",
+                        LastName = "",
+                        Phone = "91387983571"
+                    }
+            };
             context.UserProfiles.Add(firstUser);
             context.SaveChanges();
 
@@ -364,7 +439,7 @@ namespace Ilc.Data.Migrations
                 user = userExists;
                 return;
             }
-           
+
             context.UserProfiles.Add(user);
             context.SaveChanges();
 

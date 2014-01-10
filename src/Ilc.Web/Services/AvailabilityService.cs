@@ -43,6 +43,7 @@ namespace Ilc.Web.Services
                 var availabilities = AvailabilityTemplates.GetAvailabilities(request.TemplateId, request.StartDate, request.EndDate);
                 foreach (var availability in availabilities)
                 {
+                    availability.TrainerId = request.ResourceId;
                     Availability.Create(availability);
                 }
             }
