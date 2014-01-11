@@ -237,6 +237,7 @@
     <Content Include="Scripts\app\store\StatusDefinitions.js" />
     <Content Include="Scripts\app\store\Students.js" />
     <Content Include="Scripts\app\store\Subjects.js" />
+    <Content Include="Scripts\app\store\Templates.js" />
     <Content Include="Scripts\app\store\Trainers.js" />
     <Content Include="Scripts\app\store\Trainings.js" />
     <Content Include="Scripts\app\store\TrainingSystems.js" />
