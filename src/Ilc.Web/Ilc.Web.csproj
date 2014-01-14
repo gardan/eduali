@@ -183,6 +183,7 @@
     <Content Include="Scripts\app\controller\Students.js" />
     <Content Include="Scripts\app\controller\Subjects.js" />
     <Content Include="Scripts\app\controller\Tasks.js" />
+    <Content Include="Scripts\app\controller\Templates.js" />
     <Content Include="Scripts\app\controller\Trainers.js" />
     <Content Include="Scripts\app\controller\Trainings.js" />
     <Content Include="Scripts\app\controller\Users.js" />
@@ -214,6 +215,7 @@
     <Content Include="Scripts\app\scheduler\Availability.js" />
     <Content Include="Scripts\app\scheduler\Planning.js" />
     <Content Include="Scripts\app\scheduler\Training.js" />
+    <Content Include="Scripts\app\slider\TimeSlider.js" />
     <Content Include="Scripts\app\store\Claims.js" />
     <Content Include="Scripts\app\store\Contacts.js" />
     <Content Include="Scripts\app\store\GridConfig.js" />
@@ -388,6 +390,10 @@
     <Content Include="Scripts\app\view\subjects\Edit.js" />
     <Content Include="Scripts\app\view\subjects\List.js" />
     <Content Include="Scripts\app\view\tasks\List.js" />
+    <Content Include="Scripts\app\view\templates\components\TemplateDayForm.js" />
+    <Content Include="Scripts\app\view\templates\Create.js" />
+    <Content Include="Scripts\app\view\templates\Edit.js" />
+    <Content Include="Scripts\app\view\templates\List.js" />
     <Content Include="Scripts\app\view\trainers\Create.js" />
     <Content Include="Scripts\app\view\trainers\Edit.js" />
     <Content Include="Scripts\app\view\trainers\List.js" />
@@ -3912,7 +3918,9 @@
     <Compile Include="InjectorConventions\AvailabilityModelToAvailability.cs" />
     <Compile Include="InjectorConventions\AvailabilityToAvailabilityModel.cs" />
     <Compile Include="InjectorConventions\GradingSystemToWebModel.cs" />
+    <Compile Include="InjectorConventions\TemplateDayModelToTemplateDay.cs" />
     <Compile Include="InjectorConventions\TemplateDayToTemplateDayModel.cs" />
+    <Compile Include="InjectorConventions\TemplateModelToTemplate.cs" />
     <Compile Include="InjectorConventions\TemplateToTemplateModel.cs" />
     <Compile Include="InjectorConventions\TrainerToTrainerModel.cs" />
     <Compile Include="InjectorConventions\TrainingToWebModel.cs" />

@@ -22,7 +22,8 @@ Ext.application({
         'Contacts',
         'Spendings',
         'Lessons',
-        'Availability'
+        'Availability',
+        'Templates'
     ],
 
     requires: [

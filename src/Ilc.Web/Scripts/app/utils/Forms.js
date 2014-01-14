@@ -50,6 +50,29 @@
                 case 'textarea':
                     Ilc.utils.Forms._addProperty(model, input.name, input.getRawValue());
                     break;
+                case 'multislider':
+                    debugger;
+                    var value = input.getValue();
+                    Ilc.utils.Forms._addProperty(model, input.name, value);
+                    break;
+                case 'templatedaycontainer':
+                    var obj = {};
+                    obj.startDate = '';
+                    obj.endDate = '';
+                    obj.offDay = '';
+
+                    var dateTimes = input.getDateTimes();
+
+                    obj.startDate = dateTimes[0];
+                    obj.endDate = dateTimes[1];
+                    obj.offDay = input.getOffDay();
+
+                    if (model.templateDays == null) {
+                        model.templateDays = [];
+                    }
+
+                    model.templateDays.push(obj);
+                    break;
                 default:
             }
         }

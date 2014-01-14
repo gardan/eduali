@@ -29,6 +29,10 @@
                 {
                     text: 'Status Definitions',
                     component: 'Ilc.view.statusDefinitions.List'
+                },
+                {
+                    text: 'Templates',
+                    component: 'Ilc.view.templates.List'
                 }
             ]
         });

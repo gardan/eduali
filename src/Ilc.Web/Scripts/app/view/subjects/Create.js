@@ -27,7 +27,7 @@
 
         me.buttons = [
             {
-                text: 'Create',
+                text: Ilc.resources.Manager.getResourceString('common.add'),
                 handler: function () {
                     var inputs = me.query('textfield');
                     var model = Ilc.utils.Forms.extractModel(inputs);

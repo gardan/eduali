@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using Ilc.Core;
+using Ilc.Data.Models;
 using Ilc.Infrastructure.Contracts;
 using Ilc.Web.InjectorConventions;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
+using ServiceStack.Common.Web;
 using ServiceStack.ServiceInterface;
 
 namespace Ilc.Web.Services
@@ -24,6 +27,31 @@ namespace Ilc.Web.Services
                     Data = data.Data.Select(t => new TemplateModel().InjectFrom<TemplateToTemplateModel>(t) as TemplateModel).ToList(),
                     TotalDisplayRecords = data.TotalDisplayRecords,
                     TotalRecords = data.TotalRecords
+                };
+        }
+
+        public HttpResult Put(TemplateModel request)
+        {
+            var template = Templates.GetById(request.Id);
+            template = template.InjectFrom<TemplateModelToTemplate>(request) as Template;
+            
+            Templates.Update(template);
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
+
+        public HttpResult Post(TemplateModel request)
+        {
+            var template = new Template().InjectFrom<TemplateModelToTemplate>(request) as Template;
+
+            Templates.Create(template);
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.Created
                 };
         }
     }

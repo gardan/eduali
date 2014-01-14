@@ -3,7 +3,7 @@ using Omu.ValueInjecter;
 
 namespace Ilc.Web.InjectorConventions
 {
-    public class TemplateDayToTemplateDayModel : ConventionInjection
+    public class TemplateDayModelToTemplateDay : ConventionInjection
     {
         protected override bool Match(ConventionInfo c)
         {
@@ -14,8 +14,7 @@ namespace Ilc.Web.InjectorConventions
         {
             if (c.SourceProp.Name == "StartDate" || c.SourceProp.Name == "EndDate")
             {
-                var ret = ((DateTimeOffset)c.SourceProp.Value).DateTime;
-                return ((DateTimeOffset) c.SourceProp.Value).DateTime;
+                return new DateTimeOffset((DateTime)c.SourceProp.Value, TimeSpan.Zero);
             }
             return base.SetValue(c);
         }

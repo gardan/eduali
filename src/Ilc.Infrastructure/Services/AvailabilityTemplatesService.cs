@@ -13,6 +13,7 @@ namespace Ilc.Infrastructure.Services
     public class AvailabilityTemplatesService : IAvailabilityTemplatesService
     {
         public IUow Uow { get; set; }
+        public IUsersService Users { get; set; }
 
         public IEnumerable<Availability> GetAvailabilities(int templateId, DateTimeOffset startDate, DateTimeOffset endDate)
         {
@@ -93,6 +94,32 @@ namespace Ilc.Infrastructure.Services
                 TotalDisplayRecords = totalDisplayRecords,
                 TotalRecords = totalDisplayRecords
             };
+        }
+
+        public void Create(Template template)
+        {
+            template.Creator = Users.GetByUsername();
+            template.CreateDate = DateTimeOffset.UtcNow;
+
+            Uow.Templates.Add(template);
+            Uow.Commit();
+        }
+
+        public void Update(Template template)
+        {
+            var oldTemplateDays = Uow.TemplateDays.GetAll().Where(td => td.TemplateId == template.Id).ToList();
+            foreach (var oldTemplateDay in oldTemplateDays)
+            {
+                Uow.TemplateDays.Delete(oldTemplateDay.Id);
+            }
+
+            Uow.Templates.Update(template);
+            Uow.Commit();
+        }
+
+        public Template GetById(int id)
+        {
+            return Uow.Templates.GetById(id);
         }
     }
 

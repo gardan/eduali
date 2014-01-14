@@ -12,5 +12,8 @@ namespace Ilc.Infrastructure.Contracts
     {
         IEnumerable<Availability> GetAvailabilities(int templateId, DateTimeOffset startDate, DateTimeOffset endDate);
         FilteredResults<Template> GetFiltered(FilterArgumentsTemplates request);
+        void Create(Template template);
+        void Update(Template template);
+        Template GetById(int id);
     }
 }
