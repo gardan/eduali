@@ -116,6 +116,7 @@
         'common.price': 'Price',
         'common.subjects': 'Subjects',
         'common.spendings': 'Spendings',
+        'common.newTemplate': 'New Template',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',
