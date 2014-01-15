@@ -11,6 +11,7 @@
     width: 500,
 
     template: null,
+    _availabilityDaysIndex: 0,
     
     buttons: [
         {
@@ -43,7 +44,9 @@
 
     initComponent: function () {
         var me = this;
-        
+
+        me._availabilityDaysIndex = me.template.get('templateDays').length;
+
         me.items = [
             {
                 xtype: 'textfield',
@@ -57,17 +60,20 @@
                 text: 'Add day',
                 handler: function () {
                     var slider = Ext.create('Ilc.view.templates.components.TemplateDayForm', {
-                        anchor: '100%'
+                        anchor: '100%',
+                        index: me._availabilityDaysIndex
                     });
+                    me._availabilityDaysIndex += 1;
                     me.add(slider);
                 }
             }
         ];
 
-        Ext.Array.forEach(me.template.get('templateDays'), function (value) {
+        Ext.Array.forEach(me.template.get('templateDays'), function (value, index) {
             var slider = Ext.create('Ilc.view.templates.components.TemplateDayForm', {
                 anchor: '100%',
-                templateDay: value
+                templateDay: value,
+                index: index
             });
             me.items.push(slider);
         });

@@ -60,6 +60,7 @@
         slider.on({
             scope: this,
             afterrender: this.onAfterRender,
+            changecomplete: this.syncElementSize,
             drag: this.syncElementSize
         });
     },

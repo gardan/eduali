@@ -8,9 +8,19 @@
     ],
 
     layout: 'column',
-    
+
     templateDay: null,
-    
+    index: 0,
+
+    _setSliderLabel: function() {
+        this.query('slider').setFieldLabel((this.index + 1).toString());
+    },
+
+    setIndex: function(index) {
+        this.index = index;
+        this._setSliderLabel();
+    },
+
     getDateTimes: function () {
         return this.items.items[0].getDateTimes();
     },
@@ -25,13 +35,12 @@
         var offDay = me.templateDay != null ? me.templateDay.offDay : false;
         var startDate = me.templateDay != null ? me.templateDay.startDate : null;
         var endDate = me.templateDay != null ? me.templateDay.endDate : null;
-
         me.items = [
             {
                 xtype: 'timeslider',
                 columnWidth: 1,
                 labelWidth: 40,
-                fieldLabel: 'Time',
+                fieldLabel: (me.index + 1).toString(),
                 margin: '2 10 0 0',
                 disabled: offDay,
                 startDate: startDate,
@@ -50,6 +59,12 @@
 
                         var slider = me.items.items[0];
                         slider.setDisabled(newValue);
+                    },
+                    afterrender: function(checkbox) {
+                        Ext.create('Ext.tip.ToolTip', {
+                            target: checkbox.el,
+                            html: 'Rest day'
+                        });
                     }
                 }
             }

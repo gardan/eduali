@@ -9,6 +9,8 @@
 
     layout: 'anchor',
     width: 500,
+    
+    _availabilityDaysIndex: 0,
 
     buttons: [
        {
@@ -54,9 +56,11 @@
                 text: 'Add day',
                 handler: function () {
                     var slider = Ext.create('Ilc.view.templates.components.TemplateDayForm', {
-                        anchor: '100%'
+                        anchor: '100%',
+                        index: me._availabilityDaysIndex
                     });
                     me.add(slider);
+                    me._availabilityDaysIndex += 1;
                 }
             }
         ];
