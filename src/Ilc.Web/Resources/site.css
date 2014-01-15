@@ -70,3 +70,25 @@
 .icon-delete {
     background-image: url(../images/web/remove.png);
 }
+
+
+/* Slider - Highlight */
+.ext-ux-slider-highlight { 
+    position: absolute;
+    overflow:hidden;
+    width: 100%;
+}
+
+.ext-ux-slider-inner-highlight {
+    height: 7px;
+}
+
+.x-slider-vert .ext-ux-slider-highlight {
+    width:7px;
+    left:4px;
+}
+
+.x-slider-horz .ext-ux-slider-highlight {
+    height:7px;
+    top:4px;
+}

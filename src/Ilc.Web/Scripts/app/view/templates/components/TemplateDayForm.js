@@ -3,7 +3,8 @@
     xtype: 'templatedaycontainer',
 
     requires: [
-        'Ilc.slider.TimeSlider'
+        'Ilc.slider.TimeSlider',
+        'Ilc.plugins.slider.Highlight'
     ],
 
     layout: 'column',
@@ -34,7 +35,10 @@
                 margin: '2 10 0 0',
                 disabled: offDay,
                 startDate: startDate,
-                endDate: endDate
+                endDate: endDate,
+                plugins: [
+                    Ext.create('Ilc.plugins.slider.Highlight')
+                ]
             },
             {
                 xtype: 'checkboxfield',
