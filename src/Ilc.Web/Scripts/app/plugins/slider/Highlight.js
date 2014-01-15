@@ -32,8 +32,6 @@
         var backgroundColor = '';
         var backgroundColorContainer = '';
 
-        
-
         // check for overlap
         if (startThumb.value < endThumb.value) { // No overlap
             innerDivWidth = leftEnd - leftStart;
@@ -61,7 +59,8 @@
     init: function(slider) {
         slider.on({
             scope: this,
-            afterrender: this.onAfterRender
+            afterrender: this.onAfterRender,
+            drag: this.syncElementSize
         });
     },
     
