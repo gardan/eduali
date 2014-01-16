@@ -85,8 +85,11 @@ Ext.application({
             'Content-Type': 'application/json'
         };
         Ext.Ajax.request({
-            url: 'api/configuration',
+            url: 'api/configuration?format=json',
             method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
             success: function (response) {
                 var configuration = Ext.JSON.decode(response.responseText);
                 Ilc.Configuration.set(configuration);

@@ -97,7 +97,7 @@
 /* Custom buttons */
 .clean-button {
     border-radius: 0;
-    background-image: none;
+    background-image: none !important; /* This is a fix for IE */
     border: 0;
-    background-color: inherit;
+    background-color: white;
 }
