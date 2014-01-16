@@ -92,3 +92,12 @@
     height:7px;
     top:4px;
 }
+
+
+/* Custom buttons */
+.clean-button {
+    border-radius: 0;
+    background-image: none;
+    border: 0;
+    background-color: inherit;
+}

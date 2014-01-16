@@ -41,6 +41,20 @@
         this.close();
     },
 
+    onTemplateRemove: function (templateForm) {
+        var me = this.up();
+        me.remove(templateForm);
+        me._availabilityDaysIndex -= 1;
+
+        // reset the indexes
+        var templateForms = me.query('templatedaycontainer');
+        Ext.Array.forEach(templateForms, function (form, index) {
+            form.setIndex(index);
+            me._availabilityDaysIndex = index + 1;
+        });
+
+    },
+
     initComponent: function() {
         var me = this;
 
@@ -57,7 +71,10 @@
                 handler: function () {
                     var slider = Ext.create('Ilc.view.templates.components.TemplateDayForm', {
                         anchor: '100%',
-                        index: me._availabilityDaysIndex
+                        index: me._availabilityDaysIndex,
+                        listeners: {
+                            removeclicked: me.onTemplateRemove
+                        }
                     });
                     me.add(slider);
                     me._availabilityDaysIndex += 1;

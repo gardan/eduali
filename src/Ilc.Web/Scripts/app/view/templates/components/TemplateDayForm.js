@@ -12,8 +12,9 @@
     templateDay: null,
     index: 0,
 
-    _setSliderLabel: function() {
-        this.query('slider').setFieldLabel((this.index + 1).toString());
+    _setSliderLabel: function () {
+        var slider = this.query('multislider')[0];
+        slider.setFieldLabel((this.index + 1).toString());
     },
 
     setIndex: function(index) {
@@ -67,8 +68,18 @@
                         });
                     }
                 }
+            },
+        {
+            xtype: 'button',
+            cls: 'clean-button',
+            iconCls: 'icon-delete',
+            handler: function() {
+                me.fireEvent('removeclicked', me);
             }
+        }
         ];
+
+        me.addEvents('removeclicked');
 
         me.callParent(arguments);
     }
