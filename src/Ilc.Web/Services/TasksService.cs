@@ -381,7 +381,7 @@ namespace Ilc.Web.Services
             trainingEval.CreateDate = DateTimeOffset.UtcNow;
             trainingEval.Creator = currentUser;
             trainingEval.TrainingId = request.TaskEntityId;
-            trainingEval.StudentId = currentUser.Id;
+            trainingEval.StudentId = Uow.Students.GetAll().FirstOrDefault(s => s.UserProfileId == currentUser.Id).Id;
             trainingEval.StringAnswers = new List<StringAnswer>();
             trainingEval.RadioGroupAnswers = new List<RadioGroupAnswer>();
             trainingEval.CheckboxAnswers = new List<CheckboxAnswer>();
