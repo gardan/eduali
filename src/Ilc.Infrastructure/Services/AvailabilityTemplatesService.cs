@@ -15,9 +15,10 @@ namespace Ilc.Infrastructure.Services
         public IUow Uow { get; set; }
         public IUsersService Users { get; set; }
 
-        public IEnumerable<Availability> GetAvailabilities(int templateId, DateTimeOffset startDate, DateTimeOffset endDate)
+        public List<Availability> GetAvailabilities(int templateId, DateTimeOffset startDate, DateTimeOffset endDate)
         {
             Template template = Uow.Templates.GetById(templateId);
+            var ret = new List<Availability>();
 
             // we have to iterate trough every day
             foreach (var day in TimeUtils.EachDay(startDate, endDate))
@@ -46,13 +47,13 @@ namespace Ilc.Infrastructure.Services
 
                 var endDateTmp = startDateTmp.Add(span);
 
-                var availability = new Availability()
+                ret.Add(new Availability()
                     {
                         StartDate = startDateTmp,
                         EndDate = endDateTmp
-                    };
-                yield return availability;
+                    });
             }
+            return ret;
         }
 
         public FilteredResults<Template> GetFiltered(FilterArgumentsTemplates parameters)

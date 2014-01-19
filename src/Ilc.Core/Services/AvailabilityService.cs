@@ -47,6 +47,36 @@ namespace Ilc.Core.Services
             Uow.Commit();
         }
 
+        public void Create(List<Availability> availabilities, bool overrideOnConflict = false)
+        {
+            foreach (var availability in availabilities)
+            {
+                var inAvailability = availability;
+                var conflictingAvailabilities =
+                    Uow.Availabilities.GetAll().Where(a => (a.StartDate >= inAvailability.StartDate && a.StartDate < inAvailability.EndDate) ||
+                                                           (a.EndDate >= inAvailability.StartDate && a.EndDate < inAvailability.EndDate)).ToList();
+                if (conflictingAvailabilities.Count > 0)
+                {
+                    if (overrideOnConflict)
+                    {
+                        foreach (var conflictingAvailability in conflictingAvailabilities)
+                        {
+                            Delete(conflictingAvailability.Id);
+                        }
+                        continue;
+                    }
+                    throw new ArgumentException("Conflict with other availability days");
+                }
+            }
+
+            foreach (var availability in availabilities)
+            {
+                Uow.Availabilities.Add(availability);
+            }
+            Uow.Commit();
+            
+        }
+
         public void Delete(int id)
         {
             Uow.Availabilities.Delete(id);

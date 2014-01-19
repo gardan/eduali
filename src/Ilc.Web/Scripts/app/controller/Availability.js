@@ -26,6 +26,10 @@
                         deferred.resolve(response);
                     },
                     failure: function (error) {
+                        if (error.status == 400) {
+                            var errorObj = Ext.JSON.decode(error.responseText);
+                            deferred.reject(errorObj);
+                        }
                         deferred.reject(error);
                     }
                 });
@@ -36,10 +40,12 @@
 
         availabilitiesService.create(model)
         .then(function (response) {
-            // options.store.load();
+            sender.availabilityPersisted();
+        }, function (error) {
+            sender.availabilityPersistedError(error);
         })
         .finally(function () {
-            sender.availabilityPersisted();
+            
             // sender.close();
         });
 

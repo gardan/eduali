@@ -1,10 +1,28 @@
 ﻿Ext.define('Ilc.view.availability.CreateAvailabilities', {
     xtype: 'createavailabilities',
     extend: 'Ext.window.Window',
-    
+
     requires: [
         'Ilc.utils.Forms'
     ],
+
+    _fireAddEvent: function(options) {
+        var me = this;
+
+        var model = {};
+
+        var textboxes = me.query('textfield');
+
+        model = Ilc.utils.Forms.extractModel(textboxes);
+        model.resourceId = Ilc.Configuration.get().trainerId;
+
+        if (options != null) {
+            Ext.apply(model, options);
+        }
+
+        me.fireEvent('addavailability', me, model);
+        console.log(model);
+    },
 
     buttons: [
             {
@@ -12,14 +30,7 @@
                 handler: function(btn) {
                     var me = btn.up('window');
 
-                    var model = {};
-
-                    var textboxes = me.query('textfield');
-
-                    model = Ilc.utils.Forms.extractModel(textboxes);
-                    model.resourceId = Ilc.Configuration.get().trainerId;
-                    me.fireEvent('addavailability', me, model);
-                    console.log(model);
+                    me._fireAddEvent();
                 }
             },
             {
@@ -35,6 +46,25 @@
 
         me.fireEvent('addedavailability');
         me.close();
+    },
+    
+    availabilityPersistedError: function (error) {
+        var me = this;
+
+        Ext.Msg.show({
+            title: 'Error - Conflict',
+            msg: 'There is a conflict with pre-existing availability days. Would you like to override them?',
+            buttons: Ext.Msg.YESNO,
+            icon: Ext.Msg.QUESTION,
+            fn: function(buttonId) {
+                if (buttonId == 'yes') {
+
+                    me._fireAddEvent({
+                        override: true
+                    });
+                }
+            }
+        });
     },
 
     initComponent: function () {
@@ -52,48 +82,6 @@
                 fieldLabel: 'Template',
                 store: templatesStore
             },
-            // {
-            //     xtype: 'container',
-            //     defaults: {
-            //         layout: 'hbox'
-            //     },
-            //     items: [
-            //         {
-            //             xtype: 'container',
-            //             items: [
-            //                 {
-            //                     xtype: 'label',
-            //                     text: 'Day 1'
-            //                 },
-            //                 {
-            //                     xtype: 'textfield',
-            //                     value: 'T08:00:00'
-            //                 },
-            //                 {
-            //                     xtype: 'textfield',
-            //                     value: 'T16:00:00'
-            //                 }
-            //             ]
-            //         },
-            //         {
-            //             xtype: 'container',
-            //             items: [
-            //                 {
-            //                     xtype: 'label',
-            //                     text: 'Day 2'
-            //                 },
-            //                 {
-            //                     xtype: 'textfield',
-            //                     value: 'T08:00:00'
-            //                 },
-            //                 {
-            //                     xtype: 'textfield',
-            //                     value: 'T16:00:00'
-            //                 }
-            //             ]
-            //         }
-            //     ]
-            // },
             {
                 xtype: 'datefield',
                 fieldLabel: 'Start date',

@@ -1,4 +1,5 @@
-﻿using Ilc.Data.Models;
+﻿using System.Collections.Generic;
+using Ilc.Data.Models;
 
 namespace Ilc.Core.Contracts
 {
@@ -6,6 +7,7 @@ namespace Ilc.Core.Contracts
     {
         FilteredResults<Availability> GetFiltered(FilterArgumentsAvailability arguments);
         void Create(Availability availability);
+        void Create(List<Availability> availabilities, bool overrideOnConflict);
         void Delete(int id);
     }
 }

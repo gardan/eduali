@@ -10,7 +10,7 @@ namespace Ilc.Infrastructure.Contracts
 {
     public interface IAvailabilityTemplatesService
     {
-        IEnumerable<Availability> GetAvailabilities(int templateId, DateTimeOffset startDate, DateTimeOffset endDate);
+        List<Availability> GetAvailabilities(int templateId, DateTimeOffset startDate, DateTimeOffset endDate);
         FilteredResults<Template> GetFiltered(FilterArgumentsTemplates request);
         void Create(Template template);
         void Update(Template template);

@@ -3926,6 +3926,7 @@
     <Compile Include="InjectorConventions\TrainerToTrainerModel.cs" />
     <Compile Include="InjectorConventions\TrainingToWebModel.cs" />
     <Compile Include="InjectorConventions\UserProfileToUserModel.cs" />
+    <Compile Include="Models\BadRequestModel.cs" />
     <Compile Include="Models\ContactPersonModel.cs" />
     <Compile Include="Models\CreateCustomerModel.cs" />
     <Compile Include="Models\CreateEvaluationModel.cs" />

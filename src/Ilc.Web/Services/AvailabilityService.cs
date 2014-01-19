@@ -29,9 +29,21 @@ namespace Ilc.Web.Services
                 };
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <exception cref="BadRequestModel">
+        ///     ErrorId: 401 - AvailabilityDays conflict when sending a template
+        /// </exception>
         public HttpResult Post(CreateAvailabilityModel request)
         {
+            //return new HttpResult(new BadRequestModel() {ErrorId = 401})
+            //    {
+            //        StatusCode = HttpStatusCode.BadRequest,
+            //        StatusDescription = "Conflict with other availability days."
+            //    };
 
             if (request.TemplateId <= 0)
             {
@@ -41,11 +53,13 @@ namespace Ilc.Web.Services
             else
             {
                 var availabilities = AvailabilityTemplates.GetAvailabilities(request.TemplateId, request.StartDate, request.EndDate);
+
                 foreach (var availability in availabilities)
                 {
                     availability.TrainerId = request.ResourceId;
-                    Availability.Create(availability);
                 }
+
+                Availability.Create(availabilities, request.Override);
             }
             
 
@@ -73,6 +87,12 @@ namespace Ilc.Web.Services
         public int ResourceId { get; set; }
 
         public int TemplateId { get; set; }
+
+
+        /// <summary>
+        /// If there is a conflict with the availabilities, this indicates wether to override or not.
+        /// </summary>
+        public bool Override { get; set; }
     }
 
     public class AvailabilityModel
