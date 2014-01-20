@@ -71,7 +71,14 @@ namespace Ilc.Web.Services
 
         public HttpResult Delete(AvailabilityModel request)
         {
-            Availability.Delete(request.Id);
+            if (request.Id != 0)
+            {
+                Availability.Delete(request.Id);
+            }
+            else
+            {
+                Availability.DeleteBy(request.ResourceId, new DateTimeOffset(request.StartDate)); 
+            }
             return new HttpResult()
                 {
                     StatusCode = HttpStatusCode.OK

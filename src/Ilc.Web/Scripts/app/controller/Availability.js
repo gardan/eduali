@@ -56,6 +56,11 @@
             delete: function (entity) {
                 var deferred = Q.defer();
 
+                var url = 'api/availabilities/' + entity.id;
+                if (entity.startDate != null && entity.resourceId != null) {
+                    url += '?resourceId=' + entity.resourceId + '&startDate=' + entity.startDate;
+                }
+
                 Ext.Ajax.request({
                     url: 'api/availabilities/' + entity.id,
                     method: 'DELETE',
@@ -71,12 +76,14 @@
                 return deferred.promise;
             }
         };
-        
+
+        sender.mask();
         availabilitiesService.delete(model)
         .then(function (response) {
             // options.store.load();
         })
         .finally(function () {
+            sender.unmask();
             // sender.availabilityPersisted();
             // sender.close();
         });

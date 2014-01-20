@@ -49,12 +49,14 @@ namespace Ilc.Core.Services
 
         public void Create(List<Availability> availabilities, bool overrideOnConflict = false)
         {
+            var trainerId = availabilities.First().TrainerId;
             foreach (var availability in availabilities)
             {
                 var inAvailability = availability;
                 var conflictingAvailabilities =
-                    Uow.Availabilities.GetAll().Where(a => (a.StartDate >= inAvailability.StartDate && a.StartDate < inAvailability.EndDate) ||
-                                                           (a.EndDate >= inAvailability.StartDate && a.EndDate < inAvailability.EndDate)).ToList();
+                    Uow.Availabilities.GetAll().Where(a => a.TrainerId == trainerId &&
+                                                           ((a.StartDate >= inAvailability.StartDate && a.StartDate < inAvailability.EndDate) ||
+                                                           (a.EndDate >= inAvailability.StartDate && a.EndDate < inAvailability.EndDate))).ToList();
                 if (conflictingAvailabilities.Count > 0)
                 {
                     if (overrideOnConflict)
@@ -81,6 +83,16 @@ namespace Ilc.Core.Services
         {
             Uow.Availabilities.Delete(id);
             Uow.Commit();
+        }
+
+        public void DeleteBy(int trainerId, DateTimeOffset startDate)
+        {
+            var availabilities =
+                Uow.Availabilities.GetAll().Where(a => a.TrainerId == trainerId && a.StartDate >= startDate).ToList();
+            foreach (var availability in availabilities)
+            {
+                Delete(availability.Id);
+            }
         }
     }
 }

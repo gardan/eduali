@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Ilc.Data.Models;
 
 namespace Ilc.Core.Contracts
@@ -9,5 +10,6 @@ namespace Ilc.Core.Contracts
         void Create(Availability availability);
         void Create(List<Availability> availabilities, bool overrideOnConflict);
         void Delete(int id);
+        void DeleteBy(int trainerId, DateTimeOffset startDate);
     }
 }

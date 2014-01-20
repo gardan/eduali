@@ -73,6 +73,29 @@
                             me.fireEvent('availabilityremoved', scheduler, model);
                             scheduler.eventStore.remove(scheduler.contextMenu.record);
                         }
+                    },
+                    {
+                        text: 'Delete from this day',
+                        iconCls: 'icon-delete',
+                        handler: function () {
+                            var model = {
+                                id: 0,
+                                startDate: scheduler.contextMenu.record.get('startDate'),
+                                resourceId: scheduler.contextMenu.record.get('resourceId')
+                            };
+
+                            me.fireEvent('availabilityremoved', scheduler, model);
+                            debugger;
+                            var records = scheduler.eventStore.queryBy(function (record) {
+                                if (record.get('startDate') >= model.startDate) {
+                                    return true;
+                                }
+                            });
+                            
+                            scheduler.eventStore.remove(records.items);
+
+                            console.log(model);
+                        }
                     }]
                 });
             }
