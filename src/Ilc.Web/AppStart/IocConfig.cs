@@ -40,7 +40,9 @@ namespace Ilc.Web.AppStart
             container.RegisterAutoWiredAs<ContactsService, IContactsService>().ReusedWithin(ReuseScope.Request);
             container.RegisterAutoWiredAs<AvailabilityService, IAvailabilityService>().ReusedWithin(ReuseScope.Request);
             container.RegisterAutoWiredAs<AvailabilityTemplatesService, IAvailabilityTemplatesService>().ReusedWithin(ReuseScope.Request);
-            
+            container.RegisterAutoWiredAs<AuthorizationService, IAuthorizationService>().ReusedWithin(ReuseScope.Request);
+            container.RegisterAutoWiredAs<ClaimsService, IClaimsService>().ReusedWithin(ReuseScope.Request);
+
             container.RegisterAutoWiredAs<StatisticsService, IStatisticsService>().ReusedWithin(ReuseScope.Request);            
         }
     }

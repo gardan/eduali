@@ -20,6 +20,8 @@ namespace Ilc.Core
         public const string MainCustomerContact = "common-main-customer-contact";
         public const string CustomerTrainingContact = "common-customer-training-contact";
 
+        public const string AvailabilityReadAll = "availability-read";
+
         public static List<string> GetAll()
         {
             var type = typeof (SystemClaims);

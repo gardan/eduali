@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Ilc.Core.Contracts;
@@ -14,6 +15,7 @@ namespace Ilc.Core.Services
         public IUow Uow { get; set; }
         public ITrainersService Trainers { get; set; }
         public IUsersService Users { get; set; }
+        public IAuthorizationService AuthorizationService { get; set; }
 
         public FilteredResults<Availability> GetFiltered(FilterArgumentsAvailability arguments)
         {
@@ -22,7 +24,8 @@ namespace Ilc.Core.Services
 
             var query = Uow.Availabilities.GetAll().Where(a => a.StartDate >= arguments.StartDate && a.EndDate <= arguments.EndDate);
 
-            if (arguments.IfTrainer)
+
+            if (AuthorizationService.HasClaim(SystemClaims.TasksTrainer) && !AuthorizationService.HasClaim(SystemClaims.AvailabilityReadAll))
             {
                 var trainer = Trainers.GetByUserId(Users.GetByUsername().Id);
                 if (trainer != null)

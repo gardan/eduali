@@ -5,6 +5,7 @@ using System.IdentityModel.Tokens;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
+using Ilc.Core.Contracts;
 using Ilc.Web.Authentication.Contracts;
 
 namespace Ilc.Web.Authentication
@@ -12,6 +13,8 @@ namespace Ilc.Web.Authentication
     public class IdentityAuthenticationManager : IIdentityAuthenticationManager
     {
         public IIdentityStoreManager IdentityStoreManager { get; set; }
+        public IUsersService Users { get; set; }
+        public IClaimsService ClaimsService { get; set; }
 
         public bool CheckPasswordAndSignIn(HttpContextBase context, string username, string password, bool isPersistent)
         {
@@ -29,6 +32,9 @@ namespace Ilc.Web.Authentication
         private ClaimsPrincipal CreateApplicationPrincipal(string username)
         {
             var claims = new List<Claim>() { new Claim(ClaimTypes.Name, username) };
+            var usersClaims = ClaimsService.GetByUserId(Users.GetByUsername(username).Id);
+            claims.AddRange(usersClaims.Select(usersClaim => new Claim(usersClaim, true.ToString())));
+
             return new ClaimsPrincipal(new ClaimsIdentity(claims, "SAM"));
         }
 

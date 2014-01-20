@@ -15,6 +15,7 @@
         'Ilc.model.Availability'
     ],
 
+    // multiSelect: true,
     contextMenu: null,
 
     loadAvailabilityStore: function() {
@@ -109,7 +110,7 @@
                 {
                     header: Ilc.resources.Manager.getResourceString('common.trainer'),
                     width: 130,
-                    dataIndex: 'Name'
+                    dataIndex: 'name'
                 }
             ]
         });

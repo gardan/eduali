@@ -45,8 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IAuthorizationService.cs" />
     <Compile Include="FilterArgumentsAvailability.cs" />
     <Compile Include="FilterArgumentsTemplates.cs" />
+    <Compile Include="Services\AuthorizationService.cs" />
     <Compile Include="Services\AvailabilityService.cs" />
     <Compile Include="Services\ContactsService.cs" />
     <Compile Include="Contracts\IContactsService.cs" />

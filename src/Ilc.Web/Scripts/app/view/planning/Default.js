@@ -3,7 +3,8 @@
     xtype: 'globalplanning',
 
     requires: [
-        'Ilc.model.Training'
+        'Ilc.model.Training',
+        'Ilc.model.scheduler.Trainer'
     ],
 
     updateFinished: function() {
@@ -35,44 +36,11 @@
             resourceIdField: 'resourceId'
         });
 
-        Ext.define('Ilc.model.scheduler.Trainer', {
-            extend: 'Sch.model.Resource',
-            
-            fields: [
-                { name: 'id', type: 'int' },
-                { name: 'name', type: 'string' }
-            ],
-            // 
-            idProperty: 'id',
-            nameField: 'name'
-        });
-
-        var trainersStore = Ext.create('Sch.data.ResourceStore', {
-            model: 'Ilc.model.scheduler.Trainer',
-                      
-            proxy: {
-                type: 'rest',
-                url: 'api/trainers',
-                extraParams: {
-                    format: 'json'
-                },
-                reader: {
-                    type: 'json',
-                    root: 'data',
-                    totalProperty: 'totalRecords'
-                }
-            }
-        });
+        var trainersStore = Ext.create('Ilc.store.scheduler.Trainers');
         
         var eventlessonsStore = Ext.create('Sch.data.EventStore', {
             model: 'Ilc.model.scheduler.Lesson',
           
-            // data: {
-            //     root: [
-            //         JSON.parse('{"id":1,"resourceId":1,"name":"Lesson 1","startDate":"2013-11-22T05:00:00.0000000+00:00","endDate":"2013-11-22T07:00:00.0000000+00:00","color":"#11C935","customerName":"Ilc","subjectName":"English","trainingId":1}')
-            //     ]
-            // }
-
             proxy: {
                 type: 'rest',
                 url: 'api/lessons',

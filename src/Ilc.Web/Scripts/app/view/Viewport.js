@@ -57,9 +57,9 @@
                     itemId: 'menu.planning'
                 },
                 {
-                    text: 'Availability', // Ilc.resources.Manager.getResourceString('common.logout'),
+                    text: 'Availability',
                     itemId: 'menu.availability',
-                    hidden: !Ilc.Configuration.claimExists('tasks-trainer'),
+                    hidden: !Ilc.Configuration.claimExists('tasks-trainer') && !Ilc.Configuration.claimExists('availability-read'),
                     listeners: {
                         click: function (panel) {
                             var viewport = panel.up('viewport');

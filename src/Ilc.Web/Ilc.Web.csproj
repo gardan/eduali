@@ -207,6 +207,7 @@
     <Content Include="Scripts\app\model\Availability.js" />
     <Content Include="Scripts\app\model\Claim.js" />
     <Content Include="Scripts\app\model\InterviewPlan.js" />
+    <Content Include="Scripts\app\model\scheduler\Trainer.js" />
     <Content Include="Scripts\app\model\User.js" />
     <Content Include="Scripts\app\plugins\slider\Highlight.js" />
     <Content Include="Scripts\app\resources\Resources.en.js" />
@@ -234,6 +235,7 @@
     <Content Include="Scripts\app\store\scheduler\Availability.js" />
     <Content Include="Scripts\app\store\scheduler\LessonAppointments.js" />
     <Content Include="Scripts\app\store\scheduler\Lessons.js" />
+    <Content Include="Scripts\app\store\scheduler\Trainers.js" />
     <Content Include="Scripts\app\store\statistics\Customers.js" />
     <Content Include="Scripts\app\store\statistics\Spendings.js" />
     <Content Include="Scripts\app\store\statistics\Trainings.js" />

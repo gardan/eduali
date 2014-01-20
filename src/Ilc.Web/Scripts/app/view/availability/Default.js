@@ -8,12 +8,7 @@
     initComponent: function() {
         var me = this;
 
-        var trainerId = Ilc.Configuration.get().trainerId;
-        var resourceStore = Ext.create('Sch.data.ResourceStore', {
-            data: [
-                { Id: trainerId, Name: 'Trainer Name' }
-            ]
-        });
+        var resourceStore = Ext.create('Ilc.store.scheduler.Trainers');
         var availabilitiesStore = Ext.create('Ilc.store.scheduler.Availability');
 
         me.items = [
@@ -24,6 +19,8 @@
             }
         ];
 
+
+        resourceStore.load();
         me.callParent(arguments);
     }
 });

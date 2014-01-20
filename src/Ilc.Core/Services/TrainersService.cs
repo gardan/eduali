@@ -12,6 +12,7 @@ namespace Ilc.Core.Services
     {
         public IUow Uow { get; set; }
         public IUsersService Users { get; set; }
+        public IAuthorizationService Authorization { get; set; }
 
         public FilteredResults<Trainer> GetFiltered(FilterArgumentsTrainers parameters)
         {
@@ -19,6 +20,13 @@ namespace Ilc.Core.Services
             parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
 
             var query = Uow.Trainers.GetAll();
+
+            if (Authorization.HasClaim(SystemClaims.TasksTrainer))
+            {
+                var userId = Users.GetByUsername().Id;
+                query = query.Where(t => t.UserProfileId == userId);
+            }
+
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
 
