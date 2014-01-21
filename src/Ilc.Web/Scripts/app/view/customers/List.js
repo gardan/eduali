@@ -34,6 +34,7 @@
                     items: [
                         {
                             xtype: 'button',
+                            iconCls: 'icon-add',
                             text: Ilc.resources.Manager.getResourceString('common.newCustomer'),
                             handler: function (btn, e) {
                                 var window = Ext.create('Ilc.view.customers.Create', {

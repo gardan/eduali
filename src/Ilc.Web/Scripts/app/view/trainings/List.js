@@ -119,6 +119,7 @@
                 items: [
                     {
                         xtype: 'button',
+                        iconCls: 'icon-add',
                         text: Ilc.resources.Manager.getResourceString('common.newTraining'),
                         handler: function (btn, e) {
                             var window = Ext.create('Ilc.view.trainings.Create', {

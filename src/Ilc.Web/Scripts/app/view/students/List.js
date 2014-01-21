@@ -27,6 +27,7 @@
                     items: [
                         {
                             xtype: 'button',
+                            iconCls: 'icon-add',
                             text: Ilc.resources.Manager.getResourceString('common.newStudent'),
                             handler: function () {
                                 var window = Ext.create('Ilc.view.students.Create', {

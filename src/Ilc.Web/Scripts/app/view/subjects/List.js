@@ -23,6 +23,7 @@
                     items: [
                         {
                             text: Ilc.resources.Manager.getResourceString('common.newSubject'),
+                            iconCls: 'icon-add',
                             handler: function() {
                                 var window = Ext.create('Ilc.view.subjects.Create', {
                                     closeAction: 'destroy'

@@ -22,6 +22,7 @@
                     items: [
                         {
                             xtype: 'button',
+                            iconCls: 'icon-add',
                             text: Ilc.resources.Manager.getResourceString('common.newTrainer'),
                             handler: function (button, e) {
                                 var window = Ext.create('Ilc.view.trainers.Create', {
