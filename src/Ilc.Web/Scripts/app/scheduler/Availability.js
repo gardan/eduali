@@ -15,8 +15,22 @@
         'Ilc.model.Availability'
     ],
 
-    // multiSelect: true,
+    multiSelect: true,
     contextMenu: null,
+
+    _selectedResources: [],
+    tplBtn: null,
+
+    setSelectedResources: function (resources) {
+        this._selectedResources = resources;
+        if (resources.length > 0) {
+            this.tplBtn.setDisabled(false);
+        } else {
+            this.tplBtn.setDisabled(true);
+        }
+    },
+
+    getSelectedResources: function () { return this._selectedResources; },
 
     loadAvailabilityStore: function() {
         var me = this;
@@ -40,6 +54,14 @@
      */
     availabilityPersisted: function(options) {
         console.log('persisted');
+    },
+
+    onSelect: function (selectModel) {
+        if (selectModel.view.xtype == 'gridview') {
+            var args = arguments;
+            var selectedItems = selectModel.getSelection();
+            this.setSelectedResources(selectedItems);
+        }
     },
 
     initComponent: function () {
@@ -115,6 +137,21 @@
             ]
         });
 
+        me.tplBtn = Ext.create('Ext.button.Button', {
+            text: 'Create from templates',
+            disabled: true,
+            handler: function () {
+                var createAvailabilitiesWindows = Ext.create('Ilc.view.availability.CreateAvailabilities', {
+                    trainers: me.getSelectedResources()
+                });
+                createAvailabilitiesWindows.on('addedavailability', function () {
+                    me.loadAvailabilityStore();
+                });
+
+                createAvailabilitiesWindows.show();
+            }
+        });
+
         me.tbar = [
             {
                 iconCls: 'icon-left',
@@ -144,18 +181,12 @@
                     me.loadAvailabilityStore();
                 }
             },
-            {
-                text: 'Create from templates',
-                handler: function () {
-                    var createAvailabilitiesWindows = Ext.create('Ilc.view.availability.CreateAvailabilities');
-                    createAvailabilitiesWindows.on('addedavailability', function () {
-                        me.loadAvailabilityStore();
-                    });
-                    
-                    createAvailabilitiesWindows.show();
-                }
-            }
+            me.tplBtn
         ];
+
+        me.on('select', me.onSelect);
+
+        me.on('deselect', me.onSelect);
 
         me.addEvents(
             'availabilitycreated',
