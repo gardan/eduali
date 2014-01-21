@@ -108,6 +108,7 @@
                         iconCls: 'icon-info',
                         handler: function () {
                             var container = this.up();
+                            if (container.items.items[0].lastSelection == null) return;
                             var record = container.items.items[0].lastSelection[0];
                             var window = Ext.create('Ilc.view.templates.Edit', {
                                 template: record,
