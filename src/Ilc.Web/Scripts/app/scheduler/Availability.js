@@ -185,7 +185,6 @@
         ];
 
         me.on('select', me.onSelect);
-
         me.on('deselect', me.onSelect);
 
         me.addEvents(

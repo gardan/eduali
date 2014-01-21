@@ -2,7 +2,6 @@
 //using System.Web.Security;
 using Ilc.Core.Contracts;
 using Ilc.Web.Authentication.Contracts;
-using WebMatrix.WebData;
 
 namespace Ilc.Web.Authentication
 {
