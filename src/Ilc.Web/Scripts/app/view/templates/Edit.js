@@ -11,32 +11,9 @@
     width: 500,
 
     template: null,
+    editable: true,
     _availabilityDaysIndex: 0,
     
-    buttons: [
-        {
-            text: Ilc.resources.Manager.getResourceString('common.save'),
-            handler: function (btn) {
-                var me = btn.up('window');
-
-                var model = {};
-
-                var inputs = me.query('templatedaycontainer').concat(me.query('textfield'));
-
-                model = Ilc.utils.Forms.extractModel(inputs);
-                model.id = me.template.get('id');
-                
-                me.fireEvent('edittemplate', me, model);
-            }
-        },
-        {
-            text: Ilc.resources.Manager.getResourceString('common.cancel'),
-            handler: function (btn) {
-                btn.up('window').close();
-            }
-        }
-    ],
-
     templateUpdated: function() {
         this.fireEvent('templatededited');
         this.close();
@@ -67,11 +44,13 @@
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.name'),
                 anchor: '100%',
                 name: 'name',
-                value: me.template.get('name')
+                value: me.template.get('name'),
+                disabled: !me.editable
             },
             {
                 xtype: 'button',
                 text: 'Add day',
+                disabled: !me.editable,
                 handler: function () {
                     var slider = Ext.create('Ilc.view.templates.components.TemplateDayForm', {
                         anchor: '100%',
@@ -91,12 +70,38 @@
                 anchor: '100%',
                 templateDay: value,
                 index: index,
+                editable: me.editable,
                 listeners: {
                     removeclicked: me.onTemplateRemove
                 }
             });
             me.items.push(slider);
         });
+
+        me.buttons = [
+            {
+                text: Ilc.resources.Manager.getResourceString('common.save'),
+                disabled: !me.editable,
+                handler: function(btn) {
+                    var me = btn.up('window');
+
+                    var model = {};
+
+                    var inputs = me.query('templatedaycontainer').concat(me.query('textfield'));
+
+                    model = Ilc.utils.Forms.extractModel(inputs);
+                    model.id = me.template.get('id');
+
+                    me.fireEvent('edittemplate', me, model);
+                }
+            },
+            {
+                text: Ilc.resources.Manager.getResourceString('common.cancel'),
+                handler: function(btn) {
+                    btn.up('window').close();
+                }
+            }
+        ];
 
         me.addEvents(
             'edittemplate',

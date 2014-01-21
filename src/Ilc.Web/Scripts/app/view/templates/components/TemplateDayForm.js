@@ -10,6 +10,7 @@
     layout: 'column',
 
     templateDay: null,
+    editable: true,
     index: 0,
 
     _setSliderLabel: function () {
@@ -44,6 +45,7 @@
                 fieldLabel: (me.index + 1).toString(),
                 margin: '2 10 0 0',
                 disabled: offDay,
+                readOnly: !me.editable,
                 startDate: startDate,
                 endDate: endDate,
                 plugins: [
@@ -53,6 +55,7 @@
             {
                 xtype: 'checkboxfield',
                 checked: offDay,
+                disabled: !me.editable,
                 width: 14,
                 listeners: {
                     change: function (checkbox, newValue) {
@@ -71,6 +74,7 @@
             },
         {
             xtype: 'button',
+            disabled: !me.editable,
             cls: 'clean-button',
             iconCls: 'icon-delete',
             handler: function() {

@@ -105,6 +105,7 @@
     <Content Include="Images\view.png" />
     <Content Include="Images\web\add.png" />
     <Content Include="Images\web\edit.png" />
+    <Content Include="Images\web\info.png" />
     <Content Include="Images\web\remove.png" />
     <Content Include="Images\web\view.png" />
     <Content Include="Resources\site.css" />

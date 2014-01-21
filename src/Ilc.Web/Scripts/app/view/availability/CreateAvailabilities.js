@@ -6,6 +6,16 @@
         'Ilc.utils.Forms'
     ],
 
+    layout: {
+        type: 'anchor'
+    },
+    
+    width: 500,
+
+    defaults: {
+        anchor: '100%'
+    },
+
     _fireAddEvent: function(options) {
         var me = this;
 
@@ -74,13 +84,40 @@
 
         me.items = [
             {
-                xtype: 'combobox',
-                queryMode: 'local',
-                displayField: 'name',
-                valueField: 'id',
-                name: 'templateId',
-                fieldLabel: 'Template',
-                store: templatesStore
+                xtye: 'container',
+                border: false,
+                margin: '5 0 5 0',
+                layout: {
+                    type: 'column'
+                },
+                items: [
+                    {
+                        columnWidth: 1,
+                        editable: false,
+                        xtype: 'combobox',
+                        queryMode: 'local',
+                        displayField: 'name',
+                        valueField: 'id',
+                        name: 'templateId',
+                        fieldLabel: 'Template',
+                        store: templatesStore
+                    },
+                    {
+                        xtype: 'button',
+                        cls: 'clean-button',
+                        iconCls: 'icon-info',
+                        handler: function () {
+                            var container = this.up();
+                            var record = container.items.items[0].lastSelection[0];
+                            var window = Ext.create('Ilc.view.templates.Edit', {
+                                template: record,
+                                editable: false
+                            });
+
+                            window.show();
+                        }
+                    }
+                ],
             },
             {
                 xtype: 'datefield',

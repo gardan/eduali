@@ -71,6 +71,10 @@
     background-image: url(../images/web/remove.png);
 }
 
+.icon-info {
+    background-image: url(../images/web/info.png);
+}
+
 
 /* Slider - Highlight */
 .ext-ux-slider-highlight { 
