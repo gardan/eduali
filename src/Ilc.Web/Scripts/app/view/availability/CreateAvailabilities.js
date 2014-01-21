@@ -117,6 +117,22 @@
 
                             window.show();
                         }
+                    },
+                    {
+                        xtype: 'button',
+                        cls: 'clean-button',
+                        iconCls: 'icon-add',
+                        handler: function () {
+                            var window = Ext.create('Ilc.view.templates.Create', {
+                                closeAction: 'destroy'
+                            });
+
+                            window.on('templateadded', function () {
+                                templatesStore.reload();
+                            });
+
+                            window.show();
+                        }
                     }
                 ],
             },

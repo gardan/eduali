@@ -75,6 +75,10 @@
     background-image: url(../images/web/info.png);
 }
 
+.icon-add {
+    background-image: url(../images/web/add.png);
+}
+
 
 /* Slider - Highlight */
 .ext-ux-slider-highlight { 
