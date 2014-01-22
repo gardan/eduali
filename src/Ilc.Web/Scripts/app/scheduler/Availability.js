@@ -16,6 +16,7 @@
     ],
 
     multiSelect: true,
+    allowOverlap: false,
     contextMenu: null,
 
     _selectedResources: [],
