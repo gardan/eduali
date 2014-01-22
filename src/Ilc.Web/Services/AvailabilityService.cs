@@ -54,12 +54,20 @@ namespace Ilc.Web.Services
             {
                 var availabilities = AvailabilityTemplates.GetAvailabilities(request.TemplateId, request.StartDate, request.EndDate);
 
-                foreach (var availability in availabilities)
-                {
-                    availability.TrainerId = request.ResourceId;
-                }
+                // foreach (var availability in availabilities)
+                // {
+                //     availability.TrainerId = request.ResourceId;
+                // }
 
-                Availability.Create(availabilities, request.Override);
+                foreach (var resourceId in request.ResourceIds)
+                {
+                    foreach (var availability in availabilities)
+                    {
+                        availability.TrainerId = resourceId;
+                    }
+
+                    Availability.Create(availabilities, request.Override);
+                }
             }
             
 
@@ -92,6 +100,8 @@ namespace Ilc.Web.Services
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int ResourceId { get; set; }
+
+        public int[] ResourceIds { get; set; }
 
         public int TemplateId { get; set; }
 

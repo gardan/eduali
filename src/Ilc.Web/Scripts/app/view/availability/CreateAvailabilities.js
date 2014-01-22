@@ -11,6 +11,7 @@
     },
     
     width: 500,
+    trainers: null,
 
     defaults: {
         anchor: '100%'
@@ -24,6 +25,11 @@
         var textboxes = me.query('textfield');
 
         model = Ilc.utils.Forms.extractModel(textboxes);
+        model.resourceIds = [];
+        Ext.Array.forEach(me.trainers, function (trainer) {
+            model.resourceIds.push(trainer.get('id'));
+        });
+
         model.resourceId = Ilc.Configuration.get().trainerId;
 
         if (options != null) {
