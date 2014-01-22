@@ -126,7 +126,7 @@
 
         'statistics.priceSpendings': 'Pret/ Spendings',
         'statistics.customerPurchases': 'Cursuri clienti',
-        'statistics.trainingsMonth': 'Cursuri / luna,
+        'statistics.trainingsMonth': 'Cursuri / luna',
 
         'formats.date': 'MM-DD-YYYY HH:mm',
         'formats.extjsdate': 'm-d-Y g:i'
