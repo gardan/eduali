@@ -111,7 +111,7 @@
                             me.fireEvent('availabilityremoved', scheduler, model);
                             debugger;
                             var records = scheduler.eventStore.queryBy(function (record) {
-                                if (record.get('startDate') >= model.startDate) {
+                                if (record.get('startDate') >= model.startDate && record.get('resourceId') == model.resourceId) {
                                     return true;
                                 }
                             });
