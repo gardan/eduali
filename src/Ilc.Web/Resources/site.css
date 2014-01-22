@@ -79,6 +79,49 @@
     background-image: url(../images/web/add.png);
 }
 
+.icon-book {
+    background-image: url(../images/web/book.png);
+}
+
+.icon-task {
+    background-image: url(../images/web/task.png);
+}
+
+.icon-task-32 {
+    background-image: url(../images/web32/task.png);
+}
+
+.icon-book-32 {
+    background-image: url(../images/web32/book.png);
+}
+
+.icon-customer-32 {
+    background-image: url(../images/web32/customer.png);
+}
+
+.icon-availability-32 {
+    background-image: url(../images/web32/availability.png);
+}
+
+.icon-planning-32 {
+    background-image: url(../images/web32/planning.png);
+}
+
+.icon-settings-32 {
+    background-image: url(../images/web32/settings.png);
+}
+
+.icon-statistics-32 {
+    background-image: url(../images/web32/statistics.png);
+}
+
+.icon-student-32 {
+    background-image: url(../images/web32/student.png);
+}
+
+.icon-trainer-32 {
+    background-image: url(../images/web32/trainer.png);
+}
 
 /* Slider - Highlight */
 .ext-ux-slider-highlight { 
