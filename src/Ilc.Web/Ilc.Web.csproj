@@ -68,6 +68,7 @@
       <HintPath>..\..\packages\ServiceStack.Text.3.9.54\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System.Activities" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.identitymodel.services" />
     <Reference Include="System.IO.Compression" />
@@ -316,6 +317,38 @@
     <Content Include="Scripts\app\ux\TabScrollerMenu.js" />
     <Content Include="Scripts\app\ux\ToolbarDroppable.js" />
     <Content Include="Scripts\app\ux\TreePicker.js" />
+    <Content Include="Scripts\app\ux\upload\BrowseButton.js" />
+    <Content Include="Scripts\app\ux\upload\css\upload.css" />
+    <Content Include="Scripts\app\ux\upload\data\Connection.js" />
+    <Content Include="Scripts\app\ux\upload\Dialog.js" />
+    <Content Include="Scripts\app\ux\upload\header\AbstractFilenameEncoder.js" />
+    <Content Include="Scripts\app\ux\upload\header\Base64FilenameEncoder.js" />
+    <Content Include="Scripts\app\ux\upload\img\accept.png" />
+    <Content Include="Scripts\app\ux\upload\img\ajax-loader1.gif" />
+    <Content Include="Scripts\app\ux\upload\img\ajax-loader2.gif" />
+    <Content Include="Scripts\app\ux\upload\img\ajax-loader3.gif" />
+    <Content Include="Scripts\app\ux\upload\img\arrow_up.png" />
+    <Content Include="Scripts\app\ux\upload\img\cancel.png" />
+    <Content Include="Scripts\app\ux\upload\img\delete.png" />
+    <Content Include="Scripts\app\ux\upload\img\exclamation.png" />
+    <Content Include="Scripts\app\ux\upload\img\folder.png" />
+    <Content Include="Scripts\app\ux\upload\img\help.png" />
+    <Content Include="Scripts\app\ux\upload\img\loading.gif" />
+    <Content Include="Scripts\app\ux\upload\img\tick.png" />
+    <Content Include="Scripts\app\ux\upload\Item.js" />
+    <Content Include="Scripts\app\ux\upload\ItemGridPanel.js" />
+    <Content Include="Scripts\app\ux\upload\LegacyDialog.js" />
+    <Content Include="Scripts\app\ux\upload\Manager.js" />
+    <Content Include="Scripts\app\ux\upload\Panel.js" />
+    <Content Include="Scripts\app\ux\upload\Queue.js" />
+    <Content Include="Scripts\app\ux\upload\StatusBar.js" />
+    <Content Include="Scripts\app\ux\upload\Store.js" />
+    <Content Include="Scripts\app\ux\upload\uploader\AbstractUploader.js" />
+    <Content Include="Scripts\app\ux\upload\uploader\AbstractXhrUploader.js" />
+    <Content Include="Scripts\app\ux\upload\uploader\DummyUploader.js" />
+    <Content Include="Scripts\app\ux\upload\uploader\ExtJsUploader.js" />
+    <Content Include="Scripts\app\ux\upload\uploader\FormDataUploader.js" />
+    <Content Include="Scripts\app\ux\upload\uploader\LegacyExtJsUploader.js" />
     <Content Include="Scripts\app\view\availability\CreateAvailabilities.js" />
     <Content Include="Scripts\app\view\availability\Default.js" />
     <Content Include="Scripts\app\view\customers\contacts\Create.js" />
@@ -3856,6 +3889,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppStart\AppHost.cs" />
+    <Compile Include="AppStart\ContentTypeConfig.cs" />
     <Compile Include="AppStart\IocConfig.cs" />
     <Compile Include="AppStart\RouteConfig.cs" />
     <Compile Include="AppStart\RouteMvcConfig.cs" />
@@ -3933,6 +3967,7 @@
     <Compile Include="Services\GradesService.cs" />
     <Compile Include="Services\GradingSystemsService.cs" />
     <Compile Include="Services\GridConfigurationService.cs" />
+    <Compile Include="Contracts\IImage.cs" />
     <Compile Include="Services\LessonsService.cs" />
     <Compile Include="Services\OffersService.cs" />
     <Compile Include="Services\RoleAssignmentsService.cs" />
@@ -3954,6 +3989,7 @@
     <Compile Include="Services\TrainingsService.cs" />
     <Compile Include="Services\TransfersService.cs" />
     <Compile Include="Models\UpdateGridColumnConfigModel.cs" />
+    <Compile Include="Services\UserSettingsService.cs" />
     <Compile Include="Services\UsersService.cs" />
     <Compile Include="TransfersRepo.cs" />
   </ItemGroup>

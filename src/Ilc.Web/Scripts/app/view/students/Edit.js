@@ -58,7 +58,10 @@
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.phone'),
                 name: 'userInfo.phone',
                 value: cfgModel.get('userInfo').phone
-            }
+            },
+            Ext.create('Ext.ux.upload.Panel', {
+                uploadUrl: 'api/users/1/avatar' // Method: PUT
+            })
         ];
 
         me.buttons = [

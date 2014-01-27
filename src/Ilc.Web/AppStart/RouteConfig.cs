@@ -109,6 +109,8 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.TemplateModel>("/api/templates", "POST");
             routes.Add<Services.TemplateModel>("/api/templates/{id}", "PUT");
 
+            routes.Add<Services.AvatarModel>("/api/users/{id}/avatar", "PUT");
+
             routes.Add<Services.FilterParametersQuestions>("/api/questions", "GET");
         }
     }

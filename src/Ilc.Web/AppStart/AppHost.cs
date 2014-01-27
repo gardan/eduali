@@ -29,6 +29,7 @@ namespace Ilc.Web.AppStart
 
             IocConfig.Init(container);
             RouteConfig.Init(Routes);
+            ContentTypeConfig.Configure(this);
         }
     }
 }
