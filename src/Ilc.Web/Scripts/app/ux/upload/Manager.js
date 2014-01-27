@@ -101,7 +101,8 @@ Ext.define('Ext.ux.upload.Manager', {
         });
     },
 
-    uploadQueue : function(queue) {
+    uploadQueue: function (queue) {
+        debugger;
         if (this.uploadActive) {
             return;
         }

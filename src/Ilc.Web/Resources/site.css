@@ -123,6 +123,10 @@
     background-image: url(../images/web32/trainer.png);
 }
 
+.icon-avatar-64 {
+    background-image: url(../images/web64/avatar.png);
+}
+
 /* Slider - Highlight */
 .ext-ux-slider-highlight { 
     position: absolute;

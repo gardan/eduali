@@ -113,6 +113,7 @@
     <Content Include="Images\web32\student.png" />
     <Content Include="Images\web32\task.png" />
     <Content Include="Images\web32\trainer.png" />
+    <Content Include="Images\web64\avatar.png" />
     <Content Include="Images\web\add.png" />
     <Content Include="Images\web\book.png" />
     <Content Include="Images\web\edit.png" />
@@ -225,6 +226,7 @@
     <Content Include="Scripts\app\tasks\training\window\CreateStudentEvaluation.js" />
     <Content Include="Scripts\app\tasks\training\window\CreateStudentInterview.js" />
     <Content Include="Scripts\app\tasks\training\window\ViewStudentInterview.js" />
+    <Content Include="Scripts\app\uploader\Avatar.js" />
     <Content Include="Scripts\app\utils\Forms.js" />
     <Content Include="Scripts\app\ux\ajax\DataSimlet.js" />
     <Content Include="Scripts\app\ux\ajax\JsonSimlet.js" />

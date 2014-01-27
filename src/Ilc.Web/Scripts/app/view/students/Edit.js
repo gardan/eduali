@@ -13,6 +13,8 @@
     },
     layout: 'anchor',
     width: 500,
+    
+    minHeight: 300,
 
     constructor: function (config) {
         var me = this;
@@ -37,6 +39,10 @@
             customerComboBox.select(studentCustomer);
         });
 
+        var avatarUploader = Ext.create('Ilc.uploader.Avatar', {
+            uploadUrl: 'api/users/1/avatar', // Method: PUT
+            fieldLabel: 'Avatar'
+        });
 
         me.items = [
             {
@@ -59,9 +65,7 @@
                 name: 'userInfo.phone',
                 value: cfgModel.get('userInfo').phone
             },
-            Ext.create('Ext.ux.upload.Panel', {
-                uploadUrl: 'api/users/1/avatar' // Method: PUT
-            })
+            avatarUploader
         ];
 
         me.buttons = [

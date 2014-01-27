@@ -5,6 +5,10 @@
 Ext.define('Ext.ux.upload.BrowseButton', {
     extend : 'Ext.form.field.File',
 
+    config: {
+        multiple: true    
+    },
+
     buttonOnly : true,
 
     iconCls : 'ux-mu-icon-action-browse',
@@ -41,7 +45,7 @@ Ext.define('Ext.ux.upload.BrowseButton', {
 
         }, this);
 
-        this.on('change', function(field, value, options) {
+        this.on('change', function (field, value, options) {
             var files = this.fileInputEl.dom.files;
             if (files) {
                 this.fireEvent('fileselected', this, files);
@@ -56,7 +60,8 @@ Ext.define('Ext.ux.upload.BrowseButton', {
         this.setMultipleInputAttribute();
     },
 
-    setMultipleInputAttribute : function(inputEl) {
+    setMultipleInputAttribute: function (inputEl) {
+        if (this.multiple == false) return;
         inputEl = inputEl || this.fileInputEl;
         inputEl.dom.setAttribute('multiple', '1');
     }
