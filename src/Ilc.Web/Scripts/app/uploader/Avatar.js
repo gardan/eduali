@@ -43,6 +43,8 @@
          * modified accordingly to decode the value.
          */
         filenameEncoder: null,
+        
+        avatarUrl: null
     },
 
     uploadManager: null,
@@ -148,10 +150,10 @@
         });
         
         me.browseButton.on('fileselected', me.onFileSelection, me);
-
+        
         me.avatarImg = Ext.create('Ext.Img', {
             padding: '0 0 0 10',
-            src: 'Images/web64/avatar.png',
+            src: me.avatarUrl,
             width: 64 + 10, // We need to account for the extra padding
             height: 64
         });

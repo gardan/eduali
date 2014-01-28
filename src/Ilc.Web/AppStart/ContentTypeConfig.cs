@@ -12,12 +12,15 @@ namespace Ilc.Web.AppStart
 {
     public static class ContentTypeConfig
     {
+        private const string ImgPngContentType = "image/png";
         private const string ImgJpegContentType = "image/jpeg";
+        private const string ImgJpgContentType = "image/jpg";
 
         public static void Configure(AppHostBase appHost)
         {
-
             appHost.ContentTypeFilters.Register(ImgJpegContentType, ResponseSerializer, StreamDeserializer);
+            appHost.ContentTypeFilters.Register(ImgPngContentType, ResponseSerializer, StreamDeserializer);
+            appHost.ContentTypeFilters.Register(ImgJpgContentType, ResponseSerializer, StreamDeserializer);
         }
 
         private static object StreamDeserializer(Type type, Stream fromStream)
@@ -36,7 +39,7 @@ namespace Ilc.Web.AppStart
 
         private static void ResponseSerializer(IRequestContext requestContext, object dto, IHttpResponse httpRes)
         {
-            
+            throw new NotImplementedException();
         }
     }
 }

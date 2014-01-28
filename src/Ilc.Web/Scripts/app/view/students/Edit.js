@@ -56,8 +56,10 @@
         });
 
         var userId = cfgModel.get('userInfo').id;
+        var avatarUrl = cfgModel.get('userInfo').avatarLocation;
 
         me.avatarUploader = Ext.create('Ilc.uploader.Avatar', {
+            avatarUrl: avatarUrl,
             uploadUrl: 'api/users/' + userId + '/avatar', // Method: PUT
             fieldLabel: 'Avatar',
             listeners: {
