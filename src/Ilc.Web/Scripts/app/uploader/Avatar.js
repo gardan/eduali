@@ -49,6 +49,8 @@
 
     avatarImg: null,
 
+    uploading: false,
+
     getUploaderOptions: function() {
 
     },
@@ -85,6 +87,10 @@
         return queue;
     },
 
+    finishUpload: function () {
+        this.uploading = false;
+    },
+
     onFileSelection: function (input, files) {
         this.updateAvatar(files);
         
@@ -94,11 +100,17 @@
     },
 
     onUploadComplete: function (manager, queue, errorCount) {
-        console.log('uploadcomplete');
+        debugger;
+        this.finishUpload();
+        if (errorCount) {
+            // TODO: error handling
+        }
+        this.fireEvent('uploadcomplete', this, manager, queue.getUploadedItems(), errorCount);
+        manager.resetUpload();
     },
 
     updateAvatar: function (files) {
-        // debugger;
+        // Updates the image tag with the newly selected image.
         var me = this;
         var file = files[0];
         
@@ -119,6 +131,10 @@
 
     initComponent: function() {
         var me = this;
+
+        me.addEvents(
+            'uploadcomplete'
+        );
 
         me.queue = me.initQueue();
         me.uploadManager = me.createUploadManager();

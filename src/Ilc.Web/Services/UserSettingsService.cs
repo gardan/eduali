@@ -22,7 +22,7 @@ namespace Ilc.Web.Services
         {
             var rootPath = EndpointHost.VirtualPathProvider.RootDirectory.RealPath;
             var userFilesPath = WebConfigurationManager.AppSettings["UserFiles"];
-            var userId = Users.GetByUsername().Id;
+            var userId = request.Id;
             var extension = new ImageFormatConverter().ConvertToString(request.Image.RawFormat).ToLower();
             var avatarName = string.Format("avatar.{0}", extension);
 

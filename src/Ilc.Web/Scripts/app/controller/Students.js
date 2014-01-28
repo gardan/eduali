@@ -66,10 +66,10 @@
 
         studentsService.edit(model)
         .then(function (response) {
-            options.store.load();
+            sender.studentEdited();
         })
         .finally(function () {
-            sender.close();
+
         });
 
     },

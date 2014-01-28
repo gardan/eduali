@@ -16,6 +16,22 @@
     
     minHeight: 300,
 
+    avatarUploader: null,
+
+    onUploadComplete: function () {
+        // debugger;
+        var me = this;
+
+        me.close();
+    },
+
+    studentEdited: function () {
+        this.fireEvent('studentedited');
+        this.avatarUploader.initUpload();
+
+        // this.close();
+    },
+
     constructor: function (config) {
         var me = this;
 
@@ -39,11 +55,18 @@
             customerComboBox.select(studentCustomer);
         });
 
-        var avatarUploader = Ext.create('Ilc.uploader.Avatar', {
-            uploadUrl: 'api/users/1/avatar', // Method: PUT
-            fieldLabel: 'Avatar'
-        });
+        var userId = cfgModel.get('userInfo').id;
 
+        me.avatarUploader = Ext.create('Ilc.uploader.Avatar', {
+            uploadUrl: 'api/users/' + userId + '/avatar', // Method: PUT
+            fieldLabel: 'Avatar',
+            listeners: {
+                'uploadcomplete': me.onUploadComplete,
+                
+                scope: me
+            }
+        });
+        
         me.items = [
             {
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.firstName'),
@@ -65,7 +88,7 @@
                 name: 'userInfo.phone',
                 value: cfgModel.get('userInfo').phone
             },
-            avatarUploader
+            me.avatarUploader
         ];
 
         me.buttons = [
@@ -90,7 +113,8 @@
         ];
 
         me.addEvents(
-            'editStudent'
+            'editStudent',
+            'studentedited'
         );
 
 

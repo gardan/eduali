@@ -99,7 +99,11 @@
             editWindow.on('editStudent', function (sender, model) {
                 me.fireEvent('editStudent', sender, model, {
                     store: studentsStore
-                });
+                });   
+            });
+
+            editWindow.on('studentedited', function() {
+                studentsStore.reload();
             });
 
             editWindow.show();
