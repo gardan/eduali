@@ -47,6 +47,7 @@
             ],
             columns: [
                 {
+                    // TODO: should actually use 'templatecolumn' and a XTemplate to create the <img /> tag.
                     dataIndex: 'name',
                     renderer: function (value, meta, record) {
                         var avatarUrl = record.get('userInfo').avatarLocation;
