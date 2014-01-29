@@ -34,10 +34,11 @@
         
         studentsService.add(model)
         .then(function (response) {
-            options.store.load();
+            sender.studentAdded();
+            // options.store.load();
         })
         .finally(function () {
-            sender.close();
+            // sender.close();
         });
 
         console.log(model);

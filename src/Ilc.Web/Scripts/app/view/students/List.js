@@ -40,6 +40,10 @@
                                     });
                                 });
 
+                                window.on('studentadded', function() {
+                                    studentsStore.reload();
+                                });
+
                                 window.show();
                             }
                         }]
@@ -49,6 +53,7 @@
                 {
                     // TODO: should actually use 'templatecolumn' and a XTemplate to create the <img /> tag.
                     dataIndex: 'name',
+                    text: Ilc.resources.Manager.getResourceString('common.avatar'),
                     renderer: function (value, meta, record) {
                         var avatarUrl = record.get('userInfo').avatarLocation;
                         return '<img width="64" height="64" src="' + avatarUrl + '" />';

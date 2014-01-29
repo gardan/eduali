@@ -15,6 +15,19 @@
     layout: 'anchor',
     bodyPadding: 10,
     
+    avatarUploader: null,
+
+    studentAdded: function () {
+        this.fireEvent('studentadded');
+        this.close();
+        // this.avatarUploader.initUpload();
+    },
+
+    onUploadComplete: function () {
+        this.fireEvent('studentadded');
+        this.close();
+    },
+
     constructor: function () {
         var me = this;
 
@@ -28,6 +41,17 @@
             name: 'customerId',
             fieldLabel: Ilc.resources.Manager.getResourceString('common.customer'),
             anchor: '100%'
+        });
+
+        me.avatarUploader = Ext.create('Ilc.uploader.Avatar', {
+            avatarUrl: 'api/users/0/avatar',
+            // uploadUrl: 'api/users/' + userId + '/avatar', // Method: PUT
+            fieldLabel: 'Avatar',
+            listeners: {
+                'uploadcomplete': me.onUploadComplete,
+
+                scope: me
+            }
         });
 
         me.items = [
@@ -47,7 +71,8 @@
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.phone'),
                 name: 'userInfo.phone',
             },
-            customerComboBox
+            customerComboBox,
+            me.avatarUploader
         ];
 
         me.buttons = [
@@ -72,7 +97,8 @@
         ];
 
         me.addEvents(
-            'addStudent'
+            'addStudent',
+            'studentadded'
         );
 
         me.callParent(arguments);
