@@ -39,7 +39,6 @@ namespace Ilc.Web.AppStart
 
         private static void ResponseSerializer(IRequestContext requestContext, object dto, IHttpResponse httpRes)
         {
-            throw new NotImplementedException();
         }
     }
 }

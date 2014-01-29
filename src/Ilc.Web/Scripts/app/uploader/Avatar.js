@@ -53,6 +53,10 @@
 
     uploading: false,
 
+    setUploadUrl: function (url) {
+        this.uploadManager.uploader.url = url;
+    },
+
     getUploaderOptions: function() {
 
     },
@@ -66,6 +70,8 @@
             extraHeaders: this.uploadExtraHeaders,
             timeout: this.uploadTimeout
         });
+
+        this.uploaderOptions = uploaderOptions;
 
         var uploadManager = Ext.create('Ext.ux.upload.Manager', {
             uploader: this.uploader,

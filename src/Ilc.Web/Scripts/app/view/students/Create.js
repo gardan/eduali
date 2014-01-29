@@ -17,10 +17,11 @@
     
     avatarUploader: null,
 
-    studentAdded: function () {
-        this.fireEvent('studentadded');
-        this.close();
-        // this.avatarUploader.initUpload();
+    studentAdded: function (student) {
+        var userId = student.get('userInfo').id;
+        this.avatarUploader.setUploadUrl('api/users/' + userId + '/avatar'); // Method: PUT
+
+        this.avatarUploader.initUpload();
     },
 
     onUploadComplete: function () {
@@ -28,7 +29,21 @@
         this.close();
     },
 
-    constructor: function () {
+    initUploader: function () {
+        var me = this;
+        me.avatarUploader = Ext.create('Ilc.uploader.Avatar', {
+            avatarUrl: 'api/users/0/avatar',
+            // uploadUrl: 'api/users/' + userId + '/avatar', // Method: PUT
+            fieldLabel: 'Avatar',
+            listeners: {
+                'uploadcomplete': me.onUploadComplete,
+
+                scope: me
+            }
+        });
+    },
+
+    initComponent: function () {
         var me = this;
 
         var customersStore = Ext.create('Ilc.store.Customers');
@@ -43,16 +58,7 @@
             anchor: '100%'
         });
 
-        me.avatarUploader = Ext.create('Ilc.uploader.Avatar', {
-            avatarUrl: 'api/users/0/avatar',
-            // uploadUrl: 'api/users/' + userId + '/avatar', // Method: PUT
-            fieldLabel: 'Avatar',
-            listeners: {
-                'uploadcomplete': me.onUploadComplete,
-
-                scope: me
-            }
-        });
+        me.initUploader();
 
         me.items = [
             {

@@ -34,7 +34,8 @@
         
         studentsService.add(model)
         .then(function (response) {
-            sender.studentAdded();
+            var student = Ext.create('Ilc.model.Student', Ext.JSON.decode(response.responseText));
+            sender.studentAdded(student);
             // options.store.load();
         })
         .finally(function () {
