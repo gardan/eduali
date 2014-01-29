@@ -1,7 +1,7 @@
 ﻿Ext.define('Ilc.store.Students', {
     extend: 'Ext.data.Store',
     
-    fields: ['id', 'name', 'customer', 'userInfo'],
+    model: 'Ilc.model.Student',
     //data: [
     //    { id: 1, name: 'Gheorghe Lazar', phone: '0723775755' },
     //    { id: 2, name: 'Vasile Paiete', phone: '0723775755' },
