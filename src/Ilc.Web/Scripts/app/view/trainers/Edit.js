@@ -20,6 +20,10 @@
     subjectsStore: null,
     model: null,
 
+    trainerEdited: function () {
+        this.avatarUploader.initUpload();
+    },
+
     loadSubjects: function () {
         this.subjectsStore.load({
             params: {
@@ -30,6 +34,30 @@
 
     subjectDeleted: function() {
         this.loadSubjects();
+    },
+
+    onUploadComplete: function() {
+        this.fireEvent('traineredited');
+        this.close();
+    },
+
+    initUploader: function () {
+        var me = this;
+
+        var userId = me.model.userInfo.id;
+        var avatarUrl = 'api/users/' + userId + '/avatar';
+        var avatarUploader = Ext.create('Ilc.uploader.Avatar', {
+            avatarUrl: avatarUrl,
+            uploadUrl: avatarUrl, // Method: PUT
+            fieldLabel: 'Avatar',
+            listeners: {
+                'uploadcomplete': me.onUploadComplete,
+
+                scope: me
+            }
+        });
+
+        return avatarUploader;
     },
 
     initComponent: function (config) {
@@ -129,6 +157,8 @@
             ]
         });
 
+        me.avatarUploader = me.initUploader();
+
         me.items = [
             {
                 xtype: 'tabpanel',
@@ -162,7 +192,8 @@
                                 fieldLabel: Ilc.resources.Manager.getResourceString('common.phone'),
                                 name: 'userInfo.phone',
                                 value: cfgModel.userInfo.phone
-                            }
+                            },
+                            me.avatarUploader
                         ]
                     },
                     {
@@ -206,7 +237,8 @@
         me.addEvents(
             'editTrainer',
             'addsubjectstotrainer',
-            'deletesubjectfromtrainer'
+            'deletesubjectfromtrainer',
+            'traineredited'
         );
 
         // subjectsStore.load({

@@ -115,6 +115,10 @@
                 });
             });
 
+            editWindow.on('traineredited', function() {
+                trainersStore.reload();
+            });
+
             editWindow.show();
         });
 

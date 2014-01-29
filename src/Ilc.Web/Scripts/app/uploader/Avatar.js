@@ -108,7 +108,6 @@
     },
 
     onUploadComplete: function (manager, queue, errorCount) {
-        debugger;
         this.finishUpload();
         if (errorCount) {
             // TODO: error handling

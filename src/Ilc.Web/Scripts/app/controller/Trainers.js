@@ -71,10 +71,9 @@
 
         trainersService.edit(model)
         .then(function (response) {
-            options.store.load();
+            sender.trainerEdited();
         })
         .finally(function () {
-            sender.close();
         });
     },
     
