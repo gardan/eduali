@@ -16,6 +16,6 @@ namespace Ilc.Data.Models
         public string Phone { get; set; }
 
         public DateTimeOffset? DateOfBirth { get; set; }
-        public string Gender { get; set; }
+        public int? Gender { get; set; }
     }
 }
