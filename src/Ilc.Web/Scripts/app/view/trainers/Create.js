@@ -15,15 +15,41 @@
     layout: 'anchor',
     bodyPadding: 10,
     
-    trainerCreated: function() {
+    avatarUploader: null,
+
+    trainerCreated: function (trainer) {
+        debugger;
+        var uploadUrl = trainer.get('userInfo').avatarLocation;
+        this.avatarUploader.setUploadUrl(uploadUrl);
+        this.avatarUploader.initUpload();
+    },
+
+    onUploadComplete: function () {
         this.fireEvent('traineradded');
         this.close();
+    },
+
+    initUploader: function () {
+        var me = this;
+        var uploader = Ext.create('Ilc.uploader.Avatar', {
+            avatarUrl: 'api/users/0/avatar',
+            // uploadUrl: 'api/users/' + userId + '/avatar', // Method: PUT
+            fieldLabel: 'Avatar',
+            listeners: {
+                'uploadcomplete': me.onUploadComplete,
+
+                scope: me
+            }
+        });
+        return uploader;
     },
 
     constructor: function () {
         var me = this;
 
         var subjectsStore = Ext.create('Ilc.store.Subjects');
+
+        me.avatarUploader = me.initUploader();
 
         me.items = [
             {
@@ -51,7 +77,8 @@
                 valueField: 'id',
                 name: 'subjects',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.subject'),
-            }
+            },
+            me.avatarUploader
         ];
 
         me.buttons = [

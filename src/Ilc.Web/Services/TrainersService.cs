@@ -48,7 +48,7 @@ namespace Ilc.Web.Services
 
             Trainers.Update(newTrainer);
 
-            var transferObject = new TrainerModel().InjectFrom(newTrainer);
+            var transferObject = new TrainerModel().InjectFrom<TrainerToTrainerModel>(newTrainer);
             return new HttpResult(transferObject)
                 {
                     StatusCode = HttpStatusCode.Created,
