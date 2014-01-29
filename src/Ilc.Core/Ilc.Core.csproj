@@ -45,9 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\GenderService.cs" />
     <Compile Include="Contracts\IAuthorizationService.cs" />
+    <Compile Include="Contracts\IGenderService.cs" />
     <Compile Include="FilterArgumentsAvailability.cs" />
     <Compile Include="FilterArgumentsTemplates.cs" />
+    <Compile Include="Genders.cs" />
     <Compile Include="Services\AuthorizationService.cs" />
     <Compile Include="Services\AvailabilityService.cs" />
     <Compile Include="Services\ContactsService.cs" />
