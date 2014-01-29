@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Ilc.Data.Models.Base;
 
 namespace Ilc.Data.Models
@@ -13,5 +14,8 @@ namespace Ilc.Data.Models
 
         public string Email { get; set; }
         public string Phone { get; set; }
+
+        public DateTimeOffset? DateOfBirth { get; set; }
+        public string Gender { get; set; }
     }
 }
