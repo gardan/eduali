@@ -35,6 +35,10 @@
                                     });
                                 });
 
+                                window.on('traineradded', function() {
+                                    trainersStore.reload();
+                                });
+
                                 window.show();
                             }
                         }]

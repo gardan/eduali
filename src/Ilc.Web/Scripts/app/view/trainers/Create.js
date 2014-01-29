@@ -14,6 +14,12 @@
     
     layout: 'anchor',
     bodyPadding: 10,
+    
+    trainerCreated: function() {
+        this.fireEvent('traineradded');
+        this.close();
+    },
+
     constructor: function () {
         var me = this;
 

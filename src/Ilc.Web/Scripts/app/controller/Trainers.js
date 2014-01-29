@@ -37,15 +37,12 @@
         };
 
         trainerService.add(model)
-        .then(function(response) {
-            options.store.load();
+        .then(function (response) {
+            var trainer = Ext.create('Ilc.model.Trainer', Ext.JSON.decode(response.responseText));
+            sender.trainerCreated(trainer);
         })
         .finally(function() {
-            sender.close();
         });
-
-        console.log(model);
-        
     },
 
     editTrainer: function (sender, model, options) {

@@ -167,6 +167,7 @@
     <Content Include="Scripts\app\model\InterviewPlan.js" />
     <Content Include="Scripts\app\model\scheduler\Trainer.js" />
     <Content Include="Scripts\app\model\Student.js" />
+    <Content Include="Scripts\app\model\Trainer.js" />
     <Content Include="Scripts\app\model\User.js" />
     <Content Include="Scripts\app\plugins\slider\Highlight.js" />
     <Content Include="Scripts\app\resources\Resources.en.js" />
