@@ -3,7 +3,7 @@
 
     xtype: 'listusers',
 
-    constructor: function () {
+    initComponent: function () {
         var me = this;
 
         var usersStore = Ext.create('Ilc.store.Users');

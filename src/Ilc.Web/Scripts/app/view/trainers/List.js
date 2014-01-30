@@ -2,10 +2,72 @@
     extend: 'Ext.container.Container',
     xtype: 'listtrainers',
 
-    constructor: function () {
+    trainersStore: null,
+
+    initColumns: function () {
         var me = this;
 
-        var trainersStore = Ext.create('Ilc.store.Trainers');
+        var ret = [
+            {
+                // TODO: should actually use 'templatecolumn' and a XTemplate to create the <img /> tag.
+                dataIndex: 'name',
+                text: Ilc.resources.Manager.getResourceString('common.avatar'),
+                renderer: function (value, meta, record) {
+                    var avatarUrl = record.get('userInfo').avatarLocation;
+                    return '<img width="64" height="64" src="' + avatarUrl + '" />';
+                }
+            },
+            {
+                dataIndex: 'name',
+                text: Ilc.resources.Manager.getResourceString('common.name'),
+                flex: 1,
+                filter: {
+                    type: 'string'
+                }
+            },
+            {
+                dataIndex: 'subjects',
+                text: Ilc.resources.Manager.getResourceString('common.subjects'),
+                flex: 1,
+                renderer: function (value) {
+                    var ret = '';
+                    Ext.Array.forEach(value, function (subject) {
+                        ret += subject.name + ', ';
+                    });
+                    return ret.substring(0, ret.length - 2);
+                }
+            }
+        ];
+
+        ret = ret.concat(Ilc.helpers.ColumnBuilder.getUserColCfg());
+
+        ret.push({
+            xtype: 'actioncolumn',
+            sortable: false,
+            menuDisabled: true,
+            items: [
+                {
+                    icon: 'images/web/remove.png',
+                    scope: me,
+                    tooltip: Ilc.resources.Manager.getResourceString('common.delete'),
+                    handler: function (grid, rowIndex, colIndex, item, e, record) {
+                        me.fireEvent('deleteTrainer', me, {
+                            id: record.data.id
+                        }, {
+                            store: me.trainersStore
+                        });
+                    }
+                }
+            ]
+        });
+        
+        return ret;
+    },
+
+    initComponent: function () {
+        var me = this;
+
+        me.trainersStore = Ext.create('Ilc.store.Trainers');
 
         var filter = {
             ftype: 'jsvfilters',
@@ -13,7 +75,7 @@
         };
 
         var trainersGrid = Ext.create('Ext.grid.Panel', {
-            store: trainersStore,
+            store: me.trainersStore,
             features: [filter],
             dockedItems: [
                 {
@@ -31,12 +93,12 @@
 
                                 window.on('addTrainer', function (sender, model) {
                                     me.fireEvent('addTrainer', sender, model, {
-                                        store: trainersStore
+                                        store: me.trainersStore
                                     });
                                 });
 
                                 window.on('traineradded', function() {
-                                    trainersStore.reload();
+                                    me.trainersStore.reload();
                                 });
 
                                 window.show();
@@ -44,67 +106,7 @@
                         }]
                 }
             ],
-            columns: [
-                {
-                    // TODO: should actually use 'templatecolumn' and a XTemplate to create the <img /> tag.
-                    dataIndex: 'name',
-                    text: Ilc.resources.Manager.getResourceString('common.avatar'),
-                    renderer: function (value, meta, record) {
-                        var avatarUrl = record.get('userInfo').avatarLocation;
-                        return '<img width="64" height="64" src="' + avatarUrl + '" />';
-                    }
-                },
-                {
-                    dataIndex: 'name',
-                    text: Ilc.resources.Manager.getResourceString('common.name'),
-                    flex: 1,
-                    filter: {
-                        type: 'string'
-                    }
-                },
-                {
-                    dataIndex: 'phone',
-                    text: Ilc.resources.Manager.getResourceString('common.phone'),
-                    flex: 1,
-                    renderer: function(value, meta, record) {
-                        return record.get('userInfo').phone;
-                    },
-                    filter: {
-                        type: 'string'
-                    }
-                },
-                {
-                    dataIndex: 'subjects',
-                    text: Ilc.resources.Manager.getResourceString('common.subjects'),
-                    flex: 1,
-                    renderer: function(value) {
-                        var ret = '';
-                        Ext.Array.forEach(value, function(subject) {
-                            ret += subject.name + ', ';
-                        });
-                        return ret.substring(0, ret.length - 2);
-                    }
-                },
-                {
-                    xtype: 'actioncolumn',
-                    sortable: false,
-                    menuDisabled: true,
-                    items: [
-                        {
-                            icon: 'images/web/remove.png',
-                            scope: me,
-                            tooltip: Ilc.resources.Manager.getResourceString('common.delete'),
-                            handler: function (grid, rowIndex, colIndex, item, e, record) {
-                                me.fireEvent('deleteTrainer', me, {
-                                    id: record.data.id
-                                }, {
-                                    store: trainersStore
-                                });
-                            }
-                        }
-                    ]
-                }
-            ]
+            columns: me.initColumns()
         });
 
         trainersGrid.on('itemdblclick', function(grid, record) {
@@ -115,12 +117,12 @@
 
             editWindow.on('editTrainer', function (sender, model) {
                 me.fireEvent('editTrainer', sender, model, {
-                    store: trainersStore
+                    store: me.trainersStore
                 });
             });
 
             editWindow.on('traineredited', function() {
-                trainersStore.reload();
+                me.trainersStore.reload();
             });
 
             editWindow.show();
@@ -136,7 +138,7 @@
             'deleteTrainer'
         );
 
-        trainersStore.load();
+        me.trainersStore.load();
 
         me.callParent(arguments);
     }
