@@ -189,6 +189,7 @@ Ext.define('Ext.ux.upload.Manager', {
     },
 
     onUploadFailure : function(item, info) {
+
         item.setUploadError(info.message);
 
         this.fireEvent('itemuploadfailure', this, item, info);

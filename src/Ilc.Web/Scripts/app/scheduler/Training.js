@@ -40,7 +40,6 @@
         args.eventStore.on('load', function(records) {
             var data = [];
             args.eventStore.each(function (record) {
-                debugger;
                 if (record.get('Cls') == '') {
                     data.push(record);
                 }

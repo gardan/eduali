@@ -28,6 +28,16 @@ Ext.define('Ext.ux.upload.uploader.AbstractXhrUploader', {
             });
         }
 
+        if (response.status < 300) {
+            Ext.apply(info, {
+                success: true,
+                message: '',
+            });
+
+            this.fireEvent('uploadsuccess', item, info);
+            return;
+        }
+
         this.fireEvent('uploadfailure', item, info);
     },
 
