@@ -42,6 +42,8 @@ namespace Ilc.Web.AppStart
             container.RegisterAutoWiredAs<AvailabilityTemplatesService, IAvailabilityTemplatesService>().ReusedWithin(ReuseScope.Request);
             container.RegisterAutoWiredAs<AuthorizationService, IAuthorizationService>().ReusedWithin(ReuseScope.Request);
             container.RegisterAutoWiredAs<ClaimsService, IClaimsService>().ReusedWithin(ReuseScope.Request);
+            container.RegisterAutoWiredAs<GenderService, IGenderService>().ReusedWithin(ReuseScope.Request);
+            
 
             container.RegisterAutoWiredAs<StatisticsService, IStatisticsService>().ReusedWithin(ReuseScope.Request);            
         }

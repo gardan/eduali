@@ -32,12 +32,23 @@
         // this.close();
     },
 
+
+    onGenderLoad: function() {
+
+    },
+        
     constructor: function (config) {
         var me = this;
 
         var cfgModel = config.model;
 
         var customersStore = Ext.create('Ilc.store.Customers');
+        var gendersStore = Ext.create('Ilc.store.Genders', {
+            listeners: {
+                'load': me.onGenderLoad
+            }
+        });
+
 
         var customerComboBox = Ext.create('Ext.form.ComboBox', {
             store: customersStore,
@@ -90,6 +101,16 @@
                 name: 'userInfo.phone',
                 value: cfgModel.get('userInfo').phone
             },
+            // {
+            //     fieldLabel: Ilc.resources.Manager.getResourceString('common.gender'),
+            //     xtype: 'combobox',
+            //     queryMode: 'local',
+            //     displayField: 'name',
+            //     valueField: 'id',
+            //     value: 'Male',
+            //     name: 'userInfo.gender',
+            //     store: gendersStore
+            // },
             me.avatarUploader
         ];
 
@@ -119,6 +140,7 @@
             'studentedited'
         );
 
+        gendersStore.load();
 
         me.callParent(arguments);
     }
