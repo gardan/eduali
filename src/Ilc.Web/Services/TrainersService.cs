@@ -58,11 +58,9 @@ namespace Ilc.Web.Services
 
         public HttpResult Put(EditTrainerModel request)
         {
+            var userDetails = new UserDetails().InjectFrom<UserInfoModelToUserDetails>(request.UserInfo) as UserDetails;
             var updatedTrainer = Trainers.GetByTrainerId(request.Id);
-            updatedTrainer.UserProfile.UserDetails.FirstName = request.UserInfo.FirstName;
-            updatedTrainer.UserProfile.UserDetails.LastName = request.UserInfo.LastName;
-            updatedTrainer.UserProfile.UserDetails.Email = request.UserInfo.Email;
-            updatedTrainer.UserProfile.UserDetails.Phone = request.UserInfo.Phone;
+            updatedTrainer.UserProfile.UserDetails.PopulateWithNonDefaultValues(userDetails);
 
             Trainers.Update(updatedTrainer);
             

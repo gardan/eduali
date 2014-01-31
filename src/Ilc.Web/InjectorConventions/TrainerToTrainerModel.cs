@@ -19,7 +19,7 @@ namespace Ilc.Web.InjectorConventions
             if (c.SourceProp.Name == "UserProfile" && c.TargetProp.Name == "UserInfo")
             {
                 var user = (UserProfile)c.SourceProp.Value;
-                return new UserInfoModel().InjectFrom(user.UserDetails) as UserInfoModel;
+                return new UserInfoModel().InjectFrom<UserDetailsToUserInfoModel>(user.UserDetails) as UserInfoModel;
             }
             if (c.SourceProp.Name == "Subjects" && c.TargetProp.Name == "Subjects")
             {

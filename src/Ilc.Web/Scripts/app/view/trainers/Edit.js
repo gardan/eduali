@@ -60,6 +60,27 @@
         return avatarUploader;
     },
 
+    onGenderLoad: function (store, records, successful) {
+        var me = this;
+        Ext.Array.forEach(records, function (record) {
+            if (me.model.userInfo.gender == record.get('id')) {
+                me.genderCombo.select(record);
+            }
+        });
+    },
+
+    initGenderCombo: function (store) {
+        return Ext.create('Ext.form.field.ComboBox', {
+            fieldLabel: Ilc.resources.Manager.getResourceString('common.gender'),
+            xtype: 'combobox',
+            queryMode: 'local',
+            displayField: 'name',
+            valueField: 'id',
+            name: 'userInfo.gender',
+            store: store
+        });
+    },
+
     initComponent: function (config) {
         var me = this;
 
@@ -67,6 +88,13 @@
 
         var subjectsStore = Ext.create('Ilc.store.Subjects');
         this.subjectsStore = subjectsStore;
+        var gendersStore = Ext.create('Ilc.store.Genders', {
+            listeners: {
+                'load': me.onGenderLoad,
+                scope: me
+            }
+        });
+
 
         var subjectsGrid = Ext.create('Ext.grid.Panel', {
             store: subjectsStore,
@@ -158,6 +186,7 @@
         });
 
         me.avatarUploader = me.initUploader();
+        me.genderCombo = me.initGenderCombo(gendersStore);
 
         me.items = [
             {
@@ -193,6 +222,14 @@
                                 name: 'userInfo.phone',
                                 value: cfgModel.userInfo.phone
                             },
+                            {
+                                xtype: 'datefield',
+                                fieldLabel: Ilc.resources.Manager.getResourceString('common.dateOfBirth'),
+                                name: 'userInfo.dateOfBirth',
+                                format: Ilc.resources.Manager.getResourceString('formats.extjsdateonly'),
+                                value: new Date(cfgModel.userInfo.dateOfBirth)
+                            },
+                            me.genderCombo,
                             me.avatarUploader
                         ]
                     },
@@ -247,6 +284,7 @@
         //     }
         // });
         me.loadSubjects();
+        gendersStore.load();
 
         me.callParent(arguments);
     }
