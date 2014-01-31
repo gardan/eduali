@@ -1,4 +1,5 @@
 using System;
+using Ilc.Core;
 
 namespace Ilc.Web.Models
 {
@@ -10,7 +11,10 @@ namespace Ilc.Web.Models
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public string Gender { get; set; }
+        public int Gender { get; set; }
+        public string GenderName {
+            get { return Gender == 0 ? "" : Genders.GetGender(Gender).Name; }
+        }
         public DateTime DateOfBirth { get; set; }
 
         public string Name {

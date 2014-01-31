@@ -29,22 +29,4 @@ namespace Ilc.Web.InjectorConventions
             return base.SetValue(c);
         }
     }
-
-    public class UserDetailsToUserInfoModel : ConventionInjection
-    {
-        protected override bool Match(ConventionInfo c)
-        {
-            return c.SourceProp.Name == c.TargetProp.Name;
-        }
-
-        protected override object SetValue(ConventionInfo c)
-        {
-            if (c.SourceProp.Name == "Gender")
-            {
-                var gender = Genders.GetGender(((int?) c.SourceProp.Value).GetValueOrDefault());
-                return gender == null ? "" : gender.Name;
-            }
-            return base.SetValue(c);
-        }
-    }
 }

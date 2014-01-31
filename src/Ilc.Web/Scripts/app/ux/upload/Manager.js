@@ -122,7 +122,6 @@ Ext.define('Ext.ux.upload.Manager', {
     },
 
     uploadNextItemSync: function () {
-        debugger;
         if (!this.uploadActive) {
             return;
         }

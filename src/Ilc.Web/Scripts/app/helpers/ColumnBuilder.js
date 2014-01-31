@@ -31,7 +31,7 @@
                 text: Ilc.resources.Manager.getResourceString('common.gender'),
                 flex: 1,
                 renderer: function (value, meta, record) {
-                    return record.get('userInfo').gender;
+                    return record.get('userInfo').genderName;
                 },
                 filter: {
                     type: 'string'

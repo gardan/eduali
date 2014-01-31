@@ -17,35 +17,52 @@
     minHeight: 300,
 
     avatarUploader: null,
-
+    student: null,
+    genderCombo: null,
+        
     onUploadComplete: function () {
-        // debugger;
         var me = this;
-
+        this.fireEvent('studentedited');
         me.close();
     },
 
     studentEdited: function () {
-        this.fireEvent('studentedited');
         this.avatarUploader.initUpload();
-
-        // this.close();
     },
 
 
-    onGenderLoad: function() {
-
+    onGenderLoad: function (store, records, successful) {
+        var me = this;
+        Ext.Array.forEach(records, function(record) {
+            if (me.student.get('userInfo').gender == record.get('id')) {
+                me.genderCombo.select(record);
+            }
+        });
     },
         
-    constructor: function (config) {
+    initGenderCombo: function(store) {
+        return Ext.create('Ext.form.field.ComboBox', {
+            fieldLabel: Ilc.resources.Manager.getResourceString('common.gender'),
+            xtype: 'combobox',
+            queryMode: 'local',
+            displayField: 'name',
+            valueField: 'id',
+            name: 'userInfo.gender',
+            store: store
+        });
+    },
+
+    initComponent: function () {
         var me = this;
 
-        var cfgModel = config.model;
-
+        var cfgModel = me.model;
+        me.student = cfgModel;
+        
         var customersStore = Ext.create('Ilc.store.Customers');
         var gendersStore = Ext.create('Ilc.store.Genders', {
             listeners: {
-                'load': me.onGenderLoad
+                'load': me.onGenderLoad,
+                scope: me
             }
         });
 
@@ -79,7 +96,9 @@
                 scope: me
             }
         });
-        
+
+        me.genderCombo = me.initGenderCombo(gendersStore);
+
         me.items = [
             {
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.firstName'),
@@ -101,16 +120,14 @@
                 name: 'userInfo.phone',
                 value: cfgModel.get('userInfo').phone
             },
-            // {
-            //     fieldLabel: Ilc.resources.Manager.getResourceString('common.gender'),
-            //     xtype: 'combobox',
-            //     queryMode: 'local',
-            //     displayField: 'name',
-            //     valueField: 'id',
-            //     value: 'Male',
-            //     name: 'userInfo.gender',
-            //     store: gendersStore
-            // },
+            {
+                xtype: 'datefield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.dateOfBirth'),
+                name: 'userInfo.dateOfBirth',
+                format: Ilc.resources.Manager.getResourceString('formats.extjsdateonly'),
+                value:  new Date(cfgModel.get('userInfo').dateOfBirth)
+            },
+            me.genderCombo,
             me.avatarUploader
         ];
 

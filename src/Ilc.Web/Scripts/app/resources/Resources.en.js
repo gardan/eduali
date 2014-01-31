@@ -119,6 +119,7 @@
         'common.newTemplate': 'New Template',
         'common.avatar': 'Avatar',
         'common.gender': 'Gender',
+        'common.dateOfBirth': 'Date of birth',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',
@@ -131,6 +132,7 @@
         'statistics.trainingsMonth': 'Trainings / Month',
 
         'formats.date': 'MM-DD-YYYY HH:mm',
-        'formats.extjsdate': 'm-d-Y g:i'
+        'formats.extjsdate': 'm-d-Y g:i',
+        'formats.extjsdateonly': 'm-d-Y'
     }
 });

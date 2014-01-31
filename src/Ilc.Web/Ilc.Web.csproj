@@ -181,6 +181,7 @@
     <Content Include="Scripts\app\slider\TimeSlider.js" />
     <Content Include="Scripts\app\store\Claims.js" />
     <Content Include="Scripts\app\store\Contacts.js" />
+    <Content Include="Scripts\app\store\Genders.js" />
     <Content Include="Scripts\app\store\GridConfig.js" />
     <Content Include="Scripts\app\grid\Transfers.js" />
     <Content Include="Scripts\app\model\Customer.js" />
@@ -3922,6 +3923,8 @@
     <Compile Include="InjectorConventions\TemplateToTemplateModel.cs" />
     <Compile Include="InjectorConventions\TrainerToTrainerModel.cs" />
     <Compile Include="InjectorConventions\TrainingToWebModel.cs" />
+    <Compile Include="InjectorConventions\UserDetailsToUserInfoModel.cs" />
+    <Compile Include="InjectorConventions\UserInfoModelToUserDetails.cs" />
     <Compile Include="InjectorConventions\UserProfileToUserModel.cs" />
     <Compile Include="Models\BadRequestModel.cs" />
     <Compile Include="Models\ContactPersonModel.cs" />

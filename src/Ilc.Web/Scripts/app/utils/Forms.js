@@ -17,7 +17,8 @@
         }
     },
 
-    extractModel: function(inputs) {
+    extractModel: function (inputs) {
+        debugger;
         var model = {};
 
         for (var i = 0; i < inputs.length; i++) {
@@ -44,7 +45,7 @@
                 case 'datefield':
                     var date = input.getRawValue();
                     if (date) {
-                        model[input.name] = moment(date).format();
+                        Ilc.utils.Forms._addProperty(model, input.name, moment(date).format());
                     }
                     break;
                 case 'textarea':
