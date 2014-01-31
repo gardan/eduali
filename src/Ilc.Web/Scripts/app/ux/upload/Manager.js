@@ -121,13 +121,15 @@ Ext.define('Ext.ux.upload.Manager', {
         this.uploadNextItemSync();
     },
 
-    uploadNextItemSync : function() {
+    uploadNextItemSync: function () {
+        debugger;
         if (!this.uploadActive) {
             return;
         }
 
         var item = this.currentQueue.getFirstReadyItem();
         if (!item) {
+            this.fireEvent('uploadcomplete', this, this.currentQueue, 0);
             return;
         }
 
