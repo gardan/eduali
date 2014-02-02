@@ -35,7 +35,7 @@ namespace Ilc.Web.Services
         public HttpResult Post(CreateTrainerModel request)
         {
             var newTrainer = new Trainer().InjectFrom(request) as Trainer;
-            var userInfo = new UserDetails().InjectFrom(request.UserInfo) as UserDetails;
+            var userInfo = new UserDetails().InjectFrom<UserInfoModelToUserDetails>(request.UserInfo) as UserDetails;
             newTrainer.UserProfile = new UserProfile() { UserDetails = userInfo };
 
             Trainers.Create(newTrainer);

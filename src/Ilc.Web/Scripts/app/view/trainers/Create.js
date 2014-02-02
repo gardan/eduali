@@ -44,12 +44,26 @@
         return uploader;
     },
 
+    initGenderCombo: function (store) {
+        return Ext.create('Ext.form.field.ComboBox', {
+            fieldLabel: Ilc.resources.Manager.getResourceString('common.gender'),
+            xtype: 'combobox',
+            queryMode: 'local',
+            displayField: 'name',
+            valueField: 'id',
+            name: 'userInfo.gender',
+            store: store
+        });
+    },
+
     constructor: function () {
         var me = this;
 
         var subjectsStore = Ext.create('Ilc.store.Subjects');
+        var gendersStore = Ext.create('Ilc.store.Genders');
 
         me.avatarUploader = me.initUploader();
+        me.genderCombo = me.initGenderCombo(gendersStore);
 
         me.items = [
             {
@@ -68,6 +82,13 @@
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.phone'),
                 name: 'userInfo.phone',
             },
+            {
+                xtype: 'datefield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.dateOfBirth'),
+                name: 'userInfo.dateOfBirth',
+                format: Ilc.resources.Manager.getResourceString('formats.extjsdateonly')
+            },
+            me.genderCombo,
             {
                 xtype: 'combobox',
                 store: subjectsStore,
@@ -106,7 +127,8 @@
         );
 
         subjectsStore.load();
-
+        gendersStore.load();
+        
         me.callParent(arguments);
     }
 });

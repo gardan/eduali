@@ -36,6 +36,18 @@
                 filter: {
                     type: 'string'
                 }
+            },
+            {
+                dataIndex: 'userInfo', // There actually isn't any column 'name', we just use it for filtering porpuses, see 'renderer' for the actual value
+                text: Ilc.resources.Manager.getResourceString('common.dateOfBirth'),
+                flex: 1,
+                renderer: function (value, meta, record) {
+                    var formatted = Ext.Date.format(new Date(record.get('userInfo').dateOfBirth), Ilc.resources.Manager.getResourceString('formats.extjsdate'));
+                    return formatted;
+                },
+                filter: {
+                    type: 'string'
+                }
             }
         ];
 
