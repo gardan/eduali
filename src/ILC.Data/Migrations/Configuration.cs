@@ -22,10 +22,6 @@ namespace Ilc.Data.Migrations
         protected override void Seed(AppContext context)
         {
             SeedInitialCompany(context);
-            context.Subjects.AddOrUpdate(s => s.Name,
-                new Subject() { Name = "English" },
-                new Subject() { Name = "Romanian" });
-
             SeedGradingSystems(context);
             SeedRoles(context);
             SeedInitialAccount(context);
@@ -134,6 +130,8 @@ namespace Ilc.Data.Migrations
                                 new Grade() { Name = "1", Order = 10 }
                             }
                     });
+
+            context.SaveChanges();
         }
 
         private void SeedRoles(AppContext context)
@@ -211,8 +209,8 @@ namespace Ilc.Data.Migrations
         private void SeedSubjects(AppContext context)
         {
             context.Subjects.AddOrUpdate(s => s.Name,
-                new Subject() { Name = "Romanian" },
-                new Subject() { Name = "English" });
+                new Subject() { Name = "Romanian", CompanyId = 1 },
+                new Subject() { Name = "English", CompanyId = 1 });
 
             context.SaveChanges();
         }
