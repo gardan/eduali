@@ -15,11 +15,48 @@
     'Ilc.utils.Forms'
     ],
 
+    onUploadComplete: function () {
+        this.fireEvent('useradded');
+        this.close();
+    },
+
+    initUploader: function () {
+        var me = this;
+        var uploader = Ext.create('Ilc.uploader.Avatar', {
+            avatarUrl: 'api/users/0/avatar',
+            // uploadUrl: 'api/users/' + userId + '/avatar', // Method: PUT
+            fieldLabel: 'Avatar',
+            listeners: {
+                'uploadcomplete': me.onUploadComplete,
+
+                scope: me
+            }
+        });
+        return uploader;
+    },
+
+    initGenderCombo: function (store) {
+        return Ext.create('Ext.form.field.ComboBox', {
+            fieldLabel: Ilc.resources.Manager.getResourceString('common.gender'),
+            xtype: 'combobox',
+            queryMode: 'local',
+            displayField: 'name',
+            valueField: 'id',
+            name: 'userInfo.gender',
+            store: store
+        });
+    },
+
     initComponent: function () {
         var me = this;
 
         var rolesStore = Ext.create('Ilc.store.Roles');
         rolesStore.load();
+        var gendersStore = Ext.create('Ilc.store.Genders');
+        gendersStore.load();
+
+        me.avatarUploader = me.initUploader();
+        me.genderCombo = me.initGenderCombo(gendersStore);
 
         me.items = [
             {
@@ -47,6 +84,13 @@
                 name: 'userInfo.phone',
             },
             {
+                xtype: 'datefield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.dateOfBirth'),
+                name: 'userInfo.dateOfBirth',
+                format: Ilc.resources.Manager.getResourceString('formats.extjsdateonly')
+            },
+            me.genderCombo,
+            {
                 xtype: 'combobox',
                 queryMode: 'local',
                 displayField: 'name',
@@ -55,7 +99,8 @@
                 fieldLabel: 'Roles',
                 store: rolesStore,
                 multiSelect: true,
-            }
+            },
+            me.avatarUploader
         ];
 
         me.buttons = [

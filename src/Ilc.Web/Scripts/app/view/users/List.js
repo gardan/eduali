@@ -30,7 +30,10 @@
                                             me.fireEvent('createuser', sender, model, {
                                                 usersStore: usersStore
                                             });
-                                        }
+                                        },
+                                        useradded: function() {
+                                            usersStore.reload();
+                                        },
                                     }
                                 });
 
@@ -44,7 +47,12 @@
 
         usersGrid.on('itemdblclick', function(grid, record) {
             var window = Ext.create('Ilc.view.users.Edit', {
-                user: record
+                user: record,
+                listeners: {
+                    'useredited': function() {
+                        usersStore.reload();
+                    }
+                }
             }).show();
         });
 
