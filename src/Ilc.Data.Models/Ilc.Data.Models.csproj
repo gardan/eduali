@@ -47,6 +47,7 @@
     <Compile Include="Availability.cs" />
     <Compile Include="Base\EntityBase.cs" />
     <Compile Include="Base\StampedEntity.cs" />
+    <Compile Include="Company.cs" />
     <Compile Include="ContactPerson.cs" />
     <Compile Include="Contracts\IAccessControlEntity.cs" />
     <Compile Include="Contracts\IWorkflowEntity.cs" />

@@ -21,6 +21,7 @@ namespace Ilc.Data.Migrations
 
         protected override void Seed(AppContext context)
         {
+            SeedInitialCompany(context);
             context.Subjects.AddOrUpdate(s => s.Name,
                 new Subject() { Name = "English" },
                 new Subject() { Name = "Romanian" });
@@ -35,6 +36,14 @@ namespace Ilc.Data.Migrations
             SeedTrainer(context);
             SeedStatusDictionary(context);
             SeedTemplates(context);
+        }
+
+        private void SeedInitialCompany(AppContext context)
+        {
+            context.Companies.AddOrUpdate(c => c.Name, 
+                new Company() {Name = "Edu Alliance"});
+
+            context.SaveChanges();
         }
 
         private void SeedTemplates(AppContext context)
