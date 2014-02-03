@@ -175,7 +175,7 @@ Ext.define('Ext.ux.upload.Manager', {
             this.uploadNextItemSync();
         }
 
-        if (!this.currentQueue.existUploadingItems()) {
+        if (this.currentQueue && !this.currentQueue.existUploadingItems()) {
             this.finishUpload();
         }
     },

@@ -14,10 +14,17 @@
     hideAction: 'destroy',
 
     user: null,
+    rolesStore: null,
+    avatarUploader: null,
+    genderCombo: null,
 
     requires: [
         'Ilc.utils.Forms'
     ],
+
+    userUpdated: function() {
+        this.avatarUploader.initUpload();
+    },
 
     unassignRoleComplete: function() {
         this.rolesStore.load({
@@ -27,13 +34,66 @@
         });
     },
 
-    rolesStore: null,
+    onUploadComplete: function () {
+        this.fireEvent('useredited');
+        this.close();
+    },
+
+    initUploader: function () {
+        var me = this;
+
+        var userId = me.user.get('userInfo').id;
+        var avatarUrl = 'api/users/' + userId + '/avatar';
+        var avatarUploader = Ext.create('Ilc.uploader.Avatar', {
+            avatarUrl: avatarUrl,
+            uploadUrl: avatarUrl, // Method: PUT
+            fieldLabel: 'Avatar',
+            listeners: {
+                'uploadcomplete': me.onUploadComplete,
+
+                scope: me
+            }
+        });
+
+        return avatarUploader;
+    },
+
+    onGenderLoad: function (store, records, successful) {
+        var me = this;
+        Ext.Array.forEach(records, function (record) {
+            if (me.user.get('userInfo').gender == record.get('id')) {
+                me.genderCombo.select(record);
+            }
+        });
+    },
+
+    initGenderCombo: function (store) {
+        return Ext.create('Ext.form.field.ComboBox', {
+            fieldLabel: Ilc.resources.Manager.getResourceString('common.gender'),
+            xtype: 'combobox',
+            queryMode: 'local',
+            displayField: 'name',
+            valueField: 'id',
+            name: 'userInfo.gender',
+            store: store,
+            padding: '0 10 0 10'
+        });
+    },
 
     initComponent: function() {
         var me = this;
 
         var rolesStore = Ext.create('Ilc.store.Roles');
         me.rolesStore = rolesStore;
+        var gendersStore = Ext.create('Ilc.store.Genders', {
+            listeners: {
+                'load': me.onGenderLoad,
+                scope: me
+            }
+        });
+
+        me.avatarUploader = me.initUploader();
+        me.genderCombo = me.initGenderCombo(gendersStore);
 
         var rolesGrid = Ext.create('Ilc.grid.Roles', {
             store: rolesStore,
@@ -142,9 +202,17 @@
                             {
                                 fieldLabel: Ilc.resources.Manager.getResourceString('common.phone'),
                                 name: 'userInfo.phone',
-                                value: me.user.get('userInfo').phone,
-                                padding: '0 10 10 10'
-                            }
+                                value: me.user.get('userInfo').phone
+                            },
+                            {
+                                xtype: 'datefield',
+                                fieldLabel: Ilc.resources.Manager.getResourceString('common.dateOfBirth'),
+                                name: 'userInfo.dateOfBirth',
+                                format: Ilc.resources.Manager.getResourceString('formats.extjsdateonly'),
+                                value: new Date(me.user.get('userInfo').dateOfBirth)
+                            },
+                            me.genderCombo,
+                            me.avatarUploader
                         ],
                         buttons: [
                             {
@@ -182,6 +250,7 @@
                 userId: me.user.get('id')
             }
         });
+        gendersStore.load();
 
         me.addEvents(
             'assignrole',

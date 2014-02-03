@@ -102,7 +102,7 @@
         sender.mask();
         usersService.update(model)
         .then(function (response) {
-            
+            sender.userUpdated();
         })
         .finally(function () {
             sender.unmask();

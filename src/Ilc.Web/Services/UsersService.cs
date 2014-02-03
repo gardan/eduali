@@ -11,6 +11,7 @@ using Ilc.Data.Models.SimpleMembership;
 using Ilc.Web.InjectorConventions;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
+using ServiceStack.Common;
 using ServiceStack.Common.Web;
 using ServiceStack.ServiceInterface;
 
@@ -53,11 +54,9 @@ namespace Ilc.Web.Services
 
         public HttpResult Put(UserModel request)
         {
+            var userDetails = new UserDetails().InjectFrom<UserInfoModelToUserDetails>(request.UserInfo) as UserDetails;
             var user = Users.GetById(request.Id);
-            user.UserDetails.FirstName = request.UserInfo.FirstName;
-            user.UserDetails.LastName = request.UserInfo.LastName;
-            user.UserDetails.Email = request.UserInfo.Email;
-            user.UserDetails.Phone = request.UserInfo.Phone;
+            user.UserDetails.PopulateWithNonDefaultValues(userDetails);
 
             Users.Update(user);
 
