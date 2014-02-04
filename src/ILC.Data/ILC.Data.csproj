@@ -267,6 +267,10 @@
     <Compile Include="Migrations\201402041447083_RoleToCompany.Designer.cs">
       <DependentUpon>201402041447083_RoleToCompany.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201402041532308_TrainerToCompany.cs" />
+    <Compile Include="Migrations\201402041532308_TrainerToCompany.Designer.cs">
+      <DependentUpon>201402041532308_TrainerToCompany.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -451,6 +455,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201402041447083_RoleToCompany.resx">
       <DependentUpon>201402041447083_RoleToCompany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402041532308_TrainerToCompany.resx">
+      <DependentUpon>201402041532308_TrainerToCompany.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
