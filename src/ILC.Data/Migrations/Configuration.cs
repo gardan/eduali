@@ -140,6 +140,7 @@ namespace Ilc.Data.Migrations
             context.Roles.AddOrUpdate(r => r.RoleName,
                                       new Role()
                                           {
+                                              CompanyId = 1,
                                               CanDelete = false,
                                               RoleName = "Customer Contact",
                                               Claims = new List<RoleClaim>()
@@ -149,6 +150,7 @@ namespace Ilc.Data.Migrations
                                           },
                                       new Role()
                                           {
+                                              CompanyId = 1,
                                               CanDelete = false,
                                               RoleName = "Customer Supervizor",
                                               Claims = new List<RoleClaim>()
@@ -158,6 +160,7 @@ namespace Ilc.Data.Migrations
                                           },
                                       new Role() // Student
                                           {
+                                              CompanyId = 1,
                                               CanDelete = false,
                                               RoleName = "Student",
                                               Claims = new List<RoleClaim>()
@@ -167,6 +170,7 @@ namespace Ilc.Data.Migrations
                                           },
                                       new Role() // Trainer
                                           {
+                                              CompanyId = 1,
                                               CanDelete = false,
                                               RoleName = "Trainer",
                                               Claims = new List<RoleClaim>()
@@ -176,6 +180,7 @@ namespace Ilc.Data.Migrations
                                           },
                                       new Role() // Zeus
                                           {
+                                              CompanyId = 1,
                                               CanDelete = false,
                                               RoleName = "Zeus",
                                               Claims = new List<RoleClaim>()

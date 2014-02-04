@@ -6,7 +6,7 @@ using Ilc.Data.Models.Contracts;
 
 namespace Ilc.Data.Models.SimpleMembership
 {
-    public class Role : EntityBase, IAccessControlEntity
+    public class Role : CompanyBaseEntity, IAccessControlEntity
     {
 
         public override int Id { get { return RoleId; } set { RoleId = value; } }
