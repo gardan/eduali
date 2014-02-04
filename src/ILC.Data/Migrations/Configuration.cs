@@ -225,6 +225,7 @@ namespace Ilc.Data.Migrations
             var subjects = context.Subjects.ToList();
             var user = new UserProfile()
             {
+                CompanyId = 1,
                 Username = "alex",
                 UserDetails = new UserDetails()
                     {
@@ -240,6 +241,7 @@ namespace Ilc.Data.Migrations
             context.Trainers.AddOrUpdate(t => t.Name,
                                          new Trainer()
                                              {
+                                                 CompanyId = 1,
                                                  Address = "Str. Orsova, Nr. 26",
                                                  Name = "Alecsandru Tache",
                                                  Phone = "alecs@mail.com",
