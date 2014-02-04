@@ -14,7 +14,10 @@ namespace Ilc.Data.Models
     {
         public string Username { get; set; }
 
-
+        public int CompanyId { get; set; }
+        [ForeignKey("CompanyId")]
+        public Company Company { get; set; }
+        
         private List<Role> _roles;
         public virtual List<Role> Roles
         {
