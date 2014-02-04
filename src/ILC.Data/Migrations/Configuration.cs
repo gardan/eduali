@@ -311,6 +311,7 @@ namespace Ilc.Data.Migrations
 
             var user1 = new UserProfile()
             {
+                CompanyId = 1,
                 Username = "ilc",
                 Roles = new List<Role>(roles),
                 UserDetails = new UserDetails()
@@ -324,6 +325,7 @@ namespace Ilc.Data.Migrations
 
             var user2 = new UserProfile()
             {
+                CompanyId = 1,
                 Username = "ilcSupervizor",
                 Roles = new List<Role>() { supervizor },
                 UserDetails = new UserDetails()
@@ -341,6 +343,7 @@ namespace Ilc.Data.Migrations
             context.Customers.AddOrUpdate(c => c.Name,
                 new Customer()
                     {
+                        CompanyId = 1,
                         BankAccount = "IBAN0912749126972",
                         Name = "Ilc",
                         BillingAddress = "Str. Whatever",
@@ -410,6 +413,7 @@ namespace Ilc.Data.Migrations
             // create the user profile
             var firstUser = new UserProfile()
             {
+                CompanyId = 1,
                 Username = "admin",
                 Roles = new List<Role>() { role },
                 UserDetails = new UserDetails()

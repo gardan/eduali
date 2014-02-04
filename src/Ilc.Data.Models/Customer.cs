@@ -7,7 +7,7 @@ using Ilc.Data.Models.Base;
 
 namespace Ilc.Data.Models
 {
-    public class Customer : EntityBase  
+    public class Customer : CompanyBaseEntity  
     {
         public string Name { get; set; }
         public string BillingAddress { get; set; }

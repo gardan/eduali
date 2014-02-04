@@ -259,6 +259,10 @@
     <Compile Include="Migrations\201402041244482_UserProfileToCompany.Designer.cs">
       <DependentUpon>201402041244482_UserProfileToCompany.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201402041320477_CustomerToCompany.cs" />
+    <Compile Include="Migrations\201402041320477_CustomerToCompany.Designer.cs">
+      <DependentUpon>201402041320477_CustomerToCompany.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -437,6 +441,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201402041244482_UserProfileToCompany.resx">
       <DependentUpon>201402041244482_UserProfileToCompany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402041320477_CustomerToCompany.resx">
+      <DependentUpon>201402041320477_CustomerToCompany.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

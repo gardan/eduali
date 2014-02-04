@@ -45,6 +45,7 @@
     <Compile Include="AnswerBase.cs" />
     <Compile Include="Assesment.cs" />
     <Compile Include="Availability.cs" />
+    <Compile Include="Base\CompanyBaseEntity.cs" />
     <Compile Include="Base\EntityBase.cs" />
     <Compile Include="Base\StampedEntity.cs" />
     <Compile Include="Company.cs" />
