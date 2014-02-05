@@ -61,8 +61,9 @@ namespace Ilc.Infrastructure.Services
             // set defaults
             parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
             parameters.Filter = parameters.Filter ?? new List<Filter>();
-
-            var query = Uow.Templates.GetAll();
+            
+            var user = Users.GetByUsername();
+            var query = Uow.Templates.GetAll().Where(t => t.CompanyId == user.CompanyId);
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
 
