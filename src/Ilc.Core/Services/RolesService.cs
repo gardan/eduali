@@ -10,6 +10,7 @@ namespace Ilc.Core.Services
     public class RolesService : IRolesService
     {
         public IUow Uow { get; set; }
+        public IUsersService Users { get; set; }
 
         public FilteredResults<Role> GetFiltered(FilterArgumentsRoles parameters)
         {
@@ -17,7 +18,8 @@ namespace Ilc.Core.Services
             parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
             parameters.Filter = parameters.Filter ?? new List<Filter>();
 
-            var query = Uow.Roles.GetAll();
+            var user = Users.GetByUsername();
+            var query = Uow.Roles.GetAll().Where(r => r.CompanyId == user.CompanyId);
             
             // predefined search
             if (parameters.UserId > 0)
