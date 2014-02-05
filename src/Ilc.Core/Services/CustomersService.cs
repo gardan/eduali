@@ -11,14 +11,16 @@ namespace Ilc.Core.Services
     {
         public IUow Uow { get; set; }
         public IContactsService Contacts { get; set; }
+        public IUsersService Users { get; set; }
 
         public FilteredResults<Customer> GetFiltered(FilterArguments parameters)
         {
             // set defaults
             parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
-            parameters.Filter = parameters.Filter ?? new List<Filter>(); 
+            parameters.Filter = parameters.Filter ?? new List<Filter>();
 
-            var query = Uow.Customers.GetAll();
+            var user = Users.GetByUsername();
+            var query = Uow.Customers.GetAll().Where(c => c.CompanyId == user.CompanyId);
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
 
