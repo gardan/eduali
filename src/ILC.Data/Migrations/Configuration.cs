@@ -49,6 +49,7 @@ namespace Ilc.Data.Migrations
             context.Templates.AddOrUpdate(t => t.Name,
                 new Template()
                 {
+                    CompanyId = 1,
                     Name = "Morning",
                     CreateDate = DateTimeOffset.UtcNow,
                     Creator = admin,
@@ -65,6 +66,7 @@ namespace Ilc.Data.Migrations
                 },
                 new Template()
                 {
+                    CompanyId = 1,
                     Name = "Afternoon",
                     CreateDate = DateTimeOffset.UtcNow,
                     Creator = admin,
@@ -81,6 +83,7 @@ namespace Ilc.Data.Migrations
                 },
                 new Template()
                 {
+                    CompanyId = 1,
                     Name = "Night",
                     CreateDate = DateTimeOffset.UtcNow,
                     Creator = admin,

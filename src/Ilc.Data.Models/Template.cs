@@ -6,7 +6,7 @@ using Ilc.Data.Models.Base;
 
 namespace Ilc.Data.Models
 {
-    public class Template : StampedEntity
+    public class Template : StampedCompanyBaseEntity
     {
         public string Name { get; set; }
 
