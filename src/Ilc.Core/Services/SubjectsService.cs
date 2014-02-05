@@ -19,7 +19,7 @@ namespace Ilc.Core.Services
             parameters.Filter = parameters.Filter ?? new List<Filter>();
 
             var user = Users.GetByUsername();
-            var query = Uow.Subjects.GetAll().Where(s => s.CompanyId == user.Id);
+            var query = Uow.Subjects.GetAll().Where(s => s.CompanyId == user.CompanyId);
             
             // predefined search
             // This searches for subjects that belong or not, to a trainer.
