@@ -275,6 +275,10 @@
     <Compile Include="Migrations\201402050912447_GradingSystemToCompany.Designer.cs">
       <DependentUpon>201402050912447_GradingSystemToCompany.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201402050935107_StatusDefinitionsToCompany.cs" />
+    <Compile Include="Migrations\201402050935107_StatusDefinitionsToCompany.Designer.cs">
+      <DependentUpon>201402050935107_StatusDefinitionsToCompany.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -465,6 +469,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201402050912447_GradingSystemToCompany.resx">
       <DependentUpon>201402050912447_GradingSystemToCompany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402050935107_StatusDefinitionsToCompany.resx">
+      <DependentUpon>201402050935107_StatusDefinitionsToCompany.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,7 +7,7 @@ using Ilc.Data.Models.Base;
 
 namespace Ilc.Data.Models
 {
-    public class StatusDictionary : EntityBase
+    public class StatusDictionary : CompanyBaseEntity
     {
         public string Name { get; set; }
         public string FriendlyName { get; set; }
