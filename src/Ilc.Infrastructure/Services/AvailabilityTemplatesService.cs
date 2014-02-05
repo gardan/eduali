@@ -100,8 +100,11 @@ namespace Ilc.Infrastructure.Services
 
         public void Create(Template template)
         {
-            template.Creator = Users.GetByUsername();
+            var user = Users.GetByUsername();
+            template.Creator = user;
             template.CreateDate = DateTimeOffset.UtcNow;
+
+            template.CompanyId = user.CompanyId;
 
             Uow.Templates.Add(template);
             Uow.Commit();
