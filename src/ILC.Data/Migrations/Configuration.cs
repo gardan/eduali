@@ -102,6 +102,7 @@ namespace Ilc.Data.Migrations
             context.GradingSystems.AddOrUpdate(s => s.Name,
                 new GradingSystem()
                     {
+                        CompanyId = 1,
                         Name = "European",
                         Grades = new List<Grade>()
                             {
@@ -115,6 +116,7 @@ namespace Ilc.Data.Migrations
                     },
                 new GradingSystem()
                     {
+                        CompanyId = 1,
                         Name = "Romanian",
                         Grades = new List<Grade>()
                             {

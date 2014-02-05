@@ -55,6 +55,7 @@
     <Compile Include="Customer.cs" />
     <Compile Include="Evaluation.cs" />
     <Compile Include="Gender.cs" />
+    <Compile Include="Grade.cs" />
     <Compile Include="GradingSystem.cs" />
     <Compile Include="InterviewPlan.cs" />
     <Compile Include="ProgressEvaluation.cs" />
