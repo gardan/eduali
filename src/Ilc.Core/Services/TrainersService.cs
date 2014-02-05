@@ -19,7 +19,8 @@ namespace Ilc.Core.Services
             // set defaults
             parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
 
-            var query = Uow.Trainers.GetAll();
+            var user = Users.GetByUsername();
+            var query = Uow.Trainers.GetAll().Where(t => t.CompanyId == user.CompanyId);
 
             if (Authorization.HasClaim(SystemClaims.TasksTrainer))
             {
