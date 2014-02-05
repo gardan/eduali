@@ -15,7 +15,7 @@ namespace Ilc.Data.Migrations
                         Name = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
-            
+            Sql("INSERT INTO dbo.Company Name = 'Edu Alliance'");
         }
         
         public override void Down()
