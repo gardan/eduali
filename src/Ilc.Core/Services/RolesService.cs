@@ -75,6 +75,9 @@ namespace Ilc.Core.Services
 
         public void Create(Role role)
         {
+            var user = Users.GetByUsername();
+            role.CompanyId = user.CompanyId;
+
             Uow.Roles.Add(role);
             Uow.Commit();
         }

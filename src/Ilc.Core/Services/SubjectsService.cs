@@ -78,6 +78,9 @@ namespace Ilc.Core.Services
 
         public void Create(Subject newSubject)
         {
+            var user = Users.GetByUsername();
+            newSubject.CompanyId = user.CompanyId;
+
             Uow.Subjects.Add(newSubject);
             Uow.Commit();
         }
