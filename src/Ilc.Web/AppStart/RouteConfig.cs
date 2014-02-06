@@ -114,6 +114,8 @@ namespace Ilc.Web.AppStart
 
             routes.Add<Services.FilterParametersGenders>("/api/genders", "GET");
 
+            routes.Add<Services.FilterParametersCompanies>("/api/companies", "GET");
+
             routes.Add<Services.FilterParametersQuestions>("/api/questions", "GET");
         }
     }

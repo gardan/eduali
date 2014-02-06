@@ -41,6 +41,7 @@ namespace Ilc.Data.Contracts
         IRepository<TrainingEvaluationQuestion> Questions { get; }
         IRepository<Availability> Availabilities { get; }
         IRepository<Template> Templates { get; }
-        IRepository<TemplateDay> TemplateDays { get; } 
+        IRepository<TemplateDay> TemplateDays { get; }
+        IRepository<Company> Companies { get; } 
     }
 }

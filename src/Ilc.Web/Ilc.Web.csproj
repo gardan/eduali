@@ -3965,6 +3965,7 @@
     <Compile Include="Services\AvatarsService.cs" />
     <Compile Include="Services\ClaimsService.cs" />
     <Compile Include="Services\ClientConfigurationService.cs" />
+    <Compile Include="Services\CompaniesService.cs" />
     <Compile Include="Services\ContactsService.cs" />
     <Compile Include="Services\CustomersService.cs" />
     <Compile Include="InjectorConventions\CustomerToCustomerModel.cs" />
