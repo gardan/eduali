@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using Ilc.Core;
+using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models;
 using Ilc.Web.InjectorConventions;
@@ -16,6 +17,7 @@ namespace Ilc.Web.Services
     public class GradingSystemsService : Service
     {
         public IUow Uow { get; set; }
+        public IGradingSystemsService GradingSystems { get; set; }
 
         public FilteredResults<GradingSystemModel> Get(FilterParametersGradingSystems request)
         {
@@ -43,8 +45,7 @@ namespace Ilc.Web.Services
         {
             var gradingSystem = new GradingSystem().InjectFrom(request) as GradingSystem;
 
-            Uow.GradingSystems.Add(gradingSystem);
-            Uow.Commit();
+            GradingSystems.Create(gradingSystem);
 
             return new HttpResult()
                 {

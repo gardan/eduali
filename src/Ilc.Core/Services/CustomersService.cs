@@ -74,6 +74,9 @@ namespace Ilc.Core.Services
             var contact = newCustomer.ContactPersons.FirstOrDefault();
             newCustomer.ContactPersons.Clear();
 
+            var user = Users.GetByUsername();
+            newCustomer.CompanyId = user.CompanyId;
+
             Uow.Customers.Add(newCustomer);
             Uow.Commit();
 

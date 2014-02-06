@@ -77,6 +77,8 @@ namespace Ilc.Core.Services
 
         public void Create(Trainer newTrainer)
         {
+            var loggedInUser = Users.GetByUsername();
+
             // first create the user.
             var username = newTrainer.UserProfile.UserDetails.FirstName.Trim().Split(Convert.ToChar(" "))[0].ToLower();
             var userDetails = newTrainer.UserProfile.UserDetails;
@@ -103,11 +105,12 @@ namespace Ilc.Core.Services
 
             // Creat the user
             var role = Uow.Roles.GetAll().FirstOrDefault(r => r.RoleName == "Trainer");
-            var newUser = new UserProfile() {Username = username, UserDetails = userDetails, Roles = new List<Role>() { role }};
+            var newUser = new UserProfile() {CompanyId = loggedInUser.CompanyId, Username = username, UserDetails = userDetails, Roles = new List<Role>() { role }};
             Users.Create(newUser, username);
 
             // Append the userId to the trainer
             newTrainer.UserProfileId = newUser.Id;
+            newTrainer.CompanyId = loggedInUser.CompanyId;
 
             // Create the trainer
             Uow.Trainers.Add(newTrainer);
