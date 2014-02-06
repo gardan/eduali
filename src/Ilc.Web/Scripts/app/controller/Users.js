@@ -132,10 +132,12 @@
 
         usersService.add(model)
         .then(function (response) {
-            options.usersStore.load();
+            var user = Ext.create('Ilc.model.User', Ext.JSON.decode(response.responseText));
+            sender.userCreated(user);
+            // options.usersStore.load();
         })
         .finally(function () {
-            sender.close();
+            // sender.close();
         });
     },
 
