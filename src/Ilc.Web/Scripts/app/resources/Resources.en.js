@@ -13,7 +13,8 @@
         'mainMenu.subjects': 'Subjects',
         'mainMenu.settings': 'Settings',
         'mainMenu.planning': 'Planning',
-        
+        'mainMenu.companies': 'Companies',
+
         'common.trainingId': 'Training Id',
         'common.id': 'Id',
         'common.name': 'Name',

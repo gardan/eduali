@@ -123,6 +123,10 @@
     background-image: url(../images/web32/trainer.png);
 }
 
+.icon-company-32 {
+    background-image: url(../images/web32/company.png);
+}
+
 .icon-avatar-64 {
     background-image: url(../images/web64/avatar.png);
 }

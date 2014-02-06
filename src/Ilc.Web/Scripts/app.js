@@ -23,7 +23,8 @@ Ext.application({
         'Spendings',
         'Lessons',
         'Availability',
-        'Templates'
+        'Templates',
+        'Companies'
     ],
 
     requires: [
@@ -46,7 +47,8 @@ Ext.application({
         'subjects.List',
         'settings.Default',
         'planning.Default',
-        'availability.Default'
+        'availability.Default',
+        'companies.List'
     ],  
         
     routes: {
@@ -62,7 +64,8 @@ Ext.application({
         'subjects': 'subjects#list',
         'settings': 'settings#default',
         'planning': 'planning#default',
-        'availability': 'availability#default'
+        'availability': 'availability#default',
+        'companies': 'companies#list'
     },
 
     enableRouter: true,

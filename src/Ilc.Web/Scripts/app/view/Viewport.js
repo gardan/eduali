@@ -33,6 +33,11 @@
                     itemId: 'menu.trainings'
                 },
                 {
+                    text: Ilc.resources.Manager.getResourceString('mainMenu.companies'),
+                    iconCls: 'icon-company-32',
+                    itemId: 'menu.companies',
+                },
+                {
                     text: Ilc.resources.Manager.getResourceString('mainMenu.customers'),
                     iconCls: 'icon-customer-32',
                     itemId: 'menu.customers',
