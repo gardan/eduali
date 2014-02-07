@@ -102,7 +102,7 @@ namespace Ilc.Data.Migrations
 
         private void SeedGradingSystems(AppContext context)
         {
-            context.GradingSystems.AddOrUpdate(s => s.Name,
+            context.GradingSystems.AddOrUpdate(s => new { s.Name, s.CompanyId },
                 new GradingSystem()
                     {
                         CompanyId = 1,
@@ -142,7 +142,7 @@ namespace Ilc.Data.Migrations
         private void SeedRoles(AppContext context)
         {
 
-            context.Roles.AddOrUpdate(r => r.RoleName,
+            context.Roles.AddOrUpdate(r => new { r.RoleName, r.CompanyId },
                                       new Role()
                                           {
                                               CompanyId = 1,
