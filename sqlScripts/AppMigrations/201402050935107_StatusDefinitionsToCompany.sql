@@ -1,4 +1,6 @@
+BEGIN
 ALTER TABLE [dbo].[StatusDictionary] ADD [CompanyId] [int] NOT NULL DEFAULT 0
+END
 UPDATE dbo.StatusDictionary SET CompanyId = 1
 ALTER TABLE [dbo].[StatusDictionary] ADD CONSTRAINT [FK_dbo.StatusDictionary_dbo.Company_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[Company] ([Id]) ON DELETE CASCADE
 CREATE INDEX [IX_CompanyId] ON [dbo].[StatusDictionary]([CompanyId])

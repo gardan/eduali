@@ -1,4 +1,6 @@
+BEGIN
 ALTER TABLE [dbo].[Trainer] ADD [CompanyId] [int] NOT NULL DEFAULT 0
+END
 UPDATE dbo.Trainer SET CompanyId = 1
 ALTER TABLE [dbo].[Trainer] ADD CONSTRAINT [FK_dbo.Trainer_dbo.Company_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[Company] ([Id])
 CREATE INDEX [IX_CompanyId] ON [dbo].[Trainer]([CompanyId])

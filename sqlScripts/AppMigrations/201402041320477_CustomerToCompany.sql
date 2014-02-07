@@ -1,4 +1,6 @@
+BEGIN
 ALTER TABLE [dbo].[Customer] ADD [CompanyId] [int] NOT NULL DEFAULT 0
+END
 UPDATE dbo.Customer SET CompanyId = 1
 ALTER TABLE [dbo].[Customer] ADD CONSTRAINT [FK_dbo.Customer_dbo.Company_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[Company] ([Id])
 CREATE INDEX [IX_CompanyId] ON [dbo].[Customer]([CompanyId])

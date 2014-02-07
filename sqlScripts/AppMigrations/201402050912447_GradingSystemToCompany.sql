@@ -1,4 +1,6 @@
+BEGIN
 ALTER TABLE [dbo].[GradingSystem] ADD [CompanyId] [int] NOT NULL DEFAULT 0
+END
 UPDATE dbo.GradingSystem SET CompanyId = 1
 ALTER TABLE [dbo].[GradingSystem] ADD CONSTRAINT [FK_dbo.GradingSystem_dbo.Company_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[Company] ([Id])
 CREATE INDEX [IX_CompanyId] ON [dbo].[GradingSystem]([CompanyId])

@@ -1,4 +1,6 @@
+BEGIN
 ALTER TABLE [dbo].[Template] ADD [CompanyId] [int] NOT NULL DEFAULT 0
+END
 UPDATE dbo.Template SET CompanyId = 1
 ALTER TABLE [dbo].[Template] ADD CONSTRAINT [FK_dbo.Template_dbo.Company_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[Company] ([Id]) ON DELETE CASCADE
 CREATE INDEX [IX_CompanyId] ON [dbo].[Template]([CompanyId])

@@ -1,4 +1,6 @@
+BEGIN
 ALTER TABLE [dbo].[webpages_Roles] ADD [CompanyId] [int] NOT NULL DEFAULT 0
+END
 UPDATE dbo.webpages_Roles SET CompanyId = 1
 ALTER TABLE [dbo].[webpages_Roles] ADD CONSTRAINT [FK_dbo.webpages_Roles_dbo.Company_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[Company] ([Id]) ON DELETE CASCADE
 CREATE INDEX [IX_CompanyId] ON [dbo].[webpages_Roles]([CompanyId])
