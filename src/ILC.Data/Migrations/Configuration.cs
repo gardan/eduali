@@ -210,7 +210,7 @@ namespace Ilc.Data.Migrations
                 var record = context.StatusDictionaries.FirstOrDefault(r => r.Name == status);
                 if (record == null)
                 {
-                    context.StatusDictionaries.AddOrUpdate(s => s.Name,
+                    context.StatusDictionaries.AddOrUpdate(s => new { s.Name, s.CompanyId },
                     new StatusDictionary() { CompanyId = 1, Name = status, FriendlyName = status });
                 }
             }
@@ -219,7 +219,7 @@ namespace Ilc.Data.Migrations
 
         private void SeedSubjects(AppContext context)
         {
-            context.Subjects.AddOrUpdate(s => s.Name,
+            context.Subjects.AddOrUpdate(s => new { s.Name, s.CompanyId },
                 new Subject() { Name = "Romanian", CompanyId = 1 },
                 new Subject() { Name = "English", CompanyId = 1 });
 
@@ -353,7 +353,7 @@ namespace Ilc.Data.Migrations
             AddUser(context, user1);
             AddUser(context, user2);
 
-            context.Customers.AddOrUpdate(c => c.Name,
+            context.Customers.AddOrUpdate(c => new { c.Name, c.CompanyId},
                 new Customer()
                     {
                         CompanyId = 1,
