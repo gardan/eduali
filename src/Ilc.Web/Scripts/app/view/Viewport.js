@@ -36,6 +36,7 @@
                     text: Ilc.resources.Manager.getResourceString('mainMenu.companies'),
                     iconCls: 'icon-company-32',
                     itemId: 'menu.companies',
+                    hidden: !Ilc.Configuration.claimExists('companies-read-all')
                 },
                 {
                     text: Ilc.resources.Manager.getResourceString('mainMenu.customers'),
