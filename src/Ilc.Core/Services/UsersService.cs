@@ -79,8 +79,11 @@ namespace Ilc.Core.Services
 
         public void Create(UserProfile user, string password)
         {
-            var loggedInUser = GetByUsername();
-            user.CompanyId = loggedInUser.CompanyId;
+            if (user.CompanyId == 0)
+            {
+                var loggedInUser = GetByUsername();
+                user.CompanyId = loggedInUser.CompanyId;
+            }
 
             // Create the profile
             Uow.UserProfiles.Add(user);

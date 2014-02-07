@@ -8,6 +8,7 @@ namespace Ilc.Core.Contracts
 {
     public interface ICompaniesService
     {
-        FilteredResults<Company> GetFiltered(FilterArguments request); 
+        FilteredResults<Company> GetFiltered(FilterArguments request);
+        void Create(Company newCompany, UserProfile initialUser);
     }
 }

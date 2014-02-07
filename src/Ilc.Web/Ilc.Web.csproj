@@ -361,6 +361,7 @@
     <Content Include="Scripts\app\ux\upload\uploader\LegacyExtJsUploader.js" />
     <Content Include="Scripts\app\view\availability\CreateAvailabilities.js" />
     <Content Include="Scripts\app\view\availability\Default.js" />
+    <Content Include="Scripts\app\view\companies\Create.js" />
     <Content Include="Scripts\app\view\companies\List.js" />
     <Content Include="Scripts\app\view\customers\contacts\Create.js" />
     <Content Include="Scripts\app\view\customers\contacts\List.js" />

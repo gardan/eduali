@@ -10,6 +10,8 @@ namespace Ilc.Core.Services
     public class CompaniesService : ICompaniesService
     {
         public IUow Uow { get; set; }
+        public IUsersService Users { get; set; }
+        public ICompanyDefaultsService CompanyDefaults { get; set; }
 
         public FilteredResults<Company> GetFiltered(FilterArguments parameters)
         {
@@ -53,6 +55,27 @@ namespace Ilc.Core.Services
                 TotalDisplayRecords = totalDisplayRecords,
                 TotalRecords = totalDisplayRecords
             };
+        }
+
+        public void Create(Company newCompany, UserProfile initialUser)
+        {
+            // 1. Create the company
+            Uow.Companies.Add(newCompany);
+            Uow.Commit();
+
+            // 2. Create company defaults
+            // 2.1. Roles
+            // 2.2. Subjects
+            // 2.3. Status Definitions
+            // 2.4. Templates, maybe?
+            var roles = CompanyDefaults.CreateRoles(newCompany.Id);
+            CompanyDefaults.CreateSubjects(newCompany.Id);
+            CompanyDefaults.CreateStatusDefinitions(newCompany.Id);
+            
+            // 3. Create the defaults user
+            initialUser.CompanyId = newCompany.Id;
+            initialUser.Roles = roles;
+            Users.Create(initialUser, initialUser.UserDetails.Email);
         }
     }
 }
