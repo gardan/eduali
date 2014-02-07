@@ -15,6 +15,12 @@
     'Ilc.utils.Forms'
     ],
 
+    userCreated: function (user) {
+        var uploadUrl = user.get('userInfo').avatarLocation;
+        this.avatarUploader.setUploadUrl(uploadUrl);
+        this.avatarUploader.initUpload();
+    },
+
     onUploadComplete: function () {
         this.fireEvent('useradded');
         this.close();

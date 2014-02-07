@@ -41,12 +41,13 @@ namespace Ilc.Web.Services
                 {
                     Username = request.Username,
                     Roles = roles,
-                    UserDetails = new UserDetails().InjectFrom(request.UserInfo) as UserDetails
+                    UserDetails = new UserDetails().InjectFrom<UserInfoModelToUserDetails>(request.UserInfo) as UserDetails
                 };
 
             Users.Create(userProfile, request.Password);
 
-            return new HttpResult()
+            var userModel = new UserModel().InjectFrom<UserProfileToUserModel>(userProfile) as UserModel;
+            return new HttpResult(userModel)
                 {
                     StatusCode = HttpStatusCode.OK
                 };

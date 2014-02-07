@@ -10,13 +10,16 @@ namespace Ilc.Core.Services
     public class TrainingsService : ITrainingsService
     {
         public IUow Uow { get; set; }
+        public IUsersService Users { get; set; }
 
         public FilteredResults<Training> GetFilteredTrainings(FilterArguments parameters)
         {
             // set defaults
             parameters.Length = parameters.Length == 0 ? 100 : parameters.Length;
 
-            var query = Uow.Trainings.GetAll();
+            var user = Users.GetByUsername();
+            var query = Uow.Trainings.GetAll().Where(t => t.Customer.CompanyId == user.CompanyId);
+
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
 

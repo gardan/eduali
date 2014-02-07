@@ -22,6 +22,8 @@ namespace Ilc.Core
 
         public const string AvailabilityReadAll = "availability-read";
 
+        public const string CompanyReadAll = "company-read-all";
+
         public static List<string> GetAll()
         {
             var type = typeof (SystemClaims);

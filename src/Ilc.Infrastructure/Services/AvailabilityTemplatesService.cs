@@ -61,8 +61,9 @@ namespace Ilc.Infrastructure.Services
             // set defaults
             parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
             parameters.Filter = parameters.Filter ?? new List<Filter>();
-
-            var query = Uow.Templates.GetAll();
+            
+            var user = Users.GetByUsername();
+            var query = Uow.Templates.GetAll().Where(t => t.CompanyId == user.CompanyId);
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
 
@@ -99,8 +100,11 @@ namespace Ilc.Infrastructure.Services
 
         public void Create(Template template)
         {
-            template.Creator = Users.GetByUsername();
+            var user = Users.GetByUsername();
+            template.Creator = user;
             template.CreateDate = DateTimeOffset.UtcNow;
+
+            template.CompanyId = user.CompanyId;
 
             Uow.Templates.Add(template);
             Uow.Commit();

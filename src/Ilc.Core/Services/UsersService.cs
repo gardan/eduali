@@ -18,7 +18,8 @@ namespace Ilc.Core.Services
             parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
             parameters.Filter = parameters.Filter ?? new List<Filter>();
 
-            var query = Uow.UserProfiles.GetAll();
+            var user = GetByUsername();
+            var query = Uow.UserProfiles.GetAll().Where(up => up.CompanyId == user.CompanyId);
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
 
@@ -78,6 +79,12 @@ namespace Ilc.Core.Services
 
         public void Create(UserProfile user, string password)
         {
+            if (user.CompanyId == 0)
+            {
+                var loggedInUser = GetByUsername();
+                user.CompanyId = loggedInUser.CompanyId;
+            }
+
             // Create the profile
             Uow.UserProfiles.Add(user);
             Uow.Commit();

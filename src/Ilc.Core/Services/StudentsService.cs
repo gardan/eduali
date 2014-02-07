@@ -17,8 +17,8 @@ namespace Ilc.Core.Services
         {
             // set defaults
             parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
-
-            var query = Uow.Students.GetAll();
+            var user = Users.GetByUsername();
+            var query = Uow.Students.GetAll().Where(s => s.Customer.CompanyId == user.CompanyId);
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
 

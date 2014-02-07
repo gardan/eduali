@@ -12,6 +12,7 @@ namespace Ilc.Core.Services
     public class StatusDefinitionsService : IStatusDefinitionsService
     {
         public IUow Uow { get; set; }
+        public IUsersService Users { get; set; }
 
         public FilteredResults<StatusDictionary> GetFiltered(FilterArgumentsStatusDefinitions parameters)
         {
@@ -19,7 +20,8 @@ namespace Ilc.Core.Services
             parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
             parameters.Filter = parameters.Filter ?? new List<Filter>();
 
-            var query = Uow.StatusDictionary.GetAll();
+            var user = Users.GetByUsername();
+            var query = Uow.StatusDictionary.GetAll().Where(sd => sd.CompanyId == user.CompanyId);
 
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;

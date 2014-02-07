@@ -22,7 +22,8 @@ namespace Ilc.Core.Services
             if (arguments.StartDate == DateTimeOffset.MinValue) arguments.StartDate = DateTimeOffset.UtcNow;
             if (arguments.EndDate == DateTimeOffset.MinValue) arguments.EndDate = arguments.StartDate.AddDays(2);
 
-            var query = Uow.Availabilities.GetAll().Where(a => a.StartDate >= arguments.StartDate && a.EndDate <= arguments.EndDate);
+            var user = Users.GetByUsername();
+            var query = Uow.Availabilities.GetAll().Where(a => a.StartDate >= arguments.StartDate && a.EndDate <= arguments.EndDate && a.Trainer.CompanyId == user.CompanyId);
 
 
             if (AuthorizationService.HasClaim(SystemClaims.TasksTrainer) && !AuthorizationService.HasClaim(SystemClaims.AvailabilityReadAll))

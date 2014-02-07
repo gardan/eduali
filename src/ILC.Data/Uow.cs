@@ -46,6 +46,7 @@ namespace Ilc.Data
         public IRepository<Availability> Availabilities { get { return GetStandardRepo<Availability>(); } }
         public IRepository<Template> Templates { get { return GetStandardRepo<Template>(); } }
         public IRepository<TemplateDay> TemplateDays { get { return GetStandardRepo<TemplateDay>(); } }
+        public IRepository<Company> Companies { get { return GetStandardRepo<Company>(); } }
 
         public Uow(IRepositoryProvider repositoryProvider)
         {

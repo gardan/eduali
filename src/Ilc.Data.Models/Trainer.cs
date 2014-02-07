@@ -8,7 +8,7 @@ using Ilc.Data.Models.Base;
 
 namespace Ilc.Data.Models
 {
-    public class Trainer : EntityBase
+    public class Trainer : CompanyBaseEntity
     {
         public string Name { get; set; }
         public string Phone { get; set; }

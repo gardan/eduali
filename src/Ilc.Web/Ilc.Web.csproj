@@ -106,6 +106,7 @@
     <Content Include="Images\view.png" />
     <Content Include="Images\web32\availability.png" />
     <Content Include="Images\web32\book.png" />
+    <Content Include="Images\web32\company.png" />
     <Content Include="Images\web32\customer.png" />
     <Content Include="Images\web32\planning.png" />
     <Content Include="Images\web32\settings.png" />
@@ -128,6 +129,7 @@
     <Content Include="Scripts\app\chart\Trainings.js" />
     <Content Include="Scripts\app\Configuration.js" />
     <Content Include="Scripts\app\controller\Availability.js" />
+    <Content Include="Scripts\app\controller\Companies.js" />
     <Content Include="Scripts\app\controller\Contacts.js" />
     <Content Include="Scripts\app\controller\Customers.js" />
     <Content Include="Scripts\app\controller\Home.js" />
@@ -153,6 +155,7 @@
     <Content Include="Scripts\app\form\OfferForm.js" />
     <Content Include="Scripts\app\form\QuestionWithPredefinedAnswers.js" />
     <Content Include="Scripts\app\form\TransferBlockForm.js" />
+    <Content Include="Scripts\app\grid\Companies.js" />
     <Content Include="Scripts\app\grid\Competences.js" />
     <Content Include="Scripts\app\grid\Claims.js" />
     <Content Include="Scripts\app\grid\EvalQuestions.js" />
@@ -180,6 +183,7 @@
     <Content Include="Scripts\app\scheduler\Training.js" />
     <Content Include="Scripts\app\slider\TimeSlider.js" />
     <Content Include="Scripts\app\store\Claims.js" />
+    <Content Include="Scripts\app\store\Companies.js" />
     <Content Include="Scripts\app\store\Contacts.js" />
     <Content Include="Scripts\app\store\Genders.js" />
     <Content Include="Scripts\app\store\GridConfig.js" />
@@ -357,6 +361,8 @@
     <Content Include="Scripts\app\ux\upload\uploader\LegacyExtJsUploader.js" />
     <Content Include="Scripts\app\view\availability\CreateAvailabilities.js" />
     <Content Include="Scripts\app\view\availability\Default.js" />
+    <Content Include="Scripts\app\view\companies\Create.js" />
+    <Content Include="Scripts\app\view\companies\List.js" />
     <Content Include="Scripts\app\view\customers\contacts\Create.js" />
     <Content Include="Scripts\app\view\customers\contacts\List.js" />
     <Content Include="Scripts\app\view\customers\View.js" />
@@ -3965,6 +3971,7 @@
     <Compile Include="Services\AvatarsService.cs" />
     <Compile Include="Services\ClaimsService.cs" />
     <Compile Include="Services\ClientConfigurationService.cs" />
+    <Compile Include="Services\CompaniesService.cs" />
     <Compile Include="Services\ContactsService.cs" />
     <Compile Include="Services\CustomersService.cs" />
     <Compile Include="InjectorConventions\CustomerToCustomerModel.cs" />

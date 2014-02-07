@@ -10,6 +10,7 @@ namespace Ilc.Core.Services
     public class SubjectsService : ISubjectsService
     {
         public IUow Uow { get; set; }
+        public IUsersService Users { get; set; }
 
         public FilteredResults<Subject> GetFiltered(FilterArgumentsSubjects parameters)
         {
@@ -17,9 +18,13 @@ namespace Ilc.Core.Services
             parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
             parameters.Filter = parameters.Filter ?? new List<Filter>();
 
-            var query = Uow.Subjects.GetAll();
+            var user = Users.GetByUsername();
+            var query = Uow.Subjects.GetAll().Where(s => s.CompanyId == user.CompanyId);
             
             // predefined search
+            // This searches for subjects that belong or not, to a trainer.
+            // e.g. You want all the subjects that a trainer has.
+            // e.g. You want all the subjects that a trainer does NOT have.
             if (parameters.TrainerId > 0)
             {
                 if (parameters.Assigned)
@@ -73,6 +78,9 @@ namespace Ilc.Core.Services
 
         public void Create(Subject newSubject)
         {
+            var user = Users.GetByUsername();
+            newSubject.CompanyId = user.CompanyId;
+
             Uow.Subjects.Add(newSubject);
             Uow.Commit();
         }

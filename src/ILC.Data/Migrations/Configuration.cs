@@ -21,10 +21,7 @@ namespace Ilc.Data.Migrations
 
         protected override void Seed(AppContext context)
         {
-            context.Subjects.AddOrUpdate(s => s.Name,
-                new Subject() { Name = "English" },
-                new Subject() { Name = "Romanian" });
-
+            SeedInitialCompany(context);
             SeedGradingSystems(context);
             SeedRoles(context);
             SeedInitialAccount(context);
@@ -37,6 +34,14 @@ namespace Ilc.Data.Migrations
             SeedTemplates(context);
         }
 
+        private void SeedInitialCompany(AppContext context)
+        {
+            context.Companies.AddOrUpdate(c => c.Name, 
+                new Company() {Name = "Edu Alliance"});
+
+            context.SaveChanges();
+        }
+
         private void SeedTemplates(AppContext context)
         {
             var admin = context.UserProfiles.Find(1);
@@ -44,6 +49,7 @@ namespace Ilc.Data.Migrations
             context.Templates.AddOrUpdate(t => t.Name,
                 new Template()
                 {
+                    CompanyId = 1,
                     Name = "Morning",
                     CreateDate = DateTimeOffset.UtcNow,
                     Creator = admin,
@@ -60,6 +66,7 @@ namespace Ilc.Data.Migrations
                 },
                 new Template()
                 {
+                    CompanyId = 1,
                     Name = "Afternoon",
                     CreateDate = DateTimeOffset.UtcNow,
                     Creator = admin,
@@ -76,6 +83,7 @@ namespace Ilc.Data.Migrations
                 },
                 new Template()
                 {
+                    CompanyId = 1,
                     Name = "Night",
                     CreateDate = DateTimeOffset.UtcNow,
                     Creator = admin,
@@ -97,6 +105,7 @@ namespace Ilc.Data.Migrations
             context.GradingSystems.AddOrUpdate(s => s.Name,
                 new GradingSystem()
                     {
+                        CompanyId = 1,
                         Name = "European",
                         Grades = new List<Grade>()
                             {
@@ -110,6 +119,7 @@ namespace Ilc.Data.Migrations
                     },
                 new GradingSystem()
                     {
+                        CompanyId = 1,
                         Name = "Romanian",
                         Grades = new List<Grade>()
                             {
@@ -125,6 +135,8 @@ namespace Ilc.Data.Migrations
                                 new Grade() { Name = "1", Order = 10 }
                             }
                     });
+
+            context.SaveChanges();
         }
 
         private void SeedRoles(AppContext context)
@@ -133,6 +145,7 @@ namespace Ilc.Data.Migrations
             context.Roles.AddOrUpdate(r => r.RoleName,
                                       new Role()
                                           {
+                                              CompanyId = 1,
                                               CanDelete = false,
                                               RoleName = "Customer Contact",
                                               Claims = new List<RoleClaim>()
@@ -142,6 +155,7 @@ namespace Ilc.Data.Migrations
                                           },
                                       new Role()
                                           {
+                                              CompanyId = 1,
                                               CanDelete = false,
                                               RoleName = "Customer Supervizor",
                                               Claims = new List<RoleClaim>()
@@ -151,6 +165,7 @@ namespace Ilc.Data.Migrations
                                           },
                                       new Role() // Student
                                           {
+                                              CompanyId = 1,
                                               CanDelete = false,
                                               RoleName = "Student",
                                               Claims = new List<RoleClaim>()
@@ -160,6 +175,7 @@ namespace Ilc.Data.Migrations
                                           },
                                       new Role() // Trainer
                                           {
+                                              CompanyId = 1,
                                               CanDelete = false,
                                               RoleName = "Trainer",
                                               Claims = new List<RoleClaim>()
@@ -169,6 +185,7 @@ namespace Ilc.Data.Migrations
                                           },
                                       new Role() // Zeus
                                           {
+                                              CompanyId = 1,
                                               CanDelete = false,
                                               RoleName = "Zeus",
                                               Claims = new List<RoleClaim>()
@@ -176,7 +193,8 @@ namespace Ilc.Data.Migrations
                                                       new RoleClaim() {Name = "tasks-administrator", Value = true.ToString()},
                                                       new RoleClaim() {Name = "tasks-sales", Value = true.ToString()},
                                                       new RoleClaim() {Name = "tasks-coordinator", Value = true.ToString()},
-                                                      new RoleClaim() {Name = "ui-settings-read", Value = true.ToString()}
+                                                      new RoleClaim() {Name = "ui-settings-read", Value = true.ToString()},
+                                                      new RoleClaim() {Name = "company-read-all", Value = true.ToString()},
                                                   }
                                           }
                                       );
@@ -193,7 +211,7 @@ namespace Ilc.Data.Migrations
                 if (record == null)
                 {
                     context.StatusDictionaries.AddOrUpdate(s => s.Name,
-                    new StatusDictionary() { Name = status, FriendlyName = status });
+                    new StatusDictionary() { CompanyId = 1, Name = status, FriendlyName = status });
                 }
             }
             context.SaveChanges();
@@ -202,8 +220,8 @@ namespace Ilc.Data.Migrations
         private void SeedSubjects(AppContext context)
         {
             context.Subjects.AddOrUpdate(s => s.Name,
-                new Subject() { Name = "Romanian" },
-                new Subject() { Name = "English" });
+                new Subject() { Name = "Romanian", CompanyId = 1 },
+                new Subject() { Name = "English", CompanyId = 1 });
 
             context.SaveChanges();
         }
@@ -213,6 +231,7 @@ namespace Ilc.Data.Migrations
             var subjects = context.Subjects.ToList();
             var user = new UserProfile()
             {
+                CompanyId = 1,
                 Username = "alex",
                 UserDetails = new UserDetails()
                     {
@@ -228,6 +247,7 @@ namespace Ilc.Data.Migrations
             context.Trainers.AddOrUpdate(t => t.Name,
                                          new Trainer()
                                              {
+                                                 CompanyId = 1,
                                                  Address = "Str. Orsova, Nr. 26",
                                                  Name = "Alecsandru Tache",
                                                  Phone = "alecs@mail.com",
@@ -304,6 +324,7 @@ namespace Ilc.Data.Migrations
 
             var user1 = new UserProfile()
             {
+                CompanyId = 1,
                 Username = "ilc",
                 Roles = new List<Role>(roles),
                 UserDetails = new UserDetails()
@@ -317,6 +338,7 @@ namespace Ilc.Data.Migrations
 
             var user2 = new UserProfile()
             {
+                CompanyId = 1,
                 Username = "ilcSupervizor",
                 Roles = new List<Role>() { supervizor },
                 UserDetails = new UserDetails()
@@ -334,6 +356,7 @@ namespace Ilc.Data.Migrations
             context.Customers.AddOrUpdate(c => c.Name,
                 new Customer()
                     {
+                        CompanyId = 1,
                         BankAccount = "IBAN0912749126972",
                         Name = "Ilc",
                         BillingAddress = "Str. Whatever",
@@ -403,6 +426,7 @@ namespace Ilc.Data.Migrations
             // create the user profile
             var firstUser = new UserProfile()
             {
+                CompanyId = 1,
                 Username = "admin",
                 Roles = new List<Role>() { role },
                 UserDetails = new UserDetails()

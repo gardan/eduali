@@ -45,6 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\CompaniesService.cs" />
+    <Compile Include="Contracts\ICompaniesService.cs" />
+    <Compile Include="Services\CompanyDefaultsService.cs" />
+    <Compile Include="Services\GradingSystemsService.cs" />
+    <Compile Include="Contracts\IGradingSystemsService.cs" />
     <Compile Include="Services\GenderService.cs" />
     <Compile Include="Contracts\IAuthorizationService.cs" />
     <Compile Include="Contracts\IGenderService.cs" />
@@ -65,6 +70,7 @@
     <Compile Include="Contracts\IStatusDefinitionsService.cs" />
     <Compile Include="FilterArgumentsSubjects.cs" />
     <Compile Include="Contracts\IAvailabilityService.cs" />
+    <Compile Include="Contracts\ICompanyDefaultsService.cs" />
     <Compile Include="Services\StatusDefinitionsService.cs" />
     <Compile Include="Services\SubjectsService.cs" />
     <Compile Include="Services\ClaimsService.cs" />
