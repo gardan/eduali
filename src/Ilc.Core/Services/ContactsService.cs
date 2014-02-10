@@ -12,6 +12,7 @@ namespace Ilc.Core.Services
     {
         public IUow Uow { get; set; }
         public IUsersService Users { get; set; }
+        public IRolesService Roles { get; set; }
 
         public FilteredResults<ContactPerson> GetFiltered(FilterArgumentsContacts parameters)
         {
@@ -97,7 +98,7 @@ namespace Ilc.Core.Services
             } while (!usernameFound);
 
             // create the user
-            var role = Uow.Roles.GetAll().FirstOrDefault(r => r.RoleName == "Contact Supervizor");
+            var role = Roles.GetByName("Contact Supervizor");
             var newUser = new UserProfile() { Username = username, UserDetails = userDetails, Roles = new List<Role>() { role } };
             Users.Create(newUser, username);
 

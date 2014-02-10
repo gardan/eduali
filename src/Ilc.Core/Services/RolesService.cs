@@ -87,5 +87,11 @@ namespace Ilc.Core.Services
             Uow.Roles.Update(role);
             Uow.Commit();
         }
+
+        public Role GetByName(string name)
+        {
+            var user = Users.GetByUsername();
+            return Uow.Roles.GetAll().FirstOrDefault(r => r.RoleName == name && r.CompanyId == user.CompanyId);
+        }
     }
 }
