@@ -232,16 +232,16 @@ namespace Ilc.Data.Migrations
             var user = new UserProfile()
             {
                 CompanyId = 1,
-                Username = "alex",
+                Email = "alex",
                 UserDetails = new UserDetails()
                     {
-                        Email = "alecs@mail.com",
+                        // Email = "alecs@mail.com",
                         FirstName = "Alecsandru",
                         LastName = "Tache",
                         Phone = "139057098375"
                     }
             };
-            if (context.UserProfiles.FirstOrDefault(u => u.Username == "alex") != null) return;
+            if (context.UserProfiles.FirstOrDefault(u => u.Email == "alex") != null) return;
             AddUser(context, user);
 
             context.Trainers.AddOrUpdate(t => t.Name,
@@ -265,11 +265,11 @@ namespace Ilc.Data.Migrations
             var role = context.Roles.FirstOrDefault(r => r.RoleName == "Student");
             var user1 = new UserProfile()
             {
-                Username = "ionel",
+                Email = "ionel",
                 Roles = new List<Role>() { role },
                 UserDetails = new UserDetails()
                     {
-                        Email = "ionel@ion.ion",
+                        // Email = "ionel@ion.ion",
                         FirstName = "Ionel",
                         LastName = "Popescu",
                         Phone = "03418497814879"
@@ -277,11 +277,11 @@ namespace Ilc.Data.Migrations
             };
             var user2 = new UserProfile()
             {
-                Username = "ghita",
+                Email = "ghita",
                 Roles = new List<Role>() { role },
                 UserDetails = new UserDetails()
                     {
-                        Email = "ghita@ghita.ghita",
+                        // Email = "ghita@ghita.ghita",
                         FirstName = "Ghita",
                         LastName = "Alexandru",
                         Phone = "159379385"
@@ -289,7 +289,7 @@ namespace Ilc.Data.Migrations
             };
 
 
-            if (context.UserProfiles.FirstOrDefault(u => u.Username == "ionel") == null)
+            if (context.UserProfiles.FirstOrDefault(u => u.Email == "ionel") == null)
             {
 
                 AddUser(context, user1);
@@ -303,7 +303,7 @@ namespace Ilc.Data.Migrations
                 context.SaveChanges();
             }
 
-            if (context.UserProfiles.FirstOrDefault(u => u.Username == "ghita") == null)
+            if (context.UserProfiles.FirstOrDefault(u => u.Email == "ghita") == null)
             {
                 AddUser(context, user2);
                 context.Students.AddOrUpdate(s => s.Name,
@@ -325,11 +325,11 @@ namespace Ilc.Data.Migrations
             var user1 = new UserProfile()
             {
                 CompanyId = 1,
-                Username = "ilc",
+                Email = "ilc",
                 Roles = new List<Role>(roles),
                 UserDetails = new UserDetails()
                 {
-                    Email = "ilc@ilc.ilc",
+                    // Email = "ilc@ilc.ilc",
                     FirstName = "Ilc",
                     LastName = "Boss",
                     Phone = "03418497814879"
@@ -339,11 +339,11 @@ namespace Ilc.Data.Migrations
             var user2 = new UserProfile()
             {
                 CompanyId = 1,
-                Username = "ilcSupervizor",
+                Email = "ilcSupervizor",
                 Roles = new List<Role>() { supervizor },
                 UserDetails = new UserDetails()
                 {
-                    Email = "ilcasd@ilc.ilc",
+                    // Email = "ilcasd@ilc.ilc",
                     FirstName = "Ilc",
                     LastName = "Supervizor",
                     Phone = "03418497814879"
@@ -396,7 +396,7 @@ namespace Ilc.Data.Migrations
 
         protected void SeedInitialAccount(AppContext context)
         {
-            var user = context.UserProfiles.FirstOrDefault(u => u.Username == "admin");
+            var user = context.UserProfiles.FirstOrDefault(u => u.Email == "admin");
             if (user != null) // user exists
             {
                 // check if membership exists
@@ -427,11 +427,11 @@ namespace Ilc.Data.Migrations
             var firstUser = new UserProfile()
             {
                 CompanyId = 1,
-                Username = "admin",
+                Email = "admin",
                 Roles = new List<Role>() { role },
                 UserDetails = new UserDetails()
                     {
-                        Email = "zeus@olympus.com",
+                        // Email = "zeus@olympus.com",
                         FirstName = "Zeus",
                         LastName = "",
                         Phone = "91387983571"
@@ -457,7 +457,7 @@ namespace Ilc.Data.Migrations
 
         private void AddUser(AppContext context, UserProfile user)
         {
-            var userExists = context.UserProfiles.FirstOrDefault(u => u.Username == user.Username);
+            var userExists = context.UserProfiles.FirstOrDefault(u => u.Email == user.Email);
             if (userExists != null)
             {
                 user = userExists;
@@ -468,7 +468,7 @@ namespace Ilc.Data.Migrations
             context.SaveChanges();
 
             // create the membership
-            var pwd = user.Username;
+            var pwd = user.Email;
             var salt = Crypto.Crypto.GenerateSalt();
             var hashedPwd = Crypto.Crypto.Hash(salt + Crypto.Crypto.Hash(salt + pwd));
 

@@ -19,12 +19,12 @@ namespace Ilc.Core.Services
             // set defaults
             parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
 
-            var user = Users.GetByUsername();
+            var user = Users.GetByEmail();
             var query = Uow.Trainers.GetAll().Where(t => t.CompanyId == user.CompanyId);
 
             if (Authorization.HasClaim(SystemClaims.TasksTrainer))
             {
-                var userId = Users.GetByUsername().Id;
+                var userId = Users.GetByEmail().Id;
                 query = query.Where(t => t.UserProfileId == userId);
             }
 
@@ -77,36 +77,17 @@ namespace Ilc.Core.Services
 
         public void Create(Trainer newTrainer)
         {
-            var loggedInUser = Users.GetByUsername();
+            var loggedInUser = Users.GetByEmail();
 
             // first create the user.
-            var username = newTrainer.UserProfile.UserDetails.FirstName.Trim().Split(Convert.ToChar(" "))[0].ToLower();
+            var email = newTrainer.UserProfile.Email;
             var userDetails = newTrainer.UserProfile.UserDetails;
             newTrainer.UserProfile = null;
-            var originalUsername = username;
-            // check to see if the username exists
-            var index = 0;
-            UserProfile user;
-            var usernameFound = true;
-            do
-            {
-                user = Uow.UserProfiles.GetAll().FirstOrDefault(u => u.Username == username);
-                
-                if (user != null)
-                {
-                    username = originalUsername + "_" + index++;
-                    usernameFound = false;
-                }
-                else
-                {
-                    usernameFound = true;
-                }
-            } while (!usernameFound);
-
+            
             // Creat the user
             var role = Uow.Roles.GetAll().FirstOrDefault(r => r.RoleName == "Trainer");
-            var newUser = new UserProfile() {CompanyId = loggedInUser.CompanyId, Username = username, UserDetails = userDetails, Roles = new List<Role>() { role }};
-            Users.Create(newUser, username);
+            var newUser = new UserProfile() { CompanyId = loggedInUser.CompanyId, Email = email, UserDetails = userDetails, Roles = new List<Role>() { role } };
+            Users.Create(newUser, email);
 
             // Append the userId to the trainer
             newTrainer.UserProfileId = newUser.Id;

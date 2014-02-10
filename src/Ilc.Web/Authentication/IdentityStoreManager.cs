@@ -11,18 +11,18 @@ namespace Ilc.Web.Authentication
         public IUsersService UsersService { get; set; }
         public IMembershipService Membership { get; set; }
 
-        public bool ValidateLocalLogin(string username, string password)
+        public bool ValidateLocalLogin(string email, string password)
         {
-            var user = UsersService.GetByUsername(username);
+            var user = UsersService.GetByEmail(email);
             if (user == null) return false;
 
-            return CheckPassword(username, password);
+            return CheckPassword(email, password);
         }
 
 
-        private bool CheckPassword(string username, string password)
+        private bool CheckPassword(string email, string password)
         {
-            return Membership.ValidateUser(username, password);
+            return Membership.ValidateUser(email, password);
         }
 
         public void CreateLocalLogin(string username, string password)

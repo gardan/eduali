@@ -27,7 +27,7 @@ namespace Ilc.Web.Services
                         data.Add(new FileModel()
                             {
                                 CreateDate = trainingOffer.CreateDate,
-                                Creator = new UserModel() { Username = "admin", Id = 1 },
+                                Creator = new UserModel() { Email = "admin", Id = 1 },
                                 Name = string.Format("Offer-{0}-{1}", trainingOffer.Id, training.Customer.Name),
                                 Url = "pdf/offer/" + trainingOffer.Id
                             });

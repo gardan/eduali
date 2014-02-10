@@ -25,7 +25,7 @@ namespace Ilc.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (AuthenticationManager.CheckPasswordAndSignIn(this.HttpContext, model.Username, model.Password, model.RememberMe))
+                if (AuthenticationManager.CheckPasswordAndSignIn(this.HttpContext, model.Email, model.Password, model.RememberMe))
                 {
                     Debug.WriteLine("User authenticated!");
                     return RedirectToLocal(returnUrl);

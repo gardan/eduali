@@ -9,12 +9,12 @@ namespace Ilc.Core.Services
     {
         public IUow Uow { get; set; }
 
-        public bool ValidateUser(string username, string password)
+        public bool ValidateUser(string email, string password)
         {
-            var user = Uow.UserProfiles.GetAll().FirstOrDefault(u => u.Username == username);
+            var user = Uow.UserProfiles.GetAll().FirstOrDefault(u => u.Email == email);
             if (user == null)
             {
-                throw new ArgumentException("Username does not exist.", username);
+                throw new ArgumentException("User does not exist.", email);
             }
             var membership = Uow.Memberships.GetById(user.Id);
             var hashedPwd = membership.Password;

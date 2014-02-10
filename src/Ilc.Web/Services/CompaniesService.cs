@@ -34,7 +34,7 @@ namespace Ilc.Web.Services
             var company = new Company().InjectFrom(request) as Company;
             var userProfile = new UserProfile()
                 {
-                    Username = request.UserInfo.Email,
+                    Email = request.UserInfo.Email,
                     UserDetails = new UserDetails().InjectFrom(request.UserInfo) as UserDetails
                 };
 

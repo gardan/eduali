@@ -20,7 +20,7 @@ namespace Ilc.Core.Services
             parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
             parameters.Filter = parameters.Filter ?? new List<Filter>();
 
-            var user = Users.GetByUsername();
+            var user = Users.GetByEmail();
             var query = Uow.StatusDictionary.GetAll().Where(sd => sd.CompanyId == user.CompanyId);
 
             var totalResults = query.Count();

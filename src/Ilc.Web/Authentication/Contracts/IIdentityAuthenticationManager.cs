@@ -7,7 +7,7 @@ namespace Ilc.Web.Authentication.Contracts
 {
     public interface IIdentityAuthenticationManager
     {
-        bool CheckPasswordAndSignIn(HttpContextBase context, string username, string password, bool isPersistent);
+        bool CheckPasswordAndSignIn(HttpContextBase context, string email, string password, bool isPersistent);
         void Logout();
     }
 }

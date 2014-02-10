@@ -75,7 +75,7 @@ namespace Ilc.Core.Services
             // 3. Create the defaults user
             initialUser.CompanyId = newCompany.Id;
             initialUser.Roles = roles;
-            Users.Create(initialUser, initialUser.UserDetails.Email);
+            Users.Create(initialUser, initialUser.Email);
         }
     }
 }

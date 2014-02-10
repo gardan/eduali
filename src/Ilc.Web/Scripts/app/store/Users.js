@@ -2,7 +2,6 @@
     extend: 'Ext.data.Store',
 
     model: 'Ilc.model.User',
-    // fields: ['id', 'username', 'userInfo'],
 
     constructor: function (args) {
         var me = this;

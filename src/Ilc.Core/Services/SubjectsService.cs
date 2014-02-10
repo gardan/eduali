@@ -18,7 +18,7 @@ namespace Ilc.Core.Services
             parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
             parameters.Filter = parameters.Filter ?? new List<Filter>();
 
-            var user = Users.GetByUsername();
+            var user = Users.GetByEmail();
             var query = Uow.Subjects.GetAll().Where(s => s.CompanyId == user.CompanyId);
             
             // predefined search
@@ -78,7 +78,7 @@ namespace Ilc.Core.Services
 
         public void Create(Subject newSubject)
         {
-            var user = Users.GetByUsername();
+            var user = Users.GetByEmail();
             newSubject.CompanyId = user.CompanyId;
 
             Uow.Subjects.Add(newSubject);

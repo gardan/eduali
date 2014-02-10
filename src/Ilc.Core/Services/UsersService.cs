@@ -18,7 +18,7 @@ namespace Ilc.Core.Services
             parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
             parameters.Filter = parameters.Filter ?? new List<Filter>();
 
-            var user = GetByUsername();
+            var user = GetByEmail();
             var query = Uow.UserProfiles.GetAll().Where(up => up.CompanyId == user.CompanyId);
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
@@ -37,8 +37,8 @@ namespace Ilc.Core.Services
                 var inFilter = filter;
                 switch (filter.Field)
                 {
-                    case "username":
-                        query = query.Where(c => c.Username.Contains(inFilter.Value));
+                    case "email":
+                        query = query.Where(c => c.Email.Contains(inFilter.Value));
                         break;
                     default:
                         // if trying to search for unavalable column, just exit
@@ -61,15 +61,15 @@ namespace Ilc.Core.Services
             };
         }
 
-        public UserProfile GetByUsername(string username)
+        public UserProfile GetByEmail(string username)
         {
-            return Uow.UserProfiles.GetAll().FirstOrDefault(u => u.Username == username);
+            return Uow.UserProfiles.GetAll().FirstOrDefault(u => u.Email == username);
         }
 
-        public UserProfile GetByUsername()
+        public UserProfile GetByEmail()
         {
             var principal = ClaimsPrincipal.Current;
-            return GetByUsername(principal.FindFirst(c => c.Type == ClaimTypes.Name).Value);
+            return GetByEmail(principal.FindFirst(c => c.Type == ClaimTypes.Name).Value);
         }
 
         public UserProfile GetById(int id)
@@ -81,7 +81,7 @@ namespace Ilc.Core.Services
         {
             if (user.CompanyId == 0)
             {
-                var loggedInUser = GetByUsername();
+                var loggedInUser = GetByEmail();
                 user.CompanyId = loggedInUser.CompanyId;
             }
 

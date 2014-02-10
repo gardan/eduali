@@ -12,7 +12,7 @@ namespace Ilc.Data.Models
 {
     public class UserProfile : EntityBase
     {
-        public string Username { get; set; }
+        public string Email { get; set; }
 
         public int CompanyId { get; set; }
         [ForeignKey("CompanyId")]

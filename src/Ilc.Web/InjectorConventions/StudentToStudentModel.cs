@@ -11,11 +11,17 @@ namespace Ilc.Web.InjectorConventions
         protected override bool Match(ConventionInfo c)
         {
             return c.SourceProp.Name == c.TargetProp.Name  ||
+                (c.SourceProp.Name == "UserProfile" && c.TargetProp.Name == "Email") ||
                 (c.SourceProp.Name == "UserProfile" && c.TargetProp.Name == "UserInfo");
         }
 
         protected override object SetValue(ConventionInfo c)
         {
+            if (c.SourceProp.Name == "UserProfile" && c.TargetProp.Name == "Email")
+            {
+                var user = (UserProfile)c.SourceProp.Value;
+                return user.Email;
+            }
             if (c.SourceProp.Name == "Customer" && c.TargetProp.Name == "Customer")
             {
                 return new CustomerStudentModel().InjectFrom(c.SourceProp.Value) as CustomerStudentModel;

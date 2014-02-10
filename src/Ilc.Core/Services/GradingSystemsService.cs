@@ -12,7 +12,7 @@ namespace Ilc.Core.Services
 
         public void Create(GradingSystem gradingSystem)
         {
-            var user = Users.GetByUsername();
+            var user = Users.GetByEmail();
             gradingSystem.CompanyId = user.CompanyId;
 
             Uow.GradingSystems.Add(gradingSystem);

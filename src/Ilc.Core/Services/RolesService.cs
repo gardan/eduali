@@ -18,7 +18,7 @@ namespace Ilc.Core.Services
             parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
             parameters.Filter = parameters.Filter ?? new List<Filter>();
 
-            var user = Users.GetByUsername();
+            var user = Users.GetByEmail();
             var query = Uow.Roles.GetAll().Where(r => r.CompanyId == user.CompanyId);
             
             // predefined search
@@ -75,7 +75,7 @@ namespace Ilc.Core.Services
 
         public void Create(Role role)
         {
-            var user = Users.GetByUsername();
+            var user = Users.GetByEmail();
             role.CompanyId = user.CompanyId;
 
             Uow.Roles.Add(role);
@@ -90,7 +90,7 @@ namespace Ilc.Core.Services
 
         public Role GetByName(string name)
         {
-            var user = Users.GetByUsername();
+            var user = Users.GetByEmail();
             return Uow.Roles.GetAll().FirstOrDefault(r => r.RoleName == name && r.CompanyId == user.CompanyId);
         }
     }

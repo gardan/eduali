@@ -16,12 +16,12 @@ namespace Ilc.Web.Authentication
         public IUsersService Users { get; set; }
         public IClaimsService ClaimsService { get; set; }
 
-        public bool CheckPasswordAndSignIn(HttpContextBase context, string username, string password, bool isPersistent)
+        public bool CheckPasswordAndSignIn(HttpContextBase context, string email, string password, bool isPersistent)
         {
-            if (IdentityStoreManager.ValidateLocalLogin(username, password))
+            if (IdentityStoreManager.ValidateLocalLogin(email, password))
             {
 
-                var principal = CreateApplicationPrincipal(username);
+                var principal = CreateApplicationPrincipal(email);
                 EstablishSession(principal);
 
                 return true;
@@ -29,10 +29,10 @@ namespace Ilc.Web.Authentication
             return false;
         }
 
-        private ClaimsPrincipal CreateApplicationPrincipal(string username)
+        private ClaimsPrincipal CreateApplicationPrincipal(string email)
         {
-            var claims = new List<Claim>() { new Claim(ClaimTypes.Name, username) };
-            var usersClaims = ClaimsService.GetByUserId(Users.GetByUsername(username).Id);
+            var claims = new List<Claim>() { new Claim(ClaimTypes.Name, email) };
+            var usersClaims = ClaimsService.GetByUserId(Users.GetByEmail(email).Id);
             claims.AddRange(usersClaims.Select(usersClaim => new Claim(usersClaim, true.ToString())));
 
             return new ClaimsPrincipal(new ClaimsIdentity(claims, "SAM"));

@@ -119,7 +119,6 @@ namespace Ilc.Web.Services
                 };
             contactPerson.CustomerId = request.CustomerId;
             contactPerson.UserProfile.UserDetails.Phone = request.Phone;
-            contactPerson.UserProfile.UserDetails.Email = request.Email;
             contactPerson.UserProfile.UserDetails.FirstName = request.FirstName;
             contactPerson.UserProfile.UserDetails.LastName = request.LastName;
 

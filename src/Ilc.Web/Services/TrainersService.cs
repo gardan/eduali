@@ -36,7 +36,7 @@ namespace Ilc.Web.Services
         {
             var newTrainer = new Trainer().InjectFrom(request) as Trainer;
             var userInfo = new UserDetails().InjectFrom<UserInfoModelToUserDetails>(request.UserInfo) as UserDetails;
-            newTrainer.UserProfile = new UserProfile() { UserDetails = userInfo };
+            newTrainer.UserProfile = new UserProfile() { Email = request.UserInfo.Email, UserDetails = userInfo };
 
             Trainers.Create(newTrainer);
             newTrainer.Subjects = new List<Subject>();
@@ -60,6 +60,7 @@ namespace Ilc.Web.Services
         {
             var userDetails = new UserDetails().InjectFrom<UserInfoModelToUserDetails>(request.UserInfo) as UserDetails;
             var updatedTrainer = Trainers.GetByTrainerId(request.Id);
+            updatedTrainer.UserProfile.Email = request.UserInfo.Email;
             updatedTrainer.UserProfile.UserDetails.PopulateWithNonDefaultValues(userDetails);
 
             Trainers.Update(updatedTrainer);

@@ -22,13 +22,13 @@ namespace Ilc.Core.Services
             if (arguments.StartDate == DateTimeOffset.MinValue) arguments.StartDate = DateTimeOffset.UtcNow;
             if (arguments.EndDate == DateTimeOffset.MinValue) arguments.EndDate = arguments.StartDate.AddDays(2);
 
-            var user = Users.GetByUsername();
+            var user = Users.GetByEmail();
             var query = Uow.Availabilities.GetAll().Where(a => a.StartDate >= arguments.StartDate && a.EndDate <= arguments.EndDate && a.Trainer.CompanyId == user.CompanyId);
 
 
             if (AuthorizationService.HasClaim(SystemClaims.TasksTrainer) && !AuthorizationService.HasClaim(SystemClaims.AvailabilityReadAll))
             {
-                var trainer = Trainers.GetByUserId(Users.GetByUsername().Id);
+                var trainer = Trainers.GetByUserId(Users.GetByEmail().Id);
                 if (trainer != null)
                 {
                     query = query.Where(a => a.TrainerId == trainer.Id);

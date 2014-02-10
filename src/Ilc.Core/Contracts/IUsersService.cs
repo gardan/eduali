@@ -5,8 +5,8 @@ namespace Ilc.Core.Contracts
     public interface IUsersService
     {
         FilteredResults<UserProfile> GetFiltered(FilterArgumentsUsers parameters);
-        UserProfile GetByUsername(string username);
-        UserProfile GetByUsername();
+        UserProfile GetByEmail(string username);
+        UserProfile GetByEmail();
         UserProfile GetById(int id);
         void Create(UserProfile user, string password);
         void Update(UserProfile user);

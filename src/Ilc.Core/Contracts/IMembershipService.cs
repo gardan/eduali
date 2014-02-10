@@ -2,7 +2,7 @@
 {
     public interface IMembershipService
     {
-        bool ValidateUser(string username, string password);
+        bool ValidateUser(string email, string password);
         void CreateAccount(string username, string password);
     }
 }

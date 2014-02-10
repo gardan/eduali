@@ -15,7 +15,7 @@ namespace Ilc.Web.Services
 
         public ClientConfigurationModel Get(ClientConfigurationModel request)
         {
-            var userId = Users.GetByUsername().Id;
+            var userId = Users.GetByEmail().Id;
             var usersClaims = Claims.GetByUserId(userId);
             var trainerId = -1;
 
@@ -24,7 +24,7 @@ namespace Ilc.Web.Services
 
             return new ClientConfigurationModel()
                 {
-                    Username = Users.GetByUsername().Username,
+                    Username = Users.GetByEmail().Email,
                     Claims = usersClaims.ToArray(),
                     TrainerId = trainerId
                 };

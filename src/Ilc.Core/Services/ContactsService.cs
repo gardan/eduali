@@ -78,13 +78,13 @@ namespace Ilc.Core.Services
             var userDetails = contact.UserProfile.UserDetails;
             contact.UserProfile = null;
             var originalUsername = username;
-            // check to see if the username exists
+            // check to see if the email exists
             var index = 0;
             UserProfile user;
             var usernameFound = true;
             do
             {
-                user = Uow.UserProfiles.GetAll().FirstOrDefault(u => u.Username == username);
+                user = Uow.UserProfiles.GetAll().FirstOrDefault(u => u.Email == username);
 
                 if (user != null)
                 {
@@ -99,7 +99,7 @@ namespace Ilc.Core.Services
 
             // create the user
             var role = Roles.GetByName("Contact Supervizor");
-            var newUser = new UserProfile() { Username = username, UserDetails = userDetails, Roles = new List<Role>() { role } };
+            var newUser = new UserProfile() { Email = username, UserDetails = userDetails, Roles = new List<Role>() { role } };
             Users.Create(newUser, username);
 
             contact.UserProfileId = newUser.Id;

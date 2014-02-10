@@ -47,7 +47,7 @@ namespace Ilc.Web.Services
                                 {
                                    FirstName = Utils.SplitNameString(request.ContactName)[0],
                                    LastName = Utils.SplitNameString(request.ContactName)[1],
-                                   Email = request.ContactEmail,
+                                   // Email = request.ContactEmail,
                                    Phone = "",
                                 }},
                             Name = request.ContactName,

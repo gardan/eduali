@@ -2,6 +2,6 @@
 {
     public interface IIdentityStoreManager
     {
-        bool ValidateLocalLogin(string username, string password);
+        bool ValidateLocalLogin(string email, string password);
     }
 }

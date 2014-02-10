@@ -14,7 +14,7 @@ namespace Ilc.Infrastructure.Services
 
         public string Translate(string status)
         {
-            var user = Users.GetByUsername();
+            var user = Users.GetByEmail();
             var statusDictionary = Uow.StatusDictionary.GetAll().FirstOrDefault(s => s.Name == status && s.CompanyId == user.CompanyId);
 
             if (statusDictionary != null) return statusDictionary.FriendlyName;

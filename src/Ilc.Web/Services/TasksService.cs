@@ -28,7 +28,7 @@ namespace Ilc.Web.Services
         [TaskModelWithStatusResponseFilter]
         public FilteredDataModel<TaskModel> Get(FilterParametersTasks request)
         {
-            var currentUser = Users.GetByUsername();
+            var currentUser = Users.GetByEmail();
 
 
             // var trainings = Uow.Trainings.GetAll().Where(t => t.Owners.Any(u => u.Id == currentUser.Id)).ToList();
@@ -345,7 +345,7 @@ namespace Ilc.Web.Services
 
             if (request.StudentId != 0)
             {
-                var currentUser = Users.GetByUsername();
+                var currentUser = Users.GetByEmail();
 
                 var assesment = new Assesment().InjectFrom(request) as Assesment;
                 assesment.TrainingId = request.TaskEntityId;
@@ -374,7 +374,7 @@ namespace Ilc.Web.Services
         private TrainingEvaluation Extract(TrainingEvaluationModel request)
         {
             var trainingEval = new TrainingEvaluation();
-            var currentUser = Users.GetByUsername();
+            var currentUser = Users.GetByEmail();
 
             trainingEval.CreateDate = DateTimeOffset.UtcNow;
             trainingEval.Creator = currentUser;

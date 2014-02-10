@@ -5,12 +5,9 @@
     getUserColCfg: function() {
         return [
             {
-                dataIndex: 'userInfo', // There actually isn't any column 'name', we just use it for filtering porpuses, see 'renderer' for the actual value
                 text: Ilc.resources.Manager.getResourceString('common.email'),
+                dataIndex: 'email',
                 flex: 1,
-                renderer: function (value, meta, record) {
-                    return record.get('userInfo').email;
-                },
                 filter: {
                     type: 'string'
                 }

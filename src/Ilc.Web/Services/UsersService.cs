@@ -39,7 +39,7 @@ namespace Ilc.Web.Services
 
             var userProfile = new UserProfile()
                 {
-                    Username = request.Username,
+                    Email = request.Username,
                     Roles = roles,
                     UserDetails = new UserDetails().InjectFrom<UserInfoModelToUserDetails>(request.UserInfo) as UserDetails
                 };
@@ -83,7 +83,7 @@ namespace Ilc.Web.Services
     public class UserModel
     {
         public int Id { get; set; }
-        public string Username { get; set; }
+        public string Email { get; set; }
         public UserInfoModel UserInfo { get; set; }
     }
 

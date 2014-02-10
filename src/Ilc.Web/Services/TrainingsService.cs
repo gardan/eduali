@@ -87,7 +87,7 @@ namespace Ilc.Web.Services
                     Students = students,
                     TrainerId = request.TrainerId,
                     CustomerId = request.CustomerId,
-                    // Owners = new [] { Users.GetByUsername() }, // We need to get the guy with Sales role that was specified at the beggining
+                    // Owners = new [] { Users.GetByEmail() }, // We need to get the guy with Sales role that was specified at the beggining
                     Owners = new [] { sales },
                     OwnersConfiguration = ownersConfiguration,
                     ContactPersons = contacts

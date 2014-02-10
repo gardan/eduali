@@ -19,7 +19,7 @@ namespace Ilc.Core.Services
             parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
             parameters.Filter = parameters.Filter ?? new List<Filter>();
 
-            var user = Users.GetByUsername();
+            var user = Users.GetByEmail();
             var query = Uow.Customers.GetAll().Where(c => c.CompanyId == user.CompanyId);
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
@@ -74,7 +74,7 @@ namespace Ilc.Core.Services
             var contact = newCustomer.ContactPersons.FirstOrDefault();
             newCustomer.ContactPersons.Clear();
 
-            var user = Users.GetByUsername();
+            var user = Users.GetByEmail();
             newCustomer.CompanyId = user.CompanyId;
 
             Uow.Customers.Add(newCustomer);
