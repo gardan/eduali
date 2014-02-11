@@ -240,21 +240,34 @@ namespace Ilc.Web.Services
                     {
                         var firstSchedule = lessonModel.LessonSchedules.First();
                         var scheduleDay = new TrainingScheduleDay()
-                        {
-                            Order = lessonModel.Id,
-                            StartDate = firstSchedule.StartDate,
-                            EndDate = firstSchedule.EndDate,
-                            TrainingId = request.TaskEntityId,
-                            LessonName = "Lesson " + lessonModel.Id
-                        };
+                            {
+                                Order = lessonModel.Id,
+                                StartDate = firstSchedule.StartDate,
+                                EndDate = firstSchedule.EndDate,
+                                TrainingId = request.TaskEntityId,
+                                LessonName = "Lesson " + lessonModel.Id
+                            };
                         schedule.Add(scheduleDay);
                     }
-                    
+
                 }
 
                 workflowData["Schedule"] = schedule;
             }
-            
+            else // see: https://github.com/gardan/ILC/issues/74
+            {
+                var requiredNoOfLesson = training.Offers.FirstOrDefault(o => o.Selected).NoLessons;
+                var currentNoOfLessons = Uow.TrainingScheduleDays.GetAll().Count(sd => sd.TrainingId == training.Id);
+                if (currentNoOfLessons < requiredNoOfLesson)
+                {
+                    return new HttpResult()
+                    {
+                        StatusCode = HttpStatusCode.OK
+                    };
+                }
+
+            }
+
             proc.Resume(training.WokrflowId.Value, TrainingStatus.Accepted, workflowData,
                         PersistableIdleAction.Unload);
 
