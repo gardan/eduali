@@ -34,7 +34,7 @@ namespace Ilc.Web.Services
         {
             var newStudent = new Student().InjectFrom(request) as Student;
             var userInfo = new UserDetails().InjectFrom<UserInfoModelToUserDetails>(request.UserInfo) as UserDetails;
-            newStudent.UserProfile = new UserProfile() {UserDetails = userInfo};
+            newStudent.UserProfile = new UserProfile() { Email = request.UserInfo.Email, UserDetails = userInfo};
 
             Students.Create(newStudent);
 
@@ -51,6 +51,7 @@ namespace Ilc.Web.Services
         {
             var userDetails = new UserDetails().InjectFrom<UserInfoModelToUserDetails>(request.UserInfo) as UserDetails;
             var updatedStudent = Uow.Students.GetById(request.Id);
+            updatedStudent.UserProfile.Email = request.UserInfo.Email;
             updatedStudent.UserProfile.UserDetails.PopulateWithNonDefaultValues(userDetails);
 
             Students.Update(updatedStudent);

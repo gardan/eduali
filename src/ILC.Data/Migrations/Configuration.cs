@@ -463,7 +463,7 @@ namespace Ilc.Data.Migrations
                 user = userExists;
                 return;
             }
-
+            user.CompanyId = 1;
             context.UserProfiles.Add(user);
             context.SaveChanges();
 

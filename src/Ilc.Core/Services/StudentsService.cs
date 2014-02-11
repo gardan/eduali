@@ -67,33 +67,14 @@ namespace Ilc.Core.Services
         public void Create(Student newStudent)
         {
             // first create the user.
-            var username = newStudent.UserProfile.UserDetails.FirstName.Trim().Split(Convert.ToChar(" "))[0].ToLower();
+            var email = newStudent.UserProfile.Email;
             var userDetails = newStudent.UserProfile.UserDetails;
             newStudent.UserProfile = null;
-            var originalUsername = username;
-            // check to see if the email exists
-            var index = 0;
-            UserProfile user;
-            var usernameFound = true;
-            do
-            {
-                user = Uow.UserProfiles.GetAll().FirstOrDefault(u => u.Email == username);
-
-                if (user != null)
-                {
-                    username = originalUsername + "_" + index++;
-                    usernameFound = false;
-                }
-                else
-                {
-                    usernameFound = true;
-                }
-            } while (!usernameFound);
-
+            
             // Creat the user
             var role = Uow.Roles.GetAll().FirstOrDefault(r => r.RoleName == "Student");
-            var newUser = new UserProfile() { Email = username, UserDetails = userDetails, Roles = new List<Role>() { role }};
-            Users.Create(newUser, username);
+            var newUser = new UserProfile() { Email = email, UserDetails = userDetails, Roles = new List<Role>() { role }};
+            Users.Create(newUser, email);
 
             newStudent.UserProfileId = newUser.Id;
 

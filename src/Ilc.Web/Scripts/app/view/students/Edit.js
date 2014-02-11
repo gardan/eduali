@@ -113,7 +113,7 @@
             {
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.email'),
                 name: 'userInfo.email',
-                value: cfgModel.get('userInfo').email
+                value: cfgModel.get('email')
             },
             {
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.phone'),
