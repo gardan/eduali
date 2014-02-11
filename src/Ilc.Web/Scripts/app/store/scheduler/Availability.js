@@ -27,10 +27,6 @@
         if (!availability || availability.length === 0) return true;
 
         for (var i = 0; i < availability.length; i++) {
-            console.log(availability[i].getStartDate());
-            console.log(availability[i].getEndDate());
-            console.log(start);
-            console.log(end);
             if (Sch.util.Date.timeSpanContains(availability[i].getStartDate(), availability[i].getEndDate(), start, end)) {
                 return true;
             }

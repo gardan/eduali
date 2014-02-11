@@ -105,6 +105,7 @@
             eventStore: eventStore,
             
             onEventCreated: function (newEventRecord) {
+                console.log('fired');
                 var resourceModel = resourceStore.getById(newEventRecord.get('ResourceId'));
                 
                 var trainingLessons = eventStore.queryBy(function (record) {

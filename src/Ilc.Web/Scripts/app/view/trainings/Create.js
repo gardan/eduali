@@ -136,21 +136,21 @@
             {
                 fieldLabel: 'Sales user',
                 store: salesUsersStore,
-                displayField: 'username',
+                displayField: 'email',
                 valueField: 'id',
                 name: 'workflowOwners.sales'
             },
             {
                 fieldLabel: 'Administration user',
                 store: administratorsUsersStore,
-                displayField: 'username',
+                displayField: 'email',
                 valueField: 'id',
                 name: 'workflowOwners.administration'
             },
             {
                 fieldLabel: 'Coordination user',
                 store: coordinatorsUsersStore,
-                displayField: 'username',
+                displayField: 'email',
                 valueField: 'id',
                 name: 'workflowOwners.coordinator'
             },

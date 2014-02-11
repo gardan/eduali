@@ -23,7 +23,38 @@
                 })
     ],
 
-    constructor: function (args) {
+    createValidatorFn: function (resourceRecord, startDate, endDate, e) {
+        var scheduler = this.up().up();
+        var availabilityStore = scheduler.resourceZones;
+        var result = availabilityStore.isResourceAvailable(resourceRecord, startDate, endDate);
+        
+        return result;
+    },
+
+    dndValidatorFn: function (dragRecords, targetResourceRecord, date, duration, e) {
+        var scheduler = this.up().up();
+        var availabilityStore = scheduler.resourceZones;
+        var result = availabilityStore.isResourceAvailable(targetResourceRecord, date, Ext.Date.add(date, Ext.Date.MILLI, duration));
+
+        return result;
+    },
+
+    loadAvailabilityZones: function () {
+        var me = this;
+        var availabilityStore = me.resourceZones;
+
+        var startDate = Sch.util.Date.add(me.getStartDate(), Sch.util.Date.DAY, -2);
+        var endDate = Sch.util.Date.add(me.getEndDate(), Sch.util.Date.DAY, 2);
+
+        availabilityStore.load({
+            params: {
+                startDate: startDate,
+                endDate: endDate
+            }
+        });
+    },
+
+    initComponent: function () {
         var me = this;
 
         // Fix for this: https://www.assembla.com/spaces/bryntum/support/tickets/13#/activity/ticket:
@@ -37,9 +68,9 @@
             fields: ['Name', 'Cls']
         });
 
-        args.eventStore.on('load', function(records) {
+        me.eventStore.on('load', function(records) {
             var data = [];
-            args.eventStore.each(function (record) {
+            me.eventStore.each(function (record) {
                 if (record.get('Cls') == '') {
                     data.push(record);
                 }
@@ -72,7 +103,7 @@
                 handler: function () {
                     var val = eventsCombo.getValue(),
                         // doHighlight = Ext.getCmp('btnHighlight').pressed,
-                        rec = args.eventStore.getAt(args.eventStore.find('Name', val));
+                        rec = me.eventStore.getAt(me.eventStore.find('Name', val));
 
                     if (rec) {
                         me.getSchedulingView().scrollEventIntoView(rec, true);
@@ -150,6 +181,11 @@
             single: true
         };
 
+        var availabilityStore = Ext.create('Ilc.store.scheduler.Availability');
+
+        me.resourceZones = availabilityStore;
         me.callParent(arguments);
+        
+        me.loadAvailabilityZones();
     }
 });
