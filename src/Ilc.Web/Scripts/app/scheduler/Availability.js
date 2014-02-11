@@ -170,7 +170,21 @@
             }
         });
 
+        var dateMenu = Ext.create('Ext.menu.DatePicker', {
+            handler: function (dp, date) {
+                me.scrollToDate(date);
+                me.loadAvailabilityStore();
+            }
+        });
+
         me.tbar = [
+            {
+                xtype: 'button',
+                text: 'Date',
+                enableToggle: false,
+                iconCls: 'icon-calendar',
+                menu: dateMenu
+            },
             {
                 iconCls: 'icon-left',
                 handler: function () {
