@@ -197,7 +197,7 @@
                             {
                                 fieldLabel: Ilc.resources.Manager.getResourceString('common.email'),
                                 name: 'userInfo.email',
-                                value: me.user.get('userInfo').email
+                                value: me.user.get('email')
                             },
                             {
                                 fieldLabel: Ilc.resources.Manager.getResourceString('common.phone'),

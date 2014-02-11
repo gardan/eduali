@@ -66,8 +66,8 @@
 
         me.items = [
             {
-                fieldLabel: 'Username',
-                name: 'username'
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.email'),
+                name: 'userInfo.email',
             },
             {
                 fieldLabel: 'Password',
@@ -80,10 +80,6 @@
             {
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.lastName'),
                 name: 'userInfo.lastName',
-            },
-            {
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.email'),
-                name: 'userInfo.email',
             },
             {
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.phone'),

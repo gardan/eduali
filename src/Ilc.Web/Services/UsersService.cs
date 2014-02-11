@@ -39,7 +39,7 @@ namespace Ilc.Web.Services
 
             var userProfile = new UserProfile()
                 {
-                    Email = request.Username,
+                    Email = request.UserInfo.Email,
                     Roles = roles,
                     UserDetails = new UserDetails().InjectFrom<UserInfoModelToUserDetails>(request.UserInfo) as UserDetails
                 };
@@ -57,6 +57,7 @@ namespace Ilc.Web.Services
         {
             var userDetails = new UserDetails().InjectFrom<UserInfoModelToUserDetails>(request.UserInfo) as UserDetails;
             var user = Users.GetById(request.Id);
+            user.Email = request.UserInfo.Email;
             user.UserDetails.PopulateWithNonDefaultValues(userDetails);
 
             Users.Update(user);
