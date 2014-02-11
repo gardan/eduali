@@ -39,7 +39,7 @@
                 text: Ilc.resources.Manager.getResourceString('common.dateOfBirth'),
                 flex: 1,
                 renderer: function (value, meta, record) {
-                    var formatted = Ext.Date.format(new Date(record.get('userInfo').dateOfBirth), Ilc.resources.Manager.getResourceString('formats.extjsdate'));
+                    var formatted = Ext.Date.format(new Date(record.get('userInfo').dateOfBirth), Ilc.resources.Manager.getResourceString('formats.extjsdateonly'));
                     return formatted;
                 },
                 filter: {
