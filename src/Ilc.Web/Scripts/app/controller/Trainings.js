@@ -30,12 +30,12 @@
                     sender.mask();
                     trainingDataContext.update(data)
                         .then(function (response) {
-                            
+                            sender.unmask();
+                            var training = Ext.create('Ilc.model.Training', Ext.JSON.decode(response.responseText));
+                            sender.trainingUpdated(training);
                         })
                         .finally(function () {
-                            sender.unmask();
-                            debugger;
-                            sender.trainingUpdated();
+                            
                         });
                 }
             },

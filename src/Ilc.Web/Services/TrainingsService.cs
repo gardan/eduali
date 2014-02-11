@@ -204,7 +204,7 @@ namespace Ilc.Web.Services
 
             Uow.Commit();
 
-            return new HttpResult()
+            return new HttpResult(new TrainingModel().InjectFrom<TrainingToWebModel>(training) as TrainingModel)
                 {
                     StatusCode = HttpStatusCode.OK
                 };

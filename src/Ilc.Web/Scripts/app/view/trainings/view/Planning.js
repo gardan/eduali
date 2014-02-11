@@ -7,6 +7,19 @@
     
     scheduler: null,
 
+    setEntity: function(entity) {
+        this.entity = entity;
+        
+        this.scheduler.resourceStore.loadRawData(
+            {
+                Id: entity.get('trainer').id,
+                Name: entity.get('trainer').name
+            }
+        );
+        
+        this.scheduler.eventStore.reload();
+    },
+
     updateFinished: function() {
         this.fireEvent('updatecomplete');
     },
@@ -16,15 +29,14 @@
 
         var entity = me.entity;
         var resourceStore = Ext.create('Sch.data.ResourceStore', {
-            // trainingId: trainingEntity.get('id')
-
-            data: [
-                {
-                    Id: entity.get('trainer').id,
-                    Name: entity.get('trainer').name
-                }
-            ],
         });
+
+        resourceStore.loadRawData(
+            {
+                Id: entity.get('trainer').id,
+                Name: entity.get('trainer').name
+            }
+        );
 
         // Store holding all the events
         var eventStore = Ext.create('Ilc.store.scheduler.LessonAppointments', {
@@ -44,7 +56,6 @@
         });
 
         trainingScheduler.on('eventdrop', function (scheduler, records) {
-            debugger;
             // records is an array of record, for now we can only select one event, so just get the first item in the array
             var event = records[0];
 

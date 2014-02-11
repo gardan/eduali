@@ -18,8 +18,10 @@
     bodyPadding: 0,
     model: null,
 
-    trainingUpdated: function () {
+    trainingUpdated: function (training) {
         this.fireEvent('trainingupdated');
+        var tab = this.query('planningTab')[0];
+        tab.setEntity(training);
     },
 
     initComponent: function (cfg) {
@@ -285,7 +287,7 @@
                                 xtype: 'combobox',
                                 fieldLabel: 'Sales user',
                                 store: salesUsersStore,
-                                displayField: 'username',
+                                displayField: 'email',
                                 valueField: 'id',
                                 name: 'workflowOwners.sales',
                                 margin: '0 5 5 5'
@@ -294,7 +296,7 @@
                                 xtype: 'combobox',
                                 fieldLabel: 'Administration user',
                                 store: administratorsUsersStore,
-                                displayField: 'username',
+                                displayField: 'email',
                                 valueField: 'id',
                                 name: 'workflowOwners.administration',
                                 margin: '0 5 5 5'
@@ -303,7 +305,7 @@
                                 xtype: 'combobox',
                                 fieldLabel: 'Coordination user',
                                 store: coordinatorsUsersStore,
-                                displayField: 'username',
+                                displayField: 'email',
                                 valueField: 'id',
                                 name: 'workflowOwners.coordinator',
                                 margin: '0 5 5 5'
