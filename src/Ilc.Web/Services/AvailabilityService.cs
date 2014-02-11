@@ -17,12 +17,12 @@ namespace Ilc.Web.Services
 {
     public class AvailabilityService : Service
     {
-        public IAvailabilityService Availability { get; set; }
+        public IAvailabilityService Availabilities { get; set; }
         public IAvailabilityTemplatesService AvailabilityTemplates { get; set; }
 
         public FilteredDataModel<AvailabilityModel> Get(FilterParametersAvailability request)
         {
-            var data = Availability.GetFiltered(request);
+            var data = Availabilities.GetFiltered(request);
             return new FilteredDataModel<AvailabilityModel>()
                 {
                     Data = data.Data.Select(a => new AvailabilityModel().InjectFrom<AvailabilityToAvailabilityModel>(a) as AvailabilityModel).ToList()
@@ -48,7 +48,7 @@ namespace Ilc.Web.Services
             if (request.TemplateId <= 0)
             {
                 var availability = new Availability().InjectFrom<AvailabilityModelToAvailability>(request) as Availability;
-                Availability.Create(availability);
+                Availabilities.Create(availability);
             }
             else
             {
@@ -66,10 +66,24 @@ namespace Ilc.Web.Services
                         availability.TrainerId = resourceId;
                     }
 
-                    Availability.Create(availabilities, request.Override);
+                    Availabilities.Create(availabilities, request.Override);
                 }
             }
             
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
+
+        public HttpResult Put(AvailabilityModel request)
+        {
+            var availability = Availabilities.GetById(request.Id);
+            availability.StartDate = new DateTimeOffset(request.StartDate, TimeSpan.Zero);
+            availability.EndDate = new DateTimeOffset(request.EndDate, TimeSpan.Zero);
+
+            Availabilities.Update(availability);
 
             return new HttpResult()
                 {
@@ -81,11 +95,11 @@ namespace Ilc.Web.Services
         {
             if (request.Id != 0)
             {
-                Availability.Delete(request.Id);
+                Availabilities.Delete(request.Id);
             }
             else
             {
-                Availability.DeleteBy(request.ResourceId, new DateTimeOffset(request.StartDate)); 
+                Availabilities.DeleteBy(request.ResourceId, new DateTimeOffset(request.StartDate)); 
             }
             return new HttpResult()
                 {

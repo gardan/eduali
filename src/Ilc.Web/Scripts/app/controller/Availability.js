@@ -5,7 +5,8 @@
         this.control({
             'availabilityscheduler': {
                 'availabilitycreated': this.addAvailabilities,
-                'availabilityremoved': this.removeAvailability
+                'availabilityremoved': this.removeAvailability,
+                'updateavailability': this.updateavailability
             },
             'createavailabilities': {
                 'addavailability': this.addAvailabilities
@@ -79,6 +80,39 @@
 
         sender.mask();
         availabilitiesService.delete(model)
+        .then(function (response) {
+            // options.store.load();
+        })
+        .finally(function () {
+            sender.unmask();
+            // sender.availabilityPersisted();
+            // sender.close();
+        });
+    },
+
+    updateavailability: function(sender, model) {
+        var availabilitiesService = {
+            update: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/availabilities/' + entity.id,
+                    method: 'PUT',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+
+        sender.mask();
+        availabilitiesService.update(model)
         .then(function (response) {
             // options.store.load();
         })

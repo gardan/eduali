@@ -45,6 +45,11 @@ namespace Ilc.Core.Services
                 };
         }
 
+        public Availability GetById(int id)
+        {
+            return Uow.Availabilities.GetById(id);
+        }
+
         public void Create(Availability availability)
         {
             Uow.Availabilities.Add(availability);
@@ -97,6 +102,12 @@ namespace Ilc.Core.Services
             {
                 Delete(availability.Id);
             }
+        }
+
+        public void Update(Availability availability)
+        {
+            Uow.Availabilities.Update(availability);
+            Uow.Commit();
         }
     }
 }

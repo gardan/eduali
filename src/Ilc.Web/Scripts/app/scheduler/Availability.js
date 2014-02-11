@@ -57,6 +57,14 @@
         console.log('persisted');
     },
 
+    _updateAvailabilityEvent: function(availability) {
+        this.fireEvent('updateavailability', this, {
+            id: availability.get('id'),
+            startDate: availability.get('startDate'),
+            endDate: availability.get('endDate')
+        });
+    },
+
     onSelect: function (selectModel) {
         if (selectModel.view.xtype == 'gridview') {
             var args = arguments;
@@ -65,6 +73,15 @@
         }
     },
 
+    onEventResized: function(sender, event) {
+        this._updateAvailabilityEvent(event);
+    },
+
+    onEventDrop: function (sender, events) {
+        var event = events[0];
+        this._updateAvailabilityEvent(event);
+    },
+    
     initComponent: function () {
         var me = this;
 
@@ -187,10 +204,13 @@
 
         me.on('select', me.onSelect);
         me.on('deselect', me.onSelect);
+        me.on('eventresizeend', me.onEventResized);
+        me.on('eventdrop', me.onEventDrop);
 
         me.addEvents(
             'availabilitycreated',
-            'availabilityremoved'
+            'availabilityremoved',
+            'updateavailability'
         );
 
         me.callParent(arguments);
