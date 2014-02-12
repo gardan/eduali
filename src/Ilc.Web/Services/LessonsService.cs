@@ -70,13 +70,15 @@ namespace Ilc.Web.Services
             }
 
             // Get the other scheduled lessons, for overlaying purposes
-            var trainings = Uow.Trainings.GetAll().Where(t => t.TrainerId == training.TrainerId && t.Id != training.Id).ToList();
-            
-            foreach (var nonRelatedTraining in trainings)
+            if (request.Overlay)
             {
-                foreach (var day in nonRelatedTraining.ScheduleDays)
+                var trainings = Uow.Trainings.GetAll().Where(t => t.TrainerId == training.TrainerId && t.Id != training.Id).ToList();
+
+                foreach (var nonRelatedTraining in trainings)
                 {
-                    data.Add(new LessonScheduleModel()
+                    foreach (var day in nonRelatedTraining.ScheduleDays)
+                    {
+                        data.Add(new LessonScheduleModel()
                         {
                             Id = day.Id,
                             StartDate = day.StartDate.DateTime,
@@ -87,10 +89,10 @@ namespace Ilc.Web.Services
                             Draggable = false,
                             Cls = "disabled "
                         });
+                    }
                 }
             }
-
-
+            
             return new FilteredDataModel<LessonScheduleModel>()
                 {
                     Data = data
@@ -217,7 +219,13 @@ namespace Ilc.Web.Services
 
     public class FilterParametersLessonSchedule : FilterParametersBase
     {
+        public FilterParametersLessonSchedule()
+        {
+            Overlay = true;
+        }
+
         public int TrainingId { get; set; }
+        public bool Overlay { get; set; }
     }
 
     public class FilterParametersLessonsSchedule : FilterParametersBase

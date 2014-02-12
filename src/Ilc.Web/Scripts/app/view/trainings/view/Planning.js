@@ -5,7 +5,12 @@
     title: Ilc.resources.Manager.getResourceString('common.planning'),
     entity: null,
     
+    layout: {
+        type: 'column'
+    },
+
     scheduler: null,
+    lessonsContainer: null,
 
     setEntity: function(entity) {
         this.entity = entity;
@@ -22,6 +27,21 @@
 
     updateFinished: function() {
         this.fireEvent('updatecomplete');
+    },
+
+    initLessonsContainer: function() {
+        return Ext.create('Ilc.view.lessons.List', {
+            training: this.entity,
+            columnWidth: 0.2,
+            listeners: {
+                'selected': this.onLessonsListSelected,
+                scope: this
+            }
+        });
+    },
+
+    onLessonsListSelected: function (container, record) {
+        this.scheduler.getSchedulingView().scrollEventIntoView(record);
     },
 
     initComponent: function (args) {
@@ -52,6 +72,8 @@
 
             resourceStore: resourceStore,
             eventStore: eventStore,
+            
+            columnWidth: 0.8
 
         });
 
@@ -70,8 +92,10 @@
         });
 
         me.scheduler = trainingScheduler;
+        me.lessonsContainer = me.initLessonsContainer();
         me.items = [
-            trainingScheduler
+            trainingScheduler,
+            me.lessonsContainer
         ];
         
         // resourceStore.load();

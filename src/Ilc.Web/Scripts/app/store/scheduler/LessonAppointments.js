@@ -28,12 +28,16 @@
         var me = this;
 
         var trainingId = args.trainingId;
+        var overlay = args.overlay;
         var url = 'api/trainings/{trainingId}/lessonsSchedule';
         if (trainingId == null) {
             console.error('No trainingId was provided.');
         }
 
         url = url.replace('{trainingId}', trainingId);
+        if (overlay === false) {
+            url += '?overlay=false';
+        }
 
         me.proxy = {
             type: 'rest',
