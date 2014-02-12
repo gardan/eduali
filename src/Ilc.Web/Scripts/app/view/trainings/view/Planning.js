@@ -73,8 +73,9 @@
             resourceStore: resourceStore,
             eventStore: eventStore,
             
-            columnWidth: 0.8
-
+            columnWidth: 0.8,
+            
+            scrollToEvent: false
         });
 
         trainingScheduler.on('eventdrop', function (scheduler, records) {

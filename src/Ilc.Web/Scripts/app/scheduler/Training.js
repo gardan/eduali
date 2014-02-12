@@ -6,6 +6,8 @@
     snapToIncrement: true,
     eventResizeHandles: 'end',
 
+    scrollToEvent: true, // Visibility for the scroll to event btn and dropdown list
+
     // orientation: 'vertical',
 
     // Setup view configuration
@@ -85,7 +87,8 @@
             triggerAction: 'all',
             editable: false,
             queryMode: 'local',
-            displayField: 'Name' //,
+            displayField: 'Name', //,
+            hidden: !me.scrollToEvent
             // valueField: '',
         });
         
@@ -98,6 +101,7 @@
         me.tbar = [
             eventsCombo,
             {
+                hidden: !me.scrollToEvent,
                 text: 'Scroll to event',
                 iconCls: 'go',
                 handler: function () {
@@ -110,14 +114,6 @@
                     }
                 }
             },
-            {
-                xtype: 'button',
-                text : 'Date',
-                enableToggle : false,
-                iconCls : 'icon-calendar',
-                menu: dateMenu
-            },
-            '->',
             {
                 iconCls: 'icon-left',
                 handler: function () {
@@ -141,6 +137,13 @@
                 handler: function () {
                     me.zoomOut();
                 }
+            },
+            {
+                xtype: 'button',
+                text : 'Date',
+                enableToggle : false,
+                iconCls : 'icon-calendar',
+                menu: dateMenu
             }
         ];
 
