@@ -8,7 +8,7 @@ namespace Ilc.Data.Migrations
         public override void Up()
         {
             AddColumn("dbo.StatusDictionary", "CompanyId", c => c.Int(nullable: false));
-            Sql("UPDATE dbo.StatusDictionary SET CompanyId = 1");
+            Sql("EXEC('UPDATE dbo.StatusDictionary SET CompanyId = 1')");
             AddForeignKey("dbo.StatusDictionary", "CompanyId", "dbo.Company", "Id", cascadeDelete: true);
             CreateIndex("dbo.StatusDictionary", "CompanyId");
         }

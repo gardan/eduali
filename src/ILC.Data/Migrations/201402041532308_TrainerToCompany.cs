@@ -8,7 +8,7 @@ namespace Ilc.Data.Migrations
         public override void Up()
         {
             AddColumn("dbo.Trainer", "CompanyId", c => c.Int(nullable: false));
-            Sql("UPDATE dbo.Trainer SET CompanyId = 1");
+            Sql("EXEC('UPDATE dbo.Trainer SET CompanyId = 1')");
             AddForeignKey("dbo.Trainer", "CompanyId", "dbo.Company", "Id", cascadeDelete: false);
             CreateIndex("dbo.Trainer", "CompanyId");
         }
