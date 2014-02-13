@@ -160,28 +160,24 @@
         ];
 
         me.listeners = {
-            /// Commented out because we can't yet delete or add lessons/
-            // eventcontextmenu: function (s, rec, e) {
-            //     e.stopEvent();
-            // 
-            //     if (!s.ctx) {
-            //         s.ctx = Ext.create('Ext.menu.Menu', {
-            //             items: [{
-            //                 text: 'Delete event',
-            //                 iconCls: 'icon-delete',
-            //                 handler: function () {
-            //                     s.eventStore.remove(rec);
-            //                 }
-            //             }]
-            //         });
-            //     }
-            //     s.ctx.rec = rec;
-            //     s.ctx.showAt(e.getXY());
-            // },
-            afterlayout: function () {
-                // me.zoomToLevel(4);
-            },
-            single: true
+            eventcontextmenu: function (s, rec, e) {
+                debugger;
+                e.stopEvent();
+            
+                if (!s.ctx) {
+                    s.ctx = Ext.create('Ext.menu.Menu', {
+                        items: [{
+                            text: 'Delete event',
+                            iconCls: 'icon-delete',
+                            handler: function () {
+                                s.eventStore.remove(rec);
+                            }
+                        }]
+                    });
+                }
+                s.ctx.rec = rec;
+                s.ctx.showAt(e.getXY());
+            }
         };
 
         var availabilityStore = Ext.create('Ilc.store.scheduler.Availability');
