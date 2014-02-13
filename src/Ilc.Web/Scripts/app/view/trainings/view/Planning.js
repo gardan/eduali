@@ -41,7 +41,8 @@
     },
 
     onLessonsListSelected: function (container, record) {
-        this.scheduler.getSchedulingView().scrollEventIntoView(record);
+        this.scheduler.getSchedulingView().scrollEventIntoView(record, true);
+        this.scheduler.loadAvailabilityZones();
     },
 
     initComponent: function (args) {

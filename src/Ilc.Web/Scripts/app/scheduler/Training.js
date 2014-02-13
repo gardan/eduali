@@ -70,17 +70,19 @@
             fields: ['Name', 'Cls']
         });
 
-        me.eventStore.on('load', function(records) {
-            var data = [];
-            me.eventStore.each(function (record) {
-                if (record.get('Cls') == '') {
-                    data.push(record);
-                }
+        if (me.scrollToEvent) {
+            me.eventStore.on('load', function (records) {
+                var data = [];
+                me.eventStore.each(function (record) {
+                    if (record.get('Cls') == '') {
+                        data.push(record);
+                    }
+                });
+
+                comboStore.loadData(data);
             });
-
-            comboStore.loadData(data);
-        });
-
+        }
+        
         // scrolling to event
         var eventsCombo = Ext.create('Ext.form.ComboBox', {
             store: comboStore,
@@ -95,6 +97,7 @@
         var dateMenu = Ext.create('Ext.menu.DatePicker', {
             handler: function (dp, date) {
                 me.scrollToDate(date);
+                me.loadAvailabilityZones();
             }
         });
 
@@ -108,9 +111,10 @@
                     var val = eventsCombo.getValue(),
                         // doHighlight = Ext.getCmp('btnHighlight').pressed,
                         rec = me.eventStore.getAt(me.eventStore.find('Name', val));
-
+            
                     if (rec) {
                         me.getSchedulingView().scrollEventIntoView(rec, true);
+                        me.loadAvailabilityZones();
                     }
                 }
             },
@@ -118,24 +122,28 @@
                 iconCls: 'icon-left',
                 handler: function () {
                     me.shiftPrevious();
+                    me.loadAvailabilityZones();
                 }
             },
             {
                 iconCls: 'icon-right',
                 handler: function () {
                     me.shiftNext();
+                    me.loadAvailabilityZones();
                 }
             },
             {
                 iconCls: 'icon-zoom-in',
                 handler: function () {
                     me.zoomIn();
+                    me.loadAvailabilityZones();
                 }
             },
             {
                 iconCls: 'icon-zoom-out',
                 handler: function () {
                     me.zoomOut();
+                    me.loadAvailabilityZones();
                 }
             },
             {
@@ -159,26 +167,23 @@
             { width: 50, increment: 1, resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' }
         ];
 
-        me.listeners = {
-            eventcontextmenu: function (s, rec, e) {
-                debugger;
-                e.stopEvent();
+        me.on('eventcontextmenu', function (scheduler, eventRecord, e) {
+            e.stopEvent();
             
-                if (!s.ctx) {
-                    s.ctx = Ext.create('Ext.menu.Menu', {
-                        items: [{
-                            text: 'Delete event',
-                            iconCls: 'icon-delete',
-                            handler: function () {
-                                s.eventStore.remove(rec);
-                            }
-                        }]
-                    });
-                }
-                s.ctx.rec = rec;
-                s.ctx.showAt(e.getXY());
+            if (!scheduler.ctx) {
+                scheduler.ctx = Ext.create('Ext.menu.Menu', {
+                    items: [{
+                        text: 'Delete event',
+                        iconCls: 'icon-delete',
+                        handler: function () {
+                            scheduler.eventStore.remove(scheduler.ctx.rec);
+                        }
+                    }]
+                });
             }
-        };
+            scheduler.ctx.rec = eventRecord;
+            scheduler.ctx.showAt(e.getXY());
+        });
 
         var availabilityStore = Ext.create('Ilc.store.scheduler.Availability');
 

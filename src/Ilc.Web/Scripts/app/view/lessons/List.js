@@ -14,7 +14,7 @@
             trainingId: me.training.get('id'),
             overlay: false
         });
-
+        
         var lessonsGrid = Ext.create('Ext.grid.Panel', {
             store: lessonsStore,
             columns: [
@@ -29,11 +29,11 @@
                 scope: me
             }
         });
-
+        
         me.items = [
             lessonsGrid
         ];
-
+        
         lessonsStore.load();
         me.addEvents(
             'selected'
