@@ -45,6 +45,11 @@
         this.scheduler.loadAvailabilityZones();
     },
 
+    onLessonRemove: function (store, record, index, isMove, eOpts) {
+        var lessonToRemove = this.lessonsContainer.lessonsStore.getById(record.get('Id'));
+        this.lessonsContainer.lessonsStore.remove(lessonToRemove);
+    },
+
     initComponent: function (args) {
         var me = this;
 
@@ -61,7 +66,11 @@
 
         // Store holding all the events
         var eventStore = Ext.create('Ilc.store.scheduler.LessonAppointments', {
-            trainingId: entity.get('id')
+            trainingId: entity.get('id'),
+            listeners: {
+                remove: me.onLessonRemove,
+                scope: me
+            }
         });
 
         var trainingScheduler = Ext.create('Ilc.scheduler.Training', {

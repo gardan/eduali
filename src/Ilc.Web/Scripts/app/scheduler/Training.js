@@ -1,5 +1,6 @@
 ﻿Ext.define('Ilc.scheduler.Training', {
     extend: 'Sch.panel.SchedulerGrid',
+    xtype: 'trainingscheduler',
 
     allowOverlap: false,
     constrainDragToResource: true,
@@ -58,6 +59,10 @@
 
     initComponent: function () {
         var me = this;
+
+        me.addEvents(
+            'deletelesson'
+        );
 
         // Fix for this: https://www.assembla.com/spaces/bryntum/support/tickets/13#/activity/ticket:
         Ext.apply(this, {
@@ -176,6 +181,10 @@
                         text: 'Delete event',
                         iconCls: 'icon-delete',
                         handler: function () {
+                            var model = {
+                                id: scheduler.ctx.rec.get('Id')
+                            };
+                            me.fireEvent('deletelesson', scheduler, model);
                             scheduler.eventStore.remove(scheduler.ctx.rec);
                         }
                     }]

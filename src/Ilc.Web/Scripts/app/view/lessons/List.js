@@ -3,6 +3,8 @@
     
     training: null,
 
+    lessonsStore: null,
+
     onLessonGridSelect: function(grid, record, index, eOpts) {
         this.fireEvent('selected', this, record);
     },
@@ -10,13 +12,13 @@
     initComponent: function() {
         var me = this;
 
-        var lessonsStore = Ext.create('Ilc.store.scheduler.LessonAppointments', {
+        me.lessonsStore = Ext.create('Ilc.store.scheduler.LessonAppointments', {
             trainingId: me.training.get('id'),
             overlay: false
         });
         
         var lessonsGrid = Ext.create('Ext.grid.Panel', {
-            store: lessonsStore,
+            store: me.lessonsStore,
             columns: [
                 {
                     dataIndex: 'Name',
@@ -34,7 +36,7 @@
             lessonsGrid
         ];
         
-        lessonsStore.load();
+        me.lessonsStore.load();
         me.addEvents(
             'selected'
         );

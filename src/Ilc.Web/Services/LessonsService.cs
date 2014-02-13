@@ -27,10 +27,10 @@ namespace Ilc.Web.Services
 
 
             var data = new List<LessonModel>();
-            for (var i = 1; i <= offer.NoLessons; i++ )
+            for (var i = 1; i <= offer.NoLessons; i++)
             {
                 var totalProgressEvaluations = training.ProgressEvaluations.Count(p => p.Order == i);
-                
+
 
                 data.Add(new LessonModel()
                     {
@@ -41,9 +41,9 @@ namespace Ilc.Web.Services
             }
 
             var res = new FilteredDataModel<LessonModel>()
-            {
-                Data = data
-            };
+                {
+                    Data = data
+                };
 
             return res;
         }
@@ -63,7 +63,8 @@ namespace Ilc.Web.Services
                         StartDate = day.StartDate.DateTime,
                         EndDate = day.EndDate.DateTime,
                         Name = day.LessonName,
-                        ResourceId = training.TrainerId.GetValueOrDefault(),// day.Order, // this has to be the trainerId
+                        ResourceId = training.TrainerId.GetValueOrDefault(),
+                        // day.Order, // this has to be the trainerId
                         Resizable = true,
                         Draggable = true
                     });
@@ -72,27 +73,28 @@ namespace Ilc.Web.Services
             // Get the other scheduled lessons, for overlaying purposes
             if (request.Overlay)
             {
-                var trainings = Uow.Trainings.GetAll().Where(t => t.TrainerId == training.TrainerId && t.Id != training.Id).ToList();
+                var trainings =
+                    Uow.Trainings.GetAll().Where(t => t.TrainerId == training.TrainerId && t.Id != training.Id).ToList();
 
                 foreach (var nonRelatedTraining in trainings)
                 {
                     foreach (var day in nonRelatedTraining.ScheduleDays)
                     {
                         data.Add(new LessonScheduleModel()
-                        {
-                            Id = day.Id,
-                            StartDate = day.StartDate.DateTime,
-                            EndDate = day.EndDate.DateTime,
-                            Name = day.LessonName,
-                            ResourceId = training.TrainerId.GetValueOrDefault(), // day.Order,
-                            Resizable = false,
-                            Draggable = false,
-                            Cls = "disabled "
-                        });
+                            {
+                                Id = day.Id,
+                                StartDate = day.StartDate.DateTime,
+                                EndDate = day.EndDate.DateTime,
+                                Name = day.LessonName,
+                                ResourceId = training.TrainerId.GetValueOrDefault(), // day.Order,
+                                Resizable = false,
+                                Draggable = false,
+                                Cls = "disabled "
+                            });
                     }
                 }
             }
-            
+
             return new FilteredDataModel<LessonScheduleModel>()
                 {
                     Data = data
@@ -108,31 +110,31 @@ namespace Ilc.Web.Services
             foreach (var training in trainings.Data)
             {
                 var scheduleDays = training.ScheduleDays;
-               
+
 
                 foreach (var day in scheduleDays)
                 {
                     data.Add(new LessonScheduleModelNormal()
-                    {
-                        Id = day.Id,
-                        StartDate = day.StartDate.DateTime,
-                        EndDate = day.EndDate.DateTime,
-                        Name = day.LessonName,
-                        ResourceId = training.TrainerId ?? 0, // This must be the trainerId
-                        Color = training.Color,
-                        CustomerName = training.Customer.Name,
-                        SubjectName = training.Subject.Name,
-                        TrainingId = training.Id
-                    });
+                        {
+                            Id = day.Id,
+                            StartDate = day.StartDate.DateTime,
+                            EndDate = day.EndDate.DateTime,
+                            Name = day.LessonName,
+                            ResourceId = training.TrainerId ?? 0, // This must be the trainerId
+                            Color = training.Color,
+                            CustomerName = training.Customer.Name,
+                            SubjectName = training.Subject.Name,
+                            TrainingId = training.Id
+                        });
                 }
             }
 
 
 
             return new FilteredDataModel<LessonScheduleModelNormal>()
-            {
-                Data = data
-            };
+                {
+                    Data = data
+                };
         }
 
         public HttpResult Put(UpdateLessonModel request)
@@ -143,6 +145,17 @@ namespace Ilc.Web.Services
             scheduleDay.EndDate = new DateTimeOffset(request.EndDate);
 
             Uow.TrainingScheduleDays.Update(scheduleDay);
+            Uow.Commit();
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
+
+        public HttpResult Delete(UpdateLessonModel request)
+        {
+            Uow.TrainingScheduleDays.Delete(request.Id);
             Uow.Commit();
 
             return new HttpResult()
