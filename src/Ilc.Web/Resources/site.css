@@ -160,3 +160,12 @@
     border: 0;
     background-color: white;
 }
+
+/* Grid */
+.filtered-column {
+    background-color: aqua!important;
+}
+
+.filtered-column-hover {
+    background-color: aqua!important;
+}
