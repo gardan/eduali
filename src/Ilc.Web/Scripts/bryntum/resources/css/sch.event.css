@@ -1,14 +1,14 @@
 /*
 
-Ext Scheduler 2.2.9
-Copyright(c) 2009-2013 Bryntum AB
+Ext Scheduler 2.2.17
+Copyright(c) 2009-2014 Bryntum AB
 http://bryntum.com/contact
 http://bryntum.com/license
 
 */
 .sch-event
 {
-	border:1px solid transparent;
+    border:1px solid transparent;
     position : absolute;
     overflow:hidden;
     cursor:pointer;
@@ -18,7 +18,7 @@ http://bryntum.com/license
 
 div.sch-event-fixed
 {
-	cursor: default;
+    cursor: default;
 }
 
 .sch-event-inner
@@ -28,7 +28,7 @@ div.sch-event-fixed
     white-space:nowrap;
     margin-left:3px;
     margin-right:5px;
-	margin-top:2px;
+    margin-top:2px;
 }
 
 .sch-event-withicon .sch-event-inner
@@ -38,34 +38,42 @@ div.sch-event-fixed
 }
 
 /* Hide right border for events ending outside the view */
-.sch-schedulerpanel .sch-event-endsoutside
+.sch-horizontal .sch-event-endsoutside
 {
-	border-right:0 none;
-	-moz-border-radius-topright:0 !important;
-	-moz-border-radius-bottomright:0 !important;
-	-webkit-border-radius-top-right:0 !important;
-	-webkit-border-radius-bottom-right:0 !important;
-	-ms-border-radius-top-right:0 !important;
-	-ms-border-radius-bottom-right:0 !important;
-	border-top-right-radius:0 !important;
-	border-bottom-right-radius:0 !important;
+    border-right:1px dashed;
+    -moz-border-radius-topright:0 !important;
+    -moz-border-radius-bottomright:0 !important;
+    -webkit-border-radius-top-right:0 !important;
+    -webkit-border-radius-bottom-right:0 !important;
+    -ms-border-radius-top-right:0 !important;
+    -ms-border-radius-bottom-right:0 !important;
+    border-top-right-radius:0 !important;
+    border-bottom-right-radius:0 !important;
 }
 
 /* Hide left border for events starting outside the view */
-.sch-schedulerpanel .sch-event-startsoutside
+.sch-horizontal .sch-event-startsoutside
 {
-	border-left:0 none;
-	-moz-border-radius-topleft:0 !important;
-	-moz-border-radius-bottomleft:0 !important;
-	-webkit-border-radius-top-left:0 !important;
-	-webkit-border-radius-bottom-left:0 !important;
-	-ms-border-radius-top-left:0 !important;
-	-ms-border-radius-bottom-left:0 !important;
-	border-top-left-radius:0 !important;
-	border-bottom-left-radius:0 !important;
+    border-left:1px dashed;
+    -moz-border-radius-topleft:0 !important;
+    -moz-border-radius-bottomleft:0 !important;
+    -webkit-border-radius-top-left:0 !important;
+    -webkit-border-radius-bottom-left:0 !important;
+    -ms-border-radius-top-left:0 !important;
+    -ms-border-radius-bottom-left:0 !important;
+    border-top-left-radius:0 !important;
+    border-bottom-left-radius:0 !important;
 }
 
 .x-rtl .sch-event
 {
     text-align: right;
+}
+
+.sch-vertical .sch-event-startsoutside {
+    border-top          : 1px dashed;
+}
+
+.sch-vertical .sch-event-endsoutside {
+    border-bottom       : 1px dashed;
 }

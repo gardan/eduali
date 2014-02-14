@@ -50,6 +50,20 @@
         this.lessonsContainer.lessonsStore.remove(lessonToRemove);
     },
 
+    onLessonCreated: function (newEventRecord) {
+        var trainingLessons = eventStore.queryBy(function (record) {
+            return record.get('Draggable') == true;
+        });
+        
+        newEventRecord.set({
+            Name: 'Lesson ' + (trainingLessons.items.length + 1)
+        });
+
+        var model = {};
+
+        this.fireEvent('createlesson', this, model);
+    },
+
     initComponent: function (args) {
         var me = this;
 
@@ -83,6 +97,8 @@
             resourceStore: resourceStore,
             eventStore: eventStore,
             
+            onEventCreated: me.onLessonCreated,
+
             columnWidth: 0.8,
             
             scrollToEvent: false
@@ -113,6 +129,7 @@
         eventStore.load();
 
         me.addEvents(
+            'createlesson',
             'updatelesson'
         );
 

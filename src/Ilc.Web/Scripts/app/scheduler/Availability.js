@@ -8,7 +8,8 @@
         new Sch.plugin.Pan({
             enableVerticalPan: true,
             disableOnKey: Sch.plugin.Pan.KEY_SHIFT
-        })
+        }),
+        new Sch.plugin.HeaderZoom()
     ],
 
     requires: [

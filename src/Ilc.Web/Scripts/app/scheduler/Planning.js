@@ -35,7 +35,8 @@
                 new Sch.plugin.Pan({
                     enableVerticalPan: true,
                     
-                })
+                }),
+        new Sch.plugin.HeaderZoom()
     ],
 
     dndValidatorFn: function (dragRecords, targetResourceRecord, date, duration, e) {

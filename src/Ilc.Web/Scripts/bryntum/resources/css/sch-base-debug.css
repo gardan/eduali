@@ -1,55 +1,49 @@
 /*
 
-Ext Scheduler 2.2.9
-Copyright(c) 2009-2013 Bryntum AB
+Ext Scheduler 2.2.17
+Copyright(c) 2009-2014 Bryntum AB
 http://bryntum.com/contact
 http://bryntum.com/license
 
 */
 .sch-header-row .x-column-header-inner,
-.sch-timeheader
-{
-    padding-top:3px !important;
-    padding-bottom:3px !important;
+.sch-timeheader {
+    padding-top    : 3px !important;
+    padding-bottom : 3px !important;
 }
 
 /* DEPRECATED REMOVE for 3.0 */
-.sch-hdr-startend .sch-hdr-start
-{
-    float:left;
+.sch-hdr-startend .sch-hdr-start {
+    float : left;
 }
 
-.sch-hdr-startend .sch-hdr-end
-{
-    float:right;
+.sch-hdr-startend .sch-hdr-end {
+    float : right;
 }
 
-td.sch-nested-hdr-cell-first
-{
-    border-left:0 none;
+td.sch-nested-hdr-cell-first {
+    border-left : 0 none;
 }
 
-td.sch-nested-hdr-cell-last
-{
-    border-right:0 none;
+td.sch-nested-hdr-cell-last {
+    border-right : 0 none;
 }
+
 /* EOF DEPRECATED */
 
-.sch-simple-timeaxis .x-column-header-inner
-{
-    padding:0;
+.sch-simple-timeaxis .x-column-header-inner {
+    padding : 0;
 }
 
-.sch-column-header
-{
+.sch-column-header {
     padding : 0;
-    height:22px;
+    height  : 22px;
 }
 
 .sch-simple-timeaxis .sch-simple-timeheader {
-    white-space: nowrap;
-    overflow:hidden;
-    padding:0 6px;
+    white-space : nowrap;
+    overflow    : hidden;
+    padding     : 0 6px;
 }
 
 .sch-simple-timeheader-pad {
@@ -57,24 +51,16 @@ td.sch-nested-hdr-cell-last
 }
 
 /* Adjust font size and padding for very narrow cells */
-.sch-simple-timeaxis .sch-header-row-compact .sch-simple-timeheader
-{
-    padding:0 1px;
-    font-size:85%;
+.sch-simple-timeaxis .sch-header-row-compact .sch-simple-timeheader {
+    padding   : 0 1px;
+    font-size : 85%;
 }
 
-.sch-simple-timeaxis .sch-header-row-compact .sch-column-header
-{
-    padding:0;
+.sch-simple-timeaxis .sch-header-row-compact .sch-column-header {
+    padding : 0;
 }
 
-.x-chrome .sch-simple-timeaxis .sch-header-row-compact .sch-simple-timeheader
-{
-    line-height:24px;
-}
-
-.x-safari .sch-simple-timeaxis .sch-header-row-compact .sch-simple-timeheader
-{
+.x-safari .sch-simple-timeaxis .sch-header-row-compact .sch-simple-timeheader {
     padding : 0;
 }
 
@@ -82,45 +68,48 @@ td.sch-nested-hdr-cell-last
     padding : 0;
 }
 
-.sch-column-header
-{
-    font: 11px tahoma,arial,verdana,sans-serif;
+.sch-column-header {
+    font : 11px tahoma, arial, verdana, sans-serif;
 }
 
 .sch-header-row {
-    table-layout   : fixed;
+    table-layout : fixed;
 }
 
 .x-quirks .sch-header-row {
-    border-right       : 1px solid;
+    border-right : 1px solid;
 }
 
 .sch-header-single-row .x-group-sub-header {
-    border-top-width         : 0 !important;
+    border-top-width : 0 !important;
 }
 
-.x-webkit .sch-column-header .x-column-header-inner
-{
-    height:22px;
-    white-space:normal;
+.x-webkit .sch-column-header .x-column-header-inner {
+    height      : 22px;
+    white-space : normal;
 }
 
-.sch-header-secondary-canvas
-{
-    position: absolute;
-    top:0;
-    left:0;
+.sch-header-secondary-canvas {
+    position : absolute;
+    top      : 0;
+    left     : 0;
+}
+
+.sch-horizontal .sch-header-secondary-canvas {
+    height : 100%;
+}
+
+.sch-vertical .sch-header-secondary-canvas {
+    width : 100%;
 }
 
 /* IE HACKS */
-.x-ie7 .sch-column-header
-{
-    padding: 0;
+.x-ie7 .sch-column-header {
+    padding : 0;
 }
 
-.x-ie7 .sch-header-row
-{
-    margin-left: -1px;
+.x-ie7 .sch-header-row {
+    margin-left : -1px;
 }
 
 
@@ -169,7 +158,7 @@ td.sch-nested-hdr-cell-last
 
 .sch-event
 {
-	border:1px solid transparent;
+    border:1px solid transparent;
     position : absolute;
     overflow:hidden;
     cursor:pointer;
@@ -179,7 +168,7 @@ td.sch-nested-hdr-cell-last
 
 div.sch-event-fixed
 {
-	cursor: default;
+    cursor: default;
 }
 
 .sch-event-inner
@@ -189,7 +178,7 @@ div.sch-event-fixed
     white-space:nowrap;
     margin-left:3px;
     margin-right:5px;
-	margin-top:2px;
+    margin-top:2px;
 }
 
 .sch-event-withicon .sch-event-inner
@@ -199,36 +188,44 @@ div.sch-event-fixed
 }
 
 /* Hide right border for events ending outside the view */
-.sch-schedulerpanel .sch-event-endsoutside
+.sch-horizontal .sch-event-endsoutside
 {
-	border-right:0 none;
-	-moz-border-radius-topright:0 !important;
-	-moz-border-radius-bottomright:0 !important;
-	-webkit-border-radius-top-right:0 !important;
-	-webkit-border-radius-bottom-right:0 !important;
-	-ms-border-radius-top-right:0 !important;
-	-ms-border-radius-bottom-right:0 !important;
-	border-top-right-radius:0 !important;
-	border-bottom-right-radius:0 !important;
+    border-right:1px dashed;
+    -moz-border-radius-topright:0 !important;
+    -moz-border-radius-bottomright:0 !important;
+    -webkit-border-radius-top-right:0 !important;
+    -webkit-border-radius-bottom-right:0 !important;
+    -ms-border-radius-top-right:0 !important;
+    -ms-border-radius-bottom-right:0 !important;
+    border-top-right-radius:0 !important;
+    border-bottom-right-radius:0 !important;
 }
 
 /* Hide left border for events starting outside the view */
-.sch-schedulerpanel .sch-event-startsoutside
+.sch-horizontal .sch-event-startsoutside
 {
-	border-left:0 none;
-	-moz-border-radius-topleft:0 !important;
-	-moz-border-radius-bottomleft:0 !important;
-	-webkit-border-radius-top-left:0 !important;
-	-webkit-border-radius-bottom-left:0 !important;
-	-ms-border-radius-top-left:0 !important;
-	-ms-border-radius-bottom-left:0 !important;
-	border-top-left-radius:0 !important;
-	border-bottom-left-radius:0 !important;
+    border-left:1px dashed;
+    -moz-border-radius-topleft:0 !important;
+    -moz-border-radius-bottomleft:0 !important;
+    -webkit-border-radius-top-left:0 !important;
+    -webkit-border-radius-bottom-left:0 !important;
+    -ms-border-radius-top-left:0 !important;
+    -ms-border-radius-bottom-left:0 !important;
+    border-top-left-radius:0 !important;
+    border-bottom-left-radius:0 !important;
 }
 
 .x-rtl .sch-event
 {
     text-align: right;
+}
+
+.sch-vertical .sch-event-startsoutside {
+    border-top          : 1px dashed;
+}
+
+.sch-vertical .sch-event-endsoutside {
+    border-bottom       : 1px dashed;
 }
 div.sch-dragcreator-proxy {
     position                    : absolute;
@@ -250,155 +247,50 @@ div.sch-dragcreator-proxy {
 }
 
 
-/* Hovering during drag drop*/
-.sch-dd-cellover
-{
-    background:url(../images/altrow.png) repeat;
+.sch-dd-newtime {
+    font-weight : bold;
+    color       : #274490;
+    display     : block;
+    margin      : 0 0 5px 4px;
 }
 
-.sch-dd-newtime
-{
-    font-weight:bold;
-    color:#274490;
-    display:block;
-    margin: 0 0 5px 4px;
+.sch-dragproxy {
+    background     : none !important;
+    overflow       : visible !important;
+    height         : 1px; /*Required for the Ext drag drop to work */
+    width          : 1px; /*Required for the Ext drag drop to work */
+    pointer-events : auto; /* Ext sets this to none */
 }
 
-.sch-dragproxy
-{
-    background:none !important;
-    overflow:visible !important;
-    height:1px; /*Required for the Ext drag drop to work */
-    width:1px;  /*Required for the Ext drag drop to work */
-}
-
-.sch-dragproxy .sch-event
-{
-	opacity:0.6;
-	filter: alpha(opacity=60);
-	cursor:pointer;
+.sch-dragproxy .sch-event {
+    opacity : 0.6;
+    filter  : alpha(opacity=60);
+    cursor  : pointer;
 }
 
 .sch-dragproxy .x-resizable-handle,
-.sch-dragproxy .x-dd-drop-icon
-{
-	display:none !important;
+.sch-dragproxy .x-dd-drop-icon {
+    display : none !important;
 }
 
 .sch-dragproxy .x-dd-drag-ghost {
-	background-color:transparent;
-	border: 0 none;
-	padding:0;
-	white-space:nowrap;
-	
-	/* Gantt tasks elements are sized based on row height */
-	height : inherit;
+    background-color : transparent;
+    border           : 0 none;
+    padding          : 0;
+    white-space      : nowrap;
+
+    /* Gantt tasks elements are sized based on row height */
+    height           : inherit;
 }
 
-.sch-rtl .sch-event
-{
-    text-align: right;
+.sch-rtl .sch-event {
+    text-align : right;
 }
-.sch-resizable-handle
-{
-    position:absolute;
-    visibility:hidden;
-    overflow:hidden;
-}
-
-.sch-horizontal .sch-resizable-handle
-{
-	background: transparent url(../images/resize-handle-hor.gif) no-repeat center center;
-}
-
-.sch-vertical .sch-resizable-handle
-{
-	background: transparent url(../images/resize-handle-ver.gif) no-repeat center center;
-}
-
-.sch-horizontal .sch-resizable-handle-start,
-.sch-horizontal .sch-resizable-handle-end
-{
-    width:7px;
-    height:100%;
-    top:0;
-}
-
-.sch-horizontal .sch-resizable-handle-start
-{
-    cursor:w-resize;
-    left : 0;
-}
-
-.sch-horizontal .sch-resizable-handle-end
-{
-    cursor:e-resize;
-    right : 0;
-    padding-right:2px;
-}
-
-.sch-horizontal .x-rtl .sch-resizable-handle-start
-{
-    cursor:e-resize;
-    right : 0;
-    left: auto;
-}
-
-.sch-horizontal .x-rtl .sch-resizable-handle-end
-{
-    cursor:w-resize;
-    left : 0;
-    right: auto;
-}
-
-.sch-vertical .sch-resizable-handle
-{
-    width:100%;
-    cursor:n-resize;
-    height:6px;
-    background-position:center 3px;
-    left:0;
-}
-
-.sch-vertical .sch-resizable-handle-start{
-    background-position:center 2px;
-    top:0px;
-}
-
-.sch-vertical .sch-resizable-handle-end{
-    background-position:center 1px;
-    bottom:0;
-}
-
-.sch-event-endsoutside      .sch-resizable-handle-end,
-.sch-event-startsoutside    .sch-resizable-handle-start,
-.sch-schedulerview-readonly .sch-resizable-handle,
-.sch-event-resizable-false  .sch-resizable-handle,
-.sch-event-resizable-start  .sch-resizable-handle-end,
-.sch-event-resizable-end    .sch-resizable-handle-start
-{
-	display:none !important;
-}
-
-.sch-event .x-resizable-handle
-{
-    background:none;
-}
-
-.sch-event-hover .sch-resizable-handle
-{
-    visibility:visible;
-}
-
-
-
-
-
 /* Make sure the drag selector is shown above any event nodes */
 .sch-drag-selector {
     z-index          : 5000;
     position         : absolute;
-    left             : 0;
+    left             : -100px;
     top              : 0;
     background-color : #c3daf9;
     border           : 1px dotted #39b;
@@ -465,10 +357,6 @@ div.sch-dragcreator-proxy {
     margin-left  : -1px;
 }
 
-.sch-vertical .sch-timeline {
-    border-width : 1px 0 0 0;
-}
-
 .sch-schedulerpanel .x-grid-group-hd {
     position : relative;
     z-index  : 101;
@@ -482,6 +370,87 @@ div.sch-dragcreator-proxy {
     margin-left : 1px;
 }
 
+.sch-vertical .sch-timeline {
+    border-width : 1px 0 0 0;
+}
+
+.sch-header-indicator {
+    position           : absolute;
+    width              : 11px;
+    height             : 11px;
+    border             : 2px solid rgb(255, 51, 51);
+    background         : #fff;
+    transform          : rotate(-45deg);
+    -webkit-transform  : rotate(-45deg);
+    -moz-transform     : rotate(-45deg);
+    -ms-transform      : rotate(-45deg);
+    -o-transform       : rotate(-45deg);
+    -webkit-box-shadow : -1px 1px 2px rgba(0, 0, 0, .2);
+    -moz-box-shadow    : -1px 1px 2px rgba(0, 0, 0, .2);
+    box-shadow         : -1px 1px 2px rgba(0, 0, 0, .2);
+}
+
+.x-ie78 .sch-header-indicator {
+    width      : 0;
+    height     : 0;
+    border     : 5px solid transparent;
+    background : transparent;
+}
+
+.sch-horizontal .sch-header-indicator {
+    bottom        : 3px;
+    margin        : 0 -5px 0 -6px;
+    border-radius : 8px 8px 8px 0;
+}
+
+/* IE 9 */
+.x-ie .sch-horizontal .sch-header-indicator {
+    margin : 0 -5px;
+}
+
+/* IE 9 */
+.x-ie .sch-horizontal .sch-header-indicator-start,
+.x-ie .sch-horizontal .sch-header-indicator-end {
+    margin : 0 -5px 0 -6px;
+}
+
+/* IE < 9 */
+.x-ie78 .sch-horizontal .sch-header-indicator {
+    bottom           : 0;
+    border-bottom    : none !important;
+    border-top-color : #f33;
+    margin           : 0 -4px 0 -5px;
+}
+
+.x-safari .sch-horizontal .sch-header-indicator {
+    margin : 0 -4px;
+}
+
+.sch-vertical .sch-header-indicator {
+    right         : 3px;
+    margin        : -5px 0 0 0;
+    border-radius : 8px 8px 0 8px;
+}
+
+.sch-vertical.x-rtl .sch-header-indicator {
+    right         : auto;
+    left          : 3px;
+    border-radius : 0 8px 8px 8px;
+}
+
+.x-ie78 .sch-vertical .sch-header-indicator {
+    right             : 0;
+    margin            : -5px 0 0 0;
+    border-right      : none !important;
+    border-left-color : #f33;
+}
+
+.x-ie78 .sch-vertical.x-rtl .sch-header-indicator {
+    right        : auto;
+    left         : 0;
+    border-left  : none !important;
+    border-right : 5px solid #f33;
+}
 .sch-zone {
     height      : 100%;
     position    : absolute;
@@ -506,6 +475,7 @@ div.sch-dragcreator-proxy {
     border-left-style : solid;
     border-left-color : #f4f4f4;
 }
+
 
 /* Styles for Exporting. */
 .sch-export {

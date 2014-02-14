@@ -7,6 +7,7 @@ using System.Web;
 using Ilc.Core;
 using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
+using Ilc.Data.Models;
 using Ilc.Web.Models;
 using ServiceStack.Common.Web;
 using ServiceStack.ServiceInterface;
@@ -163,6 +164,23 @@ namespace Ilc.Web.Services
                     StatusCode = HttpStatusCode.OK
                 };
         }
+
+        public HttpResult Post(UpdateLessonModel request)
+        {
+            var scheduleDay = new TrainingScheduleDay();
+            scheduleDay.StartDate = new DateTimeOffset(request.StartDate, TimeSpan.Zero);
+            scheduleDay.EndDate = new DateTimeOffset(request.EndDate, TimeSpan.Zero);
+            scheduleDay.TrainingId = request.TrainingId;
+            scheduleDay.LessonName = request.LessonName;
+
+            Uow.TrainingScheduleDays.Add(scheduleDay);
+            Uow.Commit();
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.Created
+                };
+        }
     }
 
     public class UpdateLessonModel
@@ -170,6 +188,7 @@ namespace Ilc.Web.Services
         public int Id { get; set; }
         public int TrainingId { get; set; }
         public DateTime StartDate { get; set; }
+        public string LessonName { get; set; }
         public DateTime EndDate { get; set; }
     }
 
