@@ -5,7 +5,7 @@
 
     lessonsStore: null,
 
-    onLessonGridSelect: function(grid, record, index, eOpts) {
+    onLessonGridSelect: function(grid, record) {
         this.fireEvent('selected', this, record);
     },
 
@@ -27,7 +27,7 @@
                 }
             ],
             listeners: {
-                select: me.onLessonGridSelect,
+                itemclick: me.onLessonGridSelect,
                 scope: me
             }
         });
