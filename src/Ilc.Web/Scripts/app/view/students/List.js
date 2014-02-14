@@ -143,36 +143,34 @@
 
         //var filteredColumns = [];
 
-        studentsGrid.on('filterupdate', function(feature, b) {
-            var dataIndex = b.dataIndex;
-            var grid = feature.grid;
-
-            var cols = grid.columns;
-            var filteringColumn = Ext.Array.findBy(cols, function(col) {
-                return col.dataIndex == dataIndex;
-            });
-
-            var isFiltered = '' != b.inputItem.getRawValue();
-            var el = filteringColumn.getEl();
-            debugger;
-            if (isFiltered) {   
-                if (!el.hasCls('filtered-column')) {
-                    el.addCls('filtered-column');
-                    el.child('div').addCls('filtered-column');
-                    el.child('div').addClsOnOver('filtered-column-hover');
-                }
-            } else {
-                if (el.hasCls('filtered-column')) {
-                    el.removeCls('filtered-column');
-                    el.child('div').removeCls('filtered-column');
-                    
-                    el.child('div').removeListener('mouseenter', null, el.child('div').dom);
-                    el.child('div').removeListener('mouseleave', null, el.child('div').dom);
-                }
-            }
-
-            // debugger;
-        });
+        // studentsGrid.on('filterupdate', function(feature, b) {
+        //     var dataIndex = b.dataIndex;
+        //     var grid = feature.grid;
+        // 
+        //     var cols = grid.columns;
+        //     var filteringColumn = Ext.Array.findBy(cols, function(col) {
+        //         return col.dataIndex == dataIndex;
+        //     });
+        // 
+        //     var isFiltered = '' != b.inputItem.getRawValue();
+        //     var el = filteringColumn.getEl();
+        // 
+        //     if (isFiltered) {   
+        //         if (!el.hasCls('filtered-column')) {
+        //             el.addCls('filtered-column');
+        //             el.child('div').addCls('filtered-column');
+        //             el.child('div').addClsOnOver('filtered-column-hover');
+        //         }
+        //     } else {
+        //         if (el.hasCls('filtered-column')) {
+        //             el.removeCls('filtered-column');
+        //             el.child('div').removeCls('filtered-column');
+        //             
+        //             el.child('div').removeListener('mouseenter', null, el.child('div').dom);
+        //             el.child('div').removeListener('mouseleave', null, el.child('div').dom);
+        //         }
+        //     }
+        // });
         
         //Ext.util.Observable.capture(studentsGrid, function() {
         //    console.log(arguments);

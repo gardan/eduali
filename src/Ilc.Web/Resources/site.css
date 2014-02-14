@@ -162,6 +162,10 @@
 }
 
 /* Grid */
+.ux-filtered-column {
+    color: yellow;
+}
+
 .filtered-column {
     background-color: aqua!important;
 }
