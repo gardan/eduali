@@ -163,13 +163,5 @@
 
 /* Grid */
 .ux-filtered-column {
-    color: yellow;
-}
-
-.filtered-column {
-    background-color: aqua!important;
-}
-
-.filtered-column-hover {
-    background-color: aqua!important;
+    color: rgb(0, 153, 255)
 }
