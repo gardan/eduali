@@ -142,8 +142,9 @@ namespace Ilc.Web.Services
         {
             var scheduleDay = Uow.TrainingScheduleDays.GetAll().FirstOrDefault(s => s.Id == request.Id);
 
-            scheduleDay.StartDate = new DateTimeOffset(request.StartDate);
-            scheduleDay.EndDate = new DateTimeOffset(request.EndDate);
+            scheduleDay.StartDate = new DateTimeOffset(request.StartDate, TimeSpan.Zero);
+            scheduleDay.EndDate = new DateTimeOffset(request.EndDate, TimeSpan.Zero);
+            scheduleDay.LessonName = request.LessonName;
 
             Uow.TrainingScheduleDays.Update(scheduleDay);
             Uow.Commit();

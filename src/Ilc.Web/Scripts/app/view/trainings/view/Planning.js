@@ -35,9 +35,16 @@
             columnWidth: 0.2,
             listeners: {
                 'selected': this.onLessonsListSelected,
+                'aftereditlesson': this.onAfterEditLesson,
                 scope: this
             }
         });
+    },
+
+    onAfterEditLesson: function (container, record) {
+        var rec = this.scheduler.eventStore.getById(record.get('Id'));
+        rec.set('Name', record.get('Name'));
+        rec.commit();
     },
 
     onLessonsListSelected: function (container, record) {
