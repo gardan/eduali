@@ -22,6 +22,7 @@ namespace Ilc.Web.Models
         public string TrainerName { get; set; }
         public string CustomerName { get; set; }
         public string SubjectName { get; set; }
+        public string Location { get; set; }
 
         public DateTimeOffset DesiredStartDate { get; set; }
         public DateTimeOffset DesiredEndDate { get; set; }

@@ -83,6 +83,7 @@ namespace Ilc.Web.Services
                     DesiredStartDate = request.DesiredStartDate,
                     DesiredEndDate = request.DesiredEndDate,
                     GradingSystemId = request.GradingSystemId,
+                    Location = request.Location,
                     Status = "Rfi",
                     Students = students,
                     TrainerId = request.TrainerId,
@@ -129,6 +130,9 @@ namespace Ilc.Web.Services
             training.DesiredStartDate =  request.DesiredStartDate == DateTimeOffset.MinValue.DateTime
                                             ? training.DesiredStartDate
                                             : request.DesiredStartDate;
+            training.Location = request.Location == ""
+                                    ? training.Location
+                                    : request.Location;
 
             // Update the interviewPlanDateAndLocation if one exists
             if (interviewPlan != null)
@@ -213,6 +217,7 @@ namespace Ilc.Web.Services
 
     public class UpdateTrainingModel
     {
+        public string Location { get; set; }
         public DateTime InterviewDate { get; set; }
         public DateTime DesiredStartDate { get; set; }
         public int TrainerId { get; set; }
