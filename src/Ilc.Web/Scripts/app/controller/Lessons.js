@@ -20,7 +20,33 @@
     },
 
     onCreateLesson: function (sender, model) {
-        
+        var lessonsService = {
+            create: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/trainings/' + model.trainingId + '/lessons',
+                    method: 'POST',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+        sender.mask();
+        lessonsService.create(model)
+            .then(function () {
+                sender.lessonCreated();
+            })
+            .finally(function () {
+                sender.unmask();
+            });
     },
 
     updateLesson: function(sender, model) {

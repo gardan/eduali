@@ -29,6 +29,10 @@
         this.fireEvent('updatecomplete');
     },
 
+    lessonCreated: function () {
+        this.lessonsContainer.lessonsStore.reload();
+    },
+
     initLessonsContainer: function() {
         return Ext.create('Ilc.view.lessons.List', {
             training: this.entity,
@@ -58,7 +62,9 @@
     },
 
     onLessonCreated: function (newEventRecord) {
-        var trainingLessons = eventStore.queryBy(function (record) {
+        var container = this.up('planningTab');
+        
+        var trainingLessons = this.eventStore.queryBy(function (record) {
             return record.get('Draggable') == true;
         });
         
@@ -66,9 +72,14 @@
             Name: 'Lesson ' + (trainingLessons.items.length + 1)
         });
 
-        var model = {};
-
-        this.fireEvent('createlesson', this, model);
+        var model = {
+            startDate: newEventRecord.get('StartDate'),
+            endDate: newEventRecord.get('EndDate'),
+            lessonName: newEventRecord.get('Name'),
+            trainingId: container.entity.get('id')
+        };
+        
+        container.fireEvent('createlesson', container, model);
     },
 
     initComponent: function (args) {
@@ -99,7 +110,7 @@
             height: 400,
             // startDate: new Date(2013, 10, 24, 6),
             eventResizeHandles: 'none',
-            enableDragCreation: false,
+            // enableDragCreation: false,
 
             resourceStore: resourceStore,
             eventStore: eventStore,
