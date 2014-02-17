@@ -5,13 +5,15 @@
     training: null,
 
     lessonsStore: null,
+    lessonsGrid: null,
 
     onLessonGridSelect: function(grid, record) {
         this.fireEvent('selected', this, record);
     },
 
-    updateFinished: function(lessonRecord) {
-        lessonRecord.commit();
+    updateFinished: function (lessonRecord) {
+        var rec = this.lessonsStore.getById(lessonRecord.id);
+        rec.commit();
         this.fireEvent('aftereditlesson', this, lessonRecord);
     },
 
@@ -29,9 +31,16 @@
             listeners: {
                 edit: function (editor, e) {
                     var rec = e.record;
-                    me.fireEvent('editlesson', me, rec, {
-                        trainingId: me.training.get('id')
-                    });
+
+                    var model = {
+                        id: rec.get('Id'),
+                        trainingId: me.training.get('id'),
+                        startDate: rec.get('StartDate'),
+                        endDate: rec.get('EndDate'),
+                        lessonName: rec.get('Name'),
+                    };
+
+                    me.fireEvent('editlesson', me, model);
                 }
             }
         });
@@ -40,7 +49,7 @@
             xtype: 'textfield'   
         };
 
-        var lessonsGrid = Ext.create('Ext.grid.Panel', {
+        me.lessonsGrid = Ext.create('Ext.grid.Panel', {
             plugins: [ rowEditing ],
             store: me.lessonsStore,
             columns: [
@@ -58,7 +67,7 @@
         });
         
         me.items = [
-            lessonsGrid
+            me.lessonsGrid
         ];
         
         me.lessonsStore.load();

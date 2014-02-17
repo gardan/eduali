@@ -7,15 +7,20 @@
                 updatelesson: this.updateLesson
             },
             planningTab: {
-                updatelesson: this.updateLesson
+                updatelesson: this.updateLesson,
+                createlesson: this.onCreateLesson
             },
             trainingscheduler: {
                 deletelesson: this.onDeleteLesson
             },
             lessonslist: {
-                editlesson: this.editLesson
+                editlesson: this.updateLesson
             }
         });
+    },
+
+    onCreateLesson: function (sender, model) {
+        
     },
 
     updateLesson: function(sender, model) {
@@ -45,47 +50,7 @@
             })
             .finally(function() {
                 sender.unmask();
-                sender.updateFinished();
-            });
-    },
-    
-    editLesson: function(sender, lessonRecord, opts) {
-        var lessonsService = {
-            edit: function (entity) {
-                var deferred = Q.defer();
-
-                Ext.Ajax.request({
-                    url: 'api/trainings/' + entity.trainingId + '/lessons/' + entity.id,
-                    method: 'PUT',
-                    jsonData: entity,
-                    success: function (response) {
-                        deferred.resolve(response);
-                    },
-                    failure: function (error) {
-                        deferred.reject(error);
-                    }
-                });
-
-                return deferred.promise;
-            }
-        };
-
-        var model = {
-            id: lessonRecord.get('Id'),
-            trainingId: opts.trainingId,
-            startDate: lessonRecord.get('StartDate'),
-            endDate: lessonRecord.get('EndDate'),
-            lessonName: lessonRecord.get('Name'),
-        };
-
-        sender.mask();
-        lessonsService.edit(model)
-            .then(function () {
-
-            })
-            .finally(function () {
-                sender.unmask();
-                sender.updateFinished(lessonRecord);
+                sender.updateFinished(model);
             });
     },
 

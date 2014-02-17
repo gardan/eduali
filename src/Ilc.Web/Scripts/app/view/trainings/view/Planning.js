@@ -42,8 +42,8 @@
     },
 
     onAfterEditLesson: function (container, record) {
-        var rec = this.scheduler.eventStore.getById(record.get('Id'));
-        rec.set('Name', record.get('Name'));
+        var rec = this.scheduler.eventStore.getById(record.id);
+        rec.set('Name', record.lessonName);
         rec.commit();
     },
 
