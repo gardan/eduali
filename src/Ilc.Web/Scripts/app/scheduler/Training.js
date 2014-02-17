@@ -141,14 +141,14 @@
             {
                 iconCls: 'icon-zoom-in',
                 handler: function () {
-                    me.zoomIn();
+                    console.log(me.zoomIn());
                     me.loadAvailabilityZones();
                 }
             },
             {
                 iconCls: 'icon-zoom-out',
                 handler: function () {
-                    me.zoomOut();
+                    console.log(me.zoomOut());
                     me.loadAvailabilityZones();
                 }
             },
@@ -194,6 +194,14 @@
             scheduler.ctx.rec = eventRecord;
             scheduler.ctx.showAt(e.getXY());
         });
+
+        var func = function() {
+            me.un('afterlayout', func);
+            me.goToNow();
+            me.zoomToLevel(3);
+        };
+
+        me.on('afterlayout', func);
 
         var availabilityStore = Ext.create('Ilc.store.scheduler.Availability');
 

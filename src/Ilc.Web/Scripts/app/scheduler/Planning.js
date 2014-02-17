@@ -122,6 +122,26 @@
             }
         ];
 
+        me.zoomLevels = [
+            // WEEK
+            { width: 50, increment: 1, resolution: 30, preset: 'weekAndMonth', resolutionUnit: 'MINUTE' },
+
+            // DAY
+            { width: 100, increment: 1, resolution: 30, preset: 'weekAndDay', resolutionUnit: 'MINUTE' },
+
+            //HOUR
+            { width: 50, increment: 6, resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' },
+            { width: 50, increment: 1, resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' }
+        ];
+
+        var func = function () {
+            me.un('afterlayout', func);
+            me.goToNow();
+            me.zoomToLevel(3);
+        };
+
+        me.on('afterlayout', func);
+
         var availabilityStore = Ext.create('Ilc.store.scheduler.Availability');
         
         me.resourceZones = availabilityStore;
