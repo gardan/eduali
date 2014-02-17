@@ -155,6 +155,11 @@
                 name: 'workflowOwners.coordinator'
             },
             {
+                xtype: 'textfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.location'),
+                name: 'location'
+            },
+            {
                 xtype: 'datefield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.startDate'),
                 format: Ilc.resources.Manager.getResourceString('formats.extjsdate'),

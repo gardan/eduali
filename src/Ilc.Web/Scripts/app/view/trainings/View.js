@@ -311,6 +311,13 @@
                                 margin: '0 5 5 5'
                             },
                             {
+                                xtype: 'textfield',
+                                fieldLabel: Ilc.resources.Manager.getResourceString('common.location'),
+                                name: 'location',
+                                value: model.get('location')
+                                
+                            },
+                            {
                                 xtype: 'datefield',
                                 fieldLabel: Ilc.resources.Manager.getResourceString('common.startDate'),
                                 value: new Date(model.get('desiredStartDate')),
