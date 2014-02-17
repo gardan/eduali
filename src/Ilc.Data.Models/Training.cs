@@ -20,6 +20,7 @@ namespace Ilc.Data.Models
         public DateTimeOffset DesiredStartDate { get; set; }
         public DateTimeOffset DesiredEndDate { get; set; }
 
+        public string Location { get; set; }
         public string Status { get; set; }
         public int SubjectId { get; set; }
         [ForeignKey("SubjectId")]
