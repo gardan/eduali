@@ -20,21 +20,15 @@ namespace Ilc.Web.Services
 
         public ISubjectsService Subjects { get; set; }
 
-        // public FilteredDataModel<SubjectModel> Get(FilterSubjectsParameters request)
-        public HttpResult Get(FilterSubjectsParameters request)
+        public FilteredDataModel<SubjectModel> Get(FilterSubjectsParameters request)    
         {
-            return new HttpResult()
+            var results = Subjects.GetFiltered(request);
+            return new FilteredDataModel<SubjectModel>()
                 {
-                    StatusCode = HttpStatusCode.Unauthorized
+                    Data = results.Data.Select(s => new SubjectModel().InjectFrom(s) as SubjectModel).ToList(),
+                    TotalDisplayRecords = results.TotalDisplayRecords,
+                    TotalRecords = results.TotalRecords
                 };
-    
-            // var results = Subjects.GetFiltered(request);
-            // return new FilteredDataModel<SubjectModel>()
-            //     {
-            //         Data = results.Data.Select(s => new SubjectModel().InjectFrom(s) as SubjectModel).ToList(),
-            //         TotalDisplayRecords = results.TotalDisplayRecords,
-            //         TotalRecords = results.TotalRecords
-            //     };
         }
 
         public HttpResult Post(SubjectModel request)

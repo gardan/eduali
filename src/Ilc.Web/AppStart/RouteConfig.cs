@@ -121,6 +121,8 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.CreateCompanyModel>("/api/companies", "POST");
 
             routes.Add<Services.FilterParametersQuestions>("/api/questions", "GET");
+
+            routes.Add<Services.AuthModel>("/api/auth", "GET");
         }
     }
 }

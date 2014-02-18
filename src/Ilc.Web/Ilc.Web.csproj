@@ -3975,6 +3975,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\CreateStudentModel.cs" />
     <Compile Include="Models\CreateOfferModel.cs" />
+    <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\AvailabilityService.cs" />
     <Compile Include="Services\AvatarsService.cs" />
     <Compile Include="Services\ClaimsService.cs" />

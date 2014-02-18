@@ -21,7 +21,7 @@ namespace Ilc.Web.Authentication
             return ClaimsPrincipal.Current.Identity.IsAuthenticated;
         }
 
-        public bool CheckPasswordAndSignIn(HttpContextBase context, string email, string password, bool isPersistent)
+        public bool CheckPasswordAndSignIn(string email, string password, bool isPersistent)
         {
             if (IdentityStoreManager.ValidateLocalLogin(email, password))
             {
