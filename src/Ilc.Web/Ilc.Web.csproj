@@ -41,6 +41,9 @@
     <Reference Include="EntityFramework">
       <HintPath>..\ILC.Data\bin\Debug\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Madam">
+      <HintPath>..\..\packages\madam.1.0.2\lib\net20\Madam.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Omu.ValueInjecter">
       <HintPath>..\..\packages\ValueInjecter.2.3.3\lib\net35\Omu.ValueInjecter.dll</HintPath>
@@ -3905,6 +3908,7 @@
   <ItemGroup>
     <Compile Include="AppStart\AppHost.cs" />
     <Compile Include="AppStart\ContentTypeConfig.cs" />
+    <Compile Include="AppStart\ExceptionConfig.cs" />
     <Compile Include="AppStart\IocConfig.cs" />
     <Compile Include="AppStart\RouteConfig.cs" />
     <Compile Include="AppStart\RouteMvcConfig.cs" />
@@ -3918,11 +3922,13 @@
     <Compile Include="Controllers\PdfController.cs" />
     <Compile Include="Controllers\TransfersController.cs" />
     <Compile Include="Controllers\ZipController.cs" />
+    <Compile Include="Filters\Request\IlcAuth.cs" />
     <Compile Include="Filters\Response\ModelWithStatusResponseFilter.cs" />
     <Compile Include="Filters\Response\TaskModelWithStatusResponseFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HttpModules\SuppressFormsAuthenticationRedirectModule.cs" />
     <Compile Include="InjectorConventions\AvailabilityModelToAvailability.cs" />
     <Compile Include="InjectorConventions\AvailabilityToAvailabilityModel.cs" />
     <Compile Include="InjectorConventions\GradingSystemToWebModel.cs" />

@@ -16,6 +16,11 @@ namespace Ilc.Web.Authentication
         public IUsersService Users { get; set; }
         public IClaimsService ClaimsService { get; set; }
 
+        public bool IsAuthenticated()
+        {
+            return ClaimsPrincipal.Current.Identity.IsAuthenticated;
+        }
+
         public bool CheckPasswordAndSignIn(HttpContextBase context, string email, string password, bool isPersistent)
         {
             if (IdentityStoreManager.ValidateLocalLogin(email, password))

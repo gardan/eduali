@@ -6,6 +6,7 @@ using System.Web;
 using Ilc.Core;
 using Ilc.Core.Contracts;
 using Ilc.Data.Models;
+using Ilc.Web.Filters.Request;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
 using ServiceStack.Common.Web;
@@ -13,20 +14,27 @@ using ServiceStack.ServiceInterface;
 
 namespace Ilc.Web.Services
 {
+    [IlcAuth]
     public class SubjectsService : Service
     {
 
         public ISubjectsService Subjects { get; set; }
 
-        public FilteredDataModel<SubjectModel> Get(FilterSubjectsParameters request)
+        // public FilteredDataModel<SubjectModel> Get(FilterSubjectsParameters request)
+        public HttpResult Get(FilterSubjectsParameters request)
         {
-            var results = Subjects.GetFiltered(request);
-            return new FilteredDataModel<SubjectModel>()
+            return new HttpResult()
                 {
-                    Data = results.Data.Select(s => new SubjectModel().InjectFrom(s) as SubjectModel).ToList(),
-                    TotalDisplayRecords = results.TotalDisplayRecords,
-                    TotalRecords = results.TotalRecords
+                    StatusCode = HttpStatusCode.Unauthorized
                 };
+    
+            // var results = Subjects.GetFiltered(request);
+            // return new FilteredDataModel<SubjectModel>()
+            //     {
+            //         Data = results.Data.Select(s => new SubjectModel().InjectFrom(s) as SubjectModel).ToList(),
+            //         TotalDisplayRecords = results.TotalDisplayRecords,
+            //         TotalRecords = results.TotalRecords
+            //     };
         }
 
         public HttpResult Post(SubjectModel request)
