@@ -16,7 +16,6 @@
             store: {
                 '*': {
                     load: function (store, records, successful, operation) {
-                        debugger;
                         if (!operation.error || operation.error.status !== 401) {
                             return;
                         }
@@ -27,56 +26,36 @@
                             return;
                         }
 
-                        loginWindow = Ext.create('Ext.window.Window', {
-                            items: [
-                                {
-                                    xtype: 'textfield',
-                                    name: 'email',
-                                    fieldLabel: 'Email'
-                                },
-                                {
-                                    xtype: 'textfield',
-                                    name: 'password',
-                                    fieldLabel: 'Password',
-                                    inputType: 'password'
-                                }
-                            ],
-                            buttons: [
-                                {
-                                    text: 'Login',
-                                    handler: function () {
+                        loginWindow = Ext.create('Ilc.window.Login', {
+                            handler: function () {
 
-                                        var window = this.up('window');
-                                        var model = Ilc.utils.Forms.extractModel(window.query('textfield'));
+                                var window = this.up('window');
+                                var model = Ilc.utils.Forms.extractModel(window.query('textfield'));
 
 
-                                        var url = 'api/auth?' + Ext.urlEncode(model);
+                                var url = 'api/auth?' + Ext.urlEncode(model);
 
-                                        Ext.Ajax.request({
-                                            url: url,
-                                            method: 'GET',
-                                            headers: {
-                                                'Content-Type': 'application/json'
-                                            },
-                                            success: function (response) {
-                                                loginWindow.close();
-                                                loginWindow = null;
-
-                                                Ext.Array.forEach(storesQueue, function (queuedStore) {
-                                                    debugger;
-                                                    queuedStore.reload();
-                                                });
-                                                storesQueue.length = 0;
-                                            },
-                                            failure: function (error) {
-
-                                            }
-                                        });
-
-
+                                Ext.Ajax.request({
+                                    url: url,
+                                    method: 'GET',
+                                    headers: {
+                                        'Content-Type': 'application/json'
                                     },
-                                }
-                            ]
+                                    success: function (response) {
+                                        loginWindow.close();
+                                        loginWindow = null;
+
+                                        Ext.Array.forEach(storesQueue, function (queuedStore) {
+                                            debugger;
+                                            queuedStore.reload();
+                                        });
+                                        storesQueue.length = 0;
+                                    },
+                                    failure: function (error) {
+
+                                    }
+                                });
+                            }
                         });
 
                         loginWindow.show();
@@ -95,7 +74,7 @@
             }
         });
     },
-    
+
     onMainNavClick: function (btn) {
         var routeId = '';
         if (btn.itemId == undefined) { // check if it is a menu button
