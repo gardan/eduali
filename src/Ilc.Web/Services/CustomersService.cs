@@ -7,6 +7,7 @@ using System.Web;
 using Ilc.Core.Contracts;
 using Ilc.Data.Models;
 using Ilc.Misc;
+using Ilc.Web.Filters.Request;
 using Ilc.Web.InjectorConventions;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
@@ -16,6 +17,7 @@ using ServiceStack.ServiceInterface;
 
 namespace Ilc.Web.Services
 {
+    [IlcAuth]
     public class CustomersService : Service
     {
 

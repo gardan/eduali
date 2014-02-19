@@ -9,15 +9,25 @@
     init: function () {
         var self = this;
 
+        var storesQueue = [];
+        var loginWindow = null;
+
         this.listen({
             store: {
                 '*': {
                     load: function (store, records, successful, operation) {
+                        debugger;
                         if (!operation.error || operation.error.status !== 401) {
                             return;
                         }
 
-                        var win = Ext.create('Ext.window.Window', {
+                        storesQueue.push(store);
+
+                        if (loginWindow) {
+                            return;
+                        }
+
+                        loginWindow = Ext.create('Ext.window.Window', {
                             items: [
                                 {
                                     xtype: 'textfield',
@@ -49,8 +59,14 @@
                                                 'Content-Type': 'application/json'
                                             },
                                             success: function (response) {
-                                                win.close();
-                                                store.reload();
+                                                loginWindow.close();
+                                                loginWindow = null;
+
+                                                Ext.Array.forEach(storesQueue, function (queuedStore) {
+                                                    debugger;
+                                                    queuedStore.reload();
+                                                });
+                                                storesQueue.length = 0;
                                             },
                                             failure: function (error) {
 
@@ -63,7 +79,7 @@
                             ]
                         });
 
-                        win.show();
+                        loginWindow.show();
                         
                     }
                 }
