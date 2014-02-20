@@ -184,6 +184,16 @@ Ext.application({
         var loginWindow = null;
         var requestsQueue = [];
 
+        var forEachFunc = function (item) {
+            if (item.options.callback) {
+                item.options.callback = item.handler;
+            } else {
+                item.options.failure = item.handler;
+            }
+
+            Ext.Ajax.request(item.options);
+        };
+
         Ext.override(Ext.data.Connection, {
             request: function (options) {
                 var me = this;
@@ -224,10 +234,7 @@ Ext.application({
                                             loginWindow.close();
                                             loginWindow = null;
 
-                                            Ext.Array.forEach(requestsQueue, function (item) {
-                                                item.options.callback = item.handler;
-                                                Ext.Ajax.request(item.options);
-                                            });
+                                            Ext.Array.forEach(requestsQueue, forEachFunc);
                                             requestsQueue.length = 0;
 
                                         },
@@ -288,10 +295,7 @@ Ext.application({
                                         loginWindow.close();
                                         loginWindow = null;
 
-                                        Ext.Array.forEach(requestsQueue, function (item) {
-                                            item.options.failure = item.handler;
-                                            Ext.Ajax.request(item.options);
-                                        });
+                                        Ext.Array.forEach(requestsQueue, forEachFunc);
                                         requestsQueue.length = 0;
 
                                     },
