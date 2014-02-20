@@ -201,6 +201,10 @@ Ext.application({
                                 handler: originalHandler
                             });
 
+                            if (loginWindow) {
+                                return;
+                            }
+
                             loginWindow = Ext.create('Ilc.window.Login', {
                                 handler: function () {
 
@@ -220,8 +224,12 @@ Ext.application({
                                             loginWindow.close();
                                             loginWindow = null;
 
-                                            opts.handler = originalHandler;
-                                            Ext.Ajax.request(opts);
+                                            Ext.Array.forEach(requestsQueue, function (item) {
+                                                item.options.callback = item.handler;
+                                                Ext.Ajax.request(item.options);
+                                            });
+
+                                            
                                         },
                                         failure: function (error) {
 
