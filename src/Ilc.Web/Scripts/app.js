@@ -142,6 +142,7 @@ Ext.application({
             }
         });
 
+        // Override this method to provide the operation parameter to the load event
         Ext.override(Ext.data.Store, {
             onProxyLoad: function (operation) {
                 var me = this,
@@ -180,66 +181,79 @@ Ext.application({
             }
         });
 
-        //// Handling store 401 response
-        //Ext.override(Ext.data.proxy.Ajax, {
-        //    listeners: {
-        //        exception: function (proxy, response, operation, eOpts) {
-        //            console.log(arguments);
-        //            if (response.status !== 401) {
-        //                return;
-        //            }
+        var loginWindow = null;
+        var requestsQueue = [];
 
-        //            var win = Ext.create('Ext.window.Window', {
-        //                items: [
-        //                    {
-        //                        xtype: 'textfield',
-        //                        name: 'email',
-        //                        fieldLabel: 'Email'
-        //                    },
-        //                    {
-        //                        xtype: 'textfield',
-        //                        name: 'password',
-        //                        fieldLabel: 'Password',
-        //                        inputType: 'password'
-        //                    }
-        //                ],
-        //                buttons: [
-        //                    {
-        //                        text: 'Login',
-        //                        handler: function () {
+        Ext.override(Ext.data.Connection, {
+            request: function (options) {
+                var me = this;
+                // debugger;
+                if (options.callback) {
+                    var originalHandler = options.callback;
+                    // 
+                    var customCallback = function (opts, success, response) {
+                        if (success) {
+                            originalHandler(opts, success, response);
+                        } else {
 
-        //                            var window = this.up('window');
-        //                            var model = Ilc.utils.Forms.extractModel(window.query('textfield'));
+                            requestsQueue.push({
+                                options: opts,
+                                handler: originalHandler
+                            });
+
+                            loginWindow = Ext.create('Ilc.window.Login', {
+                                handler: function () {
+
+                                    var window = this.up('window');
+                                    var model = Ilc.utils.Forms.extractModel(window.query('textfield'));
 
 
-        //                            var url = 'api/auth?' + Ext.urlEncode(model);
-                                    
-        //                            Ext.Ajax.request({
-        //                                url: url,
-        //                                method: 'GET',
-        //                                headers: {
-        //                                    'Content-Type': 'application/json'
-        //                                },
-        //                                success: function (response) {
-        //                                    win.close();
-        //                                    debugger;
-        //                                    proxy.read(operation);
-        //                                },
-        //                                failure: function (error) {
+                                    var url = 'api/auth?' + Ext.urlEncode(model);
 
-        //                                }
-        //                            });
+                                    Ext.Ajax.request({
+                                        url: url,
+                                        method: 'GET',
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        success: function (authResponse) {
+                                            loginWindow.close();
+                                            loginWindow = null;
 
-                                    
-        //                        },
-        //                    }
-        //                ]
-        //            });
+                                            opts.handler = originalHandler;
+                                            Ext.Ajax.request(opts);
+                                        },
+                                        failure: function (error) {
 
-        //            win.show();
-        //        }
-        //    }
-        //});
+                                        }
+                                    });
+                                }
+                            });
+
+                            loginWindow.show();
+                        }
+                    };
+               
+                    options.callback = customCallback;
+                }
+
+                me.callParent(arguments);
+                return;
+                // if (options.failure) {
+                //     var originalFailHandler = options.failure;
+                // 
+                //     var failFuncHandler = function (response) {
+                // 
+                //         console.log('Tapped that ass.');
+                // 
+                //         originalFailHandler(arguments);
+                //     };
+                //     options.failure = failFuncHandler;
+                // }
+
+                // me.callParent(arguments);
+            }
+        });
     }
 });
 
