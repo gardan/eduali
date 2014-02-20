@@ -69,13 +69,8 @@ namespace Ilc.Web.Services
 
         public HttpResult Put(EditCustomerModel request)
         {
-            var editedCustomer = new Customer()
-                {
-                    BankAccount = request.BankAccount,
-                    BillingAddress = request.BillingAddress,
-                    Name = request.Name,
-                    Id = request.Id
-                };
+            var editedCustomer = Customers.GetByCustomerId(request.Id);
+            editedCustomer.InjectFrom(request);
 
             Customers.Update(editedCustomer);
 

@@ -228,11 +228,11 @@ Ext.application({
                                                 item.options.callback = item.handler;
                                                 Ext.Ajax.request(item.options);
                                             });
+                                            requestsQueue.length = 0;
 
-                                            
                                         },
                                         failure: function (error) {
-
+                                            console.log(error);
                                         }
                                     });
                                 }
@@ -243,23 +243,71 @@ Ext.application({
                     };
                
                     options.callback = customCallback;
+                    
+                    me.callParent(arguments);
+                    return;
+                }
+
+                
+                
+
+                if (options.failure) {
+                    var originalFailHandler = options.failure;
+                
+                    var failFuncHandler = function (response) {
+                        if (response.status != 401) {
+                            originalFailHandler(response);
+                            return;
+                        }
+
+                        requestsQueue.push({
+                            options: response.request.options,
+                            handler: originalFailHandler
+                        });
+
+                        if (loginWindow) {
+                            return;
+                        }
+                        
+                        loginWindow = Ext.create('Ilc.window.Login', {
+                            handler: function () {
+
+                                var window = this.up('window');
+                                var model = Ilc.utils.Forms.extractModel(window.query('textfield'));
+
+
+                                var url = 'api/auth?' + Ext.urlEncode(model);
+
+                                Ext.Ajax.request({
+                                    url: url,
+                                    method: 'GET',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    success: function (authResponse) {
+                                        loginWindow.close();
+                                        loginWindow = null;
+
+                                        Ext.Array.forEach(requestsQueue, function (item) {
+                                            item.options.failure = item.handler;
+                                            Ext.Ajax.request(item.options);
+                                        });
+                                        requestsQueue.length = 0;
+
+                                    },
+                                    failure: function (error) {
+                                        console.log(error);
+                                    }
+                                });
+                            }
+                        });
+
+                        loginWindow.show();
+                    };
+                    options.failure = failFuncHandler;
                 }
 
                 me.callParent(arguments);
-                return;
-                // if (options.failure) {
-                //     var originalFailHandler = options.failure;
-                // 
-                //     var failFuncHandler = function (response) {
-                // 
-                //         console.log('Tapped that ass.');
-                // 
-                //         originalFailHandler(arguments);
-                //     };
-                //     options.failure = failFuncHandler;
-                // }
-
-                // me.callParent(arguments);
             }
         });
     }
