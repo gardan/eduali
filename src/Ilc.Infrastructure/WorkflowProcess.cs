@@ -8,11 +8,26 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Ilc.Infrastructure.Contracts;
+using Ilc.Infrastructure.Workflows;
 
 namespace Ilc.Infrastructure
 {
     public class WorkflowProcess : INotifyHost
     {
+        private Activity GetActivity(WorkflowIdentity identity)
+        {
+            if (identity == null) return new Training();
+
+            var definitions = new Dictionary<WorkflowIdentity, Activity>()
+                {
+                    // { null, new Training() },
+                    { new WorkflowIdentity("Sample", new Version(1, 0, 0), "MyPackage"), new Training() },
+                    { new WorkflowIdentity("Sample", new Version(1, 0, 0, 0), "MyPackage"), new Training() }
+                };
+
+            return definitions[identity];
+        }
+
         private IDictionary<string, object> _results;
         private WorkflowApplication _wfApp;
         private readonly IExtensionManager _extensionManager;
@@ -29,11 +44,25 @@ namespace Ilc.Infrastructure
             _results = new Dictionary<string, object>();
             _resetEvent = new ManualResetEventSlim(false);
 
+            var identity = new WorkflowIdentity("Sample", new Version(1, 0, 0, 0), "MyPackage");
+
             _wfApp = inputs.Keys.Count == 0 ? new WorkflowApplication(wfActivity) : new WorkflowApplication(wfActivity, inputs);
-            
 
             ConfigureExtensions();
             ConfigureInstanceStore();
+            _wfApp.InstanceStore = _store;
+        }
+
+        private void Reconfigure(WorkflowApplicationInstance instance)
+        {
+            if (_isInMemory) _wfApp.Unload();
+
+            var identity = instance.DefinitionIdentity;
+            var definition = GetActivity(identity);
+
+            _wfApp = new WorkflowApplication(definition, identity);
+            ConfigureExtensions();
+
         }
 
         /// <summary>
@@ -71,12 +100,15 @@ namespace Ilc.Infrastructure
         {
             _resetEvent.Reset();
 
+            var instance = WorkflowApplication.GetInstance(instanceId, _store);
+            Reconfigure(instance);
+
             ConfigureWorkflowApplicationEvents(idleAction);
 
             // should i load, or is it already in memory?
             if (!_isInMemory)
             {
-                _wfApp.Load(instanceId);
+                _wfApp.Load(instance);
                 _isInMemory = true;
             }
 
@@ -143,7 +175,7 @@ namespace Ilc.Infrastructure
             _store = new SqlWorkflowInstanceStore(cs);
 
             WorkflowApplication.CreateDefaultInstanceOwner(_store, null, WorkflowIdentityFilter.Any);
-            _wfApp.InstanceStore = _store;
+            // 
         }
 
         private void ConfigureExtensions()
