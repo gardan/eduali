@@ -38,6 +38,7 @@
     <Reference Include="System.Activities.Presentation" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Runtime.DurableInstancing" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
