@@ -30,6 +30,8 @@
 
     enableDragCreation: false,
     enabledHdMenu: false,
+    constrainDragToResource: true,
+    allowOverlap: false,
 
     plugins: [
                 new Sch.plugin.Pan({
