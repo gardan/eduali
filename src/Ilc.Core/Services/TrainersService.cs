@@ -22,7 +22,7 @@ namespace Ilc.Core.Services
             var user = Users.GetByEmail();
             var query = Uow.Trainers.GetAll().Where(t => t.CompanyId == user.CompanyId);
 
-            if (Authorization.HasClaim(SystemClaims.TasksTrainer))
+            if (!Authorization.HasClaim(SystemClaims.TasksAdministration) && Authorization.HasClaim(SystemClaims.TasksTrainer))
             {
                 var userId = Users.GetByEmail().Id;
                 query = query.Where(t => t.UserProfileId == userId);
