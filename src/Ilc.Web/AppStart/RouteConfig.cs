@@ -122,6 +122,8 @@ namespace Ilc.Web.AppStart
 
             routes.Add<Services.FilterParametersQuestions>("/api/questions", "GET");
 
+            routes.Add<Services.FilterParametersInterviews>("/api/trainings/{trainingId}/students/{studentId}/interviews");
+
             routes.Add<Services.AuthModel>("/api/auth", "GET");
         }
     }

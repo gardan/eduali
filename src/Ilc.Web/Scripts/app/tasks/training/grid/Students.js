@@ -29,7 +29,7 @@
 
         me.listeners = {
             itemdblclick:  function(grid, record) {
-                var action = (record.get('interviewId') == 0 ? 'Create' : 'View');
+                var action = (record.get('interviewId') == 0 ? addLbl : viewLbl);
 
                 var windowClass = 'Ilc.tasks.training.window.' + action + 'StudentInterview';
                 var window = Ext.create(windowClass, {

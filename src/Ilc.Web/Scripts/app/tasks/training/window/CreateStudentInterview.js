@@ -43,7 +43,7 @@
                         queryMode: 'local',
                         displayField: 'name',
                         valueField: 'id',
-                        name: 'listeningDesiredLevel',
+                        name: 'targetListeningLevel',
                         anchor: '100%'
                     }
                 ]
@@ -69,7 +69,7 @@
                         queryMode: 'local',
                         displayField: 'name',
                         valueField: 'id',
-                        name: 'readingTargetLevel',
+                        name: 'targetReadingLevel',
                         anchor: '100%'
                     }
                 ]
@@ -95,7 +95,7 @@
                         queryMode: 'local',
                         displayField: 'name',
                         valueField: 'id',
-                        name: 'interactiveTalkingDesiredLevel',
+                        name: 'targetInteractiveTalkingLevel',
                         anchor: '100%'
                     }
                 ]
@@ -121,7 +121,7 @@
                         queryMode: 'local',
                         displayField: 'name',
                         valueField: 'id',
-                        name: 'productiveTalkingTargetLevel',
+                        name: 'targetProductiveTalkingLevel',
                         anchor: '100%'
                     }
                 ]
@@ -147,7 +147,7 @@
                         queryMode: 'local',
                         displayField: 'name',
                         valueField: 'id',
-                        name: 'writingTargetLevel',
+                        name: 'targetWritingLevel',
                         anchor: '100%'
                     }
                 ]

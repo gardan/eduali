@@ -46,6 +46,7 @@ namespace Ilc.Web.AppStart
             container.RegisterAutoWiredAs<GradingSystemsService, IGradingSystemsService>().ReusedWithin(ReuseScope.Request);
             container.RegisterAutoWiredAs<CompaniesService, ICompaniesService>().ReusedWithin(ReuseScope.Request);
             container.RegisterAutoWiredAs<CompanyDefaultsService, ICompanyDefaultsService>().ReusedWithin(ReuseScope.Request);
+            container.RegisterAutoWiredAs<InterviewsService, IInterviewsService>().ReusedWithin(ReuseScope.Request);
 
             container.RegisterAutoWiredAs<StatisticsService, IStatisticsService>().ReusedWithin(ReuseScope.Request);            
         }

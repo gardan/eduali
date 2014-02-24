@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FilterArgumentsInterviews.cs" />
     <Compile Include="Services\CompaniesService.cs" />
     <Compile Include="Contracts\ICompaniesService.cs" />
     <Compile Include="Services\CompanyDefaultsService.cs" />
@@ -71,6 +72,8 @@
     <Compile Include="FilterArgumentsSubjects.cs" />
     <Compile Include="Contracts\IAvailabilityService.cs" />
     <Compile Include="Contracts\ICompanyDefaultsService.cs" />
+    <Compile Include="Contracts\IInterviewsService.cs" />
+    <Compile Include="Services\InterviewsService.cs" />
     <Compile Include="Services\StatusDefinitionsService.cs" />
     <Compile Include="Services\SubjectsService.cs" />
     <Compile Include="Services\ClaimsService.cs" />
