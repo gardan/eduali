@@ -15,7 +15,37 @@
     width: 400,
     modal: true,
     bodyPadding: 10,
-    constructor: function () {
+    
+    contactsComboBox: null,
+    customerComboBox: null,
+    studentsComboBox: null,
+    requiredStudentsField: null,
+    priceField: null,
+    dateOfValidationField: null,
+    
+    onPublicCheckboxChange: function(checkbox, checked) {
+        var me = this;
+
+        if (checked) {
+            me.requiredStudentsField.show();
+            me.priceField.show();
+            me.dateOfValidationField.show();
+            
+            me.customerComboBox.hide();
+            me.contactsComboBox.hide();
+            me.studentsComboBox.hide();
+        } else {
+            me.requiredStudentsField.hide();
+            me.priceField.hide();
+            me.dateOfValidationField.hide();
+
+            me.customerComboBox.show();
+            me.contactsComboBox.show();
+            me.studentsComboBox.show();
+        }
+    },
+
+    initComponent: function () {
         var me = this;
         var customersStore = Ext.create('Ilc.store.Customers');
         var studentsStore = Ext.create('Ilc.store.Students', {
@@ -39,7 +69,7 @@
             isTrainingContact: true
         });
 
-        var contactsComboBox = Ext.create('Ext.form.ComboBox', {
+        me.contactsComboBox = Ext.create('Ext.form.ComboBox', {
             store: contactsStore,
             multiSelect: true,
             queryMode: 'local',
@@ -51,7 +81,7 @@
             labelWidth: 120
         });
 
-        var customerComboBox = Ext.create('Ext.form.ComboBox', {
+        me.customerComboBox = Ext.create('Ext.form.ComboBox', {
             store: customersStore,
             queryMode: 'local',
             displayField: 'name',
@@ -62,7 +92,7 @@
             labelWidth: 120
         });
 
-        var studentsComboBox = Ext.create('Ext.form.ComboBox', {
+        me.studentsComboBox = Ext.create('Ext.form.ComboBox', {
             store: studentsStore,
             queryMode: 'local',
             displayField: 'name',
@@ -107,7 +137,28 @@
             labelWidth: 120
         });
 
-        customerComboBox.on('select', function (comboBox, records, eOpts) {
+        me.requiredStudentsField = Ext.create('Ext.form.TextField', {
+            fieldLabel: 'Required students',
+            anchor: '100%',
+            hidden: true,
+            labelWidth: 120
+        });
+
+        me.priceField = Ext.create('Ext.ux.form.NumericField', {
+            fieldLabel: 'Price / student',
+            anchor: '100%',
+            hidden: true,
+            labelWidth: 120
+        });
+
+        me.dateOfValidationField = Ext.create('Ext.form.field.Date', {
+            fieldLabel: 'Validation at',
+            anchor: '100%',
+            hidden: true,
+            labelWidth: 120
+        });
+
+        me.customerComboBox.on('select', function (comboBox, records, eOpts) {
             contactsStore.updateCustomerId(records[0].data.id);
             contactsStore.load();
             
@@ -127,12 +178,23 @@
         });
 
         me.items = [
-            customerComboBox,
-            contactsComboBox,
+            {
+                xtype: 'checkbox',
+                fieldLabel: 'Public',
+                listeners: {
+                    scope: this,
+                    change: me.onPublicCheckboxChange
+                }
+            },
+            me.requiredStudentsField,
+            me.priceField,
+            me.customerComboBox,
+            me.contactsComboBox,
             subjectComboBox,
             trainingSystemComboBox,
             trainersComboBox,
-            studentsComboBox,
+            me.dateOfValidationField,
+            me.studentsComboBox,
             {
                 fieldLabel: 'Sales user',
                 store: salesUsersStore,
