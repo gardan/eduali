@@ -1,5 +1,6 @@
 ﻿Ext.define('Ilc.tasks.training.window.ViewStudentInterview', {
     extend: 'Ext.window.Window',
+    xtype: 'editinterviewindow',
     modal: true,
 
     title: Ilc.resources.Manager.getResourceString('common.view'),
@@ -7,9 +8,10 @@
 
     student: null,
     task: null,
-    interview: {
-        listeningLevel: 1,
-        targetListeningLevel: 1
+    interview: null,
+
+    editComplete: function() {
+        this.close();
     },
 
     initComponent: function () {
@@ -200,6 +202,17 @@
         me.buttons = [
             {
                 xtype: 'button',
+                text: Ilc.resources.Manager.getResourceString('common.save'),
+                handler: function (btn, events) {
+                    model = Ilc.utils.Forms.extractModel(me.query('textfield'));
+
+                    model.id = me.interview.get('id');
+                    me.fireEvent('editinterview', me, model);
+                },
+                anchor: '100%'
+            },
+            {
+                xtype: 'button',
                 text: Ilc.resources.Manager.getResourceString('common.close'),
                 handler: function (btn, events) {
                     me.close();
@@ -208,7 +221,7 @@
             }
         ];
         me.addEvents(
-            'addInterview'
+            'editinterview'
         );
 
         me.callParent(arguments);

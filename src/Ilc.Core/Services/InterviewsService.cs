@@ -22,5 +22,16 @@ namespace Ilc.Core.Services
                 TotalRecords = query.Count()
             };
         }
+
+        public StudentInterview GetById(int id)
+        {
+            return Uow.Interviews.GetById(id);
+        }
+
+        public void Update(StudentInterview interview)
+        {
+            Uow.Interviews.Update(interview);
+            Uow.Commit();
+        }
     }
 }

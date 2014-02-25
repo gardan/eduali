@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using Ilc.Core;
 using Ilc.Core.Contracts;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
+using ServiceStack.Common;
+using ServiceStack.Common.Web;
 using ServiceStack.ServiceInterface;
 
 namespace Ilc.Web.Services
@@ -23,10 +26,24 @@ namespace Ilc.Web.Services
                 };
         }
 
+        public HttpResult Put(InterviewModel request)
+        {
+            var interview = Interviews.GetById(request.Id);
+            interview.PopulateWithNonDefaultValues(request);
+
+            Interviews.Update(interview);
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
     }
 
     public class InterviewModel
     {
+        public int Id { get; set; }
+
         public string ListeningLevel { get; set; }
         public string TargetListeningLevel { get; set; }
 

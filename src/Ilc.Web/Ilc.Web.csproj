@@ -136,6 +136,7 @@
     <Content Include="Scripts\app\controller\Contacts.js" />
     <Content Include="Scripts\app\controller\Customers.js" />
     <Content Include="Scripts\app\controller\Home.js" />
+    <Content Include="Scripts\app\controller\Interviews.js" />
     <Content Include="Scripts\app\controller\Lessons.js" />
     <Content Include="Scripts\app\controller\Planning.js" />
     <Content Include="Scripts\app\controller\Roles.js" />
