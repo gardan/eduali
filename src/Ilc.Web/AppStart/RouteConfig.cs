@@ -1,5 +1,6 @@
 ﻿using Ilc.Web.Models;
 using Ilc.Web.Models.Student;
+using Ilc.Web.Services.Tasks.Training;
 using ServiceStack.ServiceHost;
 
 namespace Ilc.Web.AppStart
@@ -77,18 +78,20 @@ namespace Ilc.Web.AppStart
 
             routes.Add<Services.ClientConfigurationModel>("/api/configuration", "GET");
 
-            routes.Add<Services.FilterParametersTasks>("/api/tasks", "GET");
-            routes.Add<Services.RfiModel>("/api/tasks/training/rfi", "POST");
-            routes.Add<Services.InterviewPlanModel>("/api/tasks/training/interviewplan", "POST");
-            routes.Add<Services.StudentInterviewModel>("/api/tasks/training/interview", "POST");
-            routes.Add<Services.TrainingOfferModel>("/api/tasks/training/offer", "POST");
-            routes.Add<Services.TrainingOfferSelectModel>("/api/tasks/training/offer/toggle", "POST");
+            routes.Add<FilterParametersTasks>("/api/tasks", "GET");
+            routes.Add<RfiModel>("/api/tasks/training/rfi", "POST");
+            routes.Add<InterviewPlanModel>("/api/tasks/training/interviewplan", "POST");
+            routes.Add<StudentInterviewModel>("/api/tasks/training/interview", "POST");
+            routes.Add<TrainingOfferModel>("/api/tasks/training/offer", "POST");
+            routes.Add<TrainingOfferSelectModel>("/api/tasks/training/offer/toggle", "POST");
             // routes.Add<Services.RejectedModel>("/api/tasks/training/rejected", "POST");
-            routes.Add<Services.AcceptedModel>("/api/tasks/training/accepted", "POST");
-            routes.Add<Services.PlannedModel>("/api/tasks/training/planned", "POST");
-            routes.Add<Services.ProgressEvaluationModel>("/api/tasks/training/progressevaluation", "POST");
-            routes.Add<Services.TrainingEvaluationModel>("/api/tasks/training/trainingevaluation", "POST");
-            routes.Add<Services.EndedModel>("/api/tasks/training/ended", "POST");
+            routes.Add<AcceptedModel>("/api/tasks/training/accepted", "POST");
+            routes.Add<PlannedModel>("/api/tasks/training/planned", "POST");
+            routes.Add<ProgressEvaluationModel>("/api/tasks/training/progressevaluation", "POST");
+            routes.Add<TrainingEvaluationModel>("/api/tasks/training/trainingevaluation", "POST");
+            routes.Add<EndedModel>("/api/tasks/training/ended", "POST");
+            routes.Add<Services.Tasks.Training.PlanningModel>("/api/tasks/training/planning", "POST");
+
 
             routes.Add<Services.FilesFilterParameters>("/api/files", "GET");
 

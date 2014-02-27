@@ -21,7 +21,7 @@ namespace Ilc.Web.Services.Tasks.Training
         public IUow Uow { get; set; }
         public IOffersService Offers { get; set; }
 
-        public HttpResult Post(AcceptedModel request)
+        public HttpResult Post(PlanningModel request)
         {
             var training = Trainings.GetById(request.TaskEntityId);
 
@@ -57,16 +57,13 @@ namespace Ilc.Web.Services.Tasks.Training
             }
             else // see: https://github.com/gardan/ILC/issues/74
             {
-                var requiredNoOfLesson = training.Offers.FirstOrDefault(o => o.Selected).NoLessons;
-                var currentNoOfLessons = Uow.TrainingScheduleDays.GetAll().Count(sd => sd.TrainingId == training.Id);
-                if (currentNoOfLessons < requiredNoOfLesson)
+                if ((!request.Done))
                 {
                     return new HttpResult()
                     {
                         StatusCode = HttpStatusCode.OK
                     };
                 }
-
             }
 
             proc.Resume(training.WokrflowId.Value, TrainingStatus.Planning, workflowData,
@@ -79,4 +76,17 @@ namespace Ilc.Web.Services.Tasks.Training
         }
 
     }
+
+    public class PlanningModel
+    {
+        public int TaskEntityId { get; set; }
+        public List<LessonModel> Lessons { get; set; }
+
+        public bool Done { get; set; }
+        public bool IsEmpty()
+        {
+            return Lessons == null || Lessons.Count == 0;
+        }
+    }
+
 }

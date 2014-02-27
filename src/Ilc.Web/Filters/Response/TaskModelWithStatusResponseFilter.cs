@@ -1,6 +1,7 @@
 ﻿using Ilc.Infrastructure.Contracts;
 using Ilc.Web.Models;
 using Ilc.Web.Services;
+using Ilc.Web.Services.Tasks.Training;
 using ServiceStack.ServiceHost;
 using ServiceStack.ServiceInterface;
 

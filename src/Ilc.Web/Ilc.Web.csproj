@@ -4013,7 +4013,7 @@
     <Compile Include="Services\StudentsService.cs" />
     <Compile Include="InjectorConventions\StudentToStudentModel.cs" />
     <Compile Include="Services\SubjectsService.cs" />
-    <Compile Include="Services\Tasks\Training\OpenTraining.cs" />
+    <Compile Include="Services\Tasks\Training\OpenTrainingsService.cs" />
     <Compile Include="Services\Tasks\Training\TasksService.cs" />
     <Compile Include="Services\TemplatesService.cs" />
     <Compile Include="Services\TrainersService.cs" />

@@ -14,9 +14,8 @@ using Ilc.Web.Models;
 using Omu.ValueInjecter;
 using ServiceStack.Common.Web;
 using ServiceStack.ServiceInterface;
-using Training = Ilc.Infrastructure.Workflows.Training;
 
-namespace Ilc.Web.Services
+namespace Ilc.Web.Services.Tasks.Training
 {
     public class TasksService : Service
     {
@@ -72,7 +71,7 @@ namespace Ilc.Web.Services
         public HttpResult Post(RfiModel request)
         {
             var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
-            var wfActivity = new Training();
+            var wfActivity = new Infrastructure.Workflows.Training();
             var proc = new WorkflowProcess(extensionManager, wfActivity);
             var training = Uow.Trainings.GetById(request.TrainingId);
 
@@ -121,7 +120,7 @@ namespace Ilc.Web.Services
         public HttpResult Post(InterviewPlanModel request)
         {
             var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
-            var wfActivity = new Training();
+            var wfActivity = new Infrastructure.Workflows.Training();
             var proc = new WorkflowProcess(extensionManager, wfActivity);
             var training = Trainings.GetById(request.TaskEntityId);
 
@@ -144,7 +143,7 @@ namespace Ilc.Web.Services
         public HttpResult Post(StudentInterviewModel request)
         {
             var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
-            var wfActivity = new Training();
+            var wfActivity = new Infrastructure.Workflows.Training();
             var proc = new WorkflowProcess(extensionManager, wfActivity);
             var training = Trainings.GetById(request.TaskEntityId);
 
@@ -169,7 +168,7 @@ namespace Ilc.Web.Services
         public HttpResult Post(TrainingOfferModel request)
         {
             var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
-            var wfActivity = new Training();
+            var wfActivity = new Infrastructure.Workflows.Training();
             var proc = new WorkflowProcess(extensionManager, wfActivity);
             var training = Trainings.GetById(request.TaskEntityId);
 
@@ -189,7 +188,7 @@ namespace Ilc.Web.Services
         public HttpResult Post(TrainingOfferSelectModel request)
         {
             var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
-            var wfActivity = new Training();
+            var wfActivity = new Infrastructure.Workflows.Training();
             var proc = new WorkflowProcess(extensionManager, wfActivity);
             var training = Uow.Trainings.GetById(request.TrainingId);
 
@@ -222,7 +221,7 @@ namespace Ilc.Web.Services
             var training = Trainings.GetById(request.TaskEntityId);
             
             var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
-            var wfActivity = new Training();
+            var wfActivity = new Infrastructure.Workflows.Training();
             var proc = new WorkflowProcess(extensionManager, wfActivity);
 
             var workflowData = new Dictionary<string, object>();
@@ -277,7 +276,7 @@ namespace Ilc.Web.Services
         public HttpResult Post(PlannedModel request)
         {
             var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
-            var wfActivity = new Training();
+            var wfActivity = new Infrastructure.Workflows.Training();
             var proc = new WorkflowProcess(extensionManager, wfActivity);
             var training = Trainings.GetById(request.TaskEntityId);
 
@@ -295,7 +294,7 @@ namespace Ilc.Web.Services
         public HttpResult Post(ProgressEvaluationModel request)
         {
             var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
-            var wfActivity = new Training();
+            var wfActivity = new Infrastructure.Workflows.Training();
             var proc = new WorkflowProcess(extensionManager, wfActivity);
             var training = Trainings.GetById(request.TaskEntityId);
 
@@ -324,7 +323,7 @@ namespace Ilc.Web.Services
         public HttpResult Post(TrainingEvaluationModel request)
         {
             var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
-            var wfActivity = new Training();
+            var wfActivity = new Infrastructure.Workflows.Training();
             var proc = new WorkflowProcess(extensionManager, wfActivity);
             var training = Trainings.GetById(request.TaskEntityId);
 
@@ -347,7 +346,7 @@ namespace Ilc.Web.Services
         public HttpResult Post(EndedModel request)
         {
             var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
-            var wfActivity = new Training();
+            var wfActivity = new Infrastructure.Workflows.Training();
             var proc = new WorkflowProcess(extensionManager, wfActivity);
             var training = Trainings.GetById(request.TaskEntityId);
 
