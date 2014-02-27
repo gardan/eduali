@@ -94,6 +94,33 @@ namespace Ilc.Web.Services.Tasks.Training
                     StatusCode = HttpStatusCode.OK
                 };
         }
+
+        public HttpResult Post(PendingValidationModel request)
+        {
+            var training = Trainings.GetById(request.TaskEntityId);
+
+            var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
+            var wfActivity = new Infrastructure.Workflows.Training();
+            var proc = new WorkflowProcess(extensionManager, wfActivity);
+
+            var workflowData = new Dictionary<string, object>();
+            workflowData["Validation"] = request.Validate;
+
+            proc.Resume(training.WokrflowId.Value, TrainingStatus.PendingValidation, workflowData,
+                        PersistableIdleAction.Unload);
+
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
+    }
+
+    public class PendingValidationModel
+    {
+        public int TaskEntityId { get; set; }
+        public bool Validate { get; set; }
     }
 
     public class PublishingModel
