@@ -137,25 +137,29 @@
             labelWidth: 120
         });
 
-        me.requiredStudentsField = Ext.create('Ext.form.TextField', {
+        me.requiredStudentsField = Ext.create('Ext.form.field.Number', {
             fieldLabel: 'Required students',
             anchor: '100%',
             hidden: true,
-            labelWidth: 120
+            labelWidth: 120,
+            name: 'requiredStudents'
         });
 
         me.priceField = Ext.create('Ext.ux.form.NumericField', {
             fieldLabel: 'Price / student',
             anchor: '100%',
             hidden: true,
-            labelWidth: 120
+            labelWidth: 120,
+            name: 'price'
         });
 
         me.dateOfValidationField = Ext.create('Ext.form.field.Date', {
             fieldLabel: 'Validation at',
             anchor: '100%',
             hidden: true,
-            labelWidth: 120
+            labelWidth: 120,
+            name: 'dateOfValidation',
+            format: Ilc.resources.Manager.getResourceString('formats.extjsdate')
         });
 
         me.customerComboBox.on('select', function (comboBox, records, eOpts) {
@@ -181,6 +185,7 @@
             {
                 xtype: 'checkbox',
                 fieldLabel: 'Public',
+                name: 'public',
                 listeners: {
                     scope: this,
                     change: me.onPublicCheckboxChange
@@ -243,7 +248,7 @@
                 handler: function (btn, e) {
                     var model = {};
 
-                    var textboxes = me.query('textfield');
+                    var textboxes = me.query('field');
 
                     model = Ilc.utils.Forms.extractModel(textboxes);
 

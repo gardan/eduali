@@ -44,6 +44,7 @@ namespace Ilc.Web.InjectorConventions
             }
             if (c.SourceProp.Name == "Customer" && c.TargetProp.Name == "Customer")
             {
+                if (c.SourceProp.Value == null) return null;
                 return new CustomerModel().InjectFrom(c.SourceProp.Value);
             }
             if (c.SourceProp.Name == "InterviewPlans" && c.TargetProp.Name == "InterviewPlan")

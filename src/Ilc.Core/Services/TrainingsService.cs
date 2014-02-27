@@ -85,7 +85,7 @@ namespace Ilc.Core.Services
             newTraining.Color = "#" + Misc.Utils.GetRandomHexString(6);
 
             // Create the number of customer training
-            newTraining.NoOfCustomerTraining = GetNoOfNewCustomerTraining(newTraining.CustomerId);
+            newTraining.NoOfCustomerTraining = GetNoOfNewCustomerTraining(newTraining.CustomerId.GetValueOrDefault());
 
             // add the empty spendings object
             newTraining.Spendings = new Spendings();
@@ -113,6 +113,13 @@ namespace Ilc.Core.Services
         private int GetNoOfNewCustomerTraining(int customerId)
         {
             var customer = Uow.Customers.GetById(customerId);
+            if (customer == null)
+            {
+                var training = Uow.Trainings.GetAll().OrderByDescending(t => t.Id).FirstOrDefault(t => t.Public);
+                if (training == null) return 1;
+                return training.NoOfCustomerTraining + 1;
+            }
+
             if (customer.Trainings.Count == 0) return 1;
 
             return customer.Trainings.LastOrDefault().NoOfCustomerTraining + 1;

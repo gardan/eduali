@@ -37,9 +37,15 @@ namespace Ilc.Data.Models
         [ForeignKey("TrainerId")]
         public virtual Trainer Trainer { get; set; }
 
-        public int CustomerId { get; set; }
+        public int? CustomerId { get; set; }
         [ForeignKey("CustomerId")]
         public virtual Customer Customer { get; set; }
+
+        // Open training properties
+        public bool Public { get; set; }
+        public int RequiredStudents { get; set; }
+        public decimal Price { get; set; }
+        public DateTimeOffset DateOfValidation { get; set; }
 
         /// <summary>
         /// Holds a list of all the users that at a current state of the training own it.

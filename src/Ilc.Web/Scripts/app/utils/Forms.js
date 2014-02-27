@@ -36,6 +36,10 @@
                             model[input.name].push(selectedItem.data);
                         }
                     } else {
+                        if (input.lastSelection.length == 0) {
+                            console.log("No value selected.");
+                            continue;
+                        }
                         var val = input.lastSelection[0].data[input.valueField];
                         Ilc.utils.Forms._addProperty(model, input.name, val);
                         // model[input.name] = input.lastSelection[0].data[input.valueField];
@@ -48,6 +52,9 @@
                     }
                     break;
                 case 'textarea':
+                    Ilc.utils.Forms._addProperty(model, input.name, input.getRawValue());
+                    break;
+                case 'checkboxfield':
                     Ilc.utils.Forms._addProperty(model, input.name, input.getRawValue());
                     break;
                 case 'multislider':
@@ -72,6 +79,12 @@
                     }
 
                     model.templateDays.push(obj);
+                    break;
+                case 'numericfield':
+                    Ilc.utils.Forms._addProperty(model, input.name, input.getRawValue());
+                    break;
+                case 'numberfield':
+                    Ilc.utils.Forms._addProperty(model, input.name, input.getRawValue());
                     break;
                 default:
             }

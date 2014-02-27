@@ -79,6 +79,10 @@ namespace Ilc.Web.Services
 
             var newTraining = new Training
                 {
+                    Public = request.Public,
+                    Price = request.Price,
+                    DateOfValidation = new DateTimeOffset(new DateTime(request.DateOfValidation.Ticks, DateTimeKind.Unspecified), TimeSpan.Zero),
+                    RequiredStudents = request.RequiredStudents,
                     SubjectId = request.SubjectId,
                     DesiredStartDate = request.DesiredStartDate,
                     DesiredEndDate = request.DesiredEndDate,
@@ -87,9 +91,9 @@ namespace Ilc.Web.Services
                     Status = "Rfi",
                     Students = students,
                     TrainerId = request.TrainerId,
-                    CustomerId = request.CustomerId,
+                    CustomerId = null,
                     // Owners = new [] { Users.GetByEmail() }, // We need to get the guy with Sales role that was specified at the beggining
-                    Owners = new [] { sales },
+                    Owners = new List<UserProfile>() { sales },
                     OwnersConfiguration = ownersConfiguration,
                     ContactPersons = contacts
                 };

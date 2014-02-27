@@ -34,6 +34,12 @@ namespace Ilc.Infrastructure.Workflows.Activities.Training
             UserProfile newOwner = null;
             switch (newStatus)
             {
+                case TrainingStatus.Planning:
+                    newOwnerId = uow.TrainingOwnersConfiguration.GetById(trainingId).AdministrationId;
+                    newOwner = uow.UserProfiles.GetById(newOwnerId);
+                    training.Owners = new List<UserProfile>() { newOwner };
+
+                    break;
                 case TrainingStatus.PlanInterview:
                     newOwnerId = uow.TrainingOwnersConfiguration.GetById(trainingId).AdministrationId;
                     newOwner = uow.UserProfiles.GetById(newOwnerId);

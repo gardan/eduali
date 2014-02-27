@@ -21,6 +21,14 @@ namespace Ilc.Infrastructure.Workflows
         public const string Ended = "Ended";
         public const string Complete = "Complete";
 
+        // New statuses for public training
+        public const string Planning = "Planning";
+        public const string Publishing = "Publishing";
+        public const string UserRegistration = "UserRegistration";
+        public const string PendingValidation = "PendingValidation";
+        public const string Validated = "Accepted"; // => ProgressEvaluation
+        public const string Cancelled = "Cancelled"; // => Rejected
+
         public static double GetWeight(string status)
         {
             var d = new Dictionary<string, double>()
@@ -36,7 +44,14 @@ namespace Ilc.Infrastructure.Workflows
                     { Exam, 0.8 },
                     { TrainingEvaluation, 0.9 },
                     { Ended, 0.91 },
-                    { Complete, 1 }
+                    { Complete, 1 },
+
+                    { Planning, 0 },
+                    { Publishing, 0 },
+                    { UserRegistration, 0 },
+                    { PendingValidation, 0 },
+                    { Validated, 0 },
+                    { Cancelled, 0 }
                 };
 
             return d[status];

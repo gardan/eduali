@@ -291,6 +291,14 @@
     <Compile Include="Migrations\201402171205450_TrainingLocationColumn.Designer.cs">
       <DependentUpon>201402171205450_TrainingLocationColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201402251642310_AddOpenTraining.cs" />
+    <Compile Include="Migrations\201402251642310_AddOpenTraining.Designer.cs">
+      <DependentUpon>201402251642310_AddOpenTraining.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402261108312_NotRequiredCustomerForTraining.cs" />
+    <Compile Include="Migrations\201402261108312_NotRequiredCustomerForTraining.Designer.cs">
+      <DependentUpon>201402261108312_NotRequiredCustomerForTraining.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -493,6 +501,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201402171205450_TrainingLocationColumn.resx">
       <DependentUpon>201402171205450_TrainingLocationColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402251642310_AddOpenTraining.resx">
+      <DependentUpon>201402251642310_AddOpenTraining.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402261108312_NotRequiredCustomerForTraining.resx">
+      <DependentUpon>201402261108312_NotRequiredCustomerForTraining.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

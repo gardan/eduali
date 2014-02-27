@@ -56,7 +56,7 @@ namespace Ilc.Web.Services
                 task.Id = training.Id;
                 task.Action = Char.ToLowerInvariant(training.Status[0]) + training.Status.Substring(1);
                 task.Name = training.Status;
-                task.CustomerName = training.Customer.Name;
+                // task.CustomerName = training.Customer.Name;
                 task.TaskObject = new TrainingModel().InjectFrom<TrainingToWebModel>(training) as TrainingModel;
 
                 data.Add(task);
@@ -220,10 +220,7 @@ namespace Ilc.Web.Services
         public HttpResult Post(AcceptedModel request)
         {
             var training = Trainings.GetById(request.TaskEntityId);
-
             
-
-
             var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
             var wfActivity = new Training();
             var proc = new WorkflowProcess(extensionManager, wfActivity);

@@ -15,6 +15,11 @@ namespace Ilc.Web.Models
 
         public int TrainerId { get; set; }
 
+        public bool Public { get; set; }
+        public DateTime DateOfValidation { get; set; }
+        public decimal Price { get; set; }
+        public int RequiredStudents { get; set; }
+
         public OwnersModel WorkflowOwners { get; set; }
 
         public ContactPersonModel[] Contacts { get; set; }

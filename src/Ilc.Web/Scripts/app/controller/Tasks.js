@@ -5,6 +5,10 @@
         var me = this;
 
         me.control({
+            'planningwindow': {
+                addtrainingschedule: me.addTrainingSchedule
+            },
+
             'rfpwindow': {
                 addrfp: me.addrfp
             },
@@ -254,7 +258,7 @@
                 var deferred = Q.defer();
 
                 Ext.Ajax.request({
-                    url: 'api/tasks/training/accepted',
+                    url: sender.xtype == 'acceptedwindow' ? 'api/tasks/training/accepted' : 'api/tasks/training/planning',
                     method: 'POST',
                     jsonData: entity,
                     success: function (response) {
@@ -276,7 +280,7 @@
                 if (options && options.tasksStore) {
                     options.tasksStore.load();
                 }
-            }).done(function () {
+            }).finally(function () {
                 sender.end();
             });
     },

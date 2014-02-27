@@ -204,7 +204,8 @@ namespace Ilc.Data.Migrations
         private void SeedStatusDictionary(AppContext context)
         {
             var arr = new[] { "Rfi", "PlanInterview", "Interview", "Offer", "Accepted", "Rejected", "Planned", 
-                              "ProgressEvaluation", "Exam", "TrainingEvaluation", "Ended", "Complete" };
+                              "ProgressEvaluation", "Exam", "TrainingEvaluation", "Ended", "Complete", 
+                              "Planning", "Publishing", "UserRegistration", "PendingValidation", "Accepted", "Cancelled" };
             foreach (var status in arr)
             {
                 var record = context.StatusDictionaries.FirstOrDefault(r => r.Name == status);

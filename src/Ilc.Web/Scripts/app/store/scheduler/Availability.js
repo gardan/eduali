@@ -24,7 +24,7 @@
     isResourceAvailable: function (resource, start, end) {
         var availability = this.getEventsForResource(resource);
 
-        if (!availability || availability.length === 0) return true;
+        if (!availability || availability.length === 0) return false; // This means that there are no VISIBLE availabilities.
 
         for (var i = 0; i < availability.length; i++) {
             if (Sch.util.Date.timeSpanContains(availability[i].getStartDate(), availability[i].getEndDate(), start, end)) {

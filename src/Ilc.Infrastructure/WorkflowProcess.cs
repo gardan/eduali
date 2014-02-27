@@ -22,10 +22,29 @@ namespace Ilc.Infrastructure
                 {
                     // { null, new Training() },
                     { new WorkflowIdentity("Sample", new Version(1, 0, 0), "MyPackage"), new Training() },
-                    { new WorkflowIdentity("Sample", new Version(1, 0, 0, 0), "MyPackage"), new Training() }
+                    { new WorkflowIdentity("Sample", new Version(1, 0, 0, 0), "MyPackage"), new Training() },
+                    { new WorkflowIdentity("Sample", new Version(2, 0, 0, 0), "MyPackage"), new Training_V2() }
                 };
 
             return definitions[identity];
+        }
+
+        private Activity GetActivity(Type type)
+        {
+            var definitions = new Dictionary<Type, Activity>()
+                {
+                    { typeof(Training), new Training_V2() }
+                };
+            return definitions[type];
+        }
+
+        private WorkflowIdentity GetIdentity(Type type)
+        {
+            var definitions = new Dictionary<Type, WorkflowIdentity>()
+                {
+                    { typeof(Training), new WorkflowIdentity("Sample", new Version(2, 0, 0, 0), "MyPackage") }
+                };
+            return definitions[type];
         }
 
         private IDictionary<string, object> _results;
@@ -44,9 +63,9 @@ namespace Ilc.Infrastructure
             _results = new Dictionary<string, object>();
             _resetEvent = new ManualResetEventSlim(false);
 
-            var identity = new WorkflowIdentity("Sample", new Version(1, 0, 0, 0), "MyPackage");
+            var identity = GetIdentity(wfActivity.GetType());
 
-            _wfApp = inputs.Keys.Count == 0 ? new WorkflowApplication(wfActivity) : new WorkflowApplication(wfActivity, inputs);
+            _wfApp = inputs.Keys.Count == 0 ? new WorkflowApplication(GetActivity(wfActivity.GetType()), identity) : new WorkflowApplication(GetActivity(wfActivity.GetType()), inputs, identity);
 
             ConfigureExtensions();
             ConfigureInstanceStore();
