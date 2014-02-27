@@ -34,6 +34,18 @@ namespace Ilc.Infrastructure.Workflows.Activities.Training
             UserProfile newOwner = null;
             switch (newStatus)
             {
+                case  TrainingStatus.PendingValidation:
+                    newOwnerId = uow.TrainingOwnersConfiguration.GetById(trainingId).AdministrationId;
+                    newOwner = uow.UserProfiles.GetById(newOwnerId);
+                    training.Owners = new List<UserProfile>() { newOwner };
+
+                    break;
+                case TrainingStatus.Publishing:
+                    newOwnerId = uow.TrainingOwnersConfiguration.GetById(trainingId).AdministrationId;
+                    newOwner = uow.UserProfiles.GetById(newOwnerId);
+                    training.Owners = new List<UserProfile>() { newOwner };
+
+                    break;
                 case TrainingStatus.Planning:
                     newOwnerId = uow.TrainingOwnersConfiguration.GetById(trainingId).AdministrationId;
                     newOwner = uow.UserProfiles.GetById(newOwnerId);

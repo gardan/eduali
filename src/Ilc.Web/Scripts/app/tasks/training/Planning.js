@@ -12,9 +12,13 @@
         {
             text: Ilc.resources.Manager.getResourceString('common.done'),
             handler: function() {
-                this.up('window').close();
-                
-
+                var me = this.up('window');
+                var model = {
+                    taskEntityId: me.entity.get('taskObject').id,
+                    done: true,
+                    lessons: []
+                };
+                me.fireEvent('addtrainingschedule', me, model);
             }
         },
         {

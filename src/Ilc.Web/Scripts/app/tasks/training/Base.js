@@ -6,7 +6,7 @@
     layout: {
         type: 'anchor'
     },
-    
+    minWidth: 500,
     bodyPadding: 0,
 
     initComponent: function() {

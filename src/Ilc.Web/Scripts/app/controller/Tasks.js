@@ -8,7 +8,9 @@
             'planningwindow': {
                 addtrainingschedule: me.addTrainingSchedule
             },
-
+            'publishingwindow': {
+                executepublish: me.executePublish
+            },
             'rfpwindow': {
                 addrfp: me.addrfp
             },
@@ -47,6 +49,36 @@
     },
     
     // training workflow state handlers
+    executePublish: function(sender, model) {
+        var taskService = {
+            rfi: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/tasks/training/publish',
+                    method: 'POST',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+
+        taskService.rfi(model)
+        .then(function (response) {
+
+        })
+        .finally(function () {
+            sender.executed();
+        });
+    },
+
     addrfp: function(sender, data) {
         console.log('addrfp executed.');
         sender.close();

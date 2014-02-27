@@ -121,6 +121,9 @@
         'common.avatar': 'Avatar',
         'common.gender': 'Gender',
         'common.dateOfBirth': 'Date of birth',
+        'common.newCompany': 'New company',
+        'common.publish': 'Publish',
+        'common.validate': 'Validate',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',

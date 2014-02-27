@@ -75,6 +75,32 @@ namespace Ilc.Web.Services.Tasks.Training
             };
         }
 
+        public HttpResult Post(PublishingModel request)
+        {
+            var training = Trainings.GetById(request.TaskEntityId);
+            
+            var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
+            var wfActivity = new Infrastructure.Workflows.Training();
+            var proc = new WorkflowProcess(extensionManager, wfActivity);
+            
+            var workflowData = new Dictionary<string, object>();
+
+            proc.Resume(training.WokrflowId.Value, TrainingStatus.Publishing, workflowData,
+                        PersistableIdleAction.Unload);
+
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
+    }
+
+    public class PublishingModel
+    {
+        public bool Publish { get; set; }
+
+        public int TaskEntityId { get; set; }
     }
 
     public class PlanningModel

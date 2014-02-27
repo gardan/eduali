@@ -223,6 +223,7 @@
     <Content Include="Scripts\app\tasks\training\Base.js" />
     <Content Include="Scripts\app\tasks\training\Ended.js" />
     <Content Include="Scripts\app\tasks\training\Exam.js" />
+    <Content Include="Scripts\app\tasks\training\PendingValidation.js" />
     <Content Include="Scripts\app\tasks\training\Planned.js" />
     <Content Include="Scripts\app\tasks\training\Planning.js" />
     <Content Include="Scripts\app\tasks\training\ProgressEvaluation.js" />
@@ -230,6 +231,7 @@
     <Content Include="Scripts\app\tasks\training\Interview.js" />
     <Content Include="Scripts\app\tasks\training\Offer.js" />
     <Content Include="Scripts\app\tasks\training\PlanInterview.js" />
+    <Content Include="Scripts\app\tasks\training\Publishing.js" />
     <Content Include="Scripts\app\tasks\training\Rfi.js" />
     <Content Include="Scripts\app\tasks\training\Rfp.js" />
     <Content Include="Scripts\app\tasks\training\store\Grades.js" />

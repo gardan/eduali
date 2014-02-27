@@ -49,7 +49,10 @@ namespace Ilc.Web.Models
 
         public int LessonsNo { get; set; }
 
+        public bool Public { get; set; }
+        public int RequiredStudents { get; set; }
         public decimal Price { get; set; }
+        public DateTime DateOfValidation { get; set; }
 
         public TrainingOwnersConfigurationModel OwnersConfiguration { get; set; }
     }

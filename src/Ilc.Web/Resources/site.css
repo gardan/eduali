@@ -165,3 +165,14 @@
 .ux-filtered-column {
     color: rgb(0, 153, 255)
 }
+
+.btn-success {
+    background-image: none !important; /* This is a fix for IE */
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
+.btn-success-over {
+    background-color: #47a447;
+    border-color: #398439;
+}

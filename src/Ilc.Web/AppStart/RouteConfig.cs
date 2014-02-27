@@ -91,7 +91,7 @@ namespace Ilc.Web.AppStart
             routes.Add<TrainingEvaluationModel>("/api/tasks/training/trainingevaluation", "POST");
             routes.Add<EndedModel>("/api/tasks/training/ended", "POST");
             routes.Add<Services.Tasks.Training.PlanningModel>("/api/tasks/training/planning", "POST");
-
+            routes.Add<Services.Tasks.Training.PublishingModel>("/api/tasks/training/publish", "POST");
 
             routes.Add<Services.FilesFilterParameters>("/api/files", "GET");
 

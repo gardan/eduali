@@ -100,6 +100,10 @@ namespace Ilc.Web.InjectorConventions
                         Sales = config.SalesId 
                     };
             }
+            if (c.SourceProp.Name == "DateOfValidation" && c.TargetProp.Name == "DateOfValidation")
+            {
+                return ((DateTimeOffset) c.SourceProp.Value).DateTime;
+            }
             return base.SetValue(c);
         }
     }
