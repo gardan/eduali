@@ -32,7 +32,7 @@
                         store: store,
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.level'),
                         queryMode: 'local',
-                        displayField: 'text',
+                        displayField: 'name',
                         valueField: 'id',
                         name: 'entryListeningLevel',
                         anchor: '100%'
@@ -42,7 +42,7 @@
                         store: store,
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.targetLevel'),
                         queryMode: 'local',
-                        displayField: 'text',
+                        displayField: 'name',
                         valueField: 'id',
                         name: 'exitListeningLevel',
                         anchor: '100%'
@@ -58,7 +58,7 @@
                         store: store,
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.level'),
                         queryMode: 'local',
-                        displayField: 'text',
+                        displayField: 'name',
                         valueField: 'id',
                         name: 'entryReadingLevel',
                         anchor: '100%'
@@ -68,7 +68,7 @@
                         store: store,
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.targetLevel'),
                         queryMode: 'local',
-                        displayField: 'text',
+                        displayField: 'name',
                         valueField: 'id',
                         name: 'exitReadingLevel',
                         anchor: '100%'
@@ -84,7 +84,7 @@
                         store: store,
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.level'),
                         queryMode: 'local',
-                        displayField: 'text',
+                        displayField: 'name',
                         valueField: 'id',
                         name: 'entryInteractiveTalkingLevel',
                         anchor: '100%'
@@ -94,7 +94,7 @@
                         store: store,
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.targetLevel'),
                         queryMode: 'local',
-                        displayField: 'text',
+                        displayField: 'name',
                         valueField: 'id',
                         name: 'exitInteractiveTalkingLevel',
                         anchor: '100%'
@@ -110,7 +110,7 @@
                         store: store,
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.level'),
                         queryMode: 'local',
-                        displayField: 'text',
+                        displayField: 'name',
                         valueField: 'id',
                         name: 'entryProductiveTalkingLevel',
                         anchor: '100%'
@@ -120,7 +120,7 @@
                         store: store,
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.targetLevel'),
                         queryMode: 'local',
-                        displayField: 'text',
+                        displayField: 'name',
                         valueField: 'id',
                         name: 'exitProductiveTalkingLevel',
                         anchor: '100%'
@@ -136,7 +136,7 @@
                         store: store,
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.level'),
                         queryMode: 'local',
-                        displayField: 'text',
+                        displayField: 'name',
                         valueField: 'id',
                         name: 'entryWritingLevel',
                         anchor: '100%'
@@ -146,7 +146,7 @@
                         store: store,
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.targetLevel'),
                         queryMode: 'local',
-                        displayField: 'text',
+                        displayField: 'name',
                         valueField: 'id',
                         name: 'exitWritingLevel',
                         anchor: '100%'

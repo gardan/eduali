@@ -1,11 +1,17 @@
 ﻿Ext.define('Ilc.tasks.training.PendingValidation', {
     extend: 'Ilc.tasks.training.Base',
+    xtype: 'pendingvalidationwindow',
 
     buttons: [
         {
             text: Ilc.resources.Manager.getResourceString('common.validate'),
             handler: function () {
                 var me = this.up('window');
+
+                var model = {
+                    validate: true,
+                    taskEntityId: me.entity.get('taskObject').id
+                };
 
                 me.fireEvent('execute', me, model);
             }
@@ -14,6 +20,11 @@
             text: Ilc.resources.Manager.getResourceString('common.cancel'),
             handler: function () {
                 var me = this.up('window');
+
+                var model = {
+                    validate: false,
+                    taskEntityId: me.entity.get('taskObject').id
+                };
 
                 me.fireEvent('execute', me, model);
             }

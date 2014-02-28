@@ -23,23 +23,38 @@ namespace Ilc.Web.Services
         public FilteredDataModel<LessonModel> Get(FilterParametersLessons request)
         {
             var training = Trainings.GetById(request.TrainingId);
-            var offer = training.Offers.First(o => o.Selected);
             var totalStudents = training.Students.Count();
-
+            var lessons = training.ScheduleDays;
 
             var data = new List<LessonModel>();
-            for (var i = 1; i <= offer.NoLessons; i++)
+            var z = 0;
+            foreach (var trainingScheduleDay in lessons)
             {
-                var totalProgressEvaluations = training.ProgressEvaluations.Count(p => p.Order == i);
+                z++;
+
+                var totalProgressEvaluations = training.ProgressEvaluations.Count(p => p.Order == trainingScheduleDay.Id);
 
 
                 data.Add(new LessonModel()
-                    {
-                        Id = i,
-                        Name = "Lesson " + i,
-                        ProgressEvaluationComplete = totalProgressEvaluations == totalStudents
-                    });
+                {
+                    Id = trainingScheduleDay.Id,
+                    Name = trainingScheduleDay.LessonName,
+                    ProgressEvaluationComplete = totalProgressEvaluations == totalStudents
+                });
             }
+
+            // for (var i = 1; i <= offer.NoLessons; i++)
+            // {
+            //     var totalProgressEvaluations = training.ProgressEvaluations.Count(p => p.Order == i);
+            // 
+            // 
+            //     data.Add(new LessonModel()
+            //         {
+            //             Id = i,
+            //             Name = "Lesson " + i,
+            //             ProgressEvaluationComplete = totalProgressEvaluations == totalStudents
+            //         });
+            // }
 
             var res = new FilteredDataModel<LessonModel>()
                 {
