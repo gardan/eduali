@@ -96,8 +96,15 @@
                 modal: true,
                 hideAction: 'destroy',
                 entity: record,
-                tasksStore: store
+                tasksStore: store,
+                listeners: {
+                    'afterexecuted': function () {
+                        store.reload();
+                    }
+                }
             });
+            
+
             window.show();
             window.setWidth(window.getWidth());
         });

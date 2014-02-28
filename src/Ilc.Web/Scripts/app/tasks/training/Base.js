@@ -12,6 +12,10 @@
     initComponent: function() {
         var me = this;
 
+        me.addEvents(
+            'afterexecute'
+        );
+
         me.callParent(arguments);
     }
 });

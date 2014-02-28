@@ -8,6 +8,8 @@
         'Ilc.scheduler.Training'
     ],
 
+    doneClicked: false,
+
     buttons: [
         {
             text: Ilc.resources.Manager.getResourceString('common.done'),
@@ -18,6 +20,7 @@
                     done: true,
                     lessons: []
                 };
+                me.doneClicked = true;
                 me.fireEvent('addtrainingschedule', me, model);
             }
         },
@@ -29,8 +32,11 @@
         }
     ],
 
-    end: function() {
-
+    end: function () {
+        if (this.doneClicked) {
+            this.fireEvent('afterexecute');
+            this.close();
+        }
     },
 
     initComponent: function () {

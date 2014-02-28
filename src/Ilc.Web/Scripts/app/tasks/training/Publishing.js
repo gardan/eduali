@@ -2,6 +2,11 @@
     extend: 'Ilc.tasks.training.Base',
     xtype: 'publishingwindow',
 
+    executed: function() {
+        this.fireEvent('afterexecute');
+        this.close();
+    },
+
     buttons: [
         {
             text: Ilc.resources.Manager.getResourceString('common.publish'),

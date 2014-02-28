@@ -38,6 +38,11 @@
         }
     ],
 
+    executed: function () {
+        this.fireEvent('afterexecute');
+        this.close();
+    },
+
     initComponent: function() {
         var me = this;
 
