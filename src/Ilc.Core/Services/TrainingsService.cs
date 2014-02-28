@@ -18,7 +18,7 @@ namespace Ilc.Core.Services
             parameters.Length = parameters.Length == 0 ? 100 : parameters.Length;
 
             var user = Users.GetByEmail();
-            var query = Uow.Trainings.GetAll().Where(t => t.Customer.CompanyId == user.CompanyId);
+            var query = Uow.Trainings.GetAll().Where(t => t.Customer.CompanyId == user.CompanyId || t.CustomerId == null);
 
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
