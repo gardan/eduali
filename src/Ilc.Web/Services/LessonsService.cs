@@ -138,7 +138,7 @@ namespace Ilc.Web.Services
                             Name = day.LessonName,
                             ResourceId = training.TrainerId ?? 0, // This must be the trainerId
                             Color = training.Color,
-                            CustomerName = training.Customer.Name,
+                            CustomerName = training.Customer == null ? "" : training.Customer.Name,
                             SubjectName = training.Subject.Name,
                             TrainingId = training.Id
                         });
