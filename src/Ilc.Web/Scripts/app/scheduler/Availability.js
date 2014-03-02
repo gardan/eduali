@@ -37,8 +37,8 @@
     loadAvailabilityStore: function() {
         var me = this;
 
-        var startDate = Sch.util.Date.add(me.getStartDate(), Sch.util.Date.DAY, -2);
-        var endDate = Sch.util.Date.add(me.getEndDate(), Sch.util.Date.DAY, 2);
+        var startDate = Sch.util.Date.add(me.getStartDate(), Sch.util.Date.DAY, 10);
+        var endDate = Sch.util.Date.add(me.getEndDate(), Sch.util.Date.DAY, 10);
         var availabilityStore = me.eventStore;
 
         availabilityStore.load({
