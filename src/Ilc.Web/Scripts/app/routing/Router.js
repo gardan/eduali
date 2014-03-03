@@ -44,6 +44,7 @@
                 if (viewClass) {
                     // create view
                     view = Ext.create(viewClass, {
+                        params: params,
                         border: false
                     });
 
