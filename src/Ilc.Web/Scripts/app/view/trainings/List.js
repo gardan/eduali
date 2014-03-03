@@ -5,10 +5,14 @@
     requires: [
         'Ilc.helpers.GridColumns'
     ],
-
-    constructor: function () {
+    
+    /*
+        Object containing the querystrings    
+    */
+    params: {},
+    
+    init: function () {
         var me = this;
-
         var trainingsStore = Ext.create('Ilc.store.Trainings');
 
         var filters = {
@@ -93,7 +97,7 @@
                     dataIndex: 'spendings',
                     text: 'Expenses',
                     flex: 1,
-                    renderer: function(value) {
+                    renderer: function (value) {
                         return value.trainer + value.supplies + value.transport;
                     },
                     filter: {
@@ -185,6 +189,57 @@
         me.items = [
             trainingsGrid
         ];
+    },
+    initOpen: function() {
+        var me = this;
+        
+        var trainingsStore = Ext.create('Ilc.store.Trainings');
+
+        var filters = {
+            ftype: 'jsvfilters',
+            // encode and local configuration options defined previously for easier reuse
+            // encode: true, // json encode the filter query
+            local: false,   // defaults to false (remote filtering)
+        };
+
+        var trainingsGrid = Ext.create('Ext.grid.Panel', {
+            features: [filters],
+            store: trainingsStore,
+            columns: [
+                {
+                    dataIndex: 'subject',
+                    text: Ilc.resources.Manager.getResourceString('common.subject'),
+                    flex: 1,
+                    renderer: function (value) {
+                        return value.name;
+                    },
+                    filter: {
+                        type: 'string'
+                    }
+                }
+            ]
+        });
+
+        trainingsStore.load({
+            params: {
+                open: true
+            }
+        });
+
+        me.items = [
+            trainingsGrid
+        ];
+    },
+
+    initComponent: function () {
+        var me = this;
+
+        if (me.params.open === undefined || me.params.open === 'false') {
+            me.init();
+        } else {
+            me.initOpen();
+        }
+
 
         me.addEvents(
             'addTraining',
@@ -192,5 +247,5 @@
         );
 
         me.callParent(arguments);
-    },
+    }
 });

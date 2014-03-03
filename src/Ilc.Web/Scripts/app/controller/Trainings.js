@@ -77,7 +77,9 @@
         });
     },
 
+    /* 
+        @param querystrings Object containing the querystrings
+    */
     list: function () {
-
     }
 });

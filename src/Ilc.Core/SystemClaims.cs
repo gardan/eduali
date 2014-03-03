@@ -24,6 +24,8 @@ namespace Ilc.Core
 
         public const string CompanyReadAll = "company-read-all";
 
+        public const string TrainingReadAll = "training-read-all";
+
         public static List<string> GetAll()
         {
             var type = typeof (SystemClaims);

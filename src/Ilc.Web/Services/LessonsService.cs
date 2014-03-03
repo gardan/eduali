@@ -43,19 +43,6 @@ namespace Ilc.Web.Services
                 });
             }
 
-            // for (var i = 1; i <= offer.NoLessons; i++)
-            // {
-            //     var totalProgressEvaluations = training.ProgressEvaluations.Count(p => p.Order == i);
-            // 
-            // 
-            //     data.Add(new LessonModel()
-            //         {
-            //             Id = i,
-            //             Name = "Lesson " + i,
-            //             ProgressEvaluationComplete = totalProgressEvaluations == totalStudents
-            //         });
-            // }
-
             var res = new FilteredDataModel<LessonModel>()
                 {
                     Data = data
@@ -119,7 +106,7 @@ namespace Ilc.Web.Services
 
         public FilteredDataModel<LessonScheduleModelNormal> Get(FilterParametersLessonsSchedule request)
         {
-            var trainings = Trainings.GetFilteredTrainings(new FilterArguments());
+            var trainings = Trainings.GetFilteredTrainings(new FilterArgumentsTrainings());
             var data = new List<LessonScheduleModelNormal>();
             var id = 1;
 

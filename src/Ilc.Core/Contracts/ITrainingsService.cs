@@ -8,7 +8,7 @@ namespace Ilc.Core.Contracts
 {
     public interface ITrainingsService
     {
-        FilteredResults<Training> GetFilteredTrainings(FilterArguments parameters);
+        FilteredResults<Training> GetFilteredTrainings(FilterArgumentsTrainings parameters);
         Training GetById(int id);
         void Create(Training newTraining);
         void Update(Training updateTraining);

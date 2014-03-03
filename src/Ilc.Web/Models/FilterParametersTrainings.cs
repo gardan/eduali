@@ -1,6 +1,8 @@
-﻿namespace Ilc.Web.Models
+﻿using Ilc.Core;
+
+namespace Ilc.Web.Models
 {
-    public class FilterParametersTrainings : FilterParametersBase
+    public class FilterParametersTrainings : FilterArgumentsTrainings
     {
     }
 }

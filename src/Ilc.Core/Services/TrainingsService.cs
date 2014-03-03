@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Ilc.Core.Attributes;
 using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models;
@@ -11,14 +12,26 @@ namespace Ilc.Core.Services
     {
         public IUow Uow { get; set; }
         public IUsersService Users { get; set; }
+        public IAuthorizationService Authorization { get; set; }
 
-        public FilteredResults<Training> GetFilteredTrainings(FilterArguments parameters)
+        [RequiredClaims(Name = new[] { SystemClaims.TrainingReadAll })]
+        public FilteredResults<Training> GetFilteredTrainings(FilterArgumentsTrainings parameters)
         {
             // set defaults
             parameters.Length = parameters.Length == 0 ? 100 : parameters.Length;
 
             var user = Users.GetByEmail();
-            var query = Uow.Trainings.GetAll().Where(t => t.Customer.CompanyId == user.CompanyId || t.CustomerId == null);
+            
+            IQueryable<Training> query;
+            if (parameters.Open)
+            {
+                query = Uow.Trainings.GetAll().Where(t => t.CustomerId == null);
+            }
+            else
+            {
+                query = Uow.Trainings.GetAll().Where(t => t.Customer.CompanyId == user.CompanyId || t.CustomerId == null);
+            }
+
 
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;

@@ -45,7 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\RequiredClaimsAttribute.cs" />
     <Compile Include="FilterArgumentsInterviews.cs" />
+    <Compile Include="FilterArgumentsTrainings.cs" />
     <Compile Include="Services\CompaniesService.cs" />
     <Compile Include="Contracts\ICompaniesService.cs" />
     <Compile Include="Services\CompanyDefaultsService.cs" />
