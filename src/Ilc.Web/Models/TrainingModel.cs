@@ -5,6 +5,10 @@ namespace Ilc.Web.Models
 {
     public class TrainingModel : StatusModel
     {
+        public TrainingModel()
+        {
+            Joined = false;
+        }
         public int Id { get; set; }
         public string CompositeId {
             // TODO: move to a function that takes a training, and returns the compositeId
@@ -55,6 +59,11 @@ namespace Ilc.Web.Models
         public DateTime DateOfValidation { get; set; }
 
         public TrainingOwnersConfigurationModel OwnersConfiguration { get; set; }
+
+        /// <summary>
+        /// This property indicates if the requesting user has joined the PUBLIC training.
+        /// </summary>
+        public bool Joined { get; set; }
     }
 
     public class TrainingOwnersConfigurationModel

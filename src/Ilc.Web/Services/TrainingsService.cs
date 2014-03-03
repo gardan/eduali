@@ -37,8 +37,23 @@ namespace Ilc.Web.Services
             var results = Trainings.GetFilteredTrainings(request);
             ret.TotalDisplayRecords = results.TotalDisplayRecords;
             ret.TotalRecords = results.TotalRecords;
-            ret.Data = results.Data.Select(r => new TrainingModel().InjectFrom<TrainingToWebModel>(r) as TrainingModel).ToList();
+            // ret.Data = results.Data.Select(r => new TrainingModel().InjectFrom<TrainingToWebModel>(r) as TrainingModel).ToList();
+            ret.Data = new List<TrainingModel>();
 
+            var currentUser = Users.GetByEmail();
+            var currentUserId = currentUser == null ? 0 : currentUser.Id;
+
+            foreach (var training in results.Data)
+            {
+                var model = new TrainingModel().InjectFrom<TrainingToWebModel>(training) as TrainingModel;
+                var student = model.Students.FirstOrDefault(s => s.UserInfo.Id == currentUserId);
+                if (student != null)
+                {
+                    model.Joined = true;
+                }
+                ret.Data.Add(model);
+
+            }
             return ret;
         }
 
