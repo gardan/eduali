@@ -238,7 +238,12 @@
                         console.log('Join clicked.');
 
                         var window = Ext.create('Ilc.tasks.training.UserRegistration', {
-                            entity: record
+                            entity: record,
+                            listeners: {
+                                afterexecute: function() {
+                                    trainingsStore.reload();
+                                }
+                            },
                         });
 
                         window.show();

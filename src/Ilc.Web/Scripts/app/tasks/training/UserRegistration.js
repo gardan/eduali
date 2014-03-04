@@ -10,9 +10,11 @@
             text: Ilc.resources.Manager.getResourceString('common.join'),
             handler: function () {
                 var me = this.up('window');
-
-                me.fireEvent('execute', me, {});
-            }
+                var model = {
+                    taskEntityId: me.entity.get('id')
+                };
+                me.fireEvent('execute', me, model);
+            } 
         },
         {
             text: Ilc.resources.Manager.getResourceString('common.close'),
@@ -23,7 +25,8 @@
     ],
     
     executed: function() {
-
+        this.fireEvent('afterexecute', this);
+        this.close();
     },
 
     /*

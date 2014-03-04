@@ -60,6 +60,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorkflowProcess.cs" />
     <Compile Include="Workflows\Activities\NotifyHost.cs" />
+    <Compile Include="Workflows\Activities\Training\AddStudentToTraining.cs" />
     <Compile Include="Workflows\Activities\Training\DeleteTrainingSchedule.cs" />
     <Compile Include="Workflows\Activities\Training\GetTrainingEvaluationStatistics.cs" />
     <Compile Include="Workflows\Activities\Training\PersistAssesment.cs" />

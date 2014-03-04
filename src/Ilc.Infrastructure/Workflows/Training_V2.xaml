@@ -1076,106 +1076,137 @@
                                 <State.Transitions>
                                   <Transition DisplayName="BookmarkUserRegistration" sap2010:WorkflowViewState.IdRef="Transition_28">
                                     <Transition.Trigger>
-                                      <local:WaitForResponse x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_23">
-                                        <local:WaitForResponse.ArgumentName>
-                                          <InArgument x:TypeArguments="x:String">
-                                            <mca:CSharpValue x:TypeArguments="x:String">TrainingStatus.UserRegistration</mca:CSharpValue>
-                                          </InArgument>
-                                        </local:WaitForResponse.ArgumentName>
-                                        <local:WaitForResponse.Result>
-                                          <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">
-                                            <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:String, x:Object)">varInUserRegistration</mca:CSharpReference>
-                                          </OutArgument>
-                                        </local:WaitForResponse.Result>
-                                      </local:WaitForResponse>
+                                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_21">
+                                        <local:WaitForResponse x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_23">
+                                          <local:WaitForResponse.ArgumentName>
+                                            <InArgument x:TypeArguments="x:String">
+                                              <mca:CSharpValue x:TypeArguments="x:String">TrainingStatus.UserRegistration</mca:CSharpValue>
+                                            </InArgument>
+                                          </local:WaitForResponse.ArgumentName>
+                                          <local:WaitForResponse.Result>
+                                            <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                                              <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:String, x:Object)">varInUserRegistration</mca:CSharpReference>
+                                            </OutArgument>
+                                          </local:WaitForResponse.Result>
+                                        </local:WaitForResponse>
+                                        <Assign sap2010:WorkflowViewState.IdRef="Assign_23">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Int32">
+                                              <mca:CSharpReference x:TypeArguments="x:Int32">varStudentId</mca:CSharpReference>
+                                            </OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Int32">
+                                              <mca:CSharpValue x:TypeArguments="x:Int32">Convert.ToInt32(varInUserRegistration["StudentId"])</mca:CSharpValue>
+                                            </InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                      </Sequence>
                                     </Transition.Trigger>
                                     <Transition.To>
                                       <x:Reference>__ReferenceID15</x:Reference>
                                     </Transition.To>
+                                    <Transition.Action>
+                                      <local1:AddStudentToTraining sap2010:WorkflowViewState.IdRef="AddStudentToTraining_1">
+                                        <local1:AddStudentToTraining.StudentId>
+                                          <InArgument x:TypeArguments="x:Int32">
+                                            <mca:CSharpValue x:TypeArguments="x:Int32">varStudentId</mca:CSharpValue>
+                                          </InArgument>
+                                        </local1:AddStudentToTraining.StudentId>
+                                        <local1:AddStudentToTraining.TrainingId>
+                                          <InArgument x:TypeArguments="x:Int32">
+                                            <mca:CSharpValue x:TypeArguments="x:Int32">argInTrainingId</mca:CSharpValue>
+                                          </InArgument>
+                                        </local1:AddStudentToTraining.TrainingId>
+                                      </local1:AddStudentToTraining>
+                                    </Transition.Action>
                                   </Transition>
-                                  <Transition DisplayName="BookmarkPendingValidation" sap2010:WorkflowViewState.IdRef="Transition_33">
+                                  <Transition DisplayName="Validated" sap2010:WorkflowViewState.IdRef="Transition_30">
+                                    <Transition.Trigger>
+                                      <Sequence x:Name="__ReferenceID18" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                                        <local:WaitForResponse x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_24">
+                                          <local:WaitForResponse.ArgumentName>
+                                            <InArgument x:TypeArguments="x:String">
+                                              <mca:CSharpValue x:TypeArguments="x:String">TrainingStatus.PendingValidation</mca:CSharpValue>
+                                            </InArgument>
+                                          </local:WaitForResponse.ArgumentName>
+                                          <local:WaitForResponse.Result>
+                                            <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                                              <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:String, x:Object)">varInPendingValidation</mca:CSharpReference>
+                                            </OutArgument>
+                                          </local:WaitForResponse.Result>
+                                        </local:WaitForResponse>
+                                        <Assign sap2010:WorkflowViewState.IdRef="Assign_24">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Boolean">
+                                              <mca:CSharpReference x:TypeArguments="x:Boolean">varValidationResult</mca:CSharpReference>
+                                            </OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Boolean">
+                                              <mca:CSharpValue x:TypeArguments="x:Boolean">Convert.ToBoolean(varInPendingValidation["Validation"])</mca:CSharpValue>
+                                            </InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                      </Sequence>
+                                    </Transition.Trigger>
                                     <Transition.To>
-                                      <State x:Name="__ReferenceID25" DisplayName="PendingValidation" sap2010:WorkflowViewState.IdRef="State_17">
+                                      <State x:Name="__ReferenceID25" DisplayName="NotifyUsers" sap2010:WorkflowViewState.IdRef="State_18">
                                         <State.Transitions>
-                                          <Transition DisplayName="Validated" sap2010:WorkflowViewState.IdRef="Transition_30">
-                                            <Transition.Trigger>
-                                              <Sequence x:Name="__ReferenceID18" sap2010:WorkflowViewState.IdRef="Sequence_20">
-                                                <local:WaitForResponse x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:WorkflowViewState.IdRef="WaitForResponse`1_25">
-                                                  <local:WaitForResponse.ArgumentName>
-                                                    <InArgument x:TypeArguments="x:String">
-                                                      <mca:CSharpValue x:TypeArguments="x:String">TrainingStatus.PendingValidation</mca:CSharpValue>
-                                                    </InArgument>
-                                                  </local:WaitForResponse.ArgumentName>
-                                                  <local:WaitForResponse.Result>
-                                                    <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">
-                                                      <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:String, x:Object)">varInPendingValidation</mca:CSharpReference>
-                                                    </OutArgument>
-                                                  </local:WaitForResponse.Result>
-                                                </local:WaitForResponse>
-                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_22">
-                                                  <Assign.To>
-                                                    <OutArgument x:TypeArguments="x:Boolean">
-                                                      <mca:CSharpReference x:TypeArguments="x:Boolean">varValidationResult</mca:CSharpReference>
-                                                    </OutArgument>
-                                                  </Assign.To>
-                                                  <Assign.Value>
-                                                    <InArgument x:TypeArguments="x:Boolean">
-                                                      <mca:CSharpValue x:TypeArguments="x:Boolean">Convert.ToBoolean(varInPendingValidation["Validation"])</mca:CSharpValue>
-                                                    </InArgument>
-                                                  </Assign.Value>
-                                                </Assign>
-                                              </Sequence>
-                                            </Transition.Trigger>
-                                            <Transition.To>
-                                              <State x:Name="__ReferenceID26" DisplayName="NotifyUsers" sap2010:WorkflowViewState.IdRef="State_18">
-                                                <State.Transitions>
-                                                  <Transition DisplayName="Validated" sap2010:WorkflowViewState.IdRef="Transition_29" To="{x:Reference __ReferenceID16}" />
-                                                </State.Transitions>
-                                              </State>
-                                            </Transition.To>
-                                            <Transition.Action>
-                                              <local1:UpdateTrainingStatus>
-                                                <local1:UpdateTrainingStatus.NewStatus>
-                                                  <InArgument x:TypeArguments="x:String">
-                                                    <mca:CSharpValue x:TypeArguments="x:String">TrainingStatus.Planned</mca:CSharpValue>
-                                                  </InArgument>
-                                                </local1:UpdateTrainingStatus.NewStatus>
-                                                <local1:UpdateTrainingStatus.TrainingId>
-                                                  <InArgument x:TypeArguments="x:Int32">
-                                                    <mca:CSharpValue x:TypeArguments="x:Int32">argInTrainingId</mca:CSharpValue>
-                                                  </InArgument>
-                                                </local1:UpdateTrainingStatus.TrainingId>
-                                                <sap2010:WorkflowViewState.IdRef>UpdateTrainingStatus_15</sap2010:WorkflowViewState.IdRef>
-                                              </local1:UpdateTrainingStatus>
-                                            </Transition.Action>
-                                            <Transition.Condition>
-                                              <mca:CSharpValue x:TypeArguments="x:Boolean">varValidationResult == true</mca:CSharpValue>
-                                            </Transition.Condition>
-                                          </Transition>
-                                          <Transition Trigger="{x:Reference __ReferenceID18}" DisplayName="Cancelled" sap2010:WorkflowViewState.IdRef="Transition_32">
-                                            <Transition.Condition>
-                                              <mca:CSharpValue x:TypeArguments="x:Boolean">varValidationResult == false</mca:CSharpValue>
-                                            </Transition.Condition>
-                                            <Transition.To>
-                                              <State x:Name="__ReferenceID27" DisplayName="NotifyUsers" sap2010:WorkflowViewState.IdRef="State_19">
-                                                <State.Transitions>
-                                                  <Transition DisplayName="Cancelled" sap2010:WorkflowViewState.IdRef="Transition_31" To="{x:Reference __ReferenceID17}" />
-                                                </State.Transitions>
-                                              </State>
-                                            </Transition.To>
-                                          </Transition>
+                                          <Transition DisplayName="Validated" sap2010:WorkflowViewState.IdRef="Transition_29" To="{x:Reference __ReferenceID16}" />
                                         </State.Transitions>
-                                        <State.Variables>
-                                          <Variable x:TypeArguments="x:Boolean" Name="varValidationResult" />
-                                          <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="varInPendingValidation" />
-                                        </State.Variables>
                                       </State>
                                     </Transition.To>
+                                    <Transition.Action>
+                                      <local1:UpdateTrainingStatus sap2010:WorkflowViewState.IdRef="UpdateTrainingStatus_15">
+                                        <local1:UpdateTrainingStatus.NewStatus>
+                                          <InArgument x:TypeArguments="x:String">
+                                            <mca:CSharpValue x:TypeArguments="x:String">TrainingStatus.Planned</mca:CSharpValue>
+                                          </InArgument>
+                                        </local1:UpdateTrainingStatus.NewStatus>
+                                        <local1:UpdateTrainingStatus.TrainingId>
+                                          <InArgument x:TypeArguments="x:Int32">
+                                            <mca:CSharpValue x:TypeArguments="x:Int32">argInTrainingId</mca:CSharpValue>
+                                          </InArgument>
+                                        </local1:UpdateTrainingStatus.TrainingId>
+                                      </local1:UpdateTrainingStatus>
+                                    </Transition.Action>
+                                    <Transition.Condition>
+                                      <mca:CSharpValue x:TypeArguments="x:Boolean">varValidationResult == true</mca:CSharpValue>
+                                    </Transition.Condition>
+                                  </Transition>
+                                  <Transition Trigger="{x:Reference __ReferenceID18}" DisplayName="Cancelled" sap2010:WorkflowViewState.IdRef="Transition_35">
+                                    <Transition.To>
+                                      <State x:Name="__ReferenceID26" DisplayName="NotifyUsers" sap2010:WorkflowViewState.IdRef="State_19">
+                                        <State.Transitions>
+                                          <Transition DisplayName="Cancelled" sap2010:WorkflowViewState.IdRef="Transition_31" To="{x:Reference __ReferenceID17}" />
+                                        </State.Transitions>
+                                      </State>
+                                    </Transition.To>
+                                    <Transition.Action>
+                                      <local1:UpdateTrainingStatus sap2010:WorkflowViewState.IdRef="UpdateTrainingStatus_16">
+                                        <local1:UpdateTrainingStatus.NewStatus>
+                                          <InArgument x:TypeArguments="x:String">
+                                            <mca:CSharpValue x:TypeArguments="x:String">TrainingStatus.Rejected</mca:CSharpValue>
+                                          </InArgument>
+                                        </local1:UpdateTrainingStatus.NewStatus>
+                                        <local1:UpdateTrainingStatus.TrainingId>
+                                          <InArgument x:TypeArguments="x:Int32">
+                                            <mca:CSharpValue x:TypeArguments="x:Int32">argInTrainingId</mca:CSharpValue>
+                                          </InArgument>
+                                        </local1:UpdateTrainingStatus.TrainingId>
+                                      </local1:UpdateTrainingStatus>
+                                    </Transition.Action>
+                                    <Transition.Condition>
+                                      <mca:CSharpValue x:TypeArguments="x:Boolean">varValidationResult == false</mca:CSharpValue>
+                                    </Transition.Condition>
                                   </Transition>
                                 </State.Transitions>
                                 <State.Variables>
                                   <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="varInUserRegistration" />
                                   <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="varInPendingValidation" />
+                                  <Variable x:TypeArguments="x:Boolean" Name="varValidationResult" />
+                                  <Variable x:TypeArguments="x:Int32" Name="varStudentId" />
                                 </State.Variables>
                               </State>
                             </Transition.To>
@@ -1307,7 +1338,6 @@
     <x:Reference>__ReferenceID15</x:Reference>
     <x:Reference>__ReferenceID25</x:Reference>
     <x:Reference>__ReferenceID26</x:Reference>
-    <x:Reference>__ReferenceID27</x:Reference>
     <StateMachine.Variables>
       <Variable x:TypeArguments="idm:Training" Name="varTrainingEntity">
         <Variable.Default>
@@ -1315,7 +1345,7 @@
         </Variable.Default>
       </Variable>
     </StateMachine.Variables>
-    <sads:DebugSymbol.Symbol>d0FDOlxQcm9qZWN0c1xJTENcc3JjXElsYy5JbmZyYXN0cnVjdHVyZVxXb3JrZmxvd3NcVHJhaW5pbmdfVjIueGFtbI0CAX8BgQEBAjYDpwoSAgEBogoLogprAwGdCD8P8wcXAwGFB3QXoQcfAwHaBpQBH4IHJwMBjQbJASfaBi8DAdME/AEv0gU3AwGKBOgFL/kFNwMBhASlAjeUBT8DAfADtwI//wRHAwGjA/0CR+UETwMB+gHqA0/FBFcDAbsBogRXrgRfAwG1ATgHhQoPAwGlAfgHD/AJFwIBXKEIF7IJHwIBRLMIH5wJJwIBNsoIJ5QJLwIBCOoIL+4INwIBBYgJL4wJNwIBAuwHF+wHlQEDAYcH8AdB8AdIAwGGB0MXcSIDAecHxwcXxwdhAwHfB6QHF8QHIgMBswfkBxfkB2IDAasHzAcX4QciAwGQB3gfkQEqAwHuBoUHH5kHKgMB3AaAB1GAB1gDAY4GmAEnxgEyAwGwBusGJ+sGcQMBqgbdBifoBkUDAZ0G+QYn+QZyAwGXBvAGJ/YGQQMBkAbNAS/5AToDAdAF4wUv4wV5AwHIBdUFL+AFTQMBtwWKBi+KBnoDAa8F/AUvhwZNAwGeBY8GL5UGRwMBlAWbBi/PBjQDAdUEgAI3ogJCAwG2BKUFN6UFiQEDAbEElwU3ogVVAwGmBMoFN8oFiQEDAaEEqgU3xwVCAwGMBOwFN/IFTwMBhgSpAj+0AlcDAfsDggU/jQVdAwHyA/0Ecf0EeAMBpAO7AkfpAlIDAcYD+AJH+AKSAQMBwAPvAkf1AmoDAbkD9gRH9gSRAQMBswPoBEfzBGUDAaYDgQNP5wNaAwGZAtYET9YEmQEDAZICyARP0wRtAwGDAtsET9sEmgEDAfwB7gNXnARiAwHQAZ8EV58EoQEDAcoBvARXvASiAQMBxAGzBFe5BHEDAb0BpARbrARuAwG3ATwPPGYDAbEBgQoPgQpnAwGuAfMJD/4JLQMBpwH8BxeeCCIDAYgBwwkXwwlpAwGDAbUJF8AJNQIBeOgJF+gJaQIBc8gJF+UJIgIBXqUIH7AINwIBUZ8JH6oJPQIBRrcIJ8IIPwIBOc4IL+cIOgIBH4AJL4AJiQECARrxCC/9CE0CAQ+FCS+FCYoBAgEKRBlPMQMBjAhQGXAeAwHoB6UHGbAHIgMBzgexBxm3BzYDAcUHuAcZwwc3AwG0B80HGdgHLwMBmgfZBxngBywDAZEHeSGEATkDAfoGhQEhkAEqAwHvBoYHIYwHPwMB6AaNByGYBz8DAd0GmQEppAFBAwHNBqUBKcUBLgMBsQbgBi3gBn8DAaQG5QYt5QZ5AwGeBvMGLfMGgwEDAZEGzgEx2QFJAwH8BdoBMeUBOgMB6wXmATHxAToDAdoF8gEx+AFOAwHRBdgFNdgFigEDAcAF3QU13QWBAQMBuAX/BTX/BYoBAwGnBYQGNYQGgQEDAZ8FjwaIAY8GlQEDAZ0FkgY1kgalAQMBlQWeBjWeBpkBAwHWBKIGM7YGPgMB+QS5BjPNBj4DAd4EgQI5jAJRAwHIBI0COaECPgMBtwSaBT2aBZEBAwGsBJ8FPZ8FiQEDAacEqwU5sQVZAwGbBLIFOcYFRAMBjQTvBT3vBZIBAwGHBKwCRawCmQEDAYAEsQJFsQKxAQMB/AOFBUWFBaQBAwH3A4oFRYoFkQEDAfMDvAJJxwJhAwHjA8gCSegCTgMBxwPyAk3yAq4BAwG6A+sETesErAEDAa0D8ARN8ASZAQMBpwOGA1GRA2kDAZADkgNRnQN6AwH9Ap4DUakDWgMB6gKqA1G1A1oDAdcCtgNRwQNaAwHEAsIDUdQDVgMBrwLVA1HmA1wDAZoCywRVywSnAQMBiwLQBFXQBKEBAwGEAu8DWfoDcQMB7QH7A1mbBF4DAdEBtgRdtgSsAQMBvgGnBGGpBCADAbgB9gkV9glqAwGrAfsJFfsJYQMBqAH9BxmICDEDAZoBiQgZnQgeAwGJAbgJHbgJdAIBfr0JHb0JaQIBeckJGc8JOQIBbdAJGeQJJAIBX6gIJagIfAIBV60IJa0IlAECAVKiCSWiCYMBAgFMpwklpwlxAgFHuggtugiKAQIBP78ILb8IogECATrPCDHaCEkCASvbCDHmCDoCASD0CDX0CIkBAgEV+Qg1+QiBAQIBEEcfR28DAZUITB9MhwEDAY0IUx9TewMB6QdXHWImAwH7B2UdbiYDAfEHrQcfrQeAAQMB1weoBx+oB24DAc8HtAcftAdmAwHGB7sHH7sHeQMBvQfABx/AB2sDAbUH1Qcf1Qd5AwGjB9AHH9AHbgMBmwfcBx/dBzwDAZIHfCd8gQEDAYAHgQEngQGZAQMB+waNASeNAaIBAwH1BogBJ4gBhgEDAfAGiQcniQd+AwHpBpAHJ5AHfQMB4waVByeVB3MDAd4GnAEvnAGFAQMB1AahAS+hAZ0BAwHOBqgBL6gBlQEDAbIGrAEttwE2AwHABroBLcMBNgMBuAbRATfRAYkBAwGFBtYBN9YBoQEDAf0F4gE34gGSAQMB9AXdATfdAYkBAwHsBe4BN+4BmgEDAeMF6QE36QGOAQMB2wX1ATf1AYYBAwHSBaMGNa4GPgMBgwWvBjW1BksDAfoEugY1xQY+AwHoBMYGNcwGUgMB3wSEAj+EApQBAwHOBIkCP4kCrAEDAckEkAI/kAKjAQMBuASUAj2fAkYDAb0ErgU/rgWLAQMBnASzBTvFBUUDAY4EvwJPvwKuAQMB6gPEAk/EAsYBAwHkA8sCT8sCxwEDAcgDzwJN2gJWAwHWA90CTeYCVgMBzgOJA1eJA7YBAwGaA44DV44DzgEDAZEDlQNXlQPOAQMBhwOaA1eaA8oBAwH+AqYDV6YDwQEDAfQCoQNXoQOsAQMB6wKyA1eyA8QBAwHhAq0DV60DuAEDAdgCvgNXvgPmAQMBzgK5A1e5A8ABAwHFAsUDV8UDygEDAbACyQNV0gNeAwG5AtYDU9wDdgMBpQLdA1PlA2YDAZsC8gNf8gOxAQMB9AH3A1/3A84BAwHuAf4DX/4DxgEDAdIBggRdjQRmAwHgAZAEXZkEZgMB2AGACB+ACHQDAaABhQgfhQiMAQMBmwGMCB+MCIMBAwGKAZAIHZsIJgMBjwHMCR/MCWsCAW7RCRvjCSUCAWDSCDfSCJUBAgEx1wg31witAQIBLOMIN+MIrQECASbeCDfeCJEBAgEhXyNfjAEDAYQIWiNaegMB/AdsSWxNAwH6B2gjaHUDAfIHtAEztAGsAQMBxwavATOvAZEBAwHBBsEBWcEBXQMBvwa9ATO9AYUBAwG5BqsGO6sGrAEDAYwFpgY7pgaSAQMBhAWyBjuyBooBAwH7BMIGO8IGpAEDAfEEvQY7vQaSAQMB6QTJBjvJBooBAwHgBJwCQ5wC1gEDAcMElwJDlwKtAQMBvgS2BUG2BaoBAwGWBL0FP8MFWAMBjwTXAlPXAuIBAwHdA9ICU9ICvAEDAdcD5AJ55AJ9AwHVA+ACU+ACpQEDAc8D0AOBAdADhQEDAcMCzANbzAOtAQMBugLZA1nZA7oBAwGmAuADWeIDFAMBnAKKBGOKBM8BAwHnAYUEY4UEugEDAeEBlwSJAZcEjQEDAd8BkwRjkwS1AQMB2QGYCCOYCLYBAwGVAZMII5MIjQEDAZAB1Akh1AmKAQIBaNsJH+EJOAIBYcAFRcAFnQEDAZAE3gkl3gl9AgFi</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </StateMachine>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -1829,8 +1859,17 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="WaitForResponse`1_22" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="WaitForResponse`1_23" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="Transition_28" sap:VirtualizedContainerService.HintSize="430,507">
+      <sap2010:ViewStateData Id="WaitForResponse`1_23" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Assign_23" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Sequence_21" sap:VirtualizedContainerService.HintSize="264,248">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="AddStudentToTraining_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Transition_28" sap:VirtualizedContainerService.HintSize="430,695">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:PointCollection x:Key="ConnectorLocation">1178.4,387 1178.4,412.5 1324.5,412.5 1324.5,352.5 1294.5,352.5</av:PointCollection>
@@ -1839,9 +1878,9 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WaitForResponse`1_25" sap:VirtualizedContainerService.HintSize="242,22" />
-      <sap2010:ViewStateData Id="Assign_22" sap:VirtualizedContainerService.HintSize="242,62" />
-      <sap2010:ViewStateData Id="Sequence_20" sap:VirtualizedContainerService.HintSize="264,248">
+      <sap2010:ViewStateData Id="WaitForResponse`1_24" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Assign_24" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Sequence_22" sap:VirtualizedContainerService.HintSize="264,248">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1867,12 +1906,13 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="UpdateTrainingStatus_15" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="Transition_30" sap:VirtualizedContainerService.HintSize="430,988">
+      <sap2010:ViewStateData Id="Transition_30" sap:VirtualizedContainerService.HintSize="430,800">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:PointCollection x:Key="ConnectorLocation">848,420.5 848,450.5 1062.7,450.5 1062.7,522.5</av:PointCollection>
-            <x:Int32 x:Key="SrcConnectionPointIndex">35</x:Int32>
+            <av:PointCollection x:Key="ConnectorLocation">1036.5,352.5 1006.5,352.5 1006.5,492.5 1062.7,492.5 1062.7,522.5</av:PointCollection>
+            <x:Int32 x:Key="SrcConnectionPointIndex">37</x:Int32>
             <x:Int32 x:Key="DestConnectionPointIndex">42</x:Int32>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -1896,33 +1936,14 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Transition_32" sap:VirtualizedContainerService.HintSize="430,535">
+      <sap2010:ViewStateData Id="UpdateTrainingStatus_16" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Transition_35" sap:VirtualizedContainerService.HintSize="430,988">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:PointCollection x:Key="ConnectorLocation">848,420.5 848,450.5 828.8,450.5 828.8,619.5</av:PointCollection>
-            <x:Int32 x:Key="SrcConnectionPointIndex">35</x:Int32>
-            <x:Int32 x:Key="DestConnectionPointIndex">42</x:Int32>
+            <av:PointCollection x:Key="ConnectorLocation">1036.5,352.5 836.6,352.5 836.6,619.5</av:PointCollection>
+            <x:Int32 x:Key="SrcConnectionPointIndex">37</x:Int32>
+            <x:Int32 x:Key="DestConnectionPointIndex">46</x:Int32>
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_17" sap:VirtualizedContainerService.HintSize="240,61">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">740,359.5</av:Point>
-            <av:Size x:Key="ShapeSize">240,61</av:Size>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-            <x:Double x:Key="StateContainerWidth">225.57993525455754</x:Double>
-            <x:Double x:Key="StateContainerHeight">25</x:Double>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Transition_33" sap:VirtualizedContainerService.HintSize="430,507">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:PointCollection x:Key="ConnectorLocation">1036.5,349.5 860,349.5 860,359.5</av:PointCollection>
-            <x:Int32 x:Key="SrcConnectionPointIndex">33</x:Int32>
-            <x:Int32 x:Key="DestConnectionPointIndex">38</x:Int32>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>

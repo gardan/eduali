@@ -95,5 +95,10 @@ namespace Ilc.Core.Services
             Uow.Students.Delete(id);
             Uow.Commit();
         }
+
+        public Student GetByUserId(int currentUserId)
+        {
+            return Uow.Students.GetAll().FirstOrDefault(s => s.UserProfileId == currentUserId);
+        }
     }
 }

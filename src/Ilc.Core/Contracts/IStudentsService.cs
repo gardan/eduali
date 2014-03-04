@@ -13,5 +13,6 @@ namespace Ilc.Core.Contracts
         void Create(Student newStudent);
         void Update(Student updateStudent);
         void Delete(int id);
+        Student GetByUserId(int currentUserId);
     }
 }

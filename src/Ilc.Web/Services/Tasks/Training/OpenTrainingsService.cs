@@ -20,6 +20,8 @@ namespace Ilc.Web.Services.Tasks.Training
         public ITrainingsService Trainings { get; set; }
         public IUow Uow { get; set; }
         public IOffersService Offers { get; set; }
+        public IUsersService Users { get; set; }
+        public IStudentsService Students { get; set; }
 
         public HttpResult Post(PlanningModel request)
         {
@@ -115,6 +117,34 @@ namespace Ilc.Web.Services.Tasks.Training
                     StatusCode = HttpStatusCode.OK
                 };
         }
+
+        public HttpResult Post(UserRegistrationModel request)
+        {
+            var training = Trainings.GetById(request.TaskEntityId);
+
+            var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
+            var wfActivity = new Infrastructure.Workflows.Training();
+            var proc = new WorkflowProcess(extensionManager, wfActivity);
+
+            var currentUserId = Users.GetByEmail().Id;
+            var studentId = Students.GetByUserId(currentUserId).Id;
+
+            var workflowData = new Dictionary<string, object>();
+            workflowData["StudentId"] = studentId;
+
+            proc.Resume(training.WokrflowId.Value, TrainingStatus.UserRegistration, workflowData,
+                        PersistableIdleAction.Unload);
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
+    }
+
+    public class UserRegistrationModel
+    {
+        public int TaskEntityId { get; set; }
     }
 
     public class PendingValidationModel
