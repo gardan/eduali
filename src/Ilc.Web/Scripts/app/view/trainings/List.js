@@ -202,22 +202,34 @@
             local: false,   // defaults to false (remote filtering)
         };
 
-        var trainingsGrid = Ext.create('Ext.grid.Panel', {
-            features: [filters],
+        var tpl = new Ext.XTemplate(
+            '<tpl for=".">',
+                '<div class="open-training-node">',
+                    '<tpl for="subject">',
+                        'Subject: {name}',
+                    '</tpl>',
+                    
+                    '<tpl if="joined == true">',
+                        '<a href="#">Joined</a>',
+                    '<tpl else>',
+                        '<a href="#">Join</a>',
+                    '</tpl>',
+                '</div>',
+            '</tpl>'
+        );
+
+        var trainingsGrid = Ext.create('Ext.view.View', {
             store: trainingsStore,
-            columns: [
-                {
-                    dataIndex: 'subject',
-                    text: Ilc.resources.Manager.getResourceString('common.subject'),
-                    flex: 1,
-                    renderer: function (value) {
-                        return value.name;
-                    },
-                    filter: {
-                        type: 'string'
+            itemSelector: 'div.open-training-node',
+            tpl: tpl,
+            listeners: {
+                itemclick: function (view, record, item, index, e, eOpts) {
+                    e.stopEvent();
+                    if (e.target.localName === 'a') { // hyperlink was clicked here
+                        trainingsStore.reload();
                     }
                 }
-            ]
+            }
         });
 
         trainingsStore.load({

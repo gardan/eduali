@@ -104,7 +104,10 @@
             xtype: 'container',
             itemId: 'viewport-target',
             region: 'center',
-            layout: 'fit'
+            layout: 'fit',
+            style: {
+                'background-color': 'white'
+            },
         }
     ],
     
