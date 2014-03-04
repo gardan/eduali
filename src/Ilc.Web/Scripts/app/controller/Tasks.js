@@ -14,6 +14,9 @@
             pendingvalidationwindow: {
                 execute: me.onPendingValidationExecute
             },
+            'userregistrationwindow': {
+                execute: me.onUserRegistration
+            },
             'rfpwindow': {
                 addrfp: me.addrfp
             },
@@ -51,6 +54,36 @@
 
     },
     
+    onUserRegistration: function(sender, model) {
+        var taskService = {
+            userRegistration: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/tasks/training/registration',
+                    method: 'POST',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+
+        taskService.userRegistration(model)
+        .then(function (response) {
+
+        })
+        .finally(function () {
+            sender.executed();
+        });
+    },
+
     // training workflow state handlers
     executePublish: function(sender, model) {
         var taskService = {

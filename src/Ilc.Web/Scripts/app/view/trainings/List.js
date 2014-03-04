@@ -11,9 +11,27 @@
     */
     params: {},
     
+    trainingsStore: null,
+
+    initTrainingWindow: function(record) {
+        var window = Ext.create('Ilc.view.trainings.View', {
+            closeAction: 'destroy',
+            modal: true,
+            model: record,
+            listeners: {
+                trainingupdated: function () {
+                    console.log('trainingupdated');
+                    this.trainingsStore.reload();
+                }
+            },
+        });
+
+        window.show();
+    },
+
     init: function () {
         var me = this;
-        var trainingsStore = Ext.create('Ilc.store.Trainings');
+        me.trainingsStore = Ext.create('Ilc.store.Trainings');
 
         var filters = {
             ftype: 'jsvfilters',
@@ -23,7 +41,7 @@
         };
 
         var trainingsGrid = Ext.create('Ext.grid.Panel', {
-            store: trainingsStore,
+            store: me.trainingsStore,
             features: [filters],
             columns: Ilc.helpers.GridColumns.process([
                 {
@@ -133,7 +151,7 @@
 
                             window.on('addTraining', function (sender, data) {
                                 me.fireEvent('addTraining', sender, data, {
-                                    store: trainingsStore
+                                    store: me.trainingsStore
                                 });
                             });
                             window.show();
@@ -144,29 +162,14 @@
             dockedItems: [
                 {
                     xtype: 'pagingtoolbar',
-                    store: trainingsStore,
+                    store: me.trainingsStore,
                     dock: 'bottom'
                 }
             ]
         });
 
         trainingsGrid.on('itemdblclick', function (grid, record) {
-            var window = Ext.create('Ilc.view.trainings.View', {
-                closeAction: 'destroy',
-                modal: true,
-                model: record
-            });
-
-            // window.on('updatetraining', function (sender, args) {
-            //     me.fireEvent('updatetraining', sender, args);
-            // });
-
-            window.on('trainingupdated', function () {
-                console.log('trainingupdated');
-                trainingsStore.reload();
-            });
-
-            window.show();
+            me.initTrainingWindow(record);
         });
 
         // update the columns if they change
@@ -210,9 +213,9 @@
                     '</tpl>',
                     
                     '<tpl if="joined == true">',
-                        '<a href="#">Joined</a>',
+                        '<a href="#" class="joined ">Joined</a>',
                     '<tpl else>',
-                        '<a href="#">Join</a>',
+                        '<a href="#" class="join ">Join</a>',
                     '</tpl>',
                 '</div>',
             '</tpl>'
@@ -225,8 +228,20 @@
             listeners: {
                 itemclick: function (view, record, item, index, e, eOpts) {
                     e.stopEvent();
-                    if (e.target.localName === 'a') { // hyperlink was clicked here
-                        trainingsStore.reload();
+                    
+                    if (e.target.localName === 'a' && e.target.className.indexOf('joined ') != -1) { // the joined button was clicked
+                        console.log('Joined clicked.');
+                        me.initTrainingWindow(record);
+                        
+                    }
+                    if (e.target.localName === 'a' && e.target.className.indexOf('join ') != -1) { // the join button was clicked
+                        console.log('Join clicked.');
+
+                        var window = Ext.create('Ilc.tasks.training.UserRegistration', {
+                            entity: record
+                        });
+
+                        window.show();
                     }
                 }
             }

@@ -124,6 +124,7 @@
         'common.newCompany': 'New company',
         'common.publish': 'Publish',
         'common.validate': 'Validate',
+        'common.join': 'Join',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',

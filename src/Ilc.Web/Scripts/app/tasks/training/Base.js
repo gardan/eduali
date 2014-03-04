@@ -6,6 +6,11 @@
     layout: {
         type: 'anchor'
     },
+    
+    defaults: {
+        anchor: '100%'
+    },
+
     minWidth: 500,
     bodyPadding: 0,
 
@@ -13,6 +18,7 @@
         var me = this;
 
         me.addEvents(
+            'execute',
             'afterexecute'
         );
 

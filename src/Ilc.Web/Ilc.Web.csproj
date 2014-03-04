@@ -238,6 +238,7 @@
     <Content Include="Scripts\app\tasks\training\store\ProgressEvalStudents.js" />
     <Content Include="Scripts\app\tasks\training\store\Students.js" />
     <Content Include="Scripts\app\tasks\training\TrainingEvaluation.js" />
+    <Content Include="Scripts\app\tasks\training\UserRegistration.js" />
     <Content Include="Scripts\app\tasks\training\window\CreateRfi.js" />
     <Content Include="Scripts\app\tasks\training\window\CreateStudentAssesment.js" />
     <Content Include="Scripts\app\tasks\training\window\CreateStudentEvaluation.js" />
