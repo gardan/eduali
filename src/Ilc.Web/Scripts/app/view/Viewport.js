@@ -30,6 +30,12 @@
                 {
                     text: Ilc.resources.Manager.getResourceString('mainMenu.trainings'),
                     iconCls: 'icon-book-32',
+                    itemId: 'menu.trainings?open=true',
+                    hidden: !Ilc.Configuration.claimExists('tasks-student')
+                },
+                {
+                    text: Ilc.resources.Manager.getResourceString('mainMenu.trainings'),
+                    iconCls: 'icon-book-32',
                     itemId: 'menu.trainings'
                 },
                 {
