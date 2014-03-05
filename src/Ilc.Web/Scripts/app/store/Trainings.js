@@ -2,8 +2,6 @@
     extend: 'Ext.data.Store',
     model: 'Ilc.model.Training',
     
-    autoLoad: true,
-
     //data: [
     //    {
     //        status: 'Review', companyName: 'Google', trainerName: 'Gheo Ion', subject: 'English', owners: [{ id: 1, name: 'Ion' }, { id: 2, name: 'Gheo' }],

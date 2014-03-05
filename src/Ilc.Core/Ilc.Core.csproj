@@ -107,6 +107,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\UsersService.cs" />
     <Compile Include="SystemClaims.cs" />
+    <Compile Include="TrainingStatus.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -192,6 +192,8 @@
         me.items = [
             trainingsGrid
         ];
+
+        e.trainingsStore.load();
     },
     initOpen: function() {
         var me = this;
@@ -266,12 +268,13 @@
     initComponent: function () {
         var me = this;
 
-        if (me.params.open === undefined || me.params.open === 'false') {
-            me.init();
-        } else {
-            me.initOpen();
-        }
+        // if (me.params.open === undefined || me.params.open === 'false') {
+        //     me.init();
+        // } else {
+        //     me.initOpen();
+        // }
 
+        me.initOpen();
 
         me.addEvents(
             'addTraining',

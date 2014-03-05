@@ -25,7 +25,7 @@ namespace Ilc.Core.Services
             IQueryable<Training> query;
             if (parameters.Open)
             {
-                query = Uow.Trainings.GetAll().Where(t => t.CustomerId == null);
+                query = Uow.Trainings.GetAll().Where(t => t.CustomerId == null && t.Status == TrainingStatus.PendingValidation);
             }
             else
             {

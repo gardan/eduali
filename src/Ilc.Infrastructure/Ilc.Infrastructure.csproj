@@ -75,7 +75,6 @@
     <Compile Include="Workflows\Activities\Training\UpdateTrainingStatus.cs" />
     <Compile Include="Workflows\Activities\WaitForResponse.cs" />
     <Compile Include="Workflows\TrainingExtensionManager.cs" />
-    <Compile Include="Workflows\TrainingStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ilc.Core\Ilc.Core.csproj">
