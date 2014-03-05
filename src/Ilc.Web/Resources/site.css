@@ -176,3 +176,23 @@
     background-color: #47a447;
     border-color: #398439;
 }
+
+
+/* Open trainings */
+.open-training-node:first-child {
+    border-top: none;
+}
+
+.open-training-node {
+    border-top: 1px solid silver;
+    padding: 5px 0px;
+}
+
+
+/* Reset anchor */
+a {
+    text-decoration: none;
+}
+a:visited {
+    text-decoration: none;
+}

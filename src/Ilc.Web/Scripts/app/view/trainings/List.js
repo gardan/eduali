@@ -201,20 +201,23 @@
         var tpl = new Ext.XTemplate(
             '<tpl for=".">',
                 '<div class="open-training-node">',
-                    '<tpl for="subject">',
-                        'Subject: {name}',
-                    '</tpl>',
-                    
+                    '<div>',
+                        '<tpl for="subject">',
+                            'Subject: {name}',
+                        '</tpl>',
+                    '</div>',        
+
                     '<tpl if="joined == true">',
-                        '<a href="#" class="joined ">Joined</a>',
+                        '<a href="#" class="joined btn btn-success">Joined</a>',
                     '<tpl else>',
-                        '<a href="#" class="join ">Join</a>',
+                        '<a href="#" class="join btn btn-primary">Join</a>',
                     '</tpl>',
                 '</div>',
             '</tpl>'
         );
 
         var trainingsGrid = Ext.create('Ext.view.View', {
+            cls: 'open-training-container',
             store: me.trainingsStore,
             itemSelector: 'div.open-training-node',
             tpl: tpl,

@@ -125,6 +125,7 @@
     <Content Include="Images\web\remove.png" />
     <Content Include="Images\web\task.png" />
     <Content Include="Images\web\view.png" />
+    <Content Include="Resources\custombootstrap.css" />
     <Content Include="Resources\site.css" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\app\chart\Customers.js" />

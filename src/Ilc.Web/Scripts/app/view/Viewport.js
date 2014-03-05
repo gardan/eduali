@@ -1,5 +1,8 @@
 ﻿Ext.define('Ilc.view.Viewport', {
     renderTo: Ext.getBody(),
+    style: {
+        'background-color': 'white'
+    },
     extend: 'Ext.container.Viewport',
     requires: [
         'Ext.layout.container.Border',
@@ -116,10 +119,7 @@
             xtype: 'container',
             itemId: 'viewport-target',
             region: 'center',
-            layout: 'fit',
-            style: {
-                'background-color': 'white'
-            },
+            layout: 'fit'
         }
     ],
     
