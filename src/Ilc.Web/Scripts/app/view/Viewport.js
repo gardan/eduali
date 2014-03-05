@@ -61,6 +61,7 @@
                     text: Ilc.resources.Manager.getResourceString('mainMenu.statistics'),
                     iconCls: 'icon-statistics-32',
                     itemId: 'menu.statistics',
+                    hidden: !Ilc.Configuration.claimExists('statistics-read')
                 },
                 {
                     text: Ilc.resources.Manager.getResourceString('mainMenu.trainers'),
@@ -77,7 +78,8 @@
                 {
                     text: Ilc.resources.Manager.getResourceString('mainMenu.planning'),
                     iconCls: 'icon-planning-32',
-                    itemId: 'menu.planning'
+                    itemId: 'menu.planning',
+                    hidden: !Ilc.Configuration.claimExists('planning-read')
                 },
                 {
                     text: 'Availability',

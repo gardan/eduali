@@ -32,7 +32,9 @@ namespace Ilc.Core
 
         public const string StudentsReadAll = "student-read-all";
 
+        public const string PlanningRead = "planning-read";
 
+        public const string StatisticsRead = "statistics-read";
 
         public static List<string> GetAll()
         {
