@@ -36,7 +36,8 @@
                 {
                     text: Ilc.resources.Manager.getResourceString('mainMenu.trainings'),
                     iconCls: 'icon-book-32',
-                    itemId: 'menu.trainings'
+                    itemId: 'menu.trainings',
+                    hidden: !Ilc.Configuration.claimExists('training-read-all')
                 },
                 {
                     text: Ilc.resources.Manager.getResourceString('mainMenu.companies'),
@@ -48,11 +49,13 @@
                     text: Ilc.resources.Manager.getResourceString('mainMenu.customers'),
                     iconCls: 'icon-customer-32',
                     itemId: 'menu.customers',
+                    hidden: !Ilc.Configuration.claimExists('customer-read-all')
                 },
                 {
                     text: Ilc.resources.Manager.getResourceString('mainMenu.students'),
                     iconCls: 'icon-student-32',
                     itemId: 'menu.students',
+                    hidden: !Ilc.Configuration.claimExists('student-read-all')
                 },
                 {
                     text: Ilc.resources.Manager.getResourceString('mainMenu.statistics'),
@@ -63,6 +66,7 @@
                     text: Ilc.resources.Manager.getResourceString('mainMenu.trainers'),
                     iconCls: 'icon-trainer-32',
                     itemId: 'menu.trainers',
+                    hidden: !Ilc.Configuration.claimExists('trainer-read-all')
                 },
                 {
                     text: Ilc.resources.Manager.getResourceString('mainMenu.settings'),
