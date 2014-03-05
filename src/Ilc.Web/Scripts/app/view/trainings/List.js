@@ -196,14 +196,7 @@
     initOpen: function() {
         var me = this;
         
-        var trainingsStore = Ext.create('Ilc.store.Trainings');
-
-        var filters = {
-            ftype: 'jsvfilters',
-            // encode and local configuration options defined previously for easier reuse
-            // encode: true, // json encode the filter query
-            local: false,   // defaults to false (remote filtering)
-        };
+        me.trainingsStore = Ext.create('Ilc.store.Trainings');
 
         var tpl = new Ext.XTemplate(
             '<tpl for=".">',
@@ -222,7 +215,7 @@
         );
 
         var trainingsGrid = Ext.create('Ext.view.View', {
-            store: trainingsStore,
+            store: me.trainingsStore,
             itemSelector: 'div.open-training-node',
             tpl: tpl,
             listeners: {
@@ -241,7 +234,7 @@
                             entity: record,
                             listeners: {
                                 afterexecute: function() {
-                                    trainingsStore.reload();
+                                    me.trainingsStore.reload();
                                 }
                             },
                         });
@@ -252,14 +245,18 @@
             }
         });
 
-        trainingsStore.load({
+        me.trainingsStore.load({
             params: {
                 open: true
             }
         });
 
         me.items = [
-            trainingsGrid
+            trainingsGrid,
+            {
+                xtype: 'pagingtoolbar',
+                store: me.trainingsStore,
+            }
         ];
     },
 
