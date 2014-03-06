@@ -193,7 +193,7 @@
             trainingsGrid
         ];
 
-        e.trainingsStore.load();
+        me.trainingsStore.load();
     },
     initOpen: function() {
         var me = this;
@@ -205,12 +205,13 @@
                 '<div class="open-training-node">',
                     '<div>',
                         '<tpl for="subject">',
-                            'Subject: {name}',
+                            '<b>{name}</b>',
                         '</tpl>',
                     '</div>',        
-
+                    '<br/>',
+            
                     '<tpl if="joined == true">',
-                        '<a href="#" class="joined btn btn-success">Joined</a>',
+                        '<a href="#" class="joined btn btn-success">See details</a>',
                     '<tpl else>',
                         '<a href="#" class="join btn btn-primary">Join</a>',
                     '</tpl>',
@@ -268,13 +269,11 @@
     initComponent: function () {
         var me = this;
 
-        // if (me.params.open === undefined || me.params.open === 'false') {
-        //     me.init();
-        // } else {
-        //     me.initOpen();
-        // }
-
-        me.initOpen();
+        if (me.params.open === undefined || me.params.open === 'false') {
+            me.init();
+        } else {
+            me.initOpen();
+        }
 
         me.addEvents(
             'addTraining',
