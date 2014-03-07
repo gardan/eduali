@@ -7,12 +7,25 @@
 
     layout: 'anchor',
     title: 'Edit student evaluation',
-    constructor: function (args) {
+
+    initComponent: function () {
         var me = this;
 
-        var trainingEntity = args.trainingEntity;
-        var lessonEntity = args.lessonEntity;
-        var studentEntity = args.student;
+        var progressEvaluationsStore = Ext.create('Ilc.store.ProgressEvaluations', {
+            trainingId: me.trainingEntity.get('id')
+        });
+
+        progressEvaluationsStore.load({
+            callback: function(records) {
+                var progressInput = me.query('textarea')[0];
+                var evaluation = records[0];
+                progressInput.setRawValue(evaluation.get('progress'));
+            }
+        });
+
+        var trainingEntity = me.trainingEntity;
+        var lessonEntity = me.lessonEntity;
+        var studentEntity = me.student;
 
         me.items = [
             {

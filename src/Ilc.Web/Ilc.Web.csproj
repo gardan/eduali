@@ -207,6 +207,7 @@
     <Content Include="Scripts\app\store\Interviews.js" />
     <Content Include="Scripts\app\store\Lessons.js" />
     <Content Include="Scripts\app\store\Offers.js" />
+    <Content Include="Scripts\app\store\ProgressEvaluations.js" />
     <Content Include="Scripts\app\store\Questions.js" />
     <Content Include="Scripts\app\store\Roles.js" />
     <Content Include="Scripts\app\store\scheduler\Availability.js" />
