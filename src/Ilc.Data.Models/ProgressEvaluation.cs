@@ -5,8 +5,6 @@ namespace Ilc.Data.Models
 {
     public class ProgressEvaluation : EntityBase
     {
-        public int Order { get; set; }
-
         public string Progress { get; set; }
 
         public int StudentId { get; set; }
@@ -16,5 +14,9 @@ namespace Ilc.Data.Models
         public int TrainingId { get; set; }
         [ForeignKey("TrainingId")]
         public virtual Training Training { get; set; }
+
+        public int TrainingScheduleDayId { get; set; }
+        [ForeignKey("TrainingScheduleDayId")]
+        public virtual TrainingScheduleDay TrainingScheduleDay { get; set; }
     }
 }

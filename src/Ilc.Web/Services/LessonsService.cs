@@ -29,7 +29,7 @@ namespace Ilc.Web.Services
             {
                 z++;
 
-                var totalProgressEvaluations = training.ProgressEvaluations.Count(p => p.Order == trainingScheduleDay.Id);
+                var totalProgressEvaluations = training.ProgressEvaluations.Count(p => p.TrainingScheduleDayId == trainingScheduleDay.Id);
 
 
                 data.Add(new LessonModel()

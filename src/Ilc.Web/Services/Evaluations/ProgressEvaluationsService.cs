@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
+using Ilc.Core;
 using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
+using Ilc.Web.Models;
 using Omu.ValueInjecter;
 using ServiceStack;
 
@@ -15,14 +17,15 @@ namespace Ilc.Web.Services.Evaluations
 
         public IProgressEvaluationsService ProgressEvaluations { get; set; }
 
-        public HttpResult Get(ProgressEvaluationRequestModel request)
+        public FilteredDataModel<ProgressEvaluationModel> Get(FilterParametersProgressEvaluations request)
         {
-            var evaluation = ProgressEvaluations.Get(request.TrainingId, request.LessonId, request.StudentId);
-            var retEval = new ProgressEvaluationModel().InjectFrom(evaluation);
+            var evaluationsResult = ProgressEvaluations.GetFiltered(request);
 
-            return new HttpResult(retEval)
+            return new FilteredDataModel<ProgressEvaluationModel>()
                 {
-                    StatusCode = HttpStatusCode.OK
+                    Data = evaluationsResult.Data.Select(p => new ProgressEvaluationModel().InjectFrom(p) as ProgressEvaluationModel).ToList(),
+                    TotalDisplayRecords = evaluationsResult.TotalDisplayRecords,
+                    TotalRecords = evaluationsResult.TotalRecords
                 };
         }
 
@@ -30,13 +33,12 @@ namespace Ilc.Web.Services.Evaluations
 
     public class ProgressEvaluationModel
     {
-
+        public int Id { get; set; }
+        public string Progress { get; set; }
     }
 
-    public class ProgressEvaluationRequestModel
+    public class FilterParametersProgressEvaluations : FilterArgumentsProgressEvaluations
     {
-        public int TrainingId { get; set; }
-        public int LessonId { get; set; }
-        public int StudentId { get; set; }
+        
     }
 }

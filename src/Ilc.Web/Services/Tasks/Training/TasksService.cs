@@ -304,7 +304,7 @@ namespace Ilc.Web.Services.Tasks.Training
             {
                 workflowData["ProgressEvaluation"] = new ProgressEvaluation()
                     {
-                        Order = request.LessonId,
+                        TrainingScheduleDayId = request.LessonId,
                         Progress = request.Progress,
                         StudentId = request.StudentId,
                         TrainingId = request.TaskEntityId

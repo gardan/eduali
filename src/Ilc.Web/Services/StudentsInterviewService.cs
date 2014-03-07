@@ -49,7 +49,7 @@ namespace Ilc.Web.Services
         {
             var data = new List<TrainingStudentInterviewModel>();
             var training = Trainings.GetById(request.TrainingId);
-            var progressEvaluations = training.ProgressEvaluations.Where( p => p.Order == request.LessonId).ToList();
+            var progressEvaluations = training.ProgressEvaluations.Where( p => p.TrainingScheduleDayId == request.LessonId).ToList();
 
             var students = training.Students;
             foreach (var student in students)

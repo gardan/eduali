@@ -299,6 +299,10 @@
     <Compile Include="Migrations\201402261108312_NotRequiredCustomerForTraining.Designer.cs">
       <DependentUpon>201402261108312_NotRequiredCustomerForTraining.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201403071201107_OneToManyLessonToProgressEvaluations.cs" />
+    <Compile Include="Migrations\201403071201107_OneToManyLessonToProgressEvaluations.Designer.cs">
+      <DependentUpon>201403071201107_OneToManyLessonToProgressEvaluations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -507,6 +511,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201402261108312_NotRequiredCustomerForTraining.resx">
       <DependentUpon>201402261108312_NotRequiredCustomerForTraining.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403071201107_OneToManyLessonToProgressEvaluations.resx">
+      <DependentUpon>201403071201107_OneToManyLessonToProgressEvaluations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

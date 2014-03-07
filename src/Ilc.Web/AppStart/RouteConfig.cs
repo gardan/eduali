@@ -130,7 +130,7 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.FilterParametersInterviews>("/trainings/{trainingId}/students/{studentId}/interviews");
             routes.Add<Services.InterviewModel>("/interviews/{id}", "PUT");
 
-            routes.Add<Services.Evaluations.ProgressEvaluationRequestModel>("/trainings/{trainingId}/lessons/{lessonId}/progressevaluations/{studentId}", "GET");
+            routes.Add<Services.Evaluations.FilterParametersProgressEvaluations>("/trainings/{trainingId}/progressevaluations", "GET");
 
             routes.Add<Services.AuthModel>("/auth", "GET");
         }

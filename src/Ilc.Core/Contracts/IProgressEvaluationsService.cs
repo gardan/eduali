@@ -8,6 +8,6 @@ namespace Ilc.Core.Contracts
 {
     public interface IProgressEvaluationsService
     {
-        ProgressEvaluation Get(int trainingId, int lessonId, int studentId);
+        FilteredResults<ProgressEvaluation> GetFiltered(FilterArgumentsProgressEvaluations arguments);
     }
 }
