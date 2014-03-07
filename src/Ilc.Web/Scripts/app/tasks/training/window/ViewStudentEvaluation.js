@@ -1,5 +1,6 @@
 ﻿Ext.define('Ilc.tasks.training.window.ViewStudentEvaluation', {
     extend: 'Ext.window.Window',
+    xtype: 'viewstudentevaluationwindow',
 
     requires: [
         'Ilc.utils.Forms'
@@ -7,6 +8,12 @@
 
     layout: 'anchor',
     title: 'Edit student evaluation',
+
+    progressEvaluation: null,
+
+    evaluationUpdated: function() {
+        this.close();
+    },
 
     initComponent: function () {
         var me = this;
@@ -18,14 +25,10 @@
         progressEvaluationsStore.load({
             callback: function(records) {
                 var progressInput = me.query('textarea')[0];
-                var evaluation = records[0];
-                progressInput.setRawValue(evaluation.get('progress'));
+                me.progressEvaluation  = records[0];
+                progressInput.setRawValue(me.progressEvaluation.get('progress'));
             }
         });
-
-        var trainingEntity = me.trainingEntity;
-        var lessonEntity = me.lessonEntity;
-        var studentEntity = me.student;
 
         me.items = [
             {
@@ -43,12 +46,11 @@
                 text: Ilc.resources.Manager.getResourceString('common.save'),
                 handler: function () {
                     var model = {};
-                    model = Ilc.utils.Forms.extractModel(me.query('textfield'));
-                    model.taskEntityId = trainingEntity.get('id');
-                    model.lessonId = lessonEntity.get('Id');
-                    model.studentId = studentEntity.get('id');
+                    var inputs = me.query('textarea');
+                    model = Ilc.utils.Forms.extractModel(inputs);
+                    model.id = me.progressEvaluation.get('id');
 
-                    me.fireEvent('addEvaluation', me, model);
+                    me.fireEvent('updateevaluation', me, model);
                 }
             },
             {
@@ -60,7 +62,7 @@
         ];
 
         me.addEvents(
-            'addEvaluation'
+            'updateevaluation'
         );
 
         me.callParent(arguments);

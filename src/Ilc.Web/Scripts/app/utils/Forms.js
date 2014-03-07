@@ -23,7 +23,7 @@
         for (var i = 0; i < inputs.length; i++) {
             var xtype = inputs[i].getXType();
             var input = inputs[i];
-
+            
             switch (xtype) {
                 case 'textfield':
                     Ilc.utils.Forms._addProperty(model, input.name, input.getRawValue());
@@ -51,14 +51,13 @@
                         Ilc.utils.Forms._addProperty(model, input.name, moment(date).format());
                     }
                     break;
-                case 'textarea':
+                case 'textareafield':
                     Ilc.utils.Forms._addProperty(model, input.name, input.getRawValue());
                     break;
                 case 'checkboxfield':
                     Ilc.utils.Forms._addProperty(model, input.name, input.getRawValue());
                     break;
                 case 'multislider':
-                    debugger;
                     var value = input.getValue();
                     Ilc.utils.Forms._addProperty(model, input.name, value);
                     break;

@@ -25,7 +25,8 @@ Ext.application({
         'Availability',
         'Templates',
         'Companies',
-        'Interviews'
+        'Interviews',
+        'Evaluations'
     ],
 
     requires: [

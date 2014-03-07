@@ -64,5 +64,16 @@ namespace Ilc.Core.Services
                 TotalRecords = totalResults
             };
         }
+
+        public ProgressEvaluation GetById(int id)
+        {
+            return Uow.ProgressEvaluations.GetById(id);
+        }
+
+        public void Update(ProgressEvaluation evaluation)
+        {
+            Uow.ProgressEvaluations.Update(evaluation);
+            Uow.Commit();
+        }
     }
 }

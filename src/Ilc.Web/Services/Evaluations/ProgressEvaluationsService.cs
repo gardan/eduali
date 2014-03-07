@@ -29,6 +29,19 @@ namespace Ilc.Web.Services.Evaluations
                 };
         }
 
+        public HttpResult Put(ProgressEvaluationModel request)
+        {
+            var evaluation = ProgressEvaluations.GetById(request.Id);
+            evaluation.Progress = request.Progress;
+
+            ProgressEvaluations.Update(evaluation);
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
+
     }
 
     public class ProgressEvaluationModel

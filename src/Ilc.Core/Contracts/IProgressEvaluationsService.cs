@@ -9,5 +9,7 @@ namespace Ilc.Core.Contracts
     public interface IProgressEvaluationsService
     {
         FilteredResults<ProgressEvaluation> GetFiltered(FilterArgumentsProgressEvaluations arguments);
+        ProgressEvaluation GetById(int id);
+        void Update(ProgressEvaluation evaluation);
     }
 }
