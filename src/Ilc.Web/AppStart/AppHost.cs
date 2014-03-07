@@ -29,7 +29,7 @@ namespace Ilc.Web.AppStart
 
             SetConfig(new HostConfig()
             {
-                ServiceStackHandlerFactoryPath = "api",
+                // ServiceStackHandlerFactoryPath = "",
                 MapExceptionToStatusCode = {
                         { typeof(AuthenticationException), 401 } 
                     }
