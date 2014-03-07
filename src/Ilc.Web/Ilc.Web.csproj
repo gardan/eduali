@@ -249,6 +249,7 @@
     <Content Include="Scripts\app\tasks\training\window\CreateStudentAssesment.js" />
     <Content Include="Scripts\app\tasks\training\window\CreateStudentEvaluation.js" />
     <Content Include="Scripts\app\tasks\training\window\CreateStudentInterview.js" />
+    <Content Include="Scripts\app\tasks\training\window\ViewStudentEvaluation.js" />
     <Content Include="Scripts\app\tasks\training\window\ViewStudentInterview.js" />
     <Content Include="Scripts\app\uploader\Avatar.js" />
     <Content Include="Scripts\app\utils\Forms.js" />
@@ -4002,6 +4003,7 @@
     <Compile Include="Services\DefaultService.cs" />
     <Compile Include="Models\TrainingModel.cs" />
     <Compile Include="Models\FilterParametersCustomerStatisticsModel.cs" />
+    <Compile Include="Services\Evaluations\ProgressEvaluationsService.cs" />
     <Compile Include="Services\FilesService.cs" />
     <Compile Include="Services\GendersService.cs" />
     <Compile Include="Services\GradesService.cs" />
