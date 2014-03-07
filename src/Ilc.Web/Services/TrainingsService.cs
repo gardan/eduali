@@ -103,7 +103,7 @@ namespace Ilc.Web.Services
                     Status = "Rfi",
                     Students = students,
                     TrainerId = request.TrainerId,
-                    CustomerId = null,
+                    CustomerId = request.CustomerId == 0 ? (int?) null : request.CustomerId,
                     // Owners = new [] { Users.GetByEmail() }, // We need to get the guy with Sales role that was specified at the beggining
                     Owners = new List<UserProfile>() { sales },
                     OwnersConfiguration = ownersConfiguration,
@@ -116,7 +116,8 @@ namespace Ilc.Web.Services
             var wfActivity = new Infrastructure.Workflows.Training();
             var proc = new WorkflowProcess(extensionManager, wfActivity, new Dictionary<string, object>()
                 {
-                    {"argInTrainingId", newTraining.Id}
+                    { "argInTrainingId", newTraining.Id },
+                    { "argInPublic", newTraining.Public }
                 });
             var results = proc.Start(PersistableIdleAction.Unload);
 
