@@ -91,6 +91,7 @@
                 },
                 {
                     xtype: 'actioncolumn',
+                    text: Ilc.resources.Manager.getResourceString('common.actions'),
                     sortable: false,
                     menuDisabled: true,
                     items: [
