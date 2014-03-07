@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Activities;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Net;
-using System.Web;
 using Ilc.Core;
 using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
@@ -15,9 +13,7 @@ using Ilc.Web.Filters.Response;
 using Ilc.Web.InjectorConventions;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
-using ServiceStack.Common;
-using ServiceStack.Common.Web;
-using ServiceStack.ServiceInterface;
+using ServiceStack;
 using Training = Ilc.Data.Models.Training;
 
 namespace Ilc.Web.Services

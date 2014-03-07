@@ -3,15 +3,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Web;
 using System.Web.Configuration;
 using Ilc.Web.Contracts;
-using ServiceStack.Common.Web;
-using ServiceStack.Service;
-using ServiceStack.ServiceHost;
-using ServiceStack.ServiceInterface;
-using ServiceStack.WebHost.Endpoints;
+using ServiceStack;
+using ServiceStack.Web;
 
 namespace Ilc.Web.Services
 {
@@ -19,7 +14,7 @@ namespace Ilc.Web.Services
     {
         public HttpResult Put(AvatarModel request)
         {
-            var rootPath = EndpointHost.VirtualPathProvider.RootDirectory.RealPath;
+            var rootPath = HostContext.VirtualPathProvider.RootDirectory.RealPath;
             var userFilesPath = WebConfigurationManager.AppSettings["UserFiles"];
             var userId = request.Id;
             var extension = new ImageFormatConverter().ConvertToString(ImageFormat.Png).ToLower();
@@ -48,7 +43,7 @@ namespace Ilc.Web.Services
 
         private string UserAvatarPath(int userId)
         {
-            var rootPath = EndpointHost.VirtualPathProvider.RootDirectory.RealPath;
+            var rootPath = HostContext.VirtualPathProvider.RootDirectory.RealPath;
             var userFilesPath = WebConfigurationManager.AppSettings["UserFiles"];
             const string avatarName = "avatar.png";
 
@@ -57,7 +52,7 @@ namespace Ilc.Web.Services
 
         private string DefaultAvatarPath()
         {
-            var rootPath = EndpointHost.VirtualPathProvider.RootDirectory.RealPath;
+            var rootPath = HostContext.VirtualPathProvider.RootDirectory.RealPath;
             const string defaultAvatarPath = @"Images\web64\avatar.png";
             return Path.Combine(rootPath, defaultAvatarPath);
         }

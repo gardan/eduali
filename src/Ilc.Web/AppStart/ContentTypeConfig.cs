@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Web;
 using Ilc.Web.Contracts;
-using ServiceStack.ServiceHost;
-using ServiceStack.WebHost.Endpoints;
+using ServiceStack;
+using ServiceStack.Web;
 
 namespace Ilc.Web.AppStart
 {
@@ -16,11 +13,11 @@ namespace Ilc.Web.AppStart
         private const string ImgJpegContentType = "image/jpeg";
         private const string ImgJpgContentType = "image/jpg";
 
-        public static void Configure(AppHostBase appHost)
+        public static void Configure(AppHostHttpListenerBase appHost)
         {
-            appHost.ContentTypeFilters.Register(ImgJpegContentType, ResponseSerializer, StreamDeserializer);
-            appHost.ContentTypeFilters.Register(ImgPngContentType, ResponseSerializer, StreamDeserializer);
-            appHost.ContentTypeFilters.Register(ImgJpgContentType, ResponseSerializer, StreamDeserializer);
+            appHost.ContentTypes.Register(ImgJpegContentType, ResponseSerializer, StreamDeserializer);
+            appHost.ContentTypes.Register(ImgPngContentType, ResponseSerializer, StreamDeserializer);
+            appHost.ContentTypes.Register(ImgJpgContentType, ResponseSerializer, StreamDeserializer);
         }
 
         private static object StreamDeserializer(Type type, Stream fromStream)
@@ -37,7 +34,7 @@ namespace Ilc.Web.AppStart
             return instance;
         }
 
-        private static void ResponseSerializer(IRequestContext requestContext, object dto, IHttpResponse httpRes)
+        private static void ResponseSerializer(IRequest requestContext, object dto, IResponse httpRes)
         {
         }
     }

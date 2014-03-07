@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Authentication;
-using System.Web;
-using Ilc.Web.Authentication.Contracts;
-using ServiceStack.ServiceHost;
-using ServiceStack.ServiceInterface;
+﻿using Ilc.Web.Authentication.Contracts;
+using ServiceStack;
+using ServiceStack.Web;
+using AuthenticationException = System.Security.Authentication.AuthenticationException;
 
 namespace Ilc.Web.Filters.Request
 {
@@ -13,7 +9,7 @@ namespace Ilc.Web.Filters.Request
     {
         public IIdentityAuthenticationManager AuthManager { get; set; }
 
-        public override void Execute(IHttpRequest req, IHttpResponse res, object requestDto)
+        public override void Execute(IRequest req, IResponse res, object requestDto)
         {
             if (!AuthManager.IsAuthenticated())
             {

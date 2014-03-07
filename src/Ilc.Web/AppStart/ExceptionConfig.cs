@@ -1,5 +1,5 @@
-﻿using System.Security.Authentication;
-using ServiceStack.WebHost.Endpoints;
+﻿using ServiceStack;
+using AuthenticationException = System.Security.Authentication.AuthenticationException;
 
 namespace Ilc.Web.AppStart
 {
@@ -7,7 +7,7 @@ namespace Ilc.Web.AppStart
     {
         public static void Configure(AppHost appHost)
         {
-            appHost.SetConfig(new EndpointHostConfig()
+            appHost.SetConfig(new HostConfig()
                 {
                     MapExceptionToStatusCode = {
                         { typeof(AuthenticationException), 401 } 

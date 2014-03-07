@@ -1,7 +1,7 @@
 ﻿using Ilc.Web.Models;
 using Ilc.Web.Models.Student;
 using Ilc.Web.Services.Tasks.Training;
-using ServiceStack.ServiceHost;
+using ServiceStack.Web;
 
 namespace Ilc.Web.AppStart
 {

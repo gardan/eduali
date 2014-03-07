@@ -6,9 +6,7 @@ using Ilc.Data.Models;
 using Ilc.Web.InjectorConventions;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
-using ServiceStack.Common;
-using ServiceStack.Common.Web;
-using ServiceStack.ServiceInterface;
+using ServiceStack;
 
 namespace Ilc.Web.Services
 {

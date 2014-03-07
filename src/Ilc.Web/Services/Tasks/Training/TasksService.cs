@@ -13,8 +13,7 @@ using Ilc.Web.Filters.Response;
 using Ilc.Web.InjectorConventions;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
-using ServiceStack.Common.Web;
-using ServiceStack.ServiceInterface;
+using ServiceStack;
 
 namespace Ilc.Web.Services.Tasks.Training
 {

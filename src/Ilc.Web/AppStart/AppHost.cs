@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Funq;
 using Ilc.Web.Models;
+using ServiceStack;
 using ServiceStack.Mvc;
 using ServiceStack.Text;
-using ServiceStack.WebHost.Endpoints;
 
 namespace Ilc.Web.AppStart
 {
-    public class AppHost : AppHostBase
+    public class AppHost : AppHostHttpListenerBase
     {
         public AppHost() : base("Api", typeof(AppHost).Assembly) { }
 
@@ -20,7 +15,7 @@ namespace Ilc.Web.AppStart
         {
             JsConfig.EmitCamelCaseNames = true;
             JsConfig.ExcludeTypeInfo = true;
-            JsConfig.DateHandler = JsonDateHandler.ISO8601;
+            JsConfig.DateHandler = DateHandler.ISO8601;
 
             JsConfig<FilteredDataModel<Services.LessonModel>>.EmitCamelCaseNames = false;
             JsConfig<Services.LessonModel>.EmitCamelCaseNames = false;
@@ -30,7 +25,15 @@ namespace Ilc.Web.AppStart
             IocConfig.Init(container);
             RouteConfig.Init(Routes);
             ContentTypeConfig.Configure(this);
-            ExceptionConfig.Configure(this);
+            // ExceptionConfig.Configure(this);
+
+            SetConfig(new HostConfig()
+            {
+                ServiceStackHandlerFactoryPath = "api",
+                MapExceptionToStatusCode = {
+                        { typeof(AuthenticationException), 401 } 
+                    }
+            });
         }
     }
 }

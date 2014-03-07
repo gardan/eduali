@@ -1,8 +1,7 @@
 ﻿using System.Linq;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
-using ServiceStack.Common.Web;
-using ServiceStack.ServiceInterface;
+using ServiceStack;
 
 namespace Ilc.Web.Services
 {

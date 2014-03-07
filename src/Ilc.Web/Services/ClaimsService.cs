@@ -4,8 +4,7 @@ using Ilc.Core;
 using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
 using Ilc.Web.Models;
-using ServiceStack.Common.Web;
-using ServiceStack.ServiceInterface;
+using ServiceStack;
 
 namespace Ilc.Web.Services
 {

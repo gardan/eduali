@@ -1,9 +1,8 @@
 ﻿using Ilc.Infrastructure.Contracts;
 using Ilc.Web.Models;
-using Ilc.Web.Services;
 using Ilc.Web.Services.Tasks.Training;
-using ServiceStack.ServiceHost;
-using ServiceStack.ServiceInterface;
+using ServiceStack;
+using ServiceStack.Web;
 
 namespace Ilc.Web.Filters.Response
 {
@@ -11,7 +10,7 @@ namespace Ilc.Web.Filters.Response
     {
         public IStatusService StatusService { get; set; }
 
-        public override void Execute(IHttpRequest req, IHttpResponse res, object responseDto)
+        public override void Execute(IRequest req, IResponse res, object responseDto)
         {
             var response = (FilteredDataModel<TaskModel>)responseDto;
             foreach (var trainingModel in response.Data)

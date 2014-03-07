@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Ilc.Core.Contracts;
-using ServiceStack.ServiceInterface;
+﻿using Ilc.Core.Contracts;
+using ServiceStack;
 
 namespace Ilc.Web.Services
 {
