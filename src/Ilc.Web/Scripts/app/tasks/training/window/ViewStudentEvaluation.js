@@ -11,8 +11,19 @@
 
     progressEvaluation: null,
 
+    trainingEntity: null,
+    lessonEntity: null,
+    student: null,
+
     evaluationUpdated: function() {
         this.close();
+    },
+
+    initParameters: function() {
+        return {
+            studentId: this.student == null ? 0 : this.student.get('id'),
+            lessonId: this.lessonEntity == null ? 0 : this.lessonEntity.get('Id')
+        };
     },
 
     initComponent: function () {
@@ -23,6 +34,7 @@
         });
 
         progressEvaluationsStore.load({
+            params: me.initParameters(),
             callback: function(records) {
                 var progressInput = me.query('textarea')[0];
                 me.progressEvaluation  = records[0];

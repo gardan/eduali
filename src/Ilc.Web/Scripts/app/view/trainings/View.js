@@ -358,6 +358,35 @@
                                 xtype: 'grid',
                                 store: studentsStore,
                                 bodyPadding: 0,
+                                listeners: {
+                                    itemdblclick: function (grid, record, item, index, e, eOpts) {
+                                        var window = Ext.create('Ext.window.Window', {
+                                            title: 'Progress evaluations for ' + record.get('name'),
+                                            items: [
+                                                Ext.create('Ilc.grid.StudentLessons', {
+                                                    student: record,
+                                                    trainingId: me.model.get('id'),
+                                                    listeners: {
+                                                        itemdblclick: function (studentLessonsGrid, lessonRecord) {
+                                                            if (lessonRecord.get('progressEvaluationComplete') == false) {
+                                                                return;
+                                                            }
+                                                            var progressEvalWindow = Ext.create('Ilc.tasks.training.window.ViewStudentEvaluation', {
+                                                                trainingEntity: me.model,
+                                                                lessonEntity: lessonRecord,
+                                                                student: record
+                                                            });
+
+                                                            progressEvalWindow.show();
+                                                        }
+                                                    }
+                                                })
+                                            ]
+                                        });
+
+                                        window.show();
+                                    }
+                                },
                                 columns: [
                                     {
                                         dataIndex: 'name',
