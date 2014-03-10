@@ -9,5 +9,7 @@ namespace Ilc.Core.Contracts
     public interface IGradingSystemsService
     {
         void Create(GradingSystem gradingSystem);
+        void Update(GradingSystem gradingSystem);
+        GradingSystem GetById(int id);
     }
 }

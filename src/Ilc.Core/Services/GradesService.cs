@@ -45,7 +45,7 @@ namespace Ilc.Core.Services
             var totalDisplayRecords = totalResults;
 
             // order
-            query = query.OrderBy(e => e.Id);
+            query = query.OrderBy(e => e.Order);
 
             // paging
             query = query.Skip(parameters.StartIndex).Take(parameters.Length);

@@ -1,6 +1,6 @@
 ﻿Ext.define('Ilc.store.TrainingSystems', {
     extend: 'Ext.data.Store',
-    fields: ['id', 'name'],
+    fields: ['id', 'name', 'grades'],
     
     // data: [
     //     { id: 1, name: 'European Union' },

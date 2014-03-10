@@ -18,5 +18,18 @@ namespace Ilc.Core.Services
             Uow.GradingSystems.Add(gradingSystem);
             Uow.Commit();
         }
+
+
+
+        public void Update(GradingSystem gradingSystem)
+        {
+            Uow.GradingSystems.Update(gradingSystem);
+            Uow.Commit();
+        }
+
+        public GradingSystem GetById(int id)
+        {
+            return Uow.GradingSystems.GetById(id);
+        }
     }
 }

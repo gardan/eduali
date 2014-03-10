@@ -142,6 +142,7 @@
     <Content Include="Scripts\app\controller\Contacts.js" />
     <Content Include="Scripts\app\controller\Customers.js" />
     <Content Include="Scripts\app\controller\Evaluations.js" />
+    <Content Include="Scripts\app\controller\GradingSystems.js" />
     <Content Include="Scripts\app\controller\Home.js" />
     <Content Include="Scripts\app\controller\Interviews.js" />
     <Content Include="Scripts\app\controller\Lessons.js" />
@@ -170,6 +171,7 @@
     <Content Include="Scripts\app\grid\Competences.js" />
     <Content Include="Scripts\app\grid\Claims.js" />
     <Content Include="Scripts\app\grid\EvalQuestions.js" />
+    <Content Include="Scripts\app\grid\Grades.js" />
     <Content Include="Scripts\app\grid\Offers.js" />
     <Content Include="Scripts\app\grid\Roles.js" />
     <Content Include="Scripts\app\grid\StatusDefinitions.js" />
@@ -389,6 +391,7 @@
     <Content Include="Scripts\app\view\customers\Create.js" />
     <Content Include="Scripts\app\view\customers\Edit.js" />
     <Content Include="Scripts\app\view\customers\List.js" />
+    <Content Include="Scripts\app\view\gradingSystems\Edit.js" />
     <Content Include="Scripts\app\view\gradingSystems\List.js" />
     <Content Include="Scripts\app\view\home\Evaluation.js" />
     <Content Include="Scripts\app\view\home\Frame.js" />

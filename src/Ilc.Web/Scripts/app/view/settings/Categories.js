@@ -33,6 +33,10 @@
                 {
                     text: 'Templates',
                     component: 'Ilc.view.templates.List'
+                },
+                {
+                    text: 'Grading systems',
+                    component: 'Ilc.view.gradingSystems.List'
                 }
             ]
         });

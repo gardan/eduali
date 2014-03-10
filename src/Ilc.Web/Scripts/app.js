@@ -26,7 +26,8 @@ Ext.application({
         'Templates',
         'Companies',
         'Interviews',
-        'Evaluations'
+        'Evaluations',
+        'GradingSystems'
     ],
 
     requires: [

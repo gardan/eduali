@@ -22,18 +22,6 @@ namespace Ilc.Web.Services
             return new FilteredResults<GradingSystemModel>()
                 {
                     Data = results.Select(s => new GradingSystemModel().InjectFrom<GradingSystemToWebModel>(s) as GradingSystemModel).ToList()
-                    // Data = new List<GradingSystemModel>()
-                    //     {
-                    //         new GradingSystemModel()
-                    //             {
-                    //                 Id = 1,
-                    //                 Name = "Toefell",
-                    //                 Grades = new[]
-                    //                     {
-                    //                         new GradeModel() { Id = 1, Name = "A1", Order = 1 }, 
-                    //                     }.OrderBy(g => g.Order).ToArray()
-                    //             }
-                    //     }
                 };
         }
 
@@ -47,6 +35,27 @@ namespace Ilc.Web.Services
                 {
                     StatusCode = HttpStatusCode.OK
                 };
+        }
+
+        public HttpResult Put(GradingSystemModel request)
+        {
+            var gradingSystem = GradingSystems.GetById(request.Id);
+            gradingSystem.Name = request.Name;
+
+            foreach (var grade in gradingSystem.Grades)
+            {
+                var modelGrade = request.Grades.FirstOrDefault(g => g.Id == grade.Id);
+                grade.Order = modelGrade.Order;
+                grade.Name = modelGrade.Name;
+            }
+
+            GradingSystems.Update(gradingSystem);
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+
         }
     }
 
