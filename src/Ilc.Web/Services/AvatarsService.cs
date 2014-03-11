@@ -12,9 +12,16 @@ namespace Ilc.Web.Services
 {
     public class AvatarsService : Service
     {
+        private string GetRootPath()
+        {
+           return Path.Combine(HostContext.VirtualPathProvider.RootDirectory.RealPath, @"..\");
+        }
+
         public HttpResult Put(AvatarModel request)
         {
-            var rootPath = HostContext.VirtualPathProvider.RootDirectory.RealPath;
+
+            var items = RequestContext.Instance.Items;
+            var rootPath = GetRootPath();
             var userFilesPath = WebConfigurationManager.AppSettings["UserFiles"];
             var userId = request.Id;
             var extension = new ImageFormatConverter().ConvertToString(ImageFormat.Png).ToLower();
@@ -43,7 +50,7 @@ namespace Ilc.Web.Services
 
         private string UserAvatarPath(int userId)
         {
-            var rootPath = HostContext.VirtualPathProvider.RootDirectory.RealPath;
+            var rootPath = GetRootPath();
             var userFilesPath = WebConfigurationManager.AppSettings["UserFiles"];
             const string avatarName = "avatar.png";
 
@@ -52,8 +59,8 @@ namespace Ilc.Web.Services
 
         private string DefaultAvatarPath()
         {
-            var rootPath = HostContext.VirtualPathProvider.RootDirectory.RealPath;
-            const string defaultAvatarPath = @"..\Images\web64\avatar.png";
+            var rootPath = GetRootPath(); ;
+            const string defaultAvatarPath = @"Images\web64\avatar.png";
             return Path.Combine(rootPath, defaultAvatarPath);
         }
     }
