@@ -20,7 +20,7 @@ namespace Ilc.Web.InjectorConventions
             if (c.SourceProp.Name == "Grades")
             {
                 var list = c.SourceProp.Value as ICollection<Grade>;
-                return list.Select(g => new GradeModel().InjectFrom(g) as GradeModel).OrderBy(gs => gs.Order).ToArray();
+                return list.Select(g => new GradeModel().InjectFrom(g) as GradeModel).OrderBy(gs => gs.Order).ToList();
             }
             return base.SetValue(c);
         }

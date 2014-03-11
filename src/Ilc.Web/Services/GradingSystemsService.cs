@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using Ilc.Core;
 using Ilc.Core.Contracts;
@@ -45,8 +46,18 @@ namespace Ilc.Web.Services
             foreach (var grade in gradingSystem.Grades)
             {
                 var modelGrade = request.Grades.FirstOrDefault(g => g.Id == grade.Id);
+                request.Grades.Remove(modelGrade);
                 grade.Order = modelGrade.Order;
                 grade.Name = modelGrade.Name;
+            }
+
+            foreach (var gradeModel in request.Grades)
+            {
+                gradingSystem.Grades.Add(new Grade()
+                    {
+                        Name = gradeModel.Name,
+                        Order = gradeModel.Order
+                    });
             }
 
             GradingSystems.Update(gradingSystem);
@@ -64,7 +75,7 @@ namespace Ilc.Web.Services
         public int Id { get; set; }
         public string Name { get; set; }
         
-        public GradeModel[] Grades { get; set; }
+        public List<GradeModel> Grades { get; set; }
     }
 
     public class GradeModel
