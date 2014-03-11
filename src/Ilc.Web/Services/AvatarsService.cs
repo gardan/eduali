@@ -53,7 +53,7 @@ namespace Ilc.Web.Services
         private string DefaultAvatarPath()
         {
             var rootPath = HostContext.VirtualPathProvider.RootDirectory.RealPath;
-            const string defaultAvatarPath = @"Images\web64\avatar.png";
+            const string defaultAvatarPath = @"..\Images\web64\avatar.png";
             return Path.Combine(rootPath, defaultAvatarPath);
         }
     }
