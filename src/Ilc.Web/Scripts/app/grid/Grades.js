@@ -63,6 +63,21 @@
                                 me.store.insert(index, newGrade);
                                 rowEditing.startEdit(selected[0].index, 0);
                             }
+                        },
+                        {
+                            text: 'Delete',
+                            handler: function() {
+                                var selected = me.selModel.getSelection();
+                                Ext.MessageBox.confirm(
+                                    'Confirm delete',
+                                    'Are you sure?',
+                                    function(btn) {
+                                        if (btn == 'yes') {
+                                            me.store.remove(selected[0]);
+                                        }
+                                    }
+                                );
+                            }
                         }
                     ]
                 });

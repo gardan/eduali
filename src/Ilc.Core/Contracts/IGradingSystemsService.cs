@@ -11,5 +11,6 @@ namespace Ilc.Core.Contracts
         void Create(GradingSystem gradingSystem);
         void Update(GradingSystem gradingSystem);
         GradingSystem GetById(int id);
+        void DeleteSystemGrades(int id);
     }
 }

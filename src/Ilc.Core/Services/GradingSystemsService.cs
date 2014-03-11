@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models;
@@ -30,6 +31,16 @@ namespace Ilc.Core.Services
         public GradingSystem GetById(int id)
         {
             return Uow.GradingSystems.GetById(id);
+        }
+
+        public void DeleteSystemGrades(int id)
+        {
+            var gradesToDelete = Uow.Grades.GetAll().Where(g => g.GradingSystemId == id);
+            foreach (var grade in gradesToDelete.ToList())
+            {
+                Uow.Grades.Delete(grade);
+            }
+            Uow.Commit();
         }
     }
 }

@@ -43,13 +43,7 @@ namespace Ilc.Web.Services
             var gradingSystem = GradingSystems.GetById(request.Id);
             gradingSystem.Name = request.Name;
 
-            foreach (var grade in gradingSystem.Grades)
-            {
-                var modelGrade = request.Grades.FirstOrDefault(g => g.Id == grade.Id);
-                request.Grades.Remove(modelGrade);
-                grade.Order = modelGrade.Order;
-                grade.Name = modelGrade.Name;
-            }
+            GradingSystems.DeleteSystemGrades(gradingSystem.Id);
 
             foreach (var gradeModel in request.Grades)
             {
