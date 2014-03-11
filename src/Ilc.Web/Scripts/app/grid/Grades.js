@@ -1,7 +1,9 @@
 ﻿Ext.define('Ilc.grid.Grades', {
     extend: 'Ext.grid.Panel',
     
-    
+    requires: [
+        'Ilc.model.Grade'
+    ],
     
     viewConfig: {
         plugins: {
@@ -16,7 +18,7 @@
                     var index = grid.store.indexOf(record);
 
                     record.set('order', index + 1);
-                    record.save();
+                    record.commit();
                 });
             }
         }
@@ -27,22 +29,7 @@
 
         var rowEditing = Ext.create('Ext.grid.plugin.RowEditing', {
             clickstoedit: 2,
-            autoCancel: false,
-            listeners: {
-                edit: function (editor, e) {
-                    var rec = e.record;
-
-                    var model = {
-                        id: rec.get('Id'),
-                        trainingId: me.training.get('id'),
-                        startDate: rec.get('StartDate'),
-                        endDate: rec.get('EndDate'),
-                        lessonName: rec.get('Name'),
-                    };
-
-                    me.fireEvent('editlesson', me, model);
-                }
-            }
+            autoCancel: false
         });
         
         var textField = {
@@ -58,6 +45,31 @@
                 editor: textField
             }
         ];
+
+        me.on('itemcontextmenu', function(view, record, item, index, e) {
+            e.stopEvent();
+
+            if (!me.rowContextMenu) {
+                me.rowContextMenu = Ext.create('Ext.menu.Menu', {
+                    items: [
+                        {
+                            text: 'New grade',
+                            handler: function() {
+                                var selected = me.selModel.getSelection();
+
+                                rowEditing.cancelEdit();
+                                var newGrade = Ext.create('Ilc.model.Grade');
+                                debugger;
+                                me.store.insert(index, newGrade);
+                                rowEditing.startEdit(selected[0].index, 0);
+                            }
+                        }
+                    ]
+                });
+            }
+
+            me.rowContextMenu.showAt(e.getXY());
+        });
 
         me.callParent(arguments);
     }

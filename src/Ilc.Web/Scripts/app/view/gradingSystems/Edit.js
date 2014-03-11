@@ -49,12 +49,10 @@
     initComponent: function() {
         var me = this;
 
-        me.gradesStore = Ext.create('Ext.data.Store', {
-            fields: ['id', 'name', 'order'],
-            
-            data: me.gradingSystem.get('grades')
-        });
-        
+        me.gradesStore = Ext.create('Ilc.store.Grades');
+
+        me.gradesStore.loadRawData(me.gradingSystem.get('grades'));
+
         me.items = [
             {
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.name'),

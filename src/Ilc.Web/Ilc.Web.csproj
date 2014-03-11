@@ -182,6 +182,7 @@
     <Content Include="Scripts\app\helpers\GridColumns.js" />
     <Content Include="Scripts\app\model\Availability.js" />
     <Content Include="Scripts\app\model\Claim.js" />
+    <Content Include="Scripts\app\model\Grade.js" />
     <Content Include="Scripts\app\model\InterviewPlan.js" />
     <Content Include="Scripts\app\model\scheduler\Trainer.js" />
     <Content Include="Scripts\app\model\Student.js" />
@@ -200,6 +201,7 @@
     <Content Include="Scripts\app\store\Companies.js" />
     <Content Include="Scripts\app\store\Contacts.js" />
     <Content Include="Scripts\app\store\Genders.js" />
+    <Content Include="Scripts\app\store\Grades.js" />
     <Content Include="Scripts\app\store\GridConfig.js" />
     <Content Include="Scripts\app\grid\Transfers.js" />
     <Content Include="Scripts\app\model\Customer.js" />
