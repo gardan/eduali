@@ -1,12 +1,7 @@
 ﻿Ext.define('Ilc.grid.Grades', {
     extend: 'Ext.grid.Panel',
     
-    columns: [
-        {
-            text: Ilc.resources.Manager.getResourceString('common.name'),
-            dataIndex: 'name'
-        }
-    ],
+    
     
     viewConfig: {
         plugins: {
@@ -25,5 +20,45 @@
                 });
             }
         }
+    },
+    
+    initComponent: function() {
+        var me = this;
+
+        var rowEditing = Ext.create('Ext.grid.plugin.RowEditing', {
+            clickstoedit: 2,
+            autoCancel: false,
+            listeners: {
+                edit: function (editor, e) {
+                    var rec = e.record;
+
+                    var model = {
+                        id: rec.get('Id'),
+                        trainingId: me.training.get('id'),
+                        startDate: rec.get('StartDate'),
+                        endDate: rec.get('EndDate'),
+                        lessonName: rec.get('Name'),
+                    };
+
+                    me.fireEvent('editlesson', me, model);
+                }
+            }
+        });
+        
+        var textField = {
+            xtype: 'textfield'
+        };
+
+        me.plugins = [rowEditing];
+
+        me.columns = [
+            {
+                text: Ilc.resources.Manager.getResourceString('common.name'),
+                dataIndex: 'name',
+                editor: textField
+            }
+        ];
+
+        me.callParent(arguments);
     }
 });
