@@ -47,7 +47,11 @@
   <ItemGroup>
     <Compile Include="Attributes\RequiredClaimsAttribute.cs" />
     <Compile Include="Contracts\IProgressEvaluationsService.cs" />
+    <Compile Include="Contracts\ISubjectFilesService.cs" />
+    <Compile Include="Services\SubjectFilesService.cs" />
     <Compile Include="FilterArgumentsProgressEvaluations.cs" />
+    <Compile Include="FilterArgumentsSubjectFiles.cs" />
+    <Compile Include="Helpers\Stamper.cs" />
     <Compile Include="Services\ProgressEvaluationsService.cs" />
     <Compile Include="FilterArgumentsInterviews.cs" />
     <Compile Include="FilterArgumentsTrainings.cs" />

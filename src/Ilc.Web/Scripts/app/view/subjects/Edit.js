@@ -10,7 +10,8 @@
     requires: [
         'Ilc.utils.Forms'
     ],
-
+    width: 600,
+    
     defaults: {
         xtype: 'textfield',
         anchor: '100%'
@@ -24,13 +25,68 @@
     initComponent: function () {
         var me = this;
 
+        var documentsStore = Ext.create('Ilc.store.SubjectDocumentsStore', {
+            subjectId: me.subject.get('id')
+        });
+        documentsStore.load();
         me.items = [
             {
-                padding: '5 5 0 5',
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.name'),
-                name: 'name',
-                value: me.subject.get('name')
+                xtype: 'tabpanel',
+                items: [
+                    {
+                        title: 'General',
+                        layout: 'anchor',
+                        defaults: { anchor: '100%' },
+                        items: [
+                            {
+                                xtype: 'textfield',
+                                padding: '5 5 0 5',
+                                fieldLabel: Ilc.resources.Manager.getResourceString('common.name'),
+                                name: 'name',
+                                value: me.subject.get('name')
+                            }
+                        ]
+                    },
+                    {
+                        title: 'Files',
+                        items: [
+                            // Ext.create('Ilc.uploader.FileManager', {
+                            //     uploadUrl: 'api/subjects/' + me.subject.get('id') + '/files',
+                            //     uploaderOptions: {
+                            //         method: 'POST'
+                            //     }
+                            // }),
+                            Ext.create('Ilc.grid.SubjectFiles', {
+                                store: documentsStore,
+                                dockedItems: [
+                                    {
+                                        xtype: 'toolbar',
+                                        dock: 'top',
+                                        items: [
+                                            {
+                                                text: 'Add files',
+                                                handler: function() {
+                                                    var window = Ext.create('Ext.window.Window', {
+                                                        items: [
+                                                            Ext.create('Ilc.uploader.FileUploader', {
+                                                                uploadUrl: 'api/subjects/' + me.subject.get('id') + '/files'
+                                                            })
+                                                            
+                                                        ]
+                                                    });
+
+                                                    window.show();
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            })
+                        ]
+                    }
+                ]
             }
+            
         ];
 
         me.buttons = [

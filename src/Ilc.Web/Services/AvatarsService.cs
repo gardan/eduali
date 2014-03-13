@@ -19,8 +19,6 @@ namespace Ilc.Web.Services
 
         public HttpResult Put(AvatarModel request)
         {
-
-            var items = RequestContext.Instance.Items;
             var rootPath = GetRootPath();
             var userFilesPath = WebConfigurationManager.AppSettings["UserFiles"];
             var userId = request.Id;

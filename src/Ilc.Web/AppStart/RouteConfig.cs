@@ -134,6 +134,9 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.Evaluations.FilterParametersProgressEvaluations>("/trainings/{trainingId}/progressevaluations", "GET");
             routes.Add<Services.Evaluations.ProgressEvaluationModel>("/progressevaluations/{id}", "PUT");
 
+            routes.Add<Services.SubjectFiles.FileUploadModel>("/subjects/{id}/files", "POST");
+            routes.Add<Services.SubjectFiles.FilterParametersSubjectFiles>("/subjects/{subjectId}/files", "GET");
+
             routes.Add<Services.AuthModel>("/auth", "GET");
         }
     }

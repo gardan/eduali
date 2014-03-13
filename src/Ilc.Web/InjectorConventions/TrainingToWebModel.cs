@@ -7,7 +7,6 @@ using Ilc.Web.Models;
 using Ilc.Web.Services;
 using Omu.ValueInjecter;
 using SubjectModel = Ilc.Web.Models.SubjectModel;
-using UserModel = Ilc.Web.Models.UserModel;
 
 namespace Ilc.Web.InjectorConventions
 {
@@ -27,7 +26,7 @@ namespace Ilc.Web.InjectorConventions
             if (c.SourceProp.Name == "Owners" && c.TargetProp.Name == "Owners")
             {
                 var users = c.SourceProp.Value as ICollection<UserProfile>;
-                return users.Select(u => new UserModel() {Username = u.Email}).ToArray();
+                return users.Select(u => new UserModel() {Email = u.Email}).ToArray();
             }
             if (c.SourceProp.Name == "Students" && c.TargetProp.Name == "Students")
             {

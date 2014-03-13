@@ -171,6 +171,20 @@ Ext.define('Ext.ux.upload.Panel', {
     },
 
     /**
+     * @overriable
+     */
+    initGrid : function() {
+        return Ext.create('Ext.ux.upload.ItemGridPanel', {
+            queue: this.queue,
+            textFilename: this.textFilename,
+            textSize: this.textSize,
+            textType: this.textType,
+            textStatus: this.textStatus,
+            textProgress: this.textProgress
+        });
+    },
+
+    /**
      * @private
      */
     initComponent : function() {
@@ -191,14 +205,7 @@ Ext.define('Ext.ux.upload.Panel', {
 
         this.queue = this.initQueue();
 
-        this.grid = Ext.create('Ext.ux.upload.ItemGridPanel', {
-            queue : this.queue,
-            textFilename : this.textFilename,
-            textSize : this.textSize,
-            textType : this.textType,
-            textStatus : this.textStatus,
-            textProgress : this.textProgress
-        });
+        this.grid = this.initGrid();
 
         this.uploadManager = this.createUploadManager();
 

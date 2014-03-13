@@ -42,6 +42,7 @@ namespace Ilc.Data.Contracts
         IRepository<Availability> Availabilities { get; }
         IRepository<Template> Templates { get; }
         IRepository<TemplateDay> TemplateDays { get; }
-        IRepository<Company> Companies { get; } 
+        IRepository<Company> Companies { get; }
+        IRepository<SubjectFile> SubjectFiles { get; } 
     }
 }

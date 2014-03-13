@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unit\Core\Helpers\StamperTests.cs" />
     <Compile Include="Unit\Data\Models\TemplateTests.cs" />
     <Compile Include="Unit\Infrastructure\Services\AvailabilityTemplatesServiceTests.cs" />
     <Compile Include="Unit\Infrastructure\WorkflowProcessOperation.cs" />

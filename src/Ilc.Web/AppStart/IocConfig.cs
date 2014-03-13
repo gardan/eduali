@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Funq;
 using Ilc.Core.Contracts;
+using Ilc.Core.Helpers;
 using Ilc.Core.Services;
 using Ilc.Data;
 using Ilc.Data.Contracts;
@@ -48,8 +49,9 @@ namespace Ilc.Web.AppStart
             container.RegisterAutoWiredAs<CompanyDefaultsService, ICompanyDefaultsService>().ReusedWithin(ReuseScope.Request);
             container.RegisterAutoWiredAs<InterviewsService, IInterviewsService>().ReusedWithin(ReuseScope.Request);
             container.RegisterAutoWiredAs<ProgressEvaluationsService, IProgressEvaluationsService>().ReusedWithin(ReuseScope.Request);
-
-
+            container.RegisterAutoWiredAs<Stamper, IStamper>().ReusedWithin(ReuseScope.Request);
+            container.RegisterAutoWiredAs<SubjectFilesService, ISubjectFilesService>().ReusedWithin(ReuseScope.Request);
+            
             container.RegisterAutoWiredAs<StatisticsService, IStatisticsService>().ReusedWithin(ReuseScope.Request);            
         }
     }
