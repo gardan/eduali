@@ -12,7 +12,6 @@
     subjectId: 0,
 
     constructor: function (args) {
-        debugger;
         this.subjectId = args.subjectId == null ? 0 : args.subjectId;
 
         var url = 'api/subjects/{id}/files';

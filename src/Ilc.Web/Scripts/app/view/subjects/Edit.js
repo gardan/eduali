@@ -69,10 +69,14 @@
                                                     var window = Ext.create('Ext.window.Window', {
                                                         items: [
                                                             Ext.create('Ilc.uploader.FileUploader', {
-                                                                uploadUrl: 'api/subjects/' + me.subject.get('id') + '/files'
+                                                                uploadUrl: 'api/subjects/' + me.subject.get('id') + '/files',
                                                             })
-                                                            
-                                                        ]
+                                                        ],
+                                                        listeners: {
+                                                            close: function () {
+                                                                documentsStore.reload();
+                                                            }
+                                                        }
                                                     });
 
                                                     window.show();
