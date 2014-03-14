@@ -8,7 +8,40 @@
             },
             'editsubjectwindow': {
                 'editsubject': this.updateSubject
+            },
+            
+            'subjectfilesgrid': {
+                'removefile': this.onRemoveFile
             }
+        });
+    },
+
+    onRemoveFile: function (sender, model) {
+        var subjectFilesService = {
+            remove: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/files/' + entity.id,
+                    method: 'DELETE',
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+
+        subjectFilesService.remove(model)
+        .then(function (response) {
+            sender.fileDeleted();
+        })
+        .finally(function () {
+            
         });
     },
 

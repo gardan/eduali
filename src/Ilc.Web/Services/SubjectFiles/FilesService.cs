@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web.Configuration;
 using Ilc.Core;
 using Ilc.Core.Contracts;
@@ -21,6 +22,18 @@ namespace Ilc.Web.Services.SubjectFiles
         public IStamper Stamper { get; set; }
         public IUow Uow { get; set; }
         public ISubjectFilesService SubjectFiles { get; set; }
+
+        public FilteredDataModel<SubjectFileModel> Get(FilterParametersSubjectFiles request)
+        {
+            var results = SubjectFiles.GetFiltered(request);
+
+            return new FilteredDataModel<SubjectFileModel>()
+            {
+                Data = results.Data.Select(f => new SubjectFileModel().InjectFrom<SubjectFileToSubjectFileModel>(f) as SubjectFileModel).ToList(),
+                TotalDisplayRecords = results.TotalDisplayRecords,
+                TotalRecords = results.TotalRecords
+            };
+        }
 
         public HttpResult Post(FileUploadModel request)
         {
@@ -56,15 +69,21 @@ namespace Ilc.Web.Services.SubjectFiles
             return new HttpResult();
         }
         
-        public FilteredDataModel<SubjectFileModel> Get(FilterParametersSubjectFiles request)
+        
+
+        public HttpResult Delete(SubjectFileModel request)
         {
-            var results = SubjectFiles.GetFiltered(request);
-            
-            return new FilteredDataModel<SubjectFileModel>()
+            var subjectFile = Uow.SubjectFiles.GetById(request.Id);
+            var filePath = Path.Combine(subjectFile.Directory, subjectFile.Filename);
+
+            File.Delete(filePath);
+
+            Uow.SubjectFiles.Delete(subjectFile);
+            Uow.Commit();
+
+            return new HttpResult()
                 {
-                    Data = results.Data.Select(f => new SubjectFileModel().InjectFrom<SubjectFileToSubjectFileModel>(f) as SubjectFileModel).ToList(),
-                    TotalDisplayRecords = results.TotalDisplayRecords,
-                    TotalRecords = results.TotalRecords
+                    StatusCode =  HttpStatusCode.OK
                 };
         }
     }

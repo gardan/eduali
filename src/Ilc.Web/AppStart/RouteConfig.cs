@@ -136,6 +136,7 @@ namespace Ilc.Web.AppStart
 
             routes.Add<Services.SubjectFiles.FileUploadModel>("/subjects/{id}/files", "POST");
             routes.Add<Services.SubjectFiles.FilterParametersSubjectFiles>("/subjects/{subjectId}/files", "GET");
+            routes.Add<Services.SubjectFiles.SubjectFileModel>("/files/{id}", "DELETE");
 
             routes.Add<Services.AuthModel>("/auth", "GET");
         }
