@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web.Configuration;
@@ -29,7 +30,8 @@ namespace Ilc.Web.Services.SubjectFiles
             var fileDir = Path.Combine(
                 HostContext.VirtualPathProvider.RootDirectory.RealPath,
                 WebConfigurationManager.AppSettings["Documents"], 
-                WebConfigurationManager.AppSettings["SubjectDocuments"], 
+                WebConfigurationManager.AppSettings["SubjectDocuments"],
+                request.Id.ToString(CultureInfo.InvariantCulture),
                 DateTime.UtcNow.Date.ToString("yyyy-MM-dd"));
             Directory.CreateDirectory(fileDir);
 
@@ -37,16 +39,20 @@ namespace Ilc.Web.Services.SubjectFiles
             {
                 request.RequestStream.CopyTo(file);
             }
-            var subjectFile = new SubjectFile()
+
+            if (!File.Exists(Path.Combine(fileDir, filename)))
+            {
+                var subjectFile = new SubjectFile()
                 {
                     Filename = filename,
                     Directory = fileDir,
                     SubjectId = request.Id
                 };
-            Stamper.Stamp(subjectFile);
-            Uow.SubjectFiles.Add(subjectFile);    
-            Uow.Commit();
-
+                Stamper.Stamp(subjectFile);
+                Uow.SubjectFiles.Add(subjectFile);
+                Uow.Commit();
+            }
+            
             return new HttpResult();
         }
         

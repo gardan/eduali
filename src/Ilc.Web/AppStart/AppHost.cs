@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Web;
+using System.Web.Mvc;
 using Funq;
 using Ilc.Web.Models;
 using ServiceStack;
@@ -31,7 +32,7 @@ namespace Ilc.Web.AppStart
             {
                 // ServiceStackHandlerFactoryPath = "",
                 MapExceptionToStatusCode = {
-                        { typeof(AuthenticationException), 401 } 
+                        { typeof(AuthenticationException), 401 }
                     }
             });
         }

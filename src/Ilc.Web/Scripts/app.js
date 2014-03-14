@@ -266,7 +266,7 @@ Ext.application({
                 
                     var failFuncHandler = function (response) {
                         if (response.status != 401) {
-                            originalFailHandler(response);
+                            originalFailHandler.apply(this, arguments);
                             return;
                         }
 
