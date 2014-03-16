@@ -420,6 +420,7 @@
     <Content Include="Scripts\app\view\students\Create.js" />
     <Content Include="Scripts\app\view\students\Edit.js" />
     <Content Include="Scripts\app\view\students\List.js" />
+    <Content Include="Scripts\app\view\subjectFiles\List.js" />
     <Content Include="Scripts\app\view\subjects\Create.js" />
     <Content Include="Scripts\app\view\subjects\Edit.js" />
     <Content Include="Scripts\app\view\subjects\List.js" />

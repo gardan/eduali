@@ -6,7 +6,8 @@
     requires: [
         'Ext.util.Point',
         'Ilc.view.trainings.view.Planning',
-        'Ilc.view.spendings.View'
+        'Ilc.view.spendings.View',
+        'Ilc.view.subjectFiles.List'
     ],
     width: 900,
 
@@ -443,6 +444,11 @@
                                 me.fireEvent('trainingupdated');
                             }
                         } 
+                    },
+                    {
+                        title: 'Files',
+                        xtype: 'subjectfileslist',
+                        subjectId: model.get('subject').id
                     }
                 ]
             }

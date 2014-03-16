@@ -35,6 +35,15 @@ namespace Ilc.Web.Services.SubjectFiles
             };
         }
 
+        public HttpResult Get(SubjectFileModel request)
+        {
+            var document = Uow.SubjectFiles.GetById(request.Id);
+            var filePath = Path.Combine(document.Directory, document.Filename);
+
+
+            return new HttpResult(new FileInfo(filePath), asAttachment:true);
+        }
+
         public HttpResult Post(FileUploadModel request)
         {
             request.Id = Convert.ToInt32(this.Request.PathInfo.Split(Convert.ToChar(@"/"))[2]);
@@ -69,8 +78,6 @@ namespace Ilc.Web.Services.SubjectFiles
             return new HttpResult();
         }
         
-        
-
         public HttpResult Delete(SubjectFileModel request)
         {
             var subjectFile = Uow.SubjectFiles.GetById(request.Id);

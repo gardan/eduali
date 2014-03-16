@@ -15,9 +15,9 @@
         },
         {
             dataIndex: 'creator',
-            text: 'Filename',
+            text: 'Creator',
             renderer: function(value) {
-                return value.name;
+                return value.userInfo.name;
             },
             flex: 1
         },
