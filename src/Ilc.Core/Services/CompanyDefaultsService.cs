@@ -62,7 +62,7 @@ namespace Ilc.Core.Services
                         {
                             CompanyId = companyId,
                             CanDelete = false,
-                            RoleName = "Zeus",
+                            RoleName = "SysAdmin",
                             Claims = new List<RoleClaim>()
                                 {
                                     new RoleClaim() {Name = SystemClaims.TasksAdministration, Value = true.ToString()},
