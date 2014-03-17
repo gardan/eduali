@@ -63,13 +63,7 @@ namespace Ilc.Core.Services
                             CompanyId = companyId,
                             CanDelete = false,
                             RoleName = "SysAdmin",
-                            Claims = new List<RoleClaim>()
-                                {
-                                    new RoleClaim() {Name = SystemClaims.TasksAdministration, Value = true.ToString()},
-                                    new RoleClaim() {Name = SystemClaims.TasksSales, Value = true.ToString()},
-                                    new RoleClaim() {Name = SystemClaims.TasksCoordinator, Value = true.ToString()},
-                                    new RoleClaim() {Name = SystemClaims.UiSettingsRead, Value = true.ToString()}
-                                }
+                            Claims =GetAllClaims()
                         }
                 };
 
@@ -82,10 +76,16 @@ namespace Ilc.Core.Services
             return roles;
         }
 
+        private List<RoleClaim> GetAllClaims()
+        {
+            return SystemClaims.GetAll().Select(claim => new RoleClaim() {Name = claim, Value = true.ToString()}).ToList();
+        }
+
         public void CreateStatusDefinitions(int companyId)
         {
             var arr = new[] { "Rfi", "PlanInterview", "Interview", "Offer", "Accepted", "Rejected", "Planned", 
-                              "ProgressEvaluation", "Exam", "TrainingEvaluation", "Ended", "Complete" };
+                              "ProgressEvaluation", "Exam", "TrainingEvaluation", "Ended", "Complete", 
+                              "Planning", "Publishing", "UserRegistration", "PendingValidation", "Accepted", "Cancelled" };
             foreach (var status in arr)
             {
                 var definition = new StatusDictionary()
