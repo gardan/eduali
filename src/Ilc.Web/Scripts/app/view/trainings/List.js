@@ -130,7 +130,7 @@
                     renderer: function (value, metaData) {
                         var ret = '';
                         for (var i = 0; i < value.length; i++) {
-                            var anchor = '<a>' + value[i].username + '</a>,';
+                            var anchor = '<a>' + value[i].userInfo.name + '</a>,';
                             ret += anchor;
                         }
                         return ret.slice(0, ret.length - 1);

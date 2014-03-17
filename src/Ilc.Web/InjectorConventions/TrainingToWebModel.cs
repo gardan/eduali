@@ -26,7 +26,7 @@ namespace Ilc.Web.InjectorConventions
             if (c.SourceProp.Name == "Owners" && c.TargetProp.Name == "Owners")
             {
                 var users = c.SourceProp.Value as ICollection<UserProfile>;
-                return users.Select(u => new UserModel() {Email = u.Email}).ToArray();
+                return users.Select(u => new UserModel().InjectFrom<UserProfileToUserModel>(u) as UserModel).ToArray();
             }
             if (c.SourceProp.Name == "Students" && c.TargetProp.Name == "Students")
             {
