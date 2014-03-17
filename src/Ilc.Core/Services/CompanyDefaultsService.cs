@@ -78,7 +78,7 @@ namespace Ilc.Core.Services
 
         private List<RoleClaim> GetAllClaims()
         {
-            return SystemClaims.GetAll().Select(claim => new RoleClaim() {Name = claim, Value = true.ToString()}).ToList();
+            return SystemClaims.GetAll().Where(c => c != SystemClaims.TasksStudent).Select(claim => new RoleClaim() {Name = claim, Value = true.ToString()}).ToList();
         }
 
         public void CreateStatusDefinitions(int companyId)
