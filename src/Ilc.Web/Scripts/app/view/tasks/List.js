@@ -98,7 +98,7 @@
                 entity: record,
                 tasksStore: store,
                 listeners: {
-                    'afterexecuted': function () {
+                    'afterexecute': function () {
                         store.reload();
                     }
                 }
