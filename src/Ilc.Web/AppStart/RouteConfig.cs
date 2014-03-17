@@ -125,6 +125,7 @@ namespace Ilc.Web.AppStart
 
             routes.Add<Services.FilterParametersCompanies>("/companies", "GET");
             routes.Add<Services.CreateCompanyModel>("/companies", "POST");
+            routes.Add<Services.CompanyModel>("/companies/{id}", "PUT");
 
             routes.Add<Services.FilterParametersQuestions>("/questions", "GET");
 

@@ -5,6 +5,9 @@
         this.control({
             'createcompanywindow': {
                 'addcompany': this.addCompany
+            },
+            'companiesgrid': {
+                'updatecompany': this.onUpdateCompany
             }
         });
     },
@@ -33,6 +36,36 @@
         customerService.add(model)
         .then(function (response) {
             sender.companyAdded();
+        })
+        .finally(function () {
+
+        });
+    },
+
+    onUpdateCompany: function (sender, model) {
+        var companiesService = {
+            update: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/companies/' + entity.id,
+                    method: 'PUT',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+
+        companiesService.update(model)
+        .then(function (response) {
+            sender.companyUpdated();
         })
         .finally(function () {
 

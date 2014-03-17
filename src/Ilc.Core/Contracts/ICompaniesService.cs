@@ -10,5 +10,7 @@ namespace Ilc.Core.Contracts
     {
         FilteredResults<Company> GetFiltered(FilterArguments request);
         void Create(Company newCompany, UserProfile initialUser);
+        Company GetById(int id);
+        void Update(Company company);
     }
 }

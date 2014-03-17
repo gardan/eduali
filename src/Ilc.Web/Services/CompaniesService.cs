@@ -41,6 +41,19 @@ namespace Ilc.Web.Services
                     StatusCode = HttpStatusCode.OK
                 };
         }
+
+        public HttpResult Put(CompanyModel request)
+        {
+            var company = Companies.GetById(request.Id);
+            company.Name = request.Name;
+
+            Companies.Update(company);
+
+            return new HttpResult()
+                {
+                    StatusCode =  HttpStatusCode.OK
+                };
+        }
     }
 
     public class CreateCompanyModel

@@ -77,5 +77,16 @@ namespace Ilc.Core.Services
             initialUser.Roles = roles;
             Users.Create(initialUser, initialUser.Email);
         }
+
+        public Company GetById(int id)
+        {
+            return Uow.Companies.GetById(id);
+        }
+
+        public void Update(Company company)
+        {
+            Uow.Companies.Update(company);
+            Uow.Commit();
+        }
     }
 }
