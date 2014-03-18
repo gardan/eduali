@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using Ilc.Core.Contracts;
@@ -91,8 +92,8 @@ namespace Ilc.Core.Services
 
             // Create the membership
             var salt = Crypto.Crypto.GenerateSalt();
-            var hashedPwd = Crypto.Crypto.Hash(salt + Crypto.Crypto.Hash(salt + password));
-
+            var hashedPwd = GetHashedFromPlain(password, salt);
+            
             Uow.Memberships.Add(new Membership()
                 {
                     UserId = user.Id,
@@ -107,6 +108,23 @@ namespace Ilc.Core.Services
         {
             Uow.UserProfiles.Update(user);
             Uow.Commit();
+        }
+
+        public void UpdatePassword(int userId, string password)
+        {
+            var salt = Crypto.Crypto.GenerateSalt();
+            var membership = Uow.Memberships.GetById(userId);
+            membership.PasswordSalt = salt;
+            membership.Password = GetHashedFromPlain(password, salt);
+            membership.PasswordChangedDate = DateTime.UtcNow;
+
+            Uow.Memberships.Update(membership);
+            Uow.Commit();
+        }
+
+        private string GetHashedFromPlain(string text, string salt)
+        {
+            return Crypto.Crypto.Hash(salt + Crypto.Crypto.Hash(salt + text));
         }
     }
 }

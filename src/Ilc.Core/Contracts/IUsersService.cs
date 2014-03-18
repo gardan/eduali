@@ -10,5 +10,6 @@ namespace Ilc.Core.Contracts
         UserProfile GetById(int id);
         void Create(UserProfile user, string password);
         void Update(UserProfile user);
+        void UpdatePassword(int userId, string password);
     }
 }

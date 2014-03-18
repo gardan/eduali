@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
+using Ilc.Web.Authentication.Contracts;
 using Ilc.Web.Filters.Request;
 using Ilc.Web.Filters.Request.Verification.Profile;
 using ServiceStack;
@@ -14,9 +15,16 @@ namespace Ilc.Web.Services
     public class ProfileService : Service
     {
         public IUsersService Users { get; set; }
-
+        
         public HttpResult Put(GeneralModel request)
         {
+            var user = Users.GetByEmail();
+
+            user.UserDetails.FirstName = request.FirstName;
+            user.UserDetails.LastName = request.LastName;
+
+            Users.Update(user);
+
             return new HttpResult();
         }
 
@@ -32,8 +40,12 @@ namespace Ilc.Web.Services
             return new HttpResult();
         }
 
+        [PasswordModelVerification]
         public HttpResult Put(PasswordModel request)
         {
+            var user = Users.GetByEmail();
+            Users.UpdatePassword(user.Id, request.NewPassword);
+            
             return new HttpResult();
         }
     }
@@ -46,7 +58,8 @@ namespace Ilc.Web.Services
 
     public class PasswordModel
     {
-        public string Email { get; set; }
+        public string CurrentPassword { get; set; }
+        public string NewPassword { get; set; }
     }
 
     public class EmailModel

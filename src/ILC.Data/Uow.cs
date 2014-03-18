@@ -33,7 +33,7 @@ namespace Ilc.Data
         public IRepository<TrainingScheduleDay> TrainingScheduleDays { get { return GetStandardRepo<TrainingScheduleDay>(); } }
         public IRepository<ProgressEvaluation> ProgressEvaluations { get { return GetStandardRepo<ProgressEvaluation>(); } }
         public IRepository<TrainingEvaluation> TrainingEvaluations { get { return GetStandardRepo<TrainingEvaluation>(); } }
-        public IRepository<Membership> Memberships { get { return GetStandardRepo<Membership>(); } }
+        public IMembershipRepository Memberships { get { return GetRepo<IMembershipRepository>(); } }
         public IRepository<Assesment> Assesments { get { return GetStandardRepo<Assesment>(); } }
         public IRepository<TrainingOwnersConfiguration> TrainingOwnersConfiguration { get { return GetStandardRepo<TrainingOwnersConfiguration>(); } }
         public IRepository<Subject> Subjects { get { return GetStandardRepo<Subject>(); } }

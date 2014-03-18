@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ilc.Data.Models.Base;
 
 namespace Ilc.Data.Models.SimpleMembership
 {

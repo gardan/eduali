@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using Ilc.Data.Contracts;
+using Ilc.Data.Models.SimpleMembership;
 
 namespace Ilc.Data.Helpers
 {
@@ -45,7 +46,8 @@ namespace Ilc.Data.Helpers
             return new Dictionary<Type, Func<DbContext, object>>()
                 {
                     {typeof(IUserProfileRepository), context => new UserProfileRepository(context)},
-                    {typeof(IRolesRepository), context => new RolesRepository(context)}
+                    {typeof(IRolesRepository), context => new RolesRepository(context)},
+                    {typeof(IMembershipRepository), context => new MembershipRepository(context)}
                 };
         }
 

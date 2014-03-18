@@ -59,6 +59,7 @@
     <Compile Include="Helpers\IRepositoryProvider.cs" />
     <Compile Include="Helpers\RepositoriesFactories.cs" />
     <Compile Include="Helpers\RepositoryProvider.cs" />
+    <Compile Include="MembershipRepository.cs" />
     <Compile Include="Migrations\201307250828273_Initial.cs" />
     <Compile Include="Migrations\201307250828273_Initial.Designer.cs">
       <DependentUpon>201307250828273_Initial.cs</DependentUpon>

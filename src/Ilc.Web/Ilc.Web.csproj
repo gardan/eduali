@@ -3955,6 +3955,7 @@
     <Compile Include="Controllers\ZipController.cs" />
     <Compile Include="Filters\Request\IlcAuth.cs" />
     <Compile Include="Filters\Request\Verification\Profile\EmailModelDuplication.cs" />
+    <Compile Include="Filters\Request\Verification\Profile\PasswordModelVerification.cs" />
     <Compile Include="Filters\Response\ModelWithStatusResponseFilter.cs" />
     <Compile Include="Filters\Response\TaskModelWithStatusResponseFilter.cs" />
     <Compile Include="Global.asax.cs">

@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IClaimsRepository.cs" />
+    <Compile Include="IMembershipRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IRolesRepository.cs" />
     <Compile Include="IUow.cs" />
