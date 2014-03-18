@@ -110,6 +110,15 @@
                             handler: function () {
                                 window.location.href = 'account/logout';
                             }
+                        },
+                        {
+                            text: Ilc.resources.Manager.getResourceString('common.profile'),
+                            handler: function(btn) {
+                                var viewport = btn.up('viewport');
+                                viewport.fireEvent('menuclick', {
+                                    itemId: 'menu.profile'
+                                });
+                            }
                         }
                     ]
                 }

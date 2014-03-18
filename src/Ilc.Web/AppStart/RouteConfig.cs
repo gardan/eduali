@@ -140,6 +140,10 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.SubjectFiles.SubjectFileModel>("/files/{id}", "DELETE,GET");
 
             routes.Add<Services.AuthModel>("/auth", "GET");
+
+            routes.Add<Services.GeneralModel>("/profile/general", "PUT");
+            routes.Add<Services.EmailModel>("/profile/email", "PUT");
+            routes.Add<Services.PasswordModel>("/profile/password", "PUT");
         }
     }
 }

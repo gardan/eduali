@@ -9,61 +9,6 @@
     init: function () {
         var self = this;
 
-        //var storesQueue = [];
-        //var loginWindow = null;
-
-        //this.listen({
-        //    store: {
-        //        '*': {
-        //            load: function (store, records, successful, operation) {
-        //                if (!operation.error || operation.error.status !== 401) {
-        //                    return;
-        //                }
-
-        //                storesQueue.push(store);
-
-        //                if (loginWindow) {
-        //                    return;
-        //                }
-
-        //                loginWindow = Ext.create('Ilc.window.Login', {
-        //                    handler: function () {
-
-        //                        var window = this.up('window');
-        //                        var model = Ilc.utils.Forms.extractModel(window.query('textfield'));
-
-
-        //                        var url = 'api/auth?' + Ext.urlEncode(model);
-
-        //                        Ext.Ajax.request({
-        //                            url: url,
-        //                            method: 'GET',
-        //                            headers: {
-        //                                'Content-Type': 'application/json'
-        //                            },
-        //                            success: function (response) {
-        //                                loginWindow.close();
-        //                                loginWindow = null;
-
-        //                                Ext.Array.forEach(storesQueue, function (queuedStore) {
-        //                                    queuedStore.reload();
-        //                                });
-        //                                storesQueue.length = 0;
-        //                            },
-        //                            failure: function (error) {
-
-        //                            }
-        //                        });
-        //                    }
-        //                });
-
-        //                loginWindow.show();
-                        
-        //            }
-        //        }
-        //    }
-        //});
-
         this.control({
             '#main-nav-toolbar button': {
                 click: this.onMainNavClick

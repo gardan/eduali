@@ -126,6 +126,10 @@
         'common.validate': 'Validate',
         'common.join': 'Join',
         'common.actions': 'Actions',
+        'common.profile': 'Profile',
+        'common.currentPassword': 'Current password',
+        'common.newPassword': 'New password',
+        'common.password': 'Password',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',

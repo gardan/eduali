@@ -27,7 +27,8 @@ Ext.application({
         'Companies',
         'Interviews',
         'Evaluations',
-        'GradingSystems'
+        'GradingSystems',
+        'Profile'
     ],
 
     requires: [
@@ -52,7 +53,8 @@ Ext.application({
         'settings.Default',
         'planning.Default',
         'availability.Default',
-        'companies.List'
+        'companies.List',
+        'profile.Edit'
     ],  
         
     routes: {
@@ -69,7 +71,8 @@ Ext.application({
         'settings': 'settings#default',
         'planning': 'planning#default',
         'availability': 'availability#default',
-        'companies': 'companies#list'
+        'companies': 'companies#list',
+        'profile' : 'profile#edit'
     },
 
     enableRouter: true,

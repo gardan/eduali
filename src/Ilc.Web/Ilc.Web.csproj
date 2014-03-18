@@ -147,6 +147,7 @@
     <Content Include="Scripts\app\controller\Interviews.js" />
     <Content Include="Scripts\app\controller\Lessons.js" />
     <Content Include="Scripts\app\controller\Planning.js" />
+    <Content Include="Scripts\app\controller\Profile.js" />
     <Content Include="Scripts\app\controller\Roles.js" />
     <Content Include="Scripts\app\controller\Settings.js" />
     <Content Include="Scripts\app\controller\Spendings.js" />
@@ -180,6 +181,7 @@
     <Content Include="Scripts\app\grid\Users.js" />
     <Content Include="Scripts\app\helpers\AppConfig.js" />
     <Content Include="Scripts\app\helpers\ColumnBuilder.js" />
+    <Content Include="Scripts\app\helpers\Error.js" />
     <Content Include="Scripts\app\helpers\GridColumns.js" />
     <Content Include="Scripts\app\model\Availability.js" />
     <Content Include="Scripts\app\model\Claim.js" />
@@ -405,6 +407,7 @@
     <Content Include="Scripts\app\view\home\Offer.js" />
     <Content Include="Scripts\app\view\lessons\List.js" />
     <Content Include="Scripts\app\view\planning\Default.js" />
+    <Content Include="Scripts\app\view\profile\Edit.js" />
     <Content Include="Scripts\app\view\progressEvaluations\Edit.js" />
     <Content Include="Scripts\app\view\roles\Create.js" />
     <Content Include="Scripts\app\view\roles\Edit.js" />
@@ -3951,6 +3954,7 @@
     <Compile Include="Controllers\TransfersController.cs" />
     <Compile Include="Controllers\ZipController.cs" />
     <Compile Include="Filters\Request\IlcAuth.cs" />
+    <Compile Include="Filters\Request\Verification\Profile\EmailModelDuplication.cs" />
     <Compile Include="Filters\Response\ModelWithStatusResponseFilter.cs" />
     <Compile Include="Filters\Response\TaskModelWithStatusResponseFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -4026,6 +4030,7 @@
     <Compile Include="Services\InterviewsService.cs" />
     <Compile Include="Services\LessonsService.cs" />
     <Compile Include="Services\OffersService.cs" />
+    <Compile Include="Services\ProfileService.cs" />
     <Compile Include="Services\RoleAssignmentsService.cs" />
     <Compile Include="Services\RoleClaimsService.cs" />
     <Compile Include="Services\RolesService.cs" />
