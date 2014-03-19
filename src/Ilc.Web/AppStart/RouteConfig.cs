@@ -139,11 +139,20 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.SubjectFiles.FilterParametersSubjectFiles>("/subjects/{subjectId}/files", "GET");
             routes.Add<Services.SubjectFiles.SubjectFileModel>("/files/{id}", "DELETE,GET");
 
+
+            // START - Apis for the logged in user
             routes.Add<Services.AuthModel>("/auth", "GET");
 
             routes.Add<Services.GeneralModel>("/profile/general", "PUT");
             routes.Add<Services.EmailModel>("/profile/email", "PUT");
             routes.Add<Services.PasswordModel>("/profile/password", "PUT");
+
+            // Password reset apis
+            // NOTE: these are available publicly
+            routes.Add<Services.Recovery.InitPasswordResetModel>("/recovery", "POST");
+            routes.Add<Services.Recovery.ResetPasswordModel>("/recovery/{token}", "PUT"); // Replace the password
+
+            // END - Apis for the logged in user
         }
     }
 }

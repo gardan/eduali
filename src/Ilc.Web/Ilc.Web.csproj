@@ -4032,6 +4032,7 @@
     <Compile Include="Services\LessonsService.cs" />
     <Compile Include="Services\OffersService.cs" />
     <Compile Include="Services\ProfileService.cs" />
+    <Compile Include="Services\Recovery\PasswordRecoveryService.cs" />
     <Compile Include="Services\RoleAssignmentsService.cs" />
     <Compile Include="Services\RoleClaimsService.cs" />
     <Compile Include="Services\RolesService.cs" />

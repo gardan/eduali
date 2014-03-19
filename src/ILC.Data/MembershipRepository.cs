@@ -17,13 +17,11 @@ namespace Ilc.Data
 
         public new virtual void Update(Membership entity)
         {
-            var entityBase = (object)entity;
-            var entityBase2 = entity;
 
             DbEntityEntry dbEntityEntry = DbContext.Entry(entity);
             if (dbEntityEntry.State == EntityState.Detached)
             {
-                Membership attachedEntity = DbSet.Find(entityBase2.UserId);
+                Membership attachedEntity = DbSet.Find(entity.UserId);
                 if (attachedEntity != null)
                 {
                     var attachedEntry = DbContext.Entry(attachedEntity);
