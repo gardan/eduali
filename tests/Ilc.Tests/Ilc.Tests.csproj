@@ -36,6 +36,25 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceStack, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\ServiceStack-e431236\ServiceStack.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Client, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\ServiceStack-e431236\ServiceStack.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\ServiceStack-e431236\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e06fbc6124f57c43, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\ServiceStack-e431236\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\..\libs\ServiceStack-e431236\ServiceStack.Text.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Activities" />
     <Reference Include="System.Core" />
@@ -52,6 +71,7 @@
     <Compile Include="Unit\Infrastructure\Services\AvailabilityTemplatesServiceTests.cs" />
     <Compile Include="Unit\Infrastructure\WorkflowProcessOperation.cs" />
     <Compile Include="Unit\Misc\UtilsTests.cs" />
+    <Compile Include="Unit\Web\Authentication.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -77,6 +97,10 @@
     <ProjectReference Include="..\..\src\Ilc.Misc\Ilc.Misc.csproj">
       <Project>{9393d425-993f-4bff-90b7-484cf358e8fc}</Project>
       <Name>Ilc.Misc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Ilc.Web\Ilc.Web.csproj">
+      <Project>{5BF1B193-C297-44AE-BDFC-9D561EB1919A}</Project>
+      <Name>Ilc.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

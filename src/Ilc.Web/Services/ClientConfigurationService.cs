@@ -32,6 +32,7 @@ namespace Ilc.Web.Services
         }
     }
 
+    [IlcAuth]
     public class ClientConfigurationModel
     {
         public ClientConfigurationModel()
