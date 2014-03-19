@@ -100,7 +100,7 @@ Ext.application({
                     var originalHandler = options.callback;
                     // 
                     var customCallback = function (opts, success, response) {
-                        if (success) {
+                        if (response.status != 401) {
                             originalHandler(opts, success, response);
                         } else {
 
