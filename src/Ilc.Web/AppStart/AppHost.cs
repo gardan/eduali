@@ -5,6 +5,7 @@ using Ilc.Web.Models;
 using ServiceStack;
 using ServiceStack.Mvc;
 using ServiceStack.Text;
+using AuthenticationException = System.Security.Authentication.AuthenticationException;
 
 namespace Ilc.Web.AppStart
 {
@@ -31,6 +32,7 @@ namespace Ilc.Web.AppStart
             SetConfig(new HostConfig()
             {
                 // ServiceStackHandlerFactoryPath = "",
+                WriteErrorsToResponse = true,
                 MapExceptionToStatusCode = {
                         { typeof(AuthenticationException), 401 }
                     }

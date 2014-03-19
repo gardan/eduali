@@ -36,6 +36,11 @@ namespace Ilc.Web
 
         }
 
+        protected void Application_EndRequest(object sender, EventArgs e)
+        {
+
+        }
+
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
 
@@ -43,7 +48,8 @@ namespace Ilc.Web
 
         protected void Application_Error(object sender, EventArgs e)
         {
-
+            var x = 1;
+            x = 1 + 2;
         }
 
         protected void Session_End(object sender, EventArgs e)

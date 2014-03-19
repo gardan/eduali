@@ -1,8 +1,10 @@
 ﻿using Ilc.Core.Contracts;
+using Ilc.Web.Filters.Request;
 using ServiceStack;
 
 namespace Ilc.Web.Services
 {
+    [IlcAuth]
     public class ClientConfigurationService : Service
     {
         public IUsersService Users { get; set; }
