@@ -79,7 +79,7 @@ Ext.application({
     enableRouter: true,
 
     launch: function () {
-        
+
         var gridCfgStore = Ext.create('Ilc.store.GridConfig', { autoLoad: false });
 
         gridCfgStore.on('load', function () {
