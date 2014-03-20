@@ -28,7 +28,8 @@ Ext.application({
         'Interviews',
         'Evaluations',
         'GradingSystems',
-        'Profile'
+        'Profile',
+        'Recovery'
     ],
 
     requires: [
@@ -55,7 +56,8 @@ Ext.application({
         'planning.Default',
         'availability.Default',
         'companies.List',
-        'profile.Edit'
+        'profile.Edit',
+        'recovery.Default'
     ],  
         
     routes: {
@@ -73,7 +75,8 @@ Ext.application({
         'planning': 'planning#default',
         'availability': 'availability#default',
         'companies': 'companies#list',
-        'profile' : 'profile#edit'
+        'profile': 'profile#edit',
+        'recover': 'recovery#default'
     },
 
     enableRouter: true,
@@ -82,43 +85,14 @@ Ext.application({
         Ext.create('Ilc.routing.Router').init();
 
         Ilc.helpers.AppConfig.gridColumnStore = Ext.create('Ilc.store.GridConfig', { autoLoad: false });
-        // gridCfgStore.on('load', function () {
-        //     Ilc.helpers.AppConfig.gridColumnStore = gridCfgStore;
-        //     // Ext.create('Ilc.routing.Router').init();
-        //     
-        //     // router dispatch event has been fired before we had the change to init the Router component,
-        //     // that is why we fire it manually from here
-        //     Ext.History.fireEvent('change', window.location.hash.substring(1));
-        // });
 
         Ext.Ajax.defaultHeaders = {
             'Content-Type': 'application/json'
         };
 
-        // Ilc.LoginManager.onAfterLoginSuccess();
-
         if (Ext.util.Cookies.get('LoggedIn') == 'True') {
             Ilc.Configuration.init();
         }
-
-        // Ext.Ajax.request({
-        //     url: 'api/configuration?format=json',
-        //     method: 'GET',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     success: function (response) {
-        //         var configuration = Ext.JSON.decode(response.responseText);
-        //         Ilc.Configuration.set(configuration);
-        //         
-        //         // Ext.create('Ilc.view.Viewport');
-        // 
-        //         // gridCfgStore.load();
-        //     },
-        //     failure: function (error) {
-        //         
-        //     }
-        // });
 
         // Defaults
         Ext.window.Window.prototype.bodyPadding = 10;

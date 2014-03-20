@@ -72,12 +72,14 @@
                     {
                         xtype: 'textfield',
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.currentPassword'),
-                        name: 'currentPassword'
+                        name: 'currentPassword',
+                        inputType: 'password'
                     },
                     {
                         xtype: 'textfield',
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.newPassword'),
-                        name: 'newPassword'
+                        name: 'newPassword',
+                        inputType: 'password'
                     },
                     {
                         xtype: 'button',

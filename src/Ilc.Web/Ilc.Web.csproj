@@ -148,6 +148,7 @@
     <Content Include="Scripts\app\controller\Lessons.js" />
     <Content Include="Scripts\app\controller\Planning.js" />
     <Content Include="Scripts\app\controller\Profile.js" />
+    <Content Include="Scripts\app\controller\Recovery.js" />
     <Content Include="Scripts\app\controller\Roles.js" />
     <Content Include="Scripts\app\controller\Settings.js" />
     <Content Include="Scripts\app\controller\Spendings.js" />
@@ -410,6 +411,7 @@
     <Content Include="Scripts\app\view\planning\Default.js" />
     <Content Include="Scripts\app\view\profile\Edit.js" />
     <Content Include="Scripts\app\view\progressEvaluations\Edit.js" />
+    <Content Include="Scripts\app\view\recovery\Default.js" />
     <Content Include="Scripts\app\view\roles\Create.js" />
     <Content Include="Scripts\app\view\roles\Edit.js" />
     <Content Include="Scripts\app\view\roles\edit\Panel.js" />
