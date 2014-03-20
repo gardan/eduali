@@ -8,8 +8,4 @@
         }
         return ret;
     },
-   
-    constructor: function () {
-        console.log('ResourceManager ctor called.');
-    }
 });

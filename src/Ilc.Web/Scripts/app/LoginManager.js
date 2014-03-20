@@ -14,6 +14,10 @@
         Ext.Ajax.request(item.options);
     },
 
+    onAfterLoginSuccess: function () {
+        Ilc.Configuration.init();
+    },
+
     _initLoginWindow: function() {
         return Ext.create('Ilc.window.Login', {
             handler: function () {
@@ -35,6 +39,7 @@
 
                         Ext.Array.forEach(Ilc.LoginManager.requestsQueue, Ilc.LoginManager._forEachFunc);
                         Ilc.LoginManager.requestsQueue.length = 0;
+                        Ilc.LoginManager.onAfterLoginSuccess();
                     },
                     failure: function (error) {
                         console.log(error);

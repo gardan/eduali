@@ -79,39 +79,43 @@ Ext.application({
     enableRouter: true,
 
     launch: function () {
+        Ext.create('Ilc.routing.Router').init();
 
-        var gridCfgStore = Ext.create('Ilc.store.GridConfig', { autoLoad: false });
-
-        gridCfgStore.on('load', function () {
-            Ilc.helpers.AppConfig.gridColumnStore = gridCfgStore;
-            Ext.create('Ilc.routing.Router').init();
-            
-            // router dispatch event has been fired before we had the change to init the Router component,
-            // that is why we fire it manually from here
-            Ext.History.fireEvent('change', window.location.hash.substring(1));
-        });
+        Ilc.helpers.AppConfig.gridColumnStore = Ext.create('Ilc.store.GridConfig', { autoLoad: false });
+        // gridCfgStore.on('load', function () {
+        //     Ilc.helpers.AppConfig.gridColumnStore = gridCfgStore;
+        //     // Ext.create('Ilc.routing.Router').init();
+        //     
+        //     // router dispatch event has been fired before we had the change to init the Router component,
+        //     // that is why we fire it manually from here
+        //     Ext.History.fireEvent('change', window.location.hash.substring(1));
+        // });
 
         Ext.Ajax.defaultHeaders = {
             'Content-Type': 'application/json'
         };
-        Ext.Ajax.request({
-            url: 'api/configuration?format=json',
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            success: function (response) {
-                var configuration = Ext.JSON.decode(response.responseText);
-                Ilc.Configuration.set(configuration);
-                
-                Ext.create('Ilc.view.Viewport');
 
-                gridCfgStore.load();
-            },
-            failure: function (error) {
-                
-            }
-        });
+        // Ilc.LoginManager.onAfterLoginSuccess();
+        Ilc.Configuration.init();
+
+        // Ext.Ajax.request({
+        //     url: 'api/configuration?format=json',
+        //     method: 'GET',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     success: function (response) {
+        //         var configuration = Ext.JSON.decode(response.responseText);
+        //         Ilc.Configuration.set(configuration);
+        //         
+        //         // Ext.create('Ilc.view.Viewport');
+        // 
+        //         // gridCfgStore.load();
+        //     },
+        //     failure: function (error) {
+        //         
+        //     }
+        // });
 
         // Defaults
         Ext.window.Window.prototype.bodyPadding = 10;
@@ -148,7 +152,7 @@ Ext.application({
             }
         });
 
-        
+        Ext.create('Ilc.view.Viewport');
     }
 });
 
