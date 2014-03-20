@@ -183,6 +183,7 @@
     <Content Include="Scripts\app\helpers\ColumnBuilder.js" />
     <Content Include="Scripts\app\helpers\Error.js" />
     <Content Include="Scripts\app\helpers\GridColumns.js" />
+    <Content Include="Scripts\app\LoginManager.js" />
     <Content Include="Scripts\app\model\Availability.js" />
     <Content Include="Scripts\app\model\Claim.js" />
     <Content Include="Scripts\app\model\Grade.js" />

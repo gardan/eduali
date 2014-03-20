@@ -96,7 +96,10 @@ Ext.application({
         };
 
         // Ilc.LoginManager.onAfterLoginSuccess();
-        Ilc.Configuration.init();
+
+        if (Ext.util.Cookies.get('LoggedIn') == 'True') {
+            Ilc.Configuration.init();
+        }
 
         // Ext.Ajax.request({
         //     url: 'api/configuration?format=json',
