@@ -23,7 +23,7 @@ namespace Ilc.Core.Services
             var user = Users.GetByEmail();
             
             IQueryable<Training> query;
-            if (parameters.Open)
+            if (user == null || parameters.Open)
             {
                 query = Uow.Trainings.GetAll().Where(t => t.CustomerId == null && t.Status == TrainingStatus.PendingValidation);
             }

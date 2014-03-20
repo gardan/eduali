@@ -36,7 +36,8 @@ Ext.application({
         'Ilc.helpers.AppConfig',
         'Ilc.resources.Manager',
         'Ilc.Configuration',
-        'Ilc.utils.Forms'
+        'Ilc.utils.Forms',
+        'Ilc.LoginManager'
     ],
     
     views: [
@@ -78,141 +79,6 @@ Ext.application({
     enableRouter: true,
 
     launch: function () {
-        
-        var loginWindow = null;
-        var requestsQueue = [];
-
-        var forEachFunc = function (item) {
-            if (item.options.callback) {
-                item.options.callback = item.handler;
-            } else {
-                item.options.failure = item.handler;
-            }
-
-            Ext.Ajax.request(item.options);
-        };
-
-        Ext.override(Ext.data.Connection, {
-            request: function (options) {
-                var me = this;
-                // debugger;
-                if (options.callback) {
-                    var originalHandler = options.callback;
-                    // 
-                    var customCallback = function (opts, success, response) {
-                        if (response.status != 401) {
-                            originalHandler.apply(this, arguments);
-                        } else {
-
-                            requestsQueue.push({
-                                options: opts,
-                                handler: originalHandler
-                            });
-
-                            if (loginWindow) {
-                                return;
-                            }
-
-                            loginWindow = Ext.create('Ilc.window.Login', {
-                                handler: function () {
-
-                                    var window = this.up('window');
-                                    var model = Ilc.utils.Forms.extractModel(window.query('textfield'));
-
-
-                                    var url = 'api/auth?' + Ext.urlEncode(model);
-
-                                    Ext.Ajax.request({
-                                        url: url,
-                                        method: 'GET',
-                                        headers: {
-                                            'Content-Type': 'application/json'
-                                        },
-                                        success: function (authResponse) {
-                                            loginWindow.close();
-                                            loginWindow = null;
-
-                                            Ext.Array.forEach(requestsQueue, forEachFunc);
-                                            requestsQueue.length = 0;
-                                            me.fireEvent('afterloginsuccess');
-                                        },
-                                        failure: function (error) {
-                                            console.log(error);
-                                        }
-                                    });
-                                }
-                            });
-
-                            loginWindow.show();
-                        }
-                    };
-
-                    options.callback = customCallback;
-
-                    me.callParent(arguments);
-                    return;
-                }
-
-
-
-
-                if (options.failure) {
-                    var originalFailHandler = options.failure;
-
-                    var failFuncHandler = function (response) {
-                        if (response.status != 401) {
-                            originalFailHandler.apply(this, arguments);
-                            return;
-                        }
-
-                        requestsQueue.push({
-                            options: response.request.options,
-                            handler: originalFailHandler
-                        });
-
-                        if (loginWindow) {
-                            return;
-                        }
-
-                        loginWindow = Ext.create('Ilc.window.Login', {
-                            handler: function () {
-
-                                var window = this.up('window');
-                                var model = Ilc.utils.Forms.extractModel(window.query('textfield'));
-
-
-                                var url = 'api/auth?' + Ext.urlEncode(model);
-
-                                Ext.Ajax.request({
-                                    url: url,
-                                    method: 'GET',
-                                    headers: {
-                                        'Content-Type': 'application/json'
-                                    },
-                                    success: function (authResponse) {
-                                        loginWindow.close();
-                                        loginWindow = null;
-
-                                        Ext.Array.forEach(requestsQueue, forEachFunc);
-                                        requestsQueue.length = 0;
-                                        me.fireEvent('afterloginsuccess');
-                                    },
-                                    failure: function (error) {
-                                        console.log(error);
-                                    }
-                                });
-                            }
-                        });
-
-                        loginWindow.show();
-                    };
-                    options.failure = failFuncHandler;
-                }
-
-                me.callParent(arguments);
-            }
-        });
-
         
         var gridCfgStore = Ext.create('Ilc.store.GridConfig', { autoLoad: false });
 
