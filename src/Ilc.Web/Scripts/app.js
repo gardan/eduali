@@ -101,7 +101,7 @@ Ext.application({
                     // 
                     var customCallback = function (opts, success, response) {
                         if (response.status != 401) {
-                            originalHandler(opts, success, response);
+                            originalHandler.apply(this, arguments);
                         } else {
 
                             requestsQueue.push({
@@ -134,7 +134,7 @@ Ext.application({
 
                                             Ext.Array.forEach(requestsQueue, forEachFunc);
                                             requestsQueue.length = 0;
-
+                                            me.fireEvent('afterloginsuccess');
                                         },
                                         failure: function (error) {
                                             console.log(error);
@@ -195,7 +195,7 @@ Ext.application({
 
                                         Ext.Array.forEach(requestsQueue, forEachFunc);
                                         requestsQueue.length = 0;
-
+                                        me.fireEvent('afterloginsuccess');
                                     },
                                     failure: function (error) {
                                         console.log(error);

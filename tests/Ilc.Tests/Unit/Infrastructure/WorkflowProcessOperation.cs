@@ -23,12 +23,14 @@ namespace Ilc.Tests.Unit.Infrastructure
         public void Start_To_Finish()
         {
             // Arrange
-            var training = new Ilc.Data.Models.Training();
+            var schedule = new List<TrainingScheduleDay>() { new TrainingScheduleDay() };
+            var user = new UserProfile() { Id = 1 };
+            var training = new Ilc.Data.Models.Training() { Owners = new List<UserProfile>()  { user } };
+            var ownerConfig = new TrainingOwnersConfiguration() {AdministrationId = 1, CoordinatorId = 1, SalesId = 1};
+            var firstOffer = new TrainingOffer() { Id = 1, NoLessons = 1 };
             training.Students = new List<Student>()
                 {
-                    new Student(),
-                    new Student(),
-                    new Student(),
+                    new Student() { UserProfile = user },
                 };
             training.TrainingEvaluations = new List<TrainingEvaluation>()
                 {
@@ -38,17 +40,29 @@ namespace Ilc.Tests.Unit.Infrastructure
             var trainingsMock = new Mock<ITrainingsService>();
             trainingsMock.Setup(m => m.GetById(It.IsAny<int>())).Returns(training);
             var offersMock = new Mock<IOffersService>().Object;
+            var offersRepoMock = new Mock<IRepository<TrainingOffer>>();
+            offersRepoMock.Setup(r => r.GetById(It.IsAny<int>())).Returns(firstOffer);
             var interviewPlanRepoMock = new Mock<IRepository<InterviewPlan>>();
             var interviewRepoMock = new Mock<IRepository<StudentInterview>>();
             var scheduleRepoMock = new Mock<IRepository<TrainingScheduleDay>>(); 
             var progressEvalRepoMock = new Mock<IRepository<ProgressEvaluation>>();
             var trainingEvalRepoMock = new Mock<IRepository<TrainingEvaluation>>();
+            var trainingRepoMock = new Mock<IRepository<Ilc.Data.Models.Training>>();
+            var userProfileRepoMock = new Mock<IUserProfileRepository>();
+            var ownerConfigRepoMock = new Mock<IRepository<TrainingOwnersConfiguration>>();
+            ownerConfigRepoMock.Setup(r => r.GetById(It.IsAny<int>())).Returns(ownerConfig);
+            userProfileRepoMock.Setup(r => r.GetById(It.IsAny<int>())).Returns(user);
+            trainingRepoMock.Setup(r => r.GetById(It.IsAny<int>())).Returns(training);
             var uowMock = new Mock<IUow>();
             uowMock.Setup(uow => uow.InterviewPlans).Returns(interviewPlanRepoMock.Object);
             uowMock.Setup(uow => uow.Interviews).Returns(interviewRepoMock.Object);
             uowMock.Setup(uow => uow.TrainingScheduleDays).Returns(scheduleRepoMock.Object);
             uowMock.Setup(uow => uow.ProgressEvaluations).Returns(progressEvalRepoMock.Object);
             uowMock.Setup(uow => uow.TrainingEvaluations).Returns(trainingEvalRepoMock.Object);
+            uowMock.Setup(uow => uow.Offers).Returns(offersRepoMock.Object);
+            uowMock.Setup(uow => uow.Trainings).Returns(trainingRepoMock.Object);
+            uowMock.Setup(uow => uow.UserProfiles).Returns(userProfileRepoMock.Object);
+            uowMock.Setup(uow => uow.TrainingOwnersConfiguration).Returns(ownerConfigRepoMock.Object);
             var extensionManager = new TrainingExtensionManager(trainingsMock.Object, offersMock, uowMock.Object);
             
 
@@ -58,16 +72,18 @@ namespace Ilc.Tests.Unit.Infrastructure
             
             // Act
              proc.Start();
-            var firstOffer = new TrainingOffer() { Id = 1 };
+            
             // Create an offer
             var results = proc.Resume(Guid.Empty, TrainingStatus.Rfi, new Dictionary<string, object>()
                 {
                     { "Offer", firstOffer },
                 });
-            var firstOfferTest = results["Offer"];
-            // Move to the next state
-            results = proc.Resume(Guid.Empty, TrainingStatus.Rfi, new Dictionary<string, object>());
             
+            results = proc.Resume(Guid.Empty, TrainingStatus.Rfi, new Dictionary<string, object>()
+                {
+                    { "OfferId", 1 },
+                });
+            // Move to the next state           
             results = proc.Resume(Guid.Empty, TrainingStatus.PlanInterview, new Dictionary<string, object>()
                 {
                     { "InterviewPlan", new InterviewPlan() }
@@ -85,14 +101,20 @@ namespace Ilc.Tests.Unit.Infrastructure
 
             results = proc.Resume(Guid.Empty, TrainingStatus.Offer, new Dictionary<string, object>()
                 {
-                    { "Complete", true }
+                    { "Complete", true },
+                    { "OfferId", 1 }
                 });
 
 
-            var schedule = new List<TrainingScheduleDay>() {new TrainingScheduleDay()};
+            
             results = proc.Resume(Guid.Empty, TrainingStatus.Accepted, new Dictionary<string, object>()
                 {
                     { "Schedule", schedule }
+                });
+
+            results = proc.Resume(Guid.Empty, TrainingStatus.Accepted, new Dictionary<string, object>()
+                {
+                    { "Schedule", null }
                 });
                                   
 
@@ -110,12 +132,16 @@ namespace Ilc.Tests.Unit.Infrastructure
             var trainingEval = new TrainingEvaluation();
             proc.Resume(Guid.Empty, TrainingStatus.TrainingEvaluation, new Dictionary<string, object>()
                 {
-                    { "TrainingEvaluation", trainingEval }
+                    { "TrainingEvaluation", trainingEval },
+                    { "TrainingId", 1 }
                 });
             training.TrainingEvaluations.Add(new TrainingEvaluation());
 
             // Move to next step
-            results = proc.Resume(Guid.Empty, TrainingStatus.TrainingEvaluation, new Dictionary<string, object>());
+            // results = proc.Resume(Guid.Empty, TrainingStatus.TrainingEvaluation, new Dictionary<string, object>()
+            //     {
+            //         { "TrainingId", 1 }
+            //     });
 
 
             // Assert

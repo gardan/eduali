@@ -92,25 +92,6 @@ namespace Ilc.Web.Services.Tasks.Training
 
             proc.Resume(training.WokrflowId.Value, TrainingStatus.Rfi, workflowData, PersistableIdleAction.Unload);
 
-            // if (request.Complete)
-            // {
-            //     // update the status
-            //     training.Status = TrainingStatus.PlanInterview;
-            //     
-            //     // update the owner
-            //     foreach (var owner in training.Owners.ToList())
-            //     {
-            //         training.Owners.Remove(owner);
-            //     }
-            // 
-            //     var newOwnerId = Uow.TrainingOwnersConfiguration.GetById(request.TrainingId).AdministrationId;
-            //     var newOwner = Uow.UserProfiles.GetById(newOwnerId);
-            //     training.Owners = new List<UserProfile>() { newOwner };
-            // 
-            //     Uow.Trainings.Update(training);
-            //     Uow.Commit();
-            // }
-
             return new HttpResult()
                 {
                     StatusCode = HttpStatusCode.OK

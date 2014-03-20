@@ -19,7 +19,15 @@
         }
     ],
 
+    _privateHandler: function() {
+        this.fire('')
+    },
+
     initComponent: function () {
+
+        this.addEvents(
+            'loginclick'
+        );
 
         this.buttons = [
             {

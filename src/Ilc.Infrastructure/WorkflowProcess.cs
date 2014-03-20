@@ -118,19 +118,20 @@ namespace Ilc.Infrastructure
         public IDictionary<string, object> Resume(Guid instanceId, string bookmarkName, object value, PersistableIdleAction idleAction = PersistableIdleAction.None)
         {
             _resetEvent.Reset();
-
-            var instance = WorkflowApplication.GetInstance(instanceId, _store);
-            Reconfigure(instance);
-
-            ConfigureWorkflowApplicationEvents(idleAction);
-
-            // should i load, or is it already in memory?
-            if (!_isInMemory)
+            if (instanceId != Guid.Empty)
             {
-                _wfApp.Load(instance);
-                _isInMemory = true;
-            }
+                var instance = WorkflowApplication.GetInstance(instanceId, _store);
+                Reconfigure(instance);
 
+                ConfigureWorkflowApplicationEvents(idleAction);
+
+                // should i load, or is it already in memory?
+                if (!_isInMemory)
+                {
+                    _wfApp.Load(instance);
+                    _isInMemory = true;
+                }
+            }
 
             // check if there are any bookmarks
             if (_wfApp.GetBookmarks().All(bookmark => bookmark.BookmarkName != bookmarkName))
