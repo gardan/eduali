@@ -15,6 +15,10 @@
         return Ext.Array.contains(Ilc.Configuration.configuration.claims, claim);
     },
 
+    loggedIn: function () {
+        return Ilc.Configuration.configuration != undefined;
+    },
+
     constructor: function () {
         
     }

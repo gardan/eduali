@@ -269,7 +269,7 @@
     initComponent: function () {
         var me = this;
 
-        if (me.params.open === undefined || me.params.open === 'false') {
+        if ( Ilc.Configuration.loggedIn() == true && (me.params.open === undefined || me.params.open === 'false')) {
             me.init();
         } else {
             me.initOpen();

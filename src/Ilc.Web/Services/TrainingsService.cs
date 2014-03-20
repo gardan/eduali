@@ -9,6 +9,7 @@ using Ilc.Data.Contracts;
 using Ilc.Data.Models;
 using Ilc.Infrastructure;
 using Ilc.Infrastructure.Workflows;
+using Ilc.Web.Filters.Request;
 using Ilc.Web.Filters.Response;
 using Ilc.Web.InjectorConventions;
 using Ilc.Web.Models;
@@ -54,6 +55,7 @@ namespace Ilc.Web.Services
             return ret;
         }
 
+        [IlcAuth]
         public HttpResult Get(UpdateTrainingModel request)
         {
             var trainingModel =
@@ -64,6 +66,7 @@ namespace Ilc.Web.Services
                 };
         }
 
+        [IlcAuth]
         public HttpResult Post(CreateTrainingModel request)
         {
             var students = new List<Student>();
@@ -133,6 +136,7 @@ namespace Ilc.Web.Services
                 };
         }
 
+        [IlcAuth]
         public HttpResult Put(UpdateTrainingModel request)
         {
             var training = Trainings.GetById(request.Id);

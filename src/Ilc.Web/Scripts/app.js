@@ -36,7 +36,8 @@ Ext.application({
         'Ilc.helpers.AppConfig',
         'Ilc.resources.Manager',
         'Ilc.Configuration',
-        'Ilc.utils.Forms'
+        'Ilc.utils.Forms',
+        'Ilc.LoginManager'
     ],
     
     views: [
@@ -79,9 +80,6 @@ Ext.application({
 
     launch: function () {
         
-        var loginWindow = null;
-        var requestsQueue = [];
-
         var forEachFunc = function (item) {
             if (item.options.callback) {
                 item.options.callback = item.handler;
@@ -104,16 +102,16 @@ Ext.application({
                             originalHandler.apply(this, arguments);
                         } else {
 
-                            requestsQueue.push({
+                            Ilc.LoginManager.requestsQueue.push({
                                 options: opts,
                                 handler: originalHandler
                             });
 
-                            if (loginWindow) {
+                            if (Ilc.LoginManager.loginWindow) {
                                 return;
                             }
 
-                            loginWindow = Ext.create('Ilc.window.Login', {
+                            Ilc.LoginManager.loginWindow = Ext.create('Ilc.window.Login', {
                                 handler: function () {
 
                                     var window = this.up('window');
@@ -129,11 +127,11 @@ Ext.application({
                                             'Content-Type': 'application/json'
                                         },
                                         success: function (authResponse) {
-                                            loginWindow.close();
-                                            loginWindow = null;
+                                            Ilc.LoginManager.loginWindow.close();
+                                            Ilc.LoginManager.loginWindow = null;
 
-                                            Ext.Array.forEach(requestsQueue, forEachFunc);
-                                            requestsQueue.length = 0;
+                                            Ext.Array.forEach(Ilc.LoginManager.requestsQueue, forEachFunc);
+                                            Ilc.LoginManager.requestsQueue.length = 0;
                                             me.fireEvent('afterloginsuccess');
                                         },
                                         failure: function (error) {
@@ -143,7 +141,7 @@ Ext.application({
                                 }
                             });
 
-                            loginWindow.show();
+                            Ilc.LoginManager.loginWindow.show();
                         }
                     };
 
@@ -165,16 +163,16 @@ Ext.application({
                             return;
                         }
 
-                        requestsQueue.push({
+                        Ilc.LoginManager.requestsQueue.push({
                             options: response.request.options,
                             handler: originalFailHandler
                         });
 
-                        if (loginWindow) {
+                        if (Ilc.LoginManager.loginWindow) {
                             return;
                         }
 
-                        loginWindow = Ext.create('Ilc.window.Login', {
+                        Ilc.LoginManager.loginWindow = Ext.create('Ilc.window.Login', {
                             handler: function () {
 
                                 var window = this.up('window');
@@ -190,11 +188,11 @@ Ext.application({
                                         'Content-Type': 'application/json'
                                     },
                                     success: function (authResponse) {
-                                        loginWindow.close();
-                                        loginWindow = null;
+                                        Ilc.LoginManager.loginWindow.close();
+                                        Ilc.LoginManager.loginWindow = null;
 
-                                        Ext.Array.forEach(requestsQueue, forEachFunc);
-                                        requestsQueue.length = 0;
+                                        Ext.Array.forEach(Ilc.LoginManager.requestsQueue, forEachFunc);
+                                        Ilc.LoginManager.requestsQueue.length = 0;
                                         me.fireEvent('afterloginsuccess');
                                     },
                                     failure: function (error) {
@@ -204,7 +202,7 @@ Ext.application({
                             }
                         });
 
-                        loginWindow.show();
+                        Ilc.LoginManager.loginWindow.show();
                     };
                     options.failure = failFuncHandler;
                 }
