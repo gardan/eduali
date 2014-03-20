@@ -1,8 +1,21 @@
 ﻿Ext.define('Ilc.window.Login', {
     extend: 'Ext.window.Window',
 
+    width: 400,
+
     config: {
         handler: null
+    },
+
+    title: 'Login',
+
+    layout: {
+        type: 'anchor'
+    },
+
+    defaults: {
+        labelAlign: 'top',
+        anchor: '100%'
     },
 
     items: [
@@ -19,6 +32,12 @@
         }
     ],
 
+    onForgotPassword: function() {
+        var window = Ext.create('Ilc.window.Recover');
+
+        window.show();
+    },
+
     initComponent: function () {
 
         this.addEvents(
@@ -27,6 +46,15 @@
         );
 
         this.buttons = [
+            {
+                cls: 'link-button',
+                text: 'Forgot password?',
+                listeners: {
+                    click: this.onForgotPassword,
+                    scope: this
+                }
+            },
+            '->',
             {
                 text: 'Login',
                 handler: this.handler

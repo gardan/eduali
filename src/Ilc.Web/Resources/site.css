@@ -161,6 +161,18 @@
     background-color: white;
 }
 
+.link-button {
+    border-radius: 0;
+    background-image: none !important; /* This is a fix for IE */
+    border: 0;
+    
+    background-color: inherit;
+}
+
+.link-button span {
+    color: blue !important;
+}
+
 /* Grid */
 .ux-filtered-column {
     color: rgb(0, 153, 255)
