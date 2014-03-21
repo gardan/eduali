@@ -10,6 +10,5 @@ namespace Ilc.Data.Models
     public class Company : EntityBase
     {
         public string Name { get; set; }
-        public string Logo { get; set; }
     }
 }
