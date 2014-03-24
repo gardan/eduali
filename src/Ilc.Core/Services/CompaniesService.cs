@@ -12,6 +12,7 @@ namespace Ilc.Core.Services
         public IUow Uow { get; set; }
         public IUsersService Users { get; set; }
         public ICompanyDefaultsService CompanyDefaults { get; set; }
+        public IAuthorizationService Authorization { get; set; }
 
         public FilteredResults<Company> GetFiltered(FilterArguments parameters)
         {
@@ -19,7 +20,10 @@ namespace Ilc.Core.Services
             parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
             parameters.Filter = parameters.Filter ?? new List<Filter>();
 
-            var query = Uow.Companies.GetAll();
+            var user = Users.GetByEmail();
+
+            var query = Authorization.HasClaim(SystemClaims.CompanyReadAll) ? Uow.Companies.GetAll() : Uow.Companies.GetAll().Where(c => c.Id == user.CompanyId);
+            
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
 

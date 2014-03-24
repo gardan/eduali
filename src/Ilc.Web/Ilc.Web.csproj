@@ -393,6 +393,7 @@
     <Content Include="Scripts\app\view\availability\CreateAvailabilities.js" />
     <Content Include="Scripts\app\view\availability\Default.js" />
     <Content Include="Scripts\app\view\companies\Create.js" />
+    <Content Include="Scripts\app\view\companies\Default.js" />
     <Content Include="Scripts\app\view\companies\List.js" />
     <Content Include="Scripts\app\view\customers\contacts\Create.js" />
     <Content Include="Scripts\app\view\customers\contacts\List.js" />
@@ -448,6 +449,7 @@
     <Content Include="Scripts\app\view\users\List.js" />
     <Content Include="Scripts\app\view\Viewport.js" />
     <Content Include="Scripts\app\window\Login.js" />
+    <Content Include="Scripts\app\window\Recover.js" />
     <Content Include="Scripts\bryntum\resources\css\sch-all-debug.css" />
     <Content Include="Scripts\bryntum\resources\css\sch-all-neptune-debug.css" />
     <Content Include="Scripts\bryntum\resources\css\sch-all-neptune.css" />
@@ -4013,7 +4015,7 @@
     <Compile Include="Models\CreateOfferModel.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\AvailabilityService.cs" />
-    <Compile Include="Services\AvatarsService.cs" />
+    <Compile Include="Services\Images\AvatarsService.cs" />
     <Compile Include="Services\ClaimsService.cs" />
     <Compile Include="Services\ClientConfigurationService.cs" />
     <Compile Include="Services\CompaniesService.cs" />
@@ -4031,6 +4033,7 @@
     <Compile Include="Services\GradingSystemsService.cs" />
     <Compile Include="Services\GridConfigurationService.cs" />
     <Compile Include="Contracts\IImage.cs" />
+    <Compile Include="Services\Images\LogoService.cs" />
     <Compile Include="Services\InterviewsService.cs" />
     <Compile Include="Services\LessonsService.cs" />
     <Compile Include="Services\OffersService.cs" />

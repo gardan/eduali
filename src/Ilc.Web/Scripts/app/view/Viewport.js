@@ -107,18 +107,31 @@
                 padding: '0',
                 menu: [
                     {
-                        text: Ilc.resources.Manager.getResourceString('common.logout'),
-                        handler: function() {
-                            window.location.href = 'account/logout';
-                        }
-                    },
-                    {
                         text: Ilc.resources.Manager.getResourceString('common.profile'),
+                        hidden: !Ilc.Configuration.loggedIn(),
                         handler: function(btn) {
                             var viewport = btn.up('viewport');
                             viewport.fireEvent('menuclick', {
                                 itemId: 'menu.profile'
                             });
+                        }
+                    },
+                    {
+                        text: Ilc.resources.Manager.getResourceString('common.company'),
+                        hidden: !Ilc.Configuration.claimExists('company-read'),
+                        listeners: {
+                            click: function(btn) {
+                                var viewport = btn.up('viewport');
+                                viewport.fireEvent('menuclick', {
+                                    itemId: 'menu.company'
+                                });
+                            }
+                        }
+                    },
+                    {
+                        text: Ilc.resources.Manager.getResourceString('common.logout'),
+                        handler: function () {
+                            window.location.href = 'account/logout';
                         }
                     }
                 ]

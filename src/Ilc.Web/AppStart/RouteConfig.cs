@@ -1,5 +1,6 @@
 ﻿using Ilc.Web.Models;
 using Ilc.Web.Models.Student;
+using Ilc.Web.Services.Images;
 using Ilc.Web.Services.Tasks.Training;
 using ServiceStack.Web;
 
@@ -118,8 +119,8 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.TemplateModel>("/templates", "POST");
             routes.Add<Services.TemplateModel>("/templates/{id}", "PUT");
 
-            routes.Add<Services.AvatarModel>("/users/{id}/avatar", "PUT");
-            routes.Add<Services.AvatarGetRequestModel>("/users/{userId}/avatar", "GET");
+            routes.Add<AvatarModel>("/users/{id}/avatar", "PUT");
+            routes.Add<AvatarGetRequestModel>("/users/{userId}/avatar", "GET");
 
             routes.Add<Services.FilterParametersGenders>("/genders", "GET");
 
@@ -139,6 +140,8 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.SubjectFiles.FilterParametersSubjectFiles>("/subjects/{subjectId}/files", "GET");
             routes.Add<Services.SubjectFiles.SubjectFileModel>("/files/{id}", "DELETE,GET");
 
+            routes.Add<GetLogoModel>("/companies/{id}/logo", "GET");
+            routes.Add<LogoModel>("/companies/{id}/logo", "PUT");
 
             // START - Apis for the logged in user
             routes.Add<Services.AuthModel>("/auth", "GET");

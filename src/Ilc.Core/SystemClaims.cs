@@ -23,6 +23,7 @@ namespace Ilc.Core
         public const string AvailabilityReadAll = "availability-read";
 
         public const string CompanyReadAll = "company-read-all";
+        public const string CompanyRead = "company-read";
 
         public const string TrainingReadAll = "training-read-all";
 

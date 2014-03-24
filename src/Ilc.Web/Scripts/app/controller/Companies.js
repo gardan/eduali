@@ -8,6 +8,9 @@
             },
             'companiesgrid': {
                 'updatecompany': this.onUpdateCompany
+            },
+            'companycontainer': {
+                'updatecompany': this.onUpdateCompany
             }
         });
     },
@@ -72,5 +75,6 @@
         });
     },
 
-    list: function () {},
+    list: function () { },
+    default: function () { }
 });

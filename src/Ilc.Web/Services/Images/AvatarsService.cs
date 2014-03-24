@@ -8,7 +8,7 @@ using Ilc.Web.Contracts;
 using ServiceStack;
 using ServiceStack.Web;
 
-namespace Ilc.Web.Services
+namespace Ilc.Web.Services.Images
 {
     public class AvatarsService : Service
     {

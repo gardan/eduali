@@ -57,7 +57,8 @@ Ext.application({
         'availability.Default',
         'companies.List',
         'profile.Edit',
-        'recovery.Default'
+        'recovery.Default',
+        'companies.Default'
     ],  
         
     routes: {
@@ -76,7 +77,8 @@ Ext.application({
         'availability': 'availability#default',
         'companies': 'companies#list',
         'profile': 'profile#edit',
-        'recover': 'recovery#default'
+        'recover': 'recovery#default',
+        'company': 'companies#default'
     },
 
     enableRouter: true,

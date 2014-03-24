@@ -130,6 +130,7 @@
         'common.currentPassword': 'Current password',
         'common.newPassword': 'New password',
         'common.password': 'Password',
+        'common.company': 'Company',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',

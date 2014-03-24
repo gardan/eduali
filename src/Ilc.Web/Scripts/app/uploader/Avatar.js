@@ -55,6 +55,8 @@
 
     setUploadUrl: function (url) {
         this.uploadManager.uploader.url = url;
+        // update the img url
+        this.avatarImg.setSrc(url);
     },
 
     getUploaderOptions: function() {
