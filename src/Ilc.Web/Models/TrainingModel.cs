@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Ilc.Web.Services;
 
 namespace Ilc.Web.Models
@@ -59,6 +60,8 @@ namespace Ilc.Web.Models
         public DateTime DateOfValidation { get; set; }
 
         public TrainingOwnersConfigurationModel OwnersConfiguration { get; set; }
+
+        public List<GradingAttributeModel> GradingAttributes { get; set; }
 
         /// <summary>
         /// This property indicates if the requesting user has joined the PUBLIC training.

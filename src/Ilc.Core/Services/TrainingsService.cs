@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Ilc.Core.Attributes;
 using Ilc.Core.Contracts;
@@ -102,6 +103,9 @@ namespace Ilc.Core.Services
 
             // add the empty spendings object
             newTraining.Spendings = new Spendings();
+
+            // add the grading system attributes
+            newTraining.GradingAttributes =Uow.GradingSystems.GetById(newTraining.GradingSystemId).Attributes.Where(a => a.Enabled).ToList();
 
             Uow.Trainings.Add(newTraining);
             Uow.Commit();

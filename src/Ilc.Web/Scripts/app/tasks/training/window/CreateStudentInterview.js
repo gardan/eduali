@@ -7,6 +7,8 @@
         'Ilc.form.InterviewFieldset'
     ],
 
+    autoScroll: true,
+
     title: Ilc.resources.Manager.getResourceString('common.newInterview'),
     layout: 'anchor',
     width: 300,
@@ -14,13 +16,15 @@
     gradingSystemId: null,
     gradesStore: null,
     gradingSystem: null,
+    task: null,
    
-    __initItems: function () {
+    _initItems: function () {
         var me = this;
-        var attributes = this.gradingSystem.get('attributes');
+        var attributes = this.task.get('taskObject').gradingAttributes; // this.gradingSystem.get('attributes');
+        var items = [];
 
         Ext.Array.forEach(attributes, function(attr) {
-            me.add(
+            items.push(
                 {
                     xtype: 'interviewfieldset',
                     gradesStore: me.gradesStore,
@@ -30,7 +34,7 @@
             );
         });
 
-        me.add({
+        items.push({
             xtype: 'fieldset',
             title: Ilc.resources.Manager.getResourceString('common.remarks'),
             items: [
@@ -41,27 +45,18 @@
                  }
             ]
         });
+
+        return items;
     },
 
-    constructor: function (args) {
+    initComponent: function () {
         var me = this;
 
-        var task = args.task;
-        var student = args.student;
         var store = Ext.create('Ilc.tasks.training.store.Grades');
         this.gradesStore = store;
+
+        this.items = me._initItems();
         
-        var gradingSystemModel = Ext.ModelManager.getModel('Ilc.model.GradingSystem');
-        gradingSystemModel.load(task.get('taskObject').gradingSystemId, {
-            scope: me,
-            success: function (gradingSystem) {
-                me.gradesStore.loadRawData(gradingSystem.get('grades'));
-                me.gradingSystem = gradingSystem;
-                me.__initItems();
-            }
-        });
-        
-               
         me.buttons = [
             {
                 xtype: 'button',
@@ -81,8 +76,8 @@
 
                     model = Ilc.utils.Forms.extractModel(me.query('interviewfieldset'));
 
-                    model.studentId = student.get('id');
-                    model.taskEntityId = task.get('id');
+                    model.studentId = me.student.get('id');
+                    model.taskEntityId = me.task.get('id');
                     console.log(model);
                     me.fireEvent('addInterview', me, model);
                 }

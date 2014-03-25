@@ -103,6 +103,13 @@ namespace Ilc.Web.InjectorConventions
             {
                 return ((DateTimeOffset) c.SourceProp.Value).DateTime;
             }
+            if (c.SourceProp.Name == "GradingAttributes")
+            {
+                var list = c.SourceProp.Value as ICollection<GradingAttribute>;
+                if (list != null)
+                    return list.Select(g => new GradingAttributeModel().InjectFrom(g) as GradingAttributeModel).ToList();
+                return new List<GradingAttributeModel>();
+            }
             return base.SetValue(c);
         }
     }
