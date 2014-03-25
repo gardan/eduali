@@ -132,7 +132,7 @@ namespace Ilc.Web.Services.Tasks.Training
 
             if (!request.IsEmpty())
             {
-                var interview = new StudentInterview().InjectFrom(request) as StudentInterview;
+                var interview = new StudentInterview().InjectFrom<StudentInterviewModelToStudentInterview>(request) as StudentInterview;
                 interview.TrainingId = request.TaskEntityId;
                 workflowData["Interview"] = interview;
             }
@@ -491,6 +491,8 @@ namespace Ilc.Web.Services.Tasks.Training
         public string WritingLevel { get; set; }
         public string TargetWritingLevel { get; set; }
 
+        public List<InterviewResultModel> InterviewResults { get; set; }
+
         public int StudentId { get; set; }
 
         public int TaskEntityId { get; set; }
@@ -499,6 +501,13 @@ namespace Ilc.Web.Services.Tasks.Training
         {
             return StudentId == 0;
         }
+    }
+
+    public class InterviewResultModel
+    {
+        public int GradingAttributeId { get; set; }
+        public int CurrentGradeId { get; set; }
+        public int TargetGradeId { get; set; }
     }
 
     public class InterviewPlanModel

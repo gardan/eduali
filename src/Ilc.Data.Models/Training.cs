@@ -81,5 +81,7 @@ namespace Ilc.Data.Models
         public virtual ICollection<ContactPerson> ContactPersons { get; set; }
 
         public virtual Spendings Spendings { get; set; }
+
+        public virtual ICollection<GradingAttribute> GradingAttributes { get; set; } 
     }
 }

@@ -166,6 +166,7 @@
     <Content Include="Scripts\app\form\EvaluationQuestionsForm.js" />
     <Content Include="Scripts\app\form\EvaluationRemarksForm.js" />
     <Content Include="Scripts\app\form\IntakeQuestions.js" />
+    <Content Include="Scripts\app\form\InterviewFieldset.js" />
     <Content Include="Scripts\app\form\OfferForm.js" />
     <Content Include="Scripts\app\form\QuestionWithPredefinedAnswers.js" />
     <Content Include="Scripts\app\form\TransferBlockForm.js" />
@@ -188,6 +189,7 @@
     <Content Include="Scripts\app\model\Availability.js" />
     <Content Include="Scripts\app\model\Claim.js" />
     <Content Include="Scripts\app\model\Grade.js" />
+    <Content Include="Scripts\app\model\GradingSystem.js" />
     <Content Include="Scripts\app\model\InterviewPlan.js" />
     <Content Include="Scripts\app\model\scheduler\Trainer.js" />
     <Content Include="Scripts\app\model\Student.js" />
@@ -3969,6 +3971,7 @@
     <Compile Include="InjectorConventions\AvailabilityModelToAvailability.cs" />
     <Compile Include="InjectorConventions\AvailabilityToAvailabilityModel.cs" />
     <Compile Include="InjectorConventions\GradingSystemToWebModel.cs" />
+    <Compile Include="InjectorConventions\StudentInterviewModelToStudentInterview.cs" />
     <Compile Include="InjectorConventions\SubjectFileToSubjectFileModel.cs" />
     <Compile Include="InjectorConventions\TemplateDayModelToTemplateDay.cs" />
     <Compile Include="InjectorConventions\TemplateDayToTemplateDayModel.cs" />

@@ -1,6 +1,10 @@
 ﻿Ext.define('Ilc.store.TrainingSystems', {
     extend: 'Ext.data.Store',
-    fields: ['id', 'name', 'grades'],
+    requires: [
+        'Ilc.model.GradingSystem'
+    ],
+
+    model: 'Ilc.model.GradingSystem',
     
     // data: [
     //     { id: 1, name: 'European Union' },

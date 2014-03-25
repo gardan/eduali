@@ -26,6 +26,16 @@ namespace Ilc.Web.Services
                 };
         }
 
+        public HttpResult Get(GradingSystemModel request)
+        {
+            var ret = GradingSystems.GetById(request.Id);
+            
+            return new HttpResult( new [] {new GradingSystemModel().InjectFrom<GradingSystemToWebModel>(ret) })
+                {
+                    StatusCode =  HttpStatusCode.OK
+                };  
+        }
+
         public HttpResult Post(GradingSystemModel request)
         {
             var gradingSystem = new GradingSystem().InjectFrom(request) as GradingSystem;
@@ -70,6 +80,13 @@ namespace Ilc.Web.Services
         public string Name { get; set; }
         
         public List<GradeModel> Grades { get; set; }
+        public List<GradingAttributeModel> Attributes { get; set; }
+    }
+
+    public class GradingAttributeModel
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 
     public class GradeModel

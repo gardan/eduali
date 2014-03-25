@@ -84,6 +84,30 @@
             case 'numberfield':
                 Ilc.utils.Forms._addProperty(model, input.name, input.getRawValue());
                 break;
+            case 'interviewfieldset':
+                // e.g.
+                // {
+                //     interviewResults: [
+                //         {
+                //             gradingAttributeId: 1,
+                //             currentGradeId: 1,
+                //             targetGradeId: 2
+                //         }
+                //     ]
+                // };
+
+                var result = {
+                    gradingAttributeId: input.getAttribute().id,
+                    currentGradeId: input.getCurrentGradeId(),
+                    targetGradeId: input.getTargetGradeId()
+                };
+
+                if (model[input.getName()] == null) {
+                    model[input.getName()] = [];
+                }
+                model[input.getName()].push(result);
+
+                break;
             default:
             }
         }

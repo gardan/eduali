@@ -11,5 +11,6 @@ namespace Ilc.Data.Models
     {
         public string Name { get; set; }
         public virtual ICollection<Grade> Grades { get; set; }
+        public virtual ICollection<GradingAttribute> Attributes { get; set; } 
     }
 }

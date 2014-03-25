@@ -22,6 +22,13 @@ namespace Ilc.Web.InjectorConventions
                 var list = c.SourceProp.Value as ICollection<Grade>;
                 return list.Select(g => new GradeModel().InjectFrom(g) as GradeModel).OrderBy(gs => gs.Order).ToList();
             }
+            if (c.SourceProp.Name == "Attributes")
+            {
+                var list = c.SourceProp.Value as ICollection<GradingAttribute>;
+                if (list != null)
+                    return list.Select(g => new GradingAttributeModel().InjectFrom(g) as GradingAttributeModel).ToList();
+                return new List<GradingAttributeModel>();
+            }
             return base.SetValue(c);
         }
     }
