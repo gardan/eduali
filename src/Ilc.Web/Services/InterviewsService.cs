@@ -4,6 +4,7 @@ using System.Net;
 using Ilc.Core;
 using Ilc.Core.Contracts;
 using Ilc.Web.Models;
+using Ilc.Web.Services.Tasks.Training;
 using Omu.ValueInjecter;
 using ServiceStack;
 
@@ -57,10 +58,15 @@ namespace Ilc.Web.Services
                 };
         }
 
-        public HttpResult Put(InterviewModel request)
+        public HttpResult Put(UpdateInterviewModel request)
         {
             var interview = Interviews.GetById(request.Id);
-            interview.PopulateWithNonDefaultValues(request);
+            foreach (var createInterviewResultModel in request.InterviewResults)
+            {
+                var result = interview.InterviewResults.FirstOrDefault(r => r.GradingAttributeId == createInterviewResultModel.GradingAttributeId);
+                result.TargetGradeId = createInterviewResultModel.TargetGradeId;
+                result.CurrentGradeId = createInterviewResultModel.CurrentGradeId;
+            }
 
             Interviews.Update(interview);
 
@@ -69,6 +75,12 @@ namespace Ilc.Web.Services
                     StatusCode = HttpStatusCode.OK
                 };
         }
+    }
+
+    public class UpdateInterviewModel
+    {
+        public int Id { get; set; }
+        public List<CreateInterviewResultModel> InterviewResults { get; set; }
     }
 
     public class InterviewModel

@@ -16,6 +16,7 @@
 
     onInterviewStoreLoad: function (interviewsStore, records) {
         var fieldsets = this.query('interviewfieldset');
+        this.interview = records[0];
 
         Ext.Array.forEach(fieldsets, function(fieldset) {
             var attributeName = fieldset.getAttribute().name;
@@ -52,7 +53,7 @@
                 xtype: 'button',
                 text: Ilc.resources.Manager.getResourceString('common.save'),
                 handler: function (btn, events) {
-                    var model = Ilc.utils.Forms.extractModel(me.query('textfield'));
+                    var model = Ilc.utils.Forms.extractModel(me.query('interviewfieldset'));
 
                     model.id = me.interview.get('id');
                     me.fireEvent('editinterview', me, model);

@@ -131,7 +131,7 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.FilterParametersQuestions>("/questions", "GET");
 
             routes.Add<Services.FilterParametersInterviews>("/trainings/{trainingId}/students/{studentId}/interviews");
-            routes.Add<Services.InterviewModel>("/interviews/{id}", "PUT");
+            routes.Add<Services.UpdateInterviewModel>("/interviews/{id}", "PUT");
 
             routes.Add<Services.Evaluations.FilterParametersProgressEvaluations>("/trainings/{trainingId}/progressevaluations", "GET");
             routes.Add<Services.Evaluations.ProgressEvaluationModel>("/progressevaluations/{id}", "PUT");
