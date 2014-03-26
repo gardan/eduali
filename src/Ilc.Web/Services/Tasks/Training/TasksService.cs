@@ -491,7 +491,7 @@ namespace Ilc.Web.Services.Tasks.Training
         public string WritingLevel { get; set; }
         public string TargetWritingLevel { get; set; }
 
-        public List<InterviewResultModel> InterviewResults { get; set; }
+        public List<CreateInterviewResultModel> InterviewResults { get; set; }
 
         public int StudentId { get; set; }
 
@@ -503,7 +503,7 @@ namespace Ilc.Web.Services.Tasks.Training
         }
     }
 
-    public class InterviewResultModel
+    public class CreateInterviewResultModel
     {
         public int GradingAttributeId { get; set; }
         public int CurrentGradeId { get; set; }

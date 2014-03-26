@@ -2,7 +2,8 @@
     extend: 'Ext.grid.Panel',
 
     requires: [
-        'Ilc.utils.Forms'
+        'Ilc.utils.Forms',
+        'Ilc.model.GradingSystem'
     ],
     
     viewConfig: {
@@ -31,20 +32,28 @@
             itemdblclick:  function(grid, record) {
                 var action = (record.get('interviewId') == 0 ? 'Create' : 'View');
 
-                var windowClass = 'Ilc.tasks.training.window.' + action + 'StudentInterview';
-                var window = Ext.create(windowClass, {
-                    student: record,
-                    task: entity
+                var gradingSystemModel = Ext.ModelManager.getModel('Ilc.model.GradingSystem');
+                gradingSystemModel.load(entity.get('taskObject').gradingSystemId, {
+                    scope: me,
+                    success: function (gradingSystem) {
+                        var windowClass = 'Ilc.tasks.training.window.' + action + 'StudentInterview';
+                        var window = Ext.create(windowClass, {
+                            student: record,
+                            task: entity,
+                            grades: gradingSystem.get('grades')
+                        });
+
+                        if (action === 'Create') {
+                            window.on('addInterview', function (sender, data) {
+                                me.fireEvent('addInterview', sender, data);
+                            });
+                        }
+
+                        window.show();
+                    }
                 });
 
-                if (action === 'Create') {
-                    window.on('addInterview', function (sender, data) {
-                        me.fireEvent('addInterview', sender, data);
-                    });
-                }
-
-
-                window.show();
+                
             }
         };
 

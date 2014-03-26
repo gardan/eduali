@@ -7,9 +7,12 @@
         gradesStore: null,
 
         attribute: null,
-        
+
         name: null,
     },
+
+    selectGrades: null,
+    interviewResult: null,
 
     _getGradeId: function(type) {
         var name = type + this.getAttribute().name;
@@ -19,19 +22,40 @@
         return model[name];
     },
 
-    getCurrentGradeId: function () {
+    getCurrentGradeId: function() {
         return this._getGradeId('current_');
     },
 
-    getTargetGradeId: function () {
+    getTargetGradeId: function() {
         return this._getGradeId('target_');
     },
 
-    initComponent: function () {
+    _setGrades: function (interviewResult) {
+        var name = 'current_' + this.getAttribute().name;
+        var combo = this.query('combobox[name="' + name + '"]')[0];
 
+        combo.select(this.gradesStore.getById(interviewResult.currentGrade.id));
+
+        name = 'target_' + this.getAttribute().name;
+        combo = this.query('combobox[name="' + name + '"]')[0];
+
+        combo.select(this.gradesStore.getById(interviewResult.targetGrade.id));
+    },
+
+    setGrades: function (interviewResult) {
+        if (this.gradesStore.data.length == 0) {
+            this.selectGrades = true;
+            this.interviewResult = interviewResult;
+        } else {
+            this._setGrades(interviewResult);
+        }
+    },
+
+    initComponent: function () {
+        var me = this;
         var attr = this.attribute;
         this.title = attr.name;
-        
+
         this.items = [
             {
                 xtype: 'combobox',

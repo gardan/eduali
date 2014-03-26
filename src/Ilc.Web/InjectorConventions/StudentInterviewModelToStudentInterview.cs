@@ -19,7 +19,7 @@ namespace Ilc.Web.InjectorConventions
         {
             if (c.SourceProp.Name == "InterviewResults")
             {
-                var list = c.SourceProp.Value as List<InterviewResultModel>;
+                var list = c.SourceProp.Value as List<CreateInterviewResultModel>;
                 return list.Select(ir => new InterviewResult().InjectFrom(ir) as InterviewResult).ToList();
             }
             return base.SetValue(c);

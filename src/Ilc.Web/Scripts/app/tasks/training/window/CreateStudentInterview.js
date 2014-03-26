@@ -3,7 +3,6 @@
     modal: true,
 
     requires: [
-        'Ilc.model.GradingSystem',
         'Ilc.form.InterviewFieldset'
     ],
 
@@ -49,47 +48,51 @@
         return items;
     },
 
+    buttons: [
+        {
+            xtype: 'button',
+            text: Ilc.resources.Manager.getResourceString('common.save'),
+            handler: function (btn, events) {
+                var me = btn.up('window');
+                var model = {};
+                // var example =
+                // {
+                //     interviewResults: [
+                //         {
+                //             gradingAttributeId: 1,
+                //             currentGradeId: 1,
+                //             targetGradeId: 2
+                //         }
+                //     ]
+                // };
+
+                model = Ilc.utils.Forms.extractModel(me.query('interviewfieldset'));
+
+                model.studentId = me.student.get('id');
+                model.taskEntityId = me.task.get('id');
+                console.log(model);
+                me.fireEvent('addInterview', me, model);
+            }
+        },
+        {
+            text: Ilc.resources.Manager.getResourceString('common.cancel'),
+            handler: function () {
+                var me = btn.up('window');
+                me.close();
+            }
+        }
+    ],
+
     initComponent: function () {
         var me = this;
-
+        
         var store = Ext.create('Ilc.tasks.training.store.Grades');
         this.gradesStore = store;
+        
+        me.gradesStore.loadRawData(me.grades);
 
         this.items = me._initItems();
         
-        me.buttons = [
-            {
-                xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.save'),
-                handler: function (btn, events) {
-                    var model = {};
-                    // var example =
-                    // {
-                    //     interviewResults: [
-                    //         {
-                    //             gradingAttributeId: 1,
-                    //             currentGradeId: 1,
-                    //             targetGradeId: 2
-                    //         }
-                    //     ]
-                    // };
-
-                    model = Ilc.utils.Forms.extractModel(me.query('interviewfieldset'));
-
-                    model.studentId = me.student.get('id');
-                    model.taskEntityId = me.task.get('id');
-                    console.log(model);
-                    me.fireEvent('addInterview', me, model);
-                }
-            },
-            {
-                text: Ilc.resources.Manager.getResourceString('common.cancel'),
-                handler: function() {
-                    me.close();
-                }
-            }
-        ];
-
         me.addEvents(
             'addInterview'
         );

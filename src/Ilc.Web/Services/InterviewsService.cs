@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using Ilc.Core;
 using Ilc.Core.Contracts;
@@ -14,10 +15,45 @@ namespace Ilc.Web.Services
 
         public FilteredDataModel<InterviewModel> Get(FilterParametersInterviews request)
         {
+            //TODO: move to injector
             var results = Interviews.GetFiltered(request);
+            var data = new List<InterviewModel>();
+            foreach (var studentInterview in results.Data)
+            {
+                var interviewResults = new List<InterviewResultModel>();
+                foreach (var interviewResult in studentInterview.InterviewResults)
+                {
+                    interviewResults.Add(new InterviewResultModel()
+                        {
+                            Id = interviewResult.Id,
+                            GradingAttribute = new GradingAttributeModel()
+                                {
+                                    Id = interviewResult.GradingAttribute.Id,
+                                    Name = interviewResult.GradingAttribute.Name
+                                },
+                            CurrentGrade = new GradeModel()
+                                {
+                                    Id = interviewResult.CurrentGrade.Id,
+                                    Name = interviewResult.CurrentGrade.Name
+                                },
+                            TargetGrade = new GradeModel()
+                                {
+                                    Id = interviewResult.TargetGrade.Id,
+                                    Name = interviewResult.TargetGrade.Name
+                                }
+                        });
+                }
+
+                data.Add(new InterviewModel()
+                    {
+                        Id = studentInterview.Id,
+                        InterviewResults = interviewResults
+                    });
+            }
+
             return new FilteredDataModel<InterviewModel>()
                 {
-                    Data = results.Data.Select(i => new InterviewModel().InjectFrom(i) as InterviewModel).ToList()
+                    Data = data
                 };
         }
 
@@ -53,6 +89,17 @@ namespace Ilc.Web.Services
 
         public string WritingLevel { get; set; }
         public string TargetWritingLevel { get; set; }
+
+        public List<InterviewResultModel> InterviewResults { get; set; }
+    }
+
+    public class InterviewResultModel
+    {
+        public int Id { get; set; }
+        public GradeModel CurrentGrade { get; set; }
+        public GradeModel TargetGrade { get; set; }
+
+        public GradingAttributeModel GradingAttribute { get; set; }
     }
 
     public class FilterParametersInterviews : FilterArgumentsInterviews

@@ -21,7 +21,7 @@ namespace Ilc.Data.Models
         public string WritingLevel { get; set; }
         public string TargetWritingLevel { get; set; }
 
-        public ICollection<InterviewResult> InterviewResults { get; set; }
+        public virtual ICollection<InterviewResult> InterviewResults { get; set; }
 
         public int StudentId { get; set; }
         [ForeignKey("StudentId")]

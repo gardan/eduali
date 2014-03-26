@@ -6,7 +6,8 @@
         'readingLevel', 'targetReadingLevel',
         'interactiveTalkingLevel', 'targetInteractiveTalkingLevel',
         'productiveTalkingLevel', 'targetProductiveTalkingLevel',
-        'writingLevel', 'targetWritingLevel'],
+        'writingLevel', 'targetWritingLevel',
+        'interviewResults' ],
     
     trainingId: 0,
     studentId: 0,
@@ -38,6 +39,6 @@
             }
         };
 
-        me.callParent();
+        me.callParent(arguments);
     }
 });
