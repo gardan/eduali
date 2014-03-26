@@ -189,6 +189,7 @@
     <Content Include="Scripts\app\model\Availability.js" />
     <Content Include="Scripts\app\model\Claim.js" />
     <Content Include="Scripts\app\model\Grade.js" />
+    <Content Include="Scripts\app\model\GradingAttribute.js" />
     <Content Include="Scripts\app\model\GradingSystem.js" />
     <Content Include="Scripts\app\model\InterviewPlan.js" />
     <Content Include="Scripts\app\model\scheduler\Trainer.js" />
@@ -209,6 +210,7 @@
     <Content Include="Scripts\app\store\Contacts.js" />
     <Content Include="Scripts\app\store\Genders.js" />
     <Content Include="Scripts\app\store\Grades.js" />
+    <Content Include="Scripts\app\store\GradingAttributes.js" />
     <Content Include="Scripts\app\store\GridConfig.js" />
     <Content Include="Scripts\app\grid\Transfers.js" />
     <Content Include="Scripts\app\model\Customer.js" />
@@ -403,6 +405,7 @@
     <Content Include="Scripts\app\view\customers\Create.js" />
     <Content Include="Scripts\app\view\customers\Edit.js" />
     <Content Include="Scripts\app\view\customers\List.js" />
+    <Content Include="Scripts\app\view\gradingAttributes\List.js" />
     <Content Include="Scripts\app\view\gradingSystems\Edit.js" />
     <Content Include="Scripts\app\view\gradingSystems\List.js" />
     <Content Include="Scripts\app\view\home\Evaluation.js" />
@@ -4018,6 +4021,7 @@
     <Compile Include="Models\CreateOfferModel.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\AvailabilityService.cs" />
+    <Compile Include="Services\Grading\AttributesService.cs" />
     <Compile Include="Services\Images\AvatarsService.cs" />
     <Compile Include="Services\ClaimsService.cs" />
     <Compile Include="Services\ClientConfigurationService.cs" />
@@ -4032,8 +4036,8 @@
     <Compile Include="Services\Evaluations\ProgressEvaluationsService.cs" />
     <Compile Include="Services\FilesService.cs" />
     <Compile Include="Services\GendersService.cs" />
-    <Compile Include="Services\GradesService.cs" />
-    <Compile Include="Services\GradingSystemsService.cs" />
+    <Compile Include="Services\Grading\GradesService.cs" />
+    <Compile Include="Services\Grading\GradingSystemsService.cs" />
     <Compile Include="Services\GridConfigurationService.cs" />
     <Compile Include="Contracts\IImage.cs" />
     <Compile Include="Services\Images\LogoService.cs" />

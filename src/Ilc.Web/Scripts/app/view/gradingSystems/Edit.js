@@ -49,8 +49,10 @@
     initComponent: function() {
         var me = this;
 
+        var attributesStore = Ext.create('Ilc.store.GradingAttributes');
         me.gradesStore = Ext.create('Ilc.store.Grades');
 
+        attributesStore.loadRawData(me.gradingSystem.get('attributes'));
         me.gradesStore.loadRawData(me.gradingSystem.get('grades'));
 
         me.items = [
@@ -61,7 +63,17 @@
             },
             Ext.create('Ilc.grid.Grades', {
                 store: me.gradesStore,
-                width: 800
+                width: 600
+            }),
+            Ext.create('Ilc.view.gradingAttributes.List', {
+                store: attributesStore,
+                gradingSystemId: me.gradingSystem.get('id'),
+                width: 600,
+                listeners: {
+                    'afterupdate': function() {
+                        me.fireEvent('afterupdate');
+                    },
+                }
             })
         ];
 

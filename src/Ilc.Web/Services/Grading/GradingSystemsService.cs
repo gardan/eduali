@@ -9,7 +9,7 @@ using Ilc.Web.InjectorConventions;
 using Omu.ValueInjecter;
 using ServiceStack;
 
-namespace Ilc.Web.Services
+namespace Ilc.Web.Services.Grading
 {
     public class GradingSystemsService : Service
     {

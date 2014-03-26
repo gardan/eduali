@@ -48,6 +48,7 @@ namespace Ilc.Data
         public IRepository<TemplateDay> TemplateDays { get { return GetStandardRepo<TemplateDay>(); } }
         public IRepository<Company> Companies { get { return GetStandardRepo<Company>(); } }
         public IRepository<SubjectFile> SubjectFiles { get { return GetStandardRepo<SubjectFile>(); } }
+        public IRepository<GradingAttribute> GradingAttributes { get { return GetStandardRepo<GradingAttribute>(); } }
 
         public Uow(IRepositoryProvider repositoryProvider)
         {

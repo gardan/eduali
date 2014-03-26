@@ -7,7 +7,7 @@ using Ilc.Data.Models;
 using Omu.ValueInjecter;
 using ServiceStack;
 
-namespace Ilc.Web.Services
+namespace Ilc.Web.Services.Grading
 {
     public class GradesService : Service
     {

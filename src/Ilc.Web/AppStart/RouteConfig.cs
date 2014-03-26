@@ -1,5 +1,6 @@
 ﻿using Ilc.Web.Models;
 using Ilc.Web.Models.Student;
+using Ilc.Web.Services.Grading;
 using Ilc.Web.Services.Images;
 using Ilc.Web.Services.Tasks.Training;
 using ServiceStack.Web;
@@ -60,12 +61,15 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.CreateTrainersSubjectModel>("/trainerssubjects", "POST");
             routes.Add<Services.TrainerSubjectModel>("/trainers/{trainerId}/subjects/{subjectId}", "DELETE");
 
-            routes.Add<Services.FilterParametersGradingSystems>("/gradingsystems", "GET");
-            routes.Add<Services.GradingSystemModel>("/gradingsystems", "POST");
-            routes.Add<Services.GradingSystemModel>("/gradingsystems/{id}", "PUT,GET");
+            routes.Add<FilterParametersGradingSystems>("/gradingsystems", "GET");
+            routes.Add<GradingSystemModel>("/gradingsystems", "POST");
+            routes.Add<GradingSystemModel>("/gradingsystems/{id}", "PUT,GET");
 
-            routes.Add<Services.FilterParametersGrades>("/grades", "GET");
-            routes.Add<Services.CreateGradeModel>("/grades", "POST");
+            routes.Add<GradingAttributeModel>("/gradingattributes/{id}", "PUT,DELETE");
+            routes.Add<CreateGradingAttributeModel>("/gradingattributes", "POST");
+
+            routes.Add<FilterParametersGrades>("/grades", "GET");
+            routes.Add<CreateGradeModel>("/grades", "POST");
 
             routes.Add<Services.SpendingModel>("/spendings/{id}", "PUT");
 

@@ -1,0 +1,65 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Web;
+using Ilc.Data.Contracts;
+using Ilc.Data.Models;
+using ServiceStack;
+
+namespace Ilc.Web.Services.Grading
+{
+    public class AttributesService : Service
+    {
+        public IUow Uow { get; set; }
+
+        public HttpResult Post(CreateGradingAttributeModel request)
+        {
+            var attribute = new GradingAttribute()
+                {
+                    Enabled = true,
+                    GradingSystemId = request.GradingSystemId,
+                    Name = request.Name
+                };
+            Uow.GradingAttributes.Add(attribute);
+            Uow.Commit();
+
+            return new HttpResult(new GradingAttributeModel() { Id =attribute.Id, Name = attribute.Name})
+                {
+                    StatusCode = HttpStatusCode.Created,
+                    Location = Request.AbsoluteUri.CombineWith(attribute.Id)
+                };
+        }
+
+        public HttpResult Put(GradingAttributeModel request)
+        {
+            var attribute = Uow.GradingAttributes.GetById(request.Id);
+            attribute.Name = request.Name;
+
+            Uow.GradingAttributes.Update(attribute);
+            Uow.Commit();
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
+
+        public HttpResult Delete(GradingAttributeModel request)
+        {
+            Uow.GradingAttributes.Delete(request.Id);
+            Uow.Commit();
+            
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
+    }
+
+    public class CreateGradingAttributeModel
+    {
+        public int GradingSystemId { get; set; }
+        public string Name { get; set; }
+    }
+}
