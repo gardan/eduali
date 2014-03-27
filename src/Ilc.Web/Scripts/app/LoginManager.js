@@ -58,6 +58,15 @@
                     var originalHandler = options.callback;
                     // 
                     var customCallback = function (opts, success, response) {
+                        if (response.status === 500) {
+                            Ext.MessageBox.show({
+                                msg: 'Fatal error!',
+                                buttons: Ext.Msg.OK
+                            });
+
+                            originalFailHandler.apply(this, arguments);
+                            return;
+                        }
                         if (response.status != 401) {
                             originalHandler.apply(this, arguments);
                         } else {
@@ -85,6 +94,15 @@
                     var originalFailHandler = options.failure;
 
                     var failFuncHandler = function (response) {
+                        if (response.status === 500) {
+                            Ext.MessageBox.show({
+                                msg: 'Fatal error!',
+                                buttons: Ext.Msg.OK
+                            });
+
+                            originalFailHandler.apply(this, arguments);
+                            return;
+                        }
                         if (response.status != 401) {
                             originalFailHandler.apply(this, arguments);
                             return;
