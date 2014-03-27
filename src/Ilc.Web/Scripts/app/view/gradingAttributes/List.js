@@ -5,6 +5,37 @@
         gradingSystemId: null
     },
 
+    dockedItems: [
+        {
+            xtype: 'toolbar',
+            dock: 'bottom',
+            items: [
+                {
+                    text: 'Add attribute',
+                    listeners: {
+                        click: function() {
+                            var me = this.up('grid');
+                            
+                            me.rowEditing.cancelEdit();
+                            var newAttribute = Ext.create('Ilc.model.GradingAttribute', {
+                                gradingSystemId: me.gradingSystemId
+                            });
+                            newAttribute.save({
+                                success: function (attribute, operation) {
+                                    me.fireEvent('afterupdate');
+                                    var createdAttribute = Ext.JSON.decode(operation.response.responseText);
+                                    newAttribute.set('id', createdAttribute.id);
+                                    me.store.insert(0, newAttribute);
+                                    me.rowEditing.startEdit(0, 0);
+                                }
+                            });
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+
     initComponent: function () {
         this.addEvents(
             'afterupdate'
@@ -16,6 +47,8 @@
             clickstoedit: 2,
             autoCancel: false
         });
+
+        me.rowEditing = rowEditing;
 
         var textField = {
             xtype: 'textfield'
