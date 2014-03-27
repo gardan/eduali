@@ -73,11 +73,76 @@
 
                     console.log('message recieved.');
                 }
+            },
+            'trainingattributeslist': {
+                'removeattribute': this.onAttributeRemove,
+                'addattribute': this.onAttributeAdd
             }
         });
     },
 
-    /* 
+    onAttributeRemove: function(sender, model) {
+        var trainingDataContext = {
+            removeAttribute: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/trainings/' + entity.trainingId + '/gradingAttributes/' + entity.gradingAttributeId,
+                    method: 'DELETE',
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+
+        sender.mask();
+        trainingDataContext.removeAttribute(model)
+        .then(function (response) {
+            sender.removed();
+        })
+        .finally(function () {
+            sender.unmask();
+        });
+    },
+
+    onAttributeAdd: function(sender, model) {
+        var trainingDataContext = {
+            addAttribute: function (entity) {
+                var deferred = Q.defer();
+
+                Ext.Ajax.request({
+                    url: 'api/trainings/' + entity.trainingId + '/gradingAttributes',
+                    method: 'POST',
+                    jsonData: entity,
+                    success: function (response) {
+                        deferred.resolve(response);
+                    },
+                    failure: function (error) {
+                        deferred.reject(error);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        };
+
+        sender.mask();
+        trainingDataContext.addAttribute(model)
+        .then(function (response) {
+            sender.added();
+        })
+        .finally(function () {
+            sender.unmask();
+        });
+    },
+
+        /* 
         @param querystrings Object containing the querystrings
     */
     list: function () {

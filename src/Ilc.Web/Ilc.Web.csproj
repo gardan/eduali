@@ -4023,6 +4023,7 @@
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\AvailabilityService.cs" />
     <Compile Include="Services\Grading\AttributesService.cs" />
+    <Compile Include="Services\Grading\TrainingGradingAttributesService.cs" />
     <Compile Include="Services\Images\AvatarsService.cs" />
     <Compile Include="Services\ClaimsService.cs" />
     <Compile Include="Services\ClientConfigurationService.cs" />
