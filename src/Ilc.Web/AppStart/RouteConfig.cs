@@ -70,6 +70,7 @@ namespace Ilc.Web.AppStart
             routes.Add<CreateGradingAttributeModel>("/gradingattributes", "POST");
 
             routes.Add<TrainingGradingAttributeDeleteModel>("/trainings/{trainingId}/gradingattributes/{gradingAttributeId}", "DELETE");
+            routes.Add<TrainingGradingAttributeCreateModel>("/trainings/{trainingId}/gradingattributes", "POST");
 
             routes.Add<FilterParametersGrades>("/grades", "GET");
             routes.Add<CreateGradeModel>("/grades", "POST");

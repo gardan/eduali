@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using Ilc.Data.Contracts;
+using Ilc.Data.Models;
 using ServiceStack;
 
 namespace Ilc.Web.Services.Grading
@@ -28,6 +29,33 @@ namespace Ilc.Web.Services.Grading
                     StatusCode = HttpStatusCode.OK
                 };
         }
+
+        public HttpResult Post(TrainingGradingAttributeCreateModel request)
+        {
+            var training = Uow.Trainings.GetById(request.TrainingId);
+            var attributes = new List<GradingAttribute>();
+            attributes.AddRange(request.GradingAttributes.Select(gradingAttributeModel => Uow.GradingAttributes.GetById(gradingAttributeModel.Id)));
+
+            foreach (var gradingAttribute in attributes)
+            {
+                training.GradingAttributes.Add(gradingAttribute);
+            }
+
+            Uow.Trainings.Update(training);
+            Uow.Commit();
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
+    }
+
+    public class TrainingGradingAttributeCreateModel
+    {
+        public int TrainingId { get; set; }
+        public GradingAttributeModel[] GradingAttributes { get; set; }
+
     }
 
     public class TrainingGradingAttributeDeleteModel

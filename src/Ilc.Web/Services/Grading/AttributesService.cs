@@ -6,6 +6,7 @@ using System.Web;
 using Ilc.Core;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models;
+using Ilc.Misc.Comparer;
 using Ilc.Web.Models;
 using ServiceStack;
 
@@ -18,11 +19,27 @@ namespace Ilc.Web.Services.Grading
         public FilteredDataModel<GradingAttributeModel> Get(FilterParametersAttributes request)
         {
             if (request.TrainingId <= 0) return null;
+            IEnumerable<GradingAttribute> assignedAttributes =
+                Uow.GradingAttributes.GetAll().Where(a => a.Trainings.Any(t => t.Id == request.TrainingId));
+
+            List<GradingAttributeModel> data;
+            if (request.Assigned)
+            {
+                data = assignedAttributes.Select(a => new GradingAttributeModel() {Id = a.Id, Name = a.Name}).ToList();
+            }
+            else
+            {
+                var trainingId = 49;
+                var attributes = Uow.Trainings.GetById(trainingId).GradingSystem.Attributes;
+                data = attributes.Except<GradingAttribute>(assignedAttributes, new GradingAttributeComparer()).
+                    Select(a => new GradingAttributeModel() { Id = a.Id, Name = a.Name }).ToList();
+            }
+
 
             return new FilteredDataModel<GradingAttributeModel>()
                 {
-                    Data = Uow.GradingAttributes.GetAll().Where(a => a.Trainings.Any(t => t.Id == request.TrainingId))
-                    .Select(a => new GradingAttributeModel() { Id = a.Id, Name = a.Name }).ToList()
+                    Data = data,
+                    
                 };
         }
 

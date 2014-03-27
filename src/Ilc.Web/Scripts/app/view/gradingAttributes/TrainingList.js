@@ -2,6 +2,10 @@
     extend: 'Ext.grid.Panel',
     xtype: 'trainingattributeslist',
 
+    requires: [
+        'Ext.ux.form.MultiSelect'
+    ],
+
     config: {
         trainingId: null
     },
@@ -21,11 +25,71 @@
             items: [
                 {
                     xtype: 'button',
-                    text: 'Add attributes'
+                    text: 'Add attributes',
+                    listeners: {
+                        click: function () {
+                            var me = this.up('trainingattributeslist');
+                            var store = Ext.create('Ilc.store.GradingAttributes');
+                            
+                            me.window = Ext.create('Ext.window.Window', {
+                                minWidth: 300,
+                                items: [
+                                    {
+                                        xtype: 'multiselect',
+                                        valueField: 'id',
+                                        displayField: 'name',
+                                        store: store
+                                    }
+                                ],
+                                buttons: [
+                                    {
+                                        text: 'Add',
+                                        handler: function() {
+                                            var multiselect = me.window.query('multiselect')[0];
+                                            var model = {
+                                                gradingAttributes: [],
+                                                trainingId: me.getTrainingId()
+                                            };
+
+                                            Ext.Array.forEach(multiselect.getValue(), function (id) {
+                                                model.gradingAttributes.push({
+                                                    id: id
+                                                });
+                                            });
+
+                                            me.fireEvent('addattribute', me, model);
+                                        },
+                                    },
+                                    {
+                                        text: 'Cancel',
+                                        handler: function() {
+                                            me.window.close();
+                                        }
+                                    }
+                                ]
+                            });
+
+                            store.load({
+                                params: {
+                                    trainingId: me.getTrainingId(),
+                                    assigned: false
+                                }
+                            });
+
+                            me.window.show();
+                        }
+                    }
                 }
             ]
         }
     ],
+
+    window: null,
+
+    added: function () {
+        this.window.close();
+        this.store.reload();
+    },
 
     initComponent: function() {
         var me = this;
