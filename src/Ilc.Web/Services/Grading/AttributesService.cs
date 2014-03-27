@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
+using Ilc.Core;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models;
+using Ilc.Web.Models;
 using ServiceStack;
 
 namespace Ilc.Web.Services.Grading
@@ -12,6 +14,17 @@ namespace Ilc.Web.Services.Grading
     public class AttributesService : Service
     {
         public IUow Uow { get; set; }
+
+        public FilteredDataModel<GradingAttributeModel> Get(FilterParametersAttributes request)
+        {
+            if (request.TrainingId <= 0) return null;
+
+            return new FilteredDataModel<GradingAttributeModel>()
+                {
+                    Data = Uow.GradingAttributes.GetAll().Where(a => a.Trainings.Any(t => t.Id == request.TrainingId))
+                    .Select(a => new GradingAttributeModel() { Id = a.Id, Name = a.Name }).ToList()
+                };
+        }
 
         public HttpResult Post(CreateGradingAttributeModel request)
         {
@@ -55,6 +68,11 @@ namespace Ilc.Web.Services.Grading
                     StatusCode = HttpStatusCode.OK
                 };
         }
+    }
+
+    public class FilterParametersAttributes : FilterArgumentsGradingAttributes
+    {
+
     }
 
     public class CreateGradingAttributeModel

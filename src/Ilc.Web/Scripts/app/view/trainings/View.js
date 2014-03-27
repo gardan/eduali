@@ -7,7 +7,8 @@
         'Ext.util.Point',
         'Ilc.view.trainings.view.Planning',
         'Ilc.view.spendings.View',
-        'Ilc.view.subjectFiles.List'
+        'Ilc.view.subjectFiles.List',
+        'Ilc.view.gradingAttributes.TrainingList'
     ],
     width: 900,
 
@@ -449,6 +450,11 @@
                         title: 'Files',
                         xtype: 'subjectfileslist',
                         subjectId: model.get('subject').id
+                    },
+                    {
+                        title: 'Grading',
+                        xtype: 'trainingattributeslist',
+                        trainingId: model.get('id')
                     }
                 ]
             }

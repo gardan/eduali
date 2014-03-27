@@ -406,6 +406,7 @@
     <Content Include="Scripts\app\view\customers\Edit.js" />
     <Content Include="Scripts\app\view\customers\List.js" />
     <Content Include="Scripts\app\view\gradingAttributes\List.js" />
+    <Content Include="Scripts\app\view\gradingAttributes\TrainingList.js" />
     <Content Include="Scripts\app\view\gradingSystems\Edit.js" />
     <Content Include="Scripts\app\view\gradingSystems\List.js" />
     <Content Include="Scripts\app\view\home\Evaluation.js" />
