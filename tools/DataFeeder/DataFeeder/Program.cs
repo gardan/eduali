@@ -59,8 +59,8 @@ namespace DataFeeder
         public static void InserCustomerCommand(string[] row, SqlConnection cn)
         {
             SqlConnection sqlCon = cn;
-            var insertCommand = new SqlCommand("INSERT INTO Customer(Name, BillingAddress, BankAccount)" +
-                                           "Values('" + row[0] + "','" + row[2] + "','" + row[1] + "')", sqlCon);
+            var insertCommand = new SqlCommand("INSERT INTO Customer(Name, BillingAddress, BankAccount, CompanyId)" +
+                                           "Values('" + row[0] + "','" + row[2] + "','" + row[1] + "','" + row[3] + "')", sqlCon);
             sqlCon.Open();
             insertCommand.ExecuteNonQuery();
             sqlCon.Close();
@@ -76,14 +76,14 @@ namespace DataFeeder
             SqlDataReader dataRdr = null;
             sqlCon.Open();
 
-            insertCommand = new SqlCommand("INSERT INTO UserProfile(Username)" +
-                                           "Values('" + row[0] + "')", sqlCon);
+            insertCommand = new SqlCommand("INSERT INTO UserProfile(Email,CompanyId)" +
+                                           "Values('" + row[3] + "','" + row[6] + "')", sqlCon);
             insertCommand.ExecuteNonQuery();
 
-            selectCommand = new SqlCommand("SELECT TOP 1 Id, Username" + " FROM UserProfile" + " WHERE (Username LIKE @Username)",
+            selectCommand = new SqlCommand("SELECT TOP 1 Id, Email" + " FROM UserProfile" + " WHERE (Email LIKE @Username)",
                                            sqlCon);
-            selectCommand.Parameters.Add(new SqlParameter("@Username", System.Data.SqlDbType.NVarChar, -1, "Username"));
-            selectCommand.Parameters["@Username"].Value = row[0];
+            selectCommand.Parameters.Add(new SqlParameter("@Username", System.Data.SqlDbType.NVarChar, -1, "Email"));
+            selectCommand.Parameters["@Username"].Value = row[3];
 
             dataRdr = selectCommand.ExecuteReader();
             if (dataRdr.Read())
@@ -99,8 +99,8 @@ namespace DataFeeder
             sqlCon.Close();
 
             sqlCon.Open();
-            insertCommand = new SqlCommand("INSERT INTO UserDetails(Id, FirstName, LastName, Email, Phone)" +
-                                           "Values('" + userDBId + "','" + row[1] + "','" + row[2] + "','" + row[3] + "','" + row[4] + "')", sqlCon);
+            insertCommand = new SqlCommand("INSERT INTO UserDetails(Id, FirstName, LastName, Phone)" +
+                                           "Values('" + userDBId + "','" + row[1] + "','" + row[2] + "','" + row[4] + "')", sqlCon);
             insertCommand.ExecuteNonQuery();
 
             selectCommand = new SqlCommand("SELECT TOP 1 Name, Id" + "  FROM Customer" + " WHERE (Name LIKE @Name)",
