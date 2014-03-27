@@ -8,7 +8,7 @@ namespace Ilc.Data.Migrations
         public override void Up()
         {
             AddColumn("dbo.webpages_Roles", "CompanyId", c => c.Int(nullable: false));
-            Sql("EXEC('UPDATE dbo.webpages_Roles SET CompanyId = 1)'");
+            // Sql("EXEC('UPDATE dbo.webpages_Roles SET CompanyId = 1)'");
             AddForeignKey("dbo.webpages_Roles", "CompanyId", "dbo.Company", "Id", cascadeDelete: true);
             CreateIndex("dbo.webpages_Roles", "CompanyId");
         }

@@ -34,11 +34,22 @@ namespace SqlMigrator
                 sqlCommand.Connection = sqlConnection;
 
                 sqlConnection.Open();
+                var hasRows = false;
+                try
+                {
+                    var reader = sqlCommand.ExecuteReader();
+                    hasRows = reader.HasRows;
+                    reader.Close();
+                    
+                }
+                catch (SqlException)
+                {
 
-                var reader = sqlCommand.ExecuteReader();
-                var hasRows = reader.HasRows;
-                reader.Close();
-                sqlConnection.Close();
+                }
+                finally
+                {
+                    sqlConnection.Close();
+                }
 
                 if (hasRows)
                 {
