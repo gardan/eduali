@@ -29,8 +29,7 @@ namespace Ilc.Web.Services.Grading
             }
             else
             {
-                var trainingId = 49;
-                var attributes = Uow.Trainings.GetById(trainingId).GradingSystem.Attributes;
+                var attributes = Uow.Trainings.GetById(request.TrainingId).GradingSystem.Attributes;
                 data = attributes.Except<GradingAttribute>(assignedAttributes, new GradingAttributeComparer()).
                     Select(a => new GradingAttributeModel() { Id = a.Id, Name = a.Name }).ToList();
             }
