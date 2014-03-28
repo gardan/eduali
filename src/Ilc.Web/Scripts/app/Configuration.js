@@ -43,7 +43,7 @@
                 if (container) {
                     container.initMenuButtons();
                 }
-                if (options.callback) options.callback();
+                if (options && options.callback) options.callback();
             },
             failure: function (error) {
 

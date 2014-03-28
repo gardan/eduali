@@ -18,6 +18,12 @@
         Ilc.Configuration.init();
     },
 
+    showLogin: function() {
+        Ilc.LoginManager.loginWindow = Ilc.LoginManager._initLoginWindow();
+
+        Ilc.LoginManager.loginWindow.show();
+    },
+
     _initLoginWindow: function() {
         return Ext.create('Ilc.window.Login', {
             handler: function () {

@@ -29,7 +29,7 @@
                 text: Ilc.resources.Manager.getResourceString('mainMenu.tasks'),
                 iconCls: 'icon-task-32',
                 itemId: 'menu.tasks',
-                
+                hidden: !Ilc.Configuration.loggedIn()
             },
             {
                 text: Ilc.resources.Manager.getResourceString('mainMenu.trainings'),
@@ -101,7 +101,15 @@
             },
             '->',
             {
+                text: Ilc.Configuration.getValue('login'),
+                hidden: Ilc.Configuration.loggedIn(),
+                handler: function() {
+                    Ilc.LoginManager.showLogin();
+                }
+            },
+            {
                 text: Ilc.Configuration.getValue('username'),
+                hidden: !Ilc.Configuration.loggedIn(),
                 toggleGroup: '',
                 scale: 'medium',
                 padding: '0',
