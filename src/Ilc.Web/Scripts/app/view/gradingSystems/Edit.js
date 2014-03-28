@@ -5,7 +5,7 @@
     layout: {
         type: 'anchor'
     },
-
+    width: 600,
     defaults: {
         anchor: '100%',
         xtype: 'textfield'
@@ -59,7 +59,8 @@
             {
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.name'),
                 name: 'name',
-                value: me.gradingSystem.get('name')
+                value: me.gradingSystem.get('name'),
+                anchor: '100%'
             },
             Ext.create('Ilc.grid.Grades', {
                 store: me.gradesStore,
