@@ -11,6 +11,8 @@
         xtype: 'textfield'
     },
 
+    title: 'Edit grading system',
+
     gradingSystem: null,
 
     buttons: [
@@ -64,7 +66,8 @@
             },
             Ext.create('Ilc.grid.Grades', {
                 store: me.gradesStore,
-                width: 600
+                width: 600,
+                padding: '0 0 5 0'
             }),
             Ext.create('Ilc.view.gradingAttributes.List', {
                 store: attributesStore,
