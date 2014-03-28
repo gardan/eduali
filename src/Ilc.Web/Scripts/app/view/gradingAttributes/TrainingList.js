@@ -7,7 +7,8 @@
     ],
 
     config: {
-        trainingId: null
+        trainingId: null,
+        allowEdit: null
     },
 
     columns: [
@@ -98,29 +99,34 @@
             'addattribute'
         );
 
-        this.on('itemcontextmenu', function(view, record, item, index, e) {
-            e.stopEvent();
 
-            if (!me.rowContextMenu) {
-                me.rowContextMenu = Ext.create('Ext.menu.Menu', {
-                    items: [
-                        {
-                            text: 'Delete',
-                            handler: function() {
-                                me.store.remove(me.rowContextMenu.record);
-                                var model = {
-                                    trainingId: me.getTrainingId(),
-                                    gradingAttributeId: me.rowContextMenu.record.get('id')
-                                };
-                                me.fireEvent('removeattribute', me, model);
+        if (this.allowEdit) {
+            this.on('itemcontextmenu', function(view, record, item, index, e) {
+                e.stopEvent();
+
+                if (!me.rowContextMenu) {
+                    me.rowContextMenu = Ext.create('Ext.menu.Menu', {
+                        items: [
+                            {
+                                text: 'Delete',
+                                handler: function() {
+                                    me.store.remove(me.rowContextMenu.record);
+                                    var model = {
+                                        trainingId: me.getTrainingId(),
+                                        gradingAttributeId: me.rowContextMenu.record.get('id')
+                                    };
+                                    me.fireEvent('removeattribute', me, model);
+                                }
                             }
-                        }
-                    ]
-                });
-            }
-            me.rowContextMenu.record = record;
-            me.rowContextMenu.showAt(e.getXY());
-        });
+                        ]
+                    });
+                }
+                me.rowContextMenu.record = record;
+                me.rowContextMenu.showAt(e.getXY());
+            });
+        } else {
+            this.dockedItems = [];
+        }
 
         this.store = Ext.create('Ilc.store.GradingAttributes');
         this.store.load({

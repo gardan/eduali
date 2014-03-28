@@ -22,13 +22,15 @@ namespace Ilc.Core
         public const string Publishing = "Publishing";
         public const string UserRegistration = "UserRegistration";
         public const string PendingValidation = "PendingValidation";
-        public const string Validated = "Accepted"; // => ProgressEvaluation
+        public const string Validated = "Validated"; // => ProgressEvaluation
         public const string Cancelled = "Cancelled"; // => Rejected
 
         public static double GetWeight(string status)
         {
-            var d = new Dictionary<string, double>()
-                {
+            return TrainingStatus._weights[status];
+        }
+
+        private static Dictionary<string, double> _weights =  new Dictionary<string, double>() {
                     { Rfi, 0.1 },
                     { PlanInterview, 0.2 },
                     { Interview, 0.3 },
@@ -49,8 +51,5 @@ namespace Ilc.Core
                     { Validated, 0 },
                     { Cancelled, 0 }
                 };
-
-            return d[status];
-        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Ilc.Infrastructure.Contracts;
+﻿using Ilc.Core;
+using Ilc.Infrastructure.Contracts;
 using Ilc.Web.Models;
 using ServiceStack;
 using ServiceStack.Web;
@@ -15,6 +16,7 @@ namespace Ilc.Web.Filters.Response
             foreach (var trainingModel in response.Data)
             {
                 trainingModel.StatusFriendlyName = StatusService.Translate(trainingModel.Status);
+                trainingModel.StatusWeight = (decimal) TrainingStatus.GetWeight(trainingModel.Status);
             }
         }
     }

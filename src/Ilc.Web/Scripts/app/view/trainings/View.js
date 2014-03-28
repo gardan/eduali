@@ -454,7 +454,8 @@
                     {
                         title: 'Grading',
                         xtype: 'trainingattributeslist',
-                        trainingId: model.get('id')
+                        trainingId: model.get('id'),
+                        allowEdit: model.get('statusWeight') <= 0.3
                     }
                 ]
             }

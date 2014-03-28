@@ -68,6 +68,8 @@ namespace Ilc.Web.Models
         /// This property indicates if the requesting user has joined the PUBLIC training.
         /// </summary>
         public bool Joined { get; set; }
+
+        public decimal StatusWeight { get; set; }
     }
 
     public class TrainingOwnersConfigurationModel
