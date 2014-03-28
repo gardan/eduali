@@ -12,6 +12,8 @@
     },
 
     title: 'Edit grading system',
+    
+    maxHeight: 450,
 
     gradingSystem: null,
 
