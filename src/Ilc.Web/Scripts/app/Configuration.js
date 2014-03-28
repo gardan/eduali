@@ -28,7 +28,7 @@
         return Ilc.Configuration.configuration != undefined;
     },
 
-    init: function() {
+    init: function(options) {
         Ext.Ajax.request({
             url: 'api/configuration?format=json',
             method: 'GET',
@@ -40,8 +40,10 @@
                 Ilc.Configuration.set(configuration);
 
                 var container = Ext.ComponentQuery.query('viewport')[0];
-                container.initMenuButtons();
-                // debugger;
+                if (container) {
+                    container.initMenuButtons();
+                }
+                if (options.callback) options.callback();
             },
             failure: function (error) {
 

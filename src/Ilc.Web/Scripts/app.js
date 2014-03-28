@@ -84,18 +84,6 @@ Ext.application({
     enableRouter: true,
 
     launch: function () {
-        Ext.create('Ilc.routing.Router').init();
-
-        Ilc.helpers.AppConfig.gridColumnStore = Ext.create('Ilc.store.GridConfig', { autoLoad: false });
-
-        Ext.Ajax.defaultHeaders = {
-            'Content-Type': 'application/json'
-        };
-
-        if (Ext.util.Cookies.get('LoggedIn') == 'True') {
-            Ilc.Configuration.init();
-        }
-
         // Defaults
         Ext.window.Window.prototype.bodyPadding = 10;
         Ext.window.Window.prototype.modal = true;
@@ -103,6 +91,9 @@ Ext.application({
 
         Ext.form.field.Date.prototype.format = Ilc.resources.Manager.getResourceString('formats.extjsdate');
 
+        Ext.Ajax.defaultHeaders = {
+            'Content-Type': 'application/json'
+        };
 
         // Bryntum Scheduler
         Sch.preset.Manager.registerPreset('hourAndDayLarge', {
@@ -131,7 +122,22 @@ Ext.application({
             }
         });
 
-        Ext.create('Ilc.view.Viewport');
+        
+
+        Ilc.helpers.AppConfig.gridColumnStore = Ext.create('Ilc.store.GridConfig', { autoLoad: false });
+
+        if (Ext.util.Cookies.get('LoggedIn') == 'True') {
+            Ilc.Configuration.init({
+                callback: function () {
+                    Ext.create('Ilc.routing.Router').init();
+                    Ext.create('Ilc.view.Viewport');
+                    Ext.History.fireEvent('change', window.location.hash.substring(1));
+                }
+            });
+        } else {
+            Ext.create('Ilc.routing.Router').init();
+            Ext.create('Ilc.view.Viewport');
+        }
     }
 });
 
