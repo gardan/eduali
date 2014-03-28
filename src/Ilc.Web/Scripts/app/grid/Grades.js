@@ -5,6 +5,8 @@
         'Ilc.model.Grade'
     ],
     
+    title: 'Edit grading system',
+
     viewConfig: {
         plugins: {
             ptype: 'gridviewdragdrop',
