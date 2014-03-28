@@ -59,7 +59,7 @@
         me.columns = [
             {
                 dataIndex: 'name',
-                title: 'Name',
+                text: 'Attribute Name',
                 flex: 1,
                 editor: textField
             }

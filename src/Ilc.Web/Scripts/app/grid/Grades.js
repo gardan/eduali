@@ -40,9 +40,10 @@
 
         me.columns = [
             {
-                text: Ilc.resources.Manager.getResourceString('common.name'),
+                text: 'Grade name',
                 dataIndex: 'name',
-                editor: textField
+                editor: textField,
+                flex: 1
             }
         ];
 
