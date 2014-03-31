@@ -20,6 +20,23 @@
         }
     ],
 
+    dockedItems: [
+        {
+            xtype: 'toolbar',
+            dock: 'top',
+            items: [
+                {
+                    text: 'Create new system',
+                    listeners: {
+                        click: function () {
+                            
+                        }
+                    }
+                }
+            ],
+        }
+    ],
+
     onItemDblClick: function (grid, record) {
         var me = this;
         var window = Ext.create('Ilc.view.gradingSystems.Edit', {
@@ -34,7 +51,7 @@
         window.show();
     },
 
-    initComponent: function() {
+    initComponent: function () {
         var me = this;
 
         var gradingSystemsStore = Ext.create('Ilc.store.TrainingSystems');

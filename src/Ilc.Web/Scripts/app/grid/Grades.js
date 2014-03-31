@@ -47,6 +47,24 @@
             }
         ];
 
+        me.dockedItems = [
+            {
+                xtype: 'toolbar',
+                dock: 'bottom',
+                items: [
+                    {
+                        text: 'New grade',
+                        handler: function () {
+                            var newGrade = Ext.create('Ilc.model.Grade');
+                            
+                            me.store.insert(0, newGrade);
+                            rowEditing.startEdit(0, 0);
+                        }
+                    }
+                ],
+            }
+        ];
+
         me.on('itemcontextmenu', function(view, record, item, index, e) {
             e.stopEvent();
 
@@ -60,7 +78,6 @@
 
                                 rowEditing.cancelEdit();
                                 var newGrade = Ext.create('Ilc.model.Grade');
-                                debugger;
                                 me.store.insert(index, newGrade);
                                 rowEditing.startEdit(selected[0].index, 0);
                             }
