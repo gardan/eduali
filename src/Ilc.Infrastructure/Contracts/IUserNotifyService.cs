@@ -7,6 +7,6 @@ namespace Ilc.Infrastructure.Contracts
 {
     public interface IUserNotifyService
     {
-        void Notify(string tpl, Dictionary<string, string> data);
+        void Notify(int userId, string body);
     }
 }

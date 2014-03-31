@@ -71,6 +71,10 @@
     <Reference Include="ServiceStack.Mvc">
       <HintPath>..\..\packages\ServiceStack.Mvc.4.0.12\lib\net40\ServiceStack.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceStack.Razor, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\ServiceStack-e431236\ServiceStack.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="ServiceStack.Text, Version=4.0.12.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\libs\ServiceStack-e431236\ServiceStack.Text.dll</HintPath>
@@ -3972,6 +3976,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Templates.cs" />
     <Compile Include="InjectorConventions\AvailabilityModelToAvailability.cs" />
     <Compile Include="InjectorConventions\AvailabilityToAvailabilityModel.cs" />
     <Compile Include="InjectorConventions\GradingSystemToWebModel.cs" />

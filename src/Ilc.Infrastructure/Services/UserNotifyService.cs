@@ -6,7 +6,7 @@ namespace Ilc.Infrastructure.Services
 {
     public class UserNotifyService : IUserNotifyService
     {
-        public void Notify(string tpl, Dictionary<string, string> data)
+        public void Notify(int userId, string body)
         {
             
         }

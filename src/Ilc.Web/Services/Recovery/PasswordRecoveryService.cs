@@ -5,6 +5,7 @@ using System.Web;
 using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
 using Ilc.Infrastructure.Contracts;
+using Ilc.Web.Helpers;
 using ServiceStack;
 
 namespace Ilc.Web.Services.Recovery
@@ -24,7 +25,7 @@ namespace Ilc.Web.Services.Recovery
             {
                 tpl = "";
                 // Notify that account does not exist.
-                UserNotifyService.Notify(tpl, new Dictionary<string, string>() { { "Email", request.Email } });
+                // UserNotifyService.Notify(tpl, new Dictionary<string, string>() { { "Email", request.Email } });
                 return new HttpResult(); // EXIT
             }
 
@@ -41,8 +42,9 @@ namespace Ilc.Web.Services.Recovery
             Uow.Commit();
 
             // Send email with reset url
-            tpl = "";
-            UserNotifyService.Notify(tpl, new Dictionary<string, string>() { { "User", request.Email } });
+            var body = Templates.ForgotPasswordIniated(new {Token = membership.PasswordVerificationToken});
+            UserNotifyService.Notify(user.Id, body);
+            // UserNotifyService.Notify(tpl, new Dictionary<string, string>() { { "User", request.Email } });
 
             return new HttpResult();
         }
@@ -70,7 +72,7 @@ namespace Ilc.Web.Services.Recovery
             Uow.Commit();
 
             var tpl = "";
-            UserNotifyService.Notify(tpl, new Dictionary<string, string>() { { "Email", "asdasd" } });
+            // UserNotifyService.Notify(tpl, new Dictionary<string, string>() { { "Email", "asdasd" } });
 
             return new HttpResult();
         }
