@@ -76,7 +76,7 @@
         },
         {
             text: Ilc.resources.Manager.getResourceString('common.cancel'),
-            handler: function () {
+            handler: function (btn) {
                 var me = btn.up('window');
                 me.close();
             }
