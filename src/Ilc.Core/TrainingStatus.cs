@@ -44,10 +44,10 @@ namespace Ilc.Core
                     { Ended, 0.91 },
                     { Complete, 1 },
 
-                    { Planning, 0 },
-                    { Publishing, 0 },
-                    { UserRegistration, 0 },
-                    { PendingValidation, 0 },
+                    { Planning, 0.11 },
+                    { Publishing, 0.22 },
+                    { UserRegistration, 0.33 },
+                    { PendingValidation, 0.44 },
                     { Validated, 0 },
                     { Cancelled, 0 }
                 };
