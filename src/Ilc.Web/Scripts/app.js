@@ -92,6 +92,8 @@ Ext.application({
 
         Ext.form.field.Date.prototype.format = Ilc.resources.Manager.getResourceString('formats.extjsdate');
 
+        Ext.grid.Panel.prototype.emptyText = 'No data.';
+
         Ext.Ajax.defaultHeaders = {
             'Content-Type': 'application/json'
         };
