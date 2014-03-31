@@ -28,7 +28,18 @@
                 {
                     text: 'Create new system',
                     listeners: {
-                        click: function () {
+                        click: function (btn) {
+                            var me = btn.up('grid');
+                            var newGradingSystem = Ext.create('Ilc.model.GradingSystem', {
+                                name: 'New grading system'
+                            });
+
+                            newGradingSystem.save({
+                                success: function () {
+
+                                    me.store.reload();
+                                }
+                            });
                             
                         }
                     }
