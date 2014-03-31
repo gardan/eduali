@@ -5,6 +5,8 @@
         gradingSystemId: null
     },
 
+    minHeight: 130,
+
     dockedItems: [
         {
             xtype: 'toolbar',

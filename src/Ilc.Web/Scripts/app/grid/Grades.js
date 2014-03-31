@@ -5,6 +5,8 @@
         'Ilc.model.Grade'
     ],
     
+    minHeight: 130,
+
     viewConfig: {
         plugins: {
             ptype: 'gridviewdragdrop',
