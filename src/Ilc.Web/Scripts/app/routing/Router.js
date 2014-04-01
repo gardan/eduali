@@ -34,6 +34,13 @@
                     target = viewport.down('#viewport-target'),
                     navToolbar = viewport.down('#main-nav-toolbar');
 
+                // close all the windows
+                var windows = Ext.ComponentQuery.query('window');
+                Ext.Array.forEach(windows, function (window) {
+                    if (window.xtype == 'messagebox') return;
+                    window.close();
+                });
+
                 // adjust the controller and action names
                 action = Ext.String.capitalize(match.action);
                 controller = match.controller.charAt(0).toLowerCase() + match.controller.substr(1);
