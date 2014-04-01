@@ -7,7 +7,7 @@
     },
     
     updated: function() {
-        console.log('success');
+        Ext.History.fireEvent('change', '');
     },
 
     initComponent: function () {
