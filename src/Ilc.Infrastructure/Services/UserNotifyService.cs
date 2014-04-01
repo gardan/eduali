@@ -17,6 +17,11 @@ namespace Ilc.Infrastructure.Services
             SendMail(email.Email, "", body);
         }
 
+        public void Notify(string email, string body)
+        {
+            SendMail(email, "", body);
+        }
+
         private void SendMail(string to, string subject, string body)
         {
             WebMail.SmtpServer = WebConfigurationManager.AppSettings["SMTPHost"];

@@ -4103,6 +4103,7 @@
     <Content Include="Views\Pdf\Offer.cshtml" />
     <Content Include="Views\Pdf\TrainingEvaluation.cshtml" />
     <Content Include="Views\Templates\Email\ForgotPasswordInitiated.cshtml" />
+    <Content Include="Views\Templates\Email\ForgotPasswordNoUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

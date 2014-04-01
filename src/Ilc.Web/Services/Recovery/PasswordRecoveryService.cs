@@ -23,9 +23,9 @@ namespace Ilc.Web.Services.Recovery
             string tpl;
             if (user == null)
             {
-                tpl = "";
+                tpl = Templates.ForgotPasswordNoUser();
                 // Notify that account does not exist.
-                // UserNotifyService.Notify(tpl, new Dictionary<string, string>() { { "Email", request.Email } });
+                UserNotifyService.Notify(request.Email, tpl);
                 return new HttpResult(); // EXIT
             }
 
@@ -75,8 +75,8 @@ namespace Ilc.Web.Services.Recovery
             Uow.Memberships.Update(membership);
             Uow.Commit();
 
-            var tpl = "";
-            // UserNotifyService.Notify(tpl, new Dictionary<string, string>() { { "Email", "asdasd" } });
+            var tpl = Templates.ForgotPasswordComplete();
+            UserNotifyService.Notify(membership.UserId, tpl);
 
             return new HttpResult();
         }

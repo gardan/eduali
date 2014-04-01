@@ -8,5 +8,6 @@ namespace Ilc.Infrastructure.Contracts
     public interface IUserNotifyService
     {
         void Notify(int userId, string body);
+        void Notify(string email, string body);
     }
 }
