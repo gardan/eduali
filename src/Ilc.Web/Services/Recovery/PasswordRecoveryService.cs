@@ -42,7 +42,11 @@ namespace Ilc.Web.Services.Recovery
             Uow.Commit();
 
             // Send email with reset url
-            var body = Templates.ForgotPasswordIniated(new {Token = membership.PasswordVerificationToken});
+            var body = Templates.ForgotPasswordInitiated(new
+                {
+                    Email = request.Email,
+                    ResetUrl = Request.GetApplicationUrl() + "/#recover?token=" + membership.PasswordVerificationToken
+                });
             UserNotifyService.Notify(user.Id, body);
             // UserNotifyService.Notify(tpl, new Dictionary<string, string>() { { "User", request.Email } });
 

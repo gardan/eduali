@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
+using ServiceStack;
 using ServiceStack.Razor;
 using ServiceStack.Testing;
 using ServiceStack.VirtualPath;
@@ -10,7 +12,7 @@ namespace Ilc.Web.Helpers
 {
     public static class Templates
     {
-        public static string ForgotPasswordIniated(dynamic data)
+        public static string ForgotPasswordInitiated(dynamic data)
         {
             var razor = new RazorFormat()
                 {
@@ -18,8 +20,9 @@ namespace Ilc.Web.Helpers
                     EnableLiveReload = false // Don't scan for file system changes
                 }.Init();
 
-            var tpl = razor.CreatePage("Hello, Please click this link to reset your password http://localhost:54877/#recover?token=@Model.Token");
-            var html = razor.RenderToHtml(tpl, data);
+            var tpl = File.ReadAllText(Path.Combine(HostContext.VirtualPathProvider.RootDirectory.RealPath, "..", @"Views\Templates\Email\ForgotPasswordInitiated.cshtml"));
+            var razorPage = razor.CreatePage(tpl);
+            var html = razor.RenderToHtml(razorPage, data);
             return html;
         }
     }
