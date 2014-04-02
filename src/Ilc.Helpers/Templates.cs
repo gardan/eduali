@@ -2,23 +2,24 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 using ServiceStack;
 using ServiceStack.Razor;
 using ServiceStack.Testing;
 using ServiceStack.VirtualPath;
 
-namespace Ilc.Web.Helpers
+namespace Ilc.Helpers
 {
     public static class Templates
     {
         public static string ForgotPasswordInitiated(dynamic data)
         {
             var razor = new RazorFormat()
-                {
-                    VirtualPathProvider = new InMemoryVirtualPathProvider(new BasicAppHost()),
-                    EnableLiveReload = false // Don't scan for file system changes
-                }.Init();
+            {
+                VirtualPathProvider = new InMemoryVirtualPathProvider(new BasicAppHost()),
+                EnableLiveReload = false // Don't scan for file system changes
+            }.Init();
 
             var tpl = File.ReadAllText(Path.Combine(HostContext.VirtualPathProvider.RootDirectory.RealPath, "..", @"Views\Templates\Email\ForgotPasswordInitiated.cshtml"));
             var razorPage = razor.CreatePage(tpl);

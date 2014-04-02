@@ -3981,7 +3981,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\Templates.cs" />
     <Compile Include="InjectorConventions\AvailabilityModelToAvailability.cs" />
     <Compile Include="InjectorConventions\AvailabilityToAvailabilityModel.cs" />
     <Compile Include="InjectorConventions\GradingSystemToWebModel.cs" />
@@ -4119,6 +4118,10 @@
     <ProjectReference Include="..\ILC.Data\Ilc.Data.csproj">
       <Project>{23dc2e5a-51c6-4cc9-ac7a-469082f37a22}</Project>
       <Name>Ilc.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ilc.Helpers\Ilc.Helpers.csproj">
+      <Project>{E7E41328-1224-42EF-ACF9-6CE7F32A5D2E}</Project>
+      <Name>Ilc.Helpers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ilc.Infrastructure\Ilc.Infrastructure.csproj">
       <Project>{47F21E74-3170-45F0-AA69-35EC3372E562}</Project>

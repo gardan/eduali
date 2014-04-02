@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilc.Crypto", "Ilc.Membershi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilc.Misc", "src\Ilc.Misc\Ilc.Misc.csproj", "{9393D425-993F-4BFF-90B7-484CF358E8FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilc.Helpers", "src\Ilc.Helpers\Ilc.Helpers.csproj", "{E7E41328-1224-42EF-ACF9-6CE7F32A5D2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{9393D425-993F-4BFF-90B7-484CF358E8FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9393D425-993F-4BFF-90B7-484CF358E8FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9393D425-993F-4BFF-90B7-484CF358E8FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7E41328-1224-42EF-ACF9-6CE7F32A5D2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7E41328-1224-42EF-ACF9-6CE7F32A5D2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7E41328-1224-42EF-ACF9-6CE7F32A5D2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7E41328-1224-42EF-ACF9-6CE7F32A5D2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

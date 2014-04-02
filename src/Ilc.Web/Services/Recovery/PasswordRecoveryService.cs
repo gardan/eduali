@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
+using Ilc.Helpers;
 using Ilc.Infrastructure.Contracts;
-using Ilc.Web.Helpers;
 using ServiceStack;
 
 namespace Ilc.Web.Services.Recovery
