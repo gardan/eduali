@@ -1,21 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Configuration;
 using System.Web.Helpers;
 using Ilc.Core.Contracts;
-using Ilc.Infrastructure.Contracts;
 
-namespace Ilc.Infrastructure.Services
+namespace Ilc.Core.Services
 {
     public class UserNotifyService : IUserNotifyService
     {
-        public IUsersService Users { get; set; }
-
-        public void Notify(int userId, string body)
-        {
-            var email = Users.GetById(userId);
-            SendMail(email.Email, "", body);
-        }
 
         public void Notify(string email, string body)
         {
@@ -29,7 +20,7 @@ namespace Ilc.Infrastructure.Services
             WebMail.UserName = WebConfigurationManager.AppSettings["SMTPUsername"];
             WebMail.Password = WebConfigurationManager.AppSettings["SMTPPassword"];
             WebMail.EnableSsl = Convert.ToBoolean(WebConfigurationManager.AppSettings["SMTPEnableSsl"]);
-
+            
             WebMail.From = "admin@eduali.com";
             
             WebMail.Send(to, subject, body);

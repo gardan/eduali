@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Web.Configuration;
 using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models;
 using Ilc.Data.Models.SimpleMembership;
+using Ilc.Helpers;
 using Ilc.Misc;
 
 namespace Ilc.Core.Services
@@ -14,6 +16,7 @@ namespace Ilc.Core.Services
     public class UsersService : IUsersService
     {
         public IUow Uow { get; set; }
+        public IUserNotifyService NotifyService { get; set; }   
 
         public FilteredResults<UserProfile> GetFiltered(FilterArgumentsUsers parameters)
         {
@@ -95,6 +98,9 @@ namespace Ilc.Core.Services
             // Create the membership
             var salt = Crypto.Crypto.GenerateSalt();
             var hashedPwd = "";
+            var token = "";
+            DateTime? tokenExpirationDate = null;
+            
             if (password != "")
             {
                 hashedPwd = GetHashedFromPlain(password, salt);
@@ -104,6 +110,9 @@ namespace Ilc.Core.Services
                 var buffer = new byte[20];
                 StaticRandom.NextBytes(buffer);
                 GetHashedFromPlain(Encoding.UTF8.GetString(buffer), salt);
+
+                token = Guid.NewGuid().ToString();
+                tokenExpirationDate = DateTime.UtcNow.AddDays(1);
             }
 
             Uow.Memberships.Add(new Membership()
@@ -111,9 +120,22 @@ namespace Ilc.Core.Services
                     UserId = user.Id,
                     PasswordFailuresSinceLastSuccess = 0,
                     Password = hashedPwd,
-                    PasswordSalt = salt
+                    PasswordSalt = salt,
+                    PasswordVerificationToken = token,
+                    PasswordVerificationTokenExpirationDate = tokenExpirationDate
                 });
             Uow.Commit();
+            
+            if (password == "")
+            {
+                var appUrl = WebConfigurationManager.AppSettings["ApplicationUrl"];
+                var body = Templates.CreatedAccountWithNoPassword(new
+                    {
+                        InitPasswordUrl = string.Format("{0}/#initaccount?token={1}", appUrl, token)                    
+                    });
+                
+                NotifyService.Notify(user.Email, body);
+            }
         }
 
         public void Update(UserProfile user)

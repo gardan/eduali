@@ -41,15 +41,11 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.DurableInstancing" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IUserNotifyService.cs" />
-    <Compile Include="Services\UserNotifyService.cs" />
     <Compile Include="Services\AvailabilityTemplatesService.cs" />
     <Compile Include="Contracts\IAvailabilityTemplatesService.cs" />
     <Compile Include="Contracts\IStatisticsService.cs" />

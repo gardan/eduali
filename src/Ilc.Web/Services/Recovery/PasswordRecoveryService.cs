@@ -47,7 +47,7 @@ namespace Ilc.Web.Services.Recovery
                     Email = request.Email,
                     ResetUrl = Request.GetApplicationUrl() + "/#recover?token=" + membership.PasswordVerificationToken
                 });
-            UserNotifyService.Notify(user.Id, body);
+            UserNotifyService.Notify(user.Email, body);
             // UserNotifyService.Notify(tpl, new Dictionary<string, string>() { { "User", request.Email } });
 
             return new HttpResult();
@@ -67,6 +67,7 @@ namespace Ilc.Web.Services.Recovery
 
             // Change the pwd
             Users.UpdatePassword(membership.UserId, request.Password);
+            var user = Users.GetById(membership.UserId);
 
             // remove reset token
             membership.PasswordVerificationToken = "";
@@ -76,7 +77,7 @@ namespace Ilc.Web.Services.Recovery
             Uow.Commit();
 
             var tpl = Templates.ForgotPasswordComplete();
-            UserNotifyService.Notify(membership.UserId, tpl);
+            UserNotifyService.Notify(user.Email, tpl);
 
             return new HttpResult();
         }

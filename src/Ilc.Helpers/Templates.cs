@@ -45,5 +45,19 @@ namespace Ilc.Helpers
         {
             return File.ReadAllText(Path.Combine(HostContext.VirtualPathProvider.RootDirectory.RealPath, "..", @"Views\Templates\Email\ForgotPasswordComplete.cshtml"));
         }
+
+        public static string CreatedAccountWithNoPassword(dynamic data)
+        {
+            var razor = new RazorFormat()
+            {
+                VirtualPathProvider = new InMemoryVirtualPathProvider(new BasicAppHost()),
+                EnableLiveReload = false // Don't scan for file system changes
+            }.Init();
+
+            var tpl = File.ReadAllText(Path.Combine(HostContext.VirtualPathProvider.RootDirectory.RealPath, "..", @"Views\Templates\Email\CreatedAccountWithNoPassword.cshtml"));
+            var razorPage = razor.CreatePage(tpl);
+            var html = razor.RenderToHtml(razorPage, data);
+            return html;
+        }
     }
 }
