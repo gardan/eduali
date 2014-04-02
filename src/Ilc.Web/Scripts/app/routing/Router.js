@@ -47,6 +47,7 @@
 
                 // try to get the view by controller + action names
                 viewClass = Ext.ClassManager.get('Ilc.view.' + controller + '.' + action);
+                
 
                 if (viewClass) {
                     // create view
@@ -63,6 +64,8 @@
                     if (navToolbar.child('#' + controller)) {
                         navToolbar.child('#' + controller).toggle(true);
                     }
+                } else {
+                    console.log('Ilc.view.' + controller + '.' + action, ' not found');
                 }
             }
         });

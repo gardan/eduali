@@ -58,7 +58,8 @@ Ext.application({
         'companies.List',
         'profile.Edit',
         'recovery.Default',
-        'companies.Default'
+        'companies.Default',
+        'recovery.InitAccount'
     ],  
         
     routes: {
@@ -78,7 +79,8 @@ Ext.application({
         'companies': 'companies#list',
         'profile': 'profile#edit',
         'recover': 'recovery#default',
-        'company': 'companies#default'
+        'company': 'companies#default',
+        'initaccount': 'recovery#initAccount'
     },
 
     enableRouter: true,

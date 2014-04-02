@@ -9,6 +9,9 @@
             },
             recoverwindow: {
                 recover: this.onRecover
+            },
+            initaccountcontainer: {
+                updatepassword: this.onUpdatePassword
             }
         });
     },
@@ -78,5 +81,8 @@
     },
 
     default: function() {
+    },
+    
+    initAccount: function() {
     }
 });
