@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models;
 using Ilc.Data.Models.SimpleMembership;
+using Ilc.Misc;
 
 namespace Ilc.Core.Services
 {
@@ -92,8 +94,18 @@ namespace Ilc.Core.Services
 
             // Create the membership
             var salt = Crypto.Crypto.GenerateSalt();
-            var hashedPwd = GetHashedFromPlain(password, salt);
-            
+            var hashedPwd = "";
+            if (password != "")
+            {
+                hashedPwd = GetHashedFromPlain(password, salt);
+            }
+            else
+            {
+                var buffer = new byte[20];
+                StaticRandom.NextBytes(buffer);
+                GetHashedFromPlain(Encoding.UTF8.GetString(buffer), salt);
+            }
+
             Uow.Memberships.Add(new Membership()
                 {
                     UserId = user.Id,
