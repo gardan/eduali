@@ -428,6 +428,7 @@
     <Content Include="Scripts\app\view\profile\Edit.js" />
     <Content Include="Scripts\app\view\progressEvaluations\Edit.js" />
     <Content Include="Scripts\app\view\recovery\Default.js" />
+    <Content Include="Scripts\app\view\recovery\InitAccount.js" />
     <Content Include="Scripts\app\view\roles\Create.js" />
     <Content Include="Scripts\app\view\roles\Edit.js" />
     <Content Include="Scripts\app\view\roles\edit\Panel.js" />
