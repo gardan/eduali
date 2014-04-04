@@ -250,9 +250,11 @@
         me.items = [
             {
                 xtype: 'tabpanel',
+                anchor: '100%, 100%',
                 items: [
                     {
                         xtype: 'panel',
+                        
                         title: 'General',
                         defaults: {
                             bodyPadding: 10,
