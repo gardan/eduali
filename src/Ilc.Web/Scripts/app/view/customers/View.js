@@ -6,6 +6,8 @@
         'Ilc.view.customers.contacts.List'
     ],
     
+    layout: 'anchor',
+
     bodyPadding: 0,
     width: 800,
     customer: null,
@@ -20,6 +22,7 @@
         me.items = [
             {
                 xtype: 'tabpanel',
+                anchor: '100%, 100%',
                 items: [
                     {
                         title: 'General',

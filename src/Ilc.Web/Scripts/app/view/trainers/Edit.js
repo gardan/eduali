@@ -191,9 +191,11 @@
         me.items = [
             {
                 xtype: 'tabpanel',
+                anchor: '100%, 100%',
                 items: [
                     {
                         xtype: 'container',
+                        border: false,
                         title: 'General',
                         defaults: {
                             xtype: 'textfield',

@@ -173,6 +173,7 @@
         me.items = [
             {
                 xtype: 'tabpanel',
+                anchor: '100%, 100%',
                 items: [
                     {
                         title: 'General',
