@@ -20,8 +20,8 @@ namespace Ilc.Core.Services
             WebMail.UserName = WebConfigurationManager.AppSettings["SMTPUsername"];
             WebMail.Password = WebConfigurationManager.AppSettings["SMTPPassword"];
             WebMail.EnableSsl = Convert.ToBoolean(WebConfigurationManager.AppSettings["SMTPEnableSsl"]);
-            
-            WebMail.From = "admin@eduali.com";
+
+            WebMail.From = WebConfigurationManager.AppSettings["SMTPUsername"];
 
             try
             {
