@@ -22,8 +22,16 @@ namespace Ilc.Core.Services
             WebMail.EnableSsl = Convert.ToBoolean(WebConfigurationManager.AppSettings["SMTPEnableSsl"]);
             
             WebMail.From = "admin@eduali.com";
+
+            try
+            {
+                WebMail.Send(to, subject, body);
+            }
+            catch (Exception)
+            {
+                // TODO: add logging. use SS Logging with ELMAH
+            }
             
-            WebMail.Send(to, subject, body);
         }
     }
 }
