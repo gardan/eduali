@@ -89,6 +89,7 @@
                 text: 'Availability',
                 iconCls: 'icon-availability-32',
                 itemId: 'menu.availability',
+                border: false,
                 hidden: !Ilc.Configuration.claimExists('tasks-trainer') && !Ilc.Configuration.claimExists('availability-read'),
                 listeners: {
                     click: function(panel) {
@@ -110,9 +111,10 @@
             {
                 text: Ilc.Configuration.getValue('username'),
                 hidden: !Ilc.Configuration.loggedIn(),
+                cls: 'eduali-menu eduali-menu-right',
                 toggleGroup: '',
-                scale: 'medium',
-                padding: '0',
+                padding: false,
+                border: false,
                 menu: [
                     {
                         text: Ilc.resources.Manager.getResourceString('common.profile'),
@@ -153,16 +155,24 @@
                 xtype: 'toolbar',
                 region: 'north',
                 itemId: 'main-nav-toolbar',
+                padding: '10 10 0 10',
+                border: false,
                 defaults: {
+                    iconAlign: 'right',
                     scale: 'large',
-                    // padding: '0 10',
+                    margin: 0,
+                    overCls: 'eduali-menu-hover',
+                    pressedCls: 'eduali-menu-pressed',
+                    cls: 'eduali-menu',
                     toggleGroup: 'main-nav',
+                    border: '0 2 0 0',
                     allowDepress: false
                 },
                 items: this._initMenuButtons()
             },
             {
                 xtype: 'container',
+                padding: '0 10 0 10',
                 itemId: 'viewport-target',
                 region: 'center',
                 layout: 'fit'
