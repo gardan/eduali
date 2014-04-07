@@ -12,7 +12,7 @@
     },
 
     title: 'Edit grading system',
-    
+    autoScroll: true,
     maxHeight: 450,
 
     gradingSystem: null,
