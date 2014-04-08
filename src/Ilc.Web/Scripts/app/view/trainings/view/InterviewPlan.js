@@ -18,7 +18,7 @@
 
     initComponent: function() {
         var me = this;
-        debugger;
+        
         me.items = [
             {
                 xtype: 'datefield',

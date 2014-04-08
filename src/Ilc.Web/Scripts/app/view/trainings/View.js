@@ -29,6 +29,7 @@
     initComponent: function (cfg) {
         var me = this;
         var model = me.model;
+        var initialResizeForDocumentsTab = false;
 
         var studentsStore = Ext.create('Ext.data.Store', {
             fields: ['id', 'name', 'phone'],
@@ -88,10 +89,15 @@
         var documentsTree = Ext.create('Ext.tree.Panel', {
             store: documentsTreeStore,
             rootVisible: false,
-            columnWidth: 0.40
+            columnWidth: 0.40,
+            minHeight: 100,
+            width : 200,
+            collapsible: true,
+            region: 'west'
         });
         var documentsPanel = Ext.create('Ext.grid.Panel', {
             columnWidth: 0.60,
+            region: 'center',
             store: documentsStore,
             border: false,
             header: false,
@@ -251,6 +257,14 @@
             {
                 xtype: 'tabpanel',
                 anchor: '100%, 100%',
+                listeners: {
+                    tabchange: function (tabpanel, newCard, oldCard) {
+                        if (newCard.initialConfig.ticktack == true && !initialResizeForDocumentsTab) {
+                            me.resizer.resizeTo(me.getWidth(), 300);
+                            // window.resize();
+                        }
+                    }
+                },
                 items: [
                     {
                         xtype: 'panel',
@@ -409,7 +423,8 @@
                     {
                         xtype: 'panel',
                         title: 'Documents',
-                        layout: 'column',
+                        layout: 'border',
+                        ticktack: true, // use the initalConfig property to determine if this is the documents component
                         items: [
                             documentsTree,
                             documentsPanel
