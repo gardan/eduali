@@ -26,6 +26,16 @@
 
     _initLoginWindow: function() {
         return Ext.create('Ilc.window.Login', {
+            listeners: {
+                'afterloginsuccess': function() {
+                    Ilc.LoginManager.loginWindow.close();
+                    Ilc.LoginManager.loginWindow = null;
+
+                    Ext.Array.forEach(Ilc.LoginManager.requestsQueue, Ilc.LoginManager._forEachFunc);
+                    Ilc.LoginManager.requestsQueue.length = 0;
+                    Ilc.LoginManager.onAfterLoginSuccess();
+                }
+            },
             handler: function () {
 
                 var window = this.up('window');

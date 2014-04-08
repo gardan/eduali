@@ -61,7 +61,7 @@ namespace Ilc.Core.Services
             };
         }
 
-        public void Create(Company newCompany, UserProfile initialUser)
+        public void Create(Company newCompany, UserProfile initialUser, string initialUserPassword)
         {
             // 1. Create the company
             Uow.Companies.Add(newCompany);
@@ -79,7 +79,7 @@ namespace Ilc.Core.Services
             // 3. Create the defaults user
             initialUser.CompanyId = newCompany.Id;
             initialUser.Roles = roles;
-            Users.Create(initialUser, initialUser.Email);
+            Users.Create(initialUser, initialUserPassword);
         }
 
         public Company GetById(int id)

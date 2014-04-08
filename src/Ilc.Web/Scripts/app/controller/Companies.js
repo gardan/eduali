@@ -11,6 +11,9 @@
             },
             'companycontainer': {
                 'updatecompany': this.onUpdateCompany
+            },
+            'createaccountwindow': {
+                'addnewaccount': this.addCompany
             }
         });
     },

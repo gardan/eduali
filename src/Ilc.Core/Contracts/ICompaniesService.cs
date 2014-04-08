@@ -9,7 +9,7 @@ namespace Ilc.Core.Contracts
     public interface ICompaniesService
     {
         FilteredResults<Company> GetFiltered(FilterArguments request);
-        void Create(Company newCompany, UserProfile initialUser);
+        void Create(Company newCompany, UserProfile initialUser, string initialUserPassword);
         Company GetById(int id);
         void Update(Company company);
     }

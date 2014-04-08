@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net;
 using Ilc.Core;
 using Ilc.Core.Contracts;
 using Ilc.Data.Models;
+using Ilc.Web.Authentication.Contracts;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
 using ServiceStack;
@@ -12,6 +14,7 @@ namespace Ilc.Web.Services
     public class CompaniesService : Service
     {
         public ICompaniesService Companies { get; set; }
+        public IIdentityAuthenticationManager AuthenticationManager { get; set; }
 
         public FilteredDataModel<CompanyModel> Get(FilterParametersCompanies request)
         {
@@ -31,10 +34,14 @@ namespace Ilc.Web.Services
             var userProfile = new UserProfile()
                 {
                     Email = request.UserInfo.Email,
-                    UserDetails = new UserDetails().InjectFrom(request.UserInfo) as UserDetails
+                    UserDetails = new UserDetails().InjectFrom(request.UserInfo) as UserDetails,
                 };
 
-            Companies.Create(company, userProfile);
+            Companies.Create(company, userProfile, request.Password);
+            if (!AuthenticationManager.IsAuthenticated())
+            {
+                AuthenticationManager.CheckPasswordAndSignIn(request.UserInfo.Email, request.Password, true);
+            }           
 
             return new HttpResult()
                 {
@@ -60,6 +67,7 @@ namespace Ilc.Web.Services
     {
         public string Name { get; set; }
         public UserInfoModel UserInfo { get; set; }
+        public string Password { get; set; }
     }
 
     public class FilterParametersCompanies : FilterArguments

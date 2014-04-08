@@ -38,6 +38,21 @@
         window.show();
     },
 
+    onSignUp: function() {
+        var window = Ext.create('Ilc.window.CreateAccount', {
+            listeners: {
+                created: this.onAccountCreateSuccess,
+                scope: this
+            }
+        });
+
+        window.show();
+    },
+
+    onAccountCreateSuccess: function() {
+        this.fireEvent('afterloginsuccess');
+    },
+
     initComponent: function () {
 
         this.addEvents(
@@ -55,6 +70,13 @@
                 }
             },
             '->',
+            {
+                text: 'Sign up',
+                listeners: {
+                    click: this.onSignUp,
+                    scope: this
+                }
+            },
             {
                 text: 'Login',
                 handler: this.handler
