@@ -18,14 +18,14 @@
 
     initComponent: function() {
         var me = this;
-
+        debugger;
         me.items = [
             {
                 xtype: 'datefield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.interviewDay'),
                 name: 'interviewDate',
                 disabled: (me.plan === null),
-                value: me.plan == null ? null : new Date(me.plan.get('date')),
+                value: me.plan.get('date') == '' ? '' : new Date(me.plan.get('date')),
                 format: 'Y-m-d'
             },
             {
