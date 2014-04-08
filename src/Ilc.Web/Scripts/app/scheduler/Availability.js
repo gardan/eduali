@@ -2,14 +2,14 @@
     extend: 'Sch.panel.SchedulerGrid',
     xtype: 'availabilityscheduler',
 
-    viewPreset: 'hourAndDayLarge',
+    // viewPreset: 'hourAndDayLarge',
 
     plugins: [
         new Sch.plugin.Pan({
             enableVerticalPan: true,
             disableOnKey: Sch.plugin.Pan.KEY_SHIFT
         }),
-        new Sch.plugin.HeaderZoom()
+        // new Sch.plugin.HeaderZoom()
     ],
 
     requires: [
@@ -19,10 +19,10 @@
     multiSelect: true,
     allowOverlap: false,
     contextMenu: null,
-
+    
     _selectedResources: [],
     tplBtn: null,
-
+    
     setSelectedResources: function (resources) {
         this._selectedResources = resources;
         if (resources.length > 0) {
@@ -31,13 +31,13 @@
             this.tplBtn.setDisabled(true);
         }
     },
-
+    
     getSelectedResources: function () { return this._selectedResources; },
 
     loadAvailabilityStore: function() {
         var me = this;
 
-        var startDate = Sch.util.Date.add(me.getStartDate(), Sch.util.Date.DAY, 10);
+        var startDate = Ext.Date.subtract(me.getStartDate(), Ext.Date.DAY, 10);
         var endDate = Sch.util.Date.add(me.getEndDate(), Sch.util.Date.DAY, 10);
         var availabilityStore = me.eventStore;
 
@@ -57,7 +57,7 @@
     availabilityPersisted: function(options) {
         console.log('persisted');
     },
-
+    
     _updateAvailabilityEvent: function(availability) {
         this.fireEvent('updateavailability', this, {
             id: availability.get('id'),
@@ -65,7 +65,7 @@
             endDate: availability.get('endDate')
         });
     },
-
+    
     onSelect: function (selectModel) {
         if (selectModel.view.xtype == 'gridview') {
             var args = arguments;
@@ -73,11 +73,11 @@
             this.setSelectedResources(selectedItems);
         }
     },
-
+    
     onEventResized: function(sender, event) {
         this._updateAvailabilityEvent(event);
     },
-
+    
     onEventDrop: function (sender, events) {
         var event = events[0];
         this._updateAvailabilityEvent(event);
@@ -93,7 +93,7 @@
                 endDate: newEvent.get('endDate'),
                 resourceId: newEvent.get('resourceId')
             };
-
+        
             me.fireEvent('availabilitycreated', scheduler, model, {
                 internalId: newEvent.internalId
             });
@@ -101,7 +101,7 @@
 
         me.on('eventcontextmenu', function (scheduler, eventRecord, e, eOpts) {
             e.stopEvent();
-
+        
             if (!scheduler.contextMenu) {
                 scheduler.contextMenu = Ext.create('Ext.menu.Menu', {
                     items: [{
@@ -125,9 +125,9 @@
                                 startDate: scheduler.contextMenu.record.get('startDate'),
                                 resourceId: scheduler.contextMenu.record.get('resourceId')
                             };
-
+        
                             me.fireEvent('availabilityremoved', scheduler, model);
-                            debugger;
+
                             var records = scheduler.eventStore.queryBy(function (record) {
                                 if (record.get('startDate') >= model.startDate && record.get('resourceId') == model.resourceId) {
                                     return true;
@@ -135,7 +135,7 @@
                             });
                             
                             scheduler.eventStore.remove(records.items);
-
+        
                             console.log(model);
                         }
                     }]
@@ -166,7 +166,7 @@
                 createAvailabilitiesWindows.on('addedavailability', function () {
                     me.loadAvailabilityStore();
                 });
-
+        
                 createAvailabilitiesWindows.show();
             }
         });
@@ -220,10 +220,10 @@
         me.zoomLevels = [
             // WEEK
             { width: 50, increment: 1, resolution: 30, preset: 'weekAndMonth', resolutionUnit: 'MINUTE' },
-
+        
             // DAY
             { width: 100, increment: 1, resolution: 30, preset: 'weekAndDay', resolutionUnit: 'MINUTE' },
-
+        
             //HOUR
             { width: 50, increment: 6, resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' },
             { width: 50, increment: 1, resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' }
@@ -234,9 +234,9 @@
             me.goToNow();
             me.zoomToLevel(3);
         };
-
+        
         me.on('afterlayout', func);
-
+        
         me.on('select', me.onSelect);
         me.on('deselect', me.onSelect);
         me.on('eventresizeend', me.onEventResized);
