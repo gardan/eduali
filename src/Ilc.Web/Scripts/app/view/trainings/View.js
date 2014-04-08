@@ -428,6 +428,14 @@
                         items: [
                             documentsTree,
                             documentsPanel
+                        ],
+                        buttons: [
+                            {
+                                text: 'Close',
+                                handler: function() {
+                                    me.close();
+                                }
+                            }
                         ]
                     },
                     Ext.create('Ilc.view.trainings.view.InterviewPlan', {
