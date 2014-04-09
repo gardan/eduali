@@ -13,6 +13,7 @@
 	
 	<PropertyGroup>
 		<BuildArtefacts>$(ProjectRoot)\buildartefacts</BuildArtefacts>
+		<EdualiPresentationArtefacts>$(BuildArtefacts)\edualipresentation</EdualiPresentationArtefacts>
 	</PropertyGroup>
 	
 	<PropertyGroup>
@@ -56,7 +57,8 @@
 	</Target>
 	
 	<Target Name="Init" DependsOnTargets="Clean">
-		<MakeDir Directories="$(BuildArtefacts)" />
+		<!-- <MakeDir Directories="$(BuildArtefacts)" /> -->
+		<MakeDir Directories="$(EdualiPresentationArtefacts)" />
 	</Target>
 	
 	<Target Name="JSLint">
@@ -69,6 +71,7 @@
 	
 	<Target Name="Compile" DependsOnTargets="Init">
 		<MSBuild Projects="$(ProjectRoot)\Ilc.sln" Targets="Rebuild" Properties="OutDir=$(BuildArtefacts)\;Configuration=$(Configuration)" />
+		<MSBuild Projects="$(ProjectRoot)\Eduali.WebPresentation.sln" Targets="Rebuild" Properties="OutDir=$(EdualiPresentationArtefacts)\;Configuration=$(Configuration)" />
 	</Target>
 	
 	<Target Name="Test" DependsOnTargets="Compile">
@@ -159,8 +162,12 @@
 		
 	<Target Name="Package" DependsOnTargets="Compile">
 		<MSBuild Projects="$(ProjectRoot)\src\Ilc.Web\Ilc.Web.csproj" Targets="Package" Properties="PackageLocation=$(BuildArtefacts)\package\;Configuration=$(Configuration);ProjectParametersXMLFile=$(MSBuildProjectDirectory)\DeployParameters.xml" />
+		<MSBuild Projects="$(ProjectRoot)\src\Eduali.WebPresentation\Eduali.WebPresentation\Eduali.WebPresentation.csproj" Targets="Package" Properties="PackageLocation=$(EdualiPresentationArtefacts)\package\;Configuration=$(Configuration);ProjectParametersXMLFile=$(MSBuildProjectDirectory)\EdualiDeployParameters.xml" />
 		<!-- Copy our parameter file -->
 		<Copy SourceFiles="$(MSBuildProjectDirectory)\DeployParameters.xml" DestinationFiles="$(BuildArtefacts)\package\Ilc.Web.SetParameters.xml" />
+		
+		<Copy SourceFiles="$(MSBuildProjectDirectory)\EdualiDeployParameters.xml" DestinationFiles="$(EdualiPresentationArtefacts)\package\Eduali.WebPresentation.SetParameters.xml" />
+		
 	</Target>
 		
 	<Target Name="DeleteDatabase">
@@ -207,5 +214,6 @@
 				<Source></Source>
 		</PropertyGroup>
 		<Exec Command="CALL $(BuildArtefacts)\package\Ilc.Web.deploy.cmd /Y" />
+		<Exec Command="CALL $(EdualiPresentationArtefacts)\package\Eduali.WebPresentation.deploy.cmd /Y" />
 	</Target>
 </Project>

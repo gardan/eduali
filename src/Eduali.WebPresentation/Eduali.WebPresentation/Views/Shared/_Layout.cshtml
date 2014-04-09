@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>EDUALIWEB</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="~/resources/bootstrap.min.css" rel="stylesheet">
+    <link href="~/resources/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+
+    <div class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="~/index">
+                    <img src="img/logo.png" alt="Edualiweb"></a>
+            </div>
+
+            <div class="menu-wrapper">
+                <ul>
+                    <li><a href="~/trainings">Trainings</a></li>
+                    <li><a href="~/customers">Customers</a></li>
+                    <li><a href="~/companies">Companies</a></li>
+                    <li><a href="~/students">Students</a></li>
+                    <li class="last"><a href="~/trainers">Trainers</a></li>
+                </ul>
+                <a href="new-account.html" class="btn btn-sm btn-warning create-account">Create an account</a>
+                <a href="javascript:;" id="show-login" class="login">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="login" class="login-wrapper">
+        <div class="container">
+            <div class="login-form">
+                <form>
+                    <input type="text" placeholder="Email" />
+                    <input type="password" placeholder="Password" />
+                    <button type="submit"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @RenderBody()
+
+    <div class="footer">
+        <div class="container">
+            <div class="contact-details">
+                <p class="location">Hampton Street, No. 344B, Amsterdam</p>
+                <p class="phone">random phone nr</p>
+                <p class="mail">random email address</p>
+            </div>
+            <div class="newsletter">
+                <form>
+                    <label>Subscribe for our Newsletter!</label>
+                    <input type="text" placeholder="Enter your email address here">
+                    <button type="submit"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>Copyright 2013-2014, Eduali LLC, All rights reserved.</p>
+    </div>
+
+    <script type="text/javascript" src="~/scripts/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#show-login').on('click', function () {
+                $('#login').slideDown();
+            });
+
+            $('a.index-badge').on('mouseover', function () {
+                $(this).css({ marginTop: '-20px' });
+            });
+
+            $('a.index-badge').on('mouseout', function () {
+                $(this).css({ marginTop: '0px' });
+            });
+        });
+    </script>
+
+</body>
+</html>
