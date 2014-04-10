@@ -210,7 +210,7 @@
                 xtype: 'toolbar',
                 region: 'north',
                 itemId: 'main-nav-toolbar',
-                padding: '10 10 0 10',
+                padding: '10 10 2 10',
                 border: false,
                 defaults: {
                     iconAlign: 'right',
