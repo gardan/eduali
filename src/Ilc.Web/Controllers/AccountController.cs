@@ -40,7 +40,8 @@ namespace Ilc.Web.Controllers
         public ActionResult Logout()
         {
             AuthenticationManager.Logout();
-            return RedirectToAction("Login", "Account");
+            // return RedirectToAction("Login", "Account");
+            return Redirect("/");
         }
 
         private ActionResult RedirectToLocal(string returnUrl)

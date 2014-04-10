@@ -157,7 +157,7 @@
             },
             '->',
             {
-                text: Ilc.Configuration.getValue('login'),
+                text: Ilc.resources.Manager.getResourceString('mainMenu.login'),
                 hidden: Ilc.Configuration.loggedIn(),
                 handler: function() {
                     Ilc.LoginManager.showLogin();
@@ -196,6 +196,8 @@
                     {
                         text: Ilc.resources.Manager.getResourceString('common.logout'),
                         handler: function () {
+                            var w = window;
+                            debugger;
                             window.location.href = 'account/logout';
                         }
                     }

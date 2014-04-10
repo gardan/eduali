@@ -14,6 +14,7 @@
         'mainMenu.settings': 'Settings',
         'mainMenu.planning': 'Planning',
         'mainMenu.companies': 'Companies',
+        'mainMenu.login': 'Login',
 
         'common.trainingId': 'Training Id',
         'common.id': 'Id',
