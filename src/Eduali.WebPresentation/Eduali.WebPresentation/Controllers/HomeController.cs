@@ -33,5 +33,10 @@ namespace Eduali.WebPresentation.Controllers
         {
             return View();
         }
+
+        public ActionResult NewAccount()
+        {
+            return View();
+        }
     }
 }

@@ -1,0 +1,42 @@
+﻿<div class="head-main">
+    <div class="head-user"></div>
+</div>
+
+<div class="container">
+
+    <form>
+        <div class="new-account-form">
+            <label for="name">Company</label>
+            <input class="input" type="text" placeholder="First name" id="name" name="name" />
+
+            <label for="userInfo.firstName">First name</label>
+            <input class="input" type="text" placeholder="First name" id="userInfo.firstName" name="userInfo.firstName" />
+
+            <label for="userInfo.lastName">Last name</label>
+            <input class="input" type="text" placeholder="Last name" id="userInfo.lastName" name="userInfo.lastName" />
+
+            <label for="email">Email</label>
+            <input class="input" type="text" placeholder="Email" id="email" name="userInfo.email" />
+
+            <label for="password">Choose a password</label>
+            <input class="input" type="password" placeholder="Password" id="password" name="password" />
+
+            @*            <label for="newsletter">
+                <input type="checkbox" id="newsletter" checked="checked">
+                Sign me up for the newsletter</label>*@
+        </div>
+        <div class="new-account-form-button">
+            <button type="button" id="new-account-button" class="new-account-button">SIGN UP</button>
+        </div>
+    </form>
+
+</div>
+
+@section CustomScripts {
+    <link href="~/Resources/jquery.loader.css" rel="stylesheet">
+    
+    <script type="text/javascript" src="~/scripts/jquery.loader.js">
+    </script>
+    <script type="text/javascript" src="~/scripts/newaccount.js">
+    </script>
+}

@@ -32,7 +32,7 @@
                     <li><a href="~/students">Students</a></li>
                     <li class="last"><a href="~/trainers">Trainers</a></li>
                 </ul>
-                <a href="new-account.html" class="btn btn-sm btn-warning create-account">Create an account</a>
+                <a href="~/newaccount" class="btn btn-sm btn-warning create-account">Create an account</a>
                 <a href="javascript:;" id="show-login" class="login">Login</a>
             </div>
         </div>
@@ -88,6 +88,6 @@
             });
         });
     </script>
-
+    @RenderSection("CustomScripts", false)
 </body>
 </html>
