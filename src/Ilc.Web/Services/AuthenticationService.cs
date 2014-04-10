@@ -9,7 +9,7 @@ namespace Ilc.Web.Services
     {
         public IIdentityAuthenticationManager AuthenticationManager { get; set; }
 
-        public HttpResult Get(AuthModel request)
+        public HttpResult Post(AuthModel request)
         {
             var authenticated = AuthenticationManager.CheckPasswordAndSignIn(request.Email, request.Password, true);
             if (!authenticated)

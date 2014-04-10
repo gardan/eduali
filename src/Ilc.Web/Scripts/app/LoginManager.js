@@ -41,11 +41,13 @@
                 var window = this.up('window');
                 var model = Ilc.utils.Forms.extractModel(window.query('textfield'));
 
-                var url = 'api/auth?' + Ext.urlEncode(model);
+                // var url = 'api/auth?' + Ext.urlEncode(model);
+                var url = 'api/auth';
 
                 Ext.Ajax.request({
                     url: url,
-                    method: 'GET',
+                    jsonData: model,
+                    method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },

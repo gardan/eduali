@@ -152,7 +152,7 @@ namespace Ilc.Web.AppStart
             routes.Add<LogoModel>("/companies/{id}/logo", "PUT");
 
             // START - Apis for the logged in user
-            routes.Add<Services.AuthModel>("/auth", "GET");
+            routes.Add<Services.AuthModel>("/auth", "POST");
 
             routes.Add<Services.GeneralModel>("/profile/general", "PUT");
             routes.Add<Services.EmailModel>("/profile/email", "PUT");
