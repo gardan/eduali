@@ -119,6 +119,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery.loader.js" />
     <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\login.js" />
     <Content Include="Scripts\newaccount.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
