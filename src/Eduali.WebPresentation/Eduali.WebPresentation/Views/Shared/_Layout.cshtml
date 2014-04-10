@@ -8,6 +8,7 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href="~/resources/bootstrap.min.css" rel="stylesheet">
     <link href="~/resources/style.css" rel="stylesheet">
+    <link href="~/Resources/jquery.loader.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -42,9 +43,9 @@
         <div class="container">
             <div class="login-form">
                 <form>
-                    <input type="text" placeholder="Email" />
-                    <input type="password" placeholder="Password" />
-                    <button type="submit"></button>
+                    <input type="text" placeholder="Email" name="email" id="loginEmail" class="login-input" />
+                    <input type="password" placeholder="Password" name="password" id="loginPassword" class="login-input" />
+                    <button type="button" id="loginButton"></button>
                 </form>
             </div>
         </div>
@@ -73,6 +74,8 @@
     </div>
 
     <script type="text/javascript" src="~/scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/scripts/jquery.loader.js"></script>
+    <script type="text/javascript" src="~/scripts/login.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#show-login').on('click', function () {
@@ -88,6 +91,7 @@
             });
         });
     </script>
+    
     @RenderSection("CustomScripts", false)
 </body>
 </html>
