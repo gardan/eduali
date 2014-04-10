@@ -98,9 +98,9 @@ namespace Ilc.Core.Services
             } while (!usernameFound);
 
             // create the user
-            var role = Roles.GetByName("Contact Supervizor");
+            var role = Roles.GetByName("Customer Supervizor");
             var newUser = new UserProfile() { Email = username, UserDetails = userDetails, Roles = new List<Role>() { role } };
-            Users.Create(newUser, username);
+            Users.Create(newUser, "");
 
             contact.UserProfileId = newUser.Id;
 
