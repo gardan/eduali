@@ -13,7 +13,7 @@
     constructor: function (args) {
         var me = this;
 
-        var url = '/api/trainings/{id}/students';
+        var url = 'api/trainings/{id}/students';
         var trainingId = args.trainingId;
         if (trainingId == null) {
             console.error('No trainingId was provided.');
