@@ -91,11 +91,15 @@
                 xtype: 'button',
                 text: 'Date',
                 enableToggle: false,
+                cls: 'clean-button',
+                overCls: 'eduali-menu-hover',
                 iconCls: 'icon-calendar',
                 menu: dateMenu
             },
             {
                 iconCls: 'icon-left',
+                cls: 'clean-button',
+                overCls: 'eduali-menu-hover',
                 handler: function () {
                     me.shiftPrevious();
                     me.loadAvailabilityZones();
@@ -103,6 +107,8 @@
             },
             {
                 iconCls: 'icon-right',
+                cls: 'clean-button',
+                overCls: 'eduali-menu-hover',
                 handler: function () {
                     me.shiftNext();
                     me.loadAvailabilityZones();
@@ -110,6 +116,8 @@
             },
             {
                 iconCls: 'icon-zoom-in',
+                cls: 'clean-button',
+                overCls: 'eduali-menu-hover',
                 handler: function () {
                     me.zoomIn();
                     me.loadAvailabilityZones();
@@ -117,6 +125,8 @@
             },
             {
                 iconCls: 'icon-zoom-out',
+                cls: 'clean-button',
+                overCls: 'eduali-menu-hover',
                 handler: function () {
                     me.zoomOut();
                     me.loadAvailabilityZones();

@@ -126,6 +126,8 @@
             },
             {
                 iconCls: 'icon-left',
+                cls: 'clean-button',
+                overCls: 'eduali-menu-hover',
                 handler: function () {
                     me.shiftPrevious();
                     me.loadAvailabilityZones();
@@ -133,6 +135,8 @@
             },
             {
                 iconCls: 'icon-right',
+                cls: 'clean-button',
+                overCls: 'eduali-menu-hover',
                 handler: function () {
                     me.shiftNext();
                     me.loadAvailabilityZones();
@@ -140,6 +144,8 @@
             },
             {
                 iconCls: 'icon-zoom-in',
+                cls: 'clean-button',
+                overCls: 'eduali-menu-hover',
                 handler: function () {
                     console.log(me.zoomIn());
                     me.loadAvailabilityZones();
@@ -147,6 +153,8 @@
             },
             {
                 iconCls: 'icon-zoom-out',
+                cls: 'clean-button',
+                overCls: 'eduali-menu-hover',
                 handler: function () {
                     console.log(me.zoomOut());
                     me.loadAvailabilityZones();
@@ -156,7 +164,9 @@
                 xtype: 'button',
                 text : 'Date',
                 enableToggle : false,
-                iconCls : 'icon-calendar',
+                iconCls: 'icon-calendar',
+                cls: 'clean-button',
+                overCls: 'eduali-menu-hover',
                 menu: dateMenu
             }
         ];
