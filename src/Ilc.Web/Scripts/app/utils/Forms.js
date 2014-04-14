@@ -44,6 +44,17 @@
                     // model[input.name] = input.lastSelection[0].data[input.valueField];
                 }
                 break;
+            case 'multiselectfield':
+                var data = input.lastValue;
+                var ret = [];
+                Ext.Array.forEach(data, function(claim) {
+                    ret.push({
+                        name: claim
+                    });
+                });
+                Ilc.utils.Forms._addProperty(model, input.name, ret);
+                debugger;
+                break;
             case 'datefield':
                 var date = input.getRawValue();
                 if (date) {

@@ -9,7 +9,8 @@
 
     requires: [
         'Ilc.utils.Forms',
-        'Ilc.view.roles.edit.Panel'
+        'Ilc.view.roles.edit.Panel',
+        'Ext.ux.form.MultiSelect'
     ],
 
     initComponent: function () {
@@ -51,12 +52,12 @@
                                     },
                                     items: [
                                         {
-                                            editable: false,
-                                            xtype: 'combobox',
-                                            queryMode: 'local',
+                                            // editable: false,
+                                            xtype: 'multiselect',
+                                            // queryMode: 'local',
                                             displayField: 'name',
                                             valueField: 'name',
-                                            multiSelect: true,
+                                            // multiSelect: true,
                                             store: unassignedClaimsStore,
                                             name: 'claims'
                                         }
@@ -65,7 +66,7 @@
                                         {
                                             text: 'Assign',
                                             handler: function () {
-                                                var inputs = window.query('textfield');
+                                                var inputs = window.query('multiselect');
                                                 var model = Ilc.utils.Forms.extractModel(inputs);
                                                 model.roleId = me.role.get('id');
 
