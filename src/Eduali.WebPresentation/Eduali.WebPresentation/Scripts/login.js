@@ -8,6 +8,8 @@
             password: inputs[1].value
         };
 
+        $.loader();
+
         $.ajax({
             url: 'app/api/auth',
             type: 'POST',
