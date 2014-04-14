@@ -41,15 +41,34 @@
 
     <div id="login" class="login-wrapper">
         <div class="container">
-            <div class="login-form">
-                <form>
+            <form class="form-inline login-form" role="form">
+                <div id="invalid-msg-div" class="form-group has-error hidden">
+                    <label class="control-label">Invalid credentials</label>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="loginEmail">Email address</label>
+                    <input type="email" placeholder="Email" class="form-control login-input" name="email" id="loginEmail" />
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="loginPassword">Password</label>
+                    <input type="password" placeholder="Password" name="password" id="loginPassword" class="form-control login-input" />
+                </div>
+                <div class="form-group">
+                    <button type="button" id="loginButton"></button>    
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @*<div id="login" class="login-wrapper">
+        <div class="container">
+            <div class="login-form form-group has-error" style="margin-bottom: inherit">
                     <input type="text" placeholder="Email" name="email" id="loginEmail" class="login-input" />
                     <input type="password" placeholder="Password" name="password" id="loginPassword" class="login-input" />
                     <button type="button" id="loginButton"></button>
-                </form>
             </div>
         </div>
-    </div>
+    </div>*@
 
     @RenderBody()
 
@@ -91,7 +110,7 @@
             });
         });
     </script>
-    
+
     @RenderSection("CustomScripts", false)
 </body>
 </html>

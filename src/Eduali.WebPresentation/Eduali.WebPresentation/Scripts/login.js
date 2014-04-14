@@ -27,6 +27,11 @@
             window.location = 'app/';
         })
         .fail(function () {
+
+            var $controls = $('.form-group');
+            $controls.addClass('has-error');
+            $('#invalid-msg-div').removeClass('hidden');
+
             console.log(arguments);
         })
         .always(function () {
