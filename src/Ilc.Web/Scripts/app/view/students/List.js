@@ -99,6 +99,7 @@
                         {
                             xtype: 'button',
                             iconCls: 'icon-add',
+                            cls: 'clean-button',
                             text: Ilc.resources.Manager.getResourceString('common.newStudent'),
                             handler: function () {
                                 var window = Ext.create('Ilc.view.students.Create', {

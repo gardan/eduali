@@ -24,6 +24,7 @@
                         {
                             text: Ilc.resources.Manager.getResourceString('common.newSubject'),
                             iconCls: 'icon-add',
+                            cls: 'clean-button',
                             handler: function() {
                                 var window = Ext.create('Ilc.view.subjects.Create', {
                                     closeAction: 'destroy'

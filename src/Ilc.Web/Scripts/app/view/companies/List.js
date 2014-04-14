@@ -19,6 +19,7 @@
                         {
                             text: Ilc.resources.Manager.getResourceString('common.newCompany'),
                             iconCls: 'icon-add',
+                            cls: 'clean-button',
                             handler: function() {
                                 var window = Ext.create('Ilc.view.companies.Create');
 

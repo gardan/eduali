@@ -128,6 +128,7 @@
                         xtype: 'button',
                         cls: 'clean-button',
                         iconCls: 'icon-add',
+                        cls: 'clean-button',
                         handler: function () {
                             var window = Ext.create('Ilc.view.templates.Create', {
                                 closeAction: 'destroy'

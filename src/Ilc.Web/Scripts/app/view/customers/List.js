@@ -35,6 +35,7 @@
                         {
                             xtype: 'button',
                             iconCls: 'icon-add',
+                            cls: 'clean-button',
                             text: Ilc.resources.Manager.getResourceString('common.newCustomer'),
                             handler: function (btn, e) {
                                 var window = Ext.create('Ilc.view.customers.Create', {

@@ -16,6 +16,7 @@
                         {
                             text: 'Create role',
                             iconCls: 'icon-add',
+                            cls: 'clean-button',
                             handler: function() {
                                 var window = Ext.create('Ilc.view.roles.Create', {
                                     rolesStore: rolesStore

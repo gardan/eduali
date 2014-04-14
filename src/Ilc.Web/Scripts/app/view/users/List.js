@@ -23,6 +23,7 @@
                         {
                             text: Ilc.resources.Manager.getResourceString('common.newUser'),
                             iconCls: 'icon-add',
+                            cls: 'clean-button',
                             handler: function() {
                                 var window = Ext.create('Ilc.view.users.Create', {
                                     listeners: {
