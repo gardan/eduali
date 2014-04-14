@@ -6,7 +6,7 @@
         'mainMenu.trainings': 'Trainings',
         'mainMenu.customers': 'Customers',
         'mainMenu.students': 'Students',
-        'mainMenu.statistics': 'Statistics',
+        'mainMenu.statistics': 'Analytics',
         'mainMenu.trainers': 'Trainers',
         'mainMenu.users': 'Users',
         'mainMenu.roles': 'Roles',
