@@ -324,6 +324,10 @@
     <Compile Include="Migrations\201403251001538_InterviewSupportForGradingAttributes.Designer.cs">
       <DependentUpon>201403251001538_InterviewSupportForGradingAttributes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201404150904214_DynamicAssesments.cs" />
+    <Compile Include="Migrations\201404150904214_DynamicAssesments.Designer.cs">
+      <DependentUpon>201404150904214_DynamicAssesments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -550,6 +554,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201403251001538_InterviewSupportForGradingAttributes.resx">
       <DependentUpon>201403251001538_InterviewSupportForGradingAttributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404150904214_DynamicAssesments.resx">
+      <DependentUpon>201404150904214_DynamicAssesments.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
