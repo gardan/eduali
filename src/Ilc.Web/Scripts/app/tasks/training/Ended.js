@@ -3,6 +3,10 @@
     
     xtype: 'endedwindow',
 
+    requires: [
+        'Ilc.model.GradingSystem'
+    ],
+
     title: Ilc.resources.Manager.getResourceString('tasks.title.ended'),
     width: 350,
     constructor: function (args) {
@@ -53,20 +57,29 @@
             doneButton.setDisabled(isDisabled);
         });
 
-        studentsGrid.on('itemdblclick', function(grid, record) {
-            var windowToCreate = record.get('assesmentId') == 0 ? 'CreateStudentAssesment' : 'ViewStudentAssesment';
-            var window = Ext.create('Ilc.tasks.training.window.' + windowToCreate, {
-                closeAction: 'destroy',
-                student: record,
-                task: trainingEntity
+        studentsGrid.on('itemdblclick', function (grid, record) {
+            var gradingSystemModel = Ext.ModelManager.getModel('Ilc.model.GradingSystem');
+            gradingSystemModel.load(trainingEntity.get('taskObject').gradingSystemId, {
+                success: function (gradingSystem) {
+                    
+                    var windowToCreate = record.get('assesmentId') == 0 ? 'CreateStudentAssesment' : 'ViewStudentAssesment';
+                    var window = Ext.create('Ilc.tasks.training.window.' + windowToCreate, {
+                        closeAction: 'destroy',
+                        student: record,
+                        task: trainingEntity,
+                        grades: gradingSystem.get('grades')
+                    });
+                    window.on('addAssesment', function (sender, model) {
+                        console.log(model);
+                        me.fireEvent('addAssesment', sender, model, {
+                            studentsStore: studentsStore
+                        });
+                    });
+                    window.show();
+                }
             });
-            window.on('addAssesment', function (sender, model) {
-                console.log(model);
-                me.fireEvent('addAssesment', sender, model, {
-                    studentsStore: studentsStore
-                });
-            });
-            window.show();
+
+            
         });
 
         me.items = [

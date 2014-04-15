@@ -337,7 +337,7 @@ namespace Ilc.Web.Services.Tasks.Training
             {
                 var currentUser = Users.GetByEmail();
 
-                var assesment = new Assesment().InjectFrom(request) as Assesment;
+                var assesment = new Assesment().InjectFrom<AssesmentModelToStudentInterview>(request) as Assesment;
                 assesment.TrainingId = request.TaskEntityId;
                 assesment.CreateDate = DateTimeOffset.UtcNow;
                 assesment.Creator = currentUser;
@@ -423,6 +423,8 @@ namespace Ilc.Web.Services.Tasks.Training
 
         public string EntryRemarks { get; set; }
         public string ExitRemarks { get; set; }
+
+        public List<CreateInterviewResultModel> AssesmentResults { get; set; }
 
         public int StudentId { get; set; }
         public int TaskEntityId { get; set; }
