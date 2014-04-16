@@ -52,10 +52,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\RequiredClaimsAttribute.cs" />
+    <Compile Include="Contracts\IAssesmentsManager.cs" />
     <Compile Include="Contracts\IProgressEvaluationsService.cs" />
     <Compile Include="Contracts\ISubjectFilesService.cs" />
     <Compile Include="Contracts\IUserNotifyService.cs" />
+    <Compile Include="FilterArgumentsAssesments.cs" />
     <Compile Include="FilterArgumentsGradingAttributes.cs" />
+    <Compile Include="Services\AssesmentsManager.cs" />
     <Compile Include="Services\SubjectFilesService.cs" />
     <Compile Include="FilterArgumentsProgressEvaluations.cs" />
     <Compile Include="FilterArgumentsSubjectFiles.cs" />

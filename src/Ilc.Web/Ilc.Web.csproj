@@ -275,6 +275,7 @@
     <Content Include="Scripts\app\tasks\training\window\CreateStudentAssesment.js" />
     <Content Include="Scripts\app\tasks\training\window\CreateStudentEvaluation.js" />
     <Content Include="Scripts\app\tasks\training\window\CreateStudentInterview.js" />
+    <Content Include="Scripts\app\tasks\training\window\ViewStudentAssesment.js" />
     <Content Include="Scripts\app\tasks\training\window\ViewStudentEvaluation.js" />
     <Content Include="Scripts\app\tasks\training\window\ViewStudentInterview.js" />
     <Content Include="Scripts\app\uploader\Avatar.js" />
@@ -4032,6 +4033,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\CreateStudentModel.cs" />
     <Compile Include="Models\CreateOfferModel.cs" />
+    <Compile Include="Services\AssesmentsService.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\AvailabilityService.cs" />
     <Compile Include="Services\Grading\AttributesService.cs" />

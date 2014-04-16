@@ -46,40 +46,40 @@
         return items;
     },
 
+    buttons: [
+        {
+            xtype: 'button',
+            text: Ilc.resources.Manager.getResourceString('common.add'),
+            handler: function (btn, events) {
+                var me = this.up('window');
+                var model = {};
+
+                model = Ilc.utils.Forms.extractModel(me.query('interviewfieldset'));
+
+                model.studentId = me.student.get('id');
+                model.taskEntityId = me.task.get('id');
+
+                me.fireEvent('addAssesment', me, model);
+            }
+        },
+        {
+            text: Ilc.resources.Manager.getResourceString('common.cancel'),
+            handler: function () {
+                var me = this.up('window');
+                me.close();
+            }
+        }
+    ],
+
     initComponent: function () {
         var me = this;
 
-        var task = this.task;
-        var student = this.student;
         var store = Ext.create('Ilc.tasks.training.store.Grades');
         this.gradesStore = store;
 
         me.gradesStore.loadRawData(me.grades);
 
         me.items = me._initItems();
-
-        me.buttons = [
-            {
-                xtype: 'button',
-                text: Ilc.resources.Manager.getResourceString('common.add'),
-                handler: function (btn, events) {
-                    var model = {};
-
-                    model = Ilc.utils.Forms.extractModel(me.query('interviewfieldset'));
-
-                    model.studentId = student.get('id');
-                    model.taskEntityId = task.get('id');
-
-                    me.fireEvent('addAssesment', me, model);
-                }
-            },
-            {
-                text: Ilc.resources.Manager.getResourceString('common.cancel'),
-                handler: function() {
-                    me.close();
-                }
-            }
-        ];
 
         me.addEvents(
             'addAssesment'

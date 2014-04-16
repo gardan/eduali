@@ -1,48 +1,34 @@
-﻿Ext.define('Ilc.tasks.training.window.ViewStudentInterview', {
-    extend: 'Ilc.tasks.training.window.CreateStudentInterview',
-    xtype: 'editinterviewindow',
-    modal: true,
-
-    title: Ilc.resources.Manager.getResourceString('common.view'),
-    layout: 'anchor',
-
-    student: null,
-    task: null,
-    interview: null,
-
-    editComplete: function() {
-        this.close();
-    },
-
-    onInterviewStoreLoad: function (interviewsStore, records) {
+﻿Ext.define('Ilc.tasks.training.window.ViewStudentAssesment', {
+    extend: 'Ilc.tasks.training.window.CreateStudentAssesment',
+    
+    onAssesmentsStoreLoad: function(store, records) {
         var fieldsets = this.query('interviewfieldset');
-        this.interview = records[0];
-
-        Ext.Array.forEach(fieldsets, function(fieldset) {
+        this.assesment = records[0];
+        
+        Ext.Array.forEach(fieldsets, function (fieldset) {
             var attributeName = fieldset.getAttribute().name;
 
-            var interviewResult = Ext.Array.findBy(records[0].get('interviewResults'), function (item) {
+            var assesmentResult = Ext.Array.findBy(records[0].get('assesmentResults'), function (item) {
                 if (item.gradingAttribute.name == attributeName) return true;
             });
 
-            fieldset.setGrades(interviewResult);
+            fieldset.setGrades(assesmentResult);
         });
     },
 
     initComponent: function () {
         var me = this;
 
-        var interviewsStore = Ext.create('Ilc.store.Interviews', {
+        var interviewsStore = Ext.create('Ilc.store.Assesments', {
             studentId: me.student.get('id'),
             trainingId: me.task.get('taskObject').id,
             listeners: {
-                load: me.onInterviewStoreLoad,
+                load: me.onAssesmentsStoreLoad,
                 scope: me
             }
         });
-        
         interviewsStore.load();
-
+        
         me.buttons = [
             {
                 xtype: 'button',
@@ -50,8 +36,10 @@
                 handler: function (btn, events) {
                     var model = Ilc.utils.Forms.extractModel(me.query('interviewfieldset'));
 
-                    model.id = me.interview.get('id');
-                    me.fireEvent('editinterview', me, model);
+                    model.id = me.assesment.get('id');
+
+                    console.log(model);
+                    // me.fireEvent('editassesment', me, model);
                 },
                 anchor: '100%'
             },
@@ -64,10 +52,7 @@
                 anchor: '100%'
             }
         ];
-        me.addEvents(
-            'editinterview'
-        );
 
-        me.callParent(arguments);
+        this.callParent();
     }
 });
