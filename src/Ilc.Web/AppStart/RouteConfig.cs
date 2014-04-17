@@ -126,7 +126,7 @@ namespace Ilc.Web.AppStart
 
             routes.Add<Services.FilterParametersTemplates>("/templates", "GET");
             routes.Add<Services.TemplateModel>("/templates", "POST");
-            routes.Add<Services.TemplateModel>("/templates/{id}", "PUT");
+            routes.Add<Services.TemplateModel>("/templates/{id}", "PUT,DELETE");
 
             routes.Add<AvatarModel>("/users/{id}/avatar", "PUT");
             routes.Add<AvatarGetRequestModel>("/users/{userId}/avatar", "GET");

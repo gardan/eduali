@@ -15,5 +15,6 @@ namespace Ilc.Infrastructure.Contracts
         void Create(Template template);
         void Update(Template template);
         Template GetById(int id);
+        void Delete(int id);
     }
 }

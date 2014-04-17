@@ -55,6 +55,31 @@
             window.show();
         });
 
+        templatesGrid.on('itemcontextmenu', function(view, record, item, index, e) {
+            e.stopEvent();
+
+            if (!templatesGrid.rowContextMenu) {
+                templatesGrid.rowContextMenu = Ext.create('Ext.menu.Menu', {
+                    items: [
+                        {
+                            text: Ilc.resources.Manager.getResourceString('common.delete'),
+                            handler: function() {
+                                templatesGrid.store.remove(templatesGrid.rowContextMenu.rec);
+                                templatesGrid.rowContextMenu.rec.destroy({
+                                    failure: function() {
+                                        console.log(arguments);
+                                    }
+                                });
+                            }
+                        }
+                    ]
+                });
+            }
+
+            templatesGrid.rowContextMenu.rec = record;
+            templatesGrid.rowContextMenu.showAt(e.getXY());
+        });
+
         me.items = [
             templatesGrid
         ];

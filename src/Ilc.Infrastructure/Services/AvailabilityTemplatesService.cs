@@ -126,6 +126,12 @@ namespace Ilc.Infrastructure.Services
         {
             return Uow.Templates.GetById(id);
         }
+
+        public void Delete(int id)
+        {
+            Uow.Templates.Delete(id);
+            Uow.Commit();
+        }
     }
 
 

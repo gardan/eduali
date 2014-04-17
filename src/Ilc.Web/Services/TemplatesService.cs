@@ -40,6 +40,16 @@ namespace Ilc.Web.Services
                 };
         }
 
+        public HttpResult Delete(TemplateModel request)
+        {
+            Templates.Delete(request.Id);
+
+            return new HttpResult()
+            {
+                StatusCode = HttpStatusCode.OK
+            };
+        }
+
         public HttpResult Post(TemplateModel request)
         {
             var template = new Template().InjectFrom<TemplateModelToTemplate>(request) as Template;
