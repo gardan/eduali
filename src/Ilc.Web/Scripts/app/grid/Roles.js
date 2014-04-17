@@ -1,10 +1,17 @@
 ﻿Ext.define('Ilc.grid.Roles', {
     extend: 'Ext.grid.Panel',
     
-    initComponent: function() {
-        var me = this;
+    onDeleteSuccess: function () {
+        console.log(arguments);
+    },
+    
+    onDeleteFailure: function(model, operation) {
 
-        me.columns = [
+    },
+
+    _initColumns: function() {
+        var me = this;
+        return [
             {
                 text: Ilc.resources.Manager.getResourceString('common.name'),
                 dataIndex: 'name',
@@ -19,15 +26,23 @@
                     {
                         icon: 'images/web/remove.png',
                         tooltip: Ilc.resources.Manager.getResourceString('common.delete'),
-                        handler: function(grid, rowIndex, colIndex, item, e, record) {
-                            me.fireEvent('delete', me, record);
+                        handler: function (grid, rowIndex, colIndex, item, e, record) {
+                            record.destroy({
+                                success: me.onDeleteSuccess,
+                                failure: me.onDeleteFailure
+                            });
                         }
                     }
                 ]
             }
         ];
+    },
 
+    initComponent: function() {
+        var me = this;
         me.addEvents('delete');
+
+        me.columns = this._initColumns();
 
         me.callParent(arguments);
     }

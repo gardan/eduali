@@ -41,7 +41,7 @@ namespace Ilc.Web.AppStart
 
             routes.Add<Services.FilterParametersRoles>("/roles", "GET");
             routes.Add<Services.CreateRoleModel>("/roles", "POST");
-            routes.Add<Services.RoleModel>("/roles/{id}", "PUT");
+            routes.Add<Services.RoleModel>("/roles/{id}", "PUT,DELETE");
 
             routes.Add<Services.RoleAssignmentModel>("/roleassignments", "POST");
             routes.Add<Services.RoleAssignmentModel>("/roleassignments/{roleId}/{userId}", "DELETE");

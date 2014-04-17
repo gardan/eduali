@@ -13,5 +13,6 @@ namespace Ilc.Core.Contracts
         void Create(Role role);
         void Update(Role role);
         Role GetByName(string name);
+        void Delete(int id);
     }
 }

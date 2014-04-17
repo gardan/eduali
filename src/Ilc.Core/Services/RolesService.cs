@@ -93,5 +93,11 @@ namespace Ilc.Core.Services
             var user = Users.GetByEmail();
             return Uow.Roles.GetAll().FirstOrDefault(r => r.RoleName == name && r.CompanyId == user.CompanyId);
         }
+
+        public void Delete(int id)
+        {
+            Uow.Roles.Delete(id);
+            Uow.Commit();
+        }
     }
 }

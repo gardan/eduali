@@ -65,6 +65,16 @@ namespace Ilc.Web.Services
                     StatusCode = HttpStatusCode.OK
                 };
         }
+
+        public HttpResult Delete(RoleModel request)
+        {
+            Roles.Delete(request.Id);
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
     }
 
     public class CreateRoleModel
