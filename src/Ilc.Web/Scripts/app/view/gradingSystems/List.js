@@ -62,6 +62,32 @@
         window.show();
     },
 
+    onItemContextMenu: function (view, record, item, index, e) {
+        var me = this;
+        e.stopEvent();
+
+        if (!me.rowContextMenu) {
+            me.rowContextMenu = Ext.create('Ext.menu.Menu', {
+                items: [
+                    {
+                        text: Ilc.resources.Manager.getResourceString('common.delete'),
+                        handler: function () {
+                            me.store.remove(me.rowContextMenu.rec);
+                            me.rowContextMenu.rec.destroy({
+                                failure: function() {
+                                    console.log(arguments);
+                                }
+                            });
+                        }
+                    }
+                ]
+            });
+        }
+
+        me.rowContextMenu.rec = record;
+        me.rowContextMenu.showAt(e.getXY());
+    },
+
     initComponent: function () {
         var me = this;
 
@@ -70,6 +96,7 @@
         me.store = gradingSystemsStore;
 
         me.on('itemdblclick', me.onItemDblClick);
+        me.on('itemcontextmenu', me.onItemContextMenu, this);
 
         me.callParent(arguments);
         me.store.load();

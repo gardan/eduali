@@ -42,5 +42,11 @@ namespace Ilc.Core.Services
             }
             Uow.Commit();
         }
+
+        public void Delete(int id)
+        {
+            Uow.GradingSystems.Delete(id);
+            Uow.Commit();
+        }
     }
 }

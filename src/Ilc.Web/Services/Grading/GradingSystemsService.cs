@@ -72,6 +72,16 @@ namespace Ilc.Web.Services.Grading
                 };
 
         }
+
+        public HttpResult Delete(GradingSystemModel request)
+        {
+            GradingSystems.Delete(request.Id);
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
     }
 
     public class GradingSystemModel
