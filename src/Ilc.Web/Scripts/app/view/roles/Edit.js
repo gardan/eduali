@@ -16,7 +16,9 @@
     initComponent: function () {
         var me = this;
         
-        var claimsStore = Ext.create('Ilc.store.Claims');
+        var claimsStore = Ext.create('Ilc.store.Claims', {
+            roleId: me.role.get('id')
+        });
 
         var claimsGrid = Ext.create('Ilc.grid.Claims', {
             store: claimsStore,

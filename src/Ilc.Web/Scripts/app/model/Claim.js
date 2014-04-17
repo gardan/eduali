@@ -1,5 +1,18 @@
 ﻿Ext.define('Ilc.model.Claim', {
     extend: 'Ext.data.Model',
     fields: ['name'],
-    idProperty: null
+    idProperty: 'name',
+    
+    proxy: {
+        type: 'rest',
+        url: 'api/claims',
+        extraParams: {
+            format: 'json'
+        },
+        reader: {
+            type: 'json',
+            root: 'data',
+            totalProperty: 'totalRecords'
+        }
+    }
 });

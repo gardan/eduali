@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models;
 using ServiceStack;
@@ -30,6 +31,28 @@ namespace Ilc.Web.Services
                     StatusCode = HttpStatusCode.OK
                 };
         }
+
+        public HttpResult Delete(DeleteRoleClaimModel request)
+        {
+            var role = Uow.Roles.GetById(request.RoleId);
+            var roleClaim = role.Claims.FirstOrDefault(rc => rc.Name == request.Name);
+
+            if (roleClaim == null) return new HttpResult() {StatusCode = HttpStatusCode.OK};
+
+            Uow.RoleClaims.Delete(roleClaim.Id);
+            Uow.Commit();
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
+    }
+
+    public class DeleteRoleClaimModel
+    {
+        public int RoleId { get; set; }
+        public string Name { get; set; } // Claim name
     }
 
     public class CreateRoleClaimsModel

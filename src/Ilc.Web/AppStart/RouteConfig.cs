@@ -49,6 +49,7 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.FilterParametersClaims>("/claims", "GET");
 
             routes.Add<Services.CreateRoleClaimsModel>("/roleclaims", "POST");
+            routes.Add<Services.DeleteRoleClaimModel>("/roles/{roleId}/claims/{name}", "DELETE");
 
             routes.Add<Services.FilterSubjectsParameters>("/subjects", "GET");
             routes.Add<Services.SubjectModel>("/subjects", "POST");
