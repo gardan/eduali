@@ -214,6 +214,7 @@
     <Content Include="Scripts\app\scheduler\Planning.js" />
     <Content Include="Scripts\app\scheduler\Training.js" />
     <Content Include="Scripts\app\slider\TimeSlider.js" />
+    <Content Include="Scripts\app\store\Assesments.js" />
     <Content Include="Scripts\app\store\Claims.js" />
     <Content Include="Scripts\app\store\Companies.js" />
     <Content Include="Scripts\app\store\Contacts.js" />
