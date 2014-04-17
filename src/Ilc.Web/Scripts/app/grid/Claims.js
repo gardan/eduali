@@ -25,7 +25,8 @@
                 items: [
                     {
                         text: Ilc.resources.Manager.getResourceString('common.delete'),
-                        handler: function() {
+                        handler: function () {
+                            me.store.remove(me.rowContextMenu.rec);
                             me.rowContextMenu.rec.destroy({
                                 failure: me.onRemoveFailure,
                                 url: deleteUrl
