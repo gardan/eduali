@@ -93,7 +93,8 @@ namespace Ilc.Core.Services
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Uow.Subjects.Delete(id);
+            Uow.Commit();
         }
     }
 }

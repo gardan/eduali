@@ -54,6 +54,33 @@
             });
         });
 
+        subjectsGrid.on('itemcontextmenu', function (view, record, item, index, e) {
+            e.stopEvent();
+
+            if (!subjectsGrid.rowContextMenu) {
+                subjectsGrid.rowContextMenu = Ext.create('Ext.menu.Menu', {
+                    items: [
+                        {
+                            text: Ilc.resources.Manager.getResourceString('common.delete'),
+                            handler: function () {
+                                subjectsGrid.store.remove(subjectsGrid.rowContextMenu.rec);
+                                subjectsGrid.rowContextMenu.rec.destroy({
+                                    failure: function() {
+                                        console.log(arguments);
+                                    },
+                                });
+                                
+
+                            }
+                        }
+                    ]
+                });
+            }
+
+            subjectsGrid.rowContextMenu.rec = record;
+            subjectsGrid.rowContextMenu.showAt(e.getXY());
+        });
+
         this.items = [
             subjectsGrid
         ];

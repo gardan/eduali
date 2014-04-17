@@ -53,7 +53,7 @@ namespace Ilc.Web.AppStart
 
             routes.Add<Services.FilterSubjectsParameters>("/subjects", "GET");
             routes.Add<Services.SubjectModel>("/subjects", "POST");
-            routes.Add<Services.SubjectModel>("/subjects/{id}", "PUT");
+            routes.Add<Services.SubjectModel>("/subjects/{id}", "PUT,DELETE");
 
             routes.Add<Services.FilterParametersContacts>("/customers/{customerId}/contacts", "GET");
             routes.Add<Services.CreateContactModel>("/contacts", "POST");
