@@ -63,7 +63,6 @@
                         {
                             text: Ilc.resources.Manager.getResourceString('common.delete'),
                             handler: function () {
-                                subjectsGrid.store.remove(subjectsGrid.rowContextMenu.rec);
                                 subjectsGrid.rowContextMenu.rec.destroy({
                                     failure: function() {
                                         console.log(arguments);

@@ -82,7 +82,7 @@
                                 buttons: Ext.Msg.OK
                             });
 
-                            originalFailHandler.apply(this, arguments);
+                            originalHandler.apply(this, arguments);
                             return;
                         }
                         if (response.status != 401) {
