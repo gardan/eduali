@@ -64,7 +64,6 @@
                         {
                             text: Ilc.resources.Manager.getResourceString('common.delete'),
                             handler: function() {
-                                templatesGrid.store.remove(templatesGrid.rowContextMenu.rec);
                                 templatesGrid.rowContextMenu.rec.destroy({
                                     failure: function() {
                                         console.log(arguments);

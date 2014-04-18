@@ -72,7 +72,6 @@
                     {
                         text: Ilc.resources.Manager.getResourceString('common.delete'),
                         handler: function () {
-                            me.store.remove(me.rowContextMenu.rec);
                             me.rowContextMenu.rec.destroy({
                                 failure: function() {
                                     console.log(arguments);
