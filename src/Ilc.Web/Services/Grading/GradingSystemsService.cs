@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using Ilc.Core;
@@ -75,6 +76,12 @@ namespace Ilc.Web.Services.Grading
 
         public HttpResult Delete(GradingSystemModel request)
         {
+            var relatedTrainingsExist = Uow.Trainings.GetAll().Any(t => t.GradingSystemId == request.Id);
+            if (relatedTrainingsExist)
+            {
+                throw new ArgumentException("Grading system cannot be deleted because it is related with one or more trainings.");
+            }
+
             GradingSystems.Delete(request.Id);
 
             return new HttpResult()

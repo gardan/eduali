@@ -83,8 +83,17 @@ namespace Ilc.Core.Services
             return Uow.UserProfiles.GetById(id);
         }
 
+        private void EnsureEmailIsUnique(string email)
+        {
+            if (GetByEmail(email) != null)
+            {
+                throw new ArgumentException("Email is already taken.");
+            }
+        }
+
         public void Create(UserProfile user, string password)
         {
+            EnsureEmailIsUnique(user.Email);
             if (user.CompanyId == 0)
             {
                 var loggedInUser = GetByEmail();

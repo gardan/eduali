@@ -62,6 +62,22 @@
         window.show();
     },
 
+    onDeleteFailure: function (model, operation) {
+        switch (operation.error.status) {
+            case 400:
+                
+                Ext.Msg.show({
+                    title: 'Warning',
+                    msg: 'Grading system is in use by one or more trainings, before removing the system please remove all trainings using this system.',
+                    buttons: Ext.Msg.OK,
+                });
+
+                break;
+            default:
+                console.log(arguments);
+        }
+    },
+
     onItemContextMenu: function (view, record, item, index, e) {
         var me = this;
         e.stopEvent();
@@ -74,7 +90,7 @@
                         handler: function () {
                             me.rowContextMenu.rec.destroy({
                                 failure: function() {
-                                    console.log(arguments);
+                                    me.onDeleteFailure.apply(this, arguments);
                                 }
                             });
                         }
