@@ -95,6 +95,31 @@ Ext.application({
 
         Ext.grid.Panel.prototype.emptyText = 'No data.';
 
+        // fix this: http://www.sencha.com/forum/showthread.php?268135-Grid-error-on-delete-selected-row
+        Ext.view.Table.prototype.doStripeRows = function(startRow, endRow) {
+            var me = this,
+                rows,
+                rowsLn,
+                i,
+                row;
+            if (me.rendered && me.stripeRows) {
+                rows = me.getNodes(startRow, endRow);
+
+                for (i = 0, rowsLn = rows.length; i < rowsLn; i++) {
+                    row = rows[i];
+
+                    if (row) { // self updating; check for row existence
+                        row.className = row.className.replace(me.rowClsRe, ' ');
+                        startRow++;
+
+                        if (startRow % 2 === 0) {
+                            row.className += (' ' + me.altRowCls);
+                        }
+                    }
+                }
+            }
+        };
+
         Ext.Ajax.defaultHeaders = {
             'Content-Type': 'application/json'
         };
