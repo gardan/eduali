@@ -105,7 +105,7 @@ namespace Ilc.Data.Migrations
                     })
                 .PrimaryKey(t => new { t.UserId, t.RoleId })
                 .ForeignKey("dbo.UserProfile", t => t.UserId)
-                .ForeignKey("dbo.webpages_Roles", t => t.RoleId)
+                .ForeignKey("dbo.webpages_Roles", t => t.RoleId, cascadeDelete: true)
                 .Index(t => t.UserId)
                 .Index(t => t.RoleId);
             

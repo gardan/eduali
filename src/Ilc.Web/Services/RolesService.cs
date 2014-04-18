@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using Ilc.Core;
@@ -68,6 +69,19 @@ namespace Ilc.Web.Services
 
         public HttpResult Delete(RoleModel request)
         {
+            // TODO: move to attribute filter
+            var role = Roles.GetById(request.Id);
+            
+            if (!role.CanDelete)
+            {
+                throw new Ilc.Core.Exceptions.NotAllowedException("Cannot delete predefined role.");
+            }
+
+            if (request.Force == false && role.UserProfiles.Any())
+            {
+                throw new ArgumentException("Role belongs to users.");
+            }
+
             Roles.Delete(request.Id);
 
             return new HttpResult()
@@ -87,6 +101,8 @@ namespace Ilc.Web.Services
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
+        public bool Force { get; set; } // method: DELETE
     }
 
     public class FilterParametersRoles : FilterArgumentsRoles { }

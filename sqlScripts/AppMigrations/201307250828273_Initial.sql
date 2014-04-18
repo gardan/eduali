@@ -67,7 +67,7 @@ ALTER TABLE [dbo].[Student] ADD CONSTRAINT [FK_dbo.Student_dbo.Training_Training
 ALTER TABLE [dbo].[RoleUserProfile] ADD CONSTRAINT [FK_dbo.RoleUserProfile_dbo.webpages_Roles_Role_RoleId] FOREIGN KEY ([Role_RoleId]) REFERENCES [dbo].[webpages_Roles] ([RoleId])
 ALTER TABLE [dbo].[RoleUserProfile] ADD CONSTRAINT [FK_dbo.RoleUserProfile_dbo.UserProfile_UserProfile_Id] FOREIGN KEY ([UserProfile_Id]) REFERENCES [dbo].[UserProfile] ([Id])
 ALTER TABLE [dbo].[webpages_UsersInRoles] ADD CONSTRAINT [FK_dbo.webpages_UsersInRoles_dbo.UserProfile_UserId] FOREIGN KEY ([UserId]) REFERENCES [dbo].[UserProfile] ([Id])
-ALTER TABLE [dbo].[webpages_UsersInRoles] ADD CONSTRAINT [FK_dbo.webpages_UsersInRoles_dbo.webpages_Roles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [dbo].[webpages_Roles] ([RoleId])
+ALTER TABLE [dbo].[webpages_UsersInRoles] ADD CONSTRAINT [FK_dbo.webpages_UsersInRoles_dbo.webpages_Roles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [dbo].[webpages_Roles] ([RoleId]) ON DELETE CASCADE
 CREATE TABLE [dbo].[__MigrationHistory] (
     [MigrationId] [nvarchar](255) NOT NULL,
     [Model] [varbinary](max) NOT NULL,

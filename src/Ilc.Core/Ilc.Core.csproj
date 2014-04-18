@@ -56,6 +56,7 @@
     <Compile Include="Contracts\IProgressEvaluationsService.cs" />
     <Compile Include="Contracts\ISubjectFilesService.cs" />
     <Compile Include="Contracts\IUserNotifyService.cs" />
+    <Compile Include="Exceptions\NotAllowedException.cs" />
     <Compile Include="FilterArgumentsAssesments.cs" />
     <Compile Include="FilterArgumentsGradingAttributes.cs" />
     <Compile Include="Services\AssesmentsManager.cs" />

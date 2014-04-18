@@ -34,7 +34,8 @@ namespace Ilc.Web.AppStart
                 // ServiceStackHandlerFactoryPath = "",
                 WriteErrorsToResponse = true,
                 MapExceptionToStatusCode = {
-                        { typeof(AuthenticationException), 401 }
+                        { typeof(AuthenticationException), 401 },
+                        {typeof(Ilc.Core.Exceptions.NotAllowedException), 405 }
                     }
             });
         }

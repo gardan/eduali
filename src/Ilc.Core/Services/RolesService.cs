@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Ilc.Core.Contracts;
+using Ilc.Core.Exceptions;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models.SimpleMembership;
 
@@ -78,6 +79,7 @@ namespace Ilc.Core.Services
             var user = Users.GetByEmail();
             role.CompanyId = user.CompanyId;
 
+            role.CanDelete = true;
             Uow.Roles.Add(role);
             Uow.Commit();
         }

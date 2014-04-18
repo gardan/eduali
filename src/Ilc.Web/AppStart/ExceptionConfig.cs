@@ -1,4 +1,5 @@
-﻿using ServiceStack;
+﻿using Ilc.Core.Exceptions;
+using ServiceStack;
 using AuthenticationException = System.Security.Authentication.AuthenticationException;
 
 namespace Ilc.Web.AppStart
@@ -10,7 +11,8 @@ namespace Ilc.Web.AppStart
             appHost.SetConfig(new HostConfig()
                 {
                     MapExceptionToStatusCode = {
-                        { typeof(AuthenticationException), 401 } 
+                        { typeof(AuthenticationException), 401 },
+                        { typeof(Ilc.Core.Exceptions.NotAllowedException), 405 }
                     }
                 });
         }
