@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net;
 using Ilc.Core;
 using Ilc.Core.Contracts;
@@ -54,6 +55,13 @@ namespace Ilc.Web.Services
 
         public HttpResult Delete(SubjectModel request)
         {
+            // TODO: put in request attribute
+            var subject = Subjects.GetById(request.Id);
+            if (subject.Trainers.Any())
+            {
+                throw new ArgumentException("Subject belongs to trainers.");
+            }
+
             Subjects.Delete(request.Id);
 
             return new HttpResult()

@@ -2,6 +2,22 @@
     extend: 'Ext.container.Container',
     xtype: 'listsubjectswindow',
 
+    onDeleteFailure: function(model, operation) {
+        switch (operation.error.status) {
+            case 400:
+                
+                Ext.Msg.show({
+                    title: 'Warning',
+                    msg: 'Subject belongs to one or more trainers, please remove them then try again.',
+                    buttons: Ext.Msg.OK,
+                });
+
+                break;
+            default:
+                console.log(arguments);
+        }
+    },
+
     initComponent: function () {
         var me = this;
 
@@ -65,7 +81,7 @@
                             handler: function () {
                                 subjectsGrid.rowContextMenu.rec.destroy({
                                     failure: function() {
-                                        console.log(arguments);
+                                        me.onDeleteFailure.apply(me, arguments);
                                     },
                                 });
                                 
