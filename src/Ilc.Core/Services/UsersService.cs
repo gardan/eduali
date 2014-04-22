@@ -167,6 +167,29 @@ namespace Ilc.Core.Services
 
         public void Delete(int id)
         {
+            var user = Uow.UserProfiles.GetById(id);
+
+            // Check if the user is a student
+            var student = Uow.Students.GetAll().FirstOrDefault(s => s.UserProfileId == id);
+            if ( student != null)
+            {
+                Uow.Students.Delete(student);
+            }
+
+            // Check if the user is a trainer
+            var trainer = Uow.Trainers.GetAll().FirstOrDefault(t => t.UserProfileId == id);
+            if (trainer != null)
+            {
+                Uow.Trainers.Delete(trainer);
+            }
+
+            // Check if the user is a contact
+            var contact = Uow.Contacts.GetAll().FirstOrDefault(c => c.UserProfileId == id);
+            if (contact != null)
+            {
+                Uow.Contacts.Delete(contact);
+            }
+
             Uow.UserProfiles.Delete(id);
             Uow.Commit();
         }
