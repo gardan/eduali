@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net;
 using Ilc.Core;
 using Ilc.Core.Contracts;
@@ -59,6 +60,16 @@ namespace Ilc.Web.Services
             return new HttpResult()
                 {
                     StatusCode =  HttpStatusCode.OK
+                };
+        }
+
+        public HttpResult Delete(UserModel request)
+        {
+            Users.Delete(request.Id);
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
                 };
         }
 

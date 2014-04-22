@@ -37,7 +37,7 @@ namespace Ilc.Web.AppStart
 
             routes.Add<Services.FilterParametersUsers>("/users", "GET");
             routes.Add<Services.CreateUserModel>("/users", "POST");
-            routes.Add<Services.UserModel>("/users/{id}", "PUT");
+            routes.Add<Services.UserModel>("/users/{id}", "PUT,DELETE");
 
             routes.Add<Services.FilterParametersRoles>("/roles", "GET");
             routes.Add<Services.CreateRoleModel>("/roles", "POST");

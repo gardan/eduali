@@ -3,6 +3,51 @@
 
     xtype: 'listusers',
 
+    onDeleteFailure: function (model, operation) {
+        switch (operation.error.status) {
+            case 400:
+
+                Ext.Msg.show({
+                    title: 'Warning',
+                    msg: operation.error.statusMessage,
+                    buttons: Ext.Msg.OK,
+                });
+
+                break;
+            default:
+                console.log(arguments);
+        }
+    },
+
+    onItemContextMenu: function (view, record, item, index, e) {
+        var me = this;
+        
+        e.stopEvent();
+
+        if (!me.rowContextMenu) {
+            me.rowContextMenu = Ext.create('Ext.menu.Menu', {
+                items: [
+                    {
+                        text: Ilc.resources.Manager.getResourceString('common.delete'),
+                        handler: function () {
+                            
+                            me.rowContextMenu.rec.destroy({
+                                failure: function() {
+                                    me.onDeleteFailure.apply(me, arguments);
+                                },
+                            });
+                                
+
+                        }
+                    }
+                ]
+            });
+        }
+
+        me.rowContextMenu.rec = record;
+        me.rowContextMenu.showAt(e.getXY());
+    },
+
     initComponent: function () {
         var me = this;
 
@@ -56,6 +101,8 @@
                 }
             }).show();
         });
+
+        usersGrid.on('itemcontextmenu', this.onItemContextMenu, this);
 
         me.items = [
             usersGrid

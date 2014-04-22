@@ -165,6 +165,12 @@ namespace Ilc.Core.Services
             Uow.Commit();
         }
 
+        public void Delete(int id)
+        {
+            Uow.UserProfiles.Delete(id);
+            Uow.Commit();
+        }
+
         private string GetHashedFromPlain(string text, string salt)
         {
             return Crypto.Crypto.Hash(salt + Crypto.Crypto.Hash(salt + text));

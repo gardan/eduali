@@ -18,7 +18,7 @@ namespace Ilc.Data.Migrations
                         Phone = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.UserProfile", t => t.Id)
+                .ForeignKey("dbo.UserProfile", t => t.Id, cascadeDelete: true)
                 .Index(t => t.Id);
             
         }
