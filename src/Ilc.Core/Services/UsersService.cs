@@ -140,7 +140,7 @@ namespace Ilc.Core.Services
                 var appUrl = WebConfigurationManager.AppSettings["ApplicationUrl"];
                 var body = Templates.CreatedAccountWithNoPassword(new
                     {
-                        InitPasswordUrl = string.Format("{0}/#initaccount?token={1}", appUrl, token)                    
+                        InitPasswordUrl = string.Format("{0}/app/#initaccount?token={1}", appUrl, token)                    
                     });
                 
                 NotifyService.Notify(user.Email, body);
