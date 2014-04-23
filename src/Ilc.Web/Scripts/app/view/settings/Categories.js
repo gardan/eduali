@@ -31,7 +31,7 @@
                     component: 'Ilc.view.statusDefinitions.List'
                 },
                 {
-                    text: 'Templates',
+                    text: Ilc.resources.Manager.getResourceString('common.shiftTemplates'),
                     component: 'Ilc.view.templates.List'
                 },
                 {

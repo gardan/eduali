@@ -132,6 +132,7 @@
         'common.newPassword': 'New password',
         'common.password': 'Password',
         'common.company': 'Company',
+        'common.shiftTemplates': 'Shift templates',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',
