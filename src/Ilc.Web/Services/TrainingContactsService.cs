@@ -41,6 +41,35 @@ namespace Ilc.Web.Services
                     StatusCode = HttpStatusCode.OK
                 };
         }
+
+        public HttpResult Delete(DeleteTrainingContactModel request)
+        {
+            var training = Uow.Trainings.GetById(request.TrainingId);
+            var contactToRemove = Uow.Contacts.GetById(request.Id);
+
+            if (contactToRemove == null)
+            {
+                return new HttpResult()
+                    {
+                        StatusCode =  HttpStatusCode.OK
+                    };
+            }
+
+            training.ContactPersons.Remove(contactToRemove);
+            Uow.Trainings.Update(training);
+            Uow.Commit();
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
+    }
+
+    public class DeleteTrainingContactModel
+    {
+        public int Id { get; set; }
+        public int TrainingId { get; set; }
     }
 
     public class PostTrainingContactsModel

@@ -21,7 +21,7 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.FilterParameterProgressEvaluations>("/trainings/{trainingId}/progressEvaluationsStudents", "GET");
 
             routes.Add<Services.PostTrainingContactsModel>("/trainings/{trainingId}/contacts", "POST");
-            // routes.Add<object>("/trainings/{trainingId}/contacts/{id}", "DELETE");
+            routes.Add<Services.DeleteTrainingContactModel>("/trainings/{trainingId}/contacts/{id}", "DELETE");
 
             routes.Add<FilterParametersCustomers>("/customers", "GET");
             routes.Add<CreateCustomerModel>("/customers", "POST");
