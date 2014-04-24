@@ -83,6 +83,10 @@
     background-image: url(../images/web/book.png);
 }
 
+.icon-open-book-32 {
+    background-image: url(../images/web32/open_book.png);
+}
+
 .icon-task {
     background-image: url(../images/web/task.png);
 }

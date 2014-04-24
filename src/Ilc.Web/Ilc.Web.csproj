@@ -125,6 +125,7 @@
     <Content Include="Images\web32\book.png" />
     <Content Include="Images\web32\company.png" />
     <Content Include="Images\web32\customer.png" />
+    <Content Include="Images\web32\open_book.png" />
     <Content Include="Images\web32\planning.png" />
     <Content Include="Images\web32\settings.png" />
     <Content Include="Images\web32\statistics.png" />

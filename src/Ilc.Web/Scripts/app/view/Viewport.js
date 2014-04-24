@@ -37,7 +37,7 @@
                 } // ,
             },
             {
-                iconCls: 'icon-book-32',
+                iconCls: 'icon-open-book-32',
                 itemId: 'menu.trainings?open=true',
                 hidden: !Ilc.Configuration.claimExists('tasks-student'),
                 tooltip: {
