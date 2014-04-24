@@ -94,6 +94,10 @@ Ext.application({
         Ext.form.field.Date.prototype.format = Ilc.resources.Manager.getResourceString('formats.extjsdate');
 
         Ext.grid.Panel.prototype.emptyText = 'No data.';
+        Ext.grid.Panel.prototype.deferEmptyText = false;
+        
+        Ext.view.View.prototype.emptyText = 'No data.';
+        Ext.view.View.prototype.deferEmptyText = false;
 
         // fix this: http://www.sencha.com/forum/showthread.php?268135-Grid-error-on-delete-selected-row
         Ext.view.Table.prototype.doStripeRows = function(startRow, endRow) {
