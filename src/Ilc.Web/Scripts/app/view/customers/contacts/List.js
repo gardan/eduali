@@ -68,10 +68,16 @@
         this.fireEvent('updatecomplete', this);
     },
 
+    config: {
+        enableContextMenu: true
+    },
+
     initComponent: function () {
         var me = this;
 
-        me.on('itemcontextmenu', me.onItemContextMenu);
+        if (me.enableContextMenu) {
+            me.on('itemcontextmenu', me.onItemContextMenu);
+        }
 
         me.addEvents(
             'updatecontact',

@@ -30,6 +30,11 @@ namespace Ilc.Core.Services
                 query = query.Where(c => c.CustomerId == parameters.CustomerId);
             }
 
+            if (parameters.TrainingId > 0)
+            {
+                query = query.Where(c => c.Trainings.Any(t => t.Id == parameters.TrainingId));
+            }
+
             if (parameters.IsMain.HasValue)
             {
                 query = query.Where(c => c.UserProfile.Roles.Any(r => r.RoleName == "Customer Contact") == parameters.IsMain.Value);

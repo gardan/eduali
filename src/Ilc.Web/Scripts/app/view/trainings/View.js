@@ -8,7 +8,8 @@
         'Ilc.view.trainings.view.Planning',
         'Ilc.view.spendings.View',
         'Ilc.view.subjectFiles.List',
-        'Ilc.view.gradingAttributes.TrainingList'
+        'Ilc.view.gradingAttributes.TrainingList',
+        'Ilc.view.trainings.view.Contacts'
     ],
     width: 900,
 
@@ -173,6 +174,10 @@
             params: {
                 subjectId: model.get('subject').id
             }
+        });
+
+        var contactsStore = Ext.create('Ilc.store.Contacts', {
+            customerId: model.get('id')
         });
 
         // Select the first item
@@ -481,11 +486,22 @@
                         xtype: 'trainingattributeslist',
                         trainingId: model.get('id'),
                         allowEdit: model.get('statusWeight') < 0.3
+                    },
+                    {
+                        title: 'Contacts',
+                        xtype: 'contactstraininglist',
+                        store: contactsStore
                     }
                 ]
             }
 
         ];
+
+        contactsStore.load({
+            params: {
+                trainingId: model.get('id')
+            }
+        });
 
         me.addEvents(
             'updatetraining',
