@@ -61,7 +61,7 @@
                             me.fireEvent('deleteStudent', me, {
                                 id: record.data.id
                             }, {
-                                store: studentsStore
+                                store: me.studentsStore
                             });
                         }
                     }
@@ -75,6 +75,8 @@
         var me = this;
 
         var studentsStore = Ext.create('Ilc.store.Students');
+
+        me.studentsStore = studentsStore;
 
         var filters = {
             ftype: 'jsvfilters',
