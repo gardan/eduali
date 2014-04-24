@@ -25,7 +25,7 @@ namespace Ilc.Web.Services.Recovery
             {
                 tpl = Templates.ForgotPasswordNoUser();
                 // Notify that account does not exist.
-                UserNotifyService.Notify(request.Email, tpl);
+                UserNotifyService.Notify(request.Email, tpl, "Recover account attempt");
                 return new HttpResult(); // EXIT
             }
 
@@ -47,7 +47,7 @@ namespace Ilc.Web.Services.Recovery
                     Email = request.Email,
                     ResetUrl = Request.GetApplicationUrl() + "/#recover?token=" + membership.PasswordVerificationToken
                 });
-            UserNotifyService.Notify(user.Email, body);
+            UserNotifyService.Notify(user.Email, body, "Password recover");
             // UserNotifyService.Notify(tpl, new Dictionary<string, string>() { { "User", request.Email } });
 
             return new HttpResult();
@@ -77,7 +77,7 @@ namespace Ilc.Web.Services.Recovery
             Uow.Commit();
 
             var tpl = Templates.ForgotPasswordComplete();
-            UserNotifyService.Notify(user.Email, tpl);
+            UserNotifyService.Notify(user.Email, tpl, "Password changed");
 
             return new HttpResult();
         }

@@ -143,7 +143,7 @@ namespace Ilc.Core.Services
                         InitPasswordUrl = string.Format("{0}/app/#initaccount?token={1}", appUrl, token)                    
                     });
                 
-                NotifyService.Notify(user.Email, body);
+                NotifyService.Notify(user.Email, body, "New account");
             }
         }
 

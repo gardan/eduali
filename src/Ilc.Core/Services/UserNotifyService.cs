@@ -8,9 +8,9 @@ namespace Ilc.Core.Services
     public class UserNotifyService : IUserNotifyService
     {
 
-        public void Notify(string email, string body)
+        public void Notify(string email, string body, string subject)
         {
-            SendMail(email, "", body);
+            SendMail(email, subject, body);
         }
 
         private void SendMail(string to, string subject, string body)

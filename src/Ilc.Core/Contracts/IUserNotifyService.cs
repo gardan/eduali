@@ -2,6 +2,6 @@
 {
     public interface IUserNotifyService
     {
-        void Notify(string email, string body);
+        void Notify(string email, string body, string subject);
     }
 }
