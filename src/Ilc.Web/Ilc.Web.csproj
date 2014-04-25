@@ -462,6 +462,7 @@
     <Content Include="Scripts\app\view\trainings\Create.js" />
     <Content Include="Scripts\app\view\trainings\List.js" />
     <Content Include="Scripts\app\view\trainings\View.js" />
+    <Content Include="Scripts\app\view\trainings\view\Contacts.js" />
     <Content Include="Scripts\app\view\trainings\view\InterviewPlan.js" />
     <Content Include="Scripts\app\view\trainings\view\Planning.js" />
     <Content Include="Scripts\app\view\users\Create.js" />

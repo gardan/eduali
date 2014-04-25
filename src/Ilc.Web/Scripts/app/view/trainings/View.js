@@ -490,7 +490,9 @@
                     {
                         title: 'Contacts',
                         xtype: 'contactstraininglist',
-                        store: contactsStore
+                        store: contactsStore,
+                        trainingId: model.get('id'),
+                        customerId: model.get('customerId')
                     }
                 ]
             }

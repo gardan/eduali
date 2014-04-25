@@ -53,7 +53,6 @@
                     });
                 });
                 Ilc.utils.Forms._addProperty(model, input.name, ret);
-                debugger;
                 break;
             case 'datefield':
                 var date = input.getRawValue();
