@@ -198,6 +198,7 @@
     <Content Include="Scripts\app\LoginManager.js" />
     <Content Include="Scripts\app\model\Availability.js" />
     <Content Include="Scripts\app\model\Claim.js" />
+    <Content Include="Scripts\app\model\ContactTraining.js" />
     <Content Include="Scripts\app\model\Grade.js" />
     <Content Include="Scripts\app\model\GradingAttribute.js" />
     <Content Include="Scripts\app\model\GradingSystem.js" />

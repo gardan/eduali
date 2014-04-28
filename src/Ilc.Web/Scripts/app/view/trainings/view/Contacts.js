@@ -55,9 +55,11 @@
                                             model.ids.push(obj.name);
                                         });
 
+                                        var url = 'api/trainings/' + me.trainingId + '/contacts';
+
                                         var contactTrainingModel = Ext.create('Ilc.model.ContactTraining', model);
                                         contactTrainingModel.save({
-                                            url: 'api/trainings/1/contacts',
+                                            url: url,
                                             callback: function() {
                                                 me.store.reload();
                                                 window.close();
