@@ -46,6 +46,7 @@
       <HintPath>..\..\packages\madam.1.0.2\lib\net20\Madam.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Omu.ValueInjecter">
       <HintPath>..\..\packages\ValueInjecter.2.3.3\lib\net35\Omu.ValueInjecter.dll</HintPath>
     </Reference>
@@ -4041,6 +4042,7 @@
     <Compile Include="Services\AssesmentsService.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\AvailabilityService.cs" />
+    <Compile Include="Services\DataImport\DataImportService.cs" />
     <Compile Include="Services\Grading\AttributesService.cs" />
     <Compile Include="Services\Grading\TrainingGradingAttributesService.cs" />
     <Compile Include="Services\Images\AvatarsService.cs" />

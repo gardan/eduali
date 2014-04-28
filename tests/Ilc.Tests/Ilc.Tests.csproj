@@ -72,6 +72,7 @@
     <Compile Include="Unit\Infrastructure\WorkflowProcessOperation.cs" />
     <Compile Include="Unit\Misc\UtilsTests.cs" />
     <Compile Include="Unit\Web\Authentication.cs" />
+    <Compile Include="Unit\Web\Services\DataImportServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

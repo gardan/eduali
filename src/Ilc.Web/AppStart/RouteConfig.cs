@@ -170,6 +170,8 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.Recovery.ResetPasswordModel>("/recovery/{token}", "PUT"); // Replace the password
 
             // END - Apis for the logged in user
+
+            routes.Add<Services.DataImport.ImportTrainersModel>("/import/trainers", "POST");
         }
     }
 }
