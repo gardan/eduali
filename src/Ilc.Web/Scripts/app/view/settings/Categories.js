@@ -37,6 +37,10 @@
                 {
                     text: 'Grading systems',
                     component: 'Ilc.view.gradingSystems.List'
+                },
+                {
+                    text: 'Import trainer',
+                    component: 'Ilc.view.import.Trainers'
                 }
             ]
         });
