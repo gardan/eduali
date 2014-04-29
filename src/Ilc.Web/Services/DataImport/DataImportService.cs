@@ -17,6 +17,7 @@ namespace Ilc.Web.Services.DataImport
         public IUow Uow { get; set; }
         public IUsersService Users { get; set; }
         public ICustomersService Customers { get; set; }
+        public IStudentsService Students { get; set; }
 
         /// <summary>
         /// /api/import/customers
@@ -122,6 +123,44 @@ namespace Ilc.Web.Services.DataImport
                     StatusCode = HttpStatusCode.OK
                 };
         }
+
+        public HttpResult Post(ImportStudentsModel request)
+        {
+            var students = new List<Student>();
+            var companyId = Users.GetByEmail().CompanyId;
+
+            foreach (var studentBulkImport in request.Data)
+            {
+                var customerId = Uow.Customers.GetAll().FirstOrDefault(c => c.Name == studentBulkImport.CustomerName && c.CompanyId == companyId).Id;
+
+                students.Add(new Student()
+                    {
+                        CustomerId = customerId,
+                        UserProfile = new UserProfile()
+                        {
+                            Email = studentBulkImport.Email,
+                            CompanyId = companyId,
+                            UserDetails = new UserDetails()
+                            {
+                                FirstName = studentBulkImport.FirstName,
+                                LastName = studentBulkImport.LastName,
+                                DateOfBirth = new DateTimeOffset(studentBulkImport.Birthday, TimeSpan.Zero),
+                                Phone = studentBulkImport.Phone
+                            }
+                        }
+                    });   
+            }
+
+            foreach (var student in students)
+            {
+                Students.Create(student);
+            }
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
     }
 
     public class ImportTrainersModel
@@ -132,6 +171,11 @@ namespace Ilc.Web.Services.DataImport
     public class ImportCustomersModel
     {
         public CustomerBulkImport[] Data { get; set; }
+    }
+
+    public class ImportStudentsModel
+    {
+        public StudentBulkImport[] Data { get; set; }
     }
 
     public class TrainerBulkImport
@@ -155,6 +199,7 @@ namespace Ilc.Web.Services.DataImport
 
     public class StudentBulkImport
     {
+        public string CustomerName { get; set; }
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
