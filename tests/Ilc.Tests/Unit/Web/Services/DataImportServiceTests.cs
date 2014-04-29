@@ -34,10 +34,19 @@ namespace Ilc.Tests.Unit.Web.Services
             service.Uow = uowMock.Object;
             service.Users = userServiceMock.Object;
 
-            var data = "";
+            var data = new TrainerBulkImport[10];
+            
             for (int i = 0; i < 10; i++)
             {
-                data += "dan" + i + "@google.com,alex,dan,1991-05-04,0745093950,English" + Environment.NewLine;
+                data[i] = new TrainerBulkImport()
+                    {
+                        Email = "dan" + i + "@google.com",
+                        FirstName = "alex",
+                        LastName = "dan",
+                        Birthday = DateTime.Parse("1991-05-04"),
+                        Phone = "0745093950",
+                        Subjects = "English"
+                    };
             }
 
             // Act

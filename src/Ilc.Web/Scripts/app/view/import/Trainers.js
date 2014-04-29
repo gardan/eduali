@@ -45,7 +45,7 @@
                 'subjects': dataItem[5]
             });
         });
-
+        this.trainersBulkStore.removeAll();
         this.trainersBulkStore.loadRawData(objectData);
     },
 

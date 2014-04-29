@@ -26,22 +26,16 @@ namespace Ilc.Web.Services.DataImport
             var trainers = new List<Trainer>();
             var companyId = Users.GetByEmail().CompanyId;
 
-            var parser = new TextFieldParser(new StringReader(request.Data));
-            parser.SetDelimiters(new[] { "," });
-
-            while (!parser.EndOfData)
+            foreach (var trainerBulkImport in request.Data)
             {
-                var row = parser.ReadFields();
-                var subjectName = row[5];
-
-                var subject = Uow.Subjects.GetAll().FirstOrDefault(s => s.Name == subjectName);
+                var subject = Uow.Subjects.GetAll().FirstOrDefault(s => s.Name == trainerBulkImport.Subjects);
 
                 var subjects = new List<Subject>();
                 if (subject == null)
                 {
                     subjects.Add(new Subject()
                         {
-                            Name = subjectName,
+                            Name = trainerBulkImport.Subjects,
                             CompanyId = companyId
                         });
                 }
@@ -54,14 +48,14 @@ namespace Ilc.Web.Services.DataImport
                     {
                         UserProfile = new UserProfile()
                             {
-                                Email = row[0],
+                                Email = trainerBulkImport.Email,
                                 CompanyId = companyId,
                                 UserDetails = new UserDetails()
                                     {
-                                        FirstName = row[1],
-                                        LastName = row[2],
-                                        DateOfBirth = DateTimeOffset.ParseExact(row[3], "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture),
-                                        Phone = row[4]
+                                        FirstName = trainerBulkImport.FirstName,
+                                        LastName = trainerBulkImport.LastName,
+                                        DateOfBirth = new DateTimeOffset(trainerBulkImport.Birthday, TimeSpan.Zero),
+                                        Phone = trainerBulkImport.Phone
                                     }
                             },
                         CompanyId = companyId,
@@ -86,18 +80,16 @@ namespace Ilc.Web.Services.DataImport
 
     public class ImportTrainersModel
     {
-        public ImportTrainersModel()
-        {
-            DataType = "text/csv";
-        }
+        public TrainerBulkImport[] Data { get; set; }
+    }
 
-        /// <summary>
-        /// Only .csv is supportted, and the data should be provided without the headers.
-        /// </summary>
-        /// <example>
-        /// 
-        /// </example>
-        public string Data { get; set; }
-        public string DataType { get; set; }
+    public class TrainerBulkImport
+    {
+        public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public DateTime Birthday { get; set; }
+        public string Phone { get; set; }
+        public string Subjects { get; set; }
     }
 }
