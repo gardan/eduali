@@ -107,18 +107,11 @@
                 listeners: {
                     scope: this,
                     click: function () {
+                        var model = [];
+                        me.trainersBulkStore.each(function (record) {
+                            model.push(record.data);
+                        });
                         
-                        var model = [
-                                {
-                                    mail: 'dan@dan.com',
-                                    firstName: 'dan',
-                                    lastName: 'dan',
-                                    birthday: '1991-04-04',
-                                    phone: '923823935',
-                                    subjects: 'English'
-                                }
-                            ];
-
                         var importsManager = Ext.create('Ilc.manager.Import');
                         importsManager.trainers(model)
                             .then(function() {
@@ -146,16 +139,22 @@
                                     if (errorIndexKeys.indexOf(x) == -1) {
                                         return;
                                     }
+                                    var rowError = {};
+                                    
+                                    Ext.Array.forEach(errorKeys, function(key) {
+                                        var index = parseInt(key.split('-')[0]);
+                                        var field = key.split('-')[1];
 
-                                    var rowError = {
-                                        email: 'error message'
-                                    };
-
+                                        if (index == x) {
+                                            rowError[field] = errors[key].messages;
+                                        }
+                                    });
+                                    
                                     Ext.Array.forEach(grid.columns, function (col, y) {
                                         if (!rowError.hasOwnProperty(col.dataIndex)) {
                                             return;
                                         }
-                                        var messages = [rowError[col.dataIndex]];
+                                        var messages = rowError[col.dataIndex];
 
                                         var cell = grid.getView().getCellByPosition({ row: x, column: y });
 
