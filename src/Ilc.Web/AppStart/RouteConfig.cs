@@ -171,7 +171,9 @@ namespace Ilc.Web.AppStart
 
             // END - Apis for the logged in user
 
+            routes.Add<Services.DataImport.ImportCustomersModel>("/import/customers", "POST");
             routes.Add<Services.DataImport.ImportTrainersModel>("/import/trainers", "POST");
+            routes.Add<Services.DataImport.ImportStudentsModel>("/import/students", "POST");
         }
     }
 }
