@@ -106,46 +106,65 @@
                 text: 'Import',
                 listeners: {
                     scope: this,
-                    click: function() {
-                        var error = {
-                            '0-email': 'error message'
-                        };
+                    click: function () {
                         
-
-                        var errorKeys = Ext.Object.getKeys(error);
-                        var errorIndexKeys = [];
-
-                        Ext.Array.forEach(errorKeys, function (key) {
-                            var index = parseInt(key.split('-')[0]);
-                            if (errorIndexKeys.indexOf(index) == -1) {
-                                errorIndexKeys.push(index);
-                            }
-                        });
-
-                        var grid = this.query('grid')[0];
-
-                        Ext.Array.forEach(grid.getView().getNodes(), function (row, x) {
-                            if (errorIndexKeys.indexOf(x) == -1) {
-                                return;
-                            }
-
-                            var rowError = {
-                                email: 'error message'    
-                            };
-                            
-                            Ext.Array.forEach(grid.columns, function (col, y) {
-                                if (!rowError.hasOwnProperty(col.dataIndex)) {
-                                    return;
+                        var model = [
+                                {
+                                    mail: 'dan@dan.com',
+                                    firstName: 'dan',
+                                    lastName: 'dan',
+                                    birthday: '1991-04-04',
+                                    phone: '923823935',
+                                    subjects: 'English'
                                 }
-                                var messages = [rowError[col.dataIndex]];
+                            ];
 
-                                var cell = grid.getView().getCellByPosition({ row: x, column: y });
+                        var importsManager = Ext.create('Ilc.manager.Import');
+                        importsManager.trainers(model)
+                            .then(function() {
 
-                                cell.addCls('x-form-invalid-field');
-                                cell.set({ 'data-errorqtip': Ext.String.format('<ul><li class="last">{0}</li></ul>', messages.join('<br/>')) });
+                            },
+                            // error
+                            function (response) {
+                                if (response.status != 400) return;
 
+                                var errors = Ilc.helpers.Error.decodeErrorText(response.responseText);
+                                
+                                var errorKeys = Ext.Object.getKeys(errors);
+                                var errorIndexKeys = [];
+
+                                Ext.Array.forEach(errorKeys, function (key) {
+                                    var index = parseInt(key.split('-')[0]);
+                                    if (errorIndexKeys.indexOf(index) == -1) {
+                                        errorIndexKeys.push(index);
+                                    }
+                                });
+
+                                var grid = me.query('grid')[0];
+                                 
+                                Ext.Array.forEach(grid.getView().getNodes(), function (row, x) {
+                                    if (errorIndexKeys.indexOf(x) == -1) {
+                                        return;
+                                    }
+
+                                    var rowError = {
+                                        email: 'error message'
+                                    };
+
+                                    Ext.Array.forEach(grid.columns, function (col, y) {
+                                        if (!rowError.hasOwnProperty(col.dataIndex)) {
+                                            return;
+                                        }
+                                        var messages = [rowError[col.dataIndex]];
+
+                                        var cell = grid.getView().getCellByPosition({ row: x, column: y });
+
+                                        cell.addCls('x-form-invalid-field');
+                                        cell.set({ 'data-errorqtip': Ext.String.format('<ul><li class="last">{0}</li></ul>', messages.join('<br/>')) });
+
+                                    });
+                                });
                             });
-                        });
                     }
                 }
             },

@@ -7,6 +7,7 @@ using System.Web;
 using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models;
+using Ilc.Web.Filters.Request.Verification.Import;
 using Microsoft.VisualBasic.FileIO;
 using ServiceStack;
 
@@ -19,10 +20,14 @@ namespace Ilc.Web.Services.DataImport
         public ICustomersService Customers { get; set; }
         public IStudentsService Students { get; set; }
 
+        
         /// <summary>
         /// /api/import/customers
         /// </summary>
         /// <returns></returns>
+        /// <!-- Validation checks for the following:
+        /// 1. All emails must be unique -->
+        [ValidateTrainersImport]
         public HttpResult Post(ImportTrainersModel request)
         {
             var trainers = new List<Trainer>();
@@ -56,7 +61,7 @@ namespace Ilc.Web.Services.DataImport
                                     {
                                         FirstName = trainerBulkImport.FirstName,
                                         LastName = trainerBulkImport.LastName,
-                                        DateOfBirth = new DateTimeOffset(trainerBulkImport.Birthday, TimeSpan.Zero),
+                                        DateOfBirth = new DateTimeOffset(DateTime.SpecifyKind(trainerBulkImport.Birthday, DateTimeKind.Unspecified), TimeSpan.Zero),
                                         Phone = trainerBulkImport.Phone
                                     }
                             },

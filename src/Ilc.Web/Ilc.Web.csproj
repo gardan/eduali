@@ -197,6 +197,7 @@
     <Content Include="Scripts\app\helpers\Error.js" />
     <Content Include="Scripts\app\helpers\GridColumns.js" />
     <Content Include="Scripts\app\LoginManager.js" />
+    <Content Include="Scripts\app\manager\Import.js" />
     <Content Include="Scripts\app\model\Availability.js" />
     <Content Include="Scripts\app\model\Claim.js" />
     <Content Include="Scripts\app\model\ContactTraining.js" />
@@ -3984,6 +3985,7 @@
     <Compile Include="Controllers\TransfersController.cs" />
     <Compile Include="Controllers\ZipController.cs" />
     <Compile Include="Filters\Request\IlcAuth.cs" />
+    <Compile Include="Filters\Request\Verification\Import\ValidateTrainersImport.cs" />
     <Compile Include="Filters\Request\Verification\Profile\EmailModelDuplication.cs" />
     <Compile Include="Filters\Request\Verification\Profile\PasswordModelVerification.cs" />
     <Compile Include="Filters\Response\ModelWithStatusResponseFilter.cs" />
