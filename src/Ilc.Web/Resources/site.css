@@ -254,3 +254,6 @@ a:visited {
     text-decoration: none;
 }
 
+.x-form-invalid-field {
+    color: red;
+}
