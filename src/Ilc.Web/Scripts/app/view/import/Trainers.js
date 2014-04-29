@@ -85,6 +85,10 @@
             ]
         });
 
+        var editor = {
+            xtype: 'textfield'
+        };
+
         this.items = [
             {
                 xtype: 'textarea',
@@ -147,10 +151,25 @@
             },
             {
                 xtype: 'grid',
+                plugins: [
+                     Ext.create('Ext.grid.plugin.RowEditing', {
+                         clicksToEdit: 2,
+                         listeners: {
+                             edit: function (textfield, e) {
+                                 e.column.removeCls('x-form-invalid-field');
+                                 e.row.childNodes[e.colIdx].removeAttribute('data-errorqtip');
+                                 e.record.commit();
+                             }
+                         }
+                     })
+                ],
+                
+                minHeight: 200,
                 columns: [
                     {
                         dataIndex: 'email',
-                        text: 'Email'
+                        text: 'Email',
+                        editor: editor
                     },
                     {
                         dataIndex: 'firstName',
