@@ -16,6 +16,7 @@ namespace Ilc.Web.Services.DataImport
     {
         public IUow Uow { get; set; }
         public IUsersService Users { get; set; }
+        public ICustomersService Customers { get; set; }
 
         /// <summary>
         /// /api/import/customers
@@ -76,11 +77,61 @@ namespace Ilc.Web.Services.DataImport
                 };
         }
 
+        public HttpResult Post(ImportCustomersModel request)
+        {
+            var customers = new List<Customer>();
+            var companyId = Users.GetByEmail().CompanyId;
+
+            foreach (var customerBulkImport in request.Data)
+            {
+                var splitted = customerBulkImport.ContactName.Split(Convert.ToChar(" "));
+                var lastName = splitted.Last();
+                var firstName = string.Join(" ", splitted.Take(splitted.Length - 1));
+                
+                customers.Add(new Customer()
+                    {
+                        Name = customerBulkImport.Name,
+                        BankAccount = customerBulkImport.BankAccount,
+                        BillingAddress = customerBulkImport.BillingAddress,
+                        CompanyId = companyId,
+                        ContactPersons = new List<ContactPerson>()
+                            {
+                                new ContactPerson()
+                                    {
+                                        UserProfile = new UserProfile()
+                                            {
+                                                Email = customerBulkImport.ContactEmail,
+                                                UserDetails = new UserDetails()
+                                                    {
+                                                        FirstName = firstName,
+                                                        LastName = lastName
+                                                    }
+                                            }
+                                    }
+                            }
+                    });
+            }
+
+            foreach (var customer in customers)
+            {
+                Customers.Create(customer);
+            }
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
     }
 
     public class ImportTrainersModel
     {
         public TrainerBulkImport[] Data { get; set; }
+    }
+
+    public class ImportCustomersModel
+    {
+        public CustomerBulkImport[] Data { get; set; }
     }
 
     public class TrainerBulkImport
@@ -91,5 +142,23 @@ namespace Ilc.Web.Services.DataImport
         public DateTime Birthday { get; set; }
         public string Phone { get; set; }
         public string Subjects { get; set; }
+    }
+
+    public class CustomerBulkImport
+    {
+        public string Name { get; set; }
+        public string BankAccount { get; set; }
+        public string BillingAddress { get; set; }
+        public string ContactName { get; set; }
+        public string ContactEmail { get; set; }
+    }
+
+    public class StudentBulkImport
+    {
+        public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public DateTime Birthday { get; set; }
+        public string Phone { get; set; }
     }
 }
