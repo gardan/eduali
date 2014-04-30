@@ -94,7 +94,8 @@
                 xtype: 'textarea',
                 fieldLabel: 'Csv data',
                 listeners: {
-                    change: function(control, newValue) {
+                    change: function (control, newValue) {
+                        if (newValue == '') return;
                         var dataArray = me.csvToArray(newValue, ',');
                         me.loadRawStore(dataArray);
                     },
@@ -191,23 +192,28 @@
                     },
                     {
                         dataIndex: 'firstName',
-                        text: 'Firstname'
+                        text: 'Firstname',
+                        editor: editor
                     },
                     {
                         dataIndex: 'lastName',
-                        text: 'Lastname'
+                        text: 'Lastname',
+                        editor: editor
                     },
                     {
                         dataIndex: 'birthday',
-                        text: 'Birthday'
+                        text: 'Birthday',
+                        editor: editor
                     },
                     {
                         dataIndex: 'phone',
-                        text: 'Phone'
+                        text: 'Phone',
+                        editor: editor
                     },
                     {
                         dataIndex: 'subjects',
-                        text: 'Subjects'
+                        text: 'Subjects',
+                        editor: editor
                     }
                 ],
                 store: this.trainersBulkStore
