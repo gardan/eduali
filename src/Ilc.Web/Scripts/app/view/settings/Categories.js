@@ -41,6 +41,14 @@
                 {
                     text: 'Import trainer',
                     component: 'Ilc.view.import.Trainers'
+                },
+                {
+                    text: 'Import customers',
+                    component: 'Ilc.view.import.Customers'
+                },
+                {
+                    text: 'Import students',
+                    component: 'Ilc.view.import.Students'
                 }
             ]
         });

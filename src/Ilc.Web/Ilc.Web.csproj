@@ -430,6 +430,9 @@
     <Content Include="Scripts\app\view\home\Intake.js" />
     <Content Include="Scripts\app\view\home\Transfer.js" />
     <Content Include="Scripts\app\view\home\Offer.js" />
+    <Content Include="Scripts\app\view\import\Base.js" />
+    <Content Include="Scripts\app\view\import\Customers.js" />
+    <Content Include="Scripts\app\view\import\Students.js" />
     <Content Include="Scripts\app\view\import\Trainers.js" />
     <Content Include="Scripts\app\view\lessons\List.js" />
     <Content Include="Scripts\app\view\planning\Default.js" />

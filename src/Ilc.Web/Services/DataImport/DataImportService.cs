@@ -149,7 +149,7 @@ namespace Ilc.Web.Services.DataImport
                             {
                                 FirstName = studentBulkImport.FirstName,
                                 LastName = studentBulkImport.LastName,
-                                DateOfBirth = new DateTimeOffset(studentBulkImport.Birthday, TimeSpan.Zero),
+                                DateOfBirth = new DateTimeOffset(DateTime.SpecifyKind(studentBulkImport.Birthday, DateTimeKind.Unspecified), TimeSpan.Zero),
                                 Phone = studentBulkImport.Phone
                             }
                         }

@@ -1,23 +1,25 @@
-﻿Ext.define('Ilc.view.import.Trainers', {
+﻿Ext.define('Ilc.view.import.Base', {
     extend: 'Ext.container.Container',
     
     layout: 'fit',
 
     config: {
         bulkStore: null,
+        gridColumns: null,
+        importFunction: null
     },
 
     getColumnIndexes: function (grid) {
         var self = this;
         var columnIndexes = [];
-        var getIndex = function(column) {
+        var getIndex = function (column) {
             if (Ext.isDefined(column.getEditor())) {
                 columnIndexes.push(column.dataIndex);
             } else {
                 columnIndexes.push(undefined);
             }
         };
-        
+
         if (grid) {
 
             Ext.each(grid.columns, function (column) {
@@ -34,7 +36,7 @@
         }
     },
 
-    csvToArray: function (strData, strDelimiter){
+    csvToArray: function (strData, strDelimiter) {
         var arrData = [[]];
         var arrMatches = null;
         var objPattern = new RegExp((
@@ -44,31 +46,31 @@
         ), "gi");
 
         while (arrMatches = objPattern.exec(strData)) {
-            var strMatchedDelimiter = arrMatches[ 1 ];
+            var strMatchedDelimiter = arrMatches[1];
             if (strMatchedDelimiter.length && (strMatchedDelimiter != strDelimiter)) {
                 arrData.push([]);
             }
             var strMatchedValue;
             if (arrMatches[2]) {
-                strMatchedValue = arrMatches[ 2 ].replace(new RegExp( "\"\"", "g" ),"\"");
+                strMatchedValue = arrMatches[2].replace(new RegExp("\"\"", "g"), "\"");
             } else {
-                strMatchedValue = arrMatches[ 3 ];
+                strMatchedValue = arrMatches[3];
             }
-            arrData[ arrData.length - 1 ].push(strMatchedValue);
+            arrData[arrData.length - 1].push(strMatchedValue);
         }
 
-        return(arrData);
+        return (arrData);
     },
 
-    loadRawStore: function(data) {
+    loadRawStore: function (data) {
         var objectData = [];
         Ext.Array.forEach(data, function (dataItem) {
             objectData.push({
-                'email': dataItem[0], 
-                'firstName': dataItem[1], 
-                'lastName': dataItem[2], 
-                'birthday': dataItem[3], 
-                'phone': dataItem[4], 
+                'email': dataItem[0],
+                'firstName': dataItem[1],
+                'lastName': dataItem[2],
+                'birthday': dataItem[3],
+                'phone': dataItem[4],
                 'subjects': dataItem[5]
             });
         });
@@ -76,18 +78,8 @@
         this.bulkStore.loadRawData(objectData);
     },
 
-    initComponent: function() {
+    initComponent: function () {
         var me = this;
-        
-        this.bulkStore = Ext.create('Ext.data.Store', {
-            fields: [
-                'email', 'firstName', 'lastName', 'birthday', 'phone', 'subjects'
-            ]
-        });
-
-        var editor = {
-            xtype: 'textfield'
-        };
 
         this.items = [
             {
@@ -112,10 +104,10 @@
                         me.bulkStore.each(function (record) {
                             model.push(record.data);
                         });
+
                         
-                        var importsManager = Ext.create('Ilc.manager.Import');
-                        importsManager.trainers(model)
-                            .then(function() {
+                        me.importFunction(model)
+                            .then(function () {
 
                             },
                             // error
@@ -123,7 +115,7 @@
                                 if (response.status != 400) return;
 
                                 var errors = Ilc.helpers.Error.decodeErrorText(response.responseText);
-                                
+
                                 var errorKeys = Ext.Object.getKeys(errors);
                                 var errorIndexKeys = [];
 
@@ -135,14 +127,14 @@
                                 });
 
                                 var grid = me.query('grid')[0];
-                                 
+
                                 Ext.Array.forEach(grid.getView().getNodes(), function (row, x) {
                                     if (errorIndexKeys.indexOf(x) == -1) {
                                         return;
                                     }
                                     var rowError = {};
-                                    
-                                    Ext.Array.forEach(errorKeys, function(key) {
+
+                                    Ext.Array.forEach(errorKeys, function (key) {
                                         var index = parseInt(key.split('-')[0]);
                                         var field = key.split('-')[1];
 
@@ -150,7 +142,7 @@
                                             rowError[field] = errors[key].messages;
                                         }
                                     });
-                                    
+
                                     Ext.Array.forEach(grid.columns, function (col, y) {
                                         if (!rowError.hasOwnProperty(col.dataIndex)) {
                                             return;
@@ -182,40 +174,9 @@
                          }
                      })
                 ],
-                
+
                 minHeight: 200,
-                columns: [
-                    {
-                        dataIndex: 'email',
-                        text: 'Email',
-                        editor: editor
-                    },
-                    {
-                        dataIndex: 'firstName',
-                        text: 'Firstname',
-                        editor: editor
-                    },
-                    {
-                        dataIndex: 'lastName',
-                        text: 'Lastname',
-                        editor: editor
-                    },
-                    {
-                        dataIndex: 'birthday',
-                        text: 'Birthday',
-                        editor: editor
-                    },
-                    {
-                        dataIndex: 'phone',
-                        text: 'Phone',
-                        editor: editor
-                    },
-                    {
-                        dataIndex: 'subjects',
-                        text: 'Subjects',
-                        editor: editor
-                    }
-                ],
+                columns: this.gridColumns,
                 store: this.bulkStore
             }
         ];

@@ -79,15 +79,15 @@ namespace Ilc.Core.Services
         public void Create(ContactPerson contact)
         {
             // first create the user.
-            var userDetails = contact.UserProfile.UserDetails;
+            var userProfile = contact.UserProfile;
             contact.UserProfile = null;
 
             // create the user
             var role = Roles.GetByName("Customer Supervizor");
-            var newUser = new UserProfile() { Email = contact.Email, UserDetails = userDetails, Roles = new List<Role>() { role } };
-            Users.Create(newUser, "");
+            userProfile.Roles = new List<Role>() { role };
+            Users.Create(userProfile, "");
 
-            contact.UserProfileId = newUser.Id;
+            contact.UserProfileId = userProfile.Id;
 
             Uow.Contacts.Add(contact);
             Uow.Commit();
