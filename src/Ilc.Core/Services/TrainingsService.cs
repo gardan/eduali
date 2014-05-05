@@ -15,6 +15,45 @@ namespace Ilc.Core.Services
         public IUsersService Users { get; set; }
         public IAuthorizationService Authorization { get; set; }
 
+        public FilteredResults<Training> GetOpenFiltered(FilterArgumentsTrainings parameters)
+        {
+            // set defaults
+            parameters.Length = parameters.Length == 0 ? 100 : parameters.Length;
+
+            IQueryable<Training> query = Uow.Trainings.GetAll().Where(t => t.CustomerId == null && t.Status == TrainingStatus.PendingValidation);
+
+            var totalResults = query.Count();
+            var totalDisplayRecords = totalResults;
+
+            // Filtering
+            foreach (var filter in parameters.Filter)
+            {
+                var inFilter = filter;
+                switch (inFilter.Field)
+                {
+                    case "id":
+                        var id = Convert.ToInt32(inFilter.Value);
+                        query = query.Where(t => t.Id == id);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            // order
+            query = query.OrderBy(e => e.Id);
+
+            // paging
+            query = query.Skip(parameters.StartIndex).Take(parameters.Length);
+
+            return new FilteredResults<Training>()
+            {
+                Data = query.ToList(),
+                TotalDisplayRecords = totalDisplayRecords,
+                TotalRecords = totalDisplayRecords
+            };
+        }
+
         [RequiredClaims(Name = new[] { SystemClaims.TrainingReadAll })]
         public FilteredResults<Training> GetFilteredTrainings(FilterArgumentsTrainings parameters)
         {

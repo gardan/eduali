@@ -3,6 +3,7 @@ using Ilc.Web.Models.Student;
 using Ilc.Web.Services.Grading;
 using Ilc.Web.Services.Images;
 using Ilc.Web.Services.Tasks.Training;
+using Ilc.Web.Services.Trainings;
 using ServiceStack.Web;
 
 namespace Ilc.Web.AppStart
@@ -14,10 +15,12 @@ namespace Ilc.Web.AppStart
             routes.Add<FilterParametersBase>("/transfers", "GET");
             routes.Add<CreateTransferModel>("/transfers", "POST");
 
+            routes.Add<FilterParametersOpenTrainings>("/opentrainings", "GET");
+
             routes.Add<FilterParametersTrainings>("/trainings", "GET");
             routes.Add<CreateTrainingModel>("/trainings", "POST");
             routes.Add<TrainingStudentInterviewModel>("/trainings/{id}/students", "GET");
-            routes.Add<Services.UpdateTrainingModel>("/trainings/{id}", "PUT,GET");
+            routes.Add<UpdateTrainingModel>("/trainings/{id}", "PUT,GET");
             routes.Add<Services.FilterParameterProgressEvaluations>("/trainings/{trainingId}/progressEvaluationsStudents", "GET");
 
             routes.Add<Services.PostTrainingContactsModel>("/trainings/{trainingId}/contacts", "POST");

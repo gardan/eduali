@@ -17,7 +17,7 @@ using Omu.ValueInjecter;
 using ServiceStack;
 using Training = Ilc.Data.Models.Training;
 
-namespace Ilc.Web.Services
+namespace Ilc.Web.Services.Trainings
 {
     public class TrainingsService : Service
     {

@@ -4094,7 +4094,8 @@
     <Compile Include="Services\QuestionsService.cs" />
     <Compile Include="Services\TrainersSubjectsService.cs" />
     <Compile Include="Services\TrainingContactsService.cs" />
-    <Compile Include="Services\TrainingsService.cs" />
+    <Compile Include="Services\Trainings\OpenTrainingsServices.cs" />
+    <Compile Include="Services\Trainings\TrainingsService.cs" />
     <Compile Include="Services\TransfersService.cs" />
     <Compile Include="Models\UpdateGridColumnConfigModel.cs" />
     <Compile Include="Services\UserSettingsService.cs" />
