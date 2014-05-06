@@ -15,27 +15,6 @@
 
 <div class="wrapper-trainings">
     <div class="container">
-        <div class="filter-results">
-            <h3>Search by</h3>
-
-            <ul>
-                <li class="checked">
-                    <input type="checkbox" checked="checked">
-                    <label>All subjects</label>
-                </li>
-                @foreach (var subject in Model.Subjects)
-                {
-                    var checkValue = subject.Selected ? "checked" : "";
-                    
-                    <li>
-                        @*<span>123</span>*@
-                        <input type="checkbox" name="subjects" value="@subject.Id" @checkValue>
-                        <label>@subject.Name</label>
-                    </li>
-                }
-            </ul>
-        </div>
-
         <div class="courses-table">
             <div class="courses-table-header">
                 <h3>Trainings</h3>

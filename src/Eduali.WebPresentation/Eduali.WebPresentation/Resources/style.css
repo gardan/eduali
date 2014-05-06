@@ -562,7 +562,7 @@ a.login {
 }
 
 .courses-table {
-	width: 850px;
+	width: 100%;
 	float: right;
 	border-top: 1px solid #000; 
 	border-right: 1px solid #000; 
