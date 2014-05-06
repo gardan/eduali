@@ -19,14 +19,5 @@ namespace Eduali.WebPresentation.Models
     {
         public TrainingModel[] Data { get; set; }
         public string Query { get; set; }
-
-        public SubjectModel[] Subjects { get; set; }
-    }
-
-    public class SubjectModel
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public bool Selected { get; set; }
     }
 }

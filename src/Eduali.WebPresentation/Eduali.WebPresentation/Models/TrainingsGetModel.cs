@@ -8,6 +8,5 @@ namespace Eduali.WebPresentation.Models
     public class TrainingsGetModel
     {
         public string Query { get; set; }
-        public int[] C { get; set; }
     }
 }

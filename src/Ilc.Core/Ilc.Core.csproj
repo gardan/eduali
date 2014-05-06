@@ -59,6 +59,7 @@
     <Compile Include="Exceptions\NotAllowedException.cs" />
     <Compile Include="FilterArgumentsAssesments.cs" />
     <Compile Include="FilterArgumentsGradingAttributes.cs" />
+    <Compile Include="FilterArgumentsOpenTrainings.cs" />
     <Compile Include="Services\AssesmentsManager.cs" />
     <Compile Include="Services\SubjectFilesService.cs" />
     <Compile Include="FilterArgumentsProgressEvaluations.cs" />

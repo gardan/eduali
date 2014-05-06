@@ -39,7 +39,10 @@ namespace Ilc.Web.Services.Trainings
 
     }
 
-    public class FilterParametersOpenTrainings : FilterArgumentsTrainings { }
+    public class FilterParametersOpenTrainings : FilterArgumentsOpenTrainings
+    {
+        
+    }
 
     public class OpenTrainingModel
     {

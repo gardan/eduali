@@ -6,9 +6,9 @@
 
 <div class="search-bar">
     <div class="container">
-        <form action="">
-            <input type="text" id="trainingsSearchBox" name="" placeholder="Search by course name, category, or trainer" value="@Model.Query" />
-            <button type="button" id="searchBtn">Search</button>
+        <form action="" id="searchForm" method="GET">
+            <input type="text" id="trainingsSearchBox" name="query" placeholder="Search by course name, category, or trainer" value="@Model.Query" />
+            <button type="submit" id="searchBtn">Search</button>
         </form>
     </div>
 </div>
@@ -38,37 +38,3 @@
         </div>
     </div>
 </div>
-
-@section CustomScripts
-{
-    <script type="text/javascript">
-        var $checkboxes = $('input[type="checkbox"][name="subjects"]');
-        var search = function () {
-            var value = $('#trainingsSearchBox').val();
-            var query = 'query=' + value;
-
-            $checkboxes.each(function (i, element) {
-                if (element.checked) {
-                    query += '&c=' + element.value;
-                }
-            });
-
-            window.location.search = query;
-        };
-
-        $checkboxes.on('change', function (e) {
-            search();
-            // var checked = e.currentTarget.checked;
-            // var value = e.currentTarget.value;
-            // 
-            // window.location.search = 'c=' + value;
-        });
-
-        $('#searchBtn').on('click', function () {
-            search();
-            // var value = $('#trainingsSearchBox').val();
-            // var query = 'query=' + value;
-            // window.location.search = query;
-        });
-    </script>
-}

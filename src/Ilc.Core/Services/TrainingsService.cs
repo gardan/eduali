@@ -15,7 +15,7 @@ namespace Ilc.Core.Services
         public IUsersService Users { get; set; }
         public IAuthorizationService Authorization { get; set; }
 
-        public FilteredResults<Training> GetOpenFiltered(FilterArgumentsTrainings parameters)
+        public FilteredResults<Training> GetOpenFiltered(FilterArgumentsOpenTrainings parameters)
         {
             // set defaults
             parameters.Length = parameters.Length == 0 ? 100 : parameters.Length;
@@ -26,6 +26,11 @@ namespace Ilc.Core.Services
             var totalDisplayRecords = totalResults;
 
             // Filtering
+            if (!string.IsNullOrEmpty(parameters.Query))
+            {
+                query = query.Where(t => t.Subject.Name.Contains(parameters.Query));
+            }
+
             foreach (var filter in parameters.Filter)
             {
                 var inFilter = filter;
