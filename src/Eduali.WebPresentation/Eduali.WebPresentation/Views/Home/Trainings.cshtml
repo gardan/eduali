@@ -1,4 +1,4 @@
-﻿@model Eduali.WebPresentation.Models.TrainingModel[]
+﻿@model Eduali.WebPresentation.Models.ViewTrainingModel
 
 <div class="head-trainings">
     <div class="head-middle-trainings"></div>
@@ -7,8 +7,8 @@
 <div class="search-bar">
     <div class="container">
         <form action="">
-            <input type="text" name="" placeholder="Search by course name, category, or trainer" />
-            <button type="submit">Search</button>
+            <input type="text" id="trainingsSearchBox" name="" placeholder="Search by course name, category, or trainer" value="@Model.Query" />
+            <button type="button" id="searchBtn">Search</button>
         </form>
     </div>
 </div>
@@ -17,43 +17,22 @@
     <div class="container">
         <div class="filter-results">
             <h3>Search by</h3>
-            <ul>
-                <li class="checked">
-                    <input type="checkbox" checked="checked">
-                    <label>All languages</label>
-                </li>
-                <li>
-                    <span>548</span>
-                    <input type="checkbox">
-                    <label>English</label>
-                </li>
-                <li>
-                    <span>123</span>
-                    <input type="checkbox">
-                    <label>French</label>
-                </li>
-                <li>
-                    <span>11</span>
-                    <input type="checkbox">
-                    <label>Chinese</label>
-                </li>
-            </ul>
 
             <ul>
                 <li class="checked">
                     <input type="checkbox" checked="checked">
-                    <label>All categories</label>
+                    <label>All subjects</label>
                 </li>
-                <li>
-                    <span>123</span>
-                    <input type="checkbox">
-                    <label>Arts</label>
-                </li>
-                <li>
-                    <span>123</span>
-                    <input type="checkbox">
-                    <label>Business</label>
-                </li>
+                @foreach (var subject in Model.Subjects)
+                {
+                    var checkValue = subject.Selected ? "checked" : "";
+                    
+                    <li>
+                        @*<span>123</span>*@
+                        <input type="checkbox" name="subjects" value="@subject.Id" @checkValue>
+                        <label>@subject.Name</label>
+                    </li>
+                }
             </ul>
         </div>
 
@@ -62,7 +41,7 @@
                 <h3>Trainings</h3>
             </div>
 
-            @foreach (var training in Model)
+            @foreach (var training in Model.Data)
             {
                 <div class="course">
                     <div class="left-info">
@@ -80,3 +59,37 @@
         </div>
     </div>
 </div>
+
+@section CustomScripts
+{
+    <script type="text/javascript">
+        var $checkboxes = $('input[type="checkbox"][name="subjects"]');
+        var search = function () {
+            var value = $('#trainingsSearchBox').val();
+            var query = 'query=' + value;
+
+            $checkboxes.each(function (i, element) {
+                if (element.checked) {
+                    query += '&c=' + element.value;
+                }
+            });
+
+            window.location.search = query;
+        };
+
+        $checkboxes.on('change', function (e) {
+            search();
+            // var checked = e.currentTarget.checked;
+            // var value = e.currentTarget.value;
+            // 
+            // window.location.search = 'c=' + value;
+        });
+
+        $('#searchBtn').on('click', function () {
+            search();
+            // var value = $('#trainingsSearchBox').val();
+            // var query = 'query=' + value;
+            // window.location.search = query;
+        });
+    </script>
+}

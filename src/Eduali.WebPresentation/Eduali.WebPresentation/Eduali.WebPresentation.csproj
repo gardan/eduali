@@ -71,6 +71,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\TrainingModel.cs" />
+    <Compile Include="Models\TrainingsGetModel.cs" />
     <Compile Include="Models\TrainingsResultModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

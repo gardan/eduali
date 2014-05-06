@@ -15,7 +15,7 @@ namespace Eduali.WebPresentation.Controllers
             return View();
         }
 
-        public async Task<ActionResult>  Trainings()
+        public async Task<ActionResult> Trainings(TrainingsGetModel request)
         {
             var client = new HttpClient();
             var baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
@@ -24,23 +24,30 @@ namespace Eduali.WebPresentation.Controllers
 
             var deserializedResult = new JavaScriptSerializer().Deserialize<TrainingsResultModel>(result);
 
-            // var model = new List<TrainingModel>();
-            // model.Add(new TrainingModel()
-            //     {
-            //         Name = "English",
-            //         TrainerName = "Ion Ionel",
-            //         StartDate = DateTime.UtcNow,
-            //         DurationInDays = 3
-            //     });
-            // model.Add(new TrainingModel()
-            //     {
-            //         Name = "Romanian",
-            //         TrainerName = "George Toparceanu",
-            //         StartDate = DateTime.UtcNow,
-            //         DurationInDays = 5
-            //     });
+            var subjects = new SubjectModel[]
+                {
+                    new SubjectModel() {Id = 1, Name = "asdasdas" },
+                    new SubjectModel() {Id = 2, Name = "9347t8ehg" }
+                };
 
-            return View(deserializedResult.Data);
+            if (request.C != null)
+            {
+                foreach (var subjectModel in subjects)
+                {
+                    if (Array.Exists(request.C, i => i == subjectModel.Id))
+                    {
+                        subjectModel.Selected = true;
+                    }
+                }
+            }
+            
+            var model = new ViewTrainingModel()
+                {
+                    Data = deserializedResult.Data,
+                    Query = request.Query,
+                    Subjects = subjects
+                };
+            return View(model);
         }
 
         public ActionResult Customers()
