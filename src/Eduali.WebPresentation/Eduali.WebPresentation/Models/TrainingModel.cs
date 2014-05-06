@@ -10,6 +10,7 @@ namespace Eduali.WebPresentation.Models
         public string Name { get; set; }
         public string TrainerName { get; set; }
         public DateTime StartDate { get; set; }
-        public int DurationInDays { get; set; }
+        public DateTime EndDate { get; set; }
+        public int DurationInDays { get { return (EndDate - StartDate).Days; } }
     }
 }
