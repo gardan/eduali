@@ -85,6 +85,7 @@
             {
                 xtype: 'textarea',
                 fieldLabel: 'Csv data',
+                labelAlign: 'top',
                 listeners: {
                     change: function (control, newValue) {
                         if (newValue == '') return;
@@ -108,7 +109,11 @@
                         
                         me.importFunction(model)
                             .then(function () {
-
+                                Ext.Msg.show({
+                                    title: 'Success',
+                                    msg: 'Successfully imported data.',
+                                    buttons: Ext.Msg.OK,
+                                });
                             },
                             // error
                             function (response) {
