@@ -3992,6 +3992,8 @@
     <Compile Include="Controllers\TransfersController.cs" />
     <Compile Include="Controllers\ZipController.cs" />
     <Compile Include="Filters\Request\IlcAuth.cs" />
+    <Compile Include="Filters\Request\Verification\Import\ValidateCustomersImport.cs" />
+    <Compile Include="Filters\Request\Verification\Import\ValidateStudentImport.cs" />
     <Compile Include="Filters\Request\Verification\Import\ValidateTrainersImport.cs" />
     <Compile Include="Filters\Request\Verification\Profile\EmailModelDuplication.cs" />
     <Compile Include="Filters\Request\Verification\Profile\PasswordModelVerification.cs" />

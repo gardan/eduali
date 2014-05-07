@@ -83,6 +83,7 @@ namespace Ilc.Web.Services.DataImport
                 };
         }
 
+        [ValidateCustomersImport]
         public HttpResult Post(ImportCustomersModel request)
         {
             var customers = new List<Customer>();
@@ -129,6 +130,7 @@ namespace Ilc.Web.Services.DataImport
                 };
         }
 
+        [ValidateStudentImport]
         public HttpResult Post(ImportStudentsModel request)
         {
             var students = new List<Student>();
