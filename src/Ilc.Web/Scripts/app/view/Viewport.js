@@ -39,7 +39,7 @@
             {
                 iconCls: 'icon-open-book-32',
                 itemId: 'menu.trainings?open=true',
-                hidden: !Ilc.Configuration.claimExists('tasks-student'),
+                // hidden: !Ilc.Configuration.claimExists('tasks-student'),
                 tooltip: {
                     text: 'Open trainings',
                     width: 100,
