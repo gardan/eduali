@@ -14,6 +14,7 @@ namespace Ilc.Core.Helpers
 
         public void Stamp(StampedEntity entity)
         {
+            if (entity.Creator != null) return;
             entity.Creator = Users.GetByEmail();
             entity.CreateDate = DateTimeOffset.UtcNow;
         }

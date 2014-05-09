@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using Ilc.Core;
 using Ilc.Core.Contracts;
+using Ilc.Core.Helpers;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models;
 using Ilc.Infrastructure;
@@ -23,6 +24,7 @@ namespace Ilc.Web.Services.Tasks.Training
         public ITrainingsService Trainings { get; set; }
         public IUsersService Users { get; set; }
         public IOffersService Offers { get; set; }
+        public IStamper Stamper { get; set; }
 
         [TaskModelWithStatusResponseFilter]
         public FilteredDataModel<TaskModel> Get(FilterParametersTasks request)
@@ -82,6 +84,7 @@ namespace Ilc.Web.Services.Tasks.Training
                 var offer = new TrainingOffer().InjectFrom(request) as TrainingOffer;
                 offer.Price = request.PossibleCost;
                 offer.NoLessons = request.LessonsNo;
+                Stamper.Stamp(offer);
 
                 workflowData["Offer"] = offer;
             }

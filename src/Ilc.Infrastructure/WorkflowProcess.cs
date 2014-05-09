@@ -79,7 +79,11 @@ namespace Ilc.Infrastructure
             var identity = instance.DefinitionIdentity;
             var definition = GetActivity(identity);
 
-            _wfApp = new WorkflowApplication(definition, identity);
+            _wfApp = new WorkflowApplication(definition, identity)
+                {
+                    SynchronizationContext = new SyncContext()
+                };
+
             ConfigureExtensions();
 
         }
@@ -212,6 +216,19 @@ namespace Ilc.Infrastructure
         public void Unload()
         {
             _wfApp.Unload();
+        }
+    }
+
+    public class SyncContext : SynchronizationContext
+    {
+        public override void Post(SendOrPostCallback d, object state)
+        {
+            d(state);
+        }
+
+        public override void Send(SendOrPostCallback d, object state)
+        {
+            d(state);
         }
     }
 }

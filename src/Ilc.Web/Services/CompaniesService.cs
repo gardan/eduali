@@ -5,12 +5,14 @@ using Ilc.Core;
 using Ilc.Core.Contracts;
 using Ilc.Data.Models;
 using Ilc.Web.Authentication.Contracts;
+using Ilc.Web.Filters.Request;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
 using ServiceStack;
 
 namespace Ilc.Web.Services
 {
+    [IlcAuth]
     public class CompaniesService : Service
     {
         public ICompaniesService Companies { get; set; }

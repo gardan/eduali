@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ilc.Core.Contracts;
+using Ilc.Core.Helpers;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models;
 
@@ -13,6 +14,7 @@ namespace Ilc.Core.Services
     {
         public IUow Uow { get; set; }
         public IUsersService Users { get; set; }
+        public IStamper Stamper { get; set; }
 
         public FilteredResults<TrainingOffer> GetFiltered(FilterArgumentsOffers parameters)
         {
@@ -75,9 +77,7 @@ namespace Ilc.Core.Services
         public void Create(TrainingOffer newOffer)
         {
             // timestamps
-            // TODO: this should be moved to a generic method that takes a StampedEntity as a parameter, stamps it, and returns it.
-            newOffer.Creator = Users.GetByEmail();
-            newOffer.CreateDate = DateTimeOffset.UtcNow;
+            Stamper.Stamp(newOffer);
 
             Uow.Offers.Add(newOffer);
             Uow.Commit();
