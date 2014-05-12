@@ -4,6 +4,7 @@
 
     width: 400,
     layout: 'anchor',
+    title: Ilc.resources.Manager.getResourceString('view.subjects.create.title'),
 
     defaults: {
         xtype: 'textfield',

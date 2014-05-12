@@ -145,6 +145,12 @@
         'statistics.customerPurchases': 'Customer purchases',
         'statistics.trainingsMonth': 'Trainings / Month',
 
+        'view.trainings.create.title': 'New training',
+        
+        'view.roles.create.title': 'New role',
+
+        'view.subjects.create.title': 'New subject',
+
         'formats.date': 'MM-DD-YYYY HH:mm',
         'formats.extjsdate': 'm-d-Y g:i',
         'formats.extjsdateonly': 'm-d-Y'

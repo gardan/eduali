@@ -9,7 +9,8 @@
 
     layout: 'anchor',
     width: 500,
-    
+    title: 'New shift template',
+
     _availabilityDaysIndex: 0,
 
     buttons: [

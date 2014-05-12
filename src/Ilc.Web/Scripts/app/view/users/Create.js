@@ -5,6 +5,7 @@
     
     width: 400,
     layout: 'anchor',
+    title: 'New user',
 
     defaults: {
         xtype: 'textfield',
@@ -34,7 +35,6 @@
             fieldLabel: 'Avatar',
             listeners: {
                 'uploadcomplete': me.onUploadComplete,
-
                 scope: me
             }
         });

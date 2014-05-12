@@ -11,6 +11,7 @@
         labelWidth: 120
     },
 
+    title: Ilc.resources.Manager.getResourceString('view.trainings.create.title'),
     layout: 'anchor',
     width: 400,
     modal: true,
