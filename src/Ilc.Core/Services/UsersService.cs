@@ -110,7 +110,7 @@ namespace Ilc.Core.Services
             var token = "";
             DateTime? tokenExpirationDate = null;
             
-            if (password != "")
+            if (!string.IsNullOrEmpty(password))
             {
                 hashedPwd = GetHashedFromPlain(password, salt);
             }
@@ -134,8 +134,8 @@ namespace Ilc.Core.Services
                     PasswordVerificationTokenExpirationDate = tokenExpirationDate
                 });
             Uow.Commit();
-            
-            if (password == "")
+
+            if (string.IsNullOrEmpty(password))
             {
                 var appUrl = WebConfigurationManager.AppSettings["ApplicationUrl"];
                 var body = Templates.CreatedAccountWithNoPassword(new
