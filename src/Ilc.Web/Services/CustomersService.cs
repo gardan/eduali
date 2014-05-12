@@ -40,7 +40,9 @@ namespace Ilc.Web.Services
                     BillingAddress = request.BillingAddress,
                     ContactPersons = new List<ContactPerson>() {new ContactPerson()
                         {
-                            UserProfile = new UserProfile() {UserDetails = new UserDetails()
+                            UserProfile = new UserProfile() {
+                                Email = request.ContactEmail,
+                                UserDetails = new UserDetails()
                                 {
                                    FirstName = Utils.SplitNameString(request.ContactName)[0],
                                    LastName = Utils.SplitNameString(request.ContactName)[1],
@@ -48,7 +50,6 @@ namespace Ilc.Web.Services
                                    Phone = "",
                                 }},
                             Name = request.ContactName,
-                            Email = request.ContactEmail,
                             IsMain = true
                         }}
                 };
