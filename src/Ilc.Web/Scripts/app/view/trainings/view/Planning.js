@@ -130,6 +130,7 @@
                 startDate: event.get('StartDate'),
                 endDate: event.get('EndDate'),
                 id: event.get('Id'),
+                lessonName: event.get('Name'),
                 trainingId: entity.get('id')
             };
 
