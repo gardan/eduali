@@ -46,7 +46,7 @@ namespace Ilc.Data.Migrations
         {
             var admin = context.UserProfiles.Find(1);
 
-            context.Templates.AddOrUpdate(t => t.Name,
+            context.Templates.AddOrUpdate(t => new { t.Name, t.CompanyId },
                 new Template()
                 {
                     CompanyId = 1,
