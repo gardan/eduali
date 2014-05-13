@@ -96,8 +96,8 @@
             editable: false,
             queryMode: 'local',
             displayField: 'Name', //,
-            hidden: !me.scrollToEvent
-            // valueField: '',
+            hidden: !me.scrollToEvent,
+            valueField: 'Id'
         });
         
         var dateMenu = Ext.create('Ext.menu.DatePicker', {
@@ -116,7 +116,7 @@
                 handler: function () {
                     var val = eventsCombo.getValue(),
                         // doHighlight = Ext.getCmp('btnHighlight').pressed,
-                        rec = me.eventStore.getAt(me.eventStore.find('Name', val));
+                        rec = me.eventStore.getAt(me.eventStore.find('Id', val));
             
                     if (rec) {
                         me.getSchedulingView().scrollEventIntoView(rec, true);
@@ -203,6 +203,17 @@
             }
             scheduler.ctx.rec = eventRecord;
             scheduler.ctx.showAt(e.getXY());
+        });
+
+        me.eventStore.on('add', function() {
+            var data = [];
+            me.eventStore.each(function (record) {
+                if (record.get('Cls') == '') {
+                    data.push(record);
+                }
+            });
+
+            comboStore.loadData(data);
         });
 
         var func = function() {

@@ -210,6 +210,7 @@
     <Content Include="Scripts\app\model\GradingSystem.js" />
     <Content Include="Scripts\app\model\InterviewPlan.js" />
     <Content Include="Scripts\app\model\Role.js" />
+    <Content Include="Scripts\app\model\scheduler\Event.js" />
     <Content Include="Scripts\app\model\scheduler\Trainer.js" />
     <Content Include="Scripts\app\model\Student.js" />
     <Content Include="Scripts\app\model\Trainer.js" />

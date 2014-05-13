@@ -13,7 +13,9 @@
     trainingEntity: null,
 
 
-    end: function() {
+    end: function () {
+        
+
         var me = this;
         console.log(me);
         if(me.doneClicked) me.close();

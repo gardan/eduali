@@ -1,7 +1,7 @@
 ﻿Ext.define('Ilc.store.scheduler.LessonAppointments', {
     extend: 'Sch.data.EventStore',
 
-    model: 'Sch.model.Event',
+    model: 'Ilc.model.scheduler.Event',
 
     //data: [
     //    {
