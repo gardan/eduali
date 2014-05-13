@@ -46,7 +46,7 @@
     loadAvailabilityZones: function () {
         var me = this;
         var availabilityStore = me.resourceZones;
-
+        
         var startDate = Sch.util.Date.add(me.getStartDate(), Sch.util.Date.DAY, -10);
         var endDate = Sch.util.Date.add(me.getEndDate(), Sch.util.Date.DAY, 10);
 
@@ -209,6 +209,7 @@
             me.un('afterlayout', func);
             me.goToNow();
             me.zoomToLevel(3);
+            me.loadAvailabilityZones();
         };
 
         me.on('afterlayout', func);
@@ -217,7 +218,5 @@
 
         me.resourceZones = availabilityStore;
         me.callParent(arguments);
-        
-        me.loadAvailabilityZones();
     }
 });
