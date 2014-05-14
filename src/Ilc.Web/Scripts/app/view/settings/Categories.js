@@ -49,6 +49,10 @@
                 {
                     text: 'Import students',
                     component: 'Ilc.view.import.Students'
+                },
+                {
+                    text: 'Document templates',
+                    component: 'Ilc.view.fileTemplates.Container'
                 }
             ]
         });
