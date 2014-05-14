@@ -107,8 +107,8 @@ namespace Ilc.Core.Services
 
         public void Delete(int id)
         {
-            Uow.Trainers.Delete(id);
-            Uow.Commit();
+            var userId = Uow.Trainers.GetById(id).UserProfileId;
+            Users.Delete(userId);
         }
 
         public Trainer GetByUserId(int id)

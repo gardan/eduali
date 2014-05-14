@@ -93,8 +93,8 @@ namespace Ilc.Core.Services
 
         public void Delete(int id)
         {
-            Uow.Students.Delete(id);
-            Uow.Commit();
+            var userId = Uow.Students.GetById(id).UserProfileId;
+            Users.Delete(userId);
         }
 
         public Student GetByUserId(int currentUserId)
