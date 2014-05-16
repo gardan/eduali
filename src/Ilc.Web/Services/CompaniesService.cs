@@ -12,12 +12,12 @@ using ServiceStack;
 
 namespace Ilc.Web.Services
 {
-    [IlcAuth]
     public class CompaniesService : Service
     {
         public ICompaniesService Companies { get; set; }
         public IIdentityAuthenticationManager AuthenticationManager { get; set; }
 
+        [IlcAuth]
         public FilteredDataModel<CompanyModel> Get(FilterParametersCompanies request)
         {
             var data = Companies.GetFiltered(request);
@@ -51,6 +51,7 @@ namespace Ilc.Web.Services
                 };
         }
 
+        [IlcAuth]
         public HttpResult Put(CompanyModel request)
         {
             var company = Companies.GetById(request.Id);
