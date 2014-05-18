@@ -54,6 +54,7 @@
     <Compile Include="Contracts\IAccessControlEntity.cs" />
     <Compile Include="Contracts\IWorkflowEntity.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="CustomerLog.cs" />
     <Compile Include="Evaluation.cs" />
     <Compile Include="Gender.cs" />
     <Compile Include="Grade.cs" />

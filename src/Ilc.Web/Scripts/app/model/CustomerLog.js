@@ -6,7 +6,8 @@
         { name: 'createDate', type: 'date' },
         'body',
         'level',
-        'type'
+        'type',
+        'customerId'
     ],
     
     proxy: {

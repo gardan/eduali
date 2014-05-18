@@ -77,6 +77,7 @@
                     {
                         xtype: 'logslist',
                         title: 'Logs',
+                        customerId: me.customer.id,
                         store: logsStore
                     }
                 ]

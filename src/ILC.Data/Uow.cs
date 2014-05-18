@@ -49,6 +49,7 @@ namespace Ilc.Data
         public IRepository<Company> Companies { get { return GetStandardRepo<Company>(); } }
         public IRepository<SubjectFile> SubjectFiles { get { return GetStandardRepo<SubjectFile>(); } }
         public IRepository<GradingAttribute> GradingAttributes { get { return GetStandardRepo<GradingAttribute>(); } }
+        public IRepository<CustomerLog> CustomerLogs { get { return GetStandardRepo<CustomerLog>(); } }
         public IRepository<RoleClaim> RoleClaims { get { return GetStandardRepo<RoleClaim>(); } }
 
         public Uow(IRepositoryProvider repositoryProvider)

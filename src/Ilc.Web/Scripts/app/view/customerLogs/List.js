@@ -4,6 +4,10 @@
 
     minHeight: 200,
 
+    config: {
+        customerId: null
+    },
+
     onEdit: function (editor, e) {
         var record = e.record;
 
@@ -16,7 +20,9 @@
 
     onNewLog: function () {
         var me = this;
-        var customerLogRecord = Ext.create('Ilc.model.CustomerLog', {})
+        var customerLogRecord = Ext.create('Ilc.model.CustomerLog', {
+            customerId: me.customerId
+        })
             .save({
                 success: function (record, operation) {
                     var createdLog = Ext.JSON.decode(operation.response.responseText);

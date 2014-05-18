@@ -53,6 +53,7 @@ namespace Ilc.Web.AppStart
             container.RegisterAutoWiredAs<SubjectFilesService, ISubjectFilesService>().ReusedWithin(ReuseScope.Request);
             container.RegisterAutoWiredAs<UserNotifyService, IUserNotifyService>().ReusedWithin(ReuseScope.Request);
             container.RegisterAutoWiredAs<AssesmentsManager, IAssesmentsManager>().ReusedWithin(ReuseScope.Request);
+            container.RegisterAutoWiredAs<CustomerLogsManager, ICustomerLogsManager>().ReusedWithin(ReuseScope.Request);
             
             container.RegisterAutoWiredAs<StatisticsService, IStatisticsService>().ReusedWithin(ReuseScope.Request);            
         }
