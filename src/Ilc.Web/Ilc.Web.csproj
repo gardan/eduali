@@ -205,6 +205,7 @@
     <Content Include="Scripts\app\model\Availability.js" />
     <Content Include="Scripts\app\model\Claim.js" />
     <Content Include="Scripts\app\model\ContactTraining.js" />
+    <Content Include="Scripts\app\model\CustomerLog.js" />
     <Content Include="Scripts\app\model\Grade.js" />
     <Content Include="Scripts\app\model\GradingAttribute.js" />
     <Content Include="Scripts\app\model\GradingSystem.js" />
@@ -228,6 +229,7 @@
     <Content Include="Scripts\app\store\Claims.js" />
     <Content Include="Scripts\app\store\Companies.js" />
     <Content Include="Scripts\app\store\Contacts.js" />
+    <Content Include="Scripts\app\store\CustomerLogs.js" />
     <Content Include="Scripts\app\store\Genders.js" />
     <Content Include="Scripts\app\store\Grades.js" />
     <Content Include="Scripts\app\store\GradingAttributes.js" />
@@ -421,6 +423,7 @@
     <Content Include="Scripts\app\view\companies\Create.js" />
     <Content Include="Scripts\app\view\companies\Default.js" />
     <Content Include="Scripts\app\view\companies\List.js" />
+    <Content Include="Scripts\app\view\customerLogs\List.js" />
     <Content Include="Scripts\app\view\customers\contacts\Create.js" />
     <Content Include="Scripts\app\view\customers\contacts\List.js" />
     <Content Include="Scripts\app\view\customers\View.js" />
@@ -4331,6 +4334,7 @@
     <Compile Include="Services\AssesmentsService.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\AvailabilityService.cs" />
+    <Compile Include="Services\Customers\LogsService.cs" />
     <Compile Include="Services\DataImport\DataImportService.cs" />
     <Compile Include="Services\Grading\AttributesService.cs" />
     <Compile Include="Services\Grading\TrainingGradingAttributesService.cs" />
@@ -4339,7 +4343,7 @@
     <Compile Include="Services\ClientConfigurationService.cs" />
     <Compile Include="Services\CompaniesService.cs" />
     <Compile Include="Services\ContactsService.cs" />
-    <Compile Include="Services\CustomersService.cs" />
+    <Compile Include="Services\Customers\CustomersService.cs" />
     <Compile Include="InjectorConventions\CustomerToCustomerModel.cs" />
     <Compile Include="Models\CustomerStatisticsModel.cs" />
     <Compile Include="Services\DefaultService.cs" />

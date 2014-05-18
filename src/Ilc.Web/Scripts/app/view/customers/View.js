@@ -3,7 +3,8 @@
     
     requires: [
         'Ilc.view.customers.Edit',
-        'Ilc.view.customers.contacts.List'
+        'Ilc.view.customers.contacts.List',
+        'Ilc.view.customerLogs.List'
     ],
     
     layout: 'anchor',
@@ -16,6 +17,10 @@
         var me = this;
 
         var contactsStore = Ext.create('Ilc.store.Contacts', {
+            customerId: me.customer.id
+        });
+
+        var logsStore = Ext.create('Ilc.store.CustomerLogs', {
             customerId: me.customer.id
         });
 
@@ -68,6 +73,11 @@
                                 me.fireEvent('reloadcustomers');
                             }
                         }
+                    },
+                    {
+                        xtype: 'logslist',
+                        title: 'Logs',
+                        store: logsStore
                     }
                 ]
             }
@@ -78,6 +88,7 @@
         );
 
         contactsStore.load();
+        logsStore.load();
 
         me.callParent(arguments);
     }

@@ -31,6 +31,10 @@ namespace Ilc.Web.AppStart
             routes.Add<EditCustomerModel>("/customers/{id}", "PUT");
             routes.Add<DeleteCustomerModel>("/customers/{id}", "DELETE");
 
+            routes.Add<Services.Customers.LogsFilterParameters>("/customers/{customerId}/logs", "GET");
+            routes.Add<Services.Customers.CustomerLogModel>("/logs", "POST");
+            routes.Add<Services.Customers.CustomerLogModel>("/logs/{id}", "PUT");
+
             routes.Add<FilterParametersStudents>("/students", "GET");
             routes.Add<CreateStudentModel>("/students", "POST");
             routes.Add<EditStudentModel>("/students/{id}", "PUT");
