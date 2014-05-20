@@ -35,7 +35,7 @@ namespace Ilc.Web.Services.DataImport
 
             foreach (var trainerBulkImport in request.Data)
             {
-                var subject = Uow.Subjects.GetAll().FirstOrDefault(s => s.Name == trainerBulkImport.Subjects);
+                var subject = Uow.Subjects.GetAll().FirstOrDefault(s => s.Name == trainerBulkImport.Subjects && s.CompanyId == companyId);
 
                 var subjects = new List<Subject>();
                 if (subject == null)
