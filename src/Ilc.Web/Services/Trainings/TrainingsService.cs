@@ -27,6 +27,7 @@ namespace Ilc.Web.Services.Trainings
         public IUsersService Users { get; set; }
         public IStudentsService Students { get; set; }
 
+        [IlcAuth]
         [ModelWithStatusResponseFilter]
         public FilteredDataModel<TrainingModel> Get(FilterParametersTrainings request)
         {

@@ -66,18 +66,9 @@ namespace Ilc.Core.Services
             parameters.Length = parameters.Length == 0 ? 100 : parameters.Length;
 
             var user = Users.GetByEmail();
+
+            var query = Uow.Trainings.GetAll().Where(t => t.Customer.CompanyId == user.CompanyId || t.CustomerId == null);
             
-            IQueryable<Training> query;
-            if (user == null || parameters.Open)
-            {
-                query = Uow.Trainings.GetAll().Where(t => t.CustomerId == null && t.Status == TrainingStatus.PendingValidation);
-            }
-            else
-            {
-                query = Uow.Trainings.GetAll().Where(t => t.Customer.CompanyId == user.CompanyId || t.CustomerId == null);
-            }
-
-
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
 
