@@ -199,7 +199,7 @@
     initOpen: function() {
         var me = this;
         
-        me.trainingsStore = Ext.create('Ilc.store.Trainings');
+        me.trainingsStore = Ext.create('Ilc.store.OpenTrainings');
 
         var tpl = new Ext.XTemplate(
             '<tpl for=".">',
@@ -229,11 +229,6 @@
                 itemclick: function (view, record, item, index, e, eOpts) {
                     e.stopEvent();
                     
-                    if (e.target.localName === 'a' && e.target.className.indexOf('joined ') != -1) { // the joined button was clicked
-                        console.log('Joined clicked.');
-                        me.initTrainingWindow(record);
-                        
-                    }
                     if (e.target.localName === 'a' && e.target.className.indexOf('join ') != -1) { // the join button was clicked
                         console.log('Join clicked.');
 

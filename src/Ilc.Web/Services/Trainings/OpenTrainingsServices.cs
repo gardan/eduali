@@ -12,7 +12,7 @@ namespace Ilc.Web.Services.Trainings
 {
     public class OpenTrainingsServices : Service
     {
-
+        public IUsersService Users { get; set; }
         public ITrainingsService TrainingsService { get; set; }
 
         public FilteredDataModel<OpenTrainingModel> Get(FilterParametersOpenTrainings request)
@@ -20,14 +20,21 @@ namespace Ilc.Web.Services.Trainings
             var results = TrainingsService.GetOpenFiltered(request);
             var data = new List<OpenTrainingModel>();
 
+            var currentUser = Users.GetByEmail();
+            var currentUserId = currentUser == null ? 0 : currentUser.Id;
+
+
             foreach (var training in results.Data)
             {
+                var student = training.Students.FirstOrDefault(s => s.UserProfileId == currentUserId);
                 data.Add(new OpenTrainingModel()
                     {
                         Name = training.Subject.Name,
                         TrainerName = training.Trainer.UserProfile.UserDetails.FirstName + " " +  training.Trainer.UserProfile.UserDetails.LastName,
                         StartDate = training.DesiredStartDate.DateTime,
-                        EndDate = training.DesiredEndDate.DateTime
+                        EndDate = training.DesiredEndDate.DateTime,
+                        Id = training.Id,
+                        Joined = student != null
                     });
             }
 
@@ -46,9 +53,11 @@ namespace Ilc.Web.Services.Trainings
 
     public class OpenTrainingModel
     {
+        public int Id { get; set; }
         public string Name { get; set; } // SubjectName
         public string TrainerName { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public bool Joined { get; set; }
     }
 }
