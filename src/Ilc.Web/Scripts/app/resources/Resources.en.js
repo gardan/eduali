@@ -134,6 +134,7 @@
         'common.company': 'Company',
         'common.shiftTemplates': 'Shift templates',
         'common.friendlyName': 'Friendly name',
+        'common.claims': 'Capabilities',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',

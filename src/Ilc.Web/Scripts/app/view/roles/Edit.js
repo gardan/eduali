@@ -109,7 +109,7 @@
                         }
                     },
                     {
-                        title: 'Claims',
+                        title: Ilc.resources.Manager.getResourceString('common.claims'),
                         items: [
                             claimsGrid
                         ]
