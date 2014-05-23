@@ -90,6 +90,7 @@ namespace Ilc.Web.Services
     {
         public int Id { get; set; }
         public string Email { get; set; }
+        public string FullName { get { return UserInfo == null ? "" : string.Format("{0} {1}", UserInfo.FirstName, UserInfo.LastName); } }
         public UserInfoModel UserInfo { get; set; }
     }
 

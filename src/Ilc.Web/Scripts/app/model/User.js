@@ -1,7 +1,7 @@
 ﻿Ext.define('Ilc.model.User', {
     extend: 'Ext.data.Model',
     
-    fields: ['id', 'email', 'userInfo'],
+    fields: ['id', 'email', 'fullName', 'userInfo'],
     
     proxy: {
         type: 'rest',

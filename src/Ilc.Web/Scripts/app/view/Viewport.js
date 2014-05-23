@@ -164,7 +164,7 @@
                 }
             },
             {
-                text: Ilc.Configuration.getValue('username'),
+                text: Ilc.Configuration.getValue('firstName') + ' ' + Ilc.Configuration.getValue('lastName'),
                 hidden: !Ilc.Configuration.loggedIn(),
                 cls: 'eduali-menu eduali-menu-right',
                 toggleGroup: '',
@@ -196,8 +196,6 @@
                     {
                         text: Ilc.resources.Manager.getResourceString('common.logout'),
                         handler: function () {
-                            var w = window;
-                            debugger;
                             window.location.href = 'account/logout';
                         }
                     }

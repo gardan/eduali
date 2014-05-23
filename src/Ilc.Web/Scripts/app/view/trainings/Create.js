@@ -204,21 +204,21 @@
             {
                 fieldLabel: 'Sales user',
                 store: salesUsersStore,
-                displayField: 'email',
+                displayField: 'fullName',
                 valueField: 'id',
                 name: 'workflowOwners.sales'
             },
             {
                 fieldLabel: 'Administration user',
                 store: administratorsUsersStore,
-                displayField: 'email',
+                displayField: 'fullName',
                 valueField: 'id',
                 name: 'workflowOwners.administration'
             },
             {
                 fieldLabel: 'Coordination user',
                 store: coordinatorsUsersStore,
-                displayField: 'email',
+                displayField: 'fullName',
                 valueField: 'id',
                 name: 'workflowOwners.coordinator'
             },
