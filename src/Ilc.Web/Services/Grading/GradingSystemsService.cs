@@ -54,22 +54,32 @@ namespace Ilc.Web.Services.Grading
             var gradingSystem = GradingSystems.GetById(request.Id);
             gradingSystem.Name = request.Name;
 
+            foreach (var grade in gradingSystem.Grades.ToArray())
+            {
+                if (!request.Grades.Exists(g => g.Id == grade.Id))
+                {
+                    Uow.Grades.Delete(grade);
+                }
+            }
 
-            foreach (var gradeModel in request.Grades.Where(g => g.Id <= 0))
+            foreach (var gradeModel in request.Grades.Where(g => g.Id <= 0).ToArray())
             {
                 gradingSystem.Grades.Add(new Grade()
                     {
                         Name = gradeModel.Name,
                         Order = 1
                     });
+                request.Grades.Remove(gradeModel);
             }
 
-            foreach (var gradeModel in request.Grades.Where(g => g.Id > 0))
+            foreach (var gradeModel in request.Grades.Where(g => g.Id > 0).ToArray())
             {
                 var grade = gradingSystem.Grades.First(g => g.Id == gradeModel.Id);
                 grade.Order = gradeModel.Order + 1;
                 grade.Name = gradeModel.Name;
+                request.Grades.Remove(gradeModel);
             }
+
 
             GradingSystems.Update(gradingSystem);
 
