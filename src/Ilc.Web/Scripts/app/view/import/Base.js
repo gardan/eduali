@@ -1,7 +1,7 @@
 ﻿Ext.define('Ilc.view.import.Base', {
     extend: 'Ext.container.Container',
 
-    layout: 'fit',
+    layout: 'anchor',
 
     config: {
         bulkStore: null,
@@ -85,6 +85,7 @@
         this.items = [
             {
                 xtype: 'textarea',
+                anchor: '100%',
                 fieldLabel: 'Csv data',
                 emptyText: 'Paste data here',
                 labelAlign: 'top',
@@ -109,6 +110,7 @@
             {
                 xtype: 'button',
                 text: 'Import',
+                margin: '0 0 10 0',
                 listeners: {
                     scope: this,
                     click: function () {
@@ -178,6 +180,7 @@
             },
             {
                 xtype: 'grid',
+                anchor: '100%',
                 plugins: [
                      Ext.create('Ext.grid.plugin.RowEditing', {
                          clicksToEdit: 2,
