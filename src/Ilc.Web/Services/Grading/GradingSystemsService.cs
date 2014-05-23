@@ -54,17 +54,6 @@ namespace Ilc.Web.Services.Grading
             var gradingSystem = GradingSystems.GetById(request.Id);
             gradingSystem.Name = request.Name;
 
-            GradingSystems.DeleteSystemGrades(gradingSystem.Id);
-
-            foreach (var gradeModel in request.Grades)
-            {
-                gradingSystem.Grades.Add(new Grade()
-                    {
-                        Name = gradeModel.Name,
-                        Order = gradeModel.Order
-                    });
-            }
-
             GradingSystems.Update(gradingSystem);
 
             return new HttpResult()
