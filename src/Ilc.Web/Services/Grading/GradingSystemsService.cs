@@ -54,6 +54,23 @@ namespace Ilc.Web.Services.Grading
             var gradingSystem = GradingSystems.GetById(request.Id);
             gradingSystem.Name = request.Name;
 
+
+            foreach (var gradeModel in request.Grades.Where(g => g.Id <= 0))
+            {
+                gradingSystem.Grades.Add(new Grade()
+                    {
+                        Name = gradeModel.Name,
+                        Order = 1
+                    });
+            }
+
+            foreach (var gradeModel in request.Grades.Where(g => g.Id > 0))
+            {
+                var grade = gradingSystem.Grades.First(g => g.Id == gradeModel.Id);
+                grade.Order = gradeModel.Order + 1;
+                grade.Name = gradeModel.Name;
+            }
+
             GradingSystems.Update(gradingSystem);
 
             return new HttpResult()
