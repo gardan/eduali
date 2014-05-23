@@ -2,6 +2,7 @@
     extend: 'Ilc.view.import.Base',
 
     importFunction: Ext.create('Ilc.manager.Import').trainers,
+    toolTipText: 'e.g. trainer@email.com,FirstName,LastName,1971-05-04,0745779922,English',
 
     gridColumns: [
         {

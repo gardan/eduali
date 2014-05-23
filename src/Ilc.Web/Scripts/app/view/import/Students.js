@@ -2,7 +2,8 @@
     extend: 'Ilc.view.import.Base',
     
     importFunction: Ext.create('Ilc.manager.Import').students,
-
+    toolTipText: 'e.g. Company Name, email@example.com, firstname, lastname, 1991-05-06, 0745998822,',
+    
     gridColumns: [
         {
             dataIndex: 'customerName',

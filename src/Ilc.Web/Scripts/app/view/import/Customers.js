@@ -2,6 +2,7 @@
     extend: 'Ilc.view.import.Base',
     
     importFunction: Ext.create('Ilc.manager.Import').customers,
+    toolTipText: 'e.g. Company Name,IBAN00000000,Address, Contact name, contact@email.com',
 
     gridColumns: [
         {

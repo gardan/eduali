@@ -1,12 +1,13 @@
 ﻿Ext.define('Ilc.view.import.Base', {
     extend: 'Ext.container.Container',
-    
+
     layout: 'fit',
 
     config: {
         bulkStore: null,
         gridColumns: null,
-        importFunction: null
+        importFunction: null,
+        toolTipText: 'Default tip',
     },
 
     getColumnIndexes: function (grid) {
@@ -85,12 +86,22 @@
             {
                 xtype: 'textarea',
                 fieldLabel: 'Csv data',
+                emptyText: 'Paste data here',
                 labelAlign: 'top',
                 listeners: {
                     change: function (control, newValue) {
                         if (newValue == '') return;
                         var dataArray = me.csvToArray(newValue, ',');
                         me.loadRawStore(dataArray);
+                    },
+                    render: {
+                        fn: function (c) {
+                            Ext.create('Ext.tip.ToolTip', {
+                                target: c.getEl(),
+                                html: this.toolTipText,
+                                trackMouse: true
+                            });
+                        }
                     },
                     scope: this
                 }
@@ -106,7 +117,7 @@
                             model.push(record.data);
                         });
 
-                        
+
                         me.importFunction(model)
                             .then(function () {
                                 Ext.Msg.show({
