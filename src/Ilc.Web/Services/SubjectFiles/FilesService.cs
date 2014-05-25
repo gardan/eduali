@@ -44,26 +44,26 @@ namespace Ilc.Web.Services.SubjectFiles
             return new HttpResult(new FileInfo(filePath), asAttachment:true);
         }
 
-        public HttpResult Post(FileUploadModel request)
+        public string Post(FileUploadModel request)
         {
             request.Id = Convert.ToInt32(this.Request.PathInfo.Split(Convert.ToChar(@"/"))[2]);
             var filename = this.Request.Headers["X-File-Name"];
 
             var fileDir = Path.Combine(
                 HostContext.VirtualPathProvider.RootDirectory.RealPath,
-                WebConfigurationManager.AppSettings["Documents"], 
+                WebConfigurationManager.AppSettings["Documents"],
                 WebConfigurationManager.AppSettings["SubjectDocuments"],
-                request.Id.ToString(CultureInfo.InvariantCulture),
-                DateTime.UtcNow.Date.ToString("yyyy-MM-dd"));
+                request.Id.ToString(CultureInfo.InvariantCulture));
+                // DateTime.UtcNow.Date.ToString("yyyy-MM-dd"));
             Directory.CreateDirectory(fileDir);
-
-            using (var file = File.Create(Path.Combine(fileDir, filename)))
-            {
-                request.RequestStream.CopyTo(file);
-            }
 
             if (!File.Exists(Path.Combine(fileDir, filename)))
             {
+                using (var file = File.Create(Path.Combine(fileDir, filename)))
+                {
+                    request.RequestStream.CopyTo(file);
+                }
+
                 var subjectFile = new SubjectFile()
                 {
                     Filename = filename,
@@ -74,8 +74,8 @@ namespace Ilc.Web.Services.SubjectFiles
                 Uow.SubjectFiles.Add(subjectFile);
                 Uow.Commit();
             }
-            
-            return new HttpResult();
+
+            return "";
         }
         
         public HttpResult Delete(SubjectFileModel request)
