@@ -55,7 +55,7 @@
                 dock: 'bottom',
                 items: [
                     {
-                        text: 'New grade',
+                        text: 'Add grade',
                         handler: function () {
                             var newGrade = Ext.create('Ilc.model.Grade');
                             
