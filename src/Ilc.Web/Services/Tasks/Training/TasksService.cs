@@ -57,7 +57,7 @@ namespace Ilc.Web.Services.Tasks.Training
                 task.Id = training.Id;
                 task.Action = Char.ToLowerInvariant(training.Status[0]) + training.Status.Substring(1);
                 task.Name = training.Status;
-                // task.CustomerName = training.Customer.Name;
+                task.CustomerName = training.Customer != null ? training.Customer.Name : "";
                 task.TaskObject = new TrainingModel().InjectFrom<TrainingToWebModel>(training) as TrainingModel;
 
                 data.Add(task);
