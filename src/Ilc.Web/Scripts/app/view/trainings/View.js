@@ -492,7 +492,7 @@
                         xtype: 'contactstraininglist',
                         store: contactsStore,
                         trainingId: model.get('id'),
-                        customerId: model.get('customerId')
+                        customerId: model.get('customer').id
                     }
                 ]
             }
