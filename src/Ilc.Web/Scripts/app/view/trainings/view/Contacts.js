@@ -24,7 +24,7 @@
                     text: 'Add contact',
                     handler: function () {
                         var me = this.up('contactstraininglist');
-
+                        
                         var contactsStore = Ext.create('Ilc.store.Contacts', {
                             customerId: me.customerId
                         });
@@ -84,7 +84,7 @@
         customerId: null
     },
 
-    initComponent: function() {
+    initComponent: function () {
         var me = this;
         me.on('itemcontextmenu', me.onItemContextMenu);
         this.callParent();

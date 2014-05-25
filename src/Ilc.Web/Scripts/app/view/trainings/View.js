@@ -177,7 +177,7 @@
         });
 
         var contactsStore = Ext.create('Ilc.store.Contacts', {
-            customerId: model.get('id')
+            customerId: model.get('customer').id
         });
 
         // Select the first item
