@@ -33,7 +33,7 @@ namespace Ilc.Infrastructure.Services
         public List<SpendingsStatistics> GetCustomersSpendings()
         {
             var ret = new List<SpendingsStatistics>();
-            var trainings = Uow.Trainings.GetAll().ToList();
+            var trainings = Uow.Trainings.GetAll().Where(t => t.Public == false).ToList();
 
             foreach (var training in trainings)
             {
@@ -44,6 +44,8 @@ namespace Ilc.Infrastructure.Services
                 }
 
                 var selectedOffer = training.Offers.FirstOrDefault(o => o.Selected);
+
+                if (selectedOffer == null) continue;
 
                 ret.Add(new SpendingsStatistics()
                     {
@@ -61,7 +63,7 @@ namespace Ilc.Infrastructure.Services
         public List<TrainingStatistics> GetSubjectTrainingsPerMonth(FilterArgumentsTrainingStatistics request)
         {
             var ret = new List<TrainingStatistics>();
-            var trainings = Uow.Trainings.GetAll().Where(t => t.DesiredStartDate.Year == 2013).ToList();
+            var trainings = Uow.Trainings.GetAll().Where(t => t.DesiredStartDate.Year == DateTimeOffset.UtcNow.Year).ToList();
 
             for (int i = 0; i < 12; i++)
             {
