@@ -13,7 +13,8 @@
 
     title: 'Edit grading system',
     autoScroll: true,
-    maxHeight: 450,
+    minHeight: 450,
+    height: 450,
 
     gradingSystem: null,
 
