@@ -3,7 +3,8 @@
 
     fields: [
         { name: 'id', type: 'int' },
-        { name: 'name', type: 'string' }
+        { name: 'name', type: 'string' },
+        'subjects'
     ],
     // 
     idProperty: 'id',

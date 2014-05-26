@@ -75,6 +75,18 @@
                     header: Ilc.resources.Manager.getResourceString('common.trainer'),
                     width: 130,
                     dataIndex: 'name'
+                },
+                {
+                    header: Ilc.resources.Manager.getResourceString('common.subjects'),
+                    width: 130,
+                    dataIndex: 'subjects',
+                    renderer: function (value) {
+                        var ret = '';
+                        Ext.Array.forEach(value, function (subject) {
+                            ret += subject.name + ', ';
+                        });
+                        return ret.substring(0, ret.length - 2);
+                    }
                 }
             ]
         });
