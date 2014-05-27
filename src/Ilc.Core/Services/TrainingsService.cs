@@ -68,7 +68,12 @@ namespace Ilc.Core.Services
             var user = Users.GetByEmail();
 
             var query = Uow.Trainings.GetAll().Where(t => t.Customer.CompanyId == user.CompanyId || t.CustomerId == null);
-            
+
+            if (parameters.StudentId > 0)
+            {
+                query = query.Where(t => t.Students.Any(s => s.Id == parameters.StudentId));
+            }
+
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
 

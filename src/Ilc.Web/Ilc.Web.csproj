@@ -195,6 +195,7 @@
     <Content Include="Scripts\app\grid\StatusDefinitions.js" />
     <Content Include="Scripts\app\grid\StudentLessons.js" />
     <Content Include="Scripts\app\grid\SubjectFiles.js" />
+    <Content Include="Scripts\app\grid\Trainings.js" />
     <Content Include="Scripts\app\grid\Users.js" />
     <Content Include="Scripts\app\helpers\AppConfig.js" />
     <Content Include="Scripts\app\helpers\ColumnBuilder.js" />
@@ -463,9 +464,11 @@
     <Content Include="Scripts\app\view\statistics\View.js" />
     <Content Include="Scripts\app\view\statusDefinitions\Edit.js" />
     <Content Include="Scripts\app\view\statusDefinitions\List.js" />
+    <Content Include="Scripts\app\view\students\component\Trainings.js" />
     <Content Include="Scripts\app\view\students\Create.js" />
     <Content Include="Scripts\app\view\students\Edit.js" />
     <Content Include="Scripts\app\view\students\List.js" />
+    <Content Include="Scripts\app\view\students\View.js" />
     <Content Include="Scripts\app\view\subjectFiles\List.js" />
     <Content Include="Scripts\app\view\subjects\Create.js" />
     <Content Include="Scripts\app\view\subjects\Edit.js" />

@@ -7,7 +7,7 @@
         var me = this;
         var map = {
             'general': 'Ilc.view.students.Edit',
-            'trainings': 'Ilc.view.students.Trainings'
+            'trainings': 'Ilc.view.students.component.Trainings'
         };
 
         var tabParam = this.params.tab || 'general';
