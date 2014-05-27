@@ -37,7 +37,7 @@ namespace Ilc.Web.AppStart
 
             routes.Add<FilterParametersStudents>("/students", "GET");
             routes.Add<CreateStudentModel>("/students", "POST");
-            routes.Add<EditStudentModel>("/students/{id}", "PUT");
+            routes.Add<EditStudentModel>("/students/{id}", "PUT,GET");
             routes.Add<DeleteStudentModel>("/students/{id}", "DELETE");
 
             routes.Add<FilterParametersTrainers>("/trainers", "GET");

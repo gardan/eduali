@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
@@ -27,6 +28,15 @@ namespace Ilc.Web.Services
                 };
         }
 
+        public HttpResult Get(EditStudentModel request)
+        {
+
+            var studentModel = new StudentModel().InjectFrom<StudentToStudentModel>(Students.GetByStudentId(request.Id)) as StudentModel;
+            return new HttpResult(new FilteredDataModel<StudentModel>()
+            {
+                Data = new List<StudentModel>() { studentModel }
+            });
+        }
 
         public HttpResult Post(CreateStudentModel request)
         {
