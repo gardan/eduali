@@ -127,22 +127,7 @@
         });
 
         studentsGrid.on('itemdblclick', function (grid, record) {
-            var editWindow = Ext.create('Ilc.view.students.Edit', {
-                closeAction: 'destroy',
-                model: record
-            });
-
-            editWindow.on('editStudent', function (sender, model) {
-                me.fireEvent('editStudent', sender, model, {
-                    store: studentsStore
-                });
-            });
-
-            editWindow.on('studentedited', function () {
-                studentsStore.reload();
-            });
-
-            editWindow.show();
+            Ext.ux.Router.redirect('students/' + record.get('id') + '?tab=general');
         });
 
         //var filteredColumns = [];

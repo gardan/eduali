@@ -3,9 +3,11 @@
 
     init: function() {
         this.control({
+            'studenteditpanel': {
+                'editStudent': this.editStudent,
+            },
             'liststudents': {
                 'addStudent': this.addStudent,
-                'editStudent': this.editStudent,
                 'deleteStudent': this.deleteStudent
             }
         });
@@ -65,13 +67,14 @@
                 return deferred.promise;
             }
         };
-
+        var myMask = new Ext.LoadMask(Ext.ComponentQuery.query('viewport')[0], { msg: "Please wait..." });
+        myMask.show();
         studentsService.edit(model)
             .then(function(response) {
                 sender.studentEdited();
             })
             .finally(function() {
-
+                myMask.hide();
             });
 
     },
@@ -109,6 +112,6 @@
 
     },
     
-    edit: function () {
+    view: function () {
 }
 });

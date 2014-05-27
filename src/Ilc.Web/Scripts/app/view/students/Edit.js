@@ -1,5 +1,6 @@
 ﻿Ext.define('Ilc.view.students.Edit', {
-    extend: 'Ext.container.Container',
+    extend: 'Ext.panel.Panel',
+    xtype: 'studenteditpanel',
 
     title: Ilc.resources.Manager.getResourceString('common.student'),
 
@@ -24,14 +25,11 @@
     onUploadComplete: function () {
         var me = this;
         this.fireEvent('studentedited');
-        me.close();
     },
 
     studentEdited: function () {
         this.avatarUploader.initUpload();
     },
-
-
     onGenderLoad: function (store, records, successful) {
         var me = this;
         Ext.Array.forEach(records, function(record) {
@@ -55,10 +53,13 @@
 
     initComponent: function () {
         var me = this;
-
+        
         var Student = Ext.ModelManager.getModel('Ilc.model.Student');
+        var myMask = new Ext.LoadMask(Ext.ComponentQuery.query('viewport')[0], { msg: "Please wait..." });
+        myMask.show();
         Student.load(me.params.id, {
             success: function (student) {
+                myMask.hide();
                 
                 var cfgModel = student;
                 me.student = cfgModel;
@@ -150,14 +151,14 @@
                     var inputs = me.query('textfield');
                     
                     model = Ilc.utils.Forms.extractModel(inputs);
-                    model.id = me.studnet.get('id');
+                    model.id = me.student.get('id');
                     me.fireEvent('editStudent', me, model);
                 }
             },
             {
-                text: Ilc.resources.Manager.getResourceString('common.cancel'),
+                text: Ilc.resources.Manager.getResourceString('common.back'),
                 handler: function () {
-                    me.close();
+                    window.history.back();
                 }
             }
         ];
