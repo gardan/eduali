@@ -9,7 +9,8 @@
         'Ilc.view.spendings.View',
         'Ilc.view.subjectFiles.List',
         'Ilc.view.gradingAttributes.TrainingList',
-        'Ilc.view.trainings.view.Contacts'
+        'Ilc.view.trainings.view.Contacts',
+        'Ilc.view.trainings.view.Documents'
     ],
     width: 900,
 
@@ -425,23 +426,28 @@
                             }
                         ]
                     },
+                    // {
+                    //     xtype: 'panel',
+                    //     title: 'Documents',
+                    //     layout: 'border',
+                    //     ticktack: true, // use the initalConfig property to determine if this is the documents component
+                    //     items: [
+                    //         documentsTree,
+                    //         documentsPanel
+                    //     ],
+                    //     buttons: [
+                    //         {
+                    //             text: 'Close',
+                    //             handler: function() {
+                    //                 me.close();
+                    //             }
+                    //         }
+                    //     ]
+                    // },
                     {
-                        xtype: 'panel',
+                        xtype: 'documentspanel',
                         title: 'Documents',
-                        layout: 'border',
-                        ticktack: true, // use the initalConfig property to determine if this is the documents component
-                        items: [
-                            documentsTree,
-                            documentsPanel
-                        ],
-                        buttons: [
-                            {
-                                text: 'Close',
-                                handler: function() {
-                                    me.close();
-                                }
-                            }
-                        ]
+                        training: model
                     },
                     Ext.create('Ilc.view.trainings.view.InterviewPlan', {
                         title: 'Interview',
