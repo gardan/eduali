@@ -43,35 +43,13 @@
             ]
         });
 
-        var tplStore = Ext.create('Ext.data.Store', {
-            fields: ['id', 'name', 'content', 'type'],
-            
-            proxy: {
-                type: 'rest',
-                url: 'api/filetemplates',
-                extraParams: {
-                    format: 'json'
-                },
-                reader: {
-                    type: 'json',
-                    root: 'data',
-                    totalProperty: 'totalRecords'
-                }
-            },
-        });
+        var tplStore = Ext.create('Ilc.store.FileTemplatesStore');
         tplStore.load();
         
-        var categoryGrid = Ext.create('Ext.grid.Panel', {
+        var categoryGrid = Ext.create('Ilc.grid.FileTemplates', {
             store: categoryModelsStore,
             flex: 1,
             hidden: true,
-            columns: [
-                {
-                    dataIndex: 'name',
-                    text: 'Name',
-                    flex: 1
-                }
-            ],
             listeners: {
                 select: function (grid, record) {
                     me.setPreview(record.get('id'), this.training.get('id'));

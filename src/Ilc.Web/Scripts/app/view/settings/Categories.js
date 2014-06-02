@@ -52,7 +52,7 @@
                 },
                 {
                     text: 'Document templates',
-                    component: 'Ilc.view.fileTemplates.Container'
+                    component: 'Ilc.view.fileTemplates.List'
                 }
             ]
         });
