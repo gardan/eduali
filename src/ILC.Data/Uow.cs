@@ -50,7 +50,9 @@ namespace Ilc.Data
         public IRepository<SubjectFile> SubjectFiles { get { return GetStandardRepo<SubjectFile>(); } }
         public IRepository<GradingAttribute> GradingAttributes { get { return GetStandardRepo<GradingAttribute>(); } }
         public IRepository<CustomerLog> CustomerLogs { get { return GetStandardRepo<CustomerLog>(); } }
+        public IRepository<FileTemplate> FileTemplates { get { return GetStandardRepo<FileTemplate>(); } }
         public IRepository<RoleClaim> RoleClaims { get { return GetStandardRepo<RoleClaim>(); } }
+        
 
         public Uow(IRepositoryProvider repositoryProvider)
         {

@@ -52,6 +52,8 @@ namespace Ilc.Data
         public DbSet<Company> Companies { get; set; }
         public DbSet<SubjectFile> SubjectFiles { get; set; }
 
+        public DbSet<FileTemplate> FileTemplates { get; set; }
+
         public DbSet<TrainingEvaluationQuestion> TrainingEvaluationQuestions { get; set; }
         public DbSet<RadioPossibleAnswer> RadioPossibleAnswers { get; set; }
 

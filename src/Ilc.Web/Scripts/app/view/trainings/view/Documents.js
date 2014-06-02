@@ -2,6 +2,10 @@
     extend: 'Ext.panel.Panel',
     xtype: 'documentspanel',
 
+    requires: [
+        'Ext.ux.IFrame'
+    ],
+
     config: {
         training: null
     },
@@ -13,11 +17,13 @@
         align: 'strech'
     },
 
-    setPreview: function (id) {
-        var url = 'documents/{templateId}/{modelId}';
-        url = url.replace('{templateId}', this.selectedTplId).replace('{modelId}'.this.id);
+    setPreview: function (modelId, parenModelId) {
+        var url = 'documents/get/{templateId}?modelId={modelId}&parentModelId={parentModelId}';
+        url = url.replace('{templateId}', this.selectedTplId).replace('{modelId}', modelId).replace('{parentModelId}', parenModelId); // 
         // set iframe to url 
         
+        var iframe = this.query('uxiframe')[0];
+        iframe.load(url);
     },
 
     initComponent: function() {
@@ -31,35 +37,30 @@
                     name: 'Ion Ionel'
                 },
                 {
-                    id: 2,
+                    id: 8,
                     name: 'Vasile Alecsandri'
                 }
             ]
         });
 
         var tplStore = Ext.create('Ext.data.Store', {
-            fields: ['id', 'name', 'category', 'single'],
-            data: [
-                {
-                    id: 1,
-                    name: 'Interview.html',
-                    category: 'Student',
-                    single: false
+            fields: ['id', 'name', 'content', 'type'],
+            
+            proxy: {
+                type: 'rest',
+                url: 'api/filetemplates',
+                extraParams: {
+                    format: 'json'
                 },
-                {
-                    id: 2,
-                    name: 'Evaluation.html',
-                    category: 'Student'
-                },
-                {
-                    id: 3,
-                    name: 'Contract.html',
-                    category: 'Training',
-                    single: true
+                reader: {
+                    type: 'json',
+                    root: 'data',
+                    totalProperty: 'totalRecords'
                 }
-            ]
+            },
         });
-
+        tplStore.load();
+        
         var categoryGrid = Ext.create('Ext.grid.Panel', {
             store: categoryModelsStore,
             flex: 1,
@@ -72,9 +73,10 @@
                 }
             ],
             listeners: {
-                itemclick: function (grid, record) {
-                    me.setPreview(record.get('id'));
-                }
+                select: function (grid, record) {
+                    me.setPreview(record.get('id'), this.training.get('id'));
+                },
+                scope: this
             }
         });
 
@@ -88,20 +90,20 @@
                     flex: 1
                 },
                 {
-                    dataIndex: 'category',
+                    dataIndex: 'type',
                     text: 'Category'
                 }
             ],
             listeners: {
-                itemclick: function (grid, record) {
+                select: function (grid, record) {
                     me.selectedTplId = record.get('id');
                     
-                    if (record.get('single') != true) {
+                    if (record.get('type') != 'Training') {
                         categoryGrid.isHidden() ? categoryGrid.show() : categoryGrid.hide();
                         return;
                     }
                     
-                    me.setPreview(me.training.get('id'));
+                    me.setPreview(me.training.get('id'), 0);
                 }
             }
         });
@@ -112,7 +114,11 @@
             {
                 xtype: 'container',
                 flex: 1,
-                html: 'preview here'
+                items: [
+                    {
+                        xtype: 'uxiframe'
+                    }
+                ]
             },
             categoryGrid
         ];

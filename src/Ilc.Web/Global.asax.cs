@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Hosting;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using System.Web.UI;
 using Ilc.Data;
 using Ilc.Web.AppStart;
+using Ilc.Web.Cms;
 
 namespace Ilc.Web
 {
@@ -19,6 +21,8 @@ namespace Ilc.Web
         {
             new AppHost().Init();
             RouteMvcConfig.RegisterRoutes(RouteTable.Routes);
+            HostingEnvironment.RegisterVirtualPathProvider(new MyVirtualPathProvider());
+
 
             // set ef initializer
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<AppContext, Data.Migrations.Configuration>());
@@ -48,8 +52,7 @@ namespace Ilc.Web
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            var x = 1;
-            x = 1 + 2;
+
         }
 
         protected void Session_End(object sender, EventArgs e)

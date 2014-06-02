@@ -332,6 +332,10 @@
     <Compile Include="Migrations\201405181946078_AddedLogsToCustomers.Designer.cs">
       <DependentUpon>201405181946078_AddedLogsToCustomers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406011324382_AddedFileTemplate.cs" />
+    <Compile Include="Migrations\201406011324382_AddedFileTemplate.Designer.cs">
+      <DependentUpon>201406011324382_AddedFileTemplate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -564,6 +568,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201405181946078_AddedLogsToCustomers.resx">
       <DependentUpon>201405181946078_AddedLogsToCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406011324382_AddedFileTemplate.resx">
+      <DependentUpon>201406011324382_AddedFileTemplate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
