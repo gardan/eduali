@@ -209,6 +209,7 @@
     <Content Include="Scripts\app\model\Claim.js" />
     <Content Include="Scripts\app\model\ContactTraining.js" />
     <Content Include="Scripts\app\model\CustomerLog.js" />
+    <Content Include="Scripts\app\model\FileTemplate.js" />
     <Content Include="Scripts\app\model\Grade.js" />
     <Content Include="Scripts\app\model\GradingAttribute.js" />
     <Content Include="Scripts\app\model\GradingSystem.js" />

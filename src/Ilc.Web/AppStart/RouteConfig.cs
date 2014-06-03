@@ -166,6 +166,7 @@ namespace Ilc.Web.AppStart
 
             routes.Add<Ilc.Web.Services.FilterParametersFileTemplates>("/filetemplates", "GET");
             routes.Add<Ilc.Web.Services.FileTemplateModel>("/filetemplates/{id}", "PUT");
+            routes.Add<Ilc.Web.Services.FileTemplateModel>("/filetemplates", "POST");
 
             // START - Apis for the logged in user
             routes.Add<Services.AuthModel>("/auth", "POST");

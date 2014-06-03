@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using Ilc.Core;
 using Ilc.Core.Contracts;
+using Ilc.Core.Helpers;
 using Ilc.Data.Contracts;
+using Ilc.Data.Models;
 using Ilc.Web.Models;
 using ServiceStack;
 
@@ -14,6 +16,7 @@ namespace Ilc.Web.Services
     {
         public IUow Uow { get; set; }
         public IUsersService Users { get; set; }
+        public IStamper Stamper { get; set; }
 
         public FilteredDataModel<FileTemplateModel> Get(FilterParametersFileTemplates request)
         {
@@ -38,6 +41,24 @@ namespace Ilc.Web.Services
                 };
         }
 
+        public HttpResult Post(FileTemplateModel request)
+        {
+            var user = Users.GetByEmail();
+
+            var newFileTemplate = new FileTemplate()
+                {
+                    CompanyId = user.CompanyId,
+                    Name = request.Name,
+                    Type = (FileTemplateType) Enum.Parse(typeof(FileTemplateType), request.Type),
+                    Content = request.Content
+                };
+            Stamper.Stamp(newFileTemplate);
+            
+            Uow.FileTemplates.Add(newFileTemplate);
+            Uow.Commit();
+
+            return new HttpResult();
+        }
 
         public HttpResult Put(FileTemplateModel request)
         {
