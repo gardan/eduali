@@ -36,9 +36,21 @@ namespace Ilc.Web.Services
                 {
                     Data = modelResults
                 };
-
         }
 
+
+        public HttpResult Put(FileTemplateModel request)
+        {
+            var fileTemplate = Uow.FileTemplates.GetById(request.Id);
+            fileTemplate.Name = request.Name;
+            fileTemplate.Content = request.Content;
+
+
+            Uow.FileTemplates.Update(fileTemplate);
+            Uow.Commit();
+
+            return new HttpResult();
+        }
 
     }
 

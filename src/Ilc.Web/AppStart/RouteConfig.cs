@@ -164,7 +164,8 @@ namespace Ilc.Web.AppStart
             routes.Add<GetLogoModel>("/companies/{id}/logo", "GET");
             routes.Add<LogoModel>("/companies/{id}/logo", "PUT");
 
-            routes.Add<Ilc.Web.Services.FilterParametersFileTemplates>("/filetemplates");
+            routes.Add<Ilc.Web.Services.FilterParametersFileTemplates>("/filetemplates", "GET");
+            routes.Add<Ilc.Web.Services.FileTemplateModel>("/filetemplates/{id}", "PUT");
 
             // START - Apis for the logged in user
             routes.Add<Services.AuthModel>("/auth", "POST");

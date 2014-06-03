@@ -43,7 +43,7 @@
             ]
         });
 
-        var tplStore = Ext.create('Ilc.store.FileTemplatesStore');
+        var tplStore = Ext.create('Ilc.store.FileTemplates');
         tplStore.load();
         
         var categoryGrid = Ext.create('Ilc.grid.FileTemplates', {
