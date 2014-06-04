@@ -15,6 +15,10 @@
         var window = Ext.create("Ext.window.Window", {
             width: 800,
             height: 400,
+            layout: 'anchor',
+            defaults: {
+                anchor: '100%'
+            },
             items: [
                 {
                     xtype: 'textfield',
@@ -47,10 +51,17 @@
         var editor = Ext.create('Ilc.form.Editor');
         
         var window = Ext.create('Ext.window.Window', {
+            width: 800,
+            height: 400,
+            layout: 'anchor',
+            defaults: {
+                anchor: '100%'
+            },
             items: [
                 {
                     xtype: 'textfield',
-                    name: 'name'
+                    name: 'name',
+                    fieldLabel: ''
                 },
                 {
                     xtype: 'combobox',
