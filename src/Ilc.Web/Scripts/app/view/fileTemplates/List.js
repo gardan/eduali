@@ -84,8 +84,8 @@
                             
                             var model = Ext.create('Ilc.model.FileTemplate', {
                                 content: editor.getValue(),
-                                type: 1,
-                                name: 'whatever'
+                                type: result.type,
+                                name: result.name
                             });
                             model.save({
                                 success: function () {

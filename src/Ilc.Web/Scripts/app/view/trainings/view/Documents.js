@@ -26,37 +26,62 @@
         iframe.load(url);
     },
 
+    initCategoryGrid: function(templateType) {
+        var me = this;
+        var categoryStore;
+        this.destroyCategoryGrid();
+        
+        switch (templateType) {
+            case 'Student':
+                categoryStore = Ext.create('Ilc.store.Students');
+                this.categoryGrid = Ext.create('Ext.grid.Panel', {
+                    store: categoryStore,
+                    flex: 1,
+                    columns: [
+                        {
+                            dataIndex: 'name',
+                            text: 'Name',
+                            flex: 1
+                        }
+                    ]
+                });
+                break;
+            case 'Offer':
+                categoryStore = Ext.create('Ilc.store.Offers');
+                this.categoryGrid = Ext.create('Ext.grid.Panel', {
+                    store: categoryStore,
+                    flex: 1,
+                    columns: [
+                        {
+                            dataIndex: 'price',
+                            text: 'Price',
+                            flex: 1
+                        }
+                    ]
+                });
+                break;
+        }
+
+        this.categoryGrid.on('select', function (grid, record) {
+            me.setPreview(record.get('id'), me.training.get('id'));
+        });
+
+        this.add(this.categoryGrid);
+    },
+    
+    destroyCategoryGrid: function () {
+        if (this.categoryGrid !== undefined) { this.categoryGrid.destroy(); }
+    },
+
     initComponent: function() {
         var me = this;
 
-        var categoryModelsStore = Ext.create('Ext.data.Store', {
-            fields: ['id', 'name'],
-            data: [
-                {
-                    id: 1,
-                    name: 'Ion Ionel'
-                },
-                {
-                    id: 8,
-                    name: 'Vasile Alecsandri'
-                }
-            ]
-        });
+        
 
         var tplStore = Ext.create('Ilc.store.FileTemplates');
         tplStore.load();
         
-        var categoryGrid = Ext.create('Ilc.grid.FileTemplates', {
-            store: categoryModelsStore,
-            flex: 1,
-            hidden: true,
-            listeners: {
-                select: function (grid, record) {
-                    me.setPreview(record.get('id'), this.training.get('id'));
-                },
-                scope: this
-            }
-        });
+        
 
         var tplGrid = Ext.create('Ext.grid.Panel', {
             store: tplStore,
@@ -77,12 +102,11 @@
                     me.selectedTplId = record.get('id');
                     
                     if (record.get('type') != 'Training') {
-
-                        categoryGrid.show();
+                        me.initCategoryGrid(record.get('type'));
                         return;
                     }
                     
-                    categoryGrid.hide();
+                    me.destroyCategoryGrid();
                     me.setPreview(me.training.get('id'), 0);
                 }
             }
@@ -99,8 +123,7 @@
                         xtype: 'uxiframe'
                     }
                 ]
-            },
-            categoryGrid
+            }
         ];
         
         this.callParent();
