@@ -23,6 +23,7 @@
                 {
                     xtype: 'textfield',
                     name: 'name',
+                    fieldLabel: 'Name',
                     value: record.get('name')
                 },
                 editor     
@@ -61,11 +62,12 @@
                 {
                     xtype: 'textfield',
                     name: 'name',
-                    fieldLabel: ''
+                    fieldLabel: 'Name'
                 },
                 {
                     xtype: 'combobox',
                     name: 'type',
+                    fieldLabel: 'Type',
                     store: ['Student', 'Offer', 'Training']
                 },
                 editor

@@ -77,10 +77,12 @@
                     me.selectedTplId = record.get('id');
                     
                     if (record.get('type') != 'Training') {
-                        categoryGrid.isHidden() ? categoryGrid.show() : categoryGrid.hide();
+
+                        categoryGrid.show();
                         return;
                     }
                     
+                    categoryGrid.hide();
                     me.setPreview(me.training.get('id'), 0);
                 }
             }
