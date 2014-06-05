@@ -59,6 +59,11 @@
                         }
                     ]
                 });
+                categoryStore.load({
+                    params: {
+                        trainingId: me.training.get('id')
+                    }
+                });
                 break;
         }
 

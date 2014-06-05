@@ -49,6 +49,7 @@
     },
 
     onNewFileClick: function (button) {
+        var me = this;
         var editor = Ext.create('Ilc.form.Editor');
         
         var window = Ext.create('Ext.window.Window', {
@@ -90,6 +91,7 @@
                             model.save({
                                 success: function () {
                                     window.fireEvent('filetemplatecreated');
+                                    me.fileTemplatesStore.reload();
                                     window.close();
                                 }
                             });
