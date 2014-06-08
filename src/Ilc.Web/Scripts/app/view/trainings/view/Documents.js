@@ -17,8 +17,13 @@
         align: 'strech'
     },
 
+    getPdfUrl: function () {
+        var src = this.query('uxiframe')[0].src;
+        return src.replace('gethtml', 'get');
+    },
+
     setPreview: function (modelId, parenModelId) {
-        var url = 'documents/get/{templateId}?modelId={modelId}&parentModelId={parentModelId}';
+        var url = 'documents/gethtml/{templateId}?modelId={modelId}&parentModelId={parentModelId}';
         url = url.replace('{templateId}', this.selectedTplId).replace('{modelId}', modelId).replace('{parentModelId}', parenModelId); // 
         // set iframe to url 
         
@@ -81,12 +86,17 @@
     initComponent: function() {
         var me = this;
 
-        
+        me.downloadPdfBtn = Ext.create('Ext.button.Button', {
+            text: 'Download as .pdf',
+            listeners: {
+                click: function() {
+                    window.open(me.getPdfUrl(), '_blank');
+                }
+            }
+        });
 
         var tplStore = Ext.create('Ilc.store.FileTemplates');
         tplStore.load();
-        
-        
 
         var tplGrid = Ext.create('Ext.grid.Panel', {
             store: tplStore,
@@ -100,6 +110,14 @@
                 {
                     dataIndex: 'type',
                     text: 'Category'
+                }
+            ],
+            dockedItems: [
+                {
+                    xtype: 'toolbar',
+                    items: [
+                        me.downloadPdfBtn
+                    ]
                 }
             ],
             listeners: {
