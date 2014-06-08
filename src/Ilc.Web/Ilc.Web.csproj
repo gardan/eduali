@@ -4261,6 +4261,8 @@
     <Content Include="Scripts\lib\tinymce\utils\form_utils.js" />
     <Content Include="Scripts\lib\tinymce\utils\mctabs.js" />
     <Content Include="Scripts\lib\tinymce\utils\validate.js" />
+    <Content Include="tools\wkhtmltopdf.exe" />
+    <Content Include="tools\wkhtmltox.dll" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
