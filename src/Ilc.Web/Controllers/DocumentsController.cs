@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -29,7 +30,8 @@ namespace Ilc.Web.Controllers
             var toolsPath = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath(System.Web.HttpRuntime.AppDomainAppVirtualPath), "tools");
             var toolPath = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath(System.Web.HttpRuntime.AppDomainAppVirtualPath), "tools", "wkhtmltopdf.exe");
             var pdfPath = Path.Combine(Path.Combine(toolsPath), string.Format("{0}.pdf", Guid.NewGuid().ToString()));
-            var requestUrl = Request.Url.GetLeftPart(UriPartial.Authority);
+            var requestUrl = ConfigurationSettings.AppSettings["ApplicationUrl"];
+            
             var args =
                 string.Format(@"{3}/documents/gethtml/{0}?modelId={1}&parentModelId={2} ", id, modelId, parentModelId, requestUrl) + pdfPath;
             var startInfo = new ProcessStartInfo()
