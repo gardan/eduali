@@ -5,6 +5,11 @@
             dataIndex: 'name',
             text: 'Name',
             flex: 1
+        },
+        {
+            dataIndex: 'type',
+            text: 'Type',
+            flex: 1
         }
     ]
 })

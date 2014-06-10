@@ -35,9 +35,13 @@
                         click: function() {
                             record.set('content', editor.getValue());
 
-                            record.save();
-                            record.commit();
-                            console.log(record);
+                            record.save({
+                                success: function() {
+                                    record.commit();
+                                    window.close();
+                                }
+                            });
+                            
                         },
                         scope: this
                     }
