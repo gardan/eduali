@@ -14,7 +14,8 @@
 
     layout: {
         type: 'hbox',
-        align: 'strech'
+        pack: 'start',
+        align: 'stretch'
     },
 
     getPdfUrl: function () {
@@ -139,8 +140,14 @@
         this.items = [
             tplGrid,
             {
-                xtype: 'container',
+                xtype: 'panel',
+                title: 'Preview',
                 flex: 1,
+                layout: {
+                    type: 'hbox',
+                    pack: 'start',
+                    align: 'stretch'
+                },
                 items: [
                     {
                         xtype: 'uxiframe'
