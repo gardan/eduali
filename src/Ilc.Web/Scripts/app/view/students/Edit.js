@@ -154,12 +154,6 @@
                     model.id = me.student.get('id');
                     me.fireEvent('editStudent', me, model);
                 }
-            },
-            {
-                text: Ilc.resources.Manager.getResourceString('common.back'),
-                handler: function () {
-                    window.history.back();
-                }
             }
         ];
 

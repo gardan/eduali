@@ -16,6 +16,20 @@
             {
                 xtype: 'toolbar',
                 region: 'north',
+                items: [
+                    {
+                        text: Ilc.resources.Manager.getResourceString('common.back'),
+                        listeners: {
+                            click: function() {
+                                window.history.back();
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                xtype: 'toolbar',
+                region: 'north',
 //                 defaults: {
 //                     iconAlign: 'right',
 //                     scale: 'normal',
