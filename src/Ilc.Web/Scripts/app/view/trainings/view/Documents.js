@@ -30,6 +30,7 @@
         
         var iframe = this.query('uxiframe')[0];
         iframe.load(url);
+        this.downloadPdfBtn.setDisabled(false);
     },
 
     initCategoryGrid: function(templateType) {
@@ -88,6 +89,7 @@
         var me = this;
 
         me.downloadPdfBtn = Ext.create('Ext.button.Button', {
+            disabled: true,
             text: 'Download as .pdf',
             listeners: {
                 click: function() {
@@ -113,14 +115,6 @@
                     text: 'Category'
                 }
             ],
-            dockedItems: [
-                {
-                    xtype: 'toolbar',
-                    items: [
-                        me.downloadPdfBtn
-                    ]
-                }
-            ],
             listeners: {
                 select: function (grid, record) {
                     me.selectedTplId = record.get('id');
@@ -141,7 +135,6 @@
             tplGrid,
             {
                 xtype: 'panel',
-                title: 'Preview',
                 flex: 1,
                 layout: {
                     type: 'hbox',
@@ -151,6 +144,14 @@
                 items: [
                     {
                         xtype: 'uxiframe'
+                    }
+                ],
+                dockedItems: [
+                    {
+                        xtype: 'toolbar',
+                        items: [
+                            me.downloadPdfBtn
+                        ]
                     }
                 ]
             }
