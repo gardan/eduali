@@ -46,7 +46,9 @@ namespace Ilc.Data.Contracts
         IRepository<SubjectFile> SubjectFiles { get; }
         IRepository<GradingAttribute> GradingAttributes { get; }
         IRepository<CustomerLog> CustomerLogs { get; }
-        IRepository<FileTemplate> FileTemplates { get; } 
+        IRepository<FileTemplate> FileTemplates { get; }
+        IRepository<Expense> Expenses { get; } 
+        IRepository<ExpenseType> ExpenseTypes { get; } 
 
         IRepository<RoleClaim> RoleClaims { get; } 
     }
