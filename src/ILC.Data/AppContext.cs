@@ -51,6 +51,7 @@ namespace Ilc.Data
         public DbSet<Template> Templates { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<SubjectFile> SubjectFiles { get; set; }
+        public DbSet<Expense> Expenses { get; set; }
 
         public DbSet<FileTemplate> FileTemplates { get; set; }
 
