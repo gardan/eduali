@@ -51,6 +51,8 @@ namespace Ilc.Data
         public IRepository<GradingAttribute> GradingAttributes { get { return GetStandardRepo<GradingAttribute>(); } }
         public IRepository<CustomerLog> CustomerLogs { get { return GetStandardRepo<CustomerLog>(); } }
         public IRepository<FileTemplate> FileTemplates { get { return GetStandardRepo<FileTemplate>(); } }
+        public IRepository<Expense> Expenses { get { return GetStandardRepo<Expense>(); } }
+        public IRepository<ExpenseType> ExpenseTypes { get { return GetStandardRepo<ExpenseType>(); } }
         public IRepository<RoleClaim> RoleClaims { get { return GetStandardRepo<RoleClaim>(); } }
         
 

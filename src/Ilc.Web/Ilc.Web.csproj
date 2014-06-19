@@ -4352,6 +4352,7 @@
     <Compile Include="Services\AvailabilityService.cs" />
     <Compile Include="Services\Customers\LogsService.cs" />
     <Compile Include="Services\DataImport\DataImportService.cs" />
+    <Compile Include="Services\ExpenseTypesService.cs" />
     <Compile Include="Services\FileTemplatesService.cs" />
     <Compile Include="Services\Grading\AttributesService.cs" />
     <Compile Include="Services\Grading\TrainingGradingAttributesService.cs" />
@@ -4469,6 +4470,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\Documents\" />
+    <Folder Include="Scripts\app\view\expenseTypes\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -54,6 +54,8 @@ namespace Ilc.Web.AppStart
             container.RegisterAutoWiredAs<UserNotifyService, IUserNotifyService>().ReusedWithin(ReuseScope.Request);
             container.RegisterAutoWiredAs<AssesmentsManager, IAssesmentsManager>().ReusedWithin(ReuseScope.Request);
             container.RegisterAutoWiredAs<CustomerLogsManager, ICustomerLogsManager>().ReusedWithin(ReuseScope.Request);
+            container.RegisterAutoWiredAs<ExpenseTypesManager, IExpenseTypesManager>().ReusedWithin(ReuseScope.Request);
+            container.RegisterAutoWiredAs<ExpensesManager, IExpensesManager>().ReusedWithin(ReuseScope.Request);
             
             container.RegisterAutoWiredAs<StatisticsService, IStatisticsService>().ReusedWithin(ReuseScope.Request);            
         }

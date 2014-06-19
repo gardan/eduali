@@ -52,6 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\RequiredClaimsAttribute.cs" />
+    <Compile Include="Services\ExpensesManager.cs" />
+    <Compile Include="Contracts\IExpensesManager.cs" />
+    <Compile Include="Services\ExpenseTypesManager.cs" />
+    <Compile Include="Contracts\IExpenseTypesManager.cs" />
+    <Compile Include="FilterArgumentsExpenses.cs" />
+    <Compile Include="FilterArgumentsExpenseTypes.cs" />
     <Compile Include="Services\CustomerLogsManager.cs" />
     <Compile Include="Contracts\IAssesmentsManager.cs" />
     <Compile Include="Contracts\ICustomerLogsManager.cs" />
