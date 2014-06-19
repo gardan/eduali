@@ -53,6 +53,10 @@
                 {
                     text: 'Document templates',
                     component: 'Ilc.view.fileTemplates.List'
+                },
+                {
+                    text: 'Expense types',
+                    component: 'Ilc.view.expenseTypes.List'
                 }
             ]
         });

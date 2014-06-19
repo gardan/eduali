@@ -169,6 +169,8 @@ namespace Ilc.Web.AppStart
             routes.Add<Ilc.Web.Services.FileTemplateModel>("/filetemplates", "POST");
 
             routes.Add<Ilc.Web.Services.FilterParametersExpenseTypes>("/expensetypes", "GET");
+            routes.Add<Ilc.Web.Services.ExpenseTypeModel>("/expensetypes", "POST");
+            routes.Add<Ilc.Web.Services.ExpenseTypeModel>("/expensetypes/{id}", "PUT, DELETE");
 
             // START - Apis for the logged in user
             routes.Add<Services.AuthModel>("/auth", "POST");

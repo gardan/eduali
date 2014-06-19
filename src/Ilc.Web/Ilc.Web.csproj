@@ -209,6 +209,7 @@
     <Content Include="Scripts\app\model\Claim.js" />
     <Content Include="Scripts\app\model\ContactTraining.js" />
     <Content Include="Scripts\app\model\CustomerLog.js" />
+    <Content Include="Scripts\app\model\ExpenseType.js" />
     <Content Include="Scripts\app\model\FileTemplate.js" />
     <Content Include="Scripts\app\model\Grade.js" />
     <Content Include="Scripts\app\model\GradingAttribute.js" />
@@ -235,6 +236,7 @@
     <Content Include="Scripts\app\store\Companies.js" />
     <Content Include="Scripts\app\store\Contacts.js" />
     <Content Include="Scripts\app\store\CustomerLogs.js" />
+    <Content Include="Scripts\app\store\ExpenseTypes.js" />
     <Content Include="Scripts\app\store\FileTemplates.js" />
     <Content Include="Scripts\app\store\Genders.js" />
     <Content Include="Scripts\app\store\Grades.js" />
@@ -437,6 +439,7 @@
     <Content Include="Scripts\app\view\customers\Create.js" />
     <Content Include="Scripts\app\view\customers\Edit.js" />
     <Content Include="Scripts\app\view\customers\List.js" />
+    <Content Include="Scripts\app\view\expenseTypes\List.js" />
     <Content Include="Scripts\app\view\fileTemplates\Container.js" />
     <Content Include="Scripts\app\view\fileTemplates\List.js" />
     <Content Include="Scripts\app\view\gradingAttributes\List.js" />
@@ -4470,7 +4473,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\Documents\" />
-    <Folder Include="Scripts\app\view\expenseTypes\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
