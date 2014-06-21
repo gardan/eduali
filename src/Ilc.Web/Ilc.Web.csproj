@@ -4355,6 +4355,7 @@
     <Compile Include="Services\AvailabilityService.cs" />
     <Compile Include="Services\Customers\LogsService.cs" />
     <Compile Include="Services\DataImport\DataImportService.cs" />
+    <Compile Include="Services\ExpensesService.cs" />
     <Compile Include="Services\ExpenseTypesService.cs" />
     <Compile Include="Services\FileTemplatesService.cs" />
     <Compile Include="Services\Grading\AttributesService.cs" />

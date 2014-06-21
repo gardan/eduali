@@ -18,11 +18,13 @@ namespace Ilc.Data.Models
 
         public int ExpenseTypeId { get; set; }
         [ForeignKey("ExpenseTypeId")]
-        public ExpenseType ExpenseType { get; set; }
+        public virtual ExpenseType ExpenseType { get; set; }
     }
 
     public class ExpenseType : CompanyBaseEntity
     {
         public string Name { get; set; }
+
+        
     }
 }
