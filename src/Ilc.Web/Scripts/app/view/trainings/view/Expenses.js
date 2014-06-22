@@ -108,7 +108,8 @@ Ext.define('Ilc.view.trainings.view.Expenses', {
     },
     
     initComponent: function () {
-
+        var me = this;
+        
         this.expensesStore = Ext.create('Ilc.store.Expenses', {
             trainingId: this.trainingId
         });
@@ -146,6 +147,40 @@ Ext.define('Ilc.view.trainings.view.Expenses', {
                     flex: 1
                 }
             ]
+        });
+
+        expensesGrid.on('itemcontextmenu', function (view, record, item, index, e) {
+            e.stopEvent();
+
+            if (!me.rowContextMenu) {
+                me.rowContextMenu = Ext.create('Ext.menu.Menu', {
+                    items: [
+                        {
+                            text: 'Delete',
+                            handler: function () {
+                                var selected = expensesGrid.selModel.getSelection();
+                                Ext.MessageBox.confirm(
+                                    'Confirm delete',
+                                    'Are you sure?',
+                                    function (btn) {
+                                        if (btn == 'yes') {
+                                            record.destroy({
+                                                success: function() {
+                                                    me.expensesStore.remove(selected[0]);
+                                                }
+                                            });
+
+                                            
+                                        }
+                                    }
+                                );
+                            }
+                        }
+                    ]
+                });
+            }
+
+            me.rowContextMenu.showAt(e.getXY());
         });
 
         this.items = [
