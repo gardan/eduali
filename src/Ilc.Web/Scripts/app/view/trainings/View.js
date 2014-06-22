@@ -10,7 +10,8 @@
         'Ilc.view.subjectFiles.List',
         'Ilc.view.gradingAttributes.TrainingList',
         'Ilc.view.trainings.view.Contacts',
-        'Ilc.view.trainings.view.Documents'
+        'Ilc.view.trainings.view.Documents',
+        'Ilc.view.trainings.view.Expenses'
     ],
     width: 900,
 
@@ -468,6 +469,11 @@
                             }
                         }
                     }),
+                    {
+                        title: 'Expenses',
+                        xtype: 'trainingexpenses',
+                        trainingId: model.get('id')
+                    },
                     {
                         xtype: 'spendingsview',
                         title: 'Expenses',
