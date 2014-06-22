@@ -49,6 +49,7 @@ namespace Ilc.Web.Services
             var expense = new Expense()
                 {
                     Ammount = request.Ammount,
+                    ExpenseTypeId = request.ExpenseType.Id,
                     TrainingId = request.TrainingId
                 };
             Stamper.Stamp(expense);

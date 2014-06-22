@@ -136,6 +136,7 @@
         'common.friendlyName': 'Friendly name',
         'common.claims': 'Capabilities',
         'common.back': 'Back',
+        'common.type': 'Type',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',
