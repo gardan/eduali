@@ -37,6 +37,7 @@ namespace Ilc.Infrastructure.Services
 
             foreach (var training in trainings)
             {
+                var innerTraining = training;
                 // Skip if training status is smaller or equal to accepted
                 if (TrainingStatus.GetWeight(training.Status) <= TrainingStatus.GetWeight(TrainingStatus.Offer))
                 {
@@ -47,10 +48,19 @@ namespace Ilc.Infrastructure.Services
 
                 if (selectedOffer == null) continue;
 
+                var expenses = Uow.Expenses.GetAll().Where(e => e.TrainingId == innerTraining.Id);
+                decimal totalExpenses = 0;
+                if (expenses.Count() > 0)
+                {
+                    totalExpenses = expenses.Sum(e => e.Ammount);
+                }
+                
+
+
                 ret.Add(new SpendingsStatistics()
                     {
                         Price = selectedOffer.Price,
-                        Spendings = training.Spendings.Trainer,
+                        Spendings = totalExpenses,
                         CustomerName = training.Customer.Name,
                         SubjectName = training.Subject.Name,
                         TrainingCompositeId = string.Format("{0}-{1}", training.CustomerId, training.NoOfCustomerTraining)
