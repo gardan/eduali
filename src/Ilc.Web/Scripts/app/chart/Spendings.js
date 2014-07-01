@@ -27,7 +27,15 @@
             axis: 'bottom',
             title: [Ilc.resources.Manager.getResourceString('common.price'), Ilc.resources.Manager.getResourceString('common.spendings')],
             xField: 'label',
-            yField: ['price', 'spendings']
+            yField: ['price', 'spendings'],
+            tips: {
+                trackMouse: true,
+                layout: 'fit',
+                items: [{ xtype: 'label' }],
+                renderer: function (storeItem, item) {
+                    this.down('label').setText(storeItem.get(item.yField));
+                }
+            }
         }
     ],
 });
