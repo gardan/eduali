@@ -64,6 +64,18 @@
         me.buttons = [
             doneButton,
             {
+                text: Ilc.resources.Manager.getResourceString('common.skip'),
+                listeners: {
+                    click: function() {
+                        me.fireEvent('skipinterview', me, {
+                            taskEntityId: entity.get('id')
+                        }, {
+                            tasksStore: tasksStore
+                        });
+                    }
+                }
+            },
+            {
                 xtype: 'button',
                 text: Ilc.resources.Manager.getResourceString('common.close'),
                 handler: function () {
@@ -74,7 +86,8 @@
 
         me.addEvents(
             'addInterview',
-            'allInterviewsAdded'
+            'allInterviewsAdded',
+            'skipinterview'
         );
 
         studentsStore.load();

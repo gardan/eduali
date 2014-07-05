@@ -28,7 +28,8 @@
             },
             'interviewwindow': {
                 addInterview: me.addInterview,
-                allInterviewsAdded: me.addInterview
+                allInterviewsAdded: me.addInterview,
+                skipinterview: me.addInterview
             },
             'offerwindow': {
                 addOffer: me.addOffer,
@@ -258,7 +259,6 @@
 
         tasksService.interview(data)
             .then(function (response) {
-                debugger;
                 if (options && options.studentsStore) {
                     options.studentsStore.load();
                 }
