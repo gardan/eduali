@@ -18,7 +18,6 @@
     avatarUploader: null,
 
     trainerCreated: function (trainer) {
-        debugger;
         var uploadUrl = trainer.get('userInfo').avatarLocation;
         this.avatarUploader.setUploadUrl(uploadUrl);
         this.avatarUploader.initUpload();
@@ -47,6 +46,7 @@
     initGenderCombo: function (store) {
         return Ext.create('Ext.form.field.ComboBox', {
             fieldLabel: Ilc.resources.Manager.getResourceString('common.gender'),
+            editable: false,
             xtype: 'combobox',
             queryMode: 'local',
             displayField: 'name',
@@ -91,6 +91,7 @@
             me.genderCombo,
             {
                 xtype: 'combobox',
+                editable: false,
                 store: subjectsStore,
                 queryMode: 'local',
                 displayField: 'name',
