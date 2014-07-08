@@ -9,7 +9,7 @@ namespace Ilc.Data.Models
         public int NoLessons { get; set; }
         public int LessonDuration { get; set; }
         public bool Selected { get; set; }
-
+        public string Details { get; set; }
 
         public int TrainingId { get; set; }
         [ForeignKey("TrainingId")]

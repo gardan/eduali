@@ -25,6 +25,11 @@
                 dataIndex: 'lessonDuration',
                 flex: 1
             },
+            {
+                text: Ilc.resources.Manager.getResourceString('common.details'),
+                dataIndex: 'details',
+                flex: 1
+            }
         ];
 
         me.dockedItems = [

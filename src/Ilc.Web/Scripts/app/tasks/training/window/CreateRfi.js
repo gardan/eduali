@@ -20,6 +20,11 @@
                 xtype: 'textfield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.lessonDuration'),
                 name: 'lessonDuration'
+            },
+            {
+                xtype: 'textfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.details'),
+                name: 'details'
             }
         ];
 

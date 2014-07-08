@@ -138,6 +138,7 @@
         'common.back': 'Back',
         'common.type': 'Type',
         'common.skip': 'Skip',
+        'common.details': 'Details',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',

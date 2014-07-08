@@ -84,6 +84,7 @@ namespace Ilc.Web.Services.Tasks.Training
                 var offer = new TrainingOffer().InjectFrom(request) as TrainingOffer;
                 offer.Price = request.PossibleCost;
                 offer.NoLessons = request.LessonsNo;
+                offer.Details = request.Details;
                 Stamper.Stamp(offer);
 
                 workflowData["Offer"] = offer;
@@ -568,6 +569,8 @@ namespace Ilc.Web.Services.Tasks.Training
 
         public int PossibleCost { get; set; }
         public int LessonsNo { get; set; }
+
+        public string Details { get; set; }
 
         public bool Complete { get; set; }
         public int OfferId { get; set; }

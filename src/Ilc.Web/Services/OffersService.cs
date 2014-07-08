@@ -26,7 +26,8 @@ namespace Ilc.Web.Services
                             LessonsNo = o.NoLessons,
                             PossibleCost = o.Price,
                             Price = o.Price,
-                            Selected = o.Selected
+                            Selected = o.Selected,
+                            Details = o.Details
                         })),
                     TotalDisplayRecords = results.TotalDisplayRecords,
                     TotalRecords = results.TotalRecords
@@ -59,6 +60,7 @@ namespace Ilc.Web.Services
         public decimal PossibleCost { get; set; }
         public int LessonDuration { get; set; }
         public int LessonsNo { get; set; }
+        public string Details { get; set; }
         public bool Selected { get; set; }
     }
 }
