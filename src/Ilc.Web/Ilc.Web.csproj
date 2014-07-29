@@ -348,6 +348,7 @@
     <Content Include="Scripts\app\ux\event\RecorderManager.html" />
     <Content Include="Scripts\app\ux\event\RecorderManager.js" />
     <Content Include="Scripts\app\ux\FieldReplicator.js" />
+    <Content Include="Scripts\app\ux\form\ColorField.js" />
     <Content Include="Scripts\app\ux\form\ItemSelector.js" />
     <Content Include="Scripts\app\ux\form\MultiSelect.js" />
     <Content Include="Scripts\app\ux\form\NumericField.js" />

@@ -136,7 +136,10 @@ namespace Ilc.Core.Services
         public void Create(Training newTraining)
         {
             // add a random color
-            newTraining.Color = "#" + Misc.Utils.GetRandomHexString(6);
+            if (String.IsNullOrEmpty(newTraining.Color))
+            {
+                newTraining.Color = "#" + Misc.Utils.GetRandomHexString(6);
+            }
 
             // Create the number of customer training
             newTraining.NoOfCustomerTraining = GetNoOfNewCustomerTraining(newTraining.CustomerId.GetValueOrDefault());

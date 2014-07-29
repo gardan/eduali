@@ -23,7 +23,9 @@ namespace Ilc.Web.Models
         public OwnersModel WorkflowOwners { get; set; }
 
         public ContactPersonModel[] Contacts { get; set; }
-}
+
+        public string Color { get; set; }
+    }
 
     public class OwnersModel
     {

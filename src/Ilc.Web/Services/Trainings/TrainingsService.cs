@@ -95,6 +95,7 @@ namespace Ilc.Web.Services.Trainings
 
             var newTraining = new Training
                 {
+                    Color = "#" + request.Color,
                     Public = request.Public,
                     Price = request.Price,
                     DateOfValidation = new DateTimeOffset(new DateTime(request.DateOfValidation.Ticks, DateTimeKind.Unspecified), TimeSpan.Zero),

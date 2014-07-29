@@ -2,7 +2,8 @@
     extend: 'Ext.window.Window',
     
     requires: [
-        'Ilc.utils.Forms'
+        'Ilc.utils.Forms',
+        'Ext.ux..form.ColorField'
     ],
         
     defaults: {
@@ -198,6 +199,11 @@
             me.contactsComboBox,
             subjectComboBox,
             trainingSystemComboBox,
+            {
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.color'),
+                xtype: 'colorfield',
+                name: 'color'
+            },
             trainersComboBox,
             me.dateOfValidationField,
             me.studentsComboBox,

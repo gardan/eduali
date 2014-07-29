@@ -88,6 +88,10 @@
 
                 model.templateDays.push(obj);
                 break;
+                case 'colorfield':
+                    debugger;
+                Ilc.utils.Forms._addProperty(model, input.name, input.getRawValue());
+                break;
             case 'numericfield':
                 Ilc.utils.Forms._addProperty(model, input.name, input.getRawValue());
                 break;
