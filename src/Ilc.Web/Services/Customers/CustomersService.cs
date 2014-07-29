@@ -38,6 +38,8 @@ namespace Ilc.Web.Services
                     Name = request.Name,
                     BankAccount = request.BankAccount,
                     BillingAddress = request.BillingAddress,
+                    FiscalCode = request.FiscalCode,
+                    CommerceNumber = request.CommerceNumber,
                     ContactPersons = new List<ContactPerson>() {new ContactPerson()
                         {
                             UserProfile = new UserProfile() {

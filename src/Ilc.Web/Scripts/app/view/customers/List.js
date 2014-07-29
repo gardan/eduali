@@ -71,6 +71,22 @@
                     }
                 },
                 {
+                    dataIndex: 'fiscalCode',
+                    text: Ilc.resources.Manager.getResourceString('common.fiscalCode'),
+                    flex: 1,
+                    filter: {
+                        type: 'string'
+                    }
+                },
+                {
+                    dataIndex: 'commerceNumber',
+                    text: Ilc.resources.Manager.getResourceString('common.commerceNumber'),
+                    flex: 1,
+                    filter: {
+                        type: 'string'
+                    }
+                },
+                {
                     dataIndex: 'contactPerson',
                     text: Ilc.resources.Manager.getResourceString('common.contact'),
                     sortable: false,
