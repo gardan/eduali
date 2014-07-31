@@ -38,8 +38,19 @@
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.billingAddress'),
                 name: 'billingAddress',
                 value: me.customer.billingAddress
+            },
+            {
+                xtype: 'textfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.fiscalCode'),
+                name: 'fiscalCode',
+                anchor: '100%'
+            },
+            {
+                xtype: 'textfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.commerceNumber'),
+                name: 'commerceNumber',
+                anchor: '100%'
             }
-            
         ];
 
         me.buttons = [
