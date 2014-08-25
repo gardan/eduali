@@ -165,6 +165,7 @@
         };
 
         me.on('afterlayout', func);
+        me.on('eventcontextmenu', this.onEventContextMenu, this);
 
         var availabilityStore = Ext.create('Ilc.store.scheduler.Availability');
         
@@ -172,5 +173,33 @@
         me.callParent(arguments);
 
         me.loadAvailabilityZones();
+    },
+    
+    onEventContextMenu: function (scheduler, eventRecord, e) {
+        e.stopEvent();
+
+        var datePicker = Ext.create('Ext.menu.DatePicker', {
+            handler: function (dp, date) {
+                var diff1 = Sch.util.Date.getDurationInMinutes(eventRecord.get('startDate'), eventRecord.get('endDate'));
+
+                eventRecord.set('startDate', date);
+                eventRecord.set('endDate', Sch.util.Date.add(date, Sch.util.Date.MINUTE, diff1));
+                scheduler.scrollToDate(date);
+            }
+        });
+
+        if (!scheduler.ctx) {
+            scheduler.ctx = Ext.create('Ext.menu.Menu', {
+                items: [{
+                    text: 'Move to',
+                    enableToggle: false,
+                    overCls: 'eduali-menu-hover',
+                    iconCls: 'icon-calendar',
+                    menu: datePicker
+                }]
+            });
+        }
+        scheduler.ctx.rec = eventRecord;
+        scheduler.ctx.showAt(e.getXY());
     }
 });

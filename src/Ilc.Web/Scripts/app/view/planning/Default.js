@@ -90,6 +90,7 @@
             var model = {
                 startDate: event.get('startDate'),
                 endDate: event.get('endDate'),
+                lessonName: event.get('name'),
                 id: event.get('id'),
                 trainingId: event.get('trainingId')
             };
