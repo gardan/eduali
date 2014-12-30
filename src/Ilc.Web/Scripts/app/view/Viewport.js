@@ -114,6 +114,17 @@
                 }
             },
             {
+                iconCls: 'icon-offer-32',
+                itemId: 'menu.offers',
+                hidden: false,
+                tooltip: {
+                    text: 'Offers',
+                    width: 100,
+                    showDelay: 0,
+                    hideDelay: 50
+                }
+            },
+            {
                 iconCls: 'icon-settings-32',
                 itemId: 'menu.settings',
                 hidden: !Ilc.Configuration.claimExists('ui-settings-read'),
@@ -124,6 +135,7 @@
                     hideDelay: 50
                 }
             },
+            
             {
                 iconCls: 'icon-planning-32',
                 itemId: 'menu.planning',
@@ -155,6 +167,7 @@
                     }
                 }
             },
+            
             '->',
             {
                 text: Ilc.resources.Manager.getResourceString('mainMenu.login'),
@@ -243,3 +256,16 @@
         this.callParent(arguments);
     }
 });
+//
+//{
+//    iconCls: 'icon-planning-32',
+//    itemId: 'menu.offers',
+//    border: false,
+//    hidden: false,
+//    tooltip: {
+//        text: 'Offers',
+//        width: 100,
+//        showDelay: 0,
+//        hideDelay: 50
+//    }
+//},

@@ -29,7 +29,8 @@ Ext.application({
         'Evaluations',
         'GradingSystems',
         'Profile',
-        'Recovery'
+        'Recovery',
+        'Offers'
     ],
 
     requires: [
@@ -60,7 +61,8 @@ Ext.application({
         'profile.Edit',
         'recovery.Default',
         'companies.Default',
-        'recovery.InitAccount'
+        'recovery.InitAccount',
+        'offers.List'
     ],  
         
     routes: {
@@ -82,7 +84,8 @@ Ext.application({
         'profile': 'profile#edit',
         'recover': 'recovery#default',
         'company': 'companies#default',
-        'initaccount': 'recovery#initAccount'
+        'initaccount': 'recovery#initAccount',
+        'offers': 'offers#list'
     },
 
     enableRouter: true,
