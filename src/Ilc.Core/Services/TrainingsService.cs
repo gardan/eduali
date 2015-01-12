@@ -74,6 +74,11 @@ namespace Ilc.Core.Services
                 query = query.Where(t => t.Students.Any(s => s.Id == parameters.StudentId));
             }
 
+            if (parameters.CustomerId > 0)
+            {
+                query = query.Where(t => t.CustomerId == parameters.CustomerId);
+            }
+
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
 
