@@ -62,7 +62,9 @@ Ext.application({
         'recovery.Default',
         'companies.Default',
         'recovery.InitAccount',
-        'offers.List'
+        'offers.List',
+        'offers.Create',
+        'offers.Edit'
     ],  
         
     routes: {
@@ -85,7 +87,9 @@ Ext.application({
         'recover': 'recovery#default',
         'company': 'companies#default',
         'initaccount': 'recovery#initAccount',
-        'offers': 'offers#list'
+        'offers': 'offers#list',
+        'offers/create': 'offers#create',
+        'offers/:id': 'offers#edit'
     },
 
     enableRouter: true,

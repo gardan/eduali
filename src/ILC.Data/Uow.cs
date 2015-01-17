@@ -54,7 +54,7 @@ namespace Ilc.Data
         public IRepository<Expense> Expenses { get { return GetStandardRepo<Expense>(); } }
         public IRepository<ExpenseType> ExpenseTypes { get { return GetStandardRepo<ExpenseType>(); } }
         public IRepository<RoleClaim> RoleClaims { get { return GetStandardRepo<RoleClaim>(); } }
-        
+        public IRepository<Offer> DecoupledOffers { get { return GetStandardRepo<Offer>(); } } 
 
         public Uow(IRepositoryProvider repositoryProvider)
         {

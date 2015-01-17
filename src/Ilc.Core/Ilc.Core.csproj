@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\RequiredClaimsAttribute.cs" />
+    <Compile Include="FilterArgumentsDecoupledOffer.cs" />
+    <Compile Include="Services\DecoupledOffersService.cs" />
     <Compile Include="Services\ExpensesManager.cs" />
     <Compile Include="Contracts\IExpensesManager.cs" />
     <Compile Include="Services\ExpenseTypesManager.cs" />

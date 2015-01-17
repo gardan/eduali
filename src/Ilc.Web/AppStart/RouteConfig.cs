@@ -94,8 +94,8 @@ namespace Ilc.Web.AppStart
             routes.Add<GridConfigRequestParameters>("/config/grid", "GET");
             routes.Add<UpdateGridColumnConfigModel>("/config/grid", "PUT");
 
-            routes.Add<CreateOfferModel>("/offers", "POST");
-            routes.Add<Services.FilterParametersOffer>("/offers", "GET");
+            //routes.Add<CreateOfferModel>("/offers", "POST");
+            //routes.Add<Services.FilterParametersOffer>("/offers", "GET");
 
             routes.Add<Services.ClientConfigurationModel>("/configuration", "GET");
 
@@ -189,6 +189,8 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.DataImport.ImportCustomersModel>("/import/customers", "POST");
             routes.Add<Services.DataImport.ImportTrainersModel>("/import/trainers", "POST");
             routes.Add<Services.DataImport.ImportStudentsModel>("/import/students", "POST");
+
+            routes.Add<Services.FilterParametersDecoupledOffers>("/offers", "GET");
         }
     }
 }

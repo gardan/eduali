@@ -15,5 +15,8 @@ namespace Ilc.Data.Models
         public DateTimeOffset PaymentDueAt { get; set; }
         public string Tos { get; set; }
         public bool Payed { get; set; }
+
+        // Relations
+        public virtual ICollection<Training> Trainings { get; set; }
     }
 }

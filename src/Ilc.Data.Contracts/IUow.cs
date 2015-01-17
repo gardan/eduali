@@ -48,7 +48,8 @@ namespace Ilc.Data.Contracts
         IRepository<CustomerLog> CustomerLogs { get; }
         IRepository<FileTemplate> FileTemplates { get; }
         IRepository<Expense> Expenses { get; } 
-        IRepository<ExpenseType> ExpenseTypes { get; } 
+        IRepository<ExpenseType> ExpenseTypes { get; }
+        IRepository<Offer> DecoupledOffers { get; }
 
         IRepository<RoleClaim> RoleClaims { get; } 
     }

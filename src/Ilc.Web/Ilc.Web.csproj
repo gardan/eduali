@@ -161,6 +161,7 @@
     <Content Include="Scripts\app\controller\Home.js" />
     <Content Include="Scripts\app\controller\Interviews.js" />
     <Content Include="Scripts\app\controller\Lessons.js" />
+    <Content Include="Scripts\app\controller\Offers.js" />
     <Content Include="Scripts\app\controller\Planning.js" />
     <Content Include="Scripts\app\controller\Profile.js" />
     <Content Include="Scripts\app\controller\Recovery.js" />
@@ -457,6 +458,9 @@
     <Content Include="Scripts\app\view\import\Students.js" />
     <Content Include="Scripts\app\view\import\Trainers.js" />
     <Content Include="Scripts\app\view\lessons\List.js" />
+    <Content Include="Scripts\app\view\offers\Create.js" />
+    <Content Include="Scripts\app\view\offers\Edit.js" />
+    <Content Include="Scripts\app\view\offers\List.js" />
     <Content Include="Scripts\app\view\planning\Default.js" />
     <Content Include="Scripts\app\view\profile\Edit.js" />
     <Content Include="Scripts\app\view\progressEvaluations\Edit.js" />
@@ -4357,6 +4361,7 @@
     <Compile Include="Services\AvailabilityService.cs" />
     <Compile Include="Services\Customers\LogsService.cs" />
     <Compile Include="Services\DataImport\DataImportService.cs" />
+    <Compile Include="Services\DecoupledOffersWebService.cs" />
     <Compile Include="Services\ExpensesService.cs" />
     <Compile Include="Services\ExpenseTypesService.cs" />
     <Compile Include="Services\FileTemplatesService.cs" />

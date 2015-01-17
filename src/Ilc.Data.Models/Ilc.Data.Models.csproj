@@ -63,6 +63,7 @@
     <Compile Include="GradingAttribute.cs" />
     <Compile Include="GradingSystem.cs" />
     <Compile Include="InterviewPlan.cs" />
+    <Compile Include="Offer.cs" />
     <Compile Include="ProgressEvaluation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RadioPossibleAnswer.cs" />

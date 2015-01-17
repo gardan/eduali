@@ -6,5 +6,9 @@
     
     list: function() {
 
+    },
+    create: function() {
+    },
+    edit: function() {
     }
 });
