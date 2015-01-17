@@ -18,5 +18,7 @@ namespace Ilc.Data.Models
 
         // Relations
         public virtual ICollection<Training> Trainings { get; set; }
+
+        public virtual Customer Customer { get; set; }
     }
 }
