@@ -33,8 +33,8 @@ namespace Ilc.Web.Services
                     Accepted = o.Accepted,
                     PaymentDueAt = o.PaymentDueAt,
                     Tos = o.Tos,
-                    CreateDate = o.CreateDate
-
+                    CreateDate = o.CreateDate,
+                    Trainings = o.Trainings.Map(t => new TrainingModel().InjectFrom<TrainingToWebModel>(t) as TrainingModel)
                 })),
                 TotalDisplayRecords = results.TotalDisplayRecords,
                 TotalRecords = results.TotalRecords
@@ -67,5 +67,7 @@ namespace Ilc.Web.Services
         public string Tos { get; set; }
 
         public DateTimeOffset CreateDate { get; set; }
+
+        public List<TrainingModel> Trainings { get; set; }
     }
 }

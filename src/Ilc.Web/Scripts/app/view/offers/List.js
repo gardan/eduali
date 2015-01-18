@@ -7,27 +7,25 @@
         Ext.define('Offer', {
             extend: 'Ext.data.Model',
             fields: [
-                'customerName', 'active', 'createDate', 'creatorName', 'trainingIds', 'amount', 'sentToCustomer', 'accepted',
+                'customer', 'active', 'createDate', 'creator', 'training', 'amount', 'sentToCustomer', 'accepted',
                 'dueDate', 'tos', 'payed'
             ]
         });
         return Ext.create('Ext.data.Store', {
             model: 'Offer',
-            data: [
-                {
-                    customerName: 'askdjaskds',
-                    active: true,
-                    createDate: '2014-12-12',
-                    creatorName: 'asdasfj asdasdasd',
-                    trainingIds: [1, 2, 3, 4],
-                    amount: 12.35,
-                    sentToCustomer: true,
-                    accepted: false,
-                    dueDate: '2015-01-15',
-                    tos: 'asdasd asdaskd sasd',
-                    payed: false
+            
+            proxy: {
+                type: 'rest',
+                url: 'api/offers',
+                extraParams: {
+                    format: 'json'
+                },
+                reader: {
+                    type: 'json',
+                    root: 'data',
+                    totalProperty: 'totalRecords'
                 }
-            ]
+            }
         });
     },
 
@@ -57,27 +55,34 @@
                     ]
                 }
             ],
-            store: this.getOffersStore(),
+            store: this.getOffersStore().load(),
             columns: [
                 {
                     text: Ilc.resources.Manager.getResourceString('common.customer'),
-                    dataIndex: 'customerName',
-                    flex: 1
+                    dataIndex: 'customer',
+                    flex: 1,
+                    renderer: function(value) {
+                        return value.name;
+                    }
                 },
                 {
-                    text: Ilc.resources.Manager.getResourceString('common.lessonNo'),
+                    text: Ilc.resources.Manager.getResourceString('common.active'),
                     dataIndex: 'active',
                     flex: 1
                 },
                 {
-                    text: Ilc.resources.Manager.getResourceString('common.lessonDuration'),
+                    text: Ilc.resources.Manager.getResourceString('common.createDate'),
                     dataIndex: 'createDate',
                     flex: 1
                 },
                 {
-                    text: Ilc.resources.Manager.getResourceString('common.details'),
-                    dataIndex: 'creatorName',
-                    flex: 1
+                    text: Ilc.resources.Manager.getResourceString('common.creator'),
+                    dataIndex: 'creator',
+                    flex: 1,
+                    renderer: function (value) {
+                        debugger;
+                        return value.fullName;
+                    }
                 },
                 {
                     text: Ilc.resources.Manager.getResourceString('common.details'),
