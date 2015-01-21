@@ -4308,6 +4308,7 @@
     <Compile Include="InjectorConventions\AssesmentModelToStudentInterview.cs" />
     <Compile Include="InjectorConventions\AvailabilityModelToAvailability.cs" />
     <Compile Include="InjectorConventions\AvailabilityToAvailabilityModel.cs" />
+    <Compile Include="InjectorConventions\DecoupledOfferToWebModel.cs" />
     <Compile Include="InjectorConventions\GradingSystemToWebModel.cs" />
     <Compile Include="InjectorConventions\StudentInterviewModelToStudentInterview.cs" />
     <Compile Include="InjectorConventions\SubjectFileToSubjectFileModel.cs" />

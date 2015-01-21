@@ -191,6 +191,7 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.DataImport.ImportStudentsModel>("/import/students", "POST");
 
             routes.Add<Services.FilterParametersDecoupledOffers>("/offers", "GET");
+            routes.Add<Services.GetDecoupledOfferModel>("/offers/{id}", "GET");
         }
     }
 }

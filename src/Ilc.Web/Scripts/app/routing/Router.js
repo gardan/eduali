@@ -43,30 +43,44 @@
 
                 // adjust the controller and action names
                 action = Ext.String.capitalize(match.action);
-                controller = match.controller.charAt(0).toLowerCase() + match.controller.substr(1);
+                var controllerName = match.controller.charAt(0).toLowerCase() + match.controller.substr(1),
+                    promise = controller[action.toLowerCase()](params);
 
-                // try to get the view by controller + action names
-                viewClass = Ext.ClassManager.get('Ilc.view.' + controller + '.' + action);
-                
-
-                if (viewClass) {
-                    // create view
-                    view = Ext.create(viewClass, {
-                        params: params,
-                        border: false
+                if (!promise) {
+                    promise = Q.fcall(function() {
+                        return false;
                     });
-
-                    // clear target and add new view
-                    target.removeAll();
-                    target.add(view);
-
-                    // adjust top toolbar
-                    if (navToolbar.child('#' + controller)) {
-                        navToolbar.child('#' + controller).toggle(true);
-                    }
-                } else {
-                    console.log('Ilc.view.' + controller + '.' + action, ' not found');
                 }
+                promise
+                    .then(function(result) {
+                        view = result;
+                                
+                        // try to get the view by controller + action names
+                        viewClass = Ext.ClassManager.get('Ilc.view.' + controllerName + '.' + action);
+
+
+                        if (viewClass) {
+                            // create view
+                            if (!view) {
+                                view = Ext.create(viewClass, {
+                                    params: params,
+                                    border: false
+                                });
+                            }
+                            // clear target and add new view
+                            target.removeAll();
+                            target.add(view);
+
+                            // adjust top toolbar
+                            if (navToolbar.child('#' + controllerName)) {
+                                navToolbar.child('#' + controllerName).toggle(true);
+                            }
+                            ;
+
+                        } else {
+                            console.log('Ilc.view.' + controller + '.' + action, ' not found');
+                        }
+                    });
             }
         });
     }

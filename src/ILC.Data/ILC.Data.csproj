@@ -356,6 +356,14 @@
     <Compile Include="Migrations\201501171548105_AddedCustomerRelationToOffer.Designer.cs">
       <DependentUpon>201501171548105_AddedCustomerRelationToOffer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501181516376_AddedActiveFieldToOffer.cs" />
+    <Compile Include="Migrations\201501181516376_AddedActiveFieldToOffer.Designer.cs">
+      <DependentUpon>201501181516376_AddedActiveFieldToOffer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501201751556_MadeSentAtFromOfferNullable.cs" />
+    <Compile Include="Migrations\201501201751556_MadeSentAtFromOfferNullable.Designer.cs">
+      <DependentUpon>201501201751556_MadeSentAtFromOfferNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -606,6 +614,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501171548105_AddedCustomerRelationToOffer.resx">
       <DependentUpon>201501171548105_AddedCustomerRelationToOffer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501181516376_AddedActiveFieldToOffer.resx">
+      <DependentUpon>201501181516376_AddedActiveFieldToOffer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501201751556_MadeSentAtFromOfferNullable.resx">
+      <DependentUpon>201501201751556_MadeSentAtFromOfferNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -4,32 +4,14 @@
     xtype: 'listoffers',
 
     getOffersStore: function () {
-        Ext.define('Offer', {
-            extend: 'Ext.data.Model',
-            fields: [
-                'customer', 'active', 'createDate', 'creator', 'training', 'amount', 'sentToCustomer', 'accepted',
-                'dueDate', 'tos', 'payed'
-            ]
-        });
+        
         return Ext.create('Ext.data.Store', {
-            model: 'Offer',
-            
-            proxy: {
-                type: 'rest',
-                url: 'api/offers',
-                extraParams: {
-                    format: 'json'
-                },
-                reader: {
-                    type: 'json',
-                    root: 'data',
-                    totalProperty: 'totalRecords'
-                }
-            }
+            model: 'Ilc.model.Offer'
         });
     },
 
-    onOfferDblClick: function() {
+    onOfferDblClick: function () {
+        
         Ext.ux.Router.redirect('offers/1');
     },
 
@@ -80,42 +62,49 @@
                     dataIndex: 'creator',
                     flex: 1,
                     renderer: function (value) {
-                        debugger;
                         return value.fullName;
                     }
                 },
                 {
-                    text: Ilc.resources.Manager.getResourceString('common.details'),
-                    dataIndex: 'trainingIds',
-                    flex: 1
+                    text: Ilc.resources.Manager.getResourceString('common.trainings'),
+                    dataIndex: 'trainings',
+                    flex: 1,
+                    renderer: function (value) {
+                        return R.reduce(function (a, b) {
+                            return a + b.compositeId;
+                        }, '', value);
+                    }
                 },
                 {
-                    text: Ilc.resources.Manager.getResourceString('common.details'),
+                    text: Ilc.resources.Manager.getResourceString('common.amount'),
                     dataIndex: 'amount',
                     flex: 1
                 },
                 {
-                    text: Ilc.resources.Manager.getResourceString('common.details'),
-                    dataIndex: 'sentToCustomer',
-                    flex: 1
+                    text: Ilc.resources.Manager.getResourceString('common.sentAt'),
+                    dataIndex: 'sentAt',
+                    flex: 1,
+                    renderer: function(value) {
+                        return value || 'Not sent';
+                    }
                 },
                 {
-                    text: Ilc.resources.Manager.getResourceString('common.details'),
+                    text: Ilc.resources.Manager.getResourceString('common.accepted'),
                     dataIndex: 'accepted',
                     flex: 1
                 },
                 {
-                    text: Ilc.resources.Manager.getResourceString('common.details'),
-                    dataIndex: 'dueDate',
+                    text: Ilc.resources.Manager.getResourceString('common.paymentDueAt'),
+                    dataIndex: 'paymentDueAt',
                     flex: 1
                 },
                 {
-                    text: Ilc.resources.Manager.getResourceString('common.details'),
+                    text: Ilc.resources.Manager.getResourceString('common.tos'),
                     dataIndex: 'tos',
                     flex: 1
                 },
                 {
-                    text: Ilc.resources.Manager.getResourceString('common.details'),
+                    text: Ilc.resources.Manager.getResourceString('common.payed'),
                     dataIndex: 'payed',
                     flex: 1
                 },

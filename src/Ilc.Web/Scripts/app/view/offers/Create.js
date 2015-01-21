@@ -2,7 +2,8 @@
     extend: 'Ext.container.Container',
     
     requires: [
-        'Ext.ux.form.NumericField'
+        'Ext.ux.form.NumericField',
+        'Ilc.utils.Forms'
     ],
 
     trainingsStore: null,
@@ -59,7 +60,7 @@
             queryMode: 'local',
             displayField: 'compositeId',
             valueField: 'id',
-            name: 'trainingId',
+            name: 'trainings',
             multiSelect: true,
             fieldLabel: Ilc.resources.Manager.getResourceString('common.training'),
             anchor: '100%',
@@ -79,35 +80,64 @@
                 {
                     checked: this.defaultValues.active,
                     xtype: 'checkbox',
-                    fieldLabel: 'Active'
+                    fieldLabel: 'Active',
+                    name: 'active'
                 },
                 this.getTrainingsDropDown(),
                 {
+                    value: this.defaultValues.amount,
                     xtype: 'numericfield',
-                    fieldLabel: 'Amount'
+                    fieldLabel: 'Amount',
+                    name: 'amount'
                 },
+//                {
+//                    xtype: 'checkbox',
+//                    fieldLabel: 'Sent to customer',
+//                    
+//                },
+//                {
+//                    xtype: 'checkbox',
+//                    fieldLabel: 'Accepted by customer'
+//                },
                 {
-                    xtype: 'checkbox',
-                    fieldLabel: 'Sent to customer'
-                },
-                {
-                    xtype: 'checkbox',
-                    fieldLabel: 'Accepted by customer'
-                },
-                {
+                    value: this.defaultValues.paymentDuteAt,
                     xtype: 'datefield',
-                    fieldLabel: 'Payment due date'
+                    fieldLabel: 'Payment due date',
+                    name: 'paymentDueAt'
                 },
                 {
+                    value: this.defaultValues.tos,
                     xtype: 'textarea',
-                    fieldLabel: 'Terms and conditions'
+                    fieldLabel: 'Terms and conditions',
+                    name: 'tos'
                 },
                 {
+                    checked: this.defaultValues.payed,
                     xtype: 'checkbox',
-                    fieldLabel: 'Payed'
+                    fieldLabel: 'Payed',
+                    name: 'payed'
                 }
-            ]
+            ],
+            dockedItems: [{
+                xtype: 'toolbar',
+                dock: 'bottom',
+                ui: 'footer',
+                defaults: { minWidth: 100 },
+                items: [
+                    { xtype: 'button', text: 'Back', listeners: { click: R.bind(this.onBackClick, this) } },
+                    { xtype: 'button', text: 'Save', listeners: { click: R.bind(this.onSaveClick, this) } }
+                ]
+            }]
         });
+    },
+
+    onBackClick: function() {
+        window.history.back();
+    },
+    
+    onSaveClick: function() {
+        var model = Ilc.utils.Forms.extractModel(this.query('textfield'));
+        console.log(model);
     },
 
     initComponent: function () {

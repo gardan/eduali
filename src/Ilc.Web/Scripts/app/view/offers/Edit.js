@@ -6,6 +6,7 @@
     },
 
     initComponent: function () {
+        this.defaultValues.active = this.model.get('active');
         this.callParent(arguments);
     }
 
