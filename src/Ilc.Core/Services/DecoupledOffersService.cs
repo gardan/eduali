@@ -61,10 +61,17 @@ namespace Ilc.Core.Services
                 TotalRecords = totalDisplayRecords
             };
         }
+
+        public void Create(Offer newOffer)
+        {
+            Uow.DecoupledOffers.Add(newOffer);
+            Uow.Commit();
+        }
     }
 
     public interface IDecoupledOffersService
     {
         FilteredResults<Offer> GetFiltered(FilterArgumentsDecoupledOffer parameters);
+        void Create(Offer newOffer);
     }
 }

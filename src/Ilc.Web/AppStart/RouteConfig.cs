@@ -192,6 +192,7 @@ namespace Ilc.Web.AppStart
 
             routes.Add<Services.FilterParametersDecoupledOffers>("/offers", "GET");
             routes.Add<Services.GetDecoupledOfferModel>("/offers/{id}", "GET");
+            routes.Add<Services.CreateDecoupledOfferModel>("/offers", "POST");
         }
     }
 }

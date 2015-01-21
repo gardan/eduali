@@ -135,9 +135,19 @@
         window.history.back();
     },
     
-    onSaveClick: function() {
-        var model = Ilc.utils.Forms.extractModel(this.query('textfield'));
-        console.log(model);
+    onSaveClick: function () {
+        var model = Ilc.utils.Forms.extractModel(this.query('textfield')),
+            createOffer = Ext.create('Ilc.model.create.Offer', model);
+
+        createOffer.set('trainings', R.map(R.get('id'), model.trainings));
+
+
+        createOffer.save({
+            success: function() {
+                Ext.ux.Router.redirect('offers');
+            }
+        });
+
     },
 
     initComponent: function () {

@@ -14,5 +14,6 @@ namespace Ilc.Core.Contracts
         void Create(Training newTraining);
         void Update(Training updateTraining);
         void Delete(int id);
+        IQueryable<Training> GetTrainingsById(List<int> ids);
     }
 }

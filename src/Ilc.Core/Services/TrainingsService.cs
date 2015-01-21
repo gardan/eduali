@@ -171,6 +171,11 @@ namespace Ilc.Core.Services
             Uow.Commit();
         }
 
+        public IQueryable<Training> GetTrainingsById(List<int> ids)
+        {
+            return Uow.Trainings.GetAll().Where(t => ids.Contains(t.Id));
+        }
+
         /// <remarks>
         /// This function is not really safe, if two trainings get created, for the same customer, at the exact same time, 
         /// they could end up with the same NoOfCustomerTraining.

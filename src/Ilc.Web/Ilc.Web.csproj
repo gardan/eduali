@@ -209,6 +209,7 @@
     <Content Include="Scripts\app\model\Availability.js" />
     <Content Include="Scripts\app\model\Claim.js" />
     <Content Include="Scripts\app\model\ContactTraining.js" />
+    <Content Include="Scripts\app\model\create\Offer.js" />
     <Content Include="Scripts\app\model\CustomerLog.js" />
     <Content Include="Scripts\app\model\ExpenseType.js" />
     <Content Include="Scripts\app\model\FileTemplate.js" />
@@ -216,6 +217,7 @@
     <Content Include="Scripts\app\model\GradingAttribute.js" />
     <Content Include="Scripts\app\model\GradingSystem.js" />
     <Content Include="Scripts\app\model\InterviewPlan.js" />
+    <Content Include="Scripts\app\model\Offer.js" />
     <Content Include="Scripts\app\model\OpenTraining.js" />
     <Content Include="Scripts\app\model\Role.js" />
     <Content Include="Scripts\app\model\scheduler\Event.js" />
