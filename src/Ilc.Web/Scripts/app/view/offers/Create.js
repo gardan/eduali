@@ -116,7 +116,7 @@
 //                    fieldLabel: 'Accepted by customer'
 //                },
                 {
-                    value: this.defaultValues.paymentDuteAt,
+                    value: this.defaultValues.paymentDueAt,
                     xtype: 'datefield',
                     fieldLabel: 'Payment due date',
                     name: 'paymentDueAt'
