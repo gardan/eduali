@@ -10,9 +10,8 @@
         });
     },
 
-    onOfferDblClick: function () {
-        
-        Ext.ux.Router.redirect('offers/1');
+    onOfferDblClick: function (grid, model) {
+        Ext.ux.Router.redirect('offers/' + model.get('id'));
     },
 
     getOffersGrid: function () {

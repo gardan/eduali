@@ -14,9 +14,10 @@
     create: function() {
     },
     edit: function(params) {
-        var deferred = Q.defer();
-
-        var model = Ilc.model.Offer.load(1, {
+        var deferred = Q.defer(),
+            offerId = parseInt(params.id);
+        
+        var model = Ilc.model.Offer.load(offerId, {
             success: function(offer) {
                 var view = Ext.create('Ilc.view.offers.Edit', {
                     border: false,

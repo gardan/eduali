@@ -18,10 +18,13 @@
     },
 
     getCustomersDropDown: function () {
-        var customersStore = Ext.create('Ilc.store.Customers');
-        
-        return Ext.create('Ext.form.ComboBox', {
-            store: customersStore,
+        if (this.customersDropDown) return this.customersDropDown;
+
+        this.customersStore = Ext.create('Ilc.store.Customers', {
+            autoLoad: false
+        });
+        this.customersDropDown = Ext.create('Ext.form.ComboBox', {
+            store: this.customersStore,
             queryMode: 'local',
             displayField: 'name',
             valueField: 'id',
@@ -34,6 +37,14 @@
                 scope: this
             }
         });
+
+        return this.customersDropDown;
+    },
+
+    loadCustomers: function (options) {
+        this.customersStore.load({
+            callback: R.bind(this.customersLoaded, this)
+        });
     },
 
     loadTrainings: function(options) {
@@ -45,6 +56,7 @@
         
 
         this.trainingsStore.load({
+            callback: R.bind(this.trainingsLoaded, this),
             params: {
                 customerId: customerId
             }
@@ -52,10 +64,13 @@
     },
 
     getTrainingsDropDown: function () {
+        if (this.trainingsDropDown) {
+            return this.trainingsDropDown;
+        }
+
         this.trainingsStore = Ext.create('Ilc.store.Trainings');
         this.loadTrainings();
-
-        return Ext.create('Ext.form.ComboBox', {
+        this.trainingsDropDown = Ext.create('Ext.form.ComboBox', {
             store: this.trainingsStore,
             queryMode: 'local',
             displayField: 'compositeId',
@@ -66,9 +81,10 @@
             anchor: '100%',
             labelWidth: 120
         });
+        return this.trainingsDropDown;
     },
 
-    getCreateOfferPanel: function() {
+    getCreateOfferPanel: function () {
         return Ext.create('Ext.panel.Panel', {
             defaults: {
                 xtype: 'textfield',
@@ -155,6 +171,7 @@
         this.items = [
             this.getCreateOfferPanel()
         ];
+        this.loadCustomers();
 
         this.callParent(arguments);
     }
