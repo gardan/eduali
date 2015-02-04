@@ -2,12 +2,23 @@
     extend: 'Ilc.view.offers.Create',
 
     defaultValues: {
-        active: true
+        sentAtVisible: true,
+        acceptedByCustomerVisible: true
     },
 
 
     onSaveClick: function () {
+        var model = Ilc.utils.Forms.extractModel(R.concat(this.query('textfield'), this.query('checkbox'))),
+            createOffer = Ext.create('Ilc.model.edit.Offer', model);
 
+        createOffer.set('trainings', R.map(R.get('id'), model.trainings));
+        createOffer.set('id', this.model.get('id'));
+
+        createOffer.save({
+            success: function () {
+                Ext.ux.Router.redirect('offers');
+            }
+        });
     },
 
     customersLoaded: function () {
@@ -25,10 +36,8 @@
         this.defaultValues.trainings = R.map(R.get('id'), this.model.get('trainings'));
         this.defaultValues.customer = this.model.get('customer');
         this.defaultValues.tos = this.model.get('tos');
-
-        // THIS IS NOT FUCKING WORKING!!!
-        // this.defaultValues.paymentDueAt = this.model.get('paymentDueAt');
-        
+        this.defaultValues.paymentDueAt = this.model.get('paymentDueAt');
+        this.defaultValues.accepted = this.model.get('accepted');
 
         this.callParent(arguments);
     }

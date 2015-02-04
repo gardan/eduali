@@ -106,17 +106,22 @@
                     fieldLabel: 'Amount',
                     name: 'amount'
                 },
-//                {
-//                    xtype: 'checkbox',
-//                    fieldLabel: 'Sent to customer',
-//                    
-//                },
-//                {
-//                    xtype: 'checkbox',
-//                    fieldLabel: 'Accepted by customer'
-//                },
                 {
-                    value: this.defaultValues.paymentDueAt,
+                    xtype: 'datefield',
+                    hidden: !this.defaultValues.sentAtVisible,
+                    fieldLabel: 'Sent to customer',
+                    name: 'sentAt'
+                    
+                },
+                {
+                    checked: this.defaultValues.accepted,
+                    xtype: 'checkbox',
+                    hidden: !this.defaultValues.acceptedByCustomerVisible,
+                    fieldLabel: 'Accepted by customer',
+                    name: 'accepted'
+                },
+                {
+                    value: this.defaultValues.paymentDueAt ? new Date(this.defaultValues.paymentDueAt) : undefined,
                     xtype: 'datefield',
                     fieldLabel: 'Payment due date',
                     name: 'paymentDueAt'

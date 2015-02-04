@@ -126,6 +126,44 @@ namespace Ilc.Web.Services
                 };
         }
 
+        public HttpResult Put(UpdateDecoupledOfferModel request)
+        {
+            var offer = Offers.GetById(request.Id);
+            var currentTrainings = offer.Trainings.ToList(); // just load them;
+            var trainingsToAdd = Trainings.GetTrainingsById(request.Trainings).ToList();
+
+            offer.Accepted = request.Accepted;
+            offer.Active = request.Active;
+            offer.Amount = request.Amount;
+            offer.Customer = Customers.GetByCustomerId(request.CustomerId);
+            offer.Payed = request.Payed;
+            offer.PaymentDueAt = request.PaymentDueAt;
+            offer.SentAt = request.SentAt;
+            offer.Tos = request.Tos;
+
+            foreach (var currentTraining in currentTrainings)
+            {
+                offer.Trainings.Remove(currentTraining);    
+            }
+
+            Offers.Update(offer);
+
+            offer.Trainings = trainingsToAdd;
+
+            Offers.Update(offer);
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+        }
+
+    }
+
+    public class UpdateDecoupledOfferModel : CreateDecoupledOfferModel
+    {
+        public int Id { get; set; }
+        public DateTime? SentAt { get; set; }
     }
 
     public class CreateDecoupledOfferModel

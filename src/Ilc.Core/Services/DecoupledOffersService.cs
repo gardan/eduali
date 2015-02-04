@@ -67,11 +67,24 @@ namespace Ilc.Core.Services
             Uow.DecoupledOffers.Add(newOffer);
             Uow.Commit();
         }
+
+        public Offer GetById(int id)
+        {
+            return Uow.DecoupledOffers.GetById(id);
+        }
+
+        public void Update(Offer offer)
+        {
+            Uow.DecoupledOffers.Update(offer);
+            Uow.Commit();
+        }
     }
 
     public interface IDecoupledOffersService
     {
         FilteredResults<Offer> GetFiltered(FilterArgumentsDecoupledOffer parameters);
         void Create(Offer newOffer);
+        Offer GetById(int id);
+        void Update(Offer offer);
     }
 }
