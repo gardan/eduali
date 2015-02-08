@@ -77,7 +77,7 @@ namespace Ilc.Core.Services
         {
             // Are there any other offers for these trainings?
             var currentOffers = this.GetByTrainingsId(offer.Trainings.ToList().Select(t => t.Id).ToList()); 
-            
+            if (currentOffers.Exists(o => o.Active && o.Id != offer.Id)) throw new Exception("Unable to update offer");
 
             // Is any of them active ?? 
                 // Throw error

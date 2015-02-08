@@ -157,10 +157,6 @@ namespace Ilc.Web.Services
                 }
             }
 
-            // Offers.Update(offer);
-
-            // offer.Trainings = trainingsToAdd;
-
             Offers.Update(offer);
 
             return new HttpResult()
