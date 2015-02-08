@@ -143,12 +143,23 @@ namespace Ilc.Web.Services
 
             foreach (var currentTraining in currentTrainings)
             {
-                offer.Trainings.Remove(currentTraining);    
+                if (!trainingsToAdd.Contains(currentTraining))
+                {
+                    offer.Trainings.Remove(currentTraining);    
+                }
             }
 
-            Offers.Update(offer);
+            foreach (var training in trainingsToAdd)
+            {
+                if (!offer.Trainings.Contains(training))
+                {
+                    offer.Trainings.Add(training);
+                }
+            }
 
-            offer.Trainings = trainingsToAdd;
+            // Offers.Update(offer);
+
+            // offer.Trainings = trainingsToAdd;
 
             Offers.Update(offer);
 
