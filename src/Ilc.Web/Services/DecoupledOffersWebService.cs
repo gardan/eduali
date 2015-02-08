@@ -158,6 +158,16 @@ namespace Ilc.Web.Services
                 };
         }
 
+        public HttpResult Delete(UpdateDecoupledOfferModel request)
+        {
+            Offers.Remove(Offers.GetById(request.Id));
+
+            return new HttpResult()
+            {
+                StatusCode = HttpStatusCode.OK
+            };
+        }
+
     }
 
     public class UpdateDecoupledOfferModel : CreateDecoupledOfferModel

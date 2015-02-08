@@ -33,8 +33,8 @@ namespace Ilc.Data.Migrations
                         Training_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => new { t.Offer_Id, t.Training_Id })
-                .ForeignKey("dbo.Offer", t => t.Offer_Id)
-                .ForeignKey("dbo.Training", t => t.Training_Id)
+                .ForeignKey("dbo.Offer", t => t.Offer_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Training", t => t.Training_Id, cascadeDelete: true)
                 .Index(t => t.Offer_Id)
                 .Index(t => t.Training_Id);
             

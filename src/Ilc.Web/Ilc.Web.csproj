@@ -211,6 +211,7 @@
     <Content Include="Scripts\app\model\ContactTraining.js" />
     <Content Include="Scripts\app\model\create\Offer.js" />
     <Content Include="Scripts\app\model\CustomerLog.js" />
+    <Content Include="Scripts\app\model\edit\Offer.js" />
     <Content Include="Scripts\app\model\ExpenseType.js" />
     <Content Include="Scripts\app\model\FileTemplate.js" />
     <Content Include="Scripts\app\model\Grade.js" />

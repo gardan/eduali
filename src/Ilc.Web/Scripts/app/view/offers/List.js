@@ -124,6 +124,23 @@
                                 });
 
                             }
+                        },
+                        {
+                            icon: 'images/web/active.png',
+                            tooltip: Ilc.resources.Manager.getResourceString('common.active'),
+                            handler: function (grid, rowIndex, colIndex, item, e, record) {
+                                var updateRecord = record.getEditModel();
+                                updateRecord.set('active', true);
+                                updateRecord.save({
+                                    success: function () {
+                                        grid.store.reload();
+                                    },
+                                    failure: function() {
+                                        console.log('failed with: ');
+                                        console.log(arguments);
+                                    }
+                                });
+                            }
                         }
                     ]
                 }

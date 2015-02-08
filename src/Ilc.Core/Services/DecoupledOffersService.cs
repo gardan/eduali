@@ -75,8 +75,28 @@ namespace Ilc.Core.Services
 
         public void Update(Offer offer)
         {
+            // Are there any other offers for these trainings?
+            var currentOffers = this.GetByTrainingsId(offer.Trainings.ToList().Select(t => t.Id).ToList()); 
+            
+
+            // Is any of them active ?? 
+                // Throw error
+
+
             Uow.DecoupledOffers.Update(offer);
             Uow.Commit();
+        }
+
+        public void Remove(Offer offer)
+        {
+            Uow.DecoupledOffers.Delete(offer);
+            Uow.Commit();
+        }
+
+        private List<Offer> GetByTrainingsId(List<int> trainingsId)
+        {
+            return this.Uow.DecoupledOffers.GetAll()
+                .Where(offer => offer.Trainings.Any(training => trainingsId.Contains(training.Id))).ToList();
         }
     }
 
@@ -86,5 +106,6 @@ namespace Ilc.Core.Services
         void Create(Offer newOffer);
         Offer GetById(int id);
         void Update(Offer offer);
+        void Remove(Offer offer);
     }
 }
