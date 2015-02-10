@@ -119,14 +119,17 @@
                             model.push(record.data);
                         });
 
-
+                        me.mask();
                         me.importFunction(model)
-                            .then(function () {
+                            .then(
+                            // success
+                            function () {
                                 Ext.Msg.show({
                                     title: 'Success',
                                     msg: 'Successfully imported data.',
                                     buttons: Ext.Msg.OK,
                                 });
+
                             },
                             // error
                             function (response) {
@@ -174,7 +177,11 @@
 
                                     });
                                 });
-                            });
+                            })
+                        .finally(function () {
+                            debugger
+                            me.unmask();
+                        });
                     }
                 }
             },

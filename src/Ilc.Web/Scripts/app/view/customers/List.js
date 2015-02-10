@@ -24,6 +24,7 @@
             features: [filters],
             dockedItems: [
                 {
+                    pageSize: 10,
                     xtype: 'pagingtoolbar',
                     store: customersStore,
                     dock: 'bottom'

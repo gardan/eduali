@@ -68,7 +68,9 @@
     initComponent: function () {
         var me = this;
 
-        me.trainersStore = Ext.create('Ilc.store.Trainers');
+        var trainersStore = Ext.create('Ilc.store.Trainers');
+
+        me.trainersStore = trainersStore;
 
         var filter = {
             ftype: 'jsvfilters',
@@ -79,6 +81,12 @@
             store: me.trainersStore,
             features: [filter],
             dockedItems: [
+                {
+                    xtype: 'pagingtoolbar',
+                    store: trainersStore,
+                    dock: 'bottom',
+                    displayInfo: true
+                },
                 {
                     xtype: 'toolbar',
                     dock: 'top',

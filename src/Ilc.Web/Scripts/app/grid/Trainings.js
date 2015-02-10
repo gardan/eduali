@@ -108,7 +108,8 @@
         this.dockedItems = [{
             xtype: 'pagingtoolbar',
             store: this.store,
-            dock: 'bottom'
+            dock: 'bottom',
+            displayInfo: true
         }];
         this.callParent();
     }

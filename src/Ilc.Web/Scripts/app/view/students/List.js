@@ -24,7 +24,7 @@
                 text: Ilc.resources.Manager.getResourceString('common.name'),
                 flex: 1,
                 renderer: function (value, meta, record) {
-                    return record.get('userInfo').name;
+                    return record.get('userInfo').firstName;
                 },
                 filter: {
                     type: 'string'
@@ -104,18 +104,18 @@
                             cls: 'clean-button',
                             text: Ilc.resources.Manager.getResourceString('common.newStudent'),
                             handler: function () {
-                                var window = Ext.create('Ilc.view.students.Create', {
+                                var window = Ext.create('Ilc.view.students.Create', {   // here the panel is created
                                     closeAction: 'destroy'
                                 });
 
-                                window.on('addStudent', function (sender, model) {
-                                    me.fireEvent('addStudent', sender, model, {
+                                window.on('addStudent', function (sender, model) {  // here we you subscribe to listen to the event addStudent
+                                    me.fireEvent('addStudent', sender, model, {     // fire the addStudent event again to the controller Students.js
                                         store: studentsStore
                                     });
                                 });
 
                                 window.on('studentadded', function () {
-                                    studentsStore.reload();
+                                    studentsStore.reload(); // here the grid is refreshed
                                 });
 
                                 window.show();

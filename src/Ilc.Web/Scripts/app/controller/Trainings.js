@@ -35,7 +35,7 @@
                             sender.trainingUpdated(training);
                         })
                         .finally(function () {
-                            
+                            sender.unmask();
                         });
                 }
             },

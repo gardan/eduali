@@ -20,5 +20,8 @@ namespace Ilc.Web.Models
         public string Name {
             get { return FirstName + " " + LastName; }
         }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
     }
 }

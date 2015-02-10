@@ -2,7 +2,17 @@
     extend: 'Ext.data.Model',
     
     fields: ['id', 'name', 'email', 'customer', 'userInfo'],
-    
+    // fields: ['id', 'customer', 'userInfo'],
+
+    //validations: [{
+    //    type: 'presence',
+    //    field: 'email'
+    //},
+    //{
+    //    type: 'presence',
+    //    field: 'customer'
+    //}],
+
     proxy: {
         type: 'rest',
         url: 'api/students',

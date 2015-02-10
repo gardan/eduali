@@ -88,6 +88,18 @@
                 name: 'userInfo.dateOfBirth',
                 format: Ilc.resources.Manager.getResourceString('formats.extjsdateonly')
             },
+            {
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.address'),
+                name: 'userInfo.address',
+            },
+            {
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.city'),
+                name: 'userInfo.city',
+            },
+            {
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.country'),
+                name: 'userInfo.country',
+            },
             me.genderCombo,
             {
                 xtype: 'combobox',

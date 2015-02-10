@@ -165,7 +165,15 @@
                         return ret.substring(0, ret.length - 2);
                     }
                 }
-            ]
+            ],
+            bbar: Ext.create('Ext.PagingToolbar', {
+                
+                //store: eventStore,
+                pageSize: 1,
+                displayInfo: true,
+                displayMsg: 'Displaying resources {0} - {1} of {2}',
+                emptyMsg: "No resources to display"
+            })    
         });
 
         me.tplBtn = Ext.create('Ext.button.Button', {

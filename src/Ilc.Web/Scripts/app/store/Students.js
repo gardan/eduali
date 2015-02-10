@@ -11,6 +11,12 @@
     //]
     autoLoad: true,
 
+    remoteSort: true, // to enable sorting
+    sortInfo: { // the default sort
+        field: 'name',
+        direction: 'ASC' | 'DESC'
+    },
+
     proxy: {
         type: 'rest',
         url: 'api/students',

@@ -17,7 +17,8 @@
     width: 500,
     
     minHeight: 300,
-
+    padding: 10,
+    bodyPadding: 10,
     avatarUploader: null,
     student: null,
     genderCombo: null,
@@ -60,7 +61,6 @@
         Student.load(me.params.id, {
             success: function (student) {
                 myMask.hide();
-                
                 var cfgModel = student;
                 me.student = cfgModel;
                 

@@ -15,5 +15,8 @@ namespace Ilc.Data.Models
 
         public DateTimeOffset? DateOfBirth { get; set; }
         public int? Gender { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
     }
 }

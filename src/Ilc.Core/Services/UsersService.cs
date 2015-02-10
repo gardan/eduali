@@ -87,7 +87,7 @@ namespace Ilc.Core.Services
         {
             if (GetByEmail(email) != null)
             {
-                throw new ArgumentException("Email is already taken.");
+                throw new ArgumentException("Email address in use! Please use a different email address.");
             }
         }
 

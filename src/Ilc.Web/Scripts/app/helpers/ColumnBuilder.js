@@ -45,8 +45,40 @@
                 filter: {
                     type: 'string'
                 }
-            }
+            },
+            {
+                text: Ilc.resources.Manager.getResourceString('common.address'),
+                dataIndex: 'address',
+                renderer: function (value, meta, record) {
+                    return record.get('userInfo').address;
+                },
+                flex: 1,
+                filter: {
+                    type: 'string'
+                }
+            },
+            {
+                text: Ilc.resources.Manager.getResourceString('common.city'),
+                dataIndex: 'city',
+                renderer: function (value, meta, record) {
+                    return record.get('userInfo').city;
+                },
+                flex: 1,
+                filter: {
+                    type: 'string'
+                }
+            },
+            {
+                text: Ilc.resources.Manager.getResourceString('common.country'),
+                dataIndex: 'country',
+                renderer: function (value, meta, record) {
+                    return record.get('userInfo').country;
+                },
+                flex: 1,
+                filter: {
+                    type: 'string'
+                }
+            },
         ];
-
     }
 });
