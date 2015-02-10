@@ -76,8 +76,12 @@ namespace Ilc.Core.Services
         public void Update(Offer offer)
         {
             // Are there any other offers for these trainings?
-            var currentOffers = this.GetByTrainingsId(offer.Trainings.ToList().Select(t => t.Id).ToList()); 
-            if (currentOffers.Exists(o => o.Active && o.Id != offer.Id)) throw new Exception("Unable to update offer");
+            var currentOffers = this.GetByTrainingsId(offer.Trainings.ToList().Select(t => t.Id).ToList());
+            // Is it Accepted?
+                // It should also be Active
+            if (offer.Accepted && !offer.Active) throw new Exception("Unable to update offer. Offer must be active in order to be accepted");
+            
+            if (currentOffers.Exists(o => (o.Active) && o.Id != offer.Id)) throw new Exception("Unable to update offer");
 
             // Is any of them active ?? 
                 // Throw error
