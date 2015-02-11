@@ -54,7 +54,9 @@
                 {
                     text: Ilc.resources.Manager.getResourceString('common.createDate'),
                     dataIndex: 'createDate',
-                    flex: 1
+                    flex: 1,
+                    type: 'date',
+                    renderer: Ext.util.Format.dateRenderer(Ilc.resources.Manager.getResourceString('formats.extjsdateonly'))
                 },
                 {
                     text: Ilc.resources.Manager.getResourceString('common.creator'),
@@ -82,9 +84,12 @@
                 {
                     text: Ilc.resources.Manager.getResourceString('common.sentAt'),
                     dataIndex: 'sentAt',
+                    type: 'date',
                     flex: 1,
-                    renderer: function(value) {
-                        return value || 'Not sent';
+                    renderer: function (value) {
+                        var renderer = Ext.util.Format;
+                        return renderer.date(value, Ilc.resources.Manager.getResourceString('formats.extjsdateonly')) ||
+                            Ilc.resources.Manager.getResourceString('common.notSent');
                     }
                 },
                 {
@@ -95,7 +100,9 @@
                 {
                     text: Ilc.resources.Manager.getResourceString('common.paymentDueAt'),
                     dataIndex: 'paymentDueAt',
-                    flex: 1
+                    flex: 1,
+                    type: 'date',
+                    renderer: Ext.util.Format.dateRenderer(Ilc.resources.Manager.getResourceString('formats.extjsdateonly'))
                 },
                 {
                     text: Ilc.resources.Manager.getResourceString('common.tos'),

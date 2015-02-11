@@ -140,6 +140,22 @@
         'common.type': 'Type',
         'common.skip': 'Skip',
         'common.details': 'Details',
+      
+        'common.address': 'Address',
+        'common.city': 'City',
+        'common.country': 'Country',
+        'common.active': 'Active',
+        'common.createDate': 'Creation date',
+        'common.trainings': 'Trainings',
+        'common.amount': 'Amount',
+        'common.sentAt': 'Sent Date',
+        'common.paymentDueAt': 'Due Date',
+        'common.tos': 'Terms and Conditions',
+        'common.payed': 'Paid',
+        'common.notSent':'Not sent',
+
+
+
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',
@@ -157,7 +173,7 @@
 
         'view.subjects.create.title': 'New subject',
 
-        'formats.date': 'MM-DD-YYYY HH:mm',
+        'formats.date': 'MM-DD-YYYY',
         'formats.extjsdate': 'm-d-Y g:i',
         'formats.extjsdateonly': 'm-d-Y'
     }

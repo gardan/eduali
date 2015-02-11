@@ -59,7 +59,8 @@
                 {
                     xtype: 'pagingtoolbar',
                     store: usersStore,
-                    dock: 'bottom'
+                    dock: 'bottom',
+                    displayMsg: 'Displaying users {0} - {1} of {2}'
                 },
                 {
                     xtype: 'toolbar',

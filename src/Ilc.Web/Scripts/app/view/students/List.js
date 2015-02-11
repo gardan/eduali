@@ -92,7 +92,8 @@
                 {
                     xtype: 'pagingtoolbar',
                     store: studentsStore,
-                    dock: 'bottom'
+                    dock: 'bottom',
+                    displayMsg: 'Displaying students {0} - {1} of {2}'
                 },
                 {
                     xtype: 'toolbar',

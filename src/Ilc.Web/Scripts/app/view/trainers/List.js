@@ -85,7 +85,8 @@
                     xtype: 'pagingtoolbar',
                     store: trainersStore,
                     dock: 'bottom',
-                    displayInfo: true
+                    displayInfo: true,
+                    displayMsg: 'Displaying trainers {0} - {1} of {2}'
                 },
                 {
                     xtype: 'toolbar',

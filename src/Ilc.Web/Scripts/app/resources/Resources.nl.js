@@ -117,13 +117,27 @@
         'common.price': 'Prijs',
         'common.subjects': 'Talen',
 
+        'common.address': 'Adres',
+        'common.city': 'Stad',
+        'common.country': 'Land',
+        'common.active': 'Actief',
+        'common.createDate': 'Aanmaakdatum',
+        'common.trainings': 'Trainings',
+        'common.amount': 'Bedrag',
+        'common.sentAt': 'Verzenddatum',
+        'common.paymentDueAt': 'Vervaldatum',
+        'common.tos': 'Termen en voorwaarden',
+        'common.payed': 'Betaald',
+        'common.notSent': 'Niet verzonden',
+
         'tasks.title.ended': 'Afgesloten',
         'tasks.title.offer': 'Oferte',
         'tasks.planned.mainLbl': 'Klaar om het cursus te beginen ?',
 
         'tasks.offer.mainLbl': 'Selecteer de volgende status van de opleiding aan is aanvaard of geweigerd aub',
         
-        'formats.date': 'MM-DD-YYYY HH:mm',
-        'formats.extjsdate': 'm-d-Y g:i'
+        'formats.date': 'MM-DD-YYYY',
+        'formats.extjsdate': 'm-d-Y g:i',
+        'formats.extjsdateonly': 'm-d-Y'
     }
 });

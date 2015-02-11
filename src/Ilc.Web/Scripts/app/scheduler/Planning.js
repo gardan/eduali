@@ -88,7 +88,14 @@
                         return ret.substring(0, ret.length - 2);
                     }
                 }
-            ]
+            ],
+            bbar: Ext.create('Ext.PagingToolbar', {
+                store: me.resourceStore,
+                pageSize: 1,
+                displayInfo: true,
+                displayMsg: 'Displaying trainers {0} - {1} of {2}',
+                emptyMsg: "No resources to display"
+            })    
         });
 
         var dateMenu = Ext.create('Ext.menu.DatePicker', {

@@ -59,16 +59,17 @@
                 }
             },
             {
-                iconCls: 'icon-company-32',
-                itemId: 'menu.companies',
-                hidden: !Ilc.Configuration.claimExists('company-read-all'),
+                iconCls: 'icon-offer-32',
+                itemId: 'menu.offers',
+                hidden: false,
                 tooltip: {
-                    text: Ilc.resources.Manager.getResourceString('mainMenu.companies'),
+                    text: 'Offers',
                     width: 100,
                     showDelay: 0,
                     hideDelay: 50
                 }
             },
+
             {
                 iconCls: 'icon-customer-32',
                 itemId: 'menu.customers',
@@ -91,57 +92,13 @@
                     hideDelay: 50
                 }
             },
-            {
-                iconCls: 'icon-statistics-32',
-                itemId: 'menu.statistics',
-                hidden: !Ilc.Configuration.claimExists('statistics-read'),
-                tooltip: {
-                    text: Ilc.resources.Manager.getResourceString('mainMenu.statistics'),
-                    width: 100,
-                    showDelay: 0,
-                    hideDelay: 50
-                }
-            },
+          
             {
                 iconCls: 'icon-trainer-32',
                 itemId: 'menu.trainers',
                 hidden: !Ilc.Configuration.claimExists('trainer-read-all'),
                 tooltip: {
                     text: Ilc.resources.Manager.getResourceString('mainMenu.trainers'),
-                    width: 100,
-                    showDelay: 0,
-                    hideDelay: 50
-                }
-            },
-            {
-                iconCls: 'icon-offer-32',
-                itemId: 'menu.offers',
-                hidden: false,
-                tooltip: {
-                    text: 'Offers',
-                    width: 100,
-                    showDelay: 0,
-                    hideDelay: 50
-                }
-            },
-            {
-                iconCls: 'icon-settings-32',
-                itemId: 'menu.settings',
-                hidden: !Ilc.Configuration.claimExists('ui-settings-read'),
-                tooltip: {
-                    text: Ilc.resources.Manager.getResourceString('mainMenu.settings'),
-                    width: 100,
-                    showDelay: 0,
-                    hideDelay: 50
-                }
-            },
-            
-            {
-                iconCls: 'icon-planning-32',
-                itemId: 'menu.planning',
-                hidden: !Ilc.Configuration.claimExists('planning-read'),
-                tooltip: {
-                    text: Ilc.resources.Manager.getResourceString('mainMenu.planning'),
                     width: 100,
                     showDelay: 0,
                     hideDelay: 50
@@ -167,7 +124,52 @@
                     }
                 }
             },
-            
+            {
+                iconCls: 'icon-planning-32',
+                itemId: 'menu.planning',
+                hidden: !Ilc.Configuration.claimExists('planning-read'),
+                tooltip: {
+                    text: Ilc.resources.Manager.getResourceString('mainMenu.planning'),
+                    width: 100,
+                    showDelay: 0,
+                    hideDelay: 50
+                }
+            },
+            {
+                iconCls: 'icon-statistics-32',
+                itemId: 'menu.statistics',
+                hidden: !Ilc.Configuration.claimExists('statistics-read'),
+                tooltip: {
+                    text: Ilc.resources.Manager.getResourceString('mainMenu.statistics'),
+                    width: 100,
+                    showDelay: 0,
+                    hideDelay: 50
+                }
+            },
+
+            {
+                iconCls: 'icon-settings-32',
+                itemId: 'menu.settings',
+                hidden: !Ilc.Configuration.claimExists('ui-settings-read'),
+                tooltip: {
+                    text: Ilc.resources.Manager.getResourceString('mainMenu.settings'),
+                    width: 100,
+                    showDelay: 0,
+                    hideDelay: 50
+                }
+            },
+            {
+                iconCls: 'icon-company-32',
+                itemId: 'menu.companies',
+                hidden: !Ilc.Configuration.claimExists('company-read-all'),
+                tooltip: {
+                    text: Ilc.resources.Manager.getResourceString('mainMenu.companies'),
+                    width: 100,
+                    showDelay: 0,
+                    hideDelay: 50
+                }
+            },
+
             '->',
             {
                 text: Ilc.resources.Manager.getResourceString('mainMenu.login'),

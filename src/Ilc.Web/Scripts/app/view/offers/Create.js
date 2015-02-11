@@ -110,7 +110,8 @@
                     xtype: 'datefield',
                     hidden: !this.defaultValues.sentAtVisible,
                     fieldLabel: 'Sent to customer',
-                    name: 'sentAt'
+                    name: 'sentAt',
+                    format: Ilc.resources.Manager.getResourceString('formats.extjsdateonly')
                     
                 },
                 {
@@ -124,7 +125,9 @@
                     value: this.defaultValues.paymentDueAt ? new Date(this.defaultValues.paymentDueAt) : undefined,
                     xtype: 'datefield',
                     fieldLabel: 'Payment due date',
-                    name: 'paymentDueAt'
+                    name: 'paymentDueAt',
+                    format: Ilc.resources.Manager.getResourceString('formats.extjsdateonly')
+
                 },
                 {
                     value: this.defaultValues.tos,

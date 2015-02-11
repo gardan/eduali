@@ -109,7 +109,8 @@
             xtype: 'pagingtoolbar',
             store: this.store,
             dock: 'bottom',
-            displayInfo: true
+            displayInfo: true,
+            displayMsg: 'Displaying trainings {0} - {1} of {2}'
         }];
         this.callParent();
     }

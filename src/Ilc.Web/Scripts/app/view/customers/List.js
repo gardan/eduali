@@ -27,7 +27,8 @@
                     pageSize: 10,
                     xtype: 'pagingtoolbar',
                     store: customersStore,
-                    dock: 'bottom'
+                    dock: 'bottom',
+                    displayMsg: 'Displaying customers {0} - {1} of {2}'
                 },
                 {
                     xtype: 'toolbar',

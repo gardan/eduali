@@ -149,6 +149,7 @@
             {
                 xtype: 'pagingtoolbar',
                 store: me.trainingsStore,
+                displayMsg: 'Displaying trainers {0} - {1} of {2}'
             }
         ];
     },

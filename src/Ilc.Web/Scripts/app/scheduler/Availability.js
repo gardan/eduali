@@ -167,8 +167,7 @@
                 }
             ],
             bbar: Ext.create('Ext.PagingToolbar', {
-                
-                //store: eventStore,
+                store: me.resourceStore,
                 pageSize: 1,
                 displayInfo: true,
                 displayMsg: 'Displaying resources {0} - {1} of {2}',

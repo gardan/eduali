@@ -10,7 +10,8 @@
                 {
                     xtype: 'pagingtoolbar',
                     store: companiesStore,
-                    dock: 'bottom'
+                    dock: 'bottom',
+                    displayMsg: 'Displaying companies {0} - {1} of {2}'
                 },
                 {
                     xtype: 'toolbar',
