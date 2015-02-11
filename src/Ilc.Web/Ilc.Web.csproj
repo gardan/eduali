@@ -3999,6 +3999,8 @@
     <Content Include="Scripts\lib\moment.min.js" />
     <Content Include="Scripts\lib\q.js" />
     <Content Include="Scripts\lib\q.min.js" />
+    <Content Include="Scripts\lib\ramda.js" />
+    <Content Include="Scripts\lib\ramda.min.js" />
     <Content Include="Scripts\lib\tinymce\langs\en.js" />
     <Content Include="Scripts\lib\tinymce\license.txt" />
     <Content Include="Scripts\lib\tinymce\plugins\advhr\css\advhr.css" />
