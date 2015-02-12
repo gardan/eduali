@@ -43,6 +43,12 @@ namespace Ilc.Core.Services
                     case "bankAccount":
                         query = query.Where(c => c.BankAccount.Contains(inFilter.Value));
                         break;
+                    case "fiscalCode":
+                        query = query.Where(c => c.FiscalCode.Contains(inFilter.Value));
+                        break;
+                    case "commerceNumber":
+                        query = query.Where(c => c.CommerceNumber.Contains(inFilter.Value));
+                        break;
                     default:
                         // if trying to search for unavalable column, just exit
                         // TODO: log this shit.
@@ -71,17 +77,31 @@ namespace Ilc.Core.Services
 
         public void Create(Customer newCustomer)
         {
-            var contact = newCustomer.ContactPersons.FirstOrDefault();
-            newCustomer.ContactPersons.Clear();
+            if (newCustomer.ContactPersons != null)
+            {
+                // this is when creating a customer via IMPORT functionality
+                var contact = newCustomer.ContactPersons.FirstOrDefault();
+                newCustomer.ContactPersons.Clear();
 
-            var user = Users.GetByEmail();
-            newCustomer.CompanyId = user.CompanyId;
+                var user = Users.GetByEmail();
+                newCustomer.CompanyId = user.CompanyId;
 
-            Uow.Customers.Add(newCustomer);
-            Uow.Commit();
+                Uow.Customers.Add(newCustomer);
+                Uow.Commit();
 
-            contact.CustomerId = newCustomer.Id;
-            Contacts.Create(contact);
+                contact.CustomerId = newCustomer.Id;
+                Contacts.Create(contact);
+            }
+            else 
+            {
+                // We don't create a contact when creating a new customer. This is done later by hand.
+                var user = Users.GetByEmail();
+                newCustomer.CompanyId = user.CompanyId;
+
+                Uow.Customers.Add(newCustomer);
+                Uow.Commit();
+            }
+           
         }
 
         public void Update(Customer updateCustomer)

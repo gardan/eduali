@@ -238,14 +238,16 @@
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.startDate'),
                 format: Ilc.resources.Manager.getResourceString('formats.extjsdate'),
                 name: 'desiredStartDate',
-                anchor: '100%'
+                anchor: '100%',
+                format: Ilc.resources.Manager.getResourceString('formats.extjsdateonly')
             },
             {
                 xtype: 'datefield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.endDate'),
                 format: Ilc.resources.Manager.getResourceString('formats.extjsdate'),
                 name: 'desiredEndDate',
-                anchor: '100%'
+                anchor: '100%',
+                format: Ilc.resources.Manager.getResourceString('formats.extjsdateonly')
             }
         ];
 

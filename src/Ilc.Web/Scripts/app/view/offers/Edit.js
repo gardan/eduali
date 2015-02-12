@@ -38,6 +38,7 @@
         this.defaultValues.tos = this.model.get('tos');
         this.defaultValues.paymentDueAt = this.model.get('paymentDueAt');
         this.defaultValues.accepted = this.model.get('accepted');
+        this.defaultValues.sentAt= this.model.get('sentAt');
 
         this.callParent(arguments);
     }

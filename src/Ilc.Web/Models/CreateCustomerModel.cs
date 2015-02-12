@@ -5,8 +5,8 @@ namespace Ilc.Web.Models
         public string Name { get; set; }
         public string BillingAddress { get; set; }
         public string BankAccount { get; set; }
-        public string ContactName { get; set; }
-        public string ContactEmail { get; set; }
+        // public string ContactName { get; set; }
+        // public string ContactEmail { get; set; }
         public string FiscalCode { get; set; }
         public string CommerceNumber { get; set; }
     }

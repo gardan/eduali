@@ -43,12 +43,14 @@
                 xtype: 'textfield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.fiscalCode'),
                 name: 'fiscalCode',
+                value: me.customer.fiscalCode,
                 anchor: '100%'
             },
             {
                 xtype: 'textfield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.commerceNumber'),
                 name: 'commerceNumber',
+                value: me.customer.commerceNumber,
                 anchor: '100%'
             }
         ];

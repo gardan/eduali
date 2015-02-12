@@ -118,11 +118,15 @@ Ext.define('Ilc.view.trainings.view.Expenses', {
         var expensesGrid = Ext.create('Ext.grid.Panel', {
             dockedItems: [
                 {
+
                     xtype: 'toolbar',
                     dock: 'top',
                     items: [
                         {
-                            text: 'New expense',
+                            xtype: 'button',
+                            iconCls: 'icon-add',
+                            cls: 'clean-button',
+                            text: Ilc.resources.Manager.getResourceString('common.addExpense'),
                             listeners: {
                                 click: this.onNewExpense,
                                 scope: this

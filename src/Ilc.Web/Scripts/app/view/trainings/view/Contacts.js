@@ -21,7 +21,11 @@
             dock: 'top',
             items: [
                 {
-                    text: 'Add contact',
+                    xtype: 'button',
+                    iconCls: 'icon-add',
+                    cls: 'clean-button',
+                    text: Ilc.resources.Manager.getResourceString('common.addContact'),
+                    
                     handler: function () {
                         var me = this.up('contactstraininglist');
                         

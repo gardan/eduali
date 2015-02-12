@@ -40,20 +40,22 @@ namespace Ilc.Web.Services
                     BillingAddress = request.BillingAddress,
                     FiscalCode = request.FiscalCode,
                     CommerceNumber = request.CommerceNumber,
-                    ContactPersons = new List<ContactPerson>() {new ContactPerson()
-                        {
-                            UserProfile = new UserProfile() {
-                                Email = request.ContactEmail,
-                                UserDetails = new UserDetails()
-                                {
-                                   FirstName = Utils.SplitNameString(request.ContactName)[0],
-                                   LastName = Utils.SplitNameString(request.ContactName)[1],
-                                   // Email = request.ContactEmail,
-                                   Phone = "",
-                                }},
-                            Name = request.ContactName,
-                            IsMain = true
-                        }}
+                    // To Be Deleted //
+                    // Don't need this any more. The contact person will be added later by hand after the Customer has been created
+                    //ContactPersons = new List<ContactPerson>() {new ContactPerson()
+                    //    {
+                    //        UserProfile = new UserProfile() {
+                    //            Email = request.ContactEmail,
+                    //            UserDetails = new UserDetails()
+                    //            {
+                    //               FirstName = Utils.SplitNameString(request.ContactName)[0],
+                    //               LastName = Utils.SplitNameString(request.ContactName)[1],
+                    //               // Email = request.ContactEmail,
+                    //               Phone = "",
+                    //            }},
+                    //        Name = request.ContactName,
+                    //        IsMain = true
+                    //    }}
                 };
 
             Customers.Create(newCustomer);

@@ -8,7 +8,7 @@
             flex: 1,
             text: Ilc.resources.Manager.getResourceString('common.name'),
             renderer: function (value, meta, record) {
-                return record.get('firstName') + record.get('lastName');
+                return record.get('firstName') + ' ' + record.get('lastName');
             }
         },
         {

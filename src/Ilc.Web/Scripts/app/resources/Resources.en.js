@@ -153,7 +153,22 @@
         'common.tos': 'Terms and Conditions',
         'common.payed': 'Paid',
         'common.notSent':'Not sent',
+        'common.trainingMaterial': 'Training material',
 
+        'common.addStudent': 'Add student',
+        'common.addContact': 'Add contact',
+        'common.addExpense' : 'Add expense',
+
+        'common.fiscalCode': 'VAT number',
+        'common.commerceNumber': 'Chamber of commerce',
+        'common.addCustomerContact' : 'Add customer contact person',
+        'common.newCustomerContact': 'New customer contact',
+
+        'common.addAction': 'Add action',
+
+        'common.customerRelationship': 'Customer relationship',
+        'common.customerContacts': 'Customer contacts',
+        'common.general' : 'General',
 
 
 

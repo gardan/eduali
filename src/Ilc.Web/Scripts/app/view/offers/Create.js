@@ -7,7 +7,12 @@
     ],
 
     trainingsStore: null,
-    defaultValues: {},
+    padding: '10',
+    border: false,
+    bodyBorder: false,
+    defaultValues: {
+        
+    },
 
     onCustomerSelect: function(comboBox, customers) {
         var firstSelectedCustomer = customers[0];
@@ -30,12 +35,11 @@
             valueField: 'id',
             name: 'customerId',
             fieldLabel: Ilc.resources.Manager.getResourceString('common.customer'),
-            anchor: '100%',
-            labelWidth: 120,
             listeners: {
                 select: this.onCustomerSelect,
                 scope: this
-            }
+            },
+            padding: 10
         });
 
         return this.customersDropDown;
@@ -77,69 +81,72 @@
             valueField: 'id',
             name: 'trainings',
             multiSelect: true,
-            fieldLabel: Ilc.resources.Manager.getResourceString('common.training'),
-            anchor: '100%',
-            labelWidth: 120
+            fieldLabel: Ilc.resources.Manager.getResourceString('common.trainings'),
+            padding: 10
         });
         return this.trainingsDropDown;
     },
 
     getCreateOfferPanel: function () {
         return Ext.create('Ext.panel.Panel', {
+            width: 500,
+            //border: false,
             defaults: {
                 xtype: 'textfield',
                 anchor: '100%',
-                labelWidth: 120
+                border: false,
+                bodyBorder: false,
+                padding: 10,
+                width: 300
             },
             items: [
                 this.getCustomersDropDown(),
                 {
                     checked: this.defaultValues.active,
                     xtype: 'checkbox',
-                    fieldLabel: 'Active',
-                    name: 'active'
+                    fieldLabel: Ilc.resources.Manager.getResourceString('common.active'),
+                    name: 'active',
                 },
                 this.getTrainingsDropDown(),
                 {
                     value: this.defaultValues.amount,
                     xtype: 'numericfield',
-                    fieldLabel: 'Amount',
-                    name: 'amount'
+                    fieldLabel: Ilc.resources.Manager.getResourceString('common.amount'),
+                    name: 'amount',
                 },
                 {
+                    value: this.defaultValues.sentAt ? new Date(this.defaultValues.sentAt) : undefined,
                     xtype: 'datefield',
                     hidden: !this.defaultValues.sentAtVisible,
-                    fieldLabel: 'Sent to customer',
+                    fieldLabel: Ilc.resources.Manager.getResourceString('common.sentAt'),
                     name: 'sentAt',
-                    format: Ilc.resources.Manager.getResourceString('formats.extjsdateonly')
-                    
+                    format: Ilc.resources.Manager.getResourceString('formats.extjsdateonly'),
                 },
                 {
                     checked: this.defaultValues.accepted,
                     xtype: 'checkbox',
                     hidden: !this.defaultValues.acceptedByCustomerVisible,
                     fieldLabel: 'Accepted by customer',
-                    name: 'accepted'
+                    name: 'accepted',
                 },
                 {
                     value: this.defaultValues.paymentDueAt ? new Date(this.defaultValues.paymentDueAt) : undefined,
                     xtype: 'datefield',
-                    fieldLabel: 'Payment due date',
+                    fieldLabel: Ilc.resources.Manager.getResourceString('common.paymentDueAt'),
                     name: 'paymentDueAt',
-                    format: Ilc.resources.Manager.getResourceString('formats.extjsdateonly')
-
+                    format: Ilc.resources.Manager.getResourceString('formats.extjsdateonly'),
                 },
                 {
                     value: this.defaultValues.tos,
                     xtype: 'textarea',
-                    fieldLabel: 'Terms and conditions',
-                    name: 'tos'
+                    fieldLabel: Ilc.resources.Manager.getResourceString('common.tos'),
+                    name: 'tos',
                 },
                 {
                     checked: this.defaultValues.payed,
                     xtype: 'checkbox',
-                    fieldLabel: 'Payed',
-                    name: 'payed'
+                    fieldLabel: Ilc.resources.Manager.getResourceString('common.payed'),
+                    name: 'payed',
                 }
             ],
             dockedItems: [{
@@ -175,7 +182,6 @@
     },
 
     initComponent: function () {
-
         this.items = [
             this.getCreateOfferPanel()
         ];

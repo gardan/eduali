@@ -11,7 +11,9 @@
         'Ilc.view.gradingAttributes.TrainingList',
         'Ilc.view.trainings.view.Contacts',
         'Ilc.view.trainings.view.Documents',
-        'Ilc.view.trainings.view.Expenses'
+        'Ilc.view.trainings.view.Expenses',
+        'Ilc.view.trainings.view.Students'
+        
     ],
     width: 900,
 
@@ -194,6 +196,8 @@
         };
         documentsTree.on('viewready', viewReady);
 
+        // To Be Deleted // 
+        // what is this?
         documentsTree.on('select', function (row, record) {
             documentsStore.removeAll();
             switch (record.get('category')) {
@@ -348,6 +352,13 @@
                                 value: new Date(model.get('desiredStartDate')),
                                 format: 'Y-m-d',
                                 name: 'desiredStartDate'
+                            },
+                            {
+                                xtype: 'datefield',
+                                fieldLabel: Ilc.resources.Manager.getResourceString('common.endDate'),
+                                value: new Date(model.get('desiredEndDate')),
+                                format: 'Y-m-d',
+                                name: 'desiredEndDate'
                             }
                         ],
                         buttons: [
@@ -383,6 +394,36 @@
                                 xtype: 'grid',
                                 store: studentsStore,
                                 bodyPadding: 0,
+
+                                tbar: {
+                                    items: [
+                                        {
+                                            xtype: 'button',
+                                            iconCls: 'icon-add',
+                                            cls: 'clean-button',
+                                            text: Ilc.resources.Manager.getResourceString('common.addStudent'),
+                                            handler: function (btn, e) {
+                                                debugger
+                                                // To Do //
+                                                // here add a view to select a sudent ...Ilc.view.trainings.view.Students
+                                                var window = Ext.create('Ilc.view.trainings.view.Students', {
+                                                    modal: true,
+                                                    closeAction: 'destroy'
+                                                });
+                                                
+                                                //window.on('addStudent', function (sender, data) {
+                                                //    me.fireEvent('addStudent', sender, data, {
+                                                //        store: me.studentStore
+                                                //    });
+                                                //});
+                                                window.show();
+                                            }
+                                        }
+                                    ]
+                                },
+
+
+
                                 listeners: {
                                     itemdblclick: function (grid, record, item, index, e, eOpts) {
                                         var window = Ext.create('Ext.window.Window', {
@@ -445,51 +486,59 @@
                     //         }
                     //     ]
                     // },
-                    {
-                        xtype: 'documentspanel',
-                        title: 'Documents',
-                        training: model
-                    },
-                    Ext.create('Ilc.view.trainings.view.InterviewPlan', {
-                        title: 'Interview',
-                        training: model,
-                        plan: Ext.create('Ilc.model.InterviewPlan', {
-                            date: model.get('interviewPlan').date,
-                            location: model.get('interviewPlan').location
-                        }),
-                        listeners: {
-                            updatetraining: function(sender, args) {
-                                me.fireEvent('updatetraining', sender, args);
-                            },
-                            closewindow: function() {
-                                me.close();
-                            },
-                            trainingupdated: function () {
-                                me.fireEvent('trainingupdated');
-                            }
-                        }
-                    }),
+
+                    // To Be Deleted //
+                    //{
+                    //    xtype: 'documentspanel',
+                    //    title: 'Documents',
+                    //    training: model
+                    //},
+
+                    // To Be Deleted //
+                    // Not needed anymore, will be part of the training planning. It will be planned as a lesson
+                    //Ext.create('Ilc.view.trainings.view.InterviewPlan', {
+                    //    title: 'Interview',
+                    //    training: model,
+                    //    plan: Ext.create('Ilc.model.InterviewPlan', {
+                    //        date: model.get('interviewPlan').date,
+                    //        location: model.get('interviewPlan').location
+                    //    }),
+                    //    listeners: {
+                    //        updatetraining: function(sender, args) {
+                    //            me.fireEvent('updatetraining', sender, args);
+                    //        },
+                    //        closewindow: function() {
+                    //            me.close();
+                    //        },
+                    //        trainingupdated: function () {
+                    //            me.fireEvent('trainingupdated');
+                    //        }
+                    //    }
+                    //}),
                     {
                         title: 'Expenses',
                         xtype: 'trainingexpenses',
                         trainingId: model.get('id')
                     },
+
+                    // To Be Deleted //
+                    // The old expense mechanism
+                    //{
+                    //    xtype: 'spendingsview',
+                    //    title: 'Expenses',
+                    //    spendings: model.get('spendings'),
+                    //    hours: model.get('hours'),
+                    //    listeners: {
+                    //        cancelclicked: function () {
+                    //            me.close();
+                    //        },
+                    //        editcomplete: function () {
+                    //            me.fireEvent('trainingupdated');
+                    //        }
+                    //    } 
+                    //},
                     {
-                        xtype: 'spendingsview',
-                        title: 'Expenses',
-                        spendings: model.get('spendings'),
-                        hours: model.get('hours'),
-                        listeners: {
-                            cancelclicked: function () {
-                                me.close();
-                            },
-                            editcomplete: function () {
-                                me.fireEvent('trainingupdated');
-                            }
-                        } 
-                    },
-                    {
-                        title: 'Files',
+                        title: Ilc.resources.Manager.getResourceString('common.trainingMaterial'),
                         xtype: 'subjectfileslist',
                         subjectId: model.get('subject').id
                     },
@@ -502,6 +551,7 @@
                     {
                         title: 'Contacts',
                         xtype: 'contactstraininglist',
+                        text: Ilc.resources.Manager.getResourceString('common.addStudent'),
                         store: contactsStore,
                         trainingId: model.get('id'),
                         customerId: model.get('customer').id

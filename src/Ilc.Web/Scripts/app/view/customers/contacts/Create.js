@@ -4,7 +4,7 @@
 
 
     layout: 'anchor',
-
+    title: Ilc.resources.Manager.getResourceString('common.newCustomerContact'),
     customer: null,
 
     defaults: {

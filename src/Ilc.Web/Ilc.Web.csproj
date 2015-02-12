@@ -506,6 +506,7 @@
     <Content Include="Scripts\app\view\trainings\view\Expenses.js" />
     <Content Include="Scripts\app\view\trainings\view\InterviewPlan.js" />
     <Content Include="Scripts\app\view\trainings\view\Planning.js" />
+    <Content Include="Scripts\app\view\trainings\view\Students.js" />
     <Content Include="Scripts\app\view\users\Create.js" />
     <Content Include="Scripts\app\view\users\Edit.js" />
     <Content Include="Scripts\app\view\users\List.js" />

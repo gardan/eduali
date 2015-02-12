@@ -129,6 +129,15 @@
         'common.tos': 'Termen en voorwaarden',
         'common.payed': 'Betaald',
         'common.notSent': 'Niet verzonden',
+        'common.training': 'Training',
+        'common.trainingMaterial': 'Training documentatie',
+
+        'common.addStudent': 'Voeg student toe',
+        'common.addContact': 'Voeg contact toe',
+        'common.addExpense': 'Voeg expense toe',
+
+        'common.fiscalCode': 'BTW nummer',
+        'common.commerceNumber': 'KvK nummer',
 
         'tasks.title.ended': 'Afgesloten',
         'tasks.title.offer': 'Oferte',

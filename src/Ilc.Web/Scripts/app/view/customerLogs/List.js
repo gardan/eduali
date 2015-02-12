@@ -28,7 +28,7 @@
                     var createdLog = Ext.JSON.decode(operation.response.responseText);
                     customerLogRecord.set('id', createdLog.id);
                     me.store.insert(0, customerLogRecord);
-                    me.rowEditing.startEdit(0, 0);
+                    // me.rowEditing.startEdit(0, 0);
                 },
                 failure: function() {
                 }
@@ -43,7 +43,9 @@
                 items: [
                     {
                         xtype: 'button',
-                        text: 'New log',
+                        iconCls: 'icon-add',
+                        cls: 'clean-button',
+                        text: Ilc.resources.Manager.getResourceString('common.addAction'),
                         listeners: {
                             click: this.onNewLog,
                             scope: this

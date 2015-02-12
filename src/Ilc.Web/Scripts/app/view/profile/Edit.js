@@ -25,42 +25,51 @@
         return [
             {
                 xtype: 'fieldset',
+                padding: 10,
+                width: 500,
                 title: 'General',
                 items: [
                     {
                         xtype: 'textfield',
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.firstName'),
                         name: 'firstName',
-                        value: Ilc.Configuration.get().firstName
+                        value: Ilc.Configuration.get().firstName,
+                        padding: 10,
                     },
                     {
                         xtype: 'textfield',
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.lastName'),
                         name: 'lastName',
-                        value: Ilc.Configuration.get().lastName
+                        value: Ilc.Configuration.get().lastName,
+                        padding: 10,
                     },
                     {
                         xtype: 'button',
                         text: Ilc.resources.Manager.getResourceString('common.save'),
-                        handler: this.onGeneralClick
+                        handler: this.onGeneralClick,
+                        width: 100
                     }
                 ]
             },
 
             {
                 xtype: 'fieldset',
+                padding: 10,
+                width: 500,
                 title: 'Contact',
                 items: [
                     {
                         xtype: 'textfield',
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.email'),
                         name: 'email',
-                        value: Ilc.Configuration.get().username
+                        value: Ilc.Configuration.get().username,
+                        padding: 10
                     },
                     {
                         xtype: 'button',
                         text: Ilc.resources.Manager.getResourceString('common.save'),
-                        handler: this.onEmailClick
+                        handler: this.onEmailClick,
+                        width: 100
                     }
                 ]
             },
@@ -68,23 +77,28 @@
             {
                 xtype: 'fieldset',
                 title: 'Security',
+                padding: 10,
+                width: 500,
                 items: [
                     {
                         xtype: 'textfield',
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.currentPassword'),
                         name: 'currentPassword',
-                        inputType: 'password'
+                        inputType: 'password',
+                        padding: 10,
                     },
                     {
                         xtype: 'textfield',
                         fieldLabel: Ilc.resources.Manager.getResourceString('common.newPassword'),
                         name: 'newPassword',
-                        inputType: 'password'
+                        inputType: 'password',
+                        padding: 10,
                     },
                     {
                         xtype: 'button',
                         text: Ilc.resources.Manager.getResourceString('common.save'),
-                        handler: this.onPasswordClick
+                        handler: this.onPasswordClick,
+                        width: 100,
                     }
                 ]
             }

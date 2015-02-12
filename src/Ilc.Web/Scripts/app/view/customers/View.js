@@ -12,10 +12,11 @@
     bodyPadding: 0,
     width: 800,
     customer: null,
+   
 
     initComponent: function() {
         var me = this;
-
+        
         var contactsStore = Ext.create('Ilc.store.Contacts', {
             customerId: me.customer.id
         });
@@ -23,16 +24,18 @@
         var logsStore = Ext.create('Ilc.store.CustomerLogs', {
             customerId: me.customer.id
         });
-
+        me.title = me.customer.name; // set the name of the dialog to the name of the Customer
         me.items = [
             {
+                
                 xtype: 'tabpanel',
                 anchor: '100%, 100%',
                 items: [
                     {
-                        title: 'General',
+                        title: Ilc.resources.Manager.getResourceString('common.general'),
                         xtype: 'editcustomer',
                         customer: me.customer,
+
                         listeners: {
                             'cancelclicked': function() {
                                 me.close();
@@ -44,7 +47,7 @@
                     },
                     {
                         xtype: 'contactslist',
-                        title: 'Contacts',
+                        title: Ilc.resources.Manager.getResourceString('common.customerContacts'),
                         store: contactsStore,
                         dockedItems: [
                             {
@@ -52,7 +55,10 @@
                                 dock: 'top',
                                 items: [
                                     {
-                                        text: 'New contact',
+                                        xtype: 'button',
+                                        iconCls: 'icon-add',
+                                        cls: 'clean-button',
+                                        text: Ilc.resources.Manager.getResourceString('common.addCustomerContact'),
                                         handler: function() {
                                             var window = Ext.create('Ilc.view.customers.contacts.Create', {
                                                 customer: me.customer,
@@ -76,7 +82,7 @@
                     },
                     {
                         xtype: 'logslist',
-                        title: 'Logs',
+                        title: Ilc.resources.Manager.getResourceString('common.customerRelationship'),
                         customerId: me.customer.id,
                         store: logsStore
                     }

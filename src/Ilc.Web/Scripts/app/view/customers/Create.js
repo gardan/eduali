@@ -43,18 +43,20 @@
                 name: 'commerceNumber',
                 anchor: '100%'
             },
-            {
-                xtype: 'textfield',
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.contactName'),
-                name: 'contactName',
-                anchor: '100%'
-            },
-            {
-                xtype: 'textfield',
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.contactEmail'),
-                name: 'contactEmail',
-                anchor: '100%'
-            }
+            // To Be Deleted //
+            // First create the company and then later add contacts
+            //{
+            //    xtype: 'textfield',
+            //    fieldLabel: Ilc.resources.Manager.getResourceString('common.contactName'),
+            //    name: 'contactName',
+            //    anchor: '100%'
+            //},
+            //{
+            //    xtype: 'textfield',
+            //    fieldLabel: Ilc.resources.Manager.getResourceString('common.contactEmail'),
+            //    name: 'contactEmail',
+            //    anchor: '100%'
+            //}
         ];
 
         me.buttons = [
