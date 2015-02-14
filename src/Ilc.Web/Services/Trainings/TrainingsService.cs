@@ -117,17 +117,17 @@ namespace Ilc.Web.Services.Trainings
 
             Trainings.Create(newTraining);
 
-            var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
-            var wfActivity = new Infrastructure.Workflows.Training();
-            var proc = new WorkflowProcess(extensionManager, wfActivity, new Dictionary<string, object>()
-                {
-                    { "argInTrainingId", newTraining.Id },
-                    { "argInPublic", newTraining.Public }
-                });
-            var results = proc.Start(PersistableIdleAction.Unload);
-
-            newTraining.WokrflowId = (Guid?)results["InstanceId"];
-            Trainings.Update(newTraining);
+//            var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
+//            var wfActivity = new Infrastructure.Workflows.Training();
+//            var proc = new WorkflowProcess(extensionManager, wfActivity, new Dictionary<string, object>()
+//                {
+//                    { "argInTrainingId", newTraining.Id },
+//                    { "argInPublic", newTraining.Public }
+//                });
+//            var results = proc.Start(PersistableIdleAction.Unload);
+//
+//            newTraining.WokrflowId = (Guid?)results["InstanceId"];
+//            Trainings.Update(newTraining);
 
             var retTraining = new TrainingModel();
 
