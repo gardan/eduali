@@ -80,18 +80,18 @@ namespace Ilc.Web.Services.Trainings
             var contacts = new List<ContactPerson>(request.Contacts.Select(c => Uow.Contacts.GetById(c.Id)));
 
             var sales = Uow.UserProfiles.GetById(request.WorkflowOwners.Sales);
-            var administration = Uow.UserProfiles.GetById(request.WorkflowOwners.Administration);
-            var coordinator = Uow.UserProfiles.GetById(request.WorkflowOwners.Coordinator);
-            var trainer = Uow.Trainers.GetById(request.TrainerId);
+//            var administration = Uow.UserProfiles.GetById(request.WorkflowOwners.Administration);
+//            var coordinator = Uow.UserProfiles.GetById(request.WorkflowOwners.Coordinator);
+//            var trainer = Uow.Trainers.GetById(request.TrainerId);
 
 
-            var ownersConfiguration = new TrainingOwnersConfiguration()
-                {
-                    SalesId = sales.Id,
-                    AdministrationId = administration.Id,
-                    CoordinatorId = coordinator.Id,
-                    TrainerId = trainer.UserProfileId
-                };
+//            var ownersConfiguration = new TrainingOwnersConfiguration()
+//                {
+//                    SalesId = sales.Id,
+//                    AdministrationId = administration.Id,
+//                    CoordinatorId = coordinator.Id,
+//                    TrainerId = trainer.UserProfileId
+//                };
 
             var newTraining = new Training
                 {
@@ -111,7 +111,7 @@ namespace Ilc.Web.Services.Trainings
                     CustomerId = request.CustomerId == 0 ? (int?) null : request.CustomerId,
                     // Owners = new [] { Users.GetByEmail() }, // We need to get the guy with Sales role that was specified at the beggining
                     Owners = new List<UserProfile>() { sales },
-                    OwnersConfiguration = ownersConfiguration,
+                    // OwnersConfiguration = ownersConfiguration,
                     ContactPersons = contacts
                 };
 

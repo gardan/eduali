@@ -70,6 +70,7 @@ namespace Ilc.Data.Models
 
         public Guid? WokrflowId { get; set; }
 
+        [NotMapped()]
         public virtual TrainingOwnersConfiguration OwnersConfiguration { get; set; }
 
         public int GradingSystemId { get; set; }

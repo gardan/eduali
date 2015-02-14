@@ -368,6 +368,10 @@
     <Compile Include="Migrations\201502101758112_AddAddressFieldsToUserDetails.Designer.cs">
       <DependentUpon>201502101758112_AddAddressFieldsToUserDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502140951469_RemovedOwnersConfiguration.cs" />
+    <Compile Include="Migrations\201502140951469_RemovedOwnersConfiguration.Designer.cs">
+      <DependentUpon>201502140951469_RemovedOwnersConfiguration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -627,6 +631,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502101758112_AddAddressFieldsToUserDetails.resx">
       <DependentUpon>201502101758112_AddAddressFieldsToUserDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502140951469_RemovedOwnersConfiguration.resx">
+      <DependentUpon>201502140951469_RemovedOwnersConfiguration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
