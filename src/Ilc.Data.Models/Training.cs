@@ -33,8 +33,10 @@ namespace Ilc.Data.Models
             set { _students = value; }
         }
 
+        [NotMapped]
         public int? TrainerId { get; set; }
-        [ForeignKey("TrainerId")]
+        // [ForeignKey("TrainerId")]
+        [NotMapped]
         public virtual Trainer Trainer { get; set; }
 
         public int? CustomerId { get; set; }
