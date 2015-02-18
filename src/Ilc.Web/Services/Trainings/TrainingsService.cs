@@ -70,16 +70,16 @@ namespace Ilc.Web.Services.Trainings
         [IlcAuth]
         public HttpResult Post(CreateTrainingModel request)
         {
-            var students = new List<Student>();
-
-            foreach (var studentModel in request.Students)
-            {
-                var student = Students.GetByStudentId(studentModel.Id);
-                students.Add(student);
-            }
+//            var students = new List<Student>();
+//
+//            foreach (var studentModel in request.Students)
+//            {
+//                var student = Students.GetByStudentId(studentModel.Id);
+//                students.Add(student);
+//            }
             var contacts = new List<ContactPerson>(request.Contacts.Select(c => Uow.Contacts.GetById(c.Id)));
 
-            var sales = Uow.UserProfiles.GetById(request.WorkflowOwners.Sales);
+            // var sales = Uow.UserProfiles.GetById(request.WorkflowOwners.Sales);
 //            var administration = Uow.UserProfiles.GetById(request.WorkflowOwners.Administration);
 //            var coordinator = Uow.UserProfiles.GetById(request.WorkflowOwners.Coordinator);
 //            var trainer = Uow.Trainers.GetById(request.TrainerId);
@@ -99,18 +99,18 @@ namespace Ilc.Web.Services.Trainings
                     Public = request.Public,
                     Price = request.Price,
                     DateOfValidation = new DateTimeOffset(new DateTime(request.DateOfValidation.Ticks, DateTimeKind.Unspecified), TimeSpan.Zero),
-                    RequiredStudents = request.RequiredStudents,
+                    // RequiredStudents = request.RequiredStudents,
                     SubjectId = request.SubjectId,
                     DesiredStartDate = request.DesiredStartDate,
                     DesiredEndDate = request.DesiredEndDate,
-                    GradingSystemId = request.GradingSystemId,
+                    // GradingSystemId = request.GradingSystemId,
                     Location = request.Location,
                     Status = "Rfi",
-                    Students = students,
-                    TrainerId = request.TrainerId,
+                    // Students = students,
+                    //TrainerId = request.TrainerId,
                     CustomerId = request.CustomerId == 0 ? (int?) null : request.CustomerId,
                     // Owners = new [] { Users.GetByEmail() }, // We need to get the guy with Sales role that was specified at the beggining
-                    Owners = new List<UserProfile>() { sales },
+                    Owners = new List<UserProfile>() { },
                     // OwnersConfiguration = ownersConfiguration,
                     ContactPersons = contacts
                 };

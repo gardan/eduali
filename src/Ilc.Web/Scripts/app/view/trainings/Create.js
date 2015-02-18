@@ -94,17 +94,17 @@
             labelWidth: 120
         });
 
-        me.studentsComboBox = Ext.create('Ext.form.ComboBox', {
-            store: studentsStore,
-            queryMode: 'local',
-            displayField: 'name',
-            valueField: 'id',
-            fieldLabel: Ilc.resources.Manager.getResourceString('common.students'),
-            name: 'students',
-            multiSelect: true,
-            anchor: '100%',
-            labelWidth: 120
-        });
+//        me.studentsComboBox = Ext.create('Ext.form.ComboBox', {
+//            store: studentsStore,
+//            queryMode: 'local',
+//            displayField: 'name',
+//            valueField: 'id',
+//            fieldLabel: Ilc.resources.Manager.getResourceString('common.students'),
+//            name: 'students',
+//            multiSelect: true,
+//            anchor: '100%',
+//            labelWidth: 120
+//        });
 
         var trainingSystemComboBox = Ext.create('Ext.form.ComboBox', {
             store: trainingSystemsStore,
@@ -175,68 +175,68 @@
             });
         });
 
-        subjectComboBox.on('select', function (comboBox, records, eOpts) {
-            trainersStore.load({
-                params: {
-                    subjectId: records[0].get('id')
-                }
-            });
-        });
+//        subjectComboBox.on('select', function (comboBox, records, eOpts) {
+//            trainersStore.load({
+//                params: {
+//                    subjectId: records[0].get('id')
+//                }
+//            });
+//        });
 
         me.items = [
-            {
-                xtype: 'checkbox',
-                fieldLabel: 'Public',
-                name: 'public',
-                listeners: {
-                    scope: this,
-                    change: me.onPublicCheckboxChange
-                }
-            },
-            me.requiredStudentsField,
-            me.priceField,
+//            {
+//                xtype: 'checkbox',
+//                fieldLabel: 'Public',
+//                name: 'public',
+//                listeners: {
+//                    scope: this,
+//                    change: me.onPublicCheckboxChange
+//                }
+//            },
+          //   me.requiredStudentsField,
+            // me.priceField,
             me.customerComboBox,
             me.contactsComboBox,
             subjectComboBox,
-            trainingSystemComboBox,
+            // trainingSystemComboBox,
             {
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.color'),
                 xtype: 'colorfield',
                 name: 'color'
             },
-            trainersComboBox,
-            me.dateOfValidationField,
-            me.studentsComboBox,
-            {
-                fieldLabel: 'Sales user',
-                store: salesUsersStore,
-                displayField: 'fullName',
-                valueField: 'id',
-                name: 'workflowOwners.sales'
-            },
-            {
-                fieldLabel: 'Administration user',
-                store: administratorsUsersStore,
-                displayField: 'fullName',
-                valueField: 'id',
-                name: 'workflowOwners.administration'
-            },
-            {
-                fieldLabel: 'Coordination user',
-                store: coordinatorsUsersStore,
-                displayField: 'fullName',
-                valueField: 'id',
-                name: 'workflowOwners.coordinator'
-            },
-            {
-                xtype: 'textfield',
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.location'),
-                name: 'location'
-            },
+            // trainersComboBox,
+            // me.dateOfValidationField,
+            // me.studentsComboBox,
+//            {
+//                fieldLabel: 'Sales user',
+//                store: salesUsersStore,
+//                displayField: 'fullName',
+//                valueField: 'id',
+//                name: 'workflowOwners.sales'
+//            },
+//            {
+//                fieldLabel: 'Administration user',
+//                store: administratorsUsersStore,
+//                displayField: 'fullName',
+//                valueField: 'id',
+//                name: 'workflowOwners.administration'
+//            },
+//            {
+//                fieldLabel: 'Coordination user',
+//                store: coordinatorsUsersStore,
+//                displayField: 'fullName',
+//                valueField: 'id',
+//                name: 'workflowOwners.coordinator'
+//            },
+//            {
+//                xtype: 'textfield',
+//                fieldLabel: Ilc.resources.Manager.getResourceString('common.location'),
+//                name: 'location'
+//            },
             {
                 xtype: 'datefield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.startDate'),
-                format: Ilc.resources.Manager.getResourceString('formats.extjsdate'),
+                // format: Ilc.resources.Manager.getResourceString('formats.extjsdate'),
                 name: 'desiredStartDate',
                 anchor: '100%',
                 format: Ilc.resources.Manager.getResourceString('formats.extjsdateonly')
@@ -244,7 +244,7 @@
             {
                 xtype: 'datefield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.endDate'),
-                format: Ilc.resources.Manager.getResourceString('formats.extjsdate'),
+                // format: Ilc.resources.Manager.getResourceString('formats.extjsdate'),
                 name: 'desiredEndDate',
                 anchor: '100%',
                 format: Ilc.resources.Manager.getResourceString('formats.extjsdateonly')

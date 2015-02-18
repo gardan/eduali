@@ -153,7 +153,7 @@ namespace Ilc.Core.Services
             newTraining.Spendings = new Spendings();
 
             // add the grading system attributes
-            newTraining.GradingAttributes =Uow.GradingSystems.GetById(newTraining.GradingSystemId).Attributes.Where(a => a.Enabled).ToList();
+            // newTraining.GradingAttributes =Uow.GradingSystems.GetById(newTraining.GradingSystemId).Attributes.Where(a => a.Enabled).ToList();
 
             Uow.Trainings.Add(newTraining);
             Uow.Commit();
