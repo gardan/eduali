@@ -31,8 +31,8 @@ namespace Ilc.Web.Services.Trainings
         [ModelWithStatusResponseFilter]
         public FilteredDataModel<TrainingModel> Get(FilterParametersTrainings request)
         {
-            var ret = new FilteredDataModel<TrainingModel>();
 
+            var ret = new FilteredDataModel<TrainingModel>();
             var results = Trainings.GetFilteredTrainings(request);
             ret.TotalDisplayRecords = results.TotalDisplayRecords;
             ret.TotalRecords = results.TotalRecords;
@@ -110,7 +110,7 @@ namespace Ilc.Web.Services.Trainings
                     //TrainerId = request.TrainerId,
                     CustomerId = request.CustomerId == 0 ? (int?) null : request.CustomerId,
                     // Owners = new [] { Users.GetByEmail() }, // We need to get the guy with Sales role that was specified at the beggining
-                    Owners = new List<UserProfile>() { },
+                    Owners = new List<UserProfile>() { Users.GetByEmail() },
                     // OwnersConfiguration = ownersConfiguration,
                     ContactPersons = contacts
                 };
