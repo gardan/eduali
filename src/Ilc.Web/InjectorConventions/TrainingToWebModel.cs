@@ -15,11 +15,11 @@ namespace Ilc.Web.InjectorConventions
     {
         protected override bool Match(ConventionInfo c)
         {
-            return c.SourceProp.Name == c.TargetProp.Name ||
-                (c.SourceProp.Name == "InterviewPlans" && c.TargetProp.Name == "InterviewPlan") ||
-                (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "Hours") ||
-                (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "LessonsNo") ||
-                (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "Price");
+            return c.SourceProp.Name == c.TargetProp.Name; // ||
+//                (c.SourceProp.Name == "InterviewPlans" && c.TargetProp.Name == "InterviewPlan") ||
+//                (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "Hours") ||
+//                (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "LessonsNo") ||
+//                (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "Price");
         }
 
         protected override object SetValue(ConventionInfo c)
@@ -38,20 +38,20 @@ namespace Ilc.Web.InjectorConventions
             {
                 return new SubjectModel().InjectFrom(c.SourceProp.Value);
             }
-            if (c.SourceProp.Name == "Trainer" && c.TargetProp.Name == "Trainer")
-            {
-                return new TrainerModel().InjectFrom<TrainerToTrainerModel>(c.SourceProp.Value);
-            }
+//            if (c.SourceProp.Name == "Trainer" && c.TargetProp.Name == "Trainer")
+//            {
+//                return new TrainerModel().InjectFrom<TrainerToTrainerModel>(c.SourceProp.Value);
+//            }
             if (c.SourceProp.Name == "Customer" && c.TargetProp.Name == "Customer")
             {
                 if (c.SourceProp.Value == null) return null;
                 return new CustomerModel().InjectFrom(c.SourceProp.Value);
             }
-            if (c.SourceProp.Name == "InterviewPlans" && c.TargetProp.Name == "InterviewPlan")
-            {
-                var interviewPlan = (c.SourceProp.Value as ICollection<InterviewPlan>);
-                return interviewPlan.Count == 0 ? null : new InterviewPlanApiModel() { Date = interviewPlan.First().Date.DateTime, Location = interviewPlan.First().Location };
-            }
+//            if (c.SourceProp.Name == "InterviewPlans" && c.TargetProp.Name == "InterviewPlan")
+//            {
+//                var interviewPlan = (c.SourceProp.Value as ICollection<InterviewPlan>);
+//                return interviewPlan.Count == 0 ? null : new InterviewPlanApiModel() { Date = interviewPlan.First().Date.DateTime, Location = interviewPlan.First().Location };
+//            }
             if (c.SourceProp.Name == "Spendings" && c.TargetProp.Name == "Spendings")
             {
                 var spendings = c.SourceProp.Value as Spendings;
@@ -90,16 +90,16 @@ namespace Ilc.Web.InjectorConventions
                 }
                 return 0m;
             }
-            if (c.SourceProp.Name == "OwnersConfiguration" && c.TargetProp.Name == "OwnersConfiguration")
-            {
-                var config = c.SourceProp.Value as TrainingOwnersConfiguration;
-                return new TrainingOwnersConfigurationModel()
-                    {
-                        Administration = config.AdministrationId,
-                        Coordinator = config.CoordinatorId,
-                        Sales = config.SalesId 
-                    };
-            }
+//            if (c.SourceProp.Name == "OwnersConfiguration" && c.TargetProp.Name == "OwnersConfiguration")
+//            {
+//                var config = c.SourceProp.Value as TrainingOwnersConfiguration;
+//                return new TrainingOwnersConfigurationModel()
+//                    {
+//                        Administration = config.AdministrationId,
+//                        Coordinator = config.CoordinatorId,
+//                        Sales = config.SalesId 
+//                    };
+//            }
             if (c.SourceProp.Name == "DateOfValidation" && c.TargetProp.Name == "DateOfValidation")
             {
                 return ((DateTimeOffset) c.SourceProp.Value).DateTime;

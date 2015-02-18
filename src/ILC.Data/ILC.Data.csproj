@@ -376,6 +376,10 @@
     <Compile Include="Migrations\201502142049160_RemovedTrainerFromTraining.Designer.cs">
       <DependentUpon>201502142049160_RemovedTrainerFromTraining.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502181908032_RemovedGradingSystemFromTraining.cs" />
+    <Compile Include="Migrations\201502181908032_RemovedGradingSystemFromTraining.Designer.cs">
+      <DependentUpon>201502181908032_RemovedGradingSystemFromTraining.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -641,6 +645,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502142049160_RemovedTrainerFromTraining.resx">
       <DependentUpon>201502142049160_RemovedTrainerFromTraining.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502181908032_RemovedGradingSystemFromTraining.resx">
+      <DependentUpon>201502181908032_RemovedGradingSystemFromTraining.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

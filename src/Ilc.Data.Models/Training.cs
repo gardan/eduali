@@ -75,8 +75,10 @@ namespace Ilc.Data.Models
         [NotMapped()]
         public virtual TrainingOwnersConfiguration OwnersConfiguration { get; set; }
 
+        [NotMapped()]
         public int GradingSystemId { get; set; }
         [ForeignKey("GradingSystemId")]
+        [NotMapped()]
         public virtual GradingSystem GradingSystem { get; set; }
 
         public string Color { get; set; }
@@ -87,6 +89,7 @@ namespace Ilc.Data.Models
 
         public virtual Spendings Spendings { get; set; }
 
+        [NotMapped()]
         public virtual ICollection<GradingAttribute> GradingAttributes { get; set; } 
     }
 }
