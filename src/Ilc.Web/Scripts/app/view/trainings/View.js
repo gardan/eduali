@@ -286,59 +286,7 @@
                             margin: 5,
                             labelWidth: 150
                         },
-                        listeners: {
-                            render: function (panel) {
-                                salesUsersStore.load({
-                                    callback: function () {
-                                        // We need to set the id == me.model.get('id')
-                                        panel.items.items[1].setValue(me.model.get('ownersConfiguration').sales);
-                                    }
-                                });
-                                
-                                administratorsUsersStore.load({
-                                    callback: function () {
-                                        // We need to set the id == me.model.get('id')
-                                        panel.items.items[2].setValue(me.model.get('ownersConfiguration').administration);
-                                    }
-                                });
-                                
-                                coordinatorsUsersStore.load({
-                                    callback: function () {
-                                        // We need to set the id == me.model.get('id')
-                                        panel.items.items[3].setValue(me.model.get('ownersConfiguration').coordinator);
-                                    }
-                                });
-                            }
-                        },
                         items: [
-                            trainersComboBox,
-                            {
-                                xtype: 'combobox',
-                                fieldLabel: 'Sales user',
-                                store: salesUsersStore,
-                                displayField: 'email',
-                                valueField: 'id',
-                                name: 'workflowOwners.sales',
-                                margin: '0 5 5 5'
-                            },
-                            {
-                                xtype: 'combobox',
-                                fieldLabel: 'Administration user',
-                                store: administratorsUsersStore,
-                                displayField: 'email',
-                                valueField: 'id',
-                                name: 'workflowOwners.administration',
-                                margin: '0 5 5 5'
-                            },
-                            {
-                                xtype: 'combobox',
-                                fieldLabel: 'Coordination user',
-                                store: coordinatorsUsersStore,
-                                displayField: 'email',
-                                valueField: 'id',
-                                name: 'workflowOwners.coordinator',
-                                margin: '0 5 5 5'
-                            },
                             {
                                 xtype: 'textfield',
                                 fieldLabel: Ilc.resources.Manager.getResourceString('common.location'),
