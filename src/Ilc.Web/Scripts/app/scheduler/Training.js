@@ -68,7 +68,16 @@
         // Fix for this: https://www.assembla.com/spaces/bryntum/support/tickets/13#/activity/ticket:
         Ext.apply(this, {
             columns: [
-                { header: Ilc.resources.Manager.getResourceString('common.trainer'), width: 130, dataIndex: 'Name', visible: false }
+                {
+                    header: Ilc.resources.Manager.getResourceString('common.stockholders'),
+                    width: 130,
+                    dataIndex: 'fullName'
+                },
+                {
+                    header: Ilc.resources.Manager.getResourceString('common.stockholders'),
+                    width: 130,
+                    dataIndex: 'email'
+                }
             ]
         });
 

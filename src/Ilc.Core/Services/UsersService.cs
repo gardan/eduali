@@ -26,8 +26,6 @@ namespace Ilc.Core.Services
 
             var user = GetByEmail();
             var query = Uow.UserProfiles.GetAll().Where(up => up.CompanyId == user.CompanyId);
-            var totalResults = query.Count();
-            var totalDisplayRecords = totalResults;
 
             // filter by claims
             if (!string.IsNullOrEmpty(parameters.Claims))
@@ -35,6 +33,13 @@ namespace Ilc.Core.Services
                 var roles = Uow.Roles.GetRolesByClaims(parameters.Claims.Split(",".ToCharArray()));
                 var roleIds = roles.Select(r => r.Id);
                 query = query.Where(u => u.Roles.Any(r => roleIds.Contains(r.RoleId)));
+            }
+
+            // Filter by trainingId, only gets users that own this specific training
+            if (parameters.TrainingId > 0)
+            {
+                // var training = Uow.Trainings.GetById(parameters.TrainingId);
+                query = query.Where(u => u.OwnedTrainings.Any(t => t.Id == parameters.TrainingId));
             }
 
             // search
@@ -52,6 +57,9 @@ namespace Ilc.Core.Services
                         break;
                 }
             }
+
+            var totalResults = query.Count();
+            var totalDisplayRecords = totalResults;
 
             // order
             query = query.OrderBy(e => e.Id);

@@ -14,5 +14,9 @@ namespace Ilc.Data.Models
         public int TrainingId { get; set; }
         [ForeignKey("TrainingId")]
         public Training Training { get; set; }
+
+        public int OwnerId { get; set; }
+        [ForeignKey("OwnerId")]
+        public UserProfile Owner { get; set; }
     }
 }

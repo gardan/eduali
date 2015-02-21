@@ -14,13 +14,8 @@
 
     setEntity: function(entity) {
         this.entity = entity;
-        
-        this.scheduler.resourceStore.loadRawData(
-            {
-                Id: entity.get('trainer').id,
-                Name: entity.get('trainer').name
-            }
-        );
+
+        this.loadResourceStore(this.scheduler.resourceStore, entity);
         
         this.scheduler.eventStore.reload();
     },
@@ -82,19 +77,24 @@
         container.fireEvent('createlesson', container, model);
     },
 
+    getResourceStore: function() {
+        return Ext.create('Ilc.store.scheduler.Stakeholders');
+    },
+
+    loadResourceStore: function (resourceStore, entity) {
+        resourceStore.load({
+            params: {
+                trainingId: entity.get('id')
+            }
+        });
+    },
+
     initComponent: function (args) {
         var me = this;
 
         var entity = me.entity;
-        var resourceStore = Ext.create('Sch.data.ResourceStore', {
-        });
-
-        resourceStore.loadRawData(
-            {
-                Id: entity.get('trainer').id,
-                Name: entity.get('trainer').name
-            }
-        );
+        var resourceStore = this.getResourceStore();
+        this.loadResourceStore(resourceStore, entity);
 
         // Store holding all the events
         var eventStore = Ext.create('Ilc.store.scheduler.LessonAppointments', {

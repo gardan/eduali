@@ -12,7 +12,8 @@
         'Ilc.view.trainings.view.Contacts',
         'Ilc.view.trainings.view.Documents',
         'Ilc.view.trainings.view.Expenses',
-        'Ilc.view.trainings.view.Students'
+        'Ilc.view.trainings.view.Students',
+        'Ilc.view.stakeholders.List'
         
     ],
     width: 900,
@@ -503,7 +504,11 @@
                         store: contactsStore,
                         trainingId: model.get('id'),
                         customerId: model.get('customer').id
-                    }
+                    },
+//                    {
+//                        xtype: 'stakeholderslist',
+//                        trainingId: model.get('id')
+//                    }
                 ]
             }
 

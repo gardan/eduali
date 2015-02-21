@@ -27,6 +27,7 @@ namespace Ilc.Data
             // Fluent configurations
             modelBuilder.Configurations.Add(new UserProfileConfiguration());
             modelBuilder.Configurations.Add(new ClaimsConfiguration());
+            modelBuilder.Configurations.Add(new TrainingConfiguration());
 
             // WebSecurity Configurations
             modelBuilder.Configurations.Add(new MembershipConfiguration());

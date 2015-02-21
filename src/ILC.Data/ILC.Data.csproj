@@ -55,6 +55,7 @@
     <Compile Include="Configuration\ClaimsConfiguration.cs" />
     <Compile Include="Configuration\SimpleMembership\MembershipConfiguration.cs" />
     <Compile Include="Configuration\SimpleMembership\RolesConfiguration.cs" />
+    <Compile Include="Configuration\TrainingConfiguration.cs" />
     <Compile Include="Configuration\UserProfileConfiguration.cs" />
     <Compile Include="Helpers\IRepositoryProvider.cs" />
     <Compile Include="Helpers\RepositoriesFactories.cs" />
@@ -380,6 +381,14 @@
     <Compile Include="Migrations\201502181908032_RemovedGradingSystemFromTraining.Designer.cs">
       <DependentUpon>201502181908032_RemovedGradingSystemFromTraining.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502210743078_AddedStakeHoldersToTrainings.cs" />
+    <Compile Include="Migrations\201502210743078_AddedStakeHoldersToTrainings.Designer.cs">
+      <DependentUpon>201502210743078_AddedStakeHoldersToTrainings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502211242121_AddedOwnerToTrainingScheduleDay.cs" />
+    <Compile Include="Migrations\201502211242121_AddedOwnerToTrainingScheduleDay.Designer.cs">
+      <DependentUpon>201502211242121_AddedOwnerToTrainingScheduleDay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -648,6 +657,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502181908032_RemovedGradingSystemFromTraining.resx">
       <DependentUpon>201502181908032_RemovedGradingSystemFromTraining.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502210743078_AddedStakeHoldersToTrainings.resx">
+      <DependentUpon>201502210743078_AddedStakeHoldersToTrainings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502211242121_AddedOwnerToTrainingScheduleDay.resx">
+      <DependentUpon>201502211242121_AddedOwnerToTrainingScheduleDay.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

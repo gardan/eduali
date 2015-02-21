@@ -90,6 +90,9 @@ namespace Ilc.Data.Models
         public virtual Spendings Spendings { get; set; }
 
         [NotMapped()]
-        public virtual ICollection<GradingAttribute> GradingAttributes { get; set; } 
+        public virtual ICollection<GradingAttribute> GradingAttributes { get; set; }
+
+
+        public virtual ICollection<UserProfile> StakeHolders { get; set; } 
     }
 }

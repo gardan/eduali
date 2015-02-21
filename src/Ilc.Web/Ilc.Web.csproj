@@ -223,7 +223,9 @@
     <Content Include="Scripts\app\model\OpenTraining.js" />
     <Content Include="Scripts\app\model\Role.js" />
     <Content Include="Scripts\app\model\scheduler\Event.js" />
+    <Content Include="Scripts\app\model\scheduler\Stakeholder.js" />
     <Content Include="Scripts\app\model\scheduler\Trainer.js" />
+    <Content Include="Scripts\app\model\Stakeholder.js" />
     <Content Include="Scripts\app\model\Student.js" />
     <Content Include="Scripts\app\model\Trainer.js" />
     <Content Include="Scripts\app\model\User.js" />
@@ -264,7 +266,9 @@
     <Content Include="Scripts\app\store\scheduler\Availability.js" />
     <Content Include="Scripts\app\store\scheduler\LessonAppointments.js" />
     <Content Include="Scripts\app\store\scheduler\Lessons.js" />
+    <Content Include="Scripts\app\store\scheduler\Stakeholders.js" />
     <Content Include="Scripts\app\store\scheduler\Trainers.js" />
+    <Content Include="Scripts\app\store\Stakeholders.js" />
     <Content Include="Scripts\app\store\statistics\Customers.js" />
     <Content Include="Scripts\app\store\statistics\Spendings.js" />
     <Content Include="Scripts\app\store\statistics\Trainings.js" />
@@ -477,6 +481,7 @@
     <Content Include="Scripts\app\view\settings\Categories.js" />
     <Content Include="Scripts\app\view\settings\Default.js" />
     <Content Include="Scripts\app\view\spendings\View.js" />
+    <Content Include="Scripts\app\view\stakeholders\List.js" />
     <Content Include="Scripts\app\view\statistics\Types.js" />
     <Content Include="Scripts\app\view\statistics\View.js" />
     <Content Include="Scripts\app\view\statusDefinitions\Edit.js" />

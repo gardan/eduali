@@ -15,6 +15,7 @@ namespace Ilc.Web.Services
     public class LessonsService : Service
     {
         public ITrainingsService Trainings { get; set; }
+        public IUsersService Users { get; set; }
         public IUow Uow { get; set; }
 
         public FilteredDataModel<LessonModel> Get(FilterParametersLessons request)
@@ -63,7 +64,7 @@ namespace Ilc.Web.Services
                         StartDate = day.StartDate.DateTime,
                         EndDate = day.EndDate.DateTime,
                         Name = day.LessonName,
-                        ResourceId = training.TrainerId.GetValueOrDefault(),
+                        ResourceId = day.OwnerId, // training.TrainerId.GetValueOrDefault(),
                         // day.Order, // this has to be the trainerId
                         Resizable = true,
                         Draggable = true
@@ -71,7 +72,7 @@ namespace Ilc.Web.Services
             }
 
             // Get the other scheduled lessons, for overlaying purposes
-            if (request.Overlay)
+            if (request.Overlay && false == true)
             {
                 var trainings =
                     Uow.Trainings.GetAll().Where(t => t.TrainerId == training.TrainerId && t.Id != training.Id).ToList();
@@ -172,6 +173,7 @@ namespace Ilc.Web.Services
             scheduleDay.EndDate = new DateTimeOffset(request.EndDate, TimeSpan.Zero);
             scheduleDay.TrainingId = request.TrainingId;
             scheduleDay.LessonName = request.LessonName;
+            scheduleDay.OwnerId = request.OwnerId;
 
             Uow.TrainingScheduleDays.Add(scheduleDay);
             Uow.Commit();
@@ -190,6 +192,8 @@ namespace Ilc.Web.Services
         public DateTime StartDate { get; set; }
         public string LessonName { get; set; }
         public DateTime EndDate { get; set; }
+
+        public int OwnerId { get; set; }
     }
 
     public class LessonScheduleModelNormal
