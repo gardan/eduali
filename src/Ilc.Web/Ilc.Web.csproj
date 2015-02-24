@@ -146,6 +146,7 @@
     <Content Include="Images\web\remove.png" />
     <Content Include="Images\web\task.png" />
     <Content Include="Images\web\view.png" />
+    <Content Include="Resources\BoxSelect.css" />
     <Content Include="Resources\custombootstrap.css" />
     <Content Include="Resources\site.css" />
     <Content Include="Scripts\app.js" />
@@ -226,6 +227,7 @@
     <Content Include="Scripts\app\model\scheduler\Stakeholder.js" />
     <Content Include="Scripts\app\model\scheduler\Trainer.js" />
     <Content Include="Scripts\app\model\Stakeholder.js" />
+    <Content Include="Scripts\app\model\stakeholders\Add.js" />
     <Content Include="Scripts\app\model\Student.js" />
     <Content Include="Scripts\app\model\Trainer.js" />
     <Content Include="Scripts\app\model\User.js" />
@@ -358,6 +360,7 @@
     <Content Include="Scripts\app\ux\event\RecorderManager.js" />
     <Content Include="Scripts\app\ux\FieldReplicator.js" />
     <Content Include="Scripts\app\ux\form\ColorField.js" />
+    <Content Include="Scripts\app\ux\form\field\BoxSelect.js" />
     <Content Include="Scripts\app\ux\form\ItemSelector.js" />
     <Content Include="Scripts\app\ux\form\MultiSelect.js" />
     <Content Include="Scripts\app\ux\form\NumericField.js" />
@@ -481,6 +484,7 @@
     <Content Include="Scripts\app\view\settings\Categories.js" />
     <Content Include="Scripts\app\view\settings\Default.js" />
     <Content Include="Scripts\app\view\spendings\View.js" />
+    <Content Include="Scripts\app\view\stakeholders\Add.js" />
     <Content Include="Scripts\app\view\stakeholders\List.js" />
     <Content Include="Scripts\app\view\statistics\Types.js" />
     <Content Include="Scripts\app\view\statistics\View.js" />
@@ -4409,6 +4413,7 @@
     <Compile Include="Services\RolesService.cs" />
     <Compile Include="InjectorConventions\RoleToModel.cs" />
     <Compile Include="Services\SpendingsServices.cs" />
+    <Compile Include="Services\Stakeholders.cs" />
     <Compile Include="Services\StatisticsService.cs" />
     <Compile Include="Services\StatusDefinitionsService.cs" />
     <Compile Include="Services\StudentsInterviewService.cs" />

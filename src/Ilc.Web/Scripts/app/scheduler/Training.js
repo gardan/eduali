@@ -177,6 +177,24 @@
                 cls: 'clean-button',
                 overCls: 'eduali-menu-hover',
                 menu: dateMenu
+            },
+            {
+                xtype: 'button',
+                text: 'Add stakeholders',
+                handler: function () {
+                    var stakeholderAddWindow = Ext.create('Ilc.view.stakeholders.Add', {
+                        training: me.training,
+                        listeners: {
+                            'added-stakeholders': function() {
+                                me.resourceStore.reload();
+                                stakeholderAddWindow.close();
+                                
+                            }
+                        }
+                    }).show();
+                    
+
+                }
             }
         ];
 

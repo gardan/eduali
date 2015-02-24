@@ -3,7 +3,7 @@
     
     requires: [
         'Ilc.utils.Forms',
-        'Ext.ux..form.ColorField'
+        'Ext.ux.form.ColorField'
     ],
         
     defaults: {

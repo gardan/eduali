@@ -118,7 +118,7 @@
             onEventCreated: me.onLessonCreated,
 
             columnWidth: 0.8,
-            
+            training: entity,
             scrollToEvent: false
         });
 

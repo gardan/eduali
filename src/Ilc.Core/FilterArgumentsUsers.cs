@@ -4,5 +4,6 @@
     {
         public string Claims { get; set; }
         public int TrainingId { get; set; }
+        public string Query { get; set; }
     }
 }

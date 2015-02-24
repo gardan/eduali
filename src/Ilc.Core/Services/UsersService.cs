@@ -39,7 +39,12 @@ namespace Ilc.Core.Services
             if (parameters.TrainingId > 0)
             {
                 // var training = Uow.Trainings.GetById(parameters.TrainingId);
-                query = query.Where(u => u.OwnedTrainings.Any(t => t.Id == parameters.TrainingId));
+                query = query.Where(u => u.ActionableTrainings.Any(t => t.Id == parameters.TrainingId));
+            }
+
+            if (!string.IsNullOrWhiteSpace(parameters.Query))
+            {
+                query = query.Where(u => u.Email.Contains(parameters.Query));
             }
 
             // search
