@@ -352,19 +352,17 @@
                                             cls: 'clean-button',
                                             text: Ilc.resources.Manager.getResourceString('common.addStudent'),
                                             handler: function (btn, e) {
-                                                debugger
                                                 // To Do //
                                                 // here add a view to select a sudent ...Ilc.view.trainings.view.Students
                                                 var window = Ext.create('Ilc.view.trainings.view.Students', {
                                                     modal: true,
+                                                    training: me.model,
                                                     closeAction: 'destroy'
                                                 });
                                                 
-                                                //window.on('addStudent', function (sender, data) {
-                                                //    me.fireEvent('addStudent', sender, data, {
-                                                //        store: me.studentStore
-                                                //    });
-                                                //});
+                                                window.on('added-students', function (sender, data) {
+                                                    studentsStore.reload();
+                                                });
                                                 window.show();
                                             }
                                         }

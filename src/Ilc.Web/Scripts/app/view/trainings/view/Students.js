@@ -1,56 +1,87 @@
 ﻿Ext.define('Ilc.view.trainings.view.Students', {
-    extend: 'Ext.container.Container',
+    extend: 'Ext.window.Window',
 
     xtype: 'addstudenttotraining',
-    requires: [
-        'Ilc.helpers.ColumnBuilder'
-    ],
 
-    initColumns: function () {
-        debugger
-        var me = this;
-        debugger
-        var ret = [
+    layout: 'anchor',
+    width: '600px',
 
+    getButtons: function () {
+        return [
             {
-                dataIndex: 'name', // There actually isn't any column 'name', we just use it for filtering porpuses, see 'renderer' for the actual value
-                text: Ilc.resources.Manager.getResourceString('common.name'),
-                flex: 1,
-                renderer: function (value, meta, record) {
-                    return record.get('userInfo').firstName;
-                },
-                filter: {
-                    type: 'string'
-                },
-
+                xtype: 'button',
+                text: 'Cancel',
+                listeners: {
+                    scope: this,
+                    click: function() {
+                        this.close();
+                    }
+                }
             },
+            {
+                xtype: 'button',
+                text: 'Add',
+                listeners: {
+                    scope: this,
+                    click: this.onAddClick
+                }
+            }
         ];
     },
 
-    initComponent: function () {
-        debugger
-        var me = this;
+    getItems: function() {
+        var items = [];
+        
+        var usersStore = Ext.create('Ilc.store.Users');
 
-        var studentsStore = Ext.create('Ilc.store.Students');
+        var func = usersStore.load;
 
-        me.studentsStore = studentsStore;
-
-        var filters = {
-            ftype: 'jsvfilters',
-            local: false,
+        usersStore.load = function (options) {
+            options.params.claims = 'tasks-student';
+            func.apply(this, arguments);
         };
 
-        var columns = me.initColumns();
-
-        var studentsGrid = Ext.create('Ext.grid.Panel', {
-            store: studentsStore,
-            features: [filters],
-            columns: columns
+        this.stakeholdersBoxSelect = Ext.create('Ext.ux.form.field.BoxSelect', {
+            store: usersStore,
+            displayField: 'email',
+            valueField: 'id',
+            fieldLabel: Ilc.resources.Manager.getResourceString('common.students'),
+            anchor: '100%',
+            name: 'students'
         });
 
-        me.items = [
-            studentsGrid
-        ];
-        me.callParent(arguments);
+        items.push(this.stakeholdersBoxSelect);
+
+        return items;
+    },
+
+    onAddClick: function () {
+        var me = this;
+        var model = Ilc.utils.Forms.extractModel(this.query('textfield'));
+
+        var addStudentToTraining = Ext.create('Ilc.model.students.AddToTraining', {
+            students: R.map(R.get('id'), model.students),
+            trainingId: me.training.get('id')
+        });
+        addStudentToTraining.save({
+            success: function () {
+                me.fireEvent('added-students');
+                me.close();
+            },
+            error: function () {
+
+            }
+        });
+    },
+
+    initComponent: function () {
+
+        this.items = this.getItems();
+
+        this.buttons = this.getButtons();
+
+        this.addEvents('added-students');
+
+        this.callParent(arguments);
     }
 });

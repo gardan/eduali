@@ -229,6 +229,7 @@
     <Content Include="Scripts\app\model\Stakeholder.js" />
     <Content Include="Scripts\app\model\stakeholders\Add.js" />
     <Content Include="Scripts\app\model\Student.js" />
+    <Content Include="Scripts\app\model\students\AddToTraining.js" />
     <Content Include="Scripts\app\model\Trainer.js" />
     <Content Include="Scripts\app\model\User.js" />
     <Content Include="Scripts\app\plugins\slider\Highlight.js" />
@@ -4429,6 +4430,7 @@
     <Compile Include="Services\TrainersSubjectsService.cs" />
     <Compile Include="Services\TrainingContactsService.cs" />
     <Compile Include="Services\Trainings\OpenTrainingsServices.cs" />
+    <Compile Include="Services\Trainings\StudentsToTrainingsService.cs" />
     <Compile Include="Services\Trainings\TrainingsService.cs" />
     <Compile Include="Services\TransfersService.cs" />
     <Compile Include="Models\UpdateGridColumnConfigModel.cs" />
