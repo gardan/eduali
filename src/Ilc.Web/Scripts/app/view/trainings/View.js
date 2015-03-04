@@ -360,8 +360,8 @@
                                                     closeAction: 'destroy'
                                                 });
                                                 
-                                                window.on('added-students', function (sender, data) {
-                                                    studentsStore.reload();
+                                                window.on('added-students', function (options) {
+                                                    studentsStore.loadRawData(options.addedStudents, true);
                                                 });
                                                 window.show();
                                             }

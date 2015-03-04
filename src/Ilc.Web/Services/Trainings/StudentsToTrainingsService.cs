@@ -21,11 +21,8 @@ namespace Ilc.Web.Services.Trainings
 
             foreach (var studentId in request.Students)
             {
-                if (training.Students.FirstOrDefault(u => u.Id == studentId) == null)
-                {
-                    var student = Uow.Students.GetAll().FirstOrDefault(s => s.UserProfileId == studentId);
-                    studentsToAdd.Add(student);
-                }
+                var student = Uow.Students.GetAll().FirstOrDefault(s => s.Id == studentId);
+                studentsToAdd.Add(student);
             }
             foreach (var userProfile in studentsToAdd)
             {
@@ -35,7 +32,9 @@ namespace Ilc.Web.Services.Trainings
             Uow.Trainings.Update(training);
             Uow.Commit();
 
-            return new HttpResult()
+            var result = studentsToAdd.Map(s => s.Id);
+
+            return new HttpResult(result)
             {
                 StatusCode = HttpStatusCode.Created
             };

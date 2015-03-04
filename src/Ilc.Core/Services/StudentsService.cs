@@ -27,6 +27,12 @@ namespace Ilc.Core.Services
             {
                 query = query.Where(s => s.CustomerId == parameters.CustomerId);
             }
+
+            if (!string.IsNullOrWhiteSpace(parameters.Query))
+            {
+                query = query.Where(s => s.UserProfile.UserDetails.FirstName.Contains(parameters.Query) || s.UserProfile.UserDetails.LastName.Contains(parameters.Query));
+            }
+
             foreach (var filter in parameters.Filter)
             {
                 var inFilter = filter;

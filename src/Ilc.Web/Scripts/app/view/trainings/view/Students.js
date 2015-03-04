@@ -32,18 +32,11 @@
     getItems: function() {
         var items = [];
         
-        var usersStore = Ext.create('Ilc.store.Users');
-
-        var func = usersStore.load;
-
-        usersStore.load = function (options) {
-            options.params.claims = 'tasks-student';
-            func.apply(this, arguments);
-        };
+        var usersStore = Ext.create('Ilc.store.Students');
 
         this.stakeholdersBoxSelect = Ext.create('Ext.ux.form.field.BoxSelect', {
             store: usersStore,
-            displayField: 'email',
+            displayField: 'name',
             valueField: 'id',
             fieldLabel: Ilc.resources.Manager.getResourceString('common.students'),
             anchor: '100%',
@@ -64,8 +57,14 @@
             trainingId: me.training.get('id')
         });
         addStudentToTraining.save({
-            success: function () {
-                me.fireEvent('added-students');
+            success: function (m, operation) {
+                var addedStudents = JSON.parse(operation.response.responseText);
+                var contains = R.flip(R.contains);
+
+                me.fireEvent('added-students', { addedStudents: R.filter(function(user) {
+                    return R.contains(user.id, addedStudents);
+                }, model.students)
+                });
                 me.close();
             },
             error: function () {
