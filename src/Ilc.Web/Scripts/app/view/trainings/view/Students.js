@@ -30,9 +30,14 @@
     },
 
     getItems: function() {
-        var items = [];
+        var items = [], me = this;
         
         var usersStore = Ext.create('Ilc.store.Students');
+
+        usersStore.load = R.wrap(usersStore.load, function (wrapped, options) {
+            options.params.customerId = me.training.get('customer').id;
+            wrapped.call(usersStore, options);
+        });
 
         this.stakeholdersBoxSelect = Ext.create('Ext.ux.form.field.BoxSelect', {
             store: usersStore,
