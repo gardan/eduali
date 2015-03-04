@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using Ilc.Core;
@@ -92,6 +93,7 @@ namespace Ilc.Web.Services
         public string Email { get; set; }
         public string FullName { get { return UserInfo == null ? "" : string.Format("{0} {1}", UserInfo.FirstName, UserInfo.LastName); } }
         public UserInfoModel UserInfo { get; set; }
+        public List<RoleModel> Roles { get; set; }
     }
 
     public class FilterParametersUsers : FilterArgumentsUsers

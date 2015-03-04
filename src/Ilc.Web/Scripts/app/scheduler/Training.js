@@ -76,7 +76,10 @@
                 {
                     header: Ilc.resources.Manager.getResourceString('common.stockholders'),
                     width: 130,
-                    dataIndex: 'email'
+                    dataIndex: 'roles',
+                    renderer: function (value) {
+                        return R.map(R.prop('name'), value).join(',');
+                    }
                 }
             ]
         });

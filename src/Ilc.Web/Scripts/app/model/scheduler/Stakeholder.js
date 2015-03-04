@@ -1,7 +1,7 @@
 ﻿Ext.define('Ilc.model.scheduler.Stakeholder', {
     extend: 'Sch.model.Resource',
     
-    fields: ['id', 'email', 'fullName', 'userInfo'],
+    fields: ['id', 'email', 'fullName', 'userInfo', 'roles'],
 
     nameField: 'fullName',
 
