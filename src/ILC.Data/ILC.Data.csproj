@@ -389,6 +389,14 @@
     <Compile Include="Migrations\201502211242121_AddedOwnerToTrainingScheduleDay.Designer.cs">
       <DependentUpon>201502211242121_AddedOwnerToTrainingScheduleDay.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503071322265_AddedWeightToStatusAndRemovedFriendlyName.cs" />
+    <Compile Include="Migrations\201503071322265_AddedWeightToStatusAndRemovedFriendlyName.Designer.cs">
+      <DependentUpon>201503071322265_AddedWeightToStatusAndRemovedFriendlyName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503071332213_AddedStatusToTrainingAsOneToOne.cs" />
+    <Compile Include="Migrations\201503071332213_AddedStatusToTrainingAsOneToOne.Designer.cs">
+      <DependentUpon>201503071332213_AddedStatusToTrainingAsOneToOne.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -663,6 +671,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502211242121_AddedOwnerToTrainingScheduleDay.resx">
       <DependentUpon>201502211242121_AddedOwnerToTrainingScheduleDay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503071322265_AddedWeightToStatusAndRemovedFriendlyName.resx">
+      <DependentUpon>201503071322265_AddedWeightToStatusAndRemovedFriendlyName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503071332213_AddedStatusToTrainingAsOneToOne.resx">
+      <DependentUpon>201503071332213_AddedStatusToTrainingAsOneToOne.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

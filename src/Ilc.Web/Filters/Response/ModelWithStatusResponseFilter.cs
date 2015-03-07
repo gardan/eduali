@@ -15,8 +15,8 @@ namespace Ilc.Web.Filters.Response
             var response = (FilteredDataModel<TrainingModel>)responseDto;
             foreach (var trainingModel in response.Data)
             {
-                trainingModel.StatusFriendlyName = StatusService.Translate(trainingModel.Status);
-                trainingModel.StatusWeight = (decimal) TrainingStatus.GetWeight(trainingModel.Status);
+                //trainingModel.StatusFriendlyName = StatusService.Translate(trainingModel.Status);
+                //trainingModel.StatusWeight = (decimal) TrainingStatus.GetWeight(trainingModel.Status);
             }
         }
     }

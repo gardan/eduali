@@ -49,20 +49,20 @@ namespace Ilc.Web.Services.Tasks.Training
 
             var data = new List<TaskModel>();
 
-            foreach (var training in trainings)
-            {
-                if (training.Status == TrainingStatus.Complete) continue;
-
-                var task = new TaskModel();
-                task.Id = training.Id;
-                task.Action = Char.ToLowerInvariant(training.Status[0]) + training.Status.Substring(1);
-                task.Name = training.Status;
-                task.CustomerName = training.Customer != null ? training.Customer.Name : "";
-                task.TaskObject = new TrainingModel().InjectFrom<TrainingToWebModel>(training) as TrainingModel;
-
-                data.Add(task);
-
-            }
+//            foreach (var training in trainings)
+//            {
+//                if (training.Status == TrainingStatus.Complete) continue;
+//
+//                var task = new TaskModel();
+//                task.Id = training.Id;
+//                task.Action = Char.ToLowerInvariant(training.Status[0]) + training.Status.Substring(1);
+//                task.Name = training.Status;
+//                task.CustomerName = training.Customer != null ? training.Customer.Name : "";
+//                task.TaskObject = new TrainingModel().InjectFrom<TrainingToWebModel>(training) as TrainingModel;
+//
+//                data.Add(task);
+//
+//            }
 
             return new FilteredDataModel<TaskModel>()
                 {
@@ -354,7 +354,7 @@ namespace Ilc.Web.Services.Tasks.Training
 
             if (request.StudentId == 0)
             {
-                training.Status = TrainingStatus.Complete;
+                // training.Status = TrainingStatus.Complete;
                 training.Complete = true;
                 Trainings.Update(training);
             }

@@ -100,6 +100,16 @@ namespace Ilc.Web.InjectorConventions
 //                        Sales = config.SalesId 
 //                    };
 //            }
+            if (c.SourceProp.Name == "Status" && c.TargetProp.Name == "Status")
+            {
+                var status = (StatusDictionary) c.SourceProp.Value;
+                if (status != null)
+                {
+                    return new StatusModel().InjectFrom(status);
+                }
+                return null;
+            }
+
             if (c.SourceProp.Name == "DateOfValidation" && c.TargetProp.Name == "DateOfValidation")
             {
                 return ((DateTimeOffset) c.SourceProp.Value).DateTime;

@@ -18,7 +18,7 @@ namespace Ilc.Infrastructure.Services
             if (user == null) return status;
             var statusDictionary = Uow.StatusDictionary.GetAll().FirstOrDefault(s => s.Name == status && s.CompanyId == user.CompanyId);
 
-            if (statusDictionary != null) return statusDictionary.FriendlyName;
+            // if (statusDictionary != null) return statusDictionary.FriendlyName;
 
             throw new KeyNotFoundException("Status : " + status + " was not found.");
         }

@@ -24,7 +24,7 @@ namespace Ilc.Infrastructure.Workflows.Activities.Training
 
             var training = uow.Trainings.GetById(trainingId);
             // Set status
-            training.Status = newStatus;
+            // training.Status = newStatus;
 
             // Set new owners
             foreach (var owner in training.Owners.ToList())

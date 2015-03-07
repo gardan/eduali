@@ -74,7 +74,7 @@ namespace Ilc.Core.Services
             // 2.4. Templates, maybe?
             var roles = CompanyDefaults.CreateRoles(newCompany.Id);
             CompanyDefaults.CreateSubjects(newCompany.Id);
-            CompanyDefaults.CreateStatusDefinitions(newCompany.Id);
+            // CompanyDefaults.CreateStatusDefinitions(newCompany.Id);
             
             // 3. Create the defaults user
             initialUser.CompanyId = newCompany.Id;

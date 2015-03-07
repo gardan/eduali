@@ -10,11 +10,15 @@
             }
         },
         {
-            dataIndex: 'statusFriendlyName',
+            dataIndex: 'status',
             flex: 1,
             text: Ilc.resources.Manager.getResourceString('common.status'),
             filter: {
                 type: 'string'
+            },
+            renderer: function (value) {
+                if (!value) return 'Invalid status, please assign';
+                return value.name;
             }
         },
         {

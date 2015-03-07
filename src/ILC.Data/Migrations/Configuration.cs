@@ -212,7 +212,7 @@ namespace Ilc.Data.Migrations
                 if (record == null)
                 {
                     context.StatusDictionaries.AddOrUpdate(s => new { s.Name, s.CompanyId },
-                    new StatusDictionary() { CompanyId = 1, Name = status, FriendlyName = status });
+                    new StatusDictionary() { CompanyId = 1, Name = status });
                 }
             }
             context.SaveChanges();

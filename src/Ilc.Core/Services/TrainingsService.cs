@@ -20,7 +20,7 @@ namespace Ilc.Core.Services
             // set defaults
             parameters.Length = parameters.Length == 0 ? 100 : parameters.Length;
 
-            IQueryable<Training> query = Uow.Trainings.GetAll().Where(t => t.CustomerId == null && t.Status == TrainingStatus.PendingValidation);
+            IQueryable<Training> query = Uow.Trainings.GetAll().Where(t => t.CustomerId == null); //  && t.Status == TrainingStatus.PendingValidation
 
             var totalResults = query.Count();
             var totalDisplayRecords = totalResults;
@@ -92,19 +92,19 @@ namespace Ilc.Core.Services
                         var id = Convert.ToInt32(inFilter.Value);
                         query = query.Where(t => t.Id == id);
                         break;
-                    case "statusFriendlyName":
-                        // http://www.albahari.com/nutshell/predicatebuilder.aspx
-                        var statusDefinitions = Uow.StatusDictionary.GetAll().Where(s => s.FriendlyName.Contains(inFilter.Value)).ToList();
-                        
-                        var predicate = PredicateBuilder.False<Training>();
-
-                        foreach (var statusDefinition in statusDefinitions)
-                        {
-                            string temp = statusDefinition.Name;
-                            predicate = predicate.Or(t => t.Status.Contains(temp));
-                        }
-                        query = query.AsExpandable().Where(predicate);
-                        break;
+//                    case "statusFriendlyName":
+//                        // http://www.albahari.com/nutshell/predicatebuilder.aspx
+//                        var statusDefinitions = Uow.StatusDictionary.GetAll().Where(s => s.FriendlyName.Contains(inFilter.Value)).ToList();
+//                        
+//                        var predicate = PredicateBuilder.False<Training>();
+//
+//                        foreach (var statusDefinition in statusDefinitions)
+//                        {
+//                            string temp = statusDefinition.Name;
+//                            predicate = predicate.Or(t => t.Status.Contains(temp));
+//                        }
+//                        query = query.AsExpandable().Where(predicate);
+//                        break;
                     case "customer":
                         query = query.Where(t => t.Customer.Name.Contains(inFilter.Value));
                         break;

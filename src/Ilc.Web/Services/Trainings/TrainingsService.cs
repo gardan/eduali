@@ -28,7 +28,7 @@ namespace Ilc.Web.Services.Trainings
         public IStudentsService Students { get; set; }
 
         [IlcAuth]
-        [ModelWithStatusResponseFilter]
+        // [ModelWithStatusResponseFilter]
         public FilteredDataModel<TrainingModel> Get(FilterParametersTrainings request)
         {
 
@@ -105,7 +105,7 @@ namespace Ilc.Web.Services.Trainings
                     DesiredEndDate = request.DesiredEndDate,
                     // GradingSystemId = request.GradingSystemId,
                     Location = request.Location,
-                    Status = "Rfi",
+                    //Status = "Rfi",
                     // Students = students,
                     //TrainerId = request.TrainerId,
                     CustomerId = request.CustomerId == 0 ? (int?) null : request.CustomerId,
@@ -168,64 +168,64 @@ namespace Ilc.Web.Services.Trainings
 
 
             // update the owner configuration if one exists
-            if (request.WorkflowOwners != null)
-            {
-                var config = training.OwnersConfiguration;
-                var updateConfig = false;
-                var newOwnerId = 0;
-                if (config.SalesId != request.WorkflowOwners.Sales)
-                {
-                    config.SalesId = request.WorkflowOwners.Sales;
-                    updateConfig = true;
-
-                    if (training.Status == TrainingStatus.Rfi || training.Status == TrainingStatus.Offer)
-                    {
-                        newOwnerId = config.SalesId;
-
-                    }
-                }
-
-                if (config.CoordinatorId != request.WorkflowOwners.Coordinator)
-                {
-                    config.CoordinatorId = request.WorkflowOwners.Coordinator;
-                    updateConfig = true;
-
-                    if (training.Status == TrainingStatus.Interview)
-                    {
-                        newOwnerId = config.CoordinatorId;
-                        training.Owners = new[] { Uow.UserProfiles.GetById(config.CoordinatorId) };
-                    }
-                }
-
-                if (config.AdministrationId != request.WorkflowOwners.Administration)
-                {
-                    config.AdministrationId = request.WorkflowOwners.Administration;
-                    updateConfig = true;
-
-                    if (training.Status == TrainingStatus.PlanInterview || training.Status == TrainingStatus.Accepted || training.Status == TrainingStatus.Rejected)
-                    {
-                        newOwnerId = config.AdministrationId;
-                        training.Owners = new[] { Uow.UserProfiles.GetById(config.AdministrationId) };
-                    }
-                }
-                if (updateConfig)
-                {
-                    Uow.TrainingOwnersConfiguration.Update(config);
-                    if (newOwnerId > 0)
-                    {
-                        training.Owners = new List<UserProfile>() { Uow.UserProfiles.GetById(newOwnerId) };
-
-                        Uow.Trainings.Update(training);
-                        Uow.Commit();
-
-                        var ownerToBeDeleted = training.Owners.First(u => u.Id != newOwnerId);
-                        training.Owners.Remove(ownerToBeDeleted);
-
-                        Uow.Trainings.Update(training);
-                        Uow.Commit();
-                    }
-                }
-            }
+//            if (request.WorkflowOwners != null)
+//            {
+//                var config = training.OwnersConfiguration;
+//                var updateConfig = false;
+//                var newOwnerId = 0;
+//                if (config.SalesId != request.WorkflowOwners.Sales)
+//                {
+//                    config.SalesId = request.WorkflowOwners.Sales;
+//                    updateConfig = true;
+//
+//                    if (training.Status == TrainingStatus.Rfi || training.Status == TrainingStatus.Offer)
+//                    {
+//                        newOwnerId = config.SalesId;
+//
+//                    }
+//                }
+//
+//                if (config.CoordinatorId != request.WorkflowOwners.Coordinator)
+//                {
+//                    config.CoordinatorId = request.WorkflowOwners.Coordinator;
+//                    updateConfig = true;
+//
+//                    if (training.Status == TrainingStatus.Interview)
+//                    {
+//                        newOwnerId = config.CoordinatorId;
+//                        training.Owners = new[] { Uow.UserProfiles.GetById(config.CoordinatorId) };
+//                    }
+//                }
+//
+//                if (config.AdministrationId != request.WorkflowOwners.Administration)
+//                {
+//                    config.AdministrationId = request.WorkflowOwners.Administration;
+//                    updateConfig = true;
+//
+//                    if (training.Status == TrainingStatus.PlanInterview || training.Status == TrainingStatus.Accepted || training.Status == TrainingStatus.Rejected)
+//                    {
+//                        newOwnerId = config.AdministrationId;
+//                        training.Owners = new[] { Uow.UserProfiles.GetById(config.AdministrationId) };
+//                    }
+//                }
+//                if (updateConfig)
+//                {
+//                    Uow.TrainingOwnersConfiguration.Update(config);
+//                    if (newOwnerId > 0)
+//                    {
+//                        training.Owners = new List<UserProfile>() { Uow.UserProfiles.GetById(newOwnerId) };
+//
+//                        Uow.Trainings.Update(training);
+//                        Uow.Commit();
+//
+//                        var ownerToBeDeleted = training.Owners.First(u => u.Id != newOwnerId);
+//                        training.Owners.Remove(ownerToBeDeleted);
+//
+//                        Uow.Trainings.Update(training);
+//                        Uow.Commit();
+//                    }
+//                }
+//            }
 
             Uow.Trainings.Update(training);
 

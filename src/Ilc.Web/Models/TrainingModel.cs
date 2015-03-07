@@ -69,7 +69,9 @@ namespace Ilc.Web.Models
         /// </summary>
         public bool Joined { get; set; }
 
-        public decimal StatusWeight { get; set; }
+        // public decimal StatusWeight { get; set; }
+
+        public StatusModel Status { get; set; }
     }
 
     public class TrainingOwnersConfigurationModel
@@ -79,10 +81,11 @@ namespace Ilc.Web.Models
         public int Coordinator { get; set; }
     }
 
-    public abstract class StatusModel
+    public class StatusModel
     {
-        public string Status { get; set; }
-        public string StatusFriendlyName { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Weight { get; set; }
     }
 
     public class InterviewPlanApiModel

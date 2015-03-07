@@ -39,10 +39,10 @@ namespace Ilc.Infrastructure.Services
             {
                 var innerTraining = training;
                 // Skip if training status is smaller or equal to accepted
-                if (TrainingStatus.GetWeight(training.Status) <= TrainingStatus.GetWeight(TrainingStatus.Offer))
-                {
-                    continue;
-                }
+//                if (TrainingStatus.GetWeight(training.Status) <= TrainingStatus.GetWeight(TrainingStatus.Offer))
+//                {
+//                    continue;
+//                }
 
                 var selectedOffer = training.Offers.FirstOrDefault(o => o.Selected);
 

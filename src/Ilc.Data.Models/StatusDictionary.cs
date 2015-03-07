@@ -10,6 +10,7 @@ namespace Ilc.Data.Models
     public class StatusDictionary : CompanyBaseEntity
     {
         public string Name { get; set; }
-        public string FriendlyName { get; set; }
+        public int Weight { get; set; }
+        // public string FriendlyName { get; set; }
     }
 }

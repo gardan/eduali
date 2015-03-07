@@ -91,8 +91,8 @@ namespace Ilc.Core.Services
                 var definition = new StatusDictionary()
                     {
                         CompanyId = companyId,
-                        Name = status,
-                        FriendlyName = status
+                        Name = status
+                        // FriendlyName = status
                     };
                 Uow.StatusDictionary.Add(definition);
             }

@@ -21,7 +21,11 @@ namespace Ilc.Data.Models
         public DateTimeOffset DesiredEndDate { get; set; }
 
         public string Location { get; set; }
-        public string Status { get; set; }
+
+        public int? StatusId { get; set; }
+        [ForeignKey("StatusId")]
+        public virtual StatusDictionary Status { get; set; }
+        
         public int SubjectId { get; set; }
         [ForeignKey("SubjectId")]
         public virtual Subject Subject { get; set; }
