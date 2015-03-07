@@ -40,14 +40,15 @@ namespace Ilc.Web.Services
     public class StatusDefinitionUpdateModel
     {
         public int Id { get; set; }
-        public string FriendlyName { get; set; }
+        public string Name { get; set; }
+        public int Weight { get; set; }
     }
 
     public class StatusDefinionModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string FriendlyName { get; set; }
+        public int Weight { get; set; }
     }
 
     public class FilterStatusDefinitionsParameters : FilterArgumentsStatusDefinitions { }

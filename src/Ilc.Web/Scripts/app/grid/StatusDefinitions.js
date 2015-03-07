@@ -8,8 +8,8 @@
             flex: 0.20
         },
         {
-            text: Ilc.resources.Manager.getResourceString('common.friendlyName'),
-            dataIndex: 'friendlyName',
+            text: Ilc.resources.Manager.getResourceString('common.weight'),
+            dataIndex: 'weight',
             flex: 0.80
         }
     ],

@@ -24,9 +24,15 @@
         me.items = [
             {
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.friendlyName'),
-                name: 'friendlyName',
-                value: me.statusDefinition.get('friendlyName')
-            }
+                name: 'name',
+                value: me.statusDefinition.get('name')
+            },
+            {
+                xtype: 'numericfield',
+                fieldLabel: 'Weight',
+                name: 'weight',
+                value: me.statusDefinition.get('weight')
+            },
         ];
 
         me.buttons = [
