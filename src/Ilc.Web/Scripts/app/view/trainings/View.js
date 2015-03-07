@@ -525,6 +525,12 @@
                 value: new Date(this.model.get('desiredEndDate')),
                 format: 'Y-m-d',
                 name: 'desiredEndDate'
+            },
+            {
+                xtype: 'textfield',
+                disabled: true,
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.status'),
+                value: this.model.get('status').name
             }
         ];
 
