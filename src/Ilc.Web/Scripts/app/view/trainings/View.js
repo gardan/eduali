@@ -14,7 +14,7 @@
         'Ilc.view.trainings.view.Expenses',
         'Ilc.view.trainings.view.Students',
         'Ilc.view.stakeholders.List'
-        
+
     ],
     width: 900,
 
@@ -78,7 +78,7 @@
 
         var documentsStore = Ext.create('Ext.data.Store', {
             fields: ['name', 'url', 'creator', 'createDate'],
-            
+
             proxy: {
                 type: 'rest',
                 url: 'api/files',
@@ -97,7 +97,7 @@
             rootVisible: false,
             columnWidth: 0.40,
             minHeight: 100,
-            width : 200,
+            width: 200,
             collapsible: true,
             region: 'west'
         });
@@ -117,7 +117,7 @@
                         return '<a href="' +
                             record.get('url') +
                             '" target="_blank">' +
-                            value + 
+                            value +
                             '</a>';
                     }
 
@@ -143,7 +143,7 @@
 
         // General
         var trainersStore = Ext.create('Ilc.store.Trainers');
-        
+
         var salesUsersStore = Ext.create('Ilc.store.Users', {
             claims: 'tasks-sales'
         });
@@ -172,7 +172,7 @@
                     trainersComboBox.select(record);
                 }
             });
-            
+
         });
 
         trainersStore.load({
@@ -226,7 +226,7 @@
                         createDate: '2013-12-12T12:34:45'
                     });
                     break;
-                case 'exams': 
+                case 'exams':
                     documentsStore.add({
                         name: 'Gheorghe Ion',
                         url: 'http://localhost:54877/pdf/exams/1',
@@ -242,9 +242,9 @@
                         createDate: '2013-12-12T12:34:45'
                     });
                     break;
-            default:
+                default:
             }
-            
+
         });
 
         documentsTree.on('itemcontextmenu', function (view, record, node, index, event) {
@@ -280,42 +280,20 @@
                 items: [
                     {
                         xtype: 'panel',
-                        
+
                         title: 'General',
                         defaults: {
                             bodyPadding: 10,
                             margin: 5,
                             labelWidth: 150
                         },
-                        items: [
-                            {
-                                xtype: 'textfield',
-                                fieldLabel: Ilc.resources.Manager.getResourceString('common.location'),
-                                name: 'location',
-                                value: model.get('location')
-                                
-                            },
-                            {
-                                xtype: 'datefield',
-                                fieldLabel: Ilc.resources.Manager.getResourceString('common.startDate'),
-                                value: new Date(model.get('desiredStartDate')),
-                                format: 'Y-m-d',
-                                name: 'desiredStartDate'
-                            },
-                            {
-                                xtype: 'datefield',
-                                fieldLabel: Ilc.resources.Manager.getResourceString('common.endDate'),
-                                value: new Date(model.get('desiredEndDate')),
-                                format: 'Y-m-d',
-                                name: 'desiredEndDate'
-                            }
-                        ],
+                        items: me.getGeneralItems(),
                         buttons: [
                             {
                                 text: Ilc.resources.Manager.getResourceString('common.update'),
                                 handler: function (btn) {
                                     var controls = btn.up().up().items.items.slice(0, 5);
-                                    
+
                                     var args = Ilc.utils.Forms.extractModel(controls);
                                     args.id = model.get('id');
 
@@ -324,7 +302,7 @@
                             },
                             {
                                 text: Ilc.resources.Manager.getResourceString('common.cancel'),
-                                handler: function() {
+                                handler: function () {
                                     me.close();
                                 }
                             }
@@ -359,7 +337,7 @@
                                                     training: me.model,
                                                     closeAction: 'destroy'
                                                 });
-                                                
+
                                                 window.on('added-students', function (options) {
                                                     studentsStore.loadRawData(options.addedStudents, true);
                                                 });
@@ -524,5 +502,31 @@
         );
 
         me.callParent(arguments);
+    },
+
+    getGeneralItems: function () {
+        return [
+            {
+                xtype: 'textfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.location'),
+                name: 'location',
+                value: this.model.get('location')
+            },
+            {
+                xtype: 'datefield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.startDate'),
+                value: new Date(this.model.get('desiredStartDate')),
+                format: 'Y-m-d',
+                name: 'desiredStartDate'
+            },
+            {
+                xtype: 'datefield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.endDate'),
+                value: new Date(this.model.get('desiredEndDate')),
+                format: 'Y-m-d',
+                name: 'desiredEndDate'
+            }
+        ];
+
     }
 });

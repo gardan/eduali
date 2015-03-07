@@ -22,7 +22,8 @@
                 trainingupdated: function () {
                     console.log('trainingupdated');
                     this.trainingsStore.reload();
-                }
+                },
+                scope: this
             },
         });
 
