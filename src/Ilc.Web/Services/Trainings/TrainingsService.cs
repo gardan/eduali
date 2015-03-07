@@ -144,6 +144,12 @@ namespace Ilc.Web.Services.Trainings
             var training = Trainings.GetById(request.Id);
             var interviewPlan = training.InterviewPlans.FirstOrDefault();
 
+            // Update the status if one exists
+            if (request.StatusId > 0)
+            {
+                training.StatusId = request.StatusId;
+            }
+
             // Update the trainer
             training.TrainerId = request.TrainerId == 0 
                                     ? training.TrainerId 
@@ -244,6 +250,7 @@ namespace Ilc.Web.Services.Trainings
         public DateTime InterviewDate { get; set; }
         public DateTime DesiredStartDate { get; set; }
         public int TrainerId { get; set; }
+        public int StatusId { get; set; }
         public int Id { get; set; }
         public TrainingOwnersConfigurationModel WorkflowOwners { get; set; }
     }

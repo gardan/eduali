@@ -23,6 +23,7 @@ namespace Ilc.Web.Services
 
             return new ClientConfigurationModel()
                 {
+                    UserId = user.Id,
                     Username = user.Email,
                     FirstName = user.UserDetails.FirstName,
                     LastName = user.UserDetails.LastName,
@@ -40,6 +41,7 @@ namespace Ilc.Web.Services
             TrainerId = -1;
         }
 
+        public int UserId { get; set; }
         public string Username { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

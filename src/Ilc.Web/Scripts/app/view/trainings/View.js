@@ -504,7 +504,64 @@
         me.callParent(arguments);
     },
 
+    getGeneralItemsForOwner: function () {
+        var me = this;
+        var statusStore = Ext.create('Ilc.store.StatusDefinitions'),
+            stakeholdersStore = '',
+            statusCombo = Ext.create('Ext.form.field.ComboBox', {
+                xtype: 'combobox',
+                store: statusStore,
+                displayField: 'name',
+                valueField: 'id',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.status'),
+                anchor: '100%',
+                name: 'statusId',
+                queryMode: 'local'
+            }),
+            initialLoadHandler = function (store, records) {
+                Ext.Array.forEach(records, function (record) {
+                    if (me.model.get('status').id === record.get('id')) {
+                        statusCombo.select(record);
+                    }
+                });
+                statusStore.un('load', initialLoadHandler);
+            };
+
+
+        statusStore.on('load', initialLoadHandler);
+        statusStore.load();
+        return [
+            {
+                xtype: 'textfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.location'),
+                name: 'location',
+                value: this.model.get('location')
+            },
+            {
+                xtype: 'datefield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.startDate'),
+                value: new Date(this.model.get('desiredStartDate')),
+                format: 'Y-m-d',
+                name: 'desiredStartDate'
+            },
+            {
+                xtype: 'datefield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.endDate'),
+                value: new Date(this.model.get('desiredEndDate')),
+                format: 'Y-m-d',
+                name: 'desiredEndDate'
+            },
+            statusCombo
+        ];
+    },
+
     getGeneralItems: function () {
+        var currentUserId = Ilc.Configuration.getValue('userId'),
+            isAdministrator = Ilc.Configuration.claimExists('tasks-administrator');
+        if (R.filter(R.propEq('id', currentUserId), this.model.get('owners')).length > 0 || isAdministrator) {
+            return this.getGeneralItemsForOwner();
+        }
+
         return [
             {
                 xtype: 'textfield',
@@ -531,6 +588,12 @@
                 disabled: true,
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.status'),
                 value: this.model.get('status').name
+            },
+            {
+                xtype: 'textfield',
+                disabled: true,
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.status'),
+                value: R.reduce(function (acc, item) { return acc + item.fullName + ', '; }, '', this.model.get('owners')).slice(0, -2)
             }
         ];
 
