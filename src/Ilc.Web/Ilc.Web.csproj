@@ -212,6 +212,7 @@
     <Content Include="Scripts\app\model\Claim.js" />
     <Content Include="Scripts\app\model\ContactTraining.js" />
     <Content Include="Scripts\app\model\create\Offer.js" />
+    <Content Include="Scripts\app\model\create\Status.js" />
     <Content Include="Scripts\app\model\CustomerLog.js" />
     <Content Include="Scripts\app\model\edit\Offer.js" />
     <Content Include="Scripts\app\model\ExpenseType.js" />
@@ -489,6 +490,7 @@
     <Content Include="Scripts\app\view\stakeholders\List.js" />
     <Content Include="Scripts\app\view\statistics\Types.js" />
     <Content Include="Scripts\app\view\statistics\View.js" />
+    <Content Include="Scripts\app\view\statusDefinitions\Create.js" />
     <Content Include="Scripts\app\view\statusDefinitions\Edit.js" />
     <Content Include="Scripts\app\view\statusDefinitions\List.js" />
     <Content Include="Scripts\app\view\students\component\Trainings.js" />

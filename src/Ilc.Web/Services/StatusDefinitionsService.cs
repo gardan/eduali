@@ -2,6 +2,7 @@
 using System.Net;
 using Ilc.Core;
 using Ilc.Core.Contracts;
+using Ilc.Data.Contracts;
 using Ilc.Data.Models;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
@@ -11,6 +12,8 @@ namespace Ilc.Web.Services
 {
     public class StatusDefinitionsService : Service
     {
+        public IUow Uow { get; set; }
+        public IUsersService Users { get; set; }
         public IStatusDefinitionsService StatusDefinitions { get; set; }
 
         public FilteredDataModel<StatusDefinionModel> Get(FilterStatusDefinitionsParameters request)
@@ -35,6 +38,27 @@ namespace Ilc.Web.Services
                     StatusCode = HttpStatusCode.OK
                 };
         }
+
+        public HttpResult Post(CreateStatusDefinitionModel request)
+        {
+            var newStatus = new StatusDictionary().InjectFrom(request) as StatusDictionary;
+            newStatus.CompanyId = Users.GetByEmail().CompanyId;
+
+            Uow.StatusDictionary.Add(newStatus);
+            Uow.Commit();
+
+            return new HttpResult()
+            {
+                StatusCode = HttpStatusCode.Created
+            };
+        }
+    }
+
+    [Route("/statusDefinitions", "POST")]
+    public class CreateStatusDefinitionModel
+    {
+        public string Name { get; set; }
+        public int Weight { get; set; }
     }
 
     public class StatusDefinitionUpdateModel
