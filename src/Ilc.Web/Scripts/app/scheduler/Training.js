@@ -236,7 +236,6 @@
         });
 
         me.eventStore.on('add', function () {
-            debugger;
             var data = [];
             me.eventStore.each(function (record) {
                 if (record.get('Cls') == '') {

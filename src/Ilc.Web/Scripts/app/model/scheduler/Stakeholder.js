@@ -3,11 +3,8 @@
     
     fields: ['id', 'email', 'fullName', 'userInfo', 'roles'],
 
+    idProperty: 'id',
     nameField: 'fullName',
-
-    get : function() {
-        return 'asdasd';
-    },
 
     proxy: {
         type: 'rest',

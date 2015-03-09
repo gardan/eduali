@@ -9,14 +9,15 @@ namespace Ilc.Web.InjectorConventions
         protected override bool Match(ConventionInfo c)
         {
             return c.SourceProp.Name == c.TargetProp.Name ||
-                (c.SourceProp.Name == "TrainerId" && c.TargetProp.Name == "ResourceId");
+                (c.SourceProp.Name == "Trainer" && c.TargetProp.Name == "ResourceId");
         }
 
         protected override object SetValue(ConventionInfo c)
         {
-            if (c.SourceProp.Name == "TrainerId" && c.TargetProp.Name == "ResourceId")
+            if (c.SourceProp.Name == "Trainer" && c.TargetProp.Name == "ResourceId")
             {
-                return c.SourceProp.Value;
+                var trainer = (Trainer) c.SourceProp.Value;
+                return trainer.UserProfileId;
             }
             if (c.SourceProp.Name == "StartDate" || c.SourceProp.Name == "EndDate")
             {

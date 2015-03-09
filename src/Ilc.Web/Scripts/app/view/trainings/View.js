@@ -558,6 +558,8 @@
     getGeneralItems: function () {
         var currentUserId = Ilc.Configuration.getValue('userId'),
             isAdministrator = Ilc.Configuration.claimExists('tasks-administrator');
+        
+        // Can the user edit status or owners?
         if (R.filter(R.propEq('id', currentUserId), this.model.get('owners')).length > 0 || isAdministrator) {
             return this.getGeneralItemsForOwner();
         }
