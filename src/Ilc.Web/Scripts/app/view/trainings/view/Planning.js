@@ -71,7 +71,8 @@
             startDate: newEventRecord.get('StartDate'),
             endDate: newEventRecord.get('EndDate'),
             lessonName: newEventRecord.get('Name'),
-            trainingId: container.entity.get('id')
+            trainingId: container.entity.get('id'),
+            ownerId: newEventRecord.get('ResourceId')
         };
         
         container.fireEvent('createlesson', container, model);
