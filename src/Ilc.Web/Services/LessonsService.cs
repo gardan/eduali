@@ -121,7 +121,7 @@ namespace Ilc.Web.Services
                             StartDate = day.StartDate.DateTime,
                             EndDate = day.EndDate.DateTime,
                             Name = day.LessonName,
-                            ResourceId = training.TrainerId ?? 0, // This must be the trainerId
+                            ResourceId = day.OwnerId,
                             Color = training.Color,
                             CustomerName = training.Customer == null ? "" : training.Customer.Name,
                             SubjectName = training.Subject.Name,
