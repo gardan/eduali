@@ -110,6 +110,15 @@ namespace Ilc.Web.InjectorConventions
                 return null;
             }
 
+            if (c.SourceProp.Name == "StakeHolders" && c.TargetProp.Name == "StakeHolders")
+            {
+                var list = c.SourceProp.Value as ICollection<UserProfile>;
+                if (list != null)
+                    return
+                        list.Select(sh => new UserModel().InjectFrom<UserProfileToUserModel>(sh) as UserModel).ToArray();
+                return new List<UserModel>();
+            }
+
             if (c.SourceProp.Name == "DateOfValidation" && c.TargetProp.Name == "DateOfValidation")
             {
                 return ((DateTimeOffset) c.SourceProp.Value).DateTime;

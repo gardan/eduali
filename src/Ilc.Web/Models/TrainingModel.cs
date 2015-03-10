@@ -72,6 +72,7 @@ namespace Ilc.Web.Models
         // public decimal StatusWeight { get; set; }
 
         public StatusModel Status { get; set; }
+        public UserModel[] StakeHolders { get; set; }
     }
 
     public class TrainingOwnersConfigurationModel

@@ -233,6 +233,28 @@ namespace Ilc.Web.Services.Trainings
 //                }
 //            }
 
+            var justLoad = training.Owners.ToList();
+
+            // Who to remove?
+            foreach (var userProfile in justLoad)
+            {
+                if (request.Owners.FirstOrDefault(owner => owner.Id == userProfile.Id) == null)
+                {
+                    training.Owners.Remove(userProfile);
+                }
+            }
+
+            // Who to add?
+            foreach (var userModel in request.Owners)
+            {
+                if (training.Owners.FirstOrDefault(owner => owner.Id == userModel.Id) == null)
+                {
+                    training.Owners.Add(Users.GetById(userModel.Id));
+                }
+            }
+
+            
+
             Uow.Trainings.Update(training);
 
             Uow.Commit();
@@ -253,5 +275,6 @@ namespace Ilc.Web.Services.Trainings
         public int StatusId { get; set; }
         public int Id { get; set; }
         public TrainingOwnersConfigurationModel WorkflowOwners { get; set; }
+        public UserModel[] Owners { get; set; }
     }
 }

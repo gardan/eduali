@@ -39,7 +39,7 @@
 
         this.stakeholdersBoxSelect = Ext.create('Ext.ux.form.field.BoxSelect', {
             store: usersStore,
-            displayField: 'email',
+            displayField: 'fullName',
             valueField: 'id',
             fieldLabel: Ilc.resources.Manager.getResourceString('common.stakeholders'),
             anchor: '100%',

@@ -507,7 +507,7 @@
     getGeneralItemsForOwner: function () {
         var me = this;
         var statusStore = Ext.create('Ilc.store.StatusDefinitions'),
-            stakeholdersStore = '',
+            stakeholdersStore = Ext.create('Ilc.store.Users'),
             statusCombo = Ext.create('Ext.form.field.ComboBox', {
                 xtype: 'combobox',
                 store: statusStore,
@@ -530,6 +530,30 @@
 
         statusStore.on('load', initialLoadHandler);
         statusStore.load();
+
+        stakeholdersStore.loadRawData(me.model.get('stakeHolders'));
+        var ownersCombo = Ext.create('Ext.form.field.ComboBox', {
+            xtype: 'combobox',
+            multiSelect: true,
+            store: stakeholdersStore,
+            displayField: 'fullName',
+            valueField: 'id',
+            fieldLabel: Ilc.resources.Manager.getResourceString('common.owners'),
+            anchor: '100%',
+            name: 'owners',
+            queryMode: 'local'
+        });
+
+        var selectedRecords = stakeholdersStore.queryBy(function(user) {
+            var foundUser = R.find(function(owner) {
+                return owner.id === user.get('id');
+            }, me.model.get('owners'));
+            if (foundUser === undefined) return false;
+            return true;
+        });
+
+        ownersCombo.select(selectedRecords.items);
+
         return [
             {
                 xtype: 'textfield',
@@ -551,7 +575,8 @@
                 format: 'Y-m-d',
                 name: 'desiredEndDate'
             },
-            statusCombo
+            statusCombo,
+            ownersCombo
         ];
     },
 
