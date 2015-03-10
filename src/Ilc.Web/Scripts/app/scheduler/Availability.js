@@ -153,18 +153,18 @@
                     width: 130,
                     dataIndex: 'fullName'
                 },
-                {
-                    header: Ilc.resources.Manager.getResourceString('common.subjects'),
-                    width: 130,
-                    dataIndex: 'subjects',
-                    renderer: function (value) {
-                        var ret = '';
-                        Ext.Array.forEach(value, function (subject) {
-                            ret += subject.name + ', ';
-                        });
-                        return ret.substring(0, ret.length - 2);
-                    }
-                }
+//                {
+//                    header: Ilc.resources.Manager.getResourceString('common.subjects'),
+//                    width: 130,
+//                    dataIndex: 'subjects',
+//                    renderer: function (value) {
+//                        var ret = '';
+//                        Ext.Array.forEach(value, function (subject) {
+//                            ret += subject.name + ', ';
+//                        });
+//                        return ret.substring(0, ret.length - 2);
+//                    }
+//                }
             ],
             bbar: Ext.create('Ext.PagingToolbar', {
                 store: me.resourceStore,
