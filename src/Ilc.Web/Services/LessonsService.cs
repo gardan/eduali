@@ -72,10 +72,10 @@ namespace Ilc.Web.Services
             }
 
             // Get the other scheduled lessons, for overlaying purposes
-            if (request.Overlay && false == true)
+            if (request.Overlay)
             {
                 var trainings =
-                    Uow.Trainings.GetAll().Where(t => t.TrainerId == training.TrainerId && t.Id != training.Id).ToList();
+                    Uow.Trainings.GetAll().Where(t => t.Id != training.Id).ToList();
 
                 foreach (var nonRelatedTraining in trainings)
                 {
@@ -87,7 +87,7 @@ namespace Ilc.Web.Services
                                 StartDate = day.StartDate.DateTime,
                                 EndDate = day.EndDate.DateTime,
                                 Name = day.LessonName,
-                                ResourceId = training.TrainerId.GetValueOrDefault(), // day.Order,
+                                ResourceId = day.OwnerId, // day.Order,
                                 Resizable = false,
                                 Draggable = false,
                                 Cls = "disabled "
