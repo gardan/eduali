@@ -196,7 +196,7 @@
           //   me.requiredStudentsField,
             // me.priceField,
             me.customerComboBox,
-            me.contactsComboBox,
+            // me.contactsComboBox,
             subjectComboBox,
             // trainingSystemComboBox,
             {
