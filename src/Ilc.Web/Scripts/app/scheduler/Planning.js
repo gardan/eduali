@@ -74,7 +74,7 @@
                 {
                     header: Ilc.resources.Manager.getResourceString('common.trainer'),
                     width: 130,
-                    dataIndex: 'name'
+                    dataIndex: 'fullName'
                 },
                 {
                     header: Ilc.resources.Manager.getResourceString('common.subjects'),

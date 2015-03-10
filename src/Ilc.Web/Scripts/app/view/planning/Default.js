@@ -36,7 +36,7 @@
             resourceIdField: 'resourceId'
         });
 
-        var trainersStore = Ext.create('Ilc.store.scheduler.Trainers');
+        var trainersStore = Ext.create('Ilc.store.scheduler.Stakeholders');
         
         var eventlessonsStore = Ext.create('Sch.data.EventStore', {
             model: 'Ilc.model.scheduler.Lesson',
@@ -105,7 +105,14 @@
         me.addEvents(
             'updatelesson'
         );
-
+        
+        trainersStore.load = R.wrap(trainersStore.load, function (wrapped, options) {
+            options = options || {};
+            options.params = options.params || {};
+            
+            options.params.claims = 'tasks-trainer';
+            wrapped.call(trainersStore, options);
+        });
         trainersStore.load();
         eventlessonsStore.load();
 
