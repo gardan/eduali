@@ -8,7 +8,7 @@
     initComponent: function() {
         var me = this;
 
-        var resourceStore = Ext.create('Ilc.store.scheduler.Trainers');
+        var resourceStore = Ext.create('Ilc.store.scheduler.Stakeholders');
         var availabilitiesStore = Ext.create('Ilc.store.scheduler.Availability');
 
         me.items = [
@@ -20,6 +20,13 @@
         ];
 
 
+        resourceStore.load = R.wrap(resourceStore.load, function (wrapped, options) {
+            options = options || {};
+            options.params = options.params || {};
+
+            options.params.claims = 'tasks-trainer';
+            wrapped.call(resourceStore, options);
+        });
         resourceStore.load();
         me.callParent(arguments);
     }

@@ -15,6 +15,8 @@ namespace Ilc.Web.Services
     public class AvailabilityService : Service
     {
         public IAvailabilityService Availabilities { get; set; }
+        public ITrainersService Trainers { get; set; }
+        public IUsersService Users { get; set; }
         public IAvailabilityTemplatesService AvailabilityTemplates { get; set; }
 
         public FilteredDataModel<AvailabilityModel> Get(FilterParametersAvailability request)
@@ -60,7 +62,8 @@ namespace Ilc.Web.Services
                 {
                     foreach (var availability in availabilities)
                     {
-                        availability.TrainerId = resourceId;
+                        var trainer = Trainers.GetByUserId(resourceId);
+                        availability.TrainerId = trainer.Id;
                     }
 
                     Availabilities.Create(availabilities, request.Override);
