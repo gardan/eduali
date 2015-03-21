@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IdentityModel.Services;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Routing;
@@ -52,7 +54,13 @@ namespace Ilc.Web
 
         protected void Application_Error(object sender, EventArgs e)
         {
-
+            var error = Server.GetLastError();
+            var cryptoEx = error as CryptographicException;
+            if (cryptoEx != null)
+            {
+                FederatedAuthentication.WSFederationAuthenticationModule.SignOut();
+                Server.ClearError();
+            }
         }
 
         protected void Session_End(object sender, EventArgs e)

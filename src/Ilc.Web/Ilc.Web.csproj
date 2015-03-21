@@ -4373,6 +4373,7 @@
     <Compile Include="Models\UserInfoModel.cs" />
     <Compile Include="Cms\MyVirtualFile.cs" />
     <Compile Include="Cms\MyVirtualPathProvider.cs" />
+    <Compile Include="Modules\CustomMachineKeySession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\CreateStudentModel.cs" />
     <Compile Include="Models\CreateOfferModel.cs" />
