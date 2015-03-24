@@ -72,7 +72,9 @@ namespace Ilc.Data.Models
 
         public virtual ICollection<Assesment> Assesments { get; set; }
 
-        public virtual ICollection<Offer> DecoupledOffers { get; set; } 
+        public virtual ICollection<Offer> DecoupledOffers { get; set; }
+
+        public virtual ICollection<Expense> Expenses { get; set; }
 
         public Guid? WokrflowId { get; set; }
 

@@ -52,6 +52,11 @@ namespace Ilc.Web.InjectorConventions
 //                var interviewPlan = (c.SourceProp.Value as ICollection<InterviewPlan>);
 //                return interviewPlan.Count == 0 ? null : new InterviewPlanApiModel() { Date = interviewPlan.First().Date.DateTime, Location = interviewPlan.First().Location };
 //            }
+            if (c.SourceProp.Name == "Expenses" && c.TargetProp.Name == "Expenses")
+            {
+                var expenses = c.SourceProp.Value as ICollection<Expense>;
+                return expenses != null ? expenses.Sum(e => e.Ammount) : 0;
+            }
             if (c.SourceProp.Name == "Spendings" && c.TargetProp.Name == "Spendings")
             {
                 var spendings = c.SourceProp.Value as Spendings;

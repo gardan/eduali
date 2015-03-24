@@ -36,6 +36,8 @@ namespace Ilc.Web.Models
 
         public int SubjectId { get; set; }
         public int CustomerId { get; set; }
+        
+        public decimal Expenses { get; set; }
 
         public int TrainerId { get; set; }
         public int GradingSystemId { get; set; }

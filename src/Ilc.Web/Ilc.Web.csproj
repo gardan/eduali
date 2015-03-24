@@ -4465,6 +4465,7 @@
     <Content Include="Views\Templates\Email\CreatedAccountWithNoPassword.cshtml" />
     <Content Include="Views\Templates\Email\ForgotPasswordComplete.cshtml" />
     <Content Include="Views\Documents\Get.cshtml" />
+    <None Include="Properties\PublishProfiles\Release.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
