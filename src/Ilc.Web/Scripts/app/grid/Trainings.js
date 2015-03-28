@@ -74,12 +74,9 @@
             }
         },
         {
-            dataIndex: 'spendings',
+            dataIndex: 'expenses',
             text: 'Expenses',
             flex: 1,
-            renderer: function (value) {
-                return value.trainer + value.supplies + value.transport;
-            },
             filter: {
                 type: 'string'
             }
