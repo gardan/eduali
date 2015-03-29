@@ -108,6 +108,37 @@ Ext.application({
         Ext.view.View.prototype.emptyText = 'No data.';
         Ext.view.View.prototype.deferEmptyText = false;
 
+        Ext.panel.AbstractPanel.prototype.getErrors = function (fields, obj) {
+            var ret = {};
+            R.forEach(function(key) {
+                var isValid = !(obj[key] === undefined || obj[key] === null);
+                if (isValid) return;
+
+                ret[key] = 'Value is required.';
+
+            }, fields);
+
+            return ret;
+        };
+
+        Ext.panel.AbstractPanel.prototype.markAsInvalid = function(errors, textboxes) {
+            R.forEach(function(key) {
+                var error = errors[key];
+                var textbox = R.find(R.propEq('name', key), textboxes);
+
+                textbox.markInvalid(error);
+
+            }, R.keys(errors));
+        };
+        
+        Ext.panel.AbstractPanel.prototype.validate = function (fields, obj) {
+            var validationResults = R.map(function(key) {
+                return !(obj[key] === undefined || obj[key] === null);
+            }, fields);
+
+            return !R.contains(false, validationResults);
+        };
+
         // fix this: http://www.sencha.com/forum/showthread.php?268135-Grid-error-on-delete-selected-row
         Ext.view.Table.prototype.doStripeRows = function(startRow, endRow) {
             var me = this,
