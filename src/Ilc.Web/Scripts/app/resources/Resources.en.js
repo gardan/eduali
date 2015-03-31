@@ -28,6 +28,10 @@
         'common.newTraining': 'New training',
         'common.contact': 'Contact',
         'common.bankAccount': 'Bank account',
+        'common.bankName': 'Bank name',
+        'common.postcode': 'Postcode',
+        'common.customerId': 'Customer ID',
+
         'common.newCustomer': 'New customer',
         'common.edit': 'Edit',
         'common.delete': 'Delete',

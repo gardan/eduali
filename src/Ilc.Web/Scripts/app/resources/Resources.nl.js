@@ -26,6 +26,10 @@
         'common.newTraining': 'Nieuwe training',
         'common.contact': 'Contact',
         'common.bankAccount': 'Bankrekening',
+        'common.bankName': 'Bank naam',
+        'common.postcode': 'Postcode',
+        'common.customerId': 'Klant ID',
+
         'common.newCustomer': 'Nieuwe klant',
         'common.edit': 'Bijwerken',
         'common.delete': 'Verwijderen',

@@ -26,6 +26,10 @@
         'common.newTraining': 'Training nou',
         'common.contact': 'Contact',
         'common.bankAccount': 'Cont bancar',
+        'common.bankName': 'Nume bancă',
+        'common.postcode': 'Cod poștal',
+        'common.customerId': 'ID Client',
+
         'common.newCustomer': 'Client nou',
         'common.edit': 'Modifica',
         'common.delete': 'Sterge',

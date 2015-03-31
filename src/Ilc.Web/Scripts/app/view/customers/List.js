@@ -65,6 +65,13 @@
                     }
                 },
                 {
+                    dataIndex: 'customerId',
+                    text: Ilc.resources.Manager.getResourceString('common.customerId'),
+                    filter: {
+                        type: 'string'
+                    }
+                },
+                {
                     dataIndex: 'name',
                     text: Ilc.resources.Manager.getResourceString('common.name'),
                     flex: 1,
@@ -73,7 +80,67 @@
                     }
                 },
                 {
+                    dataIndex: 'billingAddress',
+                    text: Ilc.resources.Manager.getResourceString('common.billingAddress'),
+                    flex: 1,
+                    filter: {
+                        type: 'string'
+                    }
+                },
+
+                {
+                    dataIndex: 'postcode',
+                    text: Ilc.resources.Manager.getResourceString('common.postcode'),
+                    flex: 1,
+                    filter: {
+                        type: 'string'
+                    }
+                },
+                {
+                    dataIndex: 'city',
+                    text: Ilc.resources.Manager.getResourceString('common.city'),
+                    flex: 1,
+                    filter: {
+                        type: 'string'
+                    }
+                },
+                {
+                    dataIndex: 'country',
+                    text: Ilc.resources.Manager.getResourceString('common.country'),
+                    flex: 1,
+                    filter: {
+                        type: 'string'
+                    }
+                },
+                {
+                    dataIndex: 'phone',
+                    text: Ilc.resources.Manager.getResourceString('common.phone'),
+                    flex: 1,
+                    filter: {
+                        type: 'string'
+                    }
+                },
+                {
+                    dataIndex: 'bankName',
+                    hidden: !Ilc.Configuration.claimExists('read-customer-financial'),
+                    text: Ilc.resources.Manager.getResourceString('common.bankName'),
+                    flex: 1,
+                    filter: {
+                        type: 'string'
+                    }
+                },
+                {
+                    dataIndex: 'bankAccount',
+                    hidden: !Ilc.Configuration.claimExists('read-customer-financial'),
+                    text: Ilc.resources.Manager.getResourceString('common.bankAccount'),
+                    flex: 1,
+                    filter: {
+                        type: 'string'
+                    }
+                },
+                {
                     dataIndex: 'fiscalCode',
+                    hidden: !Ilc.Configuration.claimExists('read-customer-financial'),
                     text: Ilc.resources.Manager.getResourceString('common.fiscalCode'),
                     flex: 1,
                     filter: {
@@ -82,12 +149,14 @@
                 },
                 {
                     dataIndex: 'commerceNumber',
+                    hidden: !Ilc.Configuration.claimExists('read-customer-financial'),
                     text: Ilc.resources.Manager.getResourceString('common.commerceNumber'),
                     flex: 1,
                     filter: {
                         type: 'string'
                     }
                 },
+
                 {
                     dataIndex: 'contactPerson',
                     text: Ilc.resources.Manager.getResourceString('common.contact'),
@@ -100,14 +169,7 @@
                         type: 'string'
                     }
                 },
-                {
-                    dataIndex: 'bankAccount',
-                    text: Ilc.resources.Manager.getResourceString('common.bankAccount'),
-                    flex: 1,
-                    filter: {
-                        type: 'string'
-                    }
-                },
+             
                 {
                     xtype: 'actioncolumn',
                     text: Ilc.resources.Manager.getResourceString('common.actions'),

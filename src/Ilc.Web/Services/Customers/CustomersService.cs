@@ -35,27 +35,17 @@ namespace Ilc.Web.Services
         {
             var newCustomer = new Customer()
                 {
+                    CustomerId = request.CustomerId,
                     Name = request.Name,
-                    BankAccount = request.BankAccount,
                     BillingAddress = request.BillingAddress,
+                    Postcode = request.Postcode,
+                    City = request.City,
+                    Country = request.Country,
+                    Phone = request.Phone,
+                    BankName = request.BankName,
+                    BankAccount = request.BankAccount,
                     FiscalCode = request.FiscalCode,
                     CommerceNumber = request.CommerceNumber,
-                    // To Be Deleted //
-                    // Don't need this any more. The contact person will be added later by hand after the Customer has been created
-                    //ContactPersons = new List<ContactPerson>() {new ContactPerson()
-                    //    {
-                    //        UserProfile = new UserProfile() {
-                    //            Email = request.ContactEmail,
-                    //            UserDetails = new UserDetails()
-                    //            {
-                    //               FirstName = Utils.SplitNameString(request.ContactName)[0],
-                    //               LastName = Utils.SplitNameString(request.ContactName)[1],
-                    //               // Email = request.ContactEmail,
-                    //               Phone = "",
-                    //            }},
-                    //        Name = request.ContactName,
-                    //        IsMain = true
-                    //    }}
                 };
 
             Customers.Create(newCustomer);

@@ -15,20 +15,56 @@
         me.items = [
             {
                 xtype: 'textfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.customerId'),
+                name: 'customerId',
+                anchor: '100%'
+            },
+            {
+                xtype: 'textfield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.name'),
                 name: 'name',
                 anchor: '100%'
             },
             {
                 xtype: 'textfield',
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.bankAccount'),
-                name: 'bankAccount',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.billingAddress'),
+                name: 'billingAddress',
                 anchor: '100%'
             },
             {
                 xtype: 'textfield',
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.billingAddress'),
-                name: 'billingAddress',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.postcode'),
+                name: 'postcode',
+                anchor: '100%'
+            },
+            {
+                xtype: 'textfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.city'),
+                name: 'city',
+                anchor: '100%'
+            },
+            {
+                xtype: 'textfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.country'),
+                name: 'country',
+                anchor: '100%'
+            },
+            {
+                xtype: 'textfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.phone'),
+                name: 'phone',
+                anchor: '100%'
+            },
+            {
+                xtype: 'textfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.bankName'),
+                name: 'bankName',
+                anchor: '100%'
+            },
+            {
+                xtype: 'textfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.bankAccount'),
+                name: 'bankAccount',
                 anchor: '100%'
             },
             {
@@ -43,20 +79,6 @@
                 name: 'commerceNumber',
                 anchor: '100%'
             },
-            // To Be Deleted //
-            // First create the company and then later add contacts
-            //{
-            //    xtype: 'textfield',
-            //    fieldLabel: Ilc.resources.Manager.getResourceString('common.contactName'),
-            //    name: 'contactName',
-            //    anchor: '100%'
-            //},
-            //{
-            //    xtype: 'textfield',
-            //    fieldLabel: Ilc.resources.Manager.getResourceString('common.contactEmail'),
-            //    name: 'contactEmail',
-            //    anchor: '100%'
-            //}
         ];
 
         me.buttons = [

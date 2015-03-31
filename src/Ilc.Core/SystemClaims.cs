@@ -37,6 +37,8 @@ namespace Ilc.Core
 
         public const string StatisticsRead = "statistics-read";
 
+        public const string ReadCustomerFinancial = "read-customer-financial";
+
         public static List<string> GetAll()
         {
             var type = typeof (SystemClaims);

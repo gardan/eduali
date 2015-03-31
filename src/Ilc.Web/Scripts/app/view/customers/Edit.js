@@ -19,7 +19,7 @@
 
     initComponent: function () {       
         var me = this;
-
+        debugger
         me.items = [
             {
                 xtype: 'textfield',
@@ -29,18 +29,52 @@
             },
             {
                 xtype: 'textfield',
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.bankAccount'),
-                name: 'bankAccount',
-                value: me.customer.bankAccount
-            },
-            {
-                xtype: 'textfield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.billingAddress'),
                 name: 'billingAddress',
                 value: me.customer.billingAddress
             },
             {
                 xtype: 'textfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.postcode'),
+                name: 'postcode',
+                value: me.customer.postcode
+            },
+            {
+                xtype: 'textfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.city'),
+                name: 'city',
+                value: me.customer.city
+            },
+            {
+                xtype: 'textfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.country'),
+                name: 'country',
+                value: me.customer.country
+            },
+            {
+                xtype: 'textfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.phone'),
+                name: 'phone',
+                value: me.customer.phone
+            },
+            {
+                xtype: 'textfield',
+                hidden: !Ilc.Configuration.claimExists('read-customer-financial'),
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.bankName'),
+                name: 'bankName',
+                value: me.customer.bankName
+            },
+            {
+                xtype: 'textfield',
+                hidden: !Ilc.Configuration.claimExists('read-customer-financial'),
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.bankAccount'),
+                name: 'bankAccount',
+                value: me.customer.bankAccount
+            },
+
+            {
+                xtype: 'textfield',
+                hidden: !Ilc.Configuration.claimExists('read-customer-financial'),
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.fiscalCode'),
                 name: 'fiscalCode',
                 value: me.customer.fiscalCode,
@@ -48,6 +82,7 @@
             },
             {
                 xtype: 'textfield',
+                hidden: !Ilc.Configuration.claimExists('read-customer-financial'),
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.commerceNumber'),
                 name: 'commerceNumber',
                 value: me.customer.commerceNumber,

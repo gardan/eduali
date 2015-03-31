@@ -3,6 +3,7 @@
     
     requires: [
         'Ilc.view.customers.Edit',
+        'Ilc.view.customers.EditFinancial',
         'Ilc.view.customers.contacts.List',
         'Ilc.view.customerLogs.List'
     ],
