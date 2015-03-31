@@ -95,6 +95,14 @@ Ext.application({
     enableRouter: true,
 
     launch: function () {
+        R.propEqDeep = R.curry(function(propPath, value, obj) {
+            try {
+                return eval('obj.' + propPath) === value;
+            } catch(e) {
+                return undefined;
+            } 
+        });
+
         // Defaults
         Ext.window.Window.prototype.bodyPadding = 10;
         Ext.window.Window.prototype.modal = true;
@@ -111,7 +119,11 @@ Ext.application({
         Ext.panel.AbstractPanel.prototype.getErrors = function (fields, obj) {
             var ret = {};
             R.forEach(function(key) {
-                var isValid = !(obj[key] === undefined || obj[key] === null);
+                var isValid = !(
+                    R.propEqDeep(key, undefined, obj) ||
+                    R.propEqDeep(key, null, obj) || 
+                    R.propEqDeep(key, '', obj)
+                );
                 if (isValid) return;
 
                 ret[key] = 'Value is required.';
@@ -121,7 +133,7 @@ Ext.application({
             return ret;
         };
 
-        Ext.panel.AbstractPanel.prototype.markAsInvalid = function(errors, textboxes) {
+        Ext.panel.AbstractPanel.prototype.markAsInvalid = function (errors, textboxes) {
             R.forEach(function(key) {
                 var error = errors[key];
                 var textbox = R.find(R.propEq('name', key), textboxes);
@@ -133,10 +145,27 @@ Ext.application({
         
         Ext.panel.AbstractPanel.prototype.validate = function (fields, obj) {
             var validationResults = R.map(function(key) {
-                return !(obj[key] === undefined || obj[key] === null);
+                return !(
+                    R.propEqDeep(key, undefined, obj) ||
+                    R.propEqDeep(key, null, obj) || 
+                    R.propEqDeep(key, '', obj)
+                );
             }, fields);
 
             return !R.contains(false, validationResults);
+        };
+
+        Ext.panel.AbstractPanel.prototype.validateWrapper = function (func, fields, inputs, model) {
+            var isValid = this.validate(
+                        fields,
+                        model
+                    );
+            if (isValid) {
+                func();
+            } else {
+                var errors = this.getErrors(fields, model);
+                this.markAsInvalid(errors, inputs);
+            }
         };
 
         // fix this: http://www.sencha.com/forum/showthread.php?268135-Grid-error-on-delete-selected-row

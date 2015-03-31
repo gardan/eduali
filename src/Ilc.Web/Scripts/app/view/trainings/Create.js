@@ -262,17 +262,9 @@
                     model = Ilc.utils.Forms.extractModel(textboxes);
 
                     var fields = ['customerId', 'subjectId', 'color', 'desiredStartDate', 'desiredEndDate'];
-                    var isValid = me.validate(
-                        fields,
-                        model
-                    );
-
-                    if (isValid) {
+                    me.validateWrapper(function() {
                         me.fireEvent('addTraining', me, model);
-                    } else {
-                        var errors = me.getErrors(fields, model);
-                        me.markAsInvalid(errors, textboxes);
-                    }
+                    }, fields, textboxes, model);
 
                 }
             },
