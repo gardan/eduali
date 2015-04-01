@@ -121,6 +121,8 @@
         'common.price': 'Pret',
         'common.subjects': 'Subiect',
         'common.spendings': 'Cheltuieli',
+        'common.color': 'Culoare',
+
 
         'tasks.title.ended': 'Evaluare student',
         'tasks.title.offer': 'Accepta/refuza oferta de training',

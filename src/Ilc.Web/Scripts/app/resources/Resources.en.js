@@ -65,7 +65,7 @@
         'common.endDate': 'End date',
         'common.system': 'System',
         'common.students': 'Students',
-        'common.billingAddress': 'Billing address',
+        'common.billingAddress': 'Address',
         'common.contactName': 'Contact name',
         'common.contactEmail': 'Contact email',
         'common.phoneNr': 'Phone',
@@ -173,7 +173,7 @@
         'common.customerRelationship': 'Customer relationship',
         'common.customerContacts': 'Customer contacts',
         'common.general' : 'General',
-
+        'common.color': 'Color',
 
 
         'tasks.title.ended': 'Students assesments',

@@ -136,6 +136,9 @@
         'common.training': 'Training',
         'common.trainingMaterial': 'Training documentatie',
 
+        'common.color': 'Kleur',
+
+
         'common.addStudent': 'Voeg student toe',
         'common.addContact': 'Voeg contact toe',
         'common.addExpense': 'Voeg expense toe',

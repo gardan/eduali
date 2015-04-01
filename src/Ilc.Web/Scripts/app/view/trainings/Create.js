@@ -261,7 +261,7 @@
 
                     model = Ilc.utils.Forms.extractModel(textboxes);
 
-                    var fields = ['customerId', 'subjectId', 'color', 'desiredStartDate', 'desiredEndDate'];
+                    var fields = ['customerId', 'subjectId', 'color', 'desiredStartDate'];
                     me.validateWrapper(function() {
                         me.fireEvent('addTraining', me, model);
                     }, fields, textboxes, model);

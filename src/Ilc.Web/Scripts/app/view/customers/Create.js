@@ -85,15 +85,19 @@
             {
                 anchor: '100%',
                 text: Ilc.resources.Manager.getResourceString('common.add'),
+
                 handler: function (button, e) {
                     var model = {};
 
                     var textboxes = me.query('textfield');
 
                     model = Ilc.utils.Forms.extractModel(textboxes);
-
-                    // raise the event
-                    me.fireEvent('addCustomer', me, model);
+                    
+                    var fields = ['name'];
+        
+                    me.validateWrapper(function() {
+                        me.fireEvent('addCustomer', me, model);
+                    }, fields, textboxes, model);
                 }
             },
             {

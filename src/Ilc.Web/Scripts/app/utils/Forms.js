@@ -32,6 +32,7 @@
             case 'combobox':
                 if (input.multiSelect) { // multiple items
                     model[input.name] = [];
+                    if (!input.lastSelection) continue;
                     for (var z = 0; z < input.lastSelection.length; z++) {
                         var selectedItem = input.lastSelection[z];
                         model[input.name].push(selectedItem.data);

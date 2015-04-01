@@ -23,6 +23,12 @@
         me.items = [
             {
                 xtype: 'textfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.customerId'),
+                name: 'customerId',
+                value: me.customer.customerId
+            },
+            {
+                xtype: 'textfield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.name'),
                 name: 'name',
                 value: me.customer.name

@@ -36,6 +36,12 @@
             text: Ilc.resources.Manager.getResourceString('common.add'),
             handler: function(btn) {
                 var me = btn.up().up();
+
+                var model = {};
+
+                var textboxes = me.query('field');
+
+                model = Ilc.utils.Forms.extractModel(textboxes);
                 
                 var inputs = me.query('textfield');
                 var model = Ilc.utils.Forms.extractModel(inputs);
@@ -43,7 +49,10 @@
 
                 console.log(model);
 
-                me.fireEvent('createcontact', me, model);
+                var fields = ['firstName', 'lastName', 'email'];
+                me.validateWrapper(function() {
+                    me.fireEvent('createcontact', me, model);
+                }, fields, textboxes, model);
             }
         },
         {
