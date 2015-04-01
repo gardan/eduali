@@ -118,12 +118,16 @@ Ext.application({
 
         Ext.panel.AbstractPanel.prototype.getErrors = function (fields, obj) {
             var ret = {};
-            R.forEach(function(key) {
+            R.forEach(function (key) {
+                var value = eval('obj.' + key);
                 var isValid = !(
                     R.propEqDeep(key, undefined, obj) ||
                     R.propEqDeep(key, null, obj) || 
                     R.propEqDeep(key, '', obj)
                 );
+                if (R.isArrayLike(value)) {
+                    isValid = value.length > 0;
+                }
                 if (isValid) return;
 
                 ret[key] = 'Value is required.';
@@ -144,12 +148,17 @@ Ext.application({
         };
         
         Ext.panel.AbstractPanel.prototype.validate = function (fields, obj) {
-            var validationResults = R.map(function(key) {
-                return !(
+            var validationResults = R.map(function (key) {
+                var value = eval('obj.' + key);
+                var isValid = !(
                     R.propEqDeep(key, undefined, obj) ||
                     R.propEqDeep(key, null, obj) || 
                     R.propEqDeep(key, '', obj)
                 );
+                if (R.isArrayLike(value)) {
+                    isValid = value.length > 0;
+                }
+                return isValid;
             }, fields);
 
             return !R.contains(false, validationResults);
