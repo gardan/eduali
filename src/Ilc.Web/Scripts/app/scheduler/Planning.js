@@ -22,9 +22,10 @@
     // ),
 
     tooltipTpl: new Ext.XTemplate(
-        '<div>' +
+        '<div style="width:300px;">' +
         'Subject: <b>{subjectName}</b> <br />' +
-        'Customer: <b>{customerName}</b>' +
+        'Customer: <b>{customerName}</b> <br />' +
+        'Location: <b>{location}</b>' + 
         '</div>'
     ),
 

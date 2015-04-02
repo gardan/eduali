@@ -99,20 +99,12 @@ namespace Ilc.Web.Services.Trainings
                     Public = request.Public,
                     Price = request.Price,
                     DateOfValidation = new DateTimeOffset(new DateTime(request.DateOfValidation.Ticks, DateTimeKind.Unspecified), TimeSpan.Zero),
-                    // RequiredStudents = request.RequiredStudents,
                     SubjectId = request.SubjectId,
                     DesiredStartDate = request.DesiredStartDate,
                     DesiredEndDate = request.DesiredEndDate,
-                    // GradingSystemId = request.GradingSystemId,
                     Location = request.Location,
-                    //Status = "Rfi",
-                    // Students = students,
-                    //TrainerId = request.TrainerId,
                     CustomerId = request.CustomerId == 0 ? (int?) null : request.CustomerId,
-                    // Owners = new [] { Users.GetByEmail() }, // We need to get the guy with Sales role that was specified at the beggining
                     Owners = new List<UserProfile>() { Users.GetByEmail() },
-                    // OwnersConfiguration = ownersConfiguration,
-                    // ContactPersons = contacts
                 };
 
             Trainings.Create(newTraining);

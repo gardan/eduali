@@ -1,6 +1,6 @@
 ﻿Ext.define('Ilc.grid.Trainings', {
     extend: 'Ext.grid.Panel',
-
+    
     columns: Ilc.helpers.GridColumns.process([
         {
             dataIndex: 'compositeId',
@@ -46,6 +46,17 @@
         {
             dataIndex: 'subject',
             text: Ilc.resources.Manager.getResourceString('common.subject'),
+            flex: 1,
+            renderer: function (value) {
+                return value.name;
+            },
+            filter: {
+                type: 'string'
+            }
+        },
+        {
+            dataIndex: 'location',
+            text: Ilc.resources.Manager.getResourceString('common.location'),
             flex: 1,
             renderer: function (value) {
                 return value.name;

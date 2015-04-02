@@ -34,7 +34,8 @@ namespace Ilc.Web.Services.Trainings
                         StartDate = training.DesiredStartDate.DateTime,
                         EndDate = training.DesiredEndDate.DateTime,
                         Id = training.Id,
-                        Joined = student != null
+                        Joined = student != null,
+                        Location = training.Location
                     });
             }
 
@@ -59,5 +60,7 @@ namespace Ilc.Web.Services.Trainings
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public bool Joined { get; set; }
+        public string Location { get; set; }
+
     }
 }

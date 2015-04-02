@@ -193,46 +193,14 @@
 //                    change: me.onPublicCheckboxChange
 //                }
 //            },
-          //   me.requiredStudentsField,
-            // me.priceField,
+          
             me.customerComboBox,
-            // me.contactsComboBox,
             subjectComboBox,
-            // trainingSystemComboBox,
             {
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.color'),
                 xtype: 'colorfield',
                 name: 'color'
             },
-            // trainersComboBox,
-            // me.dateOfValidationField,
-            // me.studentsComboBox,
-//            {
-//                fieldLabel: 'Sales user',
-//                store: salesUsersStore,
-//                displayField: 'fullName',
-//                valueField: 'id',
-//                name: 'workflowOwners.sales'
-//            },
-//            {
-//                fieldLabel: 'Administration user',
-//                store: administratorsUsersStore,
-//                displayField: 'fullName',
-//                valueField: 'id',
-//                name: 'workflowOwners.administration'
-//            },
-//            {
-//                fieldLabel: 'Coordination user',
-//                store: coordinatorsUsersStore,
-//                displayField: 'fullName',
-//                valueField: 'id',
-//                name: 'workflowOwners.coordinator'
-//            },
-//            {
-//                xtype: 'textfield',
-//                fieldLabel: Ilc.resources.Manager.getResourceString('common.location'),
-//                name: 'location'
-//            },
             {
                 xtype: 'datefield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.startDate'),

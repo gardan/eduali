@@ -125,7 +125,8 @@ namespace Ilc.Web.Services
                             Color = training.Color,
                             CustomerName = training.Customer == null ? "" : training.Customer.Name,
                             SubjectName = training.Subject.Name,
-                            TrainingId = training.Id
+                            TrainingId = training.Id,
+                            Location = training.Location
                         });
                 }
             }
@@ -207,6 +208,7 @@ namespace Ilc.Web.Services
         public string CustomerName { get; set; }
         public string SubjectName { get; set; }
         public int TrainingId { get; set; }
+        public string Location { get; set; }
     }
 
     [DataContract]

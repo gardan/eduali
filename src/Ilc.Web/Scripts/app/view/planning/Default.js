@@ -26,7 +26,8 @@
                 { name: 'endDate', type: 'date', dateFormat: 'c' },
                 { name: 'color', type: 'string' },
                 { name: 'customerName', type: 'string' },
-                { name: 'subjectName', type: 'string' }
+                { name: 'subjectName', type: 'string' },
+                { name: 'location', type: 'string' },
             ],
              
             idProperty: 'id',

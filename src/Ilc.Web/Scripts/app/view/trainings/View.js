@@ -514,9 +514,10 @@
                 displayField: 'name',
                 valueField: 'id',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.status'),
-                anchor: '100%',
+                // anchor: '100%',
                 name: 'statusId',
-                queryMode: 'local'
+                queryMode: 'local',
+                labelWidth: 100
             }),
             initialLoadHandler = function (store, records) {
                 Ext.Array.forEach(records, function (record) {
@@ -534,14 +535,17 @@
         stakeholdersStore.loadRawData(me.model.get('stakeHolders'));
         var ownersCombo = Ext.create('Ext.form.field.ComboBox', {
             xtype: 'combobox',
-            multiSelect: true,
+            // multiSelect: true,
             store: stakeholdersStore,
             displayField: 'fullName',
             valueField: 'id',
             fieldLabel: Ilc.resources.Manager.getResourceString('common.owners'),
-            anchor: '100%',
+            //anchor: '100%',
             name: 'owners',
-            queryMode: 'local'
+            queryMode: 'local',
+            labelSeparator: "",
+            labelWidth: 100
+            
         });
 
         var selectedRecords = stakeholdersStore.queryBy(function(user) {
@@ -559,21 +563,26 @@
                 xtype: 'textfield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.location'),
                 name: 'location',
-                value: this.model.get('location')
+                value: this.model.get('location'),
+                labelWidth: 100
             },
             {
                 xtype: 'datefield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.startDate'),
                 value: new Date(this.model.get('desiredStartDate')),
                 format: 'Y-m-d',
-                name: 'desiredStartDate'
+                name: 'desiredStartDate',
+                labelWidth: 100
+            
             },
             {
                 xtype: 'datefield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.endDate'),
                 value: new Date(this.model.get('desiredEndDate')),
                 format: 'Y-m-d',
-                name: 'desiredEndDate'
+                name: 'desiredEndDate',
+                labelWidth: 100
+            
             },
             statusCombo,
             ownersCombo
@@ -619,7 +628,7 @@
             {
                 xtype: 'textfield',
                 disabled: true,
-                fieldLabel: Ilc.resources.Manager.getResourceString('common.status'),
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.owner'),
                 value: R.reduce(function (acc, item) { return acc + item.fullName + ', '; }, '', this.model.get('owners')).slice(0, -2)
             }
         ];
