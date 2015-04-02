@@ -15,11 +15,12 @@ namespace Ilc.Web.InjectorConventions
     {
         protected override bool Match(ConventionInfo c)
         {
-            return c.SourceProp.Name == c.TargetProp.Name; // ||
-//                (c.SourceProp.Name == "InterviewPlans" && c.TargetProp.Name == "InterviewPlan") ||
-//                (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "Hours") ||
-//                (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "LessonsNo") ||
-//                (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "Price");
+            if (c.SourceProp.Name == "Price" && c.TargetProp.Name == "Price") return false;
+            return c.SourceProp.Name == c.TargetProp.Name // ||
+                   //                (c.SourceProp.Name == "InterviewPlans" && c.TargetProp.Name == "InterviewPlan") ||
+                   //                (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "Hours") ||
+                   //|| (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "LessonsNo");
+                   || (c.SourceProp.Name == "DecoupledOffers" && c.TargetProp.Name == "Price");
         }
 
         protected override object SetValue(ConventionInfo c)
@@ -86,12 +87,13 @@ namespace Ilc.Web.InjectorConventions
                 }
                 return 0;
             }
-            if (c.SourceProp.Name == "Offers" && c.TargetProp.Name == "Price")
+            if (c.SourceProp.Name == "DecoupledOffers" && c.TargetProp.Name == "Price")
             {
-                var offers = c.SourceProp.Value as ICollection<TrainingOffer>;
+                var offers = c.SourceProp.Value as ICollection<Offer>;
+                if (offers == null) return 0m;
                 foreach (var trainingOffer in offers)
                 {
-                    if (trainingOffer.Selected) return trainingOffer.Price;
+                    if (trainingOffer.Active && trainingOffer.Accepted) return trainingOffer.Amount;
                 }
                 return 0m;
             }
