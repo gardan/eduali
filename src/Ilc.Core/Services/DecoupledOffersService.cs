@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models;
 
@@ -11,6 +12,7 @@ namespace Ilc.Core.Services
     public class DecoupledOffersService : IDecoupledOffersService
     {
         public IUow Uow { get; set; }
+        public IUsersService Users { get; set; }
 
         public FilteredResults<Offer> GetFiltered(FilterArgumentsDecoupledOffer parameters)
         {
@@ -18,7 +20,9 @@ namespace Ilc.Core.Services
             parameters.Length = parameters.Length == 0 ? 10 : parameters.Length;
             parameters.Filter = parameters.Filter ?? new List<Filter>();
 
-            var query = Uow.DecoupledOffers.GetAll();
+            var user = Users.GetByEmail();
+
+            var query = Uow.DecoupledOffers.GetAll().Where(o => o.Customer.CompanyId == user.CompanyId);
 
             // filter by predefined queries
             
