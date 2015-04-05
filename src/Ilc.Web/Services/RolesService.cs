@@ -59,6 +59,11 @@ namespace Ilc.Web.Services
             var role = Roles.GetById(request.Id);
             role.RoleName = request.Name;
 
+            if (!role.CanDelete)
+            {
+                throw new Ilc.Core.Exceptions.NotAllowedException("Cannot update predefined role.");
+            }
+
             Roles.Update(role);
 
             return new HttpResult()

@@ -115,6 +115,11 @@ namespace Ilc.Core.Services
 
             // Create the profile
             Uow.UserProfiles.Add(user);
+
+            if (this.DoesUserHaveTrainerRole(user))
+            {
+                this.AddUserToTrainers(user);
+            }
             Uow.Commit();
 
             // Create the membership
@@ -158,6 +163,28 @@ namespace Ilc.Core.Services
                 
                 NotifyService.Notify(user.Email, body, "New account");
             }
+        }
+
+        private void AddUserToTrainers(UserProfile user)
+        {
+            if (Uow.Trainers.GetAll().FirstOrDefault(t => t.UserProfileId == user.Id) != null)
+            {
+                return;
+            }
+
+            var trainer = new Trainer()
+            {
+                UserProfileId = user.Id,
+                CompanyId = user.CompanyId
+            };
+            Uow.Trainers.Add(trainer);
+            Uow.Commit();
+        }
+
+        private bool DoesUserHaveTrainerRole(UserProfile user)
+        {
+            var trainerRole = user.Roles.FirstOrDefault(r => !r.CanDelete && r.RoleName == "Trainer");
+            return trainerRole != null;
         }
 
         public void Update(UserProfile user)
