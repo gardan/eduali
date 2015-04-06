@@ -3,7 +3,7 @@
     fields: ['id', 'compositeId', 'status', 'statusFriendlyName', 'customer', 'trainer', 'subject', 'owners', 'desiredStartDate', 'desiredEndDate',
         'students', 'interviewPlan', 'gradingSystemId', 'spendings', 'hours', 'lessonsNo', 'price', 'ownersConfiguration', 'location',
         'public', 'requiredStudents', 'dateOfValidation', 'gradingAttributes', 'status', 'stakeHolders',
-        'joined', 'expenses' // This property right here, is only used when dealing with the open trainings returned from api/trainings?open=true ( usually a student will call this endpoint )
+        'joined', 'expenses', 'color' // This property right here, is only used when dealing with the open trainings returned from api/trainings?open=true ( usually a student will call this endpoint )
     ],
 
     proxy: {

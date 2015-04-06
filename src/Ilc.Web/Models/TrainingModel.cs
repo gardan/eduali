@@ -17,6 +17,7 @@ namespace Ilc.Web.Models
             get { return string.Format("{0}-{1}", CustomerId, NoOfCustomerTraining); }
         }
 
+        public string Color { get; set; }
         public int NoOfCustomerTraining { get; set; }
         
         public UserModel[] Owners { get; set; }

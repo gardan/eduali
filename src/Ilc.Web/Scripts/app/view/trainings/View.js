@@ -558,7 +558,7 @@
         });
 
         ownersCombo.select(selectedRecords.items);
-
+        
         return [
             {
                 xtype: 'textfield',
@@ -588,7 +588,7 @@
             {
                 xtype: 'colorfield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.color'),
-                value: this.model.get('color'),
+                value: this.model.get('color').substring(1),
                 name: 'color',
                 labelWidth: 100
             },
