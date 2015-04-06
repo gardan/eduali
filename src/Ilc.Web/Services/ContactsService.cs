@@ -5,6 +5,7 @@ using Ilc.Core.Contracts;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models;
 using Ilc.Web.Filters.Request;
+using Ilc.Web.InjectorConventions;
 using Ilc.Web.Models;
 using Omu.ValueInjecter;
 using ServiceStack;
@@ -32,7 +33,8 @@ namespace Ilc.Web.Services
                         FirstName = contactPerson.UserProfile.UserDetails.FirstName,
                         LastName = contactPerson.UserProfile.UserDetails.LastName,
                         IsMain = contactPerson.UserProfile.Roles.Exists(r => r.RoleName == "Customer Contact"),
-                        IsTrainingContact = contactPerson.UserProfile.Roles.Exists(r => r.RoleName == "Customer Supervizor"), 
+                        IsTrainingContact = contactPerson.UserProfile.Roles.Exists(r => r.RoleName == "Customer Supervizor"),
+                        User = new UserModel().InjectFrom<UserProfileToUserModel>(contactPerson.UserProfile) as UserModel
                     });
             }
 
@@ -138,6 +140,7 @@ namespace Ilc.Web.Services
         public string Name { get { return string.Format("{0} {1}", FirstName, LastName); } }
         public bool IsMain { get; set; }
         public bool IsTrainingContact { get; set; }
+        public UserModel User { get; set; }
     }
 
     public class CreateContactModel
