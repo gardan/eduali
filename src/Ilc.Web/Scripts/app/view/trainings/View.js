@@ -588,7 +588,7 @@
             {
                 xtype: 'colorfield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.color'),
-                value: this.model.get('color').substring(1),
+                value: this.model.get('color').replace('#', ''),
                 name: 'color',
                 labelWidth: 100
             },
