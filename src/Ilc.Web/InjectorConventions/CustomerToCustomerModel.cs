@@ -2,6 +2,7 @@
 using System.Linq;
 using Ilc.Data.Models;
 using Ilc.Web.Models;
+using Ilc.Web.Services;
 using Omu.ValueInjecter;
 
 namespace Ilc.Web.InjectorConventions
@@ -23,7 +24,9 @@ namespace Ilc.Web.InjectorConventions
                     {
                         Id = cp.Id,
                         IsMain = cp.UserProfile.Roles.Exists(r => r.RoleName == "Customer Contact"),
-                        Name = cp.UserProfile.UserDetails.FirstName + " " + cp.UserProfile.UserDetails.LastName
+                        Name = cp.UserProfile.UserDetails.FirstName + " " + cp.UserProfile.UserDetails.LastName,
+                        User = new UserModel().InjectFrom<UserProfileToUserModel>(cp.UserProfile) as UserModel
+
                     }).ToList();
             }
 
