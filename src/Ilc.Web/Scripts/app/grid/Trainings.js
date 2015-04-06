@@ -66,9 +66,6 @@
             dataIndex: 'location',
             text: Ilc.resources.Manager.getResourceString('common.location'),
             flex: 1,
-            renderer: function (value) {
-                return value.name;
-            },
             filter: {
                 type: 'string'
             }
