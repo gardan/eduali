@@ -26,10 +26,6 @@
         'common.newTraining': 'Nieuwe training',
         'common.contact': 'Contact',
         'common.bankAccount': 'Bankrekening',
-        'common.bankName': 'Bank naam',
-        'common.postcode': 'Postcode',
-        'common.customerId': 'Klant ID',
-
         'common.newCustomer': 'Nieuwe klant',
         'common.edit': 'Bijwerken',
         'common.delete': 'Verwijderen',
@@ -107,7 +103,7 @@
         'common.writing': 'Schrijven',
         'common.cancel': 'Annuleren',
         'common.update': 'Bijwerken',
-        'common.username': 'User naam',
+        'common.username': 'Gebruiker naam',
         'common.newUser': 'Nieuwe gebruiker',
         'common.createUser': 'Gebruiker aanmaken',
         'common.firstName': 'Naam',
@@ -119,7 +115,31 @@
         'common.main': 'Hoofd',
         'common.trainingContact': 'Cursus contact',
         'common.price': 'Prijs',
-        'common.subjects': 'Talen',
+        'common.subjects': 'Onderwerp',
+
+        'common.spendings': 'Uitgaven',
+        'common.newTemplate': 'Nieuw Patroon',
+        'common.avatar': 'Avatar',
+        'common.gender': 'Geslacht',
+        'common.dateOfBirth': 'Geboortedatum',
+        'common.newCompany': 'Nieuw bedrijf',
+        'common.publish': 'Publiceren',
+        'common.validate': 'Bevestigen',
+        'common.join': 'Toetreden',
+        'common.actions': 'Acties',
+        'common.profile': 'Profiel',
+        'common.currentPassword': 'Huidig wachtwoord',
+        'common.newPassword': 'Nieuw wachtwoord',
+        'common.password': 'Wachtwoord',
+        'common.company': 'Bedrijf',
+        'common.shiftTemplates': 'Beschikbaarheid patroon',
+        'common.friendlyName': 'Friendly name',
+        'common.claims': 'Capabilities',
+        'common.back': 'Terug',
+        'common.type': 'Type',
+        'common.skip': 'Overslaan',
+        'common.details': 'Details',
+
 
         'common.address': 'Adres',
         'common.city': 'Stad',
@@ -136,9 +156,6 @@
         'common.training': 'Training',
         'common.trainingMaterial': 'Training documentatie',
 
-        'common.color': 'Kleur',
-
-
         'common.addStudent': 'Voeg student toe',
         'common.addContact': 'Voeg contact toe',
         'common.addExpense': 'Voeg expense toe',
@@ -146,12 +163,16 @@
         'common.fiscalCode': 'BTW nummer',
         'common.commerceNumber': 'KvK nummer',
 
+        'common.color': 'Kleur',
+        'common.stakeholders': 'Mede contributeur',
+
+
         'tasks.title.ended': 'Afgesloten',
         'tasks.title.offer': 'Oferte',
         'tasks.planned.mainLbl': 'Klaar om het cursus te beginen ?',
 
         'tasks.offer.mainLbl': 'Selecteer de volgende status van de opleiding aan is aanvaard of geweigerd aub',
-        
+
         'formats.date': 'MM-DD-YYYY',
         'formats.extjsdate': 'm-d-Y g:i',
         'formats.extjsdateonly': 'm-d-Y'

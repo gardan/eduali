@@ -175,7 +175,7 @@
         'common.customerContacts': 'Customer contacts',
         'common.general' : 'General',
         'common.color': 'Color',
-
+        'common.stakeholders': 'Stakeholders',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',

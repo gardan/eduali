@@ -69,12 +69,12 @@
         Ext.apply(this, {
             columns: [
                 {
-                    header: Ilc.resources.Manager.getResourceString('common.stockholders'),
+                    header: Ilc.resources.Manager.getResourceString('common.stakeholders'),
                     width: 130,
                     dataIndex: 'fullName'
                 },
                 {
-                    header: Ilc.resources.Manager.getResourceString('common.stockholders'),
+                    header: Ilc.resources.Manager.getResourceString('common.stakeholders'),
                     width: 130,
                     dataIndex: 'roles',
                     renderer: function (value) {
