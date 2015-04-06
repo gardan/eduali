@@ -36,6 +36,14 @@
         var items = [];
 
         var usersStore = Ext.create('Ilc.store.Users');
+        
+        usersStore.load = R.wrap(usersStore.load, function (wrapped, options) {
+                options = options || {};
+                options.params = options.params || {};
+                
+                options.params.claims = 'tasks-trainer';
+                wrapped.call(usersStore, options);
+            });
 
         this.stakeholdersBoxSelect = Ext.create('Ext.ux.form.field.BoxSelect', {
             store: usersStore,
