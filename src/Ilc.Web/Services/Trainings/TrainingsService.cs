@@ -146,7 +146,10 @@ namespace Ilc.Web.Services.Trainings
             training.TrainerId = request.TrainerId == 0 
                                     ? training.TrainerId 
                                     : request.TrainerId;
-            
+
+            // Update the Color
+            training.Color = request.Color;
+
             // Update te DesiredStartDate
             training.DesiredStartDate =  request.DesiredStartDate == DateTimeOffset.MinValue.DateTime
                                             ? training.DesiredStartDate
@@ -226,22 +229,30 @@ namespace Ilc.Web.Services.Trainings
 //            }
 
             var justLoad = training.Owners.ToList();
+            // Doru
+            // I think there is a issue here when the request.Owners is null
 
             // Who to remove?
             foreach (var userProfile in justLoad)
             {
-                if (request.Owners.FirstOrDefault(owner => owner.Id == userProfile.Id) == null)
+                if (request.Owners != null)
                 {
-                    training.Owners.Remove(userProfile);
+                    if (request.Owners.FirstOrDefault(owner => owner.Id == userProfile.Id) == null)
+                    {
+                        training.Owners.Remove(userProfile);
+                    }
                 }
             }
 
             // Who to add?
-            foreach (var userModel in request.Owners)
+            if (request.Owners != null)
             {
-                if (training.Owners.FirstOrDefault(owner => owner.Id == userModel.Id) == null)
+                foreach (var userModel in request.Owners)
                 {
-                    training.Owners.Add(Users.GetById(userModel.Id));
+                    if (training.Owners.FirstOrDefault(owner => owner.Id == userModel.Id) == null)
+                    {
+                        training.Owners.Add(Users.GetById(userModel.Id));
+                    }
                 }
             }
 
@@ -266,6 +277,7 @@ namespace Ilc.Web.Services.Trainings
         public int TrainerId { get; set; }
         public int StatusId { get; set; }
         public int Id { get; set; }
+        public string Color { get; set; }
         public TrainingOwnersConfigurationModel WorkflowOwners { get; set; }
         public UserModel[] Owners { get; set; }
     }

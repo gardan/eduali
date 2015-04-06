@@ -33,23 +33,50 @@ namespace Ilc.Core.Services
             // search
             foreach (var filter in parameters.Filter)
             {
-                //var inFilter = filter;
-                //switch (filter.Field)
-                //{
-                //    case "name":
-                //        query = query.Where(c => c.Name.Contains(inFilter.Value));
-                //        break;
-                //    case "contactPerson":
-                //        query = query.Where(c => c.ContactPersons.FirstOrDefault(cp => cp.IsMain).Name.Contains(inFilter.Value));
-                //        break;
-                //    case "bankAccount":
-                //        query = query.Where(c => c.BankAccount.Contains(inFilter.Value));
-                //        break;
-                //    default:
-                //        // if trying to search for unavalable column, just exit
-                //        // TODO: log this shit.
-                //        break;
-                //}
+                var inFilter = filter;
+                switch (filter.Field)
+                {
+                        // Doru
+                    case "amount":
+                        // query = query.Where(c => c.Amount.Equals(inFilter.Value));
+                        break;
+                    case "customer":
+                        query = query.Where(c => c.Customer.Name.Contains(inFilter.Value));
+                        break;
+                    case "active":
+                        if (inFilter.Value == "True")
+                        {
+                            query = query.Where(c => c.Active);
+                        }
+                        else
+                        {
+                            query = query.Where(c => !c.Active);
+                        }
+                        break;
+                    case "accepted":
+                        if (inFilter.Value == "True")
+                        {
+                            query = query.Where(c => c.Accepted);
+                        }
+                        else
+                        {
+                            query = query.Where(c => !c.Accepted);
+                        }
+                        break;
+                    case "paymentDueAt":
+                        //if (inFilter.Type == "date")
+                        //{
+                        //    DateTime dt = Convert.ToDateTime(inFilter.Value);
+                        //    query.Where(c => c.PaymentDueAt > dt);
+                        //}
+                        //else { 
+                        //}
+                        break;
+                    default:
+                        // if trying to search for unavalable column, just exit
+                        // TODO: log this shit.
+                        break;
+                }
             }
 
             // order

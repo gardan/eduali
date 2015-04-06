@@ -20,6 +20,13 @@
             listeners: {
                 itemdblclick: this.onOfferDblClick
             },
+
+            features: [{
+                ftype: 'jsvfilters',
+                // encode and local configuration options defined previously for easier reuse
+                // encode: true, // json encode the filter query
+                local: false,   // defaults to false (remote filtering)
+            }],
             dockedItems: [
                 {
                     xtype: 'toolbar',
@@ -44,12 +51,18 @@
                     flex: 1,
                     renderer: function(value) {
                         return value.name;
+                    },
+                    filter: {
+                        type: 'string'
                     }
                 },
                 {
                     text: Ilc.resources.Manager.getResourceString('common.active'),
                     dataIndex: 'active',
-                    flex: 1
+                    flex: 1,
+                    filter: {
+                        type: 'bool'
+                    }
                 },
                 {
                     text: Ilc.resources.Manager.getResourceString('common.createDate'),
@@ -79,7 +92,26 @@
                 {
                     text: Ilc.resources.Manager.getResourceString('common.amount'),
                     dataIndex: 'amount',
-                    flex: 1
+                    flex: 1,
+                    filter: {
+                        type: 'numeric',
+                        //fields: {
+                        //    gt: {
+                        //        minValue: 0,
+                        //        maxValue: 1000000,
+                        //        iconCls: Ext.baseCSSPrefix + 'grid-filters-gt',
+                        //        margin: '0 0 3px 0'
+                        //    },
+                        //    lt: {
+                        //        minValue: 0,
+                        //        maxValue: 1000000
+                        //    },
+                        //    eq: {
+                        //        minValue: 0,
+                        //        maxValue: 1000000
+                        //    },
+                        //}
+                    }
                 },
                 {
                     text: Ilc.resources.Manager.getResourceString('common.sentAt'),
@@ -95,13 +127,28 @@
                 {
                     text: Ilc.resources.Manager.getResourceString('common.accepted'),
                     dataIndex: 'accepted',
-                    flex: 1
+                    flex: 1,
+                    filter: {
+                       type: 'bool'
+                    }
                 },
                 {
                     text: Ilc.resources.Manager.getResourceString('common.paymentDueAt'),
                     dataIndex: 'paymentDueAt',
                     flex: 1,
                     type: 'date',
+                    filter: {
+                        type: 'date',
+                        // dateFormat: 'm/d/Y',  // default
+                        //beforeText: 'Before', // default
+                        //afterText: 'After',   // default
+                        //onText: 'On',         // default
+                        pickerOpts: {
+                            // any DatePicker configs
+                        },
+                        active: true // default is false
+                    },
+                
                     renderer: Ext.util.Format.dateRenderer(Ilc.resources.Manager.getResourceString('formats.extjsdateonly'))
                 },
                 {

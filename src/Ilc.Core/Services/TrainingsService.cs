@@ -92,6 +92,10 @@ namespace Ilc.Core.Services
                         var id = Convert.ToInt32(inFilter.Value);
                         query = query.Where(t => t.Id == id);
                         break;
+                        // Doru
+                    //case "status":
+                    //    query = query.Where(c => c.Status.Contains(inFilter.Value));
+                    //    break;
 //                    case "statusFriendlyName":
 //                        // http://www.albahari.com/nutshell/predicatebuilder.aspx
 //                        var statusDefinitions = Uow.StatusDictionary.GetAll().Where(s => s.FriendlyName.Contains(inFilter.Value)).ToList();
@@ -133,6 +137,10 @@ namespace Ilc.Core.Services
                 };
         }
 
+
+
+
+        
         public Training GetById(int id)
         {
             return Uow.Trainings.GetById(id);

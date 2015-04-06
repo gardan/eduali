@@ -171,6 +171,20 @@
                 },
              
                 {
+                    dataIndex: 'contactPerson',
+                    text: Ilc.resources.Manager.getResourceString('common.phoneContact'),
+                    sortable: false,
+                    flex: 1,
+                    renderer: function (value, metaData) {
+                        return value.user.userInfo.phone ;
+                    },
+                    filter: {
+                        type: 'string'
+                    }
+                },
+
+
+                {
                     xtype: 'actioncolumn',
                     text: Ilc.resources.Manager.getResourceString('common.actions'),
                     sortable: false,

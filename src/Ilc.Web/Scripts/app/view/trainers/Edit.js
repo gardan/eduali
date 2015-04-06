@@ -231,6 +231,22 @@
                                 format: Ilc.resources.Manager.getResourceString('formats.extjsdateonly'),
                                 value: new Date(cfgModel.userInfo.dateOfBirth)
                             },
+                            {
+                                fieldLabel: Ilc.resources.Manager.getResourceString('common.address'),
+                                name: 'userInfo.address',
+                                value: cfgModel.userInfo.address
+                            },
+                            {
+                                fieldLabel: Ilc.resources.Manager.getResourceString('common.city'),
+                                name: 'userInfo.city',
+                                value: cfgModel.userInfo.city
+                            },
+                            {
+                                fieldLabel: Ilc.resources.Manager.getResourceString('common.country'),
+                                name: 'userInfo.country',
+                                value: cfgModel.userInfo.country
+                            },
+
                             me.genderCombo,
                             me.avatarUploader
                         ]

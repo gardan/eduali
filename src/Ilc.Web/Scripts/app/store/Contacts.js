@@ -1,7 +1,7 @@
 ﻿Ext.define('Ilc.store.Contacts', {
     extend: 'Ext.data.Store',
     
-    fields: ['id', 'firstName', 'lastName', 'name', 'isTrainingContact', 'isMain'],
+    fields: ['id', 'firstName', 'lastName', 'name', 'isTrainingContact', 'isMain', 'user'],
     
     // data: [
     //     { id: 1, firstName: 'Ionelee', lastName: 'Vasileee', isTrainingContact: true, isMain: true }

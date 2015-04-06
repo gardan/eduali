@@ -44,7 +44,32 @@ namespace Ilc.Core.Services
                         break;
                     case "customer":
                         query = query.Where(s => s.Customer.Name.Contains(inFilter.Value));
-                        break;  
+                        break;
+                    case "gender":
+                        if (Convert.ToString(inFilter.Value).ToLower().Equals(Convert.ToString("male").ToLower()))
+                        {
+                            query = query.Where(s => s.UserProfile.UserDetails.Gender == 1);
+                        }
+                        else if (Convert.ToString(inFilter.Value).ToLower().Equals(Convert.ToString("female").ToLower()))
+                        {
+                            query = query.Where(s => s.UserProfile.UserDetails.Gender == 2);
+                        }
+                        else
+                        {
+                            query = query.Where(s => s.UserProfile.UserDetails.Gender == 0);
+                        }
+                        break;
+                    case "city":
+                        query = query.Where(s => s.UserProfile.UserDetails.City.Contains(inFilter.Value));
+                        break;
+                    case "country":
+                        query = query.Where(s => s.UserProfile.UserDetails.Country.Contains(inFilter.Value));
+                        break;
+                    case "address":
+                        query = query.Where(s => s.UserProfile.UserDetails.Address.Contains(inFilter.Value));
+                        break;
+
+
                     default:
                         // TODO: log that no such field exists.
                         break;

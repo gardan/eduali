@@ -26,6 +26,22 @@
             dataIndex: 'isTrainingContact',
             trueText: Ilc.resources.Manager.getResourceString('common.yes'),
             falseText: Ilc.resources.Manager.getResourceString('common.no')
+        },
+        {
+            dataIndex: 'user',
+            flex: 1,
+            text: Ilc.resources.Manager.getResourceString('common.phone'),
+            renderer: function (value, meta, record) {
+                return value.userInfo.phone;
+            }
+        },
+        {
+            dataIndex: 'user',
+            flex: 1,
+            text: Ilc.resources.Manager.getResourceString('common.email'),
+            renderer: function (value, meta, record) {
+                return value.email;
+            }
         }
     ],
 

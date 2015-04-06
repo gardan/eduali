@@ -69,14 +69,14 @@
         var okEmail = false;
         var okCustomer = false;
 
-        function enableBtn(){
-            if (okEmail && okCustomer){
-                Ext.getCmp('saveBtn').enable();
-            }
-            else {
-                Ext.getCmp('saveBtn').disable();
-            }
-        };
+        //function enableBtn(){
+        //    if (okEmail && okCustomer){
+        //        Ext.getCmp('saveBtn').enable();
+        //    }
+        //    else {
+        //        Ext.getCmp('saveBtn').disable();
+        //    }
+        //};
 
         
 
@@ -96,20 +96,22 @@
             emptyText: Ilc.resources.Manager.getResourceString('common.customer'), // add text for mandatory fields in the translation
             anchor: '100%',
             allowBlank: false,
-            listeners:{
-                change: function (field, newVal, oldVal) {
-                    if (Boolean(newVal)) {
-                        okCustomer = true;
-                        console.log(okCustomer);
-                        enableBtn();
-                    }
-                    else {
-                        okCusomer = false;
-                        console.log(okCustomer);
-                        enableBtn();
-                    }
-                }
-            }
+            // Enable this only when you want to have the OK button disable until the fileds are filled in ... For now we don't need this.
+            // 06.4.2015 - just use the mandatory fileds functionality
+            //listeners:{
+            //    change: function (field, newVal, oldVal) {
+            //        if (Boolean(newVal)) {
+            //            okCustomer = true;
+            //            console.log(okCustomer);
+            //            enableBtn();
+            //        }
+            //        else {
+            //            okCusomer = false;
+            //            console.log(okCustomer);
+            //            enableBtn();
+            //        }
+            //    }
+            //}
         });
 
         me.initUploader();
@@ -131,18 +133,18 @@
                 vtype: 'email',
                 id: 'email',
                 allowBlank: false,
-                listeners: {
-                    change: function (field, newVal, oldVal) {
-                        if (this.isValid()){
-                            okEmail = true;
-                            enableBtn();
-                        }
-                        else {
-                            okEmail = false;
-                            enableBtn();
-                        }
-                    }
-                }
+                //listeners: {
+                //    change: function (field, newVal, oldVal) {
+                //        if (this.isValid()){
+                //            okEmail = true;
+                //            enableBtn();
+                //        }
+                //        else {
+                //            okEmail = false;
+                //            enableBtn();
+                //        }
+                //    }
+                //}
 
             },
             {
@@ -176,16 +178,18 @@
              {
                  id: 'saveBtn',
                  text: Ilc.resources.Manager.getResourceString('common.add'),
-                 disabled: true,
+                 // disabled: true,
                  handler: function () {
                      var model = {}; 
                      var inputs = me.query('textfield'); 
                      model = Ilc.utils.Forms.extractModel(inputs); // This creates a model based on what is in the form.  
 
-                     var fields = [
-                         'userInfo.firstName', 'userInfo.lastName', 'userInfo.email',
-                         'userInfo.phone', 'userInfo.dateOfBirth', 'userInfo.address', 'userInfo.city',
-                         'userInfo.country', 'customerId', 'userInfo.gender'];
+                     //var fields = [
+                     //    'userInfo.firstName', 'userInfo.lastName', 'userInfo.email',
+                     //    'userInfo.phone', 'userInfo.dateOfBirth', 'userInfo.address', 'userInfo.city',
+                     //    'userInfo.country', 'customerId', 'userInfo.gender'];
+
+                     var fields = ['userInfo.firstName', 'userInfo.lastName', 'customerId'];
 
                      me.validateWrapper(function() {
                          me.fireEvent('addStudent', me, model); // this leads to calling the addStudent function from the List view which will fire an event to reach finally the Students controller
@@ -213,6 +217,6 @@
         gendersStore.load();
         
         me.callParent(arguments);
-        enableBtn();
+        // enableBtn();
     }
 });

@@ -35,6 +35,9 @@
                         ret += subject.name + ', ';
                     });
                     return ret.substring(0, ret.length - 2);
+                },
+                filter: {
+                    type: 'string'
                 }
             }
         ];

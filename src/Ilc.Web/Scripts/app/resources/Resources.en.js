@@ -27,6 +27,7 @@
         'common.owners': 'Owners',
         'common.newTraining': 'New training',
         'common.contact': 'Contact',
+        'common.phoneContact': 'Phone Main Contact Person',
         'common.bankAccount': 'Bank account',
         'common.bankName': 'Bank name',
         'common.postcode': 'Postcode',

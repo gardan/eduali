@@ -13,7 +13,8 @@
         'Ilc.view.trainings.view.Documents',
         'Ilc.view.trainings.view.Expenses',
         'Ilc.view.trainings.view.Students',
-        'Ilc.view.stakeholders.List'
+        'Ilc.view.stakeholders.List',
+        'Ext.ux.form.ColorField'
 
     ],
     width: 900,
@@ -583,6 +584,13 @@
                 name: 'desiredEndDate',
                 labelWidth: 100
             
+            },
+            {
+                xtype: 'colorfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.color'),
+                value: this.model.get('color'),
+                name: 'color',
+                labelWidth: 100
             },
             statusCombo,
             ownersCombo
