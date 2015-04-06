@@ -293,10 +293,13 @@
                             {
                                 text: Ilc.resources.Manager.getResourceString('common.update'),
                                 handler: function (btn) {
-                                    var controls = btn.up().up().items.items.slice(0, 5);
+                                    var controls = btn.up().up().items.items;
 
                                     var args = Ilc.utils.Forms.extractModel(controls);
                                     args.id = model.get('id');
+                                    if (args.owners !== 0) {
+                                        args.owners = [{ id: args.owners }];
+                                    }
 
                                     me.fireEvent('updatetraining', me, args);
                                 }
