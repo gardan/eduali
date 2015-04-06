@@ -70,28 +70,28 @@ namespace Ilc.Web.Services.Trainings
         [IlcAuth]
         public HttpResult Post(CreateTrainingModel request)
         {
-//            var students = new List<Student>();
-//
-//            foreach (var studentModel in request.Students)
-//            {
-//                var student = Students.GetByStudentId(studentModel.Id);
-//                students.Add(student);
-//            }
+            //            var students = new List<Student>();
+            //
+            //            foreach (var studentModel in request.Students)
+            //            {
+            //                var student = Students.GetByStudentId(studentModel.Id);
+            //                students.Add(student);
+            //            }
             // var contacts = new List<ContactPerson>(request.Contacts.Select(c => Uow.Contacts.GetById(c.Id)));
 
             // var sales = Uow.UserProfiles.GetById(request.WorkflowOwners.Sales);
-//            var administration = Uow.UserProfiles.GetById(request.WorkflowOwners.Administration);
-//            var coordinator = Uow.UserProfiles.GetById(request.WorkflowOwners.Coordinator);
-//            var trainer = Uow.Trainers.GetById(request.TrainerId);
+            //            var administration = Uow.UserProfiles.GetById(request.WorkflowOwners.Administration);
+            //            var coordinator = Uow.UserProfiles.GetById(request.WorkflowOwners.Coordinator);
+            //            var trainer = Uow.Trainers.GetById(request.TrainerId);
 
 
-//            var ownersConfiguration = new TrainingOwnersConfiguration()
-//                {
-//                    SalesId = sales.Id,
-//                    AdministrationId = administration.Id,
-//                    CoordinatorId = coordinator.Id,
-//                    TrainerId = trainer.UserProfileId
-//                };
+            //            var ownersConfiguration = new TrainingOwnersConfiguration()
+            //                {
+            //                    SalesId = sales.Id,
+            //                    AdministrationId = administration.Id,
+            //                    CoordinatorId = coordinator.Id,
+            //                    TrainerId = trainer.UserProfileId
+            //                };
 
             var newTraining = new Training
                 {
@@ -103,23 +103,23 @@ namespace Ilc.Web.Services.Trainings
                     DesiredStartDate = request.DesiredStartDate,
                     DesiredEndDate = request.DesiredEndDate,
                     Location = request.Location,
-                    CustomerId = request.CustomerId == 0 ? (int?) null : request.CustomerId,
+                    CustomerId = request.CustomerId == 0 ? (int?)null : request.CustomerId,
                     Owners = new List<UserProfile>() { Users.GetByEmail() },
                 };
 
             Trainings.Create(newTraining);
 
-//            var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
-//            var wfActivity = new Infrastructure.Workflows.Training();
-//            var proc = new WorkflowProcess(extensionManager, wfActivity, new Dictionary<string, object>()
-//                {
-//                    { "argInTrainingId", newTraining.Id },
-//                    { "argInPublic", newTraining.Public }
-//                });
-//            var results = proc.Start(PersistableIdleAction.Unload);
-//
-//            newTraining.WokrflowId = (Guid?)results["InstanceId"];
-//            Trainings.Update(newTraining);
+            //            var extensionManager = new TrainingExtensionManager(Trainings, Offers, Uow);
+            //            var wfActivity = new Infrastructure.Workflows.Training();
+            //            var proc = new WorkflowProcess(extensionManager, wfActivity, new Dictionary<string, object>()
+            //                {
+            //                    { "argInTrainingId", newTraining.Id },
+            //                    { "argInPublic", newTraining.Public }
+            //                });
+            //            var results = proc.Start(PersistableIdleAction.Unload);
+            //
+            //            newTraining.WokrflowId = (Guid?)results["InstanceId"];
+            //            Trainings.Update(newTraining);
 
             var retTraining = new TrainingModel();
 
@@ -143,15 +143,15 @@ namespace Ilc.Web.Services.Trainings
             }
 
             // Update the trainer
-            training.TrainerId = request.TrainerId == 0 
-                                    ? training.TrainerId 
+            training.TrainerId = request.TrainerId == 0
+                                    ? training.TrainerId
                                     : request.TrainerId;
 
             // Update the Color
             training.Color = request.Color;
 
             // Update te DesiredStartDate
-            training.DesiredStartDate =  request.DesiredStartDate == DateTimeOffset.MinValue.DateTime
+            training.DesiredStartDate = request.DesiredStartDate == DateTimeOffset.MinValue.DateTime
                                             ? training.DesiredStartDate
                                             : request.DesiredStartDate;
             training.Location = request.Location == ""
@@ -167,86 +167,21 @@ namespace Ilc.Web.Services.Trainings
                 Uow.InterviewPlans.Update(interviewPlan);
             }
 
-
-            // update the owner configuration if one exists
-//            if (request.WorkflowOwners != null)
-//            {
-//                var config = training.OwnersConfiguration;
-//                var updateConfig = false;
-//                var newOwnerId = 0;
-//                if (config.SalesId != request.WorkflowOwners.Sales)
-//                {
-//                    config.SalesId = request.WorkflowOwners.Sales;
-//                    updateConfig = true;
-//
-//                    if (training.Status == TrainingStatus.Rfi || training.Status == TrainingStatus.Offer)
-//                    {
-//                        newOwnerId = config.SalesId;
-//
-//                    }
-//                }
-//
-//                if (config.CoordinatorId != request.WorkflowOwners.Coordinator)
-//                {
-//                    config.CoordinatorId = request.WorkflowOwners.Coordinator;
-//                    updateConfig = true;
-//
-//                    if (training.Status == TrainingStatus.Interview)
-//                    {
-//                        newOwnerId = config.CoordinatorId;
-//                        training.Owners = new[] { Uow.UserProfiles.GetById(config.CoordinatorId) };
-//                    }
-//                }
-//
-//                if (config.AdministrationId != request.WorkflowOwners.Administration)
-//                {
-//                    config.AdministrationId = request.WorkflowOwners.Administration;
-//                    updateConfig = true;
-//
-//                    if (training.Status == TrainingStatus.PlanInterview || training.Status == TrainingStatus.Accepted || training.Status == TrainingStatus.Rejected)
-//                    {
-//                        newOwnerId = config.AdministrationId;
-//                        training.Owners = new[] { Uow.UserProfiles.GetById(config.AdministrationId) };
-//                    }
-//                }
-//                if (updateConfig)
-//                {
-//                    Uow.TrainingOwnersConfiguration.Update(config);
-//                    if (newOwnerId > 0)
-//                    {
-//                        training.Owners = new List<UserProfile>() { Uow.UserProfiles.GetById(newOwnerId) };
-//
-//                        Uow.Trainings.Update(training);
-//                        Uow.Commit();
-//
-//                        var ownerToBeDeleted = training.Owners.First(u => u.Id != newOwnerId);
-//                        training.Owners.Remove(ownerToBeDeleted);
-//
-//                        Uow.Trainings.Update(training);
-//                        Uow.Commit();
-//                    }
-//                }
-//            }
-
-            var justLoad = training.Owners.ToList();
-            // Doru
-            // I think there is a issue here when the request.Owners is null
-
-            // Who to remove?
-            foreach (var userProfile in justLoad)
+            if (request.Owners != null && request.Owners.First().Id != 0)
             {
-                if (request.Owners != null)
+                var justLoad = training.Owners.ToList();
+
+                // Who to remove?
+                foreach (var userProfile in justLoad)
                 {
+
                     if (request.Owners.FirstOrDefault(owner => owner.Id == userProfile.Id) == null)
                     {
                         training.Owners.Remove(userProfile);
                     }
                 }
-            }
 
-            // Who to add?
-            if (request.Owners != null)
-            {
+                // Who to add?
                 foreach (var userModel in request.Owners)
                 {
                     if (training.Owners.FirstOrDefault(owner => owner.Id == userModel.Id) == null)
@@ -255,8 +190,10 @@ namespace Ilc.Web.Services.Trainings
                     }
                 }
             }
-
             
+
+
+
 
             Uow.Trainings.Update(training);
 
