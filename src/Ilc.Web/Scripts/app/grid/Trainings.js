@@ -33,11 +33,19 @@
             }
         },
         {
-            dataIndex: 'trainer',
+            dataIndex: 'stakeHolders',
             flex: 1,
             text: Ilc.resources.Manager.getResourceString('common.trainer'),
             renderer: function (value) {
-                return value.name;
+                var ret = '';
+                R.filter(function (stakeholder) {
+                    if (R.filter(R.propEq('name', 'Trainer'), stakeholder.roles).length > 0) {
+                        ret += stakeholder.fullName + ', ';
+                    }
+                    
+                }, value);
+
+                return ret.slice(0, -2);
             },
             filter: {
                 type: 'string'
