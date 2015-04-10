@@ -6,7 +6,7 @@
     ],
 
     eventRenderer: function (eventRecord, resourceRecord, tmplData) {
-        var style = 'background-color: ' + eventRecord.get('color');
+        var style = 'background-color: #' + eventRecord.get('color');
         tmplData.style = style;
 
         return eventRecord.get('name');
@@ -65,6 +65,7 @@
             }
         });
     },
+
 
     initComponent: function() {
         var me = this;

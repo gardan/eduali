@@ -58,9 +58,14 @@
         });
     },
 
+    eventRenderer: function (event, resource, templateData) {
+        var color = this.ownerCt.ownerCt.training.get('color');
+        templateData.style = 'background-color: #' + color;
+        return event.get('Name');
+    },
+
     initComponent: function () {
         var me = this;
-
         me.addEvents(
             'deletelesson'
         );
