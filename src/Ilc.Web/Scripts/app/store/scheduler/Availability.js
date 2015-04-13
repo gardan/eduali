@@ -24,14 +24,14 @@
     isResourceAvailable: function (resource, start, end) {
         var availability = this.getEventsForResource(resource);
 
-        if (!availability || availability.length === 0) return false; // This means that there are no VISIBLE availabilities.
+        if (!availability || availability.length === 0) return true; // This means that there are no VISIBLE availabilities.
 
         for (var i = 0; i < availability.length; i++) {
-            if (Sch.util.Date.timeSpanContains(availability[i].getStartDate(), availability[i].getEndDate(), start, end)) {
-                return true;
+            if (Sch.util.Date.intersectSpans(availability[i].getStartDate(), availability[i].getEndDate(), start, end)) {
+                return false;
             }
         }
 
-        return false;
+        return true;
     }
 });
