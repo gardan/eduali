@@ -9,7 +9,7 @@
 
     layout: 'anchor',
     width: 500,
-    title: 'New shift template',
+    title: Ilc.resources.Manager.getResourceString('common.newShiftTemplate'),
 
     _availabilityDaysIndex: 0,
 

@@ -29,7 +29,7 @@
         'common.newCustomer': 'Client nou',
         'common.edit': 'Modifică',
         'common.delete': 'Șterge',
-        'common.newStudent': 'Student nou',
+        'common.newStudent': 'Participant nou',
         'common.phone': 'Telefon',
         'common.newTrainer': 'Profesor nou',
         'common.possibleCosts': 'Costuri posibile',
@@ -38,7 +38,7 @@
         'common.interviewDay': 'Dată interviu',
         'common.location': 'Locația',
         'common.createInterview': 'Planifică interviu',
-        'common.studentsInterviews': 'Interviu studenți',
+        'common.studentsInterviews': 'Interviu participanți',
         'common.view': 'Vedere',
         'common.add': 'Adaugă',
         'common.close': 'Închide',
@@ -58,13 +58,13 @@
         'common.startDate': 'Data de început',
         'common.endDate': 'Data de sfarșit',
         'common.system': 'Sistem',
-        'common.students': 'Studenți',
+        'common.students': 'Participanți',
         'common.billingAddress': 'Adresă de facturare',
         'common.contactName': 'Nume contact',
         'common.contactEmail': 'Email contact',
         'common.phoneNr': 'Telefon',
         'common.address': 'Adresa',
-        'common.student': 'Student',
+        'common.student': 'Participant',
         'common.createOffer': 'Crează ofertă',
         'common.file': 'Fișier',
         'common.creator': 'Creator',
@@ -109,13 +109,13 @@
         'common.firstName': 'Prenume',
         'common.lastName': 'Nume',
         'common.email': 'Email',
-        'common.newSubject': 'Subiect nou',
+        'common.newSubject': 'Curs nou',
         'common.yes': 'da',
         'common.no': 'nu',
         'common.main': 'Principal',
         'common.trainingContact': 'Contact curs',
         'common.price': 'Preț',
-        'common.subjects': 'Subiect',
+        'common.subjects': 'Curs',
         'common.spendings': 'Cheltuieli',
 
 
@@ -133,7 +133,7 @@
         'common.newPassword': 'Noua parolă',
         'common.password': 'Parola',
         'common.company': 'Compania',
-        'common.shiftTemplates': 'Șablon de prezență',
+        'common.shiftTemplates': 'Șablon de disponibilitate',
         'common.friendlyName': 'Nume alternativ',
         'common.claims': 'Capabilities',
         'common.back': 'Înapoi',
@@ -172,10 +172,10 @@
         'common.spendings': 'Cheltuieli',
         'common.color': 'Culoare',
         'common.stakeholders': 'Contributori',
+        'common.newShiftTemplate' : 'Nou șablon disponibilitate',
 
 
-
-        'tasks.title.ended': 'Evaluări studenți',
+        'tasks.title.ended': 'Evaluări participanți',
         'tasks.title.offer': 'Acceptă/refuză oferta',
         'tasks.planned.mainLbl': 'Gata pentru începerea training-ului?',
 
@@ -189,9 +189,9 @@
 
         'view.roles.create.title': 'Rol nou',
 
-        'view.subjects.create.title': 'Subiect nou',
+        'view.subjects.create.title': 'Curs nou',
 
-        'tasks.title.ended': 'Evaluare student',
+        'tasks.title.ended': 'Evaluare participant',
         'tasks.title.offer': 'Accepta/refuza oferta de training',
         'tasks.planned.mainLbl': 'Gata de start pentu training?',
 

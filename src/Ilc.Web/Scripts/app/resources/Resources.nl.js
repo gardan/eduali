@@ -165,7 +165,7 @@
 
         'common.color': 'Kleur',
         'common.stakeholders': 'Mede contributeur',
-
+        'common.newShiftTemplate': 'Nieuw beschikbaarheid patroon',
 
         'tasks.title.ended': 'Afgesloten',
         'tasks.title.offer': 'Oferte',

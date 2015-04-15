@@ -176,6 +176,7 @@
         'common.general' : 'General',
         'common.color': 'Color',
         'common.stakeholders': 'Stakeholders',
+        'common.newShiftTemplate' : 'New shift template',
 
         'tasks.title.ended': 'Students assesments',
         'tasks.title.offer': 'Accept/reject the training offer',

@@ -160,7 +160,6 @@
                 {
                     dataIndex: 'contactPerson',
                     text: Ilc.resources.Manager.getResourceString('common.contact'),
-                    sortable: false,
                     flex: 1,
                     renderer: function (value, metaData) {
                         return value.name;
@@ -173,7 +172,6 @@
                 {
                     dataIndex: 'contactPerson',
                     text: Ilc.resources.Manager.getResourceString('common.phoneContact'),
-                    sortable: false,
                     flex: 1,
                     renderer: function (value, metaData) {
                         return value.user.userInfo.phone ;
@@ -182,7 +180,6 @@
                         type: 'string'
                     }
                 },
-
 
                 {
                     xtype: 'actioncolumn',

@@ -8,14 +8,17 @@
     ],
 
     layout: 'column',
+    // myDays : ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    myDays: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
 
     templateDay: null,
     editable: true,
     index: 0,
 
+    // Doru
     _setSliderLabel: function () {
         var slider = this.query('multislider')[0];
-        slider.setFieldLabel((this.index + 1).toString());
+        slider.setFieldLabel(myDays[this.index]);
     },
 
     setIndex: function(index) {
@@ -42,7 +45,7 @@
                 xtype: 'timeslider',
                 columnWidth: 1,
                 labelWidth: 40,
-                fieldLabel: (me.index + 1).toString(),
+                fieldLabel: (me.myDays[me.index + 1]),
                 margin: '2 10 0 0',
                 disabled: offDay,
                 readOnly: !me.editable,
