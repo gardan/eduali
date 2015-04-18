@@ -26,6 +26,7 @@
 
     lessonCreated: function () {
         this.lessonsContainer.lessonsStore.reload();
+        this.trainingScheduler.eventStore.reload();
     },
 
     initLessonsContainer: function() {
@@ -122,6 +123,7 @@
             training: entity,
             scrollToEvent: false
         });
+        this.trainingScheduler = trainingScheduler;
 
         trainingScheduler.on('eventdrop', function (scheduler, records) {
             // records is an array of record, for now we can only select one event, so just get the first item in the array
