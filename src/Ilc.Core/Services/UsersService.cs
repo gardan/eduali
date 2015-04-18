@@ -104,7 +104,7 @@ namespace Ilc.Core.Services
             }
         }
 
-        public void Create(UserProfile user, string password)
+        public void Create(UserProfile user, string password, bool checkForTrainer)
         {
             EnsureEmailIsUnique(user.Email);
             if (user.CompanyId == 0)
@@ -116,7 +116,7 @@ namespace Ilc.Core.Services
             // Create the profile
             Uow.UserProfiles.Add(user);
 
-            if (this.DoesUserHaveTrainerRole(user))
+            if (this.DoesUserHaveTrainerRole(user) && checkForTrainer)
             {
                 this.AddUserToTrainers(user);
             }
@@ -127,7 +127,7 @@ namespace Ilc.Core.Services
             var hashedPwd = "";
             var token = "";
             DateTime? tokenExpirationDate = null;
-            
+
             if (!string.IsNullOrEmpty(password))
             {
                 hashedPwd = GetHashedFromPlain(password, salt);
@@ -143,26 +143,31 @@ namespace Ilc.Core.Services
             }
 
             Uow.Memberships.Add(new Membership()
-                {
-                    UserId = user.Id,
-                    PasswordFailuresSinceLastSuccess = 0,
-                    Password = hashedPwd,
-                    PasswordSalt = salt,
-                    PasswordVerificationToken = token,
-                    PasswordVerificationTokenExpirationDate = tokenExpirationDate
-                });
+            {
+                UserId = user.Id,
+                PasswordFailuresSinceLastSuccess = 0,
+                Password = hashedPwd,
+                PasswordSalt = salt,
+                PasswordVerificationToken = token,
+                PasswordVerificationTokenExpirationDate = tokenExpirationDate
+            });
             Uow.Commit();
 
             if (string.IsNullOrEmpty(password))
             {
                 var appUrl = WebConfigurationManager.AppSettings["ApplicationUrl"];
                 var body = Templates.CreatedAccountWithNoPassword(new
-                    {
-                        InitPasswordUrl = string.Format("{0}/app/#initaccount?token={1}", appUrl, token)                    
-                    });
-                
+                {
+                    InitPasswordUrl = string.Format("{0}/app/#initaccount?token={1}", appUrl, token)
+                });
+
                 NotifyService.Notify(user.Email, body, "New account");
             }
+        }
+
+        public void Create(UserProfile user, string password)
+        {
+            this.Create(user, password, true);
         }
 
         private void AddUserToTrainers(UserProfile user)

@@ -8,7 +8,6 @@
 
     initColumns: function() {
         var me = this;
-        debugger
         var ret = [
             {
                 // TODO: should actually use 'templatecolumn' and a XTemplate to create the <img /> tag.

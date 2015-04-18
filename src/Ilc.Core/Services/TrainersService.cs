@@ -92,7 +92,7 @@ namespace Ilc.Core.Services
             var user = Users.GetByEmail();
             var role = Uow.Roles.GetAll().FirstOrDefault(r => r.RoleName == "Trainer" && r.CompanyId == user.CompanyId);
             var newUser = new UserProfile() { CompanyId = loggedInUser.CompanyId, Email = email, UserDetails = userDetails, Roles = new List<Role>() { role } };
-            Users.Create(newUser, "");
+            Users.Create(newUser, "", false);
 
             // Append the userId to the trainer
             newTrainer.UserProfileId = newUser.Id;

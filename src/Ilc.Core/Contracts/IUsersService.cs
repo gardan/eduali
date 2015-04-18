@@ -9,6 +9,7 @@ namespace Ilc.Core.Contracts
         UserProfile GetByEmail();
         UserProfile GetById(int id);
         void Create(UserProfile user, string password);
+        void Create(UserProfile user, string password, bool checkForTrainer);
         void Update(UserProfile user);
         void UpdatePassword(int userId, string password);
         void Delete(int id);
