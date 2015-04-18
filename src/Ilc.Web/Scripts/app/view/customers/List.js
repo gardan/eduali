@@ -162,7 +162,7 @@
                     text: Ilc.resources.Manager.getResourceString('common.contact'),
                     flex: 1,
                     renderer: function (value, metaData) {
-                        return value.name;
+                        return value ? value.name : '';
                     },
                     filter: {
                         type: 'string'
@@ -174,7 +174,7 @@
                     text: Ilc.resources.Manager.getResourceString('common.phoneContact'),
                     flex: 1,
                     renderer: function (value, metaData) {
-                        return value.user.userInfo.phone ;
+                        return value ? value.user.userInfo.phone : '';
                     },
                     filter: {
                         type: 'string'
