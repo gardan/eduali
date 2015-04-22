@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net;
 using Ilc.Core.Contracts;
+using Ilc.Core.Exceptions;
 using Ilc.Data.Models;
 using Ilc.Web.InjectorConventions;
 using Ilc.Web.Models;
@@ -69,12 +70,24 @@ namespace Ilc.Web.Services
 
         public HttpResult Delete(DeleteTrainerModel request)
         {
+            if (this.TrainerHasLessons(request.Id))
+            {
+                throw new NotAllowedException("This Trainer has lessons assigned to him. Can't remove from Trainers.");
+            }
+
             Trainers.Delete(request.Id);
 
             return new HttpResult()
                 {
                     StatusCode = HttpStatusCode.OK
                 };
+        }
+
+        private bool TrainerHasLessons(int trainerId)
+        {
+            var trainer = Trainers.GetByTrainerId(trainerId);
+
+            return trainer.UserProfile.TrainingTasks.Count > 0;
         }
     }
 }

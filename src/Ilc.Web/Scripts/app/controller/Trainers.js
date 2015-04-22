@@ -74,18 +74,18 @@
         });
     },
     
-    deleteTrainer: function (sender, model, options) {
+    deleteTrainer: function(sender, model, options) {
         var trainersService = {
-            edit: function (entity) {
+            edit: function(entity) {
                 var deferred = Q.defer();
 
                 Ext.Ajax.request({
                     url: 'api/trainers/' + entity.id,
                     method: 'DELETE',
-                    success: function (response) {
+                    success: function(response) {
                         deferred.resolve(response);
                     },
-                    failure: function (error) {
+                    failure: function(error) {
                         deferred.reject(error);
                     }
                 });
@@ -95,8 +95,14 @@
         };
 
         trainersService.edit(model)
-        .then(function (response) {
+        .then(function(response) {
             options.store.load();
+        })
+        .fail(function (response) {
+            if (response.status >= 500) return;
+            if (sender.showError) {
+                sender.showError(JSON.parse(response.responseText));
+            }
         })
         .finally(function () {
             sender.close();

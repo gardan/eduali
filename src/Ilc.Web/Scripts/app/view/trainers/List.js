@@ -4,7 +4,7 @@
 
     trainersStore: null,
 
-    initColumns: function () {
+    initColumns: function() {
         var me = this;
 
         var ret = [
@@ -12,7 +12,7 @@
                 // TODO: should actually use 'templatecolumn' and a XTemplate to create the <img /> tag.
                 dataIndex: 'name',
                 text: Ilc.resources.Manager.getResourceString('common.avatar'),
-                renderer: function (value, meta, record) {
+                renderer: function(value, meta, record) {
                     var avatarUrl = record.get('userInfo').avatarLocation;
                     return '<img width="64" height="64" src="' + avatarUrl + '" />';
                 }
@@ -29,9 +29,9 @@
                 dataIndex: 'subjects',
                 text: Ilc.resources.Manager.getResourceString('common.subjects'),
                 flex: 1,
-                renderer: function (value) {
+                renderer: function(value) {
                     var ret = '';
-                    Ext.Array.forEach(value, function (subject) {
+                    Ext.Array.forEach(value, function(subject) {
                         ret += subject.name + ', ';
                     });
                     return ret.substring(0, ret.length - 2);
@@ -54,18 +54,25 @@
                     icon: 'images/web/remove.png',
                     scope: me,
                     tooltip: Ilc.resources.Manager.getResourceString('common.delete'),
-                    handler: function (grid, rowIndex, colIndex, item, e, record) {
+                    handler: function(grid, rowIndex, colIndex, item, e, record) {
                         me.fireEvent('deleteTrainer', me, {
-                            id: record.data.id
-                        }, {
-                            store: me.trainersStore
-                        });
+                                id: record.data.id
+                            }, {
+                                store: me.trainersStore
+                            });
                     }
                 }
             ]
         });
-        
+
         return ret;
+    },
+
+    showError: function(error) {
+        Ext.MessageBox.show({
+            msg: error.responseStatus.message,
+            buttons: Ext.Msg.OK
+        });
     },
 
     initComponent: function () {

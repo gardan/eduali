@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Net;
+using Ilc.Core.Exceptions;
 using Ilc.Data.Contracts;
 using Ilc.Data.Models;
 using Ilc.Data.Models.SimpleMembership;
@@ -64,6 +65,15 @@ namespace Ilc.Web.Services
             var role = Uow.Roles.GetById(request.RoleId);
             var user = Uow.UserProfiles.GetById(request.UserId);
 
+            if (this.IsTrainerRole(role))
+            {
+                if (this.TrainerHasLessons(user))
+                {
+                    throw new NotAllowedException("This Trainer has lessons assigned to him. Can't remove from Trainers.");
+                }
+                this.RemoveUserFromTrainer(user);
+            }
+
             user.Roles.ToList();
 
             user.Roles.Remove(role);
@@ -77,6 +87,15 @@ namespace Ilc.Web.Services
                 };
         }
 
+        private void RemoveUserFromTrainer(UserProfile user)
+        {
+                
+        }
+
+        private bool TrainerHasLessons(UserProfile user)
+        {
+            return user.TrainingTasks.Count > 0;
+        }
     }
 
     public class RoleAssignmentModel
