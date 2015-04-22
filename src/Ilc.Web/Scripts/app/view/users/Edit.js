@@ -26,6 +26,13 @@
         this.avatarUploader.initUpload();
     },
 
+    showError: function (error) {
+        Ext.MessageBox.show({
+            msg: error.responseStatus.message,
+            buttons: Ext.Msg.OK
+        });
+    },
+
     unassignRoleComplete: function() {
         this.rolesStore.load({
             params: {
@@ -97,6 +104,7 @@
 
         var rolesGrid = Ext.create('Ilc.grid.Roles', {
             store: rolesStore,
+            userRoles: true,
             dockedItems: [
                 {
                     xtype: 'toolbar',

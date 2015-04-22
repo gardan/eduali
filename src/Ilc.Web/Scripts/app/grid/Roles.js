@@ -61,11 +61,15 @@
                         icon: 'images/web/remove.png',
                         tooltip: Ilc.resources.Manager.getResourceString('common.delete'),
                         handler: function (grid, rowIndex, colIndex, item, e, record) {
+                            if (me.userRoles) {
+                                me.fireEvent('delete', me, record);
+                            } else {
+                                record.destroy({
+                                    success: me.onDeleteSuccess,
+                                    failure: me.onDeleteFailure
+                                });
+                            }
                             
-                            record.destroy({
-                                success: me.onDeleteSuccess,
-                                failure: me.onDeleteFailure
-                            });
                             
                         }
                     }

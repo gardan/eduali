@@ -73,6 +73,12 @@
         .then(function (response) {
             
         })
+        .fail(function (response) {
+            if (response.status >= 500) return;
+            if (sender.showError) {
+                sender.showError(JSON.parse(response.responseText));
+            }
+        })
         .finally(function () {
             sender.unmask();
             sender.unassignRoleComplete();
