@@ -241,7 +241,7 @@ Ext.define('Ext.ux.upload.Panel', {
 
     createUploadManager : function() {
         var uploaderOptions = this.getUploaderOptions() || {};
-
+        uploaderOptions.url = void 0;
         Ext.applyIf(uploaderOptions, {
             url : this.uploadUrl,
             params : this.uploadParams,

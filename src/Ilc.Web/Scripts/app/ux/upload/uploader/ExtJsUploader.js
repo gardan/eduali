@@ -51,7 +51,6 @@ Ext.define('Ext.ux.upload.uploader.ExtJsUploader', {
             if (this.params) {
                 url = Ext.urlAppend(url, Ext.urlEncode(this.params));
             }
-
             conn = Ext.create('Ext.ux.upload.data.Connection', {
                 disableCaching : true,
                 method : this.method,

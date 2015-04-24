@@ -65,18 +65,20 @@
                                         items: [
                                             {
                                                 text: 'Add files',
-                                                handler: function() {
+                                                handler: function () {
+                                                    var uploader = Ext.create('Ilc.uploader.FileUploader', {
+                                                        uploadUrl: 'api/subjects/' + me.subject.get('id') + '/files',
+                                                    });
                                                     var window = Ext.create('Ext.window.Window', {
                                                         items: [
-                                                            Ext.create('Ilc.uploader.FileUploader', {
-                                                                uploadUrl: 'api/subjects/' + me.subject.get('id') + '/files',
-                                                            })
+                                                            uploader
                                                         ],
                                                         listeners: {
                                                             close: function () {
                                                                 documentsStore.reload();
                                                             }
-                                                        }
+                                                        },
+                                                        closeAction: 'destroy'
                                                     });
 
                                                     window.show();
