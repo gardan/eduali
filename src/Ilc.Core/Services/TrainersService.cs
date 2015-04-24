@@ -111,7 +111,12 @@ namespace Ilc.Core.Services
 
         public void Delete(int id)
         {
-            var userId = Uow.Trainers.GetById(id).UserProfileId;
+            var trainer = Uow.Trainers.GetById(id);
+            trainer.Subjects.Clear();
+            Uow.Trainers.Delete(trainer);
+            Uow.Commit();
+
+            var userId = trainer.UserProfileId;
             Users.Delete(userId);
         }
 
