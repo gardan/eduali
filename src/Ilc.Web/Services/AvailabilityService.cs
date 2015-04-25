@@ -47,6 +47,7 @@ namespace Ilc.Web.Services
             if (request.TemplateId <= 0)
             {
                 var availability = new Availability().InjectFrom<AvailabilityModelToAvailability>(request) as Availability;
+                availability.TrainerId = Trainers.GetByUserId(request.ResourceId).Id;
                 Availabilities.Create(availability);
             }
             else
