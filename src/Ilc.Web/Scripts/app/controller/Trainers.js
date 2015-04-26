@@ -36,12 +36,14 @@
             }
         };
 
+        sender.mask();
         trainerService.add(model)
         .then(function (response) {
             var trainer = Ext.create('Ilc.model.Trainer', Ext.JSON.decode(response.responseText));
             sender.trainerCreated(trainer);
         })
-        .finally(function() {
+        .finally(function () {
+            sender.unmask();
         });
     },
 

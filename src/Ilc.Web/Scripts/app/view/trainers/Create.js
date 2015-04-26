@@ -121,10 +121,8 @@
                 text: Ilc.resources.Manager.getResourceString('common.add'),
                 handler: function (button, e) {
                     var model = {};
-                    debugger
                     var inputs = me.query('textfield');
                     model = Ilc.utils.Forms.extractModel(inputs);
-                    debugger
                     var fields = ['userInfo.firstName', 'userInfo.lastName', 'userInfo.email', 'userInfo.gender', 'subjects'];
                     me.validateWrapper(function() {
                         me.fireEvent('addTrainer', me, model);
