@@ -28,7 +28,8 @@ namespace Ilc.Web.Services
                     FirstName = user.UserDetails.FirstName,
                     LastName = user.UserDetails.LastName,
                     Claims = usersClaims.ToArray(),
-                    TrainerId = trainerId
+                    TrainerId = trainerId,
+                    CompanyId = user.CompanyId
                 };
         }
     }
@@ -47,5 +48,6 @@ namespace Ilc.Web.Services
         public string LastName { get; set; }
         public string[] Claims { get; set; }
         public int TrainerId { get; set; }
+        public int CompanyId { get; set; }
     }
 }

@@ -233,6 +233,8 @@ Ext.application({
             }
         });
 
+        var companyLogoMarkup = '<div style="position: absolute; bottom: 0px; right: 0;">' +
+            '<img src="api/companies/{companyId}/logo" style="width: 150px;"></div>';
         
 
         Ilc.helpers.AppConfig.gridColumnStore = Ext.create('Ilc.store.GridConfig', { autoLoad: false });
@@ -240,6 +242,8 @@ Ext.application({
         if (Ext.util.Cookies.get('LoggedIn') == 'True') {
             Ilc.Configuration.init({
                 callback: function () {
+                    window.document.body.innerHTML += companyLogoMarkup.replace('{companyId}', Ilc.Configuration.getValue('companyId'));
+
                     Ext.create('Ilc.routing.Router').init();
                     Ext.create('Ilc.view.Viewport');
                     Ext.History.fireEvent('change', window.location.hash.substring(1));
