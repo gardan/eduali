@@ -15,19 +15,19 @@
             fields: ['component', 'text'],
             data: [
                 {
-                    text: 'Roles',
+                    text: Ilc.resources.Manager.getResourceString('common.roles') // 'Roles',
                     component: 'Ilc.view.roles.List'
                 },
                 {
-                    text: 'Subjects',
+                    text: Ilc.resources.Manager.getResourceString('common.subjects'),
                     component: 'Ilc.view.subjects.List'
                 },
                 {
-                    text: 'Users',
+                    text: Ilc.resources.Manager.getResourceString('common.users'),
                     component: 'Ilc.view.users.List'
                 },
                 {
-                    text: 'Status Definitions',
+                    text: Ilc.resources.Manager.getResourceString('common.statusDefinitions'),
                     component: 'Ilc.view.statusDefinitions.List'
                 },
                 {
@@ -35,27 +35,27 @@
                     component: 'Ilc.view.templates.List'
                 },
                 {
-                    text: 'Grading systems',
+                    text: Ilc.resources.Manager.getResourceString('common.gradingSystems'),
                     component: 'Ilc.view.gradingSystems.List'
                 },
                 {
-                    text: 'Import trainer',
+                    text: Ilc.resources.Manager.getResourceString('common.importTrainers'),
                     component: 'Ilc.view.import.Trainers'
                 },
                 {
-                    text: 'Import customers',
+                    text: Ilc.resources.Manager.getResourceString('common.importCustomers'),
                     component: 'Ilc.view.import.Customers'
                 },
                 {
-                    text: 'Import students',
+                    text: Ilc.resources.Manager.getResourceString('common.importStudents'),
                     component: 'Ilc.view.import.Students'
                 },
                 {
-                    text: 'Document templates',
+                    text: Ilc.resources.Manager.getResourceString('common.documentTemplates'),
                     component: 'Ilc.view.fileTemplates.List'
                 },
                 {
-                    text: 'Expense types',
+                    text: Ilc.resources.Manager.getResourceString('common.expenseTypes'),
                     component: 'Ilc.view.expenseTypes.List'
                 }
             ]
