@@ -79,7 +79,7 @@
                     dataIndex: 'fullName'
                 },
                 {
-                    header: Ilc.resources.Manager.getResourceString('common.stakeholders'),
+                    header: Ilc.resources.Manager.getResourceString('common.roles'),
                     width: 130,
                     dataIndex: 'roles',
                     renderer: function (value) {
