@@ -98,9 +98,16 @@ namespace Ilc.Core.Services
 
         private void EnsureEmailIsUnique(string email)
         {
-            if (GetByEmail(email) != null)
+            if (String.IsNullOrEmpty(email) || String.IsNullOrWhiteSpace(email))
             {
-                throw new ArgumentException("Email address in use! Please use a different email address.");
+                // just ignore empty email addresses
+            }
+            else
+            {
+                if (GetByEmail(email) != null)
+                {
+                    throw new ArgumentException("Email address in use! Please use a different email address.");
+                }
             }
         }
 
