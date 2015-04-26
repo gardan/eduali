@@ -116,7 +116,6 @@
         'common.trainingContact': 'Contact curs',
         'common.price': 'Preț',
         'common.subjects': 'Curs',
-        'common.spendings': 'Cheltuieli',
 
 
         'common.newTemplate': 'Șablon nou',
@@ -141,7 +140,6 @@
         'common.skip': 'Sări peste',
         'common.details': 'Detalii',
 
-        'common.address': 'Adresa',
         'common.city': 'Orașul',
         'common.country': 'Țara',
         'common.active': 'Activ',
@@ -179,8 +177,6 @@
         'tasks.title.offer': 'Acceptă/refuză oferta',
         'tasks.planned.mainLbl': 'Gata pentru începerea training-ului?',
 
-        'tasks.offer.mainLbl': 'Please select the next status of the training to either accepted or rejected',
-
         'statistics.priceSpendings': 'Treț / Cheltuieli',
         'statistics.customerPurchases': 'Traininguri vândute / Client',
         'statistics.trainingsMonth': 'Traininguri vândute / Lună',
@@ -191,15 +187,8 @@
 
         'view.subjects.create.title': 'Curs nou',
 
-        'tasks.title.ended': 'Evaluare participant',
-        'tasks.title.offer': 'Accepta/refuza oferta de training',
-        'tasks.planned.mainLbl': 'Gata de start pentu training?',
-
         'tasks.offer.mainLbl': 'Selecteaza noua stare a cursului: acceptat/refuzat',
 
-        'statistics.priceSpendings': 'Pret/ Spendings',
-        'statistics.customerPurchases': 'Cursuri clienti',
-        'statistics.trainingsMonth': 'Cursuri / luna',
 
 
         'formats.date': 'MM-DD-YYYY',
