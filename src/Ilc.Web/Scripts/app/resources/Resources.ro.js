@@ -14,6 +14,16 @@
         'mainMenu.settings': 'Setări',
         'mainMenu.planning': 'Planificare',
 
+        'common.roles': 'Roluri',
+        'common.users': 'Utilizatori',
+        'common.statusDefinitions': 'Definitie stari',
+        'common.gradingSystems': 'Sistem notare',
+        'common.importTrainers': 'Import traineri',
+        'common.importStudents': 'Import participanti',
+        'common.importCustomers': 'Import clienti',
+        'common.documentTemplates': 'Sablon documente',
+        'common.expenseTypes': 'Tipuri cheltuieli',
+
         'common.trainingId': 'Id curs',
         'common.id': 'Id',
         'common.name': 'Nume',
@@ -115,7 +125,7 @@
         'common.main': 'Principal',
         'common.trainingContact': 'Contact curs',
         'common.price': 'Preț',
-        'common.subjects': 'Curs',
+        'common.subjects': 'Cursuri',
 
 
         'common.newTemplate': 'Șablon nou',
