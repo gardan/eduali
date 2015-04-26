@@ -22,9 +22,6 @@
                 dataIndex: 'name', // There actually isn't any column 'name', we just use it for filtering porpuses, see 'renderer' for the actual value
                 text: Ilc.resources.Manager.getResourceString('common.name'),
                 flex: 1,
-                renderer: function (value, meta, record) {
-                    return record.get('userInfo').firstName;
-                },
                 filter: {
                     type: 'string'
                 },
