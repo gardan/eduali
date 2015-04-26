@@ -113,7 +113,8 @@
         }
     ], 'trainings'),
 
-    initComponent: function() {
+    initComponent: function () {
+        
         var filters = {
             ftype: 'jsvfilters',
             // encode and local configuration options defined previously for easier reuse
@@ -121,7 +122,7 @@
             local: false,   // defaults to false (remote filtering)
         };
 
-        this.filters = [filters];
+        this.features = [filters];
         this.dockedItems = [{
             xtype: 'pagingtoolbar',
             store: this.store,

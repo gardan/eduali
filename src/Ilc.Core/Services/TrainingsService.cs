@@ -112,8 +112,11 @@ namespace Ilc.Core.Services
                     case "customer":
                         query = query.Where(t => t.Customer.Name.Contains(inFilter.Value));
                         break;
-                    case "trainer":
-                        query = query.Where(t => t.Trainer.Name.Contains(inFilter.Value));
+                    case "stakeHolders":
+                        query = query.Where(t => t.StakeHolders.Any(stakeholder => stakeholder.UserDetails.FirstName.Contains(inFilter.Value) || stakeholder.UserDetails.LastName.Contains(inFilter.Value)));
+                        break;
+                    case "status":
+                        query = query.Where(t => t.Status.Name.Contains(inFilter.Value));
                         break;
                     case "subject":
                         query = query.Where(t => t.Subject.Name.Contains(inFilter.Value));
