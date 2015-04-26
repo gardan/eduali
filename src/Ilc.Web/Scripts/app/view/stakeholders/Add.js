@@ -45,8 +45,9 @@
                 wrapped.call(usersStore, options);
             });
 
-        this.stakeholdersBoxSelect = Ext.create('Ext.ux.form.field.BoxSelect', {
+        this.stakeholdersBoxSelect = Ext.create('Ext.form.field.ComboBox', {
             store: usersStore,
+            multiSelect: true,
             displayField: 'fullName',
             valueField: 'id',
             fieldLabel: Ilc.resources.Manager.getResourceString('common.stakeholders'),
