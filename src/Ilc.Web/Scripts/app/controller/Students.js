@@ -39,6 +39,7 @@
 
 
         // studentsService.add(model).then(successHandler, failHandler)
+        sender.mask();
         studentsService.add(model)
             .then(function(response) { // FOR SUCCESS ... 
                 var student = Ext.create('Ilc.model.Student', Ext.JSON.decode(response.responseText));
@@ -51,6 +52,7 @@
             )
             .finally(function() {
                 // sender.close();
+                sender.unmask();
             });
 
         console.log(model);

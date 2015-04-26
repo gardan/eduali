@@ -34,7 +34,6 @@
 
     onUploadComplete: function () {
         this.fireEvent('studentadded');
-        this.unmask();
         this.close();
     },
 
@@ -196,7 +195,6 @@
                          me.fireEvent('addStudent', me, model); // this leads to calling the addStudent function from the List view which will fire an event to reach finally the Students controller
                          Ext.getCmp('saveBtn').disable(); // we disable the buttons until the student is created. This way we avoid user clicking this several times if it takes long to create the student
                          Ext.getCmp('cancelBtn').disable();
-                         me.mask();
                      }, fields, inputs, model);
 
                  }
