@@ -15,7 +15,7 @@
             fields: ['component', 'text'],
             data: [
                 {
-                    text: Ilc.resources.Manager.getResourceString('common.roles') // 'Roles',
+                    text: Ilc.resources.Manager.getResourceString('common.roles'), // 'Roles',
                     component: 'Ilc.view.roles.List'
                 },
                 {
