@@ -12,7 +12,9 @@
         'mainMenu.roles': 'Roluri',
         'mainMenu.subjects': 'Cursuri',
         'mainMenu.settings': 'Setări',
-        'mainMenu.planning': 'Planificare',
+        'mainMenu.planning': 'Planificare',        
+	'mainMenu.companies': 'Companii',
+	'mainMenu.login': 'Login',
 
         'common.roles': 'Roluri',
         'common.users': 'Utilizatori',
@@ -127,12 +129,12 @@
         'common.price': 'Preț',
         'common.subjects': 'Cursuri',
 		
-		'common.customerId': 'ID client',
-		'common.bankName': 'Nume bancă',
-		'common.phoneContact': 'Telefon persoana contact',
-		
-		
-
+	'common.customerId': 'ID client',
+	'common.bankName': 'Nume bancă',
+	'common.phoneContact': 'Telefon persoana contact',
+	'common.postcode': 'Cod poștal',
+	
+	
 
         'common.newTemplate': 'Șablon nou',
         'common.avatar': 'Avatar',
