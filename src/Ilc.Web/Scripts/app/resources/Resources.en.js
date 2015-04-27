@@ -70,7 +70,6 @@
         'common.contactName': 'Contact name',
         'common.contactEmail': 'Contact email',
         'common.phoneNr': 'Phone',
-        'common.address': 'Address',
         'common.student': 'Student',
         'common.createOffer': 'Create offer',
         'common.file': 'File',
