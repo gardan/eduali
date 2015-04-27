@@ -111,7 +111,7 @@
             // width: 890,
             height: 400,
             // startDate: new Date(2013, 10, 24, 6),
-            eventResizeHandles: 'none',
+            eventResizeHandles: 'both',
             // enableDragCreation: false,
 
             resourceStore: resourceStore,
@@ -124,6 +124,18 @@
             scrollToEvent: false
         });
         this.trainingScheduler = trainingScheduler;
+
+        trainingScheduler.on('eventresizeend', function (scheduler, record) {
+            var model = {
+                startDate: record.get('StartDate'),
+                endDate: record.get('EndDate'),
+                id: record.get('Id'),
+                lessonName: record.get('Name'),
+                trainingId: entity.get('id')
+            };
+
+            me.fireEvent('updatelesson', me, model);
+        });
 
         trainingScheduler.on('eventdrop', function (scheduler, records) {
             // records is an array of record, for now we can only select one event, so just get the first item in the array

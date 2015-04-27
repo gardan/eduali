@@ -242,8 +242,6 @@ Ext.application({
         if (Ext.util.Cookies.get('LoggedIn') == 'True') {
             Ilc.Configuration.init({
                 callback: function () {
-                    window.document.body.innerHTML += companyLogoMarkup.replace('{companyId}', Ilc.Configuration.getValue('companyId'));
-
                     Ext.create('Ilc.routing.Router').init();
                     Ext.create('Ilc.view.Viewport');
                     Ext.History.fireEvent('change', window.location.hash.substring(1));
