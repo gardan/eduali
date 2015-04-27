@@ -3,7 +3,7 @@
 
     resources: {
         'mainMenu.tasks': 'Tasks',
-        'mainMenu.trainings': 'Cursuri',
+        'mainMenu.trainings': 'Trainings',
         'mainMenu.customers': 'Clienți',
         'mainMenu.students': 'Participanți',
         'mainMenu.statistics': 'Statistici',
@@ -126,6 +126,12 @@
         'common.trainingContact': 'Contact curs',
         'common.price': 'Preț',
         'common.subjects': 'Cursuri',
+		
+		'common.customerId': 'ID client',
+		'common.bankName': 'Nume bancă',
+		'common.phoneContact': 'Telefon persoana contact',
+		
+		
 
 
         'common.newTemplate': 'Șablon nou',
@@ -154,7 +160,7 @@
         'common.country': 'Țara',
         'common.active': 'Activ',
         'common.createDate': 'Data creerii',
-        'common.trainings': 'Training-uri',
+        'common.trainings': 'Trainings',
         'common.amount': 'Sumă',
         'common.sentAt': 'Data trimiterii',
         'common.paymentDueAt': 'Data limită de plată',
