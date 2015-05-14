@@ -178,7 +178,20 @@ namespace Ilc.Core.Services
 
         public void Delete(int id)
         {
-            Uow.Trainings.Delete(id);
+            var training = Uow.Trainings.GetById(id);
+
+            training.Students.Clear();
+
+            training.StakeHolders.Clear();
+            training.ContactPersons.Clear();
+            training.Owners.Clear();
+            if (training.Spendings != null)
+            {
+                Uow.Spendings.Delete(training.Spendings.Id);
+            }
+            
+            Update(training);
+            Uow.Trainings.Delete(training);
             Uow.Commit();
         }
 

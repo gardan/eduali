@@ -204,6 +204,17 @@ namespace Ilc.Web.Services.Trainings
                     StatusCode = HttpStatusCode.OK
                 };
         }
+
+        public HttpResult Delete(UpdateTrainingModel request)
+        {
+            Trainings.Delete(request.Id);
+
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+
+        }
     }
 
     public class UpdateTrainingModel

@@ -20,7 +20,7 @@ namespace Ilc.Web.AppStart
             routes.Add<FilterParametersTrainings>("/trainings", "GET");
             routes.Add<CreateTrainingModel>("/trainings", "POST");
             routes.Add<TrainingStudentInterviewModel>("/trainings/{id}/students", "GET");
-            routes.Add<UpdateTrainingModel>("/trainings/{id}", "PUT,GET");
+            routes.Add<UpdateTrainingModel>("/trainings/{id}", "PUT,GET,DELETE");
             routes.Add<Services.FilterParameterProgressEvaluations>("/trainings/{trainingId}/progressEvaluationsStudents", "GET");
 
             routes.Add<Services.PostTrainingContactsModel>("/trainings/{trainingId}/contacts", "POST");
