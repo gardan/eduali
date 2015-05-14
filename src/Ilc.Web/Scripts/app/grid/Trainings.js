@@ -110,6 +110,25 @@
                 }
                 return ret.slice(0, ret.length - 1);
             }
+        },
+        {
+            xtype: 'actioncolumn',
+            text: Ilc.resources.Manager.getResourceString('common.actions'),
+            sortable: false,
+            menuDisabled: true,
+            items: [
+                {
+                    icon: 'images/web/remove.png',
+                    tooltip: Ilc.resources.Manager.getResourceString('common.delete'),
+                    handler: function (grid, rowIndex, colIndex, item, e, record) {
+                        record.destroy({
+                            success: function() {
+                                grid.store.reload();
+                            }
+                        });
+                    }
+                }
+            ]
         }
     ], 'trainings'),
 
