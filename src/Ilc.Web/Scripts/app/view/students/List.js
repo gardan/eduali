@@ -117,7 +117,21 @@
 
                                 window.show();
                             }
-                        }]
+                        },
+                        {
+                            xtype: 'button',
+                            text: Ilc.resources.Manager.getResourceString('common.studentsToday'),
+                            handler: function () {
+                                var today = moment();
+
+                                studentsStore.reload({
+                                    params: {
+                                        trainingDate: today.format('YYYY-MM-DD')
+                                    }
+                                });
+                            }
+                        }
+                    ]
                 }
             ],
             columns: columns

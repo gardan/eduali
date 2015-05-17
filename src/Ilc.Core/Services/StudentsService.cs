@@ -28,6 +28,15 @@ namespace Ilc.Core.Services
                 query = query.Where(s => s.CustomerId == parameters.CustomerId);
             }
 
+            if (parameters.TrainingDate != DateTimeOffset.MinValue)
+            {
+                query =
+                    query.Where(
+                        s =>
+                        s.Trainings.Any(
+                            t => t.ScheduleDays.Any(sd => sd.StartDate.Day == parameters.TrainingDate.Day)));
+            }
+
             if (!string.IsNullOrWhiteSpace(parameters.Query))
             {
                 query = query.Where(s => s.UserProfile.UserDetails.FirstName.Contains(parameters.Query) || s.UserProfile.UserDetails.LastName.Contains(parameters.Query));
