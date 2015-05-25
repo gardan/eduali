@@ -150,6 +150,7 @@
     <Content Include="Resources\custombootstrap.css" />
     <Content Include="Resources\site.css" />
     <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\app\AsyncHelpers.js" />
     <Content Include="Scripts\app\chart\Customers.js" />
     <Content Include="Scripts\app\chart\Spendings.js" />
     <Content Include="Scripts\app\chart\Trainings.js" />

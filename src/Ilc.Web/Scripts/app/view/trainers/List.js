@@ -2,6 +2,10 @@
     extend: 'Ext.container.Container',
     xtype: 'listtrainers',
 
+    requires: [
+        'Ilc.AsyncHelpers'
+    ],
+
     trainersStore: null,
 
     initColumns: function() {
@@ -54,11 +58,14 @@
                     icon: 'images/web/remove.png',
                     scope: me,
                     tooltip: Ilc.resources.Manager.getResourceString('common.delete'),
-                    handler: function(grid, rowIndex, colIndex, item, e, record) {
-                        me.fireEvent('deleteTrainer', me, {
-                                id: record.data.id
-                            }, {
-                                store: me.trainersStore
+                    handler: function (grid, rowIndex, colIndex, item, e, record) {
+                        Ilc.AsyncHelpers.confirmModal()
+                            .then(function() {
+                                me.fireEvent('deleteTrainer', me, {
+                                        id: record.data.id
+                                    }, {
+                                        store: me.trainersStore
+                                    });
                             });
                     }
                 }

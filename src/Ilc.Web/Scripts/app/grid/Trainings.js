@@ -1,6 +1,10 @@
 ﻿Ext.define('Ilc.grid.Trainings', {
     extend: 'Ext.grid.Panel',
     
+    requires: [
+        'Ilc.AsyncHelpers'
+    ],
+
     columns: Ilc.helpers.GridColumns.process([
         {
             dataIndex: 'compositeId',
@@ -121,11 +125,14 @@
                     icon: 'images/web/remove.png',
                     tooltip: Ilc.resources.Manager.getResourceString('common.delete'),
                     handler: function (grid, rowIndex, colIndex, item, e, record) {
-                        record.destroy({
-                            success: function() {
-                                grid.store.reload();
-                            }
-                        });
+                        Ilc.AsyncHelpers.confirmModal()
+                            .then(function() {
+                                record.destroy({
+                                    success: function() {
+                                        grid.store.reload();
+                                    }
+                                });
+                            });
                     }
                 }
             ]

@@ -4,7 +4,8 @@
 
     requires: [
         'Ext.util.Point',
-        'Ext.ux.grid.JsvFiltersFeature'
+        'Ext.ux.grid.JsvFiltersFeature',
+        'Ilc.AsyncHelpers'
     ],
 
     constructor: function () {
@@ -192,11 +193,14 @@
                             scope: me,
                             tooltip: Ilc.resources.Manager.getResourceString('common.delete'),
                             handler: function (grid, rowIndex, colIndex, item, e, record) {
-                                me.fireEvent('deleteCustomer', me, {
-                                    id: record.data.id
-                                }, {
-                                    store: customersStore
-                                });
+                                Ilc.AsyncHelpers.confirmModal()
+                                .then(function() {
+                                    me.fireEvent('deleteCustomer', me, {
+                                            id: record.data.id
+                                        }, {
+                                            store: customersStore
+                                        });
+                                })
                             }
                         }
                     ]

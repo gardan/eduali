@@ -3,7 +3,8 @@
     xtype: 'liststudents',
 
     requires: [
-        'Ilc.helpers.ColumnBuilder'
+        'Ilc.helpers.ColumnBuilder',
+        'Ilc.AsyncHelpers'
     ],
 
     initColumns: function() {
@@ -54,11 +55,14 @@
                         scope: me,
                         tooltip: Ilc.resources.Manager.getResourceString('common.delete'),
                         handler: function (grid, rowIndex, colIndex, item, e, record) {
-                            me.fireEvent('deleteStudent', me, {
-                                id: record.data.id
-                            }, {
-                                store: me.studentsStore
-                            });
+                            Ilc.AsyncHelpers.confirmModal()
+                                .then(function() {
+                                    me.fireEvent('deleteStudent', me, {
+                                        id: record.data.id
+                                    }, {
+                                        store: me.studentsStore
+                                    });
+                                });                            
                         }
                     }
                 ]
