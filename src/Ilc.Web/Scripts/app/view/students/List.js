@@ -123,16 +123,28 @@
                             }
                         },
                         {
-                            xtype: 'button',
-                            text: Ilc.resources.Manager.getResourceString('common.studentsToday'),
-                            handler: function () {
+                            xtype: 'checkbox',
+                            fieldLabel: Ilc.resources.Manager.getResourceString('common.studentsToday'),
+                            labelWidth: 100,
+                            width: 200,
+                            labelAlign: 'right',
+                            handler: function (checkbox, checked) {
                                 var today = moment();
 
-                                studentsStore.reload({
-                                    params: {
-                                        trainingDate: today.format('YYYY-MM-DD')
-                                    }
-                                });
+                                if (checked) {
+                                    studentsStore.reload({
+                                        params: {
+                                            trainingDate: today.format('YYYY-MM-DD')
+                                        }
+                                    });
+                                } else {
+                                    studentsStore.reload({
+                                        params: {
+                                            trainingDate: undefined
+                                        }
+                                    });
+                                }
+                                
                             }
                         }
                     ]
