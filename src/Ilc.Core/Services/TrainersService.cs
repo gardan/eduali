@@ -112,6 +112,17 @@ namespace Ilc.Core.Services
         public void Delete(int id)
         {
             var trainer = Uow.Trainers.GetById(id);
+
+            var trainings = Uow.Trainings.GetAll().Where(t => t.Owners.Any(o => o.Id == trainer.UserProfileId) || t.StakeHolders.Any(sh => sh.Id == trainer.UserProfileId)).ToList();
+            foreach (var training in trainings)
+            {
+                training.Owners.Remove(trainer.UserProfile);
+                training.StakeHolders.Remove(trainer.UserProfile);
+                Uow.Trainings.Update(training);
+            }
+
+            Uow.Commit();
+
             trainer.Subjects.Clear();
             Uow.Trainers.Delete(trainer);
             Uow.Commit();
