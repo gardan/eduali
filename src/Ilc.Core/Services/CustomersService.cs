@@ -12,6 +12,7 @@ namespace Ilc.Core.Services
         public IUow Uow { get; set; }
         public IContactsService Contacts { get; set; }
         public IUsersService Users { get; set; }
+        public ITrainingsService Trainings { get; set; }
 
         public FilteredResults<Customer> GetFiltered(FilterArguments parameters)
         {
@@ -112,6 +113,14 @@ namespace Ilc.Core.Services
 
         public void Delete(int id)
         {
+            var trainings = Uow.Trainings.GetAll().Where(t => t.Customer.Id == id).ToList();
+
+            foreach (var training in trainings)
+            {
+                Trainings.Delete(training.Id);
+            }
+            Uow.Commit();
+
             Uow.Customers.Delete(id);
             Uow.Commit();
         }

@@ -133,7 +133,18 @@ namespace Ilc.Core.Services
 
         public void Delete(int id)
         {
-            var userId = Uow.Students.GetById(id).UserProfileId;
+            var student = Uow.Students.GetById(id);
+
+            var trainings = Uow.Trainings.GetAll().Where(t => t.Students.Any(o => o.Id == id)).ToList();
+            foreach (var training in trainings)
+            {
+                training.Students.Remove(student);
+                Uow.Trainings.Update(training);
+            }
+
+            Uow.Commit();
+
+            var userId = student.UserProfileId;
             Users.Delete(userId);
         }
 
