@@ -89,7 +89,7 @@ namespace Ilc.Web.AppStart
             routes.Add<Services.SpendingModel>("/spendings/{id}", "PUT");
 
             routes.Add<Services.FilterStatusDefinitionsParameters>("/statusdefinitions", "GET");
-            routes.Add<Services.StatusDefinitionUpdateModel>("/statusdefinitions/{id}", "PUT");
+            routes.Add<Services.StatusDefinitionUpdateModel>("/statusdefinitions/{id}", "PUT, DELETE");
 
             routes.Add<GridConfigRequestParameters>("/config/grid", "GET");
             routes.Add<UpdateGridColumnConfigModel>("/config/grid", "PUT");

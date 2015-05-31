@@ -52,6 +52,25 @@ namespace Ilc.Web.Services
                 StatusCode = HttpStatusCode.Created
             };
         }
+
+        public HttpResult Delete(StatusDefinitionUpdateModel request)
+        {
+            var status = Uow.StatusDictionary.GetById(request.Id);
+
+            if (Uow.Trainings.GetAll().Any(t => t.StatusId == status.Id))
+            {
+                throw new HttpError(HttpStatusCode.MethodNotAllowed, "Status belongs to a training. Please remove this status from all the trainings, then try again.");
+            }
+
+            Uow.StatusDictionary.Delete(status);
+            Uow.Commit();
+            
+            return new HttpResult()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+
+        }
     }
 
     [Route("/statusDefinitions", "POST")]
