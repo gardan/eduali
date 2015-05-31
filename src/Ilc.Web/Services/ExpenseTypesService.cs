@@ -62,7 +62,15 @@ namespace Ilc.Web.Services
 
         public HttpResult Delete(ExpenseTypeModel request)
         {
+            var expenseType = Uow.ExpenseTypes.GetById(request.Id);
+
+            if (Uow.Trainings.GetAll().Any(t => t.Expenses.Any(e => e.ExpenseTypeId == request.Id)))
+            {
+                throw new HttpError(HttpStatusCode.MethodNotAllowed, "Expense type is assigned to training. Remove from training then try again.");
+            }
+
             Uow.ExpenseTypes.Delete(request.Id);
+            Uow.Commit();
             return new HttpResult()
                 {
                     StatusCode = HttpStatusCode.OK
