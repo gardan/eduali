@@ -1,6 +1,10 @@
 ﻿Ext.define('Ilc.grid.Users', {
     extend: 'Ext.grid.Panel',
 
+    requires: [
+        'Ilc.AsyncHelpers'
+    ],
+
     features: [
         {
             ftype: 'jsvfilters',
@@ -21,6 +25,33 @@
         ];
         
         ret = ret.concat(Ilc.helpers.ColumnBuilder.getUserColCfg());
+
+        ret.push({
+            xtype: 'actioncolumn',
+            items: [
+                {
+                    icon: 'images/web/remove.png',
+                    tooltip: Ilc.resources.Manager.getResourceString('common.delete'),
+                    handler: function (grid, rowIndex, colIndex, item, e, record) {
+                        Ilc.AsyncHelpers.confirmModal()
+                            .then(function() {
+                                record.destroy({
+                                    success: function () {
+                                        console.log(arguments);
+                                    },
+                                    failure: function (model, response) {
+                                        Ext.MessageBox.show({
+                                            title: 'Error',
+                                            msg: response.error.statusText,
+                                            buttons: Ext.MessageBox.OK,
+                                        });
+                                    }
+                                });
+                            });
+                    }
+                }
+            ]
+        });
 
         return ret;
     },
