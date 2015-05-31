@@ -3,6 +3,8 @@ using System.Linq;
 using System.Net;
 using Ilc.Core;
 using Ilc.Core.Contracts;
+using Ilc.Core.Exceptions;
+using Ilc.Data.Contracts;
 using Ilc.Data.Models;
 using Ilc.Web.Filters.Request;
 using Ilc.Web.Models;
@@ -16,6 +18,7 @@ namespace Ilc.Web.Services
     {
 
         public ISubjectsService Subjects { get; set; }
+        public IUow Uow { get; set; }
 
         public FilteredDataModel<SubjectModel> Get(FilterSubjectsParameters request)    
         {
@@ -57,9 +60,15 @@ namespace Ilc.Web.Services
         {
             // TODO: put in request attribute
             var subject = Subjects.GetById(request.Id);
+            
+
             if (subject.Trainers.Any())
             {
-                throw new ArgumentException("Subject belongs to trainers.");
+                throw new HttpError(HttpStatusCode.MethodNotAllowed, "Subject belongs to trainers.");
+            }
+            if (Uow.Trainings.GetAll().Any(t => t.SubjectId == subject.Id))
+            {
+                throw new HttpError(HttpStatusCode.MethodNotAllowed, "Subject belongs to active trainings.");
             }
 
             Subjects.Delete(request.Id);

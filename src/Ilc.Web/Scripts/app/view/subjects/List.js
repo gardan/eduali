@@ -30,6 +30,30 @@
                     dataIndex: 'name',
                     text: Ilc.resources.Manager.getResourceString('common.name'),
                     flex: 1
+                },
+                {
+                    xtype: 'actioncolumn',
+                    items: [
+                        {
+                            icon: 'images/web/remove.png',
+                            scope: me,
+                            tooltip: Ilc.resources.Manager.getResourceString('common.delete'),
+                            handler: function (grid, rowIndex, colIndex, item, e, record) {
+                                record.destroy({
+                                    success: function() {
+                                        console.log(arguments);
+                                    },
+                                    failure: function(model, response) {
+                                        Ext.MessageBox.show({
+                                            title: 'Error',
+                                            msg: response.error.statusText,
+                                            buttons: Ext.MessageBox.OK,
+                                        });
+                                    }
+                                });
+                            }
+                        }
+                    ]
                 }
             ],
             dockedItems: [
