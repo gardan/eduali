@@ -152,6 +152,28 @@
                     me.zoomOut();
                     me.loadAvailabilityZones();
                 }
+            },
+            {
+                xtype: 'button',
+                text: Ilc.resources.Manager.getResourceString('common.today'),
+                handler: function (checkbox, checked) {
+                    var today = new Date(moment().hour(0).minute(0).seconds(0).format());
+                    me.scrollToDate(today);
+                }
+            },
+            {
+                xtype: 'button',
+                text: Ilc.resources.Manager.getResourceString('common.week'),
+                handler: function (checkbox) {
+                    var today = moment().hour(0).minute(0).seconds(0),
+                        todayPlus7Days = moment(today).day(7);
+
+                    me.zoomToSpan({
+                        start: new Date(today.format()),
+                        end: new Date(todayPlus7Days.format())
+                    });
+                    // me.scrollToDate(today);
+                }
             }
         ];
 
