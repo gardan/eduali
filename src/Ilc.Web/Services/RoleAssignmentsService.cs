@@ -90,7 +90,7 @@ namespace Ilc.Web.Services
 
         private void RemoveUserFromTrainer(UserProfile user)
         {
-            Trainers.Delete(Trainers.GetByUserId(user.Id).Id);
+            Trainers.Delete(Trainers.GetByUserId(user.Id).Id, false);
         }
 
         private bool TrainerHasLessons(UserProfile user)

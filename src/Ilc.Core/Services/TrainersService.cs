@@ -109,7 +109,7 @@ namespace Ilc.Core.Services
             Uow.Commit();
         }
 
-        public void Delete(int id)
+        public void Delete(int id, bool deleteUser = true)
         {
             var trainer = Uow.Trainers.GetById(id);
 
@@ -127,8 +127,11 @@ namespace Ilc.Core.Services
             Uow.Trainers.Delete(trainer);
             Uow.Commit();
 
-            var userId = trainer.UserProfileId;
-            Users.Delete(userId);
+            if (deleteUser)
+            {
+                var userId = trainer.UserProfileId;
+                Users.Delete(userId);
+            }
         }
 
         public Trainer GetByUserId(int id)
