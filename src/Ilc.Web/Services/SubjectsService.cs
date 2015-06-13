@@ -5,6 +5,7 @@ using Ilc.Core;
 using Ilc.Core.Contracts;
 using Ilc.Core.Exceptions;
 using Ilc.Data.Contracts;
+using Ilc.Data.Migrations;
 using Ilc.Data.Models;
 using Ilc.Web.Filters.Request;
 using Ilc.Web.Models;
@@ -14,54 +15,34 @@ using ServiceStack;
 namespace Ilc.Web.Services
 {
     [IlcAuth]
-    public class SubjectsService : Service
+    public class SubjectsService : BaseService<
+        SubjectModel, 
+        SubjectModel, 
+        SubjectModel, 
+        FilterSubjectsParameters, 
+        Subject, 
+        SubjectModel>
     {
-
-        public ISubjectsService Subjects { get; set; }
-        public IUow Uow { get; set; }
-
-        public FilteredDataModel<SubjectModel> Get(FilterSubjectsParameters request)    
+        public override IQueryable<Subject> ApplyCustomSearchLogic(IQueryable<Subject> query, FilterSubjectsParameters request)
         {
-            var results = Subjects.GetFiltered(request);
-            return new FilteredDataModel<SubjectModel>()
-                {
-                    Data = results.Data.Select(s => new SubjectModel().InjectFrom(s) as SubjectModel).ToList(),
-                    TotalDisplayRecords = results.TotalDisplayRecords,
-                    TotalRecords = results.TotalRecords
-                };
+            // predefined search
+            // This searches for subjects that belong or not, to a trainer.
+            // e.g. You want all the subjects that a trainer has.
+            // e.g. You want all the subjects that a trainer does NOT have.
+            if (request.TrainerId > 0)
+            {
+                query = request.Assigned 
+                    ? query.Where(s => s.Trainers.Any(t => t.Id == request.TrainerId)) 
+                    : query.Where(s => s.Trainers.All(t => t.Id != request.TrainerId));
+            }
+
+            return query;
         }
 
-        public HttpResult Post(SubjectModel request)
+        public override HttpResult Delete(SubjectModel request)
         {
-            var subject = new Subject().InjectFrom(request) as Subject;
-
-            Subjects.Create(subject);
-
-            return new HttpResult()
-                {
-                    StatusCode = HttpStatusCode.OK
-                };
-        }
-
-        public HttpResult Put(SubjectModel request)
-        {
-            var subject = Subjects.GetById(request.Id);
-            subject.InjectFrom(request);
-
-            Subjects.Update(subject);
-
-            return new HttpResult()
-                {
-                    StatusCode = HttpStatusCode.OK
-                };
-        }
-
-        public HttpResult Delete(SubjectModel request)
-        {
-            // TODO: put in request attribute
-            var subject = Subjects.GetById(request.Id);
+            var subject = Uow.Subjects.GetById(request.Id);
             
-
             if (subject.Trainers.Any())
             {
                 throw new HttpError(HttpStatusCode.MethodNotAllowed, "Subject belongs to trainers.");
@@ -71,18 +52,12 @@ namespace Ilc.Web.Services
                 throw new HttpError(HttpStatusCode.MethodNotAllowed, "Subject belongs to active trainings.");
             }
 
-            Subjects.Delete(request.Id);
-
-            return new HttpResult()
-            {
-                StatusCode = HttpStatusCode.OK
-            };
+            return base.Delete(request);
         }
     }
 
-    public class SubjectModel
+    public class SubjectModel : BaseRequestModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
     }
 

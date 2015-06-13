@@ -4381,6 +4381,8 @@
     <Compile Include="Services\AssesmentsService.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\AvailabilityService.cs" />
+    <Compile Include="Models\BaseRequestModel.cs" />
+    <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\Customers\LogsService.cs" />
     <Compile Include="Services\DataImport\DataImportService.cs" />
     <Compile Include="Services\DecoupledOffersWebService.cs" />
@@ -4472,6 +4474,7 @@
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>

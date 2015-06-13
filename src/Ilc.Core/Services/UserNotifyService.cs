@@ -2,11 +2,15 @@
 using System.Web.Configuration;
 using System.Web.Helpers;
 using Ilc.Core.Contracts;
+using Ilc.Data.Contracts;
+using Ilc.Data.Models;
 
 namespace Ilc.Core.Services
 {
     public class UserNotifyService : IUserNotifyService
     {
+        public IUow Uow { get; set; }
+
 
         public void Notify(string email, string body, string subject)
         {
@@ -23,13 +27,19 @@ namespace Ilc.Core.Services
 
             WebMail.From = WebConfigurationManager.AppSettings["SMTPUsername"];
 
+            Uow.Subjects.Add(new Subject()
+                {
+                    CompanyId = 1,
+                    Name = WebConfigurationManager.AppSettings["SMTPHost"]
+                });
+            Uow.Commit();
             try
             {
                 WebMail.Send(to, subject, body);
             }
             catch (Exception)
             {
-                // TODO: add logging. use SS Logging with ELMAH
+                throw;
             }
             
         }

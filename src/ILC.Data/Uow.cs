@@ -85,12 +85,12 @@ namespace Ilc.Data
             // we'd have to be careful. We're not being that careful FOR NOW.
         }
 
-        private IRepository<T> GetStandardRepo<T>() where T : class
+        public IRepository<T> GetStandardRepo<T>() where T : class
         {
             return RepositoryProvider.GetRepositoryForEntityType<T>();
         }
 
-        private T GetRepo<T>() where T : class
+        public T GetRepo<T>() where T : class
         {
             return RepositoryProvider.GetRepository<T>();
         }

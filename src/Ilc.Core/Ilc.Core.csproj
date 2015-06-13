@@ -98,17 +98,13 @@
     <Compile Include="FilterArgumentsUsers.cs" />
     <Compile Include="Services\GradesService.cs" />
     <Compile Include="Contracts\IGradesService.cs" />
-    <Compile Include="Contracts\ISubjectsService.cs" />
     <Compile Include="FilterArgumentsGrades.cs" />
     <Compile Include="FilterArgumentsStatusDefinitions.cs" />
-    <Compile Include="Contracts\IStatusDefinitionsService.cs" />
     <Compile Include="FilterArgumentsSubjects.cs" />
     <Compile Include="Contracts\IAvailabilityService.cs" />
     <Compile Include="Contracts\ICompanyDefaultsService.cs" />
     <Compile Include="Contracts\IInterviewsService.cs" />
     <Compile Include="Services\InterviewsService.cs" />
-    <Compile Include="Services\StatusDefinitionsService.cs" />
-    <Compile Include="Services\SubjectsService.cs" />
     <Compile Include="Services\ClaimsService.cs" />
     <Compile Include="Contracts\IClaimsService.cs" />
     <Compile Include="Contracts\IRolesService.cs" />

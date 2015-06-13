@@ -51,6 +51,9 @@ namespace Ilc.Data.Contracts
         IRepository<ExpenseType> ExpenseTypes { get; }
         IRepository<Offer> DecoupledOffers { get; }
 
-        IRepository<RoleClaim> RoleClaims { get; } 
+        IRepository<RoleClaim> RoleClaims { get; }
+
+
+        IRepository<T> GetStandardRepo<T>() where T : class;
     }
 }

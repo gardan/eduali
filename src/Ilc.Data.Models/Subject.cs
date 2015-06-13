@@ -4,12 +4,9 @@ using Ilc.Data.Models.Base;
 
 namespace Ilc.Data.Models
 {
-    public class Subject : EntityBase
+    public class Subject : CompanyBaseEntity
     {
         public string Name { get; set; }
-        public int CompanyId { get; set; }
-        [ForeignKey("CompanyId")]
-        public Company Company { get; set; }
 
         public virtual ICollection<Trainer> Trainers { get; set; }
     }
