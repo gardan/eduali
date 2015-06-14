@@ -20,6 +20,9 @@ namespace Ilc.Data.Configuration
                     m.MapLeftKey("UserId");
                     m.MapRightKey("RoleId");
                 });
+//            HasMany(userProfile => userProfile.TrainingScheduleDays)
+//                .WithRequired(sd => sd.UserProfile)
+//                .HasForeignKey(sd => sd.OwnerId);
 
         }
     }

@@ -158,6 +158,14 @@
                 text: Ilc.resources.Manager.getResourceString('common.today'),
                 handler: function (checkbox, checked) {
                     var today = new Date(moment().hour(0).minute(0).seconds(0).format());
+                    me.resourceStore.reload({
+                        params: {
+                            lessonStartDate: today,
+                            lessonEndDate: today,
+                            limit: 1000
+                        }
+                    });
+                    
                     me.scrollToDate(today);
                 }
             },
@@ -167,6 +175,14 @@
                 handler: function (checkbox) {
                     var today = moment().hour(0).minute(0).seconds(0),
                         todayPlus7Days = moment(today).day(7);
+
+                    me.resourceStore.reload({
+                        params: {
+                            lessonStartDate: new Date(today.format()),
+                            lessonEndDate: new Date(todayPlus7Days.format()),
+                            limit: 1000
+                        }
+                    });
 
                     me.zoomToSpan({
                         start: new Date(today.format()),

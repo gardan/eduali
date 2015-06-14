@@ -1,4 +1,6 @@
-﻿namespace Ilc.Core
+﻿using System;
+
+namespace Ilc.Core
 {
     public class FilterArgumentsTrainers : FilterArguments
     {

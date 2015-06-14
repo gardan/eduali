@@ -1,14 +1,15 @@
 ﻿using System.Linq;
 using System.Net;
 using Ilc.Core.Contracts;
+using Ilc.Data.Contracts;
 using ServiceStack;
 
 namespace Ilc.Web.Services
 {
     public class TrainersSubjectsService : Service
     {
+        public IUow Uow { get; set; }
         public ITrainersService Trainers { get; set; }
-        public ISubjectsService Subjects { get; set; }
 
         public HttpResult Post(CreateTrainersSubjectModel request)
         {
@@ -18,7 +19,7 @@ namespace Ilc.Web.Services
 
             foreach (var subjectModel in request.Subjects)
             {
-                trainer.Subjects.Add(Subjects.GetById(subjectModel.Id));
+                trainer.Subjects.Add(Uow.Subjects.GetById(subjectModel.Id));
             }
 
             Trainers.Update(trainer);

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using Ilc.Core.Contracts;
 using Ilc.Core.Exceptions;
+using Ilc.Data.Contracts;
 using Ilc.Data.Models;
 using Ilc.Web.InjectorConventions;
 using Ilc.Web.Models;
@@ -13,9 +14,8 @@ namespace Ilc.Web.Services
 {
     public class TrainersService : Service
     {
-
+        public IUow Uow { get; set; }
         public ITrainersService Trainers { get; set; }
-        public ISubjectsService Subjects { get; set; }
 
         public FilteredDataModel<TrainerModel> Get(FilterParametersTrainers request)
         {
@@ -40,7 +40,7 @@ namespace Ilc.Web.Services
 
             foreach (var subjectModel in request.Subjects)
             {
-                newTrainer.Subjects.Add(Subjects.GetById(subjectModel.Id));
+                newTrainer.Subjects.Add(Uow.Subjects.GetById(subjectModel.Id));
             }
 
             Trainers.Update(newTrainer);

@@ -47,6 +47,18 @@ namespace Ilc.Core.Services
                 query = query.Where(u => u.Email.Contains(parameters.Query));
             }
 
+            if (parameters.LessonStartDate != DateTimeOffset.MinValue &&
+                parameters.LessonEndDate != DateTimeOffset.MinValue)
+            {
+                query =
+                    query.Where(
+                        s =>
+                        s.TrainingTasks.Any(
+                            t =>
+                            t.StartDate.Day >= parameters.LessonStartDate.Day &&
+                            t.EndDate.Day <= parameters.LessonEndDate.Day));
+            }
+
             // search
             foreach (var filter in parameters.Filter)
             {

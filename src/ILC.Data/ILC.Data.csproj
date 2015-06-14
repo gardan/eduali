@@ -56,6 +56,7 @@
     <Compile Include="Configuration\SimpleMembership\MembershipConfiguration.cs" />
     <Compile Include="Configuration\SimpleMembership\RolesConfiguration.cs" />
     <Compile Include="Configuration\TrainingConfiguration.cs" />
+    <Compile Include="Configuration\TrainingScheduleDay.cs" />
     <Compile Include="Configuration\UserProfileConfiguration.cs" />
     <Compile Include="Helpers\IRepositoryProvider.cs" />
     <Compile Include="Helpers\RepositoriesFactories.cs" />

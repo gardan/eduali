@@ -1,10 +1,13 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using Ilc.Data.Configuration;
 using Ilc.Data.Configuration.SimpleMembership;
 using Ilc.Data.Helpers;
 using Ilc.Data.Models;
+using Ilc.Data.Models.Base;
 using Ilc.Data.Models.SimpleMembership;
 using Ilc.Data.Models.WebClient;
 
@@ -26,6 +29,7 @@ namespace Ilc.Data
 
             // Fluent configurations
             modelBuilder.Configurations.Add(new UserProfileConfiguration());
+            modelBuilder.Configurations.Add(new TrainingScheduleDayConfiguration());
             modelBuilder.Configurations.Add(new ClaimsConfiguration());
             modelBuilder.Configurations.Add(new TrainingConfiguration());
 

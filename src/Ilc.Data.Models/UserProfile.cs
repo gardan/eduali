@@ -52,6 +52,8 @@ namespace Ilc.Data.Models
 
         public virtual ICollection<Training> ActionableTrainings { get; set; }
 
-        public virtual ICollection<TrainingScheduleDay> TrainingTasks { get; set; } 
+        public virtual ICollection<TrainingScheduleDay> TrainingTasks { get; set; }
+
+        // public virtual ICollection<TrainingScheduleDay> TrainingScheduleDays { get; set; } 
     }
 }

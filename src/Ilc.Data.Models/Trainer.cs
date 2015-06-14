@@ -18,6 +18,6 @@ namespace Ilc.Data.Models
 
         public int UserProfileId { get; set; }
         [ForeignKey("UserProfileId")]
-        public virtual UserProfile UserProfile { get; set; }   
+        public virtual UserProfile UserProfile { get; set; }
     }
 }
