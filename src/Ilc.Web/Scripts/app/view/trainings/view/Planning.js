@@ -25,6 +25,7 @@
     },
 
     lessonCreated: function () {
+        this.fireEvent('lessoncreated');
         this.lessonsContainer.lessonsStore.reload();
         this.trainingScheduler.eventStore.reload();
     },
@@ -164,7 +165,9 @@
 
         me.addEvents(
             'createlesson',
-            'updatelesson'
+            'updatelesson',
+            'lessoncreated',
+            'updatecomplete'
         );
 
         me.callParent(arguments);
