@@ -76,6 +76,7 @@ namespace Ilc.Web.Models
 
         public StatusModel Status { get; set; }
         public UserModel[] StakeHolders { get; set; }
+        public int TotalHours { get; set; }
     }
 
     public class TrainingOwnersConfigurationModel

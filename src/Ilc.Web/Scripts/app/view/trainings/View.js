@@ -596,7 +596,13 @@
                 labelWidth: 100
             },
             statusCombo,
-            ownersCombo
+            ownersCombo,
+            {
+                xtype: 'numberfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.totalHours'),
+                value: this.model.get('totalHours'),
+                name: 'totalHours'
+            }
         ];
     },
 
@@ -641,6 +647,12 @@
                 disabled: true,
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.owner'),
                 value: R.reduce(function (acc, item) { return acc + item.fullName + ', '; }, '', this.model.get('owners')).slice(0, -2)
+            },
+            {
+                xtype: 'numberfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.totalHours'),
+                value: this.model.get('totalHours'),
+                name: 'totalHours'
             }
         ];
 

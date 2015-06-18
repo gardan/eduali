@@ -25,6 +25,8 @@ namespace Ilc.Web.Models
         public ContactPersonModel[] Contacts { get; set; }
 
         public string Color { get; set; }
+
+        public int TotalHours { get; set; }
     }
 
     public class OwnersModel

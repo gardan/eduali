@@ -99,6 +99,7 @@ namespace Ilc.Web.Services.Trainings
                     Public = request.Public,
                     Price = request.Price,
                     DateOfValidation = new DateTimeOffset(new DateTime(request.DateOfValidation.Ticks, DateTimeKind.Unspecified), TimeSpan.Zero),
+                    TotalHours = request.TotalHours,
                     SubjectId = request.SubjectId,
                     DesiredStartDate = request.DesiredStartDate,
                     DesiredEndDate = request.DesiredEndDate,
@@ -149,6 +150,8 @@ namespace Ilc.Web.Services.Trainings
 
             // Update the Color
             training.Color = request.Color;
+
+            training.TotalHours = request.TotalHours;
 
             // Update te DesiredStartDate
             training.DesiredStartDate = request.DesiredStartDate == DateTimeOffset.MinValue.DateTime
@@ -228,5 +231,7 @@ namespace Ilc.Web.Services.Trainings
         public string Color { get; set; }
         public TrainingOwnersConfigurationModel WorkflowOwners { get; set; }
         public UserModel[] Owners { get; set; }
+
+        public int TotalHours { get; set; }
     }
 }
