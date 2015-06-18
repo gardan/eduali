@@ -99,6 +99,8 @@ namespace Ilc.Data.Models
         public virtual ICollection<GradingAttribute> GradingAttributes { get; set; }
 
 
-        public virtual ICollection<UserProfile> StakeHolders { get; set; } 
+        public virtual ICollection<UserProfile> StakeHolders { get; set; }
+
+        public int TotalHours { get; set; }
     }
 }

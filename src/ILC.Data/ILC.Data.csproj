@@ -402,6 +402,10 @@
     <Compile Include="Migrations\201503312056342_AddIDPostcodeCityCountryPhoneCustomer.Designer.cs">
       <DependentUpon>201503312056342_AddIDPostcodeCityCountryPhoneCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506181659057_AddedTotalHoursToTraining.cs" />
+    <Compile Include="Migrations\201506181659057_AddedTotalHoursToTraining.Designer.cs">
+      <DependentUpon>201506181659057_AddedTotalHoursToTraining.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -685,6 +689,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503312056342_AddIDPostcodeCityCountryPhoneCustomer.resx">
       <DependentUpon>201503312056342_AddIDPostcodeCityCountryPhoneCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506181659057_AddedTotalHoursToTraining.resx">
+      <DependentUpon>201506181659057_AddedTotalHoursToTraining.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
