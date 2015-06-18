@@ -14,7 +14,9 @@
         'Ilc.view.trainings.view.Expenses',
         'Ilc.view.trainings.view.Students',
         'Ilc.view.stakeholders.List',
-        'Ext.ux.form.ColorField'
+        'Ext.ux.form.ColorField',
+        'Ext.ux.grid.Printer'
+
     ],
     width: 900,
 
@@ -515,6 +517,7 @@
         });
         this.lessonsTableStore = lessonStore;
         var table = Ext.create('Ext.grid.Panel', {
+            title: 'Lessons',
             store: lessonStore,
             dockedItems:[{
                 xtype: 'pagingtoolbar',
@@ -522,6 +525,17 @@
                 dock: 'bottom',
                 displayInfo: true,
                 displayMsg: 'Displaying lessons {0} - {1} of {2}'
+            }, {
+                xtype: 'toolbar',
+                dock: 'top',
+                items: [
+                    {
+                        xtype: 'button',
+                        handler: function() {
+                            Ext.ux.grid.Printer.print(table);
+                        }
+                    }
+                ]
             }],
             columns: [
                 {
@@ -561,7 +575,6 @@
                     dataIndex: 'Id',
                     flex: 1,
                     renderer: function (value, meta, model) {
-                        debugger;
                         totalHours -= moment(model.get('EndDate')).diff(moment(model.get('StartDate')), 'hours');
                         return totalHours;
                     }
