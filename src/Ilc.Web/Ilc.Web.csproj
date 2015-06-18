@@ -387,6 +387,7 @@
     <Content Include="Scripts\app\ux\grid\JsvFiltersFeature.js" />
     <Content Include="Scripts\app\ux\grid\menu\ListMenu.js" />
     <Content Include="Scripts\app\ux\grid\menu\RangeMenu.js" />
+    <Content Include="Scripts\app\ux\grid\Printer.js" />
     <Content Include="Scripts\app\ux\grid\TransformGrid.js" />
     <Content Include="Scripts\app\ux\GroupTabPanel.js" />
     <Content Include="Scripts\app\ux\GroupTabRenderer.js" />
