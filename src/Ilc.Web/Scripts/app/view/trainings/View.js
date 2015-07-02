@@ -509,34 +509,12 @@
         me.callParent(arguments);
     },
 
-    getTableSchedule: function () {
-        var me = this,
-            totalHours = this.model.get('totalHours');
-        var lessonStore = Ext.create('Ilc.store.scheduler.LessonAppointments', {
-            trainingId: this.model.get('id')
-        });
-        this.lessonsTableStore = lessonStore;
-        var table = Ext.create('Ext.grid.Panel', {
+    _createTable: function(options, extra) {
+        var lessonStore = this.lessonsTableStore,
+            totalHours = this.model.get('totalHours');;
+        return Ext.create('Ext.grid.Panel', Ext.merge({
             title: 'Lessons',
             store: lessonStore,
-            dockedItems:[{
-                xtype: 'pagingtoolbar',
-                store: lessonStore,
-                dock: 'bottom',
-                displayInfo: true,
-                displayMsg: 'Displaying lessons {0} - {1} of {2}'
-            }, {
-                xtype: 'toolbar',
-                dock: 'top',
-                items: [
-                    {
-                        xtype: 'button',
-                        handler: function() {
-                            Ext.ux.grid.Printer.print(table);
-                        }
-                    }
-                ]
-            }],
             columns: [
                 {
                     text: Ilc.resources.Manager.getResourceString('common.date'),
@@ -580,6 +558,36 @@
                     }
                 }
             ],
+        }, options));
+    },
+
+    getTableSchedule: function () {
+        var me = this,
+            totalHours = this.model.get('totalHours');
+            
+        var lessonStore = Ext.create('Ilc.store.scheduler.LessonAppointments', {
+            trainingId: this.model.get('id')
+        });
+        this.lessonsTableStore = lessonStore;
+        var table = this._createTable({
+            dockedItems:[{
+                xtype: 'pagingtoolbar',
+                store: lessonStore,
+                dock: 'bottom',
+                displayInfo: true,
+                displayMsg: 'Displaying lessons {0} - {1} of {2}'
+            }, {
+                xtype: 'toolbar',
+                dock: 'top',
+                items: [
+                    {
+                        xtype: 'button',
+                        handler: function() {
+                            Ext.ux.grid.Printer.print(me._createTable());
+                        }
+                    }
+                ]
+            }],
         });
         lessonStore.load({
             params: {

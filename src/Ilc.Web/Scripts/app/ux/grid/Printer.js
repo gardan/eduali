@@ -79,7 +79,41 @@ Ext.define("Ext.ux.grid.Printer", {
          * @param {Ext.grid.Panel} grid The grid to print
          */
         print: function (grid, featureId) {
+            //open up a new printing window, write to it, print it and close
+            setTimeout(function () {
+                var container = document.createElement('div');
+                document.body.appendChild(container);
 
+                grid.on('viewready', function () {
+                    var html = grid.el.dom;
+                    var finalHTML =
+                            '<html>' +
+                                '<head>' +
+                                    '<link href="Scripts/extjs/resources/css/ext-all-neptune.css" rel="stylesheet">' +
+                                    '<link href="Scripts/bryntum/resources/css/sch-all-neptune.css" rel="stylesheet">' +
+                                    '<link href="Resources/BoxSelect.css" rel="stylesheet">' +
+                                    '<link href="Resources/site.css" rel="stylesheet">' +
+                                    '<link href="Resources/custombootstrap.css" rel="stylesheet">' +
+                                '</head>' +
+                                '<body>' +
+                                html.parentElement.innerHTML +
+                            '</body></html';
+
+                    var win = window.open('', 'printgrid');
+
+
+                    //document must be open and closed
+                    win.document.open();
+                    win.document.write(finalHTML);
+                    win.document.close();
+
+                    document.body.removeChild(container);
+                });
+
+                grid.render(container);
+            }, 0);
+            
+            return;
             //featureId is no longer needed and is ignored 
 
             // We generate an XTemplate here by using 2 intermediary
