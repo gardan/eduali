@@ -78,7 +78,7 @@ Ext.define("Ext.ux.grid.Printer", {
          * Prints the passed grid. Reflects on the grid's column model to build a table, and fills it using the store
          * @param {Ext.grid.Panel} grid The grid to print
          */
-        print: function (grid, featureId) {
+        print: function (grid, options) {
             //open up a new printing window, write to it, print it and close
             setTimeout(function () {
                 var container = document.createElement('div');
@@ -96,6 +96,7 @@ Ext.define("Ext.ux.grid.Printer", {
                                     '<link href="Resources/custombootstrap.css" rel="stylesheet">' +
                                 '</head>' +
                                 '<body>' +
+                                options.beforeHtml + 
                                 html.parentElement.innerHTML +
                             '</body></html';
 
