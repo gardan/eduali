@@ -28,13 +28,13 @@
     bodyPadding: 0,
     model: null,
 
-    trainingUpdated: function(training) {
+    trainingUpdated: function (training) {
         this.fireEvent('trainingupdated');
         var tab = this.query('planningTab')[0];
         tab.setEntity(training);
     },
 
-    initComponent: function(cfg) {
+    initComponent: function (cfg) {
         var me = this;
         var model = me.model;
         var initialResizeForDocumentsTab = false;
@@ -115,7 +115,7 @@
                     dataIndex: 'name',
                     flex: 1,
                     text: Ilc.resources.Manager.getResourceString('common.file'),
-                    renderer: function(value, metaData, record) {
+                    renderer: function (value, metaData, record) {
                         return '<a href="' +
                             record.get('url') +
                             '" target="_blank">' +
@@ -127,7 +127,7 @@
                     dataIndex: 'creator',
                     text: Ilc.resources.Manager.getResourceString('common.creator'),
                     flex: 1,
-                    renderer: function(value, metaData, record) {
+                    renderer: function (value, metaData, record) {
                         return value.name;
                     }
                 },
@@ -135,7 +135,7 @@
                     dataIndex: 'createDate',
                     flex: 1,
                     text: Ilc.resources.Manager.getResourceString('common.createAt'),
-                    renderer: function(value) {
+                    renderer: function (value) {
                         return moment(value).format(Ilc.resources.Manager.getResourceString('formats.date'));
                     }
                 }
@@ -167,8 +167,8 @@
             labelWidth: 150
         });
 
-        trainersStore.on('load', function(store, records) {
-            Ext.Array.forEach(records, function(record) {
+        trainersStore.on('load', function (store, records) {
+            Ext.Array.forEach(records, function (record) {
                 if (record.get('id') == model.get('trainer').id) {
                     trainersComboBox.select(record);
                 }
@@ -187,10 +187,10 @@
         });
 
         // Select the first item
-        var viewReady = function(tree) {
+        var viewReady = function (tree) {
             var rootNode = tree.getRootNode();
 
-            rootNode.eachChild(function(record) {
+            rootNode.eachChild(function (record) {
                 if (record.isFirst()) {
                     tree.getSelectionModel().select(record);
                 }
@@ -200,61 +200,61 @@
 
         // To Be Deleted // 
         // what is this?
-        documentsTree.on('select', function(row, record) {
+        documentsTree.on('select', function (row, record) {
             documentsStore.removeAll();
             switch (record.get('category')) {
-            case 'offers':
-                documentsStore.load({
-                    params: {
-                        trainingId: model.get('id'),
-                        category: 'offer'
-                    }
-                });
-                break;
-            case 'intakes':
-                documentsStore.add({
-                    name: 'Gheorghe Ion',
-                    url: 'http://localhost:54877/pdf/intakes/1',
-                    creator: { id: 1, name: 'admin' },
-                    createDate: '2013-12-12T12:34:45'
-                });
-                break;
-            case 'lessonEval':
-                documentsStore.add({
-                    name: 'Gheorghe Ion',
-                    url: 'http://localhost:54877/pdf/lessonEvaluations/1',
-                    creator: { id: 1, name: 'admin' },
-                    createDate: '2013-12-12T12:34:45'
-                });
-                break;
-            case 'exams':
-                documentsStore.add({
-                    name: 'Gheorghe Ion',
-                    url: 'http://localhost:54877/pdf/exams/1',
-                    creator: { id: 1, name: 'admin' },
-                    createDate: '2013-12-12T12:34:45'
-                });
-                break;
-            case 'evaluations':
-                documentsStore.add({
-                    name: 'Gheorghe Ion',
-                    url: 'http://localhost:54877/pdf/evaluations/1',
-                    creator: { id: 1, name: 'admin' },
-                    createDate: '2013-12-12T12:34:45'
-                });
-                break;
-            default:
+                case 'offers':
+                    documentsStore.load({
+                        params: {
+                            trainingId: model.get('id'),
+                            category: 'offer'
+                        }
+                    });
+                    break;
+                case 'intakes':
+                    documentsStore.add({
+                        name: 'Gheorghe Ion',
+                        url: 'http://localhost:54877/pdf/intakes/1',
+                        creator: { id: 1, name: 'admin' },
+                        createDate: '2013-12-12T12:34:45'
+                    });
+                    break;
+                case 'lessonEval':
+                    documentsStore.add({
+                        name: 'Gheorghe Ion',
+                        url: 'http://localhost:54877/pdf/lessonEvaluations/1',
+                        creator: { id: 1, name: 'admin' },
+                        createDate: '2013-12-12T12:34:45'
+                    });
+                    break;
+                case 'exams':
+                    documentsStore.add({
+                        name: 'Gheorghe Ion',
+                        url: 'http://localhost:54877/pdf/exams/1',
+                        creator: { id: 1, name: 'admin' },
+                        createDate: '2013-12-12T12:34:45'
+                    });
+                    break;
+                case 'evaluations':
+                    documentsStore.add({
+                        name: 'Gheorghe Ion',
+                        url: 'http://localhost:54877/pdf/evaluations/1',
+                        creator: { id: 1, name: 'admin' },
+                        createDate: '2013-12-12T12:34:45'
+                    });
+                    break;
+                default:
             }
 
         });
 
-        documentsTree.on('itemcontextmenu', function(view, record, node, index, event) {
+        documentsTree.on('itemcontextmenu', function (view, record, node, index, event) {
             console.log('fired');
             var menu = Ext.create('Ext.menu.Menu', {
                 items: [
                     {
                         text: 'zip',
-                        handler: function() {
+                        handler: function () {
                             var path = 'zip/' + record.get('category') + '?trainingId=' + model.get('id');
                             window.open(path);
                         }
@@ -271,7 +271,7 @@
                 xtype: 'tabpanel',
                 anchor: '100%, 100%',
                 listeners: {
-                    tabchange: function(tabpanel, newCard, oldCard) {
+                    tabchange: function (tabpanel, newCard, oldCard) {
                         if (newCard.initialConfig.ticktack == true && !initialResizeForDocumentsTab) {
                             me.resizer.resizeTo(me.getWidth(), 300);
                             // window.resize();
@@ -292,7 +292,7 @@
                         buttons: [
                             {
                                 text: Ilc.resources.Manager.getResourceString('common.update'),
-                                handler: function(btn) {
+                                handler: function (btn) {
                                     var controls = btn.up().up().items.items;
 
                                     var args = Ilc.utils.Forms.extractModel(controls);
@@ -306,7 +306,7 @@
                             },
                             {
                                 text: Ilc.resources.Manager.getResourceString('common.cancel'),
-                                handler: function() {
+                                handler: function () {
                                     me.close();
                                 }
                             }
@@ -337,7 +337,7 @@
                                             iconCls: 'icon-add',
                                             cls: 'clean-button',
                                             text: Ilc.resources.Manager.getResourceString('common.addStudent'),
-                                            handler: function(btn, e) {
+                                            handler: function (btn, e) {
                                                 // To Do //
                                                 // here add a view to select a sudent ...Ilc.view.trainings.view.Students
                                                 var window = Ext.create('Ilc.view.trainings.view.Students', {
@@ -346,7 +346,7 @@
                                                     closeAction: 'destroy'
                                                 });
 
-                                                window.on('added-students', function(options) {
+                                                window.on('added-students', function (options) {
                                                     studentsStore.loadRawData(options.addedStudents, true);
                                                 });
                                                 window.show();
@@ -356,7 +356,7 @@
                                 },
 
                                 listeners: {
-                                    itemdblclick: function(grid, record, item, index, e, eOpts) {
+                                    itemdblclick: function (grid, record, item, index, e, eOpts) {
                                         var window = Ext.create('Ext.window.Window', {
                                             title: 'Progress evaluations for ' + record.get('name'),
                                             items: [
@@ -364,7 +364,7 @@
                                                     student: record,
                                                     trainingId: me.model.get('id'),
                                                     listeners: {
-                                                        itemdblclick: function(studentLessonsGrid, lessonRecord) {
+                                                        itemdblclick: function (studentLessonsGrid, lessonRecord) {
                                                             if (lessonRecord.get('progressEvaluationComplete') == false) {
                                                                 return;
                                                             }
@@ -509,40 +509,18 @@
         me.callParent(arguments);
     },
 
-    getTableSchedule: function () {
-        var me = this,
-            totalHours = this.model.get('totalHours');
-        var lessonStore = Ext.create('Ilc.store.scheduler.LessonAppointments', {
-            trainingId: this.model.get('id')
-        });
-        this.lessonsTableStore = lessonStore;
-        var table = Ext.create('Ext.grid.Panel', {
+    _createTable: function (options, extra) {
+        var lessonStore = this.lessonsTableStore,
+            totalHours = this.model.get('totalHours');;
+        return Ext.create('Ext.grid.Panel', Ext.merge({
             title: 'Lessons',
             store: lessonStore,
-            dockedItems:[{
-                xtype: 'pagingtoolbar',
-                store: lessonStore,
-                dock: 'bottom',
-                displayInfo: true,
-                displayMsg: 'Displaying lessons {0} - {1} of {2}'
-            }, {
-                xtype: 'toolbar',
-                dock: 'top',
-                items: [
-                    {
-                        xtype: 'button',
-                        handler: function() {
-                            Ext.ux.grid.Printer.print(table);
-                        }
-                    }
-                ]
-            }],
             columns: [
                 {
                     text: Ilc.resources.Manager.getResourceString('common.date'),
                     dataIndex: 'StartDate',
                     flex: 1,
-                    renderer: function(value) {
+                    renderer: function (value) {
                         return moment(value).format(Ilc.resources.Manager.getResourceString('formats.date'));
                     }
                 },
@@ -580,6 +558,70 @@
                     }
                 }
             ],
+        }, options));
+    },
+
+    _getLessonsHeaderTpl: function () {
+        return new Ext.XTemplate(
+                '<div class="Lessons-Head--print">' +
+                    '<div class="pull-left">' +
+                        '<div>Subject: </div>' +
+                        '<div>Trainer: </div>' +
+                        '<div>Total hours: </div>' +
+                    '</div>' +
+                    '<div class="pull-left">' +
+                        '<div>{subject}</div>' +
+                        '<div>{trainer.name}</div>' +
+                        '<div>{totalHours}</div>' +
+                    '</div>' +
+                '</div><div class="clearfix"></div>'
+            );
+    },
+
+    getTableSchedule: function () {
+        var me = this,
+            totalHours = this.model.get('totalHours'),
+            trainer = R.find(function (stakeholder) {
+                return R.any(R.propEq('name', 'Trainer'), stakeholder.roles || []);
+            }, this.model.get('stakeHolders') || []),
+            subject = this.model.get('subject').name,
+            trainerModel = {
+                name: trainer ? trainer.fullName : 'No trainer'
+            };
+
+        var lessonStore = Ext.create('Ilc.store.scheduler.LessonAppointments', {
+            trainingId: this.model.get('id')
+        });
+        this.lessonsTableStore = lessonStore;
+        var table = this._createTable({
+            dockedItems: [{
+                xtype: 'pagingtoolbar',
+                store: lessonStore,
+                dock: 'bottom',
+                displayInfo: true,
+                displayMsg: 'Displaying lessons {0} - {1} of {2}'
+            }, {
+                xtype: 'toolbar',
+                dock: 'top',
+                items: [
+                    {
+                        xtype: 'button',
+                        text: Ilc.resources.Manager.getResourceString('common.print'),
+                        handler: function () {
+                            Ext.ux.grid.Printer.print(
+                                me._createTable({ title: undefined }),
+                                {
+                                    beforeHtml: me._getLessonsHeaderTpl().apply({
+                                        subject: subject,
+                                        trainer: trainerModel,
+                                        totalHours: totalHours
+                                    })
+                                }
+                            );
+                        }
+                    }
+                ]
+            }],
         });
         lessonStore.load({
             params: {
@@ -589,7 +631,7 @@
         return table;
     },
 
-    getGeneralItemsForOwner: function() {
+    getGeneralItemsForOwner: function () {
         var me = this;
         var statusStore = Ext.create('Ilc.store.StatusDefinitions'),
             stakeholdersStore = Ext.create('Ilc.store.Users'),
@@ -604,8 +646,8 @@
                 queryMode: 'local',
                 labelWidth: 100
             }),
-            initialLoadHandler = function(store, records) {
-                Ext.Array.forEach(records, function(record) {
+            initialLoadHandler = function (store, records) {
+                Ext.Array.forEach(records, function (record) {
                     if (me.model.get('status').id === record.get('id')) {
                         statusCombo.select(record);
                     }
@@ -629,11 +671,11 @@
             name: 'owners',
             queryMode: 'local',
             labelSeparator: "",
-            labelWidth: 100            
+            labelWidth: 100
         });
 
-        var selectedRecords = stakeholdersStore.queryBy(function(user) {
-            var foundUser = R.find(function(owner) {
+        var selectedRecords = stakeholdersStore.queryBy(function (user) {
+            var foundUser = R.find(function (owner) {
                 return owner.id === user.get('id');
             }, me.model.get('owners'));
             if (foundUser === undefined) return false;
@@ -656,7 +698,7 @@
                 value: new Date(this.model.get('desiredStartDate')),
                 format: 'Y-m-d',
                 name: 'desiredStartDate',
-                labelWidth: 100            
+                labelWidth: 100
             },
             {
                 xtype: 'datefield',
@@ -664,7 +706,7 @@
                 value: new Date(this.model.get('desiredEndDate')),
                 format: 'Y-m-d',
                 name: 'desiredEndDate',
-                labelWidth: 100            
+                labelWidth: 100
             },
             {
                 xtype: 'colorfield',
@@ -684,7 +726,7 @@
         ];
     },
 
-    getGeneralItems: function() {
+    getGeneralItems: function () {
         var currentUserId = Ilc.Configuration.getValue('userId'),
             isAdministrator = Ilc.Configuration.claimExists('tasks-administrator');
 
@@ -724,7 +766,7 @@
                 xtype: 'textfield',
                 disabled: true,
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.owner'),
-                value: R.reduce(function(acc, item) { return acc + item.fullName + ', '; }, '', this.model.get('owners')).slice(0, -2)
+                value: R.reduce(function (acc, item) { return acc + item.fullName + ', '; }, '', this.model.get('owners')).slice(0, -2)
             },
             {
                 xtype: 'numberfield',
@@ -735,13 +777,13 @@
         ];
 
     },
-    onLessonCreated: function() {
+    onLessonCreated: function () {
         this.reloadLessonTableStore();
     },
-    onLessonUpdated: function() {
+    onLessonUpdated: function () {
         this.reloadLessonTableStore();
     },
-    reloadLessonTableStore: function() {
+    reloadLessonTableStore: function () {
         this.lessonsTableStore.reload();
     }
 });

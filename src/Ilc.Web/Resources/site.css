@@ -261,3 +261,16 @@ a:visited {
 .x-form-invalid-field {
     color: red;
 }
+
+.clearfix {
+    clear: both;
+}
+
+.pull-left {
+    float: left;
+}
+
+
+.Lessons-Head--print {
+    padding-bottom: 80px;
+}
