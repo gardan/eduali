@@ -4510,6 +4510,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\Documents\" />
+    <Folder Include="Scripts\app\templates\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

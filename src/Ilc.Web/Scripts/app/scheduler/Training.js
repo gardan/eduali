@@ -19,7 +19,7 @@
 
     // Setup your static columns
 
-    plugins : [
+    plugins: [
                 new Sch.plugin.Pan({
                     enableVerticalPan: true,
                     disableOnKey: Sch.plugin.Pan.KEY_SHIFT
@@ -31,7 +31,7 @@
         var scheduler = this.up().up();
         var availabilityStore = scheduler.resourceZones;
         var result = availabilityStore.isResourceAvailable(resourceRecord, startDate, endDate);
-        
+
         return result;
     },
 
@@ -46,7 +46,7 @@
     loadAvailabilityZones: function () {
         var me = this;
         var availabilityStore = me.resourceZones;
-        
+
         var startDate = Sch.util.Date.add(me.getStartDate(), Sch.util.Date.DAY, -10);
         var endDate = Sch.util.Date.add(me.getEndDate(), Sch.util.Date.DAY, 10);
 
@@ -105,7 +105,7 @@
                 comboStore.loadData(data);
             });
         }
-        
+
         // scrolling to event
         var eventsCombo = Ext.create('Ext.form.ComboBox', {
             store: comboStore,
@@ -116,7 +116,7 @@
             hidden: !me.scrollToEvent,
             valueField: 'Id'
         });
-        
+
         var dateMenu = Ext.create('Ext.menu.DatePicker', {
             handler: function (dp, date) {
                 me.scrollToDate(date);
@@ -134,7 +134,7 @@
                     var val = eventsCombo.getValue(),
                         // doHighlight = Ext.getCmp('btnHighlight').pressed,
                         rec = me.eventStore.getAt(me.eventStore.find('Id', val));
-            
+
                     if (rec) {
                         me.getSchedulingView().scrollEventIntoView(rec, true);
                         me.loadAvailabilityZones();
@@ -179,8 +179,8 @@
             },
             {
                 xtype: 'button',
-                text : 'Date',
-                enableToggle : false,
+                text: 'Date',
+                enableToggle: false,
                 iconCls: 'icon-calendar',
                 cls: 'clean-button',
                 overCls: 'eduali-menu-hover',
@@ -193,15 +193,76 @@
                     var stakeholderAddWindow = Ext.create('Ilc.view.stakeholders.Add', {
                         training: me.training,
                         listeners: {
-                            'added-stakeholders': function() {
+                            'added-stakeholders': function () {
                                 me.resourceStore.reload();
                                 stakeholderAddWindow.close();
-                                
+
                             }
                         }
                     }).show();
-                    
+                }
+            },
+            {
+                xtype: 'combo',
+                fieldLabel: 'Language',
+                hideLabel: true,
+                emptyText: 'Generate PDF',
+                store: Ext.create('Ilc.store.FileTemplates'),
+                displayField: 'name',
+                valueField: 'id',
+                listeners: {
+                    'select': function (combo, records) {
 
+                        var name = records[0].data.name;
+                        var template = records[0].data.content;
+
+                        var trainings = this.up().up().up().entity.raw;
+                        trainings.lessons = [];
+
+                        var tabPanel = this.up().up().up().up();
+                        var lessons = tabPanel.items.items.filter(function (item) { return item.title == "Lessons" })[0].store.data.items;
+
+                        var totaal = trainings.totalHours;
+                        lessons.forEach(function (lesson) {
+
+                            totaal = totaal - DateDifference(lesson.raw.StartDate, lesson.raw.EndDate);
+                            lesson.raw.total = totaal;
+                            trainings.lessons.push(lesson.raw);
+                        });
+
+                        function DateDifference (startDate, endDate) {
+
+                            var date1 = new Date(startDate);
+                            var date2 = new Date(endDate);
+                            var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+                            var diffDays = timeDiff / (1000 * 3600);
+
+                            return diffDays;
+                        }
+
+                        Handlebars.registerHelper('DateDifference', DateDifference);
+
+                        var intlData = {
+                            "locales": "en-US",
+                            "formats": { "date": { "short": { "day": "numeric", "month": "numeric", "year": "numeric" }, "hhmm": { "hour": "numeric", "minute": "numeric" } } }
+                        };
+
+                        var compiledTemplate = Handlebars.compile(template);
+
+                        var resulthtml = compiledTemplate(trainings, {
+                            data: { intl: intlData }
+                        });
+                        var div = $('<div></div>').html(resulthtml);
+
+                        var pdf = new jsPDF('p', 'pt', 'letter');
+
+                        var margins = { top: 80, bottom: 60, left: 40, width: 522 };
+                        var specialElementHandlers = { '#bypassme': function (element, renderer) { return true; } };
+                        var options = { 'width': margins.width, 'elementHandlers': specialElementHandlers };
+                        var SavePDF = function (dispose) { pdf.save(name + '.pdf'); }
+
+                        pdf.fromHTML(div.html(), margins.left, margins.top, options, SavePDF, margins);
+                    }
                 }
             }
         ];
@@ -212,7 +273,7 @@
 
             // DAY
             { width: 100, increment: 1, resolution: 30, preset: 'weekAndDay', resolutionUnit: 'MINUTE' },
-            
+
             //HOUR
             { width: 50, increment: 6, resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' },
             { width: 50, increment: 1, resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' }
@@ -220,7 +281,7 @@
 
         me.on('eventcontextmenu', function (scheduler, eventRecord, e) {
             e.stopEvent();
-            
+
             if (!scheduler.ctx) {
                 scheduler.ctx = Ext.create('Ext.menu.Menu', {
                     items: [{
@@ -251,7 +312,7 @@
             comboStore.loadData(data);
         });
 
-        var func = function() {
+        var func = function () {
             me.un('afterlayout', func);
             me.goToNow();
             me.zoomToLevel(3);

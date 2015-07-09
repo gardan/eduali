@@ -1,4 +1,7 @@
-﻿Ext.Loader.setPath('Ext.ux', 'Scripts/app/ux');
+﻿// Handlebar Mustache Configurations
+HandlebarsIntl.registerWith(Handlebars);
+
+Ext.Loader.setPath('Ext.ux', 'Scripts/app/ux');
 
 Ext.application({
     name: 'Ilc',
