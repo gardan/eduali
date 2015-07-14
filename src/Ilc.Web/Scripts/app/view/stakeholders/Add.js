@@ -65,7 +65,7 @@
         var model = Ilc.utils.Forms.extractModel(this.query('textfield'));
 
         var addStakeholderModel = Ext.create('Ilc.model.stakeholders.Add', {
-            stakeholders: R.map(R.get('id'), model.stakeholders),
+            stakeholders: R.map(R.prop('id'), model.stakeholders),
             trainingId: me.training.get('id')
         });
         addStakeholderModel.save({

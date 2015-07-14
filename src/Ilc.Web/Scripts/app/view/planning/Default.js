@@ -114,7 +114,7 @@
             options.params.claims = 'tasks-trainer';
             wrapped.call(trainersStore, options);
         });
-        trainersStore.load();
+        trainersStore.load({});
         eventlessonsStore.load();
 
         me.callParent(arguments);

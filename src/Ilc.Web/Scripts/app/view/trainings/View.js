@@ -32,6 +32,7 @@
         this.fireEvent('trainingupdated');
         var tab = this.query('planningTab')[0];
         tab.setEntity(training);
+        this.reloadLessonTableStore();
     },
 
     initComponent: function (cfg) {
