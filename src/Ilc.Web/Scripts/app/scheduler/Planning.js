@@ -155,6 +155,19 @@
             },
             {
                 xtype: 'button',
+                text: Ilc.resources.Manager.getResourceString('common.all'),
+                handler: function (checkbox, checked) {
+                    me.resourceStore.reload({
+                        params: {
+                            lessonStartDate: undefined,
+                            lessonEndDate: undefined,
+                            limit: 1000
+                        }
+                    });
+                }
+            },
+            {
+                xtype: 'button',
                 text: Ilc.resources.Manager.getResourceString('common.today'),
                 handler: function (checkbox, checked) {
                     var today = new Date(moment().hour(0).minute(0).seconds(0).format());
