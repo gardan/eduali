@@ -4010,6 +4010,12 @@
     <Content Include="Scripts\extjs\src\XTemplateCompiler.js" />
     <Content Include="Scripts\extjs\src\XTemplateParser.js" />
     <Content Include="Scripts\extjs\src\ZIndexManager.js" />
+    <Content Include="Scripts\lib\Chart.js" />
+    <Content Include="Scripts\lib\Chart.min.js" />
+    <Content Include="Scripts\lib\handlebars\handlebars-intl.min.js" />
+    <Content Include="Scripts\lib\handlebars\handlebars-v3.0.3.js" />
+    <Content Include="Scripts\lib\handlebars\helpers.js" />
+    <Content Include="Scripts\lib\jspdf.js" />
     <Content Include="Scripts\lib\JSV.js" />
     <Content Include="Scripts\lib\moment.js" />
     <Content Include="Scripts\lib\moment.min.js" />
@@ -4470,6 +4476,7 @@
     <Content Include="Views\Templates\Email\ForgotPasswordComplete.cshtml" />
     <Content Include="Views\Documents\Get.cshtml" />
     <None Include="Properties\PublishProfiles\Release.pubxml" />
+    <Content Include="Scripts\lib\handlebars\handlebars-intl.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
