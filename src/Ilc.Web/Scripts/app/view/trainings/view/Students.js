@@ -59,7 +59,7 @@
         var model = Ilc.utils.Forms.extractModel(this.query('textfield'));
 
         var addStudentToTraining = Ext.create('Ilc.model.students.AddToTraining', {
-            students: R.map(R.get('id'), model.students),
+            students: R.map(R.prop('id'), model.students),
             trainingId: me.training.get('id')
         });
         addStudentToTraining.save({
