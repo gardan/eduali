@@ -170,7 +170,7 @@
         var model = Ilc.utils.Forms.extractModel(this.query('textfield')),
             createOffer = Ext.create('Ilc.model.create.Offer', model);
 
-        createOffer.set('trainings', R.map(R.get('id'), model.trainings));
+        createOffer.set('trainings', R.map(R.prop('id'), model.trainings));
 
 
         createOffer.save({

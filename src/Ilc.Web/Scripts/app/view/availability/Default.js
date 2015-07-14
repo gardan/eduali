@@ -27,7 +27,7 @@
             options.params.claims = 'tasks-trainer';
             wrapped.call(resourceStore, options);
         });
-        resourceStore.load();
+        resourceStore.load({});
         me.callParent(arguments);
     }
 });

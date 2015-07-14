@@ -19,7 +19,7 @@
             'customerId': this.get('customer').id,
             'paymentDueAt': this.get('paymentDueAt'),
             'tos': this.get('tos'),
-            'trainings': R.map(R.get('id'), this.get('trainings'))
+            'trainings': R.map(R.prop('id'), this.get('trainings'))
         });
     },
 
