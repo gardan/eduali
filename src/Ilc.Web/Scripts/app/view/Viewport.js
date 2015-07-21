@@ -25,17 +25,17 @@
 
     _initMenuButtons: function() {
         return [
-            {
-                iconCls: 'icon-task-32',
-                itemId: 'menu.tasks',
-                hidden: !Ilc.Configuration.loggedIn(),
-                tooltip:  {
-                    text: Ilc.resources.Manager.getResourceString('mainMenu.tasks'),
-                    width: 100,
-                    showDelay: 0,
-                    hideDelay: 50
-                } // ,
-            },
+            //{
+            //    iconCls: 'icon-task-32',
+            //    itemId: 'menu.tasks',
+            //    hidden: !Ilc.Configuration.loggedIn(),
+            //    tooltip:  {
+            //        text: Ilc.resources.Manager.getResourceString('mainMenu.tasks'),
+            //        width: 100,
+            //        showDelay: 0,
+            //        hideDelay: 50
+            //    } // ,
+            //},
 //            {
 //                iconCls: 'icon-open-book-32',
 //                itemId: 'menu.trainings?open=true',

@@ -722,7 +722,8 @@
                 xtype: 'numberfield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.totalHours'),
                 value: this.model.get('totalHours'),
-                name: 'totalHours'
+                name: 'totalHours',
+                labelWidth: 100
             }
         ];
     },
