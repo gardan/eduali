@@ -3,7 +3,7 @@
     xtype: 'trainingscheduler',
 
     allowOverlap: false,
-    constrainDragToResource: true,
+    constrainDragToResource: false,
     snapToIncrement: true,
     eventResizeHandles: 'end',
 
