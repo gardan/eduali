@@ -21,16 +21,19 @@ namespace Ilc.Web.Services
 
             foreach (var stakeholderId in request.Stakeholders)
             {
-                if (training.StakeHolders.FirstOrDefault(u => u.Id == stakeholderId) == null)
+                var IsStakeholderExistInTraining = training.StakeHolders.FirstOrDefault(u => u.Id == stakeholderId) != null;
+
+                if (!request.IsRemove && !IsStakeholderExistInTraining)
                 {
-                    stakeholdersToAdd.Add(Uow.UserProfiles.GetById(stakeholderId));
+                    training.StakeHolders.Add(Uow.UserProfiles.GetById(stakeholderId));
+                }
+
+                if (request.IsRemove && IsStakeholderExistInTraining)
+                {
+                    training.StakeHolders.Remove(Uow.UserProfiles.GetById(stakeholderId));
                 }
             }
-            foreach (var userProfile in stakeholdersToAdd)
-            {
-                training.StakeHolders.Add(userProfile);
-            }
-            
+
             Uow.Trainings.Update(training);
             Uow.Commit();
 
@@ -39,7 +42,6 @@ namespace Ilc.Web.Services
                     StatusCode = HttpStatusCode.Created
                 };
         }
-
     }
 
     [Route("/stakeholders", "POST")]
@@ -47,5 +49,7 @@ namespace Ilc.Web.Services
     {
         public int[] Stakeholders { get; set; }
         public int TrainingId { get; set; }
+
+        public bool IsRemove { get; set; }
     }
 }

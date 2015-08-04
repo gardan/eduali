@@ -1,7 +1,7 @@
 ﻿Ext.define('Ilc.model.stakeholders.Add', {
     extend: 'Ext.data.Model',
     
-    fields: ['stakeholders', 'trainingId'],
+    fields: ['stakeholders', 'trainingId', 'IsRemove'],
 
     proxy: {
         type: 'rest',

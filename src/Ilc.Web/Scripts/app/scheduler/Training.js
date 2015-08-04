@@ -80,11 +80,48 @@
                 },
                 {
                     header: Ilc.resources.Manager.getResourceString('common.roles'),
-                    width: 130,
+                    width: 100,
                     dataIndex: 'roles',
                     renderer: function (value) {
                         return R.map(R.prop('name'), value).join(',');
                     }
+                },
+                {
+                    xtype: 'actioncolumn',
+                    text: Ilc.resources.Manager.getResourceString('common.actions'),
+                    width: 60,
+                    sortable: false,
+                    menuDisabled: true,
+                    items: [
+                        {
+                            icon: 'images/web/remove.png',
+                            tooltip: Ilc.resources.Manager.getResourceString('common.delete'),
+                            handler: function (grid, rowIndex, colIndex, item, e, record) {
+
+                                Ilc.AsyncHelpers.confirmModal()
+                                    .then(function () {
+
+                                        var model = { stakeholders: [] };
+                                        model.stakeholders.push(record.raw);
+
+                                        var addStakeholderModel = Ext.create('Ilc.model.stakeholders.Add', {
+                                            stakeholders: R.map(R.prop('id'), model.stakeholders),
+                                            trainingId: me.training.get('id'),
+                                            IsRemove: true
+                                        });
+
+                                        addStakeholderModel.save({
+                                            success: function () {
+                                                me.resourceStore.reload();
+                                            },
+                                            error: function () {
+
+                                            }
+                                        });
+                                    });
+                            }
+                        }
+                    ]
                 }
             ]
         });
@@ -230,7 +267,7 @@
                             trainings.lessons.push(lesson.raw);
                         });
 
-                        function DateDifference (startDate, endDate) {
+                        function DateDifference(startDate, endDate) {
 
                             var date1 = new Date(startDate);
                             var date2 = new Date(endDate);
