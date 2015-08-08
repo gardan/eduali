@@ -78,9 +78,10 @@
         //    }
         //};
 
-        
 
-        var customersStore = Ext.create('Ilc.store.Customers');
+        var customersStore = Ext.create('Ilc.store.Customers', {
+            pageSize: 1000
+        });
         var gendersStore = Ext.create('Ilc.store.Genders');
 
         var customerComboBox = Ext.create('Ext.form.ComboBox', {
