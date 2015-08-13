@@ -17,6 +17,7 @@
     rolesStore: null,
     avatarUploader: null,
     genderCombo: null,
+    features: [filters],
 
     requires: [
         'Ilc.utils.Forms'
@@ -98,6 +99,11 @@
                 scope: me
             }
         });
+
+        var filters = {
+            ftype: 'jsvfilters',
+            local: false,
+        };
 
         me.avatarUploader = me.initUploader();
         me.genderCombo = me.initGenderCombo(gendersStore);

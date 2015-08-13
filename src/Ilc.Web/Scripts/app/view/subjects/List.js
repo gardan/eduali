@@ -58,6 +58,12 @@
             ],
             dockedItems: [
                 {
+                    xtype: 'pagingtoolbar',
+                    store: subjectsStore,
+                    dock: 'bottom',
+                    displayMsg: 'Displaying subjects {0} - {1} of {2}'
+                },
+                {
                     xtype: 'toolbar',
                     dock: 'top',
                     items: [

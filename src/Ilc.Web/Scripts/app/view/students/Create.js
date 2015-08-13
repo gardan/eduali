@@ -88,7 +88,7 @@
             id: 'customerCB',
             store: customersStore,
             forceselection: true,
-            editable: false,
+            editable: true,
             queryMode: 'local',
             displayField: 'name',
             valueField: 'id',
