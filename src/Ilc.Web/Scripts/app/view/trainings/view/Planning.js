@@ -1,26 +1,26 @@
 ﻿Ext.define('Ilc.view.trainings.view.Planning', {
     extend: 'Ext.panel.Panel',
     xtype: 'planningTab',
-    
+
     title: Ilc.resources.Manager.getResourceString('common.planning'),
     entity: null,
-    
+
     layout: {
         type: 'column'
     },
 
     scheduler: null,
     lessonsContainer: null,
+    advanceCalenderMatrix: null,
 
-    setEntity: function(entity) {
+    setEntity: function (entity) {
+
         this.entity = entity;
-
         this.loadResourceStore(this.scheduler.resourceStore, entity);
-        
         this.scheduler.eventStore.reload();
     },
 
-    updateFinished: function() {
+    updateFinished: function () {
         this.fireEvent('updatecomplete');
     },
 
@@ -28,9 +28,11 @@
         this.fireEvent('lessoncreated');
         this.lessonsContainer.lessonsStore.reload();
         this.trainingScheduler.eventStore.reload();
+
+        this.advanceCalenderMatrix.reload(this.scheduler.eventStore);
     },
 
-    initLessonsContainer: function() {
+    initLessonsContainer: function () {
         return Ext.create('Ilc.view.lessons.List', {
             training: this.entity,
             columnWidth: 0.2,
@@ -49,8 +51,11 @@
     },
 
     onLessonsListSelected: function (container, record) {
+
         this.scheduler.getSchedulingView().scrollEventIntoView(record, true);
         this.scheduler.loadAvailabilityZones();
+
+        Ext.getCmp('calendarMatrix').setValue(record.data.StartDate);
     },
 
     onLessonRemove: function (store, record, index, isMove, eOpts) {
@@ -59,12 +64,13 @@
     },
 
     onLessonCreated: function (newEventRecord) {
+
         var container = this.up('planningTab');
-        
+
         var trainingLessons = this.eventStore.queryBy(function (record) {
             return record.get('Draggable') == true;
         });
-        
+
         newEventRecord.set({
             Name: 'Lesson ' + (trainingLessons.items.length + 1)
         });
@@ -76,11 +82,33 @@
             trainingId: container.entity.get('id'),
             ownerId: newEventRecord.get('ResourceId')
         };
-        
+
         container.fireEvent('createlesson', container, model);
     },
 
-    getResourceStore: function() {
+    onCalendarMatrixSelection: function (selectedDate) {
+
+        var me = this;
+
+        var highlightLessons = this.lessonsContainer.lessonsStore.data.items.filter(function (lesson) {
+            return lesson.data.StartDate.getDate() === selectedDate.getDate();
+        });
+
+        if (highlightLessons && highlightLessons.length && highlightLessons.length > 0) {
+
+            highlightLessons.forEach(function (lesson) {
+                var model = me.lessonsContainer.lessonsStore.getById(lesson.data.Id)
+                me.scheduler.getSchedulingView().scrollEventIntoView(model, true);
+            });
+        }
+        else {
+            me.scheduler.getSchedulingView().scrollToDate(selectedDate, true);
+        }
+
+        me.scheduler.loadAvailabilityZones();
+    },
+
+    getResourceStore: function () {
         return Ext.create('Ilc.store.scheduler.Stakeholders');
     },
 
@@ -110,23 +138,24 @@
 
         var trainingScheduler = Ext.create('Ilc.scheduler.Training', {
             // width: 890,
-            height: 400,
+            height: 300,
             // startDate: new Date(2013, 10, 24, 6),
             eventResizeHandles: 'both',
             // enableDragCreation: false,
 
             resourceStore: resourceStore,
             eventStore: eventStore,
-            
+
             onEventCreated: me.onLessonCreated,
 
-            columnWidth: 0.8,
             training: entity,
             scrollToEvent: false
         });
+
         this.trainingScheduler = trainingScheduler;
 
         trainingScheduler.on('eventresizeend', function (scheduler, record) {
+
             var model = {
                 startDate: record.get('StartDate'),
                 endDate: record.get('EndDate'),
@@ -140,6 +169,7 @@
 
         trainingScheduler.on('eventdrop', function (scheduler, records) {
             // records is an array of record, for now we can only select one event, so just get the first item in the array
+
             var event = records[0];
 
             var model = {
@@ -153,13 +183,149 @@
             me.fireEvent('updatelesson', me, model);
         });
 
+        var fields = Ext.create('Ext.form.Panel', {
+            width: 600,
+            height: 250,
+            columnWidth: 0.4,
+            bodyStyle: 'padding: 6px',
+            labelWidth: 126,
+            frame: false,
+            border: false,
+            labelAlign: 'right',
+            defaultType: 'textfield',
+            defaults: {
+                msgTarget: 'side',
+            },
+            items: [
+                {
+                    xtype: 'checkbox',
+                    labelSeparator: ' ',
+                    boxLabel: 'All Day',
+                    inputValue: 'allDay',
+                    listeners: {
+                        change: function (checkbox, newVal, oldVal) {
+
+                            if (newVal === true) {
+                                Ext.getCmp('timeFrom').disable();
+                                Ext.getCmp('timeTo').disable();
+                            }
+                            else if (newVal === false) {
+                                Ext.getCmp('timeFrom').enable();
+                                Ext.getCmp('timeTo').enable();
+                            }
+                        }
+                    }
+                },
+                {
+                    id: 'timeFrom',
+                    xtype: 'timefield',
+                    fieldLabel: 'From',
+                    anchor: '100%'
+                },
+                {
+                    id: 'timeTo',
+                    xtype: 'timefield',
+                    fieldLabel: 'To',
+                    anchor: '100%'
+                },
+                {
+                    xtype: 'button',
+                    text: 'Generate Lessons',
+                    handler: function () {
+
+                        var timeTo = Ext.getCmp('timeTo').value;
+                        var timeFrom = Ext.getCmp('timeFrom').value;
+                        var selectedDates = Ext.getCmp('calendarMatrix1').selectedDates;
+
+                        var container = this.up('planningTab');
+
+                        var resourceId = 0;
+
+                        if (container.scheduler.selModel.selected.items[0]) {
+                            resourceId = container.scheduler.selModel.store.data.items[0].internalId
+                        }
+                        else {
+                            resourceId = container.scheduler.store.data.items[0].internalId;
+                        }
+
+                        var lessonCount = 1;
+                        $.each(selectedDates, function (key, date) {
+
+                            var datetimeTo = new Date(date.getFullYear(), date.getMonth(), date.getDate(),
+                                           timeTo.getHours(), timeTo.getMinutes(), timeTo.getSeconds());
+
+                            var datetimeFrom = new Date(date.getFullYear(), date.getMonth(), date.getDate(),
+                                           timeFrom.getHours(), timeFrom.getMinutes(), timeFrom.getSeconds());
+
+                            var trainingLessons = container.scheduler.eventStore.queryBy(function (record) {
+                                return record.get('Draggable') == true;
+                            });
+
+                            var model = {
+                                startDate: datetimeFrom,
+                                endDate: datetimeTo,
+                                lessonName: 'Lesson ' + (trainingLessons.items.length + lessonCount),
+                                trainingId: container.entity.get('id'),
+                                ownerId: resourceId
+                            };
+
+                            container.fireEvent('createlesson', container, model);
+                            lessonCount++;
+                        });
+
+                        
+                    }
+                }
+            ]
+        });
+
+        me.advanceCalenderMatrix = Ext.create('Ilc.scheduler.AdvanceDatePicker', {
+            id: "calendarMatrix1",
+            cls: "calenderMatrix",
+            columnWidth: 0.4,
+            eventStore: eventStore,
+            handler: function (picker, date) {
+                me.onCalendarMatrixSelection(date);
+            }
+        });
+
+        var calenderMatrixPanel = Ext.create('Ext.panel.Panel', {
+            frame: false,
+            layout: {
+                type: 'column',
+            },
+            defaults: {
+                margin: '0 15 0 0' //top right bottom left (clockwise) margins of each item/column
+            },
+            items: [
+                me.advanceCalenderMatrix,
+                fields
+            ]
+        });
+
+
         me.scheduler = trainingScheduler;
         me.lessonsContainer = me.initLessonsContainer();
+
+        var Column = Ext.create("Ext.panel.Panel", {
+            items: [
+                me.scheduler,
+                calenderMatrixPanel
+            ],
+            layout: {
+                type: 'vbox',
+                align: 'stretch',
+                pack: 'start',
+            },
+            frame: false,
+            columnWidth: 0.8,
+        })
+
         me.items = [
-            trainingScheduler,
+            Column,
             me.lessonsContainer
         ];
-        
+
         // resourceStore.load();
         eventStore.load();
 

@@ -38,7 +38,7 @@
 }
 
 /* Scheduler - Events */
-.disabled { 
+.disabled {
     background-color: #7F7F7F;
 }
 
@@ -140,9 +140,9 @@
 }
 
 /* Slider - Highlight */
-.ext-ux-slider-highlight { 
+.ext-ux-slider-highlight {
     position: absolute;
-    overflow:hidden;
+    overflow: hidden;
     width: 100%;
 }
 
@@ -151,13 +151,13 @@
 }
 
 .x-slider-vert .ext-ux-slider-highlight {
-    width:7px;
-    left:4px;
+    width: 7px;
+    left: 4px;
 }
 
 .x-slider-horz .ext-ux-slider-highlight {
-    height:7px;
-    top:4px;
+    height: 7px;
+    top: 4px;
 }
 
 
@@ -173,43 +173,41 @@
     border-radius: 0;
     background-image: none !important; /* This is a fix for IE */
     border: 0;
-    
     background-color: inherit;
 }
 
-.link-button span {
-    color: blue !important;
-}
+    .link-button span {
+        color: blue !important;
+    }
 
 
 .eduali-menu span {
     color: white !important;
 }
+
 .eduali-menu {
-    
     background-image: none !important; /* This is a fix for IE */
     background-color: rgb(72, 163, 221);
-
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     -ms-border-radius: 0px;
     -o-border-radius: 0px;
     border-radius: 0px;
 }
+
 .x-eduali-menu-hover {
     background-image: none !important; /* This is a fix for IE */
     background-color: rgb(181, 231, 63);
-    
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     -ms-border-radius: 0px;
     -o-border-radius: 0px;
     border-radius: 0px;
 }
+
 .x-eduali-menu-pressed {
     background-image: none !important; /* This is a fix for IE */
     background-color: rgb(193, 218, 76);
-    
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     -ms-border-radius: 0px;
@@ -224,7 +222,7 @@
 
 /* Grid */
 .ux-filtered-column {
-    color: rgb(0, 153, 255)
+    color: rgb(0, 153, 255);
 }
 
 .btn-success {
@@ -254,9 +252,10 @@
 a {
     text-decoration: none;
 }
-a:visited {
-    text-decoration: none;
-}
+
+    a:visited {
+        text-decoration: none;
+    }
 
 .x-form-invalid-field {
     color: red;
@@ -273,4 +272,31 @@ a:visited {
 
 .Lessons-Head--print {
     padding-bottom: 80px;
+}
+
+.calenderMatrix .x-datepicker-today {
+    background-color: #00f;
+}
+
+    .calenderMatrix .x-datepicker-today a {
+        color: #fff;
+    }
+
+.calenderMatrix .x-datepicker-selected {
+    background-color: green !important;
+    color: #fff !important;
+}
+
+    .calenderMatrix .x-datepicker-selected > a.x-datepicker-date:hover {
+        background-color: green !important;
+        color: #fff !important;
+    }
+
+    .calenderMatrix .x-datepicker-selected .x-datepicker-date {
+        background-color: green !important;
+        color: #fff !important;
+    }
+
+.calenderMatrix .x-datepicker-savedselected {
+    background-color: #ff0;
 }

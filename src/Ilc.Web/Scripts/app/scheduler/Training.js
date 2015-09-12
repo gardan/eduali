@@ -66,6 +66,7 @@
 
     initComponent: function () {
         var me = this;
+
         me.addEvents(
             'deletelesson'
         );
@@ -88,8 +89,8 @@
                 },
                 {
                     xtype: 'actioncolumn',
-                    text: Ilc.resources.Manager.getResourceString('common.actions'),
-                    width: 60,
+                    //text: Ilc.resources.Manager.getResourceString('common.actions'),
+                    width: 25,
                     sortable: false,
                     menuDisabled: true,
                     items: [
@@ -256,6 +257,7 @@
                         var trainings = this.up().up().up().entity.raw;
                         trainings.lessons = [];
 
+                        //var training = this.up().up().up().up().entity.raw;
                         var tabPanel = this.up().up().up().up();
                         var lessons = tabPanel.items.items.filter(function (item) { return item.title == "Lessons" })[0].store.data.items;
 
@@ -306,14 +308,14 @@
 
         me.zoomLevels = [
             // WEEK
-            { width: 50, increment: 1, resolution: 30, preset: 'weekAndMonth', resolutionUnit: 'MINUTE' },
+            { width: 50, increment: 1, resolution: 15, preset: 'weekAndMonth', resolutionUnit: 'MINUTE' },
 
             // DAY
-            { width: 100, increment: 1, resolution: 30, preset: 'weekAndDay', resolutionUnit: 'MINUTE' },
+            { width: 100, increment: 1, resolution: 15, preset: 'weekAndDay', resolutionUnit: 'MINUTE' },
 
             //HOUR
-            { width: 50, increment: 6, resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' },
-            { width: 50, increment: 1, resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' }
+            { width: 50, increment: 6, resolution: 15, preset: 'hourAndDay', resolutionUnit: 'MINUTE' },
+            { width: 50, increment: 1, resolution: 15, preset: 'hourAndDay', resolutionUnit: 'MINUTE' }
         ];
 
         me.on('eventcontextmenu', function (scheduler, eventRecord, e) {

@@ -51,7 +51,10 @@
         return result;
     },
 
-    loadAvailabilityZones: function() {
+    loadAvailabilityZones: function () {
+
+        debugger;
+
         var me = this;
         var availabilityStore = me.resourceZones;
         
@@ -208,14 +211,14 @@
 
         me.zoomLevels = [
             // WEEK
-            { width: 50, increment: 1, resolution: 30, preset: 'weekAndMonth', resolutionUnit: 'MINUTE' },
+            { width: 50, increment: 1, resolution: 15, preset: 'weekAndMonth', resolutionUnit: 'MINUTE' },
 
             // DAY
-            { width: 100, increment: 1, resolution: 30, preset: 'weekAndDay', resolutionUnit: 'MINUTE' },
+            { width: 100, increment: 1, resolution: 15, preset: 'weekAndDay', resolutionUnit: 'MINUTE' },
 
             //HOUR
-            { width: 50, increment: 6, resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' },
-            { width: 50, increment: 1, resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' }
+            { width: 50, increment: 6, resolution: 15, preset: 'hourAndDay', resolutionUnit: 'MINUTE' },
+            { width: 50, increment: 1, resolution: 15, preset: 'hourAndDay', resolutionUnit: 'MINUTE' }
         ];
 
         var func = function () {

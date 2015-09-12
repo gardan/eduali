@@ -2212,12 +2212,12 @@ Ext.define('Sch.preset.Manager', {
             defaultSpan         : 24,    // By default, if no end date is supplied to a view it will show 24 hours
             timeResolution      : {      // Dates will be snapped to this resolution
                 unit        : "MINUTE",  // Valid values are "MILLI", "SECOND", "MINUTE", "HOUR", "DAY", "WEEK", "MONTH", "QUARTER", "YEAR".
-                increment   : 30
+                increment   : 15
             },
             headerConfig        : {      // This defines your header, you must include a "middle" object, top/bottom are optional. For each row you can define "unit", "increment", "dateFormat", "renderer", "align", and "scope"
                 middle  : {
                     unit        : "MINUTE",
-                    increment   : '30',
+                    increment   : '15',
                     align       : 'center',
                     dateFormat  : 'i'
                 },
@@ -2238,7 +2238,7 @@ Ext.define('Sch.preset.Manager', {
             defaultSpan         : 24,
             timeResolution      : {
                 unit        : "MINUTE",
-                increment   : 30
+                increment   : 15
             },
             headerConfig        : {
                 middle      : {
@@ -16235,10 +16235,10 @@ Ext.define('Sch.mixin.Zoomable', {
         { width: 100,   increment: 1,   resolution: 1, preset: 'weekAndDay', resolutionUnit: 'HOUR' },
 
         //HOUR
-        { width: 50,    increment: 6,   resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' },
-        { width: 100,   increment: 6,   resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' },
-        { width: 60,    increment: 2,   resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' },
-        { width: 60,    increment: 1,   resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' },
+        { width: 50,    increment: 6,   resolution: 15, preset: 'hourAndDay', resolutionUnit: 'MINUTE' },
+        { width: 100,   increment: 6,   resolution: 15, preset: 'hourAndDay', resolutionUnit: 'MINUTE' },
+        { width: 60,    increment: 2,   resolution: 15, preset: 'hourAndDay', resolutionUnit: 'MINUTE' },
+        { width: 60,    increment: 1,   resolution: 15, preset: 'hourAndDay', resolutionUnit: 'MINUTE' },
 
         //MINUTE
         { width: 30,    increment: 15,  resolution: 5, preset: 'minuteAndHour' },
