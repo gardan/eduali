@@ -49,13 +49,20 @@
 
     initComponent: function () {
         var me = this;
-        var customersStore = Ext.create('Ilc.store.Customers');
+        var customersStore = Ext.create('Ilc.store.Customers', {
+            pageSize: 1000
+        });
         var studentsStore = Ext.create('Ilc.store.Students', {
-            data: []
+            data: [],
+            pagesize: 1000
         });
         var trainingSystemsStore = Ext.create('Ilc.store.TrainingSystems');
-        var subjectsStore = Ext.create('Ilc.store.Subjects');
-        var trainersStore = Ext.create('Ilc.store.Trainers');
+        var subjectsStore = Ext.create('Ilc.store.Subjects', {
+            pageSize: 1000
+        });
+        var trainersStore = Ext.create('Ilc.store.Trainers', {
+            pageSize: 1000
+        });
 
         var salesUsersStore = Ext.create('Ilc.store.Users', {
             claims: 'tasks-sales'
@@ -87,6 +94,7 @@
             store: customersStore,
             queryMode: 'local',
             displayField: 'name',
+            forceSelection: 'true',
             valueField: 'id',
             name: 'customerId',
             fieldLabel: Ilc.resources.Manager.getResourceString('common.customer'),
@@ -121,6 +129,9 @@
             store: subjectsStore,
             queryMode: 'local',
             displayField: 'name',
+            forceSelection: 'true',
+            minChars: 1,
+            triggerAction: 'all',
             valueField: 'id',
             name: 'subjectId',
             fieldLabel: Ilc.resources.Manager.getResourceString('common.subject'),

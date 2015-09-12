@@ -78,16 +78,17 @@
         //    }
         //};
 
-        
 
-        var customersStore = Ext.create('Ilc.store.Customers');
+        var customersStore = Ext.create('Ilc.store.Customers', {
+            pageSize: 1000
+        });
         var gendersStore = Ext.create('Ilc.store.Genders');
 
         var customerComboBox = Ext.create('Ext.form.ComboBox', {
             id: 'customerCB',
             store: customersStore,
             forceselection: true,
-            editable: false,
+            editable: true,
             queryMode: 'local',
             displayField: 'name',
             valueField: 'id',

@@ -144,7 +144,9 @@
         });
 
         // General
-        var trainersStore = Ext.create('Ilc.store.Trainers');
+        var trainersStore = Ext.create('Ilc.store.Trainers', {
+            pageSize: 1000
+        });
 
         var salesUsersStore = Ext.create('Ilc.store.Users', {
             claims: 'tasks-sales'

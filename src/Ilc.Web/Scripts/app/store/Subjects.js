@@ -10,6 +10,13 @@
     proxy: {
         type: 'rest',
         url: 'api/subjects',
+
+        //pageParam: false, //to remove param "page"
+        //startParam: false, //to remove param "start"
+        //limitParam: undefined, //to remove param "limit"
+        //noCache: false, //to remove param "_dc"
+       
+
         extraParams: {
             format: 'json'
         },
