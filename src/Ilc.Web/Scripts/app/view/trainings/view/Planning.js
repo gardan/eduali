@@ -25,11 +25,14 @@
     },
 
     lessonCreated: function () {
+
+        debugger;
+
         this.fireEvent('lessoncreated');
         this.lessonsContainer.lessonsStore.reload();
         this.trainingScheduler.eventStore.reload();
 
-        this.advanceCalenderMatrix.reload(this.scheduler.eventStore);
+        this.advanceCalenderMatrix.reload(this.lessonsContainer.lessonsStore);
     },
 
     initLessonsContainer: function () {
@@ -55,12 +58,14 @@
         this.scheduler.getSchedulingView().scrollEventIntoView(record, true);
         this.scheduler.loadAvailabilityZones();
 
-        Ext.getCmp('calendarMatrix').setValue(record.data.StartDate);
+        Ext.getCmp('calendarMatrix1').setValue(record.data.StartDate);
     },
 
     onLessonRemove: function (store, record, index, isMove, eOpts) {
         var lessonToRemove = this.lessonsContainer.lessonsStore.getById(record.get('Id'));
         this.lessonsContainer.lessonsStore.remove(lessonToRemove);
+
+        this.advanceCalenderMatrix.remove(lessonToRemove);
     },
 
     onLessonCreated: function (newEventRecord) {
@@ -91,7 +96,9 @@
         var me = this;
 
         var highlightLessons = this.lessonsContainer.lessonsStore.data.items.filter(function (lesson) {
-            return lesson.data.StartDate.getDate() === selectedDate.getDate();
+            return lesson.data.StartDate.getDate() === selectedDate.getDate()
+            && lesson.data.StartDate.getMonth() === selectedDate.getMonth()
+            && lesson.data.StartDate.getFullYear() === selectedDate.getFullYear();
         });
 
         if (highlightLessons && highlightLessons.length && highlightLessons.length > 0) {
@@ -199,6 +206,7 @@
             items: [
                 {
                     xtype: 'checkbox',
+                    id: 'IsAllday',
                     labelSeparator: ' ',
                     boxLabel: 'All Day',
                     inputValue: 'allDay',
@@ -219,12 +227,14 @@
                 {
                     id: 'timeFrom',
                     xtype: 'timefield',
+                    increment: 30,
                     fieldLabel: 'From',
                     anchor: '100%'
                 },
                 {
                     id: 'timeTo',
                     xtype: 'timefield',
+                    increment: 30,
                     fieldLabel: 'To',
                     anchor: '100%'
                 },
@@ -233,8 +243,11 @@
                     text: 'Generate Lessons',
                     handler: function () {
 
-                        var timeTo = Ext.getCmp('timeTo').value;
-                        var timeFrom = Ext.getCmp('timeFrom').value;
+                        var IsAllDay = Ext.getCmp('IsAllday').value;
+
+                        var timeTo = IsAllDay ? new Date("January 1, 2000 17:00") : Ext.getCmp('timeTo').value;
+                        var timeFrom = IsAllDay ? new Date("January 1, 2000 09:00") : Ext.getCmp('timeFrom').value;
+
                         var selectedDates = Ext.getCmp('calendarMatrix1').selectedDates;
 
                         var container = this.up('planningTab');
@@ -273,17 +286,21 @@
                             lessonCount++;
                         });
 
-                        
+                        me.advanceCalenderMatrix.reload();
                     }
                 }
             ]
         });
+
+        me.scheduler = trainingScheduler;
+        me.lessonsContainer = me.initLessonsContainer();
 
         me.advanceCalenderMatrix = Ext.create('Ilc.scheduler.AdvanceDatePicker', {
             id: "calendarMatrix1",
             cls: "calenderMatrix",
             columnWidth: 0.4,
             eventStore: eventStore,
+            lessonstore: this.lessonsContainer.lessonsStore,
             handler: function (picker, date) {
                 me.onCalendarMatrixSelection(date);
             }
@@ -302,10 +319,6 @@
                 fields
             ]
         });
-
-
-        me.scheduler = trainingScheduler;
-        me.lessonsContainer = me.initLessonsContainer();
 
         var Column = Ext.create("Ext.panel.Panel", {
             items: [

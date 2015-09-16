@@ -8,14 +8,17 @@
     clsCurrentHighlight: 'x-datepicker-currentselected',
     clsSavedHighlight: 'x-datepicker-savedselected',
     eventStore: null,
+    lessonstore: null,
 
     initComponent: function () {
 
         var me = this;
         me.callParent(arguments);
 
-        me.eventStore.on('load', function (records) {
-            me.eventStore.each(function (record) {
+        me.lessonstore.on('load', function (records) {
+
+            me.clearSelection();
+            me.lessonstore.each(function (record) {
                 me.savedDates[record.data.StartDate.toDateString()] = record.data.StartDate;
             });
         });
@@ -24,17 +27,42 @@
         me.on('afterrender', me.higlightDates, me);
     },
 
-    reload: function (eventStore) {
+    remove: function (lesson) {
+        var me = this;
+        
+        if (lesson && lesson.data && lesson.data.StartDate) {
+            delete me.savedDates[lesson.data.StartDate.toDateString()];
+            me.reload(me.lessonstore);
+        }
+    },
+
+    reload: function (lessonstore) {
 
         var me = this;
 
-        mr.clearSelection();
+        if (lessonstore) {
 
-        eventStore.each(function (record) {
-            me.savedDates[record.data.StartDate.toDateString()] = record.data.StartDate;
-        });
+            me.lessonstore = lessonstore;
 
-        me.higlightDates();
+            me.lessonstore.on('load', function (records) {
+
+                me.clearSelection();
+                me.lessonstore.each(function (record) {
+                    me.savedDates[record.data.StartDate.toDateString()] = record.data.StartDate;
+                });
+
+                me.higlightDates();
+            });
+        }
+        else {
+            me.clearSelection();
+
+            me.lessonstore.each(function (record) {
+                me.savedDates[record.data.StartDate.toDateString()] = record.data.StartDate;
+            });
+
+            me.higlightDates();
+        }
     },
 
     clearSelection: function () {
@@ -50,7 +78,7 @@
         me.cells.each(function (item) {
             item.removeCls(me.clsHigligthClass);
             item.removeCls(me.clsSavedHighlight);
-        })
+        });
     },
 
     higlightDates: function () {
@@ -83,7 +111,7 @@
         var me = this;
 
         if (me.selectedDates[date.toDateString()]) {
-            delete me.selectedDates[date.toDateString()]
+            delete me.selectedDates[date.toDateString()];
         }
         else {
             me.selectedDates[date.toDateString()] = date;

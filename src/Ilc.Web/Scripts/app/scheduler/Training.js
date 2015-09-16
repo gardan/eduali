@@ -308,14 +308,14 @@
 
         me.zoomLevels = [
             // WEEK
-            { width: 50, increment: 1, resolution: 15, preset: 'weekAndMonth', resolutionUnit: 'MINUTE' },
+            { width: 50, increment: 1, resolution: 30, preset: 'weekAndMonth', resolutionUnit: 'MINUTE' },
 
             // DAY
-            { width: 100, increment: 1, resolution: 15, preset: 'weekAndDay', resolutionUnit: 'MINUTE' },
+            { width: 100, increment: 1, resolution: 30, preset: 'weekAndDay', resolutionUnit: 'MINUTE' },
 
             //HOUR
-            { width: 50, increment: 6, resolution: 15, preset: 'hourAndDay', resolutionUnit: 'MINUTE' },
-            { width: 50, increment: 1, resolution: 15, preset: 'hourAndDay', resolutionUnit: 'MINUTE' }
+            { width: 50, increment: 6, resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' },
+            { width: 50, increment: 1, resolution: 30, preset: 'hourAndDay', resolutionUnit: 'MINUTE' }
         ];
 
         me.on('eventcontextmenu', function (scheduler, eventRecord, e) {
@@ -327,15 +327,18 @@
                         text: 'Delete event',
                         iconCls: 'icon-delete',
                         handler: function () {
+
                             var model = {
                                 id: scheduler.ctx.rec.get('Id')
                             };
+
                             me.fireEvent('deletelesson', scheduler, model);
                             scheduler.eventStore.remove(scheduler.ctx.rec);
                         }
                     }]
                 });
             }
+
             scheduler.ctx.rec = eventRecord;
             scheduler.ctx.showAt(e.getXY());
         });

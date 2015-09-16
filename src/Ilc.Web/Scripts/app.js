@@ -220,7 +220,7 @@ Ext.application({
             defaultSpan: 24,
             timeResolution: {
                 unit: "MINUTE",
-                increment: 15
+                increment: 30
             },
             headerConfig: {
                 middle: {
