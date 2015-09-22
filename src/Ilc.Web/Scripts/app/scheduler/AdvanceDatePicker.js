@@ -7,7 +7,6 @@
     clsHigligthClass: 'x-datepicker-selected',
     clsCurrentHighlight: 'x-datepicker-currentselected',
     clsSavedHighlight: 'x-datepicker-savedselected',
-    eventStore: null,
     lessonstore: null,
 
     initComponent: function () {
@@ -68,12 +67,12 @@
     clearSelection: function () {
         var me = this;
 
+        me.selectedDates = {};
+        me.savedDates = {};
+
         if (!me.cells) {
             return;
         }
-
-        me.selectedDates = {};
-        me.savedDates = {};
 
         me.cells.each(function (item) {
             item.removeCls(me.clsHigligthClass);

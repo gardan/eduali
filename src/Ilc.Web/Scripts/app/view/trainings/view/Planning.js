@@ -26,8 +26,6 @@
 
     lessonCreated: function () {
 
-        debugger;
-
         this.fireEvent('lessoncreated');
         this.lessonsContainer.lessonsStore.reload();
         this.trainingScheduler.eventStore.reload();
@@ -227,14 +225,14 @@
                 {
                     id: 'timeFrom',
                     xtype: 'timefield',
-                    increment: 30,
+                    increment: 15,
                     fieldLabel: 'From',
                     anchor: '100%'
                 },
                 {
                     id: 'timeTo',
                     xtype: 'timefield',
-                    increment: 30,
+                    increment: 15,
                     fieldLabel: 'To',
                     anchor: '100%'
                 },
