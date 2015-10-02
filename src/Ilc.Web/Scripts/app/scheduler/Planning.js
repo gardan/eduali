@@ -6,6 +6,7 @@
     ],
 
     eventRenderer: function (eventRecord, resourceRecord, tmplData) {
+
         var style = 'background-color: #' + eventRecord.get('color');
         tmplData.style = style;
 
@@ -25,7 +26,8 @@
         '<div style="width:300px;">' +
         'Subject: <b>{subjectName}</b> <br />' +
         'Customer: <b>{customerName}</b> <br />' +
-        'Location: <b>{location}</b>' + 
+        'Location: <b>{location}</b> <br />' +
+        'Students: <b>{students}</b>' +
         '</div>'
     ),
 

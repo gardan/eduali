@@ -11,7 +11,8 @@
         console.log('update finished');
     },
 
-    initComponent: function() {
+    initComponent: function () {
+
         var me = this;
 
         Ext.define('Ilc.model.scheduler.Lesson', {
@@ -28,6 +29,7 @@
                 { name: 'customerName', type: 'string' },
                 { name: 'subjectName', type: 'string' },
                 { name: 'location', type: 'string' },
+                { name: 'students', type: 'string'}
             ],
              
             idProperty: 'id',

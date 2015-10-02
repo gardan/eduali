@@ -111,7 +111,7 @@ namespace Ilc.Web.Services
             foreach (var training in trainings.Data)
             {
                 var scheduleDays = training.ScheduleDays;
-
+                string students = string.Join(",", training.Students.Select(x => x.Name));
 
                 foreach (var day in scheduleDays)
                 {
@@ -126,12 +126,11 @@ namespace Ilc.Web.Services
                             CustomerName = training.Customer == null ? "" : training.Customer.Name,
                             SubjectName = training.Subject.Name,
                             TrainingId = training.Id,
-                            Location = training.Location
+                            Location = training.Location,
+                            Students = students
                         });
                 }
             }
-
-
 
             return new FilteredDataModel<LessonScheduleModelNormal>()
                 {
@@ -209,6 +208,7 @@ namespace Ilc.Web.Services
         public string SubjectName { get; set; }
         public int TrainingId { get; set; }
         public string Location { get; set; }
+        public string Students { get; set; }
     }
 
     [DataContract]
@@ -216,7 +216,7 @@ namespace Ilc.Web.Services
     {
         [DataMember(Name = "Id")]
         public int Id { get; set; }
-        [DataMember(Name="ResourceId")]
+        [DataMember(Name = "ResourceId")]
         public int ResourceId { get; set; }
         [DataMember(Name = "Name")]
         public string Name { get; set; }
@@ -227,7 +227,7 @@ namespace Ilc.Web.Services
 
         [DataMember(Name = "Resizable")]
         public bool Resizable { get; set; }
-        
+
         [DataMember(Name = "Draggable")]
         public bool Draggable { get; set; }
 
