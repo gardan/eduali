@@ -258,15 +258,29 @@
                         trainings.lessons = [];
 
                         var tabPanel = this.up('tabpanel');
-                        var lessons = tabPanel.items.items.filter(function (item) { return item.title == "Lessons"})[0].store.data.items;
+                        var lessons = tabPanel.items.items.filter(function (item) { return item.title == "Lessons" })[0].store.data.items;
 
                         var totaal = trainings.totalHours;
                         lessons.forEach(function (lesson) {
 
                             totaal = totaal - DateDifference(lesson.raw.StartDate, lesson.raw.EndDate);
                             lesson.raw.total = totaal;
+
+                            lesson.raw.StartTime = GetTime(lesson.raw.StartDate);
+                            lesson.raw.EndTime = GetTime(lesson.raw.EndDate);
+
                             trainings.lessons.push(lesson.raw);
                         });
+
+                        function GetTime(datetime) {
+
+                            var d = new Date();
+                            var localTimeOffset = d.getTimezoneOffset() * 60000;
+
+                            var date = new Date(Date.parse(datetime) + localTimeOffset);
+
+                            return (date.getHours() < 10 ? "0" + date.getHours() : date.getHours()) + ":" + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes());
+                        }
 
                         function DateDifference(startDate, endDate) {
 
