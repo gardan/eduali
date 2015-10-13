@@ -280,7 +280,7 @@
 
                         function GetTime(datetime) {
 
-                            var date = Ext.Date.parse(lesson.raw.StartDate, 'c');
+                            var date = Ext.Date.parse(datetime, 'c');
 
                             //var d = new Date();
                             //var localTimeOffset = d.getTimezoneOffset() * 60000;
