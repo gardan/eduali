@@ -265,8 +265,8 @@
 
                             var modelLesson = {};
                             modelLesson.Name = lesson.raw.Name;
-
-                            totaal = totaal - DateDifference(lesson.raw.StartDate, lesson.raw.EndDate);
+                            modelLesson.timeDifference = DateDifference(lesson.raw.StartDate, lesson.raw.EndDate);
+                            totaal = totaal - modelLesson.timeDifference;
                             modelLesson.total = totaal;
 
                             modelLesson.StartTime = GetTime(lesson.raw.StartDate);
