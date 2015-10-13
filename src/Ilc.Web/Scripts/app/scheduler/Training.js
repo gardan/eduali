@@ -280,9 +280,11 @@
 
                         function GetTime(datetime) {
 
-                            var d = new Date();
-                            var localTimeOffset = d.getTimezoneOffset() * 60000;
-                            var date = new Date(Date.parse(datetime) + localTimeOffset);
+                            var date = Ext.Date.parse(lesson.raw.StartDate, 'c');
+
+                            //var d = new Date();
+                            //var localTimeOffset = d.getTimezoneOffset() * 60000;
+                            //var date = new Date(Date.parse(datetime) + localTimeOffset);
 
                             var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
                             var mins = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
