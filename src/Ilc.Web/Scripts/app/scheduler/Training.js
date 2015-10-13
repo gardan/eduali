@@ -263,23 +263,41 @@
                         var totaal = trainings.totalHours;
                         lessons.forEach(function (lesson) {
 
+                            var modelLesson = {};
+                            modelLesson.Name = lesson.raw.Name;
+
                             totaal = totaal - DateDifference(lesson.raw.StartDate, lesson.raw.EndDate);
-                            lesson.raw.total = totaal;
+                            modelLesson.total = totaal;
 
-                            lesson.raw.StartTime = GetTime(lesson.raw.StartDate);
-                            lesson.raw.EndTime = GetTime(lesson.raw.EndDate);
+                            modelLesson.StartTime = GetTime(lesson.raw.StartDate);
+                            modelLesson.EndTime = GetTime(lesson.raw.EndDate);
 
-                            trainings.lessons.push(lesson.raw);
+                            modelLesson.StartDate = GetDate(lesson.raw.StartDate);
+                            modelLesson.EndDate = GetDate(lesson.raw.EndDate);
+
+                            trainings.lessons.push(modelLesson);
                         });
 
                         function GetTime(datetime) {
 
                             var d = new Date();
                             var localTimeOffset = d.getTimezoneOffset() * 60000;
-
                             var date = new Date(Date.parse(datetime) + localTimeOffset);
 
-                            return (date.getHours() < 10 ? "0" + date.getHours() : date.getHours()) + ":" + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes());
+                            var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+                            var mins = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+
+                            return hours + ":" + mins;
+                        }
+
+                        function GetDate(datetime) {
+                            var d = new Date(datetime);
+
+                            var month = (d.getUTCMonth() + 1 < 10) ? "0" + (d.getUTCMonth() + 1) : d.getUTCMonth() + 1;
+                            var day = (d.getUTCDate() < 10) ? "0" + d.getUTCDate() : d.getUTCDate();
+                            var year = (d.getUTCFullYear() < 10) ? "0" + d.getUTCFullYear() : d.getUTCFullYear();
+
+                            return day + "-" + month + "-" + year;
                         }
 
                         function DateDifference(startDate, endDate) {
