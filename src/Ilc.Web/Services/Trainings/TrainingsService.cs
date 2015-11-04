@@ -45,6 +45,23 @@ namespace Ilc.Web.Services.Trainings
             foreach (var training in results.Data)
             {
                 var model = new TrainingModel().InjectFrom<TrainingToWebModel>(training) as TrainingModel;
+
+                for (int i = 0; i < model.Students.Length; i++)
+                {
+                    if (i > 1)
+                    {
+                        model.studentNames += "...";
+                        break;
+                    }
+
+                    model.studentNames += model.Students[i].Name;
+
+                    if (i < model.Students.Length - 1)
+                    {
+                        model.studentNames += ", ";
+                    }
+                }
+
                 var student = model.Students.FirstOrDefault(s => s.UserInfo.Id == currentUserId);
                 if (student != null)
                 {
@@ -193,7 +210,7 @@ namespace Ilc.Web.Services.Trainings
                     }
                 }
             }
-            
+
 
 
 

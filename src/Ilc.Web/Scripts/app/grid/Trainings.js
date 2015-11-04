@@ -37,6 +37,18 @@
             }
         },
         {
+            dataIndex: 'studentNames',
+            flex: 1,
+            text: Ilc.resources.Manager.getResourceString('common.students'),
+            renderer: function (value) {
+                return value;
+            },
+            filter: {
+                type: 'string'
+            }
+        },
+
+        {
             dataIndex: 'stakeHolders',
             flex: 1,
             text: Ilc.resources.Manager.getResourceString('common.trainer'),
@@ -140,7 +152,7 @@
     ], 'trainings'),
 
     initComponent: function () {
-        
+
         var filters = {
             ftype: 'jsvfilters',
             // encode and local configuration options defined previously for easier reuse

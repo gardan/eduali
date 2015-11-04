@@ -12,14 +12,17 @@ namespace Ilc.Web.Models
             Joined = false;
         }
         public int Id { get; set; }
-        public string CompositeId {
+        public string CompositeId
+        {
             // TODO: move to a function that takes a training, and returns the compositeId
             get { return string.Format("{0}-{1}", CustomerId, NoOfCustomerTraining); }
         }
 
+        public string studentNames { get; set; }
+
         public string Color { get; set; }
         public int NoOfCustomerTraining { get; set; }
-        
+
         public UserModel[] Owners { get; set; }
         public TrainerModel Trainer { get; set; }
         public CustomerModel Customer { get; set; }
@@ -37,7 +40,7 @@ namespace Ilc.Web.Models
 
         public int SubjectId { get; set; }
         public int CustomerId { get; set; }
-        
+
         public decimal Expenses { get; set; }
 
         public int TrainerId { get; set; }
