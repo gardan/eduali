@@ -30,15 +30,17 @@
                 }
             },
             {
-                dataIndex: 'subjects',
+                dataIndex: 'subjectNames',
                 text: Ilc.resources.Manager.getResourceString('common.subjects'),
                 flex: 1,
                 renderer: function(value) {
-                    var ret = '';
-                    Ext.Array.forEach(value, function(subject) {
-                        ret += subject.name + ', ';
-                    });
-                    return ret.substring(0, ret.length - 2);
+                    //var ret = '';
+                    //Ext.Array.forEach(value, function(subject) {
+                    //    ret += subject.name + ', ';
+                    //});
+                    //return ret.substring(0, ret.length - 2);
+
+                    return value;
                 },
                 filter: {
                     type: 'string'
@@ -83,6 +85,7 @@
     },
 
     initComponent: function () {
+
         var me = this;
 
         var trainersStore = Ext.create('Ilc.store.Trainers');
@@ -91,7 +94,7 @@
 
         var filter = {
             ftype: 'jsvfilters',
-            local: false
+            local: true
         };
 
         var trainersGrid = Ext.create('Ext.grid.Panel', {

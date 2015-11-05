@@ -21,12 +21,17 @@ namespace Ilc.Web.Services
         {
             var results = Trainers.GetFiltered(request);
 
-            return new FilteredDataModel<TrainerModel>()
-                {
-                    Data = results.Data.Select(t => new TrainerModel().InjectFrom<TrainerToTrainerModel>(t) as TrainerModel).ToList(),
-                    TotalRecords = results.TotalRecords,
-                    TotalDisplayRecords = results.TotalDisplayRecords
-                };
+            var dataModel = new FilteredDataModel<TrainerModel>();
+            dataModel.Data = results.Data.Select(t => new TrainerModel().InjectFrom<TrainerToTrainerModel>(t) as TrainerModel).ToList();
+            dataModel.TotalRecords = results.TotalRecords;
+            dataModel.TotalDisplayRecords = results.TotalDisplayRecords;
+
+            foreach (var trainer in dataModel.Data)
+            {
+                trainer.subjectNames = string.Join(", ", trainer.Subjects.Select(t => t.Name));
+            }
+
+            return dataModel;
         }
 
         public HttpResult Post(CreateTrainerModel request)
@@ -61,7 +66,7 @@ namespace Ilc.Web.Services
             updatedTrainer.UserProfile.UserDetails.PopulateWithNonDefaultValues(userDetails);
 
             Trainers.Update(updatedTrainer);
-            
+
             return new HttpResult()
                 {
                     StatusCode = HttpStatusCode.OK

@@ -10,6 +10,7 @@
             name: 'email'
         },
         'userInfo',
+        'subjectNames',
         'subjects'
     ]
 });
