@@ -48,11 +48,11 @@ namespace Ilc.Web.Services.Trainings
 
                 for (int i = 0; i < model.Students.Length; i++)
                 {
-                    if (i > 1)
-                    {
-                        model.studentNames += "...";
-                        break;
-                    }
+                    //if (i > 1)
+                    //{
+                    //    model.studentNames += "...";
+                    //    break;
+                    //}
 
                     model.studentNames += model.Students[i].Name;
 

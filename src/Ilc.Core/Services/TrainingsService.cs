@@ -92,23 +92,30 @@ namespace Ilc.Core.Services
                         var id = Convert.ToInt32(inFilter.Value);
                         query = query.Where(t => t.Id == id);
                         break;
-                        // Doru
+
+                    case "studentNames":
+
+                        query = query.Where(x => x.Students.Any(y => y.Name.Contains(inFilter.Value)));
+
+                        break;
+
+                    // Doru
                     //case "status":
                     //    query = query.Where(c => c.Status.Contains(inFilter.Value));
                     //    break;
-//                    case "statusFriendlyName":
-//                        // http://www.albahari.com/nutshell/predicatebuilder.aspx
-//                        var statusDefinitions = Uow.StatusDictionary.GetAll().Where(s => s.FriendlyName.Contains(inFilter.Value)).ToList();
-//                        
-//                        var predicate = PredicateBuilder.False<Training>();
-//
-//                        foreach (var statusDefinition in statusDefinitions)
-//                        {
-//                            string temp = statusDefinition.Name;
-//                            predicate = predicate.Or(t => t.Status.Contains(temp));
-//                        }
-//                        query = query.AsExpandable().Where(predicate);
-//                        break;
+                    //                    case "statusFriendlyName":
+                    //                        // http://www.albahari.com/nutshell/predicatebuilder.aspx
+                    //                        var statusDefinitions = Uow.StatusDictionary.GetAll().Where(s => s.FriendlyName.Contains(inFilter.Value)).ToList();
+                    //                        
+                    //                        var predicate = PredicateBuilder.False<Training>();
+                    //
+                    //                        foreach (var statusDefinition in statusDefinitions)
+                    //                        {
+                    //                            string temp = statusDefinition.Name;
+                    //                            predicate = predicate.Or(t => t.Status.Contains(temp));
+                    //                        }
+                    //                        query = query.AsExpandable().Where(predicate);
+                    //                        break;
                     case "customer":
                         query = query.Where(t => t.Customer.Name.Contains(inFilter.Value));
                         break;
@@ -125,7 +132,7 @@ namespace Ilc.Core.Services
                         break;
                 }
             }
-            
+
             // order
             query = query.OrderBy(e => e.Id);
 
@@ -143,7 +150,7 @@ namespace Ilc.Core.Services
 
 
 
-        
+
         public Training GetById(int id)
         {
             return Uow.Trainings.GetById(id);
@@ -189,7 +196,7 @@ namespace Ilc.Core.Services
             {
                 Uow.Spendings.Delete(training.Spendings.Id);
             }
-            
+
             Update(training);
             Uow.Trainings.Delete(training);
             Uow.Commit();

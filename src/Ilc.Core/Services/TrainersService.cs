@@ -47,9 +47,9 @@ namespace Ilc.Core.Services
                         query = query.Where(s => s.UserProfile.UserDetails.FirstName.Contains(inFilter.Value) ||
                                                  s.UserProfile.UserDetails.LastName.Contains(inFilter.Value));
                         break;
-                    case "subject":
+                    case "subjectNames":
                         // Doru
-//                        query = query.Where(t => t.Subjects.First().Name.Contains(inFilter.Value));
+                        query = query.Where(t => t.Subjects.Any(x=> x.Name.Contains(inFilter.Value)));
                         break;
                     case "phone":
                         query = query.Where(t => t.Phone.Contains(inFilter.Value));

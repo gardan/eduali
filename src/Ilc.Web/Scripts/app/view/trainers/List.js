@@ -94,7 +94,7 @@
 
         var filter = {
             ftype: 'jsvfilters',
-            local: true
+            local: false
         };
 
         var trainersGrid = Ext.create('Ext.grid.Panel', {
