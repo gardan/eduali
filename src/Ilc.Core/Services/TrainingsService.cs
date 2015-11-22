@@ -95,7 +95,7 @@ namespace Ilc.Core.Services
 
                     case "studentNames":
 
-                        query = query.Where(x => x.Students.Any(y => y.Name.Contains(inFilter.Value)));
+                        // query = query.Where(x => x.Students.Any(y => y.Name.Trim().ToLower().Contains(inFilter.Value.Trim().ToLower())));
 
                         break;
 
@@ -136,12 +136,41 @@ namespace Ilc.Core.Services
             // order
             query = query.OrderBy(e => e.Id);
 
+            List<Training> queryResult = query.ToList();
+            List<Training> trainings = new List<Training>();
+
+            var studentNamesFilter = parameters.Filter.Where(x => x.Field == "studentNames");
+
+            if (studentNamesFilter.Count() > 0)
+            {
+                var keyword = studentNamesFilter.FirstOrDefault().Value.Trim().ToLower();
+
+                foreach (var training in queryResult)
+                {
+                    if (training.Students != null && training.Students.Count > 0)
+                    {
+                        foreach (var student in training.Students)
+                        {
+                            if (student.Name.Trim().ToLower().Contains(keyword))
+                            {
+                                trainings.Add(training);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                trainings.AddRange(queryResult);
+            }
+
             // paging
-            query = query.Skip(parameters.StartIndex).Take(parameters.Length);
+            trainings = trainings.Skip(parameters.StartIndex).Take(parameters.Length).ToList();
 
             return new FilteredResults<Training>()
                 {
-                    Data = query.ToList(),
+                    Data = trainings,
                     TotalDisplayRecords = totalDisplayRecords,
                     TotalRecords = totalDisplayRecords
                 };
