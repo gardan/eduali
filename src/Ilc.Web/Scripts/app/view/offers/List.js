@@ -36,7 +36,8 @@
                             text: 'Create offer',
                             iconCls: 'icon-add',
                             cls: 'clean-button',
-                            handler: function() {
+                            handler: function () {
+                                debugger
                                 Ext.ux.Router.redirect('offers/create');
                             }
                         }

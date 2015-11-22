@@ -107,15 +107,43 @@ Ext.define('Ilc.view.trainings.view.Expenses', {
         window.show();
     },
     
+    onEdit: function (editor, e) {
+        var record = e.record;
+
+        record.save({
+            success: function () {
+                record.commit();
+            }
+        });
+    },
+
     initComponent: function () {
         var me = this;
-        
+
+        var textBox = {
+            xtype: 'textfield'
+        };
+
         this.expensesStore = Ext.create('Ilc.store.Expenses', {
             trainingId: this.trainingId
         });
         this.expensesStore.load();
         
+        var rowEditing = Ext.create('Ext.grid.plugin.RowEditing', {
+            clickstoedit: 2,
+            autoCancel: false,
+            listeners: {
+                edit: {
+                    fn: this.onEdit,
+                    scope: this
+                }
+            }
+        });
+        
         var expensesGrid = Ext.create('Ext.grid.Panel', {
+            plugins : [rowEditing],
+  
+
             dockedItems: [
                 {
 
@@ -140,6 +168,7 @@ Ext.define('Ilc.view.trainings.view.Expenses', {
                 {
                     dataIndex: 'ammount',
                     text: 'Ammount',
+                    editor: textBox,
                     flex: 1
                 },
                 {

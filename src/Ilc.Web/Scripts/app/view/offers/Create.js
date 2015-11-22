@@ -47,7 +47,7 @@
 
     loadCustomers: function (options) {
         this.customersStore.load({
-            callback: R.bind(this.customersLoaded, this)
+            //callback: R.bind(this.customersLoaded, this)
         });
     },
 
@@ -60,7 +60,7 @@
         
 
         this.trainingsStore.load({
-            callback: R.bind(this.trainingsLoaded, this),
+            //callback: R.bind(this.trainingsLoaded, this),
             params: {
                 customerId: customerId
             }
