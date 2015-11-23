@@ -10,15 +10,16 @@
     initColumns: function() {
         var me = this;
         var ret = [
-            //{
-            //    // TODO: should actually use 'templatecolumn' and a XTemplate to create the <img /> tag.
-            //    dataIndex: '',
-            //    text: Ilc.resources.Manager.getResourceString('common.avatar'),
-            //    renderer: function (value, meta, record) {
-            //        var avatarUrl = record.get('userInfo').avatarLocation;
-            //        return '<img width="64" height="64" src="' + avatarUrl + '" />';
-            //    }
-            //},
+            {
+                // TODO: should actually use 'templatecolumn' and a XTemplate to create the <img /> tag.
+                dataIndex: '',
+                hidden: true,
+                text: Ilc.resources.Manager.getResourceString('common.avatar'),
+                renderer: function (value, meta, record) {
+                    var avatarUrl = record.get('userInfo').avatarLocation;
+                    return '<img width="64" height="64" src="' + avatarUrl + '" />';
+                }
+            },
             {
                 dataIndex: 'name', // There actually isn't any column 'name', we just use it for filtering porpuses, see 'renderer' for the actual value
                 text: Ilc.resources.Manager.getResourceString('common.name'),
