@@ -81,6 +81,14 @@
                     }
                 },
                 {
+                    dataIndex: 'department',
+                    text: Ilc.resources.Manager.getResourceString('common.department'),
+                    flex: 1,
+                    filter: {
+                        type: 'string'
+                    }
+                },
+                {
                     dataIndex: 'billingAddress',
                     text: Ilc.resources.Manager.getResourceString('common.billingAddress'),
                     flex: 1,

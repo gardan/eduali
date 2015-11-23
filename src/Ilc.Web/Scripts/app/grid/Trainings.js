@@ -1,18 +1,26 @@
 ﻿Ext.define('Ilc.grid.Trainings', {
     extend: 'Ext.grid.Panel',
-    
+
     requires: [
         'Ilc.AsyncHelpers'
     ],
 
     columns: Ilc.helpers.GridColumns.process([
-        {
-            dataIndex: 'compositeId',
-            text: Ilc.resources.Manager.getResourceString('common.id'),
-            filter: {
-                type: 'string'
-            }
-        },
+
+               {
+                   dataIndex: 'trainingId',
+                   text: Ilc.resources.Manager.getResourceString('common.trainingId'),
+                   filter: {
+                       type: 'string'
+                   }
+               },
+        //{
+        //    dataIndex: 'compositeId',
+        //    text: Ilc.resources.Manager.getResourceString('common.id'),
+        //    filter: {
+        //        type: 'string'
+        //    }
+        //},
         {
             dataIndex: 'status',
             flex: 1,
@@ -58,7 +66,7 @@
                     if (R.filter(R.propEq('name', 'Trainer'), stakeholder.roles).length > 0) {
                         ret += stakeholder.fullName + ', ';
                     }
-                    
+
                 }, value);
 
                 return ret.slice(0, -2);
@@ -91,7 +99,7 @@
             text: Ilc.resources.Manager.getResourceString('common.startDate'),
             flex: 1,
             renderer: function (value) {
-                return Ext.Date.format(new Date(value), 'Y-m-d');
+                return Ext.Date.format(new Date(value), 'd-m-Y');
             },
             filter: {
                 type: 'string'
@@ -138,9 +146,9 @@
                     tooltip: Ilc.resources.Manager.getResourceString('common.delete'),
                     handler: function (grid, rowIndex, colIndex, item, e, record) {
                         Ilc.AsyncHelpers.confirmModal()
-                            .then(function() {
+                            .then(function () {
                                 record.destroy({
-                                    success: function() {
+                                    success: function () {
                                         grid.store.reload();
                                     }
                                 });

@@ -82,6 +82,14 @@
                 name: 'userInfo.lastName',
             },
             {
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.initials'),
+                name: 'userInfo.initials',
+            },
+            {
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.mobile'),
+                name: 'userInfo.mobile',
+            },
+            {
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.phone'),
                 name: 'userInfo.phone',
             },

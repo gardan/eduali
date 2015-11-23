@@ -26,7 +26,7 @@
                 name: 'interviewDate',
                 disabled: (me.plan === null),
                 value: me.plan.get('date') == '' ? '' : new Date(me.plan.get('date')),
-                format: 'Y-m-d'
+                format: 'd-m-Y'
             },
             {
                 xtype: 'textfield',

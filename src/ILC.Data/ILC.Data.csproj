@@ -406,6 +406,10 @@
     <Compile Include="Migrations\201506181659057_AddedTotalHoursToTraining.Designer.cs">
       <DependentUpon>201506181659057_AddedTotalHoursToTraining.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511231759359_NewFields.cs" />
+    <Compile Include="Migrations\201511231759359_NewFields.designer.cs">
+      <DependentUpon>201511231759359_NewFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -692,6 +696,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506181659057_AddedTotalHoursToTraining.resx">
       <DependentUpon>201506181659057_AddedTotalHoursToTraining.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511231759359_NewFields.resx">
+      <DependentUpon>201511231759359_NewFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

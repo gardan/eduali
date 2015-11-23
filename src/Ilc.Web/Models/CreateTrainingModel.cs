@@ -4,6 +4,7 @@ namespace Ilc.Web.Models
 {
     public class CreateTrainingModel
     {
+        public string TrainingId { get; set; }
         public string Location { get; set; }
         public DateTimeOffset DesiredStartDate { get; set; }
         public DateTimeOffset DesiredEndDate { get; set; }

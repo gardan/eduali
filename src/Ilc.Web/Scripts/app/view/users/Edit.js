@@ -23,7 +23,7 @@
         'Ilc.utils.Forms'
     ],
 
-    userUpdated: function() {
+    userUpdated: function () {
         this.avatarUploader.initUpload();
     },
 
@@ -34,7 +34,7 @@
         });
     },
 
-    unassignRoleComplete: function() {
+    unassignRoleComplete: function () {
         this.rolesStore.load({
             params: {
                 userId: this.user.get('id')
@@ -88,7 +88,7 @@
         });
     },
 
-    initComponent: function() {
+    initComponent: function () {
         var me = this;
 
         var rolesStore = Ext.create('Ilc.store.Roles');
@@ -160,7 +160,7 @@
                                         },
                                         {
                                             text: Ilc.resources.Manager.getResourceString('common.cancel'),
-                                            handler: function() {
+                                            handler: function () {
                                                 window.close();
                                             }
                                         }
@@ -174,7 +174,7 @@
             ]
         });
 
-        rolesGrid.on('delete', function(grid, record) {
+        rolesGrid.on('delete', function (grid, record) {
             // Delete role from user
             var model = {
                 userId: me.user.get('id'),
@@ -210,6 +210,11 @@
                                 value: me.user.get('userInfo').lastName
                             },
                             {
+                                fieldLabel: Ilc.resources.Manager.getResourceString('common.initials'),
+                                name: 'userInfo.initials',
+                                value: me.user.get('userInfo').initials
+                            },
+                            {
                                 fieldLabel: Ilc.resources.Manager.getResourceString('common.email'),
                                 name: 'userInfo.email',
                                 value: me.user.get('email')
@@ -219,6 +224,11 @@
                                 name: 'userInfo.phone',
                                 value: me.user.get('userInfo').phone
                             },
+                             {
+                                 fieldLabel: Ilc.resources.Manager.getResourceString('common.mobile'),
+                                 name: 'userInfo.mobile',
+                                 value: me.user.get('userInfo').mobile
+                             },
                             {
                                 xtype: 'datefield',
                                 fieldLabel: Ilc.resources.Manager.getResourceString('common.dateOfBirth'),
@@ -232,7 +242,7 @@
                         buttons: [
                             {
                                 text: Ilc.resources.Manager.getResourceString('common.save'),
-                                handler: function(button) {
+                                handler: function (button) {
                                     var model = {};
                                     var parent = button.up().up();
                                     var inputs = parent.query('textfield');
@@ -244,7 +254,7 @@
                             },
                             {
                                 text: Ilc.resources.Manager.getResourceString('common.cancel'),
-                                handler: function() {
+                                handler: function () {
                                     me.close();
                                 }
                             }
@@ -259,7 +269,7 @@
                 ]
             }
         ],
-        
+
         rolesStore.load({
             params: {
                 userId: me.user.get('id')

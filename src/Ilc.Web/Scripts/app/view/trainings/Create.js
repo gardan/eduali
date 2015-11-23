@@ -195,6 +195,11 @@
 //        });
 
         me.items = [
+              {
+                  xtype: 'textfield',
+                  fieldLabel: Ilc.resources.Manager.getResourceString('common.trainingId'),
+                  name: 'trainingId',
+              },
 //            {
 //                xtype: 'checkbox',
 //                fieldLabel: 'Public',

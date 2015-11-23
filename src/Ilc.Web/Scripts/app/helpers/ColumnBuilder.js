@@ -24,6 +24,17 @@
                 }
             },
             {
+                dataIndex: 'mobile',
+                text: Ilc.resources.Manager.getResourceString('common.mobile'),
+                flex: 1,
+                renderer: function (value, meta, record) {
+                    return record.get('userInfo').mobile;
+                },
+                filter: {
+                    type: 'string'
+                }
+            },
+            {
                 dataIndex: 'gender', // There actually isn't any column 'name', we just use it for filtering porpuses, see 'renderer' for the actual value
                 text: Ilc.resources.Manager.getResourceString('common.gender'),
                 flex: 1,

@@ -25,6 +25,13 @@
                 name: 'name',
                 anchor: '100%'
             },
+
+            {
+                xtype: 'textfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.department'),
+                name: 'department',
+                anchor: '100%'
+            },
             {
                 xtype: 'textfield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.billingAddress'),

@@ -22,6 +22,7 @@ namespace Ilc.Data.Models
         public string BankAccount { get; set; }
         public string FiscalCode { get; set; }
         public string CommerceNumber { get; set; }
+        public string Department { get; set; }
 
         public virtual ICollection<ContactPerson> ContactPersons { get; set; }
         public virtual ICollection<Training> Trainings { get; set; }

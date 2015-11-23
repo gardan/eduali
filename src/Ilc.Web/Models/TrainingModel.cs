@@ -12,6 +12,8 @@ namespace Ilc.Web.Models
             Joined = false;
         }
         public int Id { get; set; }
+
+        public string TrainingId { get; set; }
         public string CompositeId
         {
             // TODO: move to a function that takes a training, and returns the compositeId

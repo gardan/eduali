@@ -690,6 +690,12 @@
         return [
             {
                 xtype: 'textfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.trainingId'),
+                name: 'trainingId',
+                value: this.model.get('trainingId'),
+                labelWidth: 100
+            },{
+                xtype: 'textfield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.location'),
                 name: 'location',
                 value: this.model.get('location'),
@@ -699,7 +705,7 @@
                 xtype: 'datefield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.startDate'),
                 value: new Date(this.model.get('desiredStartDate')),
-                format: 'Y-m-d',
+                format: 'd-m-Y',
                 name: 'desiredStartDate',
                 labelWidth: 100
             },
@@ -707,7 +713,7 @@
                 xtype: 'datefield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.endDate'),
                 value: new Date(this.model.get('desiredEndDate')),
-                format: 'Y-m-d',
+                format: 'd-m-Y',
                 name: 'desiredEndDate',
                 labelWidth: 100
             },
@@ -742,6 +748,11 @@
         return [
             {
                 xtype: 'textfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.trainingId'),
+                name: 'trainingId',
+                value: this.model.get('trainingId')
+            }, {
+                xtype: 'textfield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.location'),
                 name: 'location',
                 value: this.model.get('location')
@@ -750,14 +761,14 @@
                 xtype: 'datefield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.startDate'),
                 value: new Date(this.model.get('desiredStartDate')),
-                format: 'Y-m-d',
+                format: 'd-m-Y',
                 name: 'desiredStartDate'
             },
             {
                 xtype: 'datefield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.endDate'),
                 value: new Date(this.model.get('desiredEndDate')),
-                format: 'Y-m-d',
+                format: 'd-m-Y',
                 name: 'desiredEndDate'
             },
             {

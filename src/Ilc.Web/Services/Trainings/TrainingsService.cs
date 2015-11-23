@@ -112,6 +112,7 @@ namespace Ilc.Web.Services.Trainings
 
             var newTraining = new Training
                 {
+                    TrainingId = request.TrainingId,
                     Color = request.Color,
                     Public = request.Public,
                     Price = request.Price,
@@ -169,6 +170,7 @@ namespace Ilc.Web.Services.Trainings
             training.Color = request.Color;
 
             training.TotalHours = request.TotalHours;
+            training.TrainingId = request.TrainingId;
 
             // Update te DesiredStartDate
             training.DesiredStartDate = request.DesiredStartDate == DateTimeOffset.MinValue.DateTime
@@ -239,6 +241,7 @@ namespace Ilc.Web.Services.Trainings
 
     public class UpdateTrainingModel
     {
+        public string TrainingId { get; set; }
         public string Location { get; set; }
         public DateTime InterviewDate { get; set; }
         public DateTime DesiredStartDate { get; set; }

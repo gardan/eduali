@@ -19,7 +19,7 @@
 
     initComponent: function () {       
         var me = this;
-        debugger
+        
         me.items = [
             {
                 xtype: 'textfield',
@@ -32,6 +32,13 @@
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.name'),
                 name: 'name',
                 value: me.customer.name
+            },
+
+            {
+                xtype: 'textfield',
+                fieldLabel: Ilc.resources.Manager.getResourceString('common.department'),
+                name: 'department',
+                value: me.customer.department
             },
             {
                 xtype: 'textfield',
@@ -101,6 +108,7 @@
                 xtype: 'button',
                 text: Ilc.resources.Manager.getResourceString('common.save'),
                 handler: function (button, e) {
+
                     var model = {};
 
                     var textboxes = me.query('textfield');

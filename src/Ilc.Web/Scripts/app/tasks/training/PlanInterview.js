@@ -18,7 +18,7 @@
                 xtype: 'datefield',
                 fieldLabel: Ilc.resources.Manager.getResourceString('common.interviewDay'),
                 name: 'date',
-                format: 'Y-m-d'
+                format: 'd-m-Y'
             },
             {
                 xtype: 'textfield',

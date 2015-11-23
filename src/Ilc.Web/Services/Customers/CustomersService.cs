@@ -37,6 +37,7 @@ namespace Ilc.Web.Services
                 {
                     CustomerId = request.CustomerId,
                     Name = request.Name,
+                    Department = request.Department,
                     BillingAddress = request.BillingAddress,
                     Postcode = request.Postcode,
                     City = request.City,
