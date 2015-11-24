@@ -225,6 +225,11 @@
                                 value: cfgModel.userInfo.phone
                             },
                             {
+                                fieldLabel: Ilc.resources.Manager.getResourceString('common.mobile'),
+                                name: 'userInfo.mobile',
+                                value: cfgModel.get('userInfo').mobile
+                            },
+                            {
                                 xtype: 'datefield',
                                 fieldLabel: Ilc.resources.Manager.getResourceString('common.dateOfBirth'),
                                 name: 'userInfo.dateOfBirth',

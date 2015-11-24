@@ -217,8 +217,8 @@
 
         'view.subjects.create.title': 'New subject',
 
-        'formats.date': 'MM-DD-YYYY',
-        'formats.extjsdate': 'm-d-Y g:i',
-        'formats.extjsdateonly': 'm-d-Y'
+        'formats.date': 'DD-MM-YYYY',
+        'formats.extjsdate': 'd-m-Y g:i',
+        'formats.extjsdateonly': 'd-m-Y'
     }
 });

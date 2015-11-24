@@ -263,53 +263,53 @@ Ext.define('Sch.locale.En', {
 
             vp = M.getPreset("dayAndWeek");
             if (vp) {
-                vp.displayDateFormat = 'm/d h:i A';
+                vp.displayDateFormat = 'd/m h:i A';
                 vp.headerConfig.middle.dateFormat = 'D d M';
             }
 
             vp = M.getPreset("weekAndDay");
             if (vp) {
-                vp.displayDateFormat = 'm/d';
+                vp.displayDateFormat = 'd/m';
                 vp.headerConfig.bottom.dateFormat = 'd M';
                 vp.headerConfig.middle.dateFormat = 'Y F d';
             }
 
             vp = M.getPreset("weekAndMonth");
             if (vp) {
-                vp.displayDateFormat = 'm/d/Y';
-                vp.headerConfig.middle.dateFormat = 'm/d';
-                vp.headerConfig.top.dateFormat = 'm/d/Y';
+                vp.displayDateFormat = 'd/m/Y';
+                vp.headerConfig.middle.dateFormat = 'd/m';
+                vp.headerConfig.top.dateFormat = 'd/m/Y';
             }
 
             vp = M.getPreset("weekAndDayLetter");
             if (vp) {
-                vp.displayDateFormat = 'm/d/Y';
+                vp.displayDateFormat = 'd/m/Y';
                 vp.headerConfig.middle.dateFormat = 'D d M Y';
             }
 
             vp = M.getPreset("weekDateAndMonth");
             if (vp) {
-                vp.displayDateFormat = 'm/d/Y';
+                vp.displayDateFormat = 'd/m/Y';
                 vp.headerConfig.middle.dateFormat = 'd';
                 vp.headerConfig.top.dateFormat = 'Y F';
             }
 
             vp = M.getPreset("monthAndYear");
             if (vp) {
-                vp.displayDateFormat = 'm/d/Y';
+                vp.displayDateFormat = 'd/m/Y';
                 vp.headerConfig.middle.dateFormat = 'M Y';
                 vp.headerConfig.top.dateFormat = 'Y';
             }
 
             vp = M.getPreset("year");
             if (vp) {
-                vp.displayDateFormat = 'm/d/Y';
+                vp.displayDateFormat = 'd/m/Y';
                 vp.headerConfig.middle.dateFormat = 'Y';
             }
 
             vp = M.getPreset("manyYears");
             if (vp) {
-                vp.displayDateFormat = 'm/d/Y';
+                vp.displayDateFormat = 'd/m/Y';
                 vp.headerConfig.middle.dateFormat = 'Y';
             }
         }
